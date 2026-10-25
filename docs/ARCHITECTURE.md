@@ -109,3 +109,6 @@ Sprites.draw acepta una marcha opcional para deformar bandas de brazos y pies de
 
 World dibuja el fondo de menú con Chunks y props sencillos cuando simpleStyle está activo, sin cargar entidades de juego ni reiniciar estado. Terrain y Exploration añaden contornos visuales conservando la geometría física.
 La entrada espera los tres atlas jugables, el mapa inicial y los rivales antes de revelar el menú. El HTML incluye un estado de carga con estilo mínimo para evitar arte provisional incluso antes de la hoja CSS. UI.loading suspende el dibujo del mundo durante esta espera y permite reintentar ante fallo o 20 segundos de espera; los recursos iniciales tienen preload. El HUD de botín tolera que su atlas llegue antes de crear al jugador.
+
+## Marcadores de botín
+Terrain.minimap transforma las coordenadas de Loot.active con la misma escala del terreno, filtra por distancia y estado abierto, y consulta Loot.rarity para compartir la paleta. Se dibujan sobre los obstáculos y bajo el jugador, respetando el recorte existente. La leyenda queda fuera del área recortada.

@@ -167,3 +167,6 @@ Los personajes jugables animan brazos y pies según la distancia recorrida; se d
 
 ## Coherencia cartoon pixel art
 Los personajes definen el dibujo: objetos simples con contornos oscuros y sombras en pocos tonos. Árboles, mobiliario, arbustos, piedra y puesto comparten esos bordes. El menú usa el terreno sencillo del juego en lugar de la ilustración detallada. Se conservan animaciones, eventos, caminos y colisiones.
+
+## Cofres en el minimapa
+El minimapa muestra cofres sin abrir a un máximo de 900 unidades del jugador, con el mismo color de rareza: común arena, raro azul y legendario violeta. Los iconos tienen forma de cofre y una leyenda de colores. El cofre de jefe usa dorado. Los marcadores desaparecen al abrirse y no se dibujan dentro de arenas ni en el menú.
