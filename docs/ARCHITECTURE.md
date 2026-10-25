@@ -58,6 +58,10 @@ Prueba visual local: npm run build y node tests/manual/serve-bosses.cjs; abrir /
 ## Mundo por sectores
 src/systems/chunks.js se carga antes del terreno. P.Chunks mantiene una ventana de hasta 9 × 9 sectores de 512 unidades alrededor del jugador y caches de lienzos. La generación usa hashes de coordenadas enteras y tema; descargar y volver a cargar un sector conserva su geometría. Un Set guarda únicamente IDs de cajas destruidas durante la partida. P.Terrain reconstruye un índice espacial de celdas de 128 unidades al cambiar la ventana y usa una cuadrícula de navegación centrada en el jugador. La cámara del mapa principal no se limita por coordenadas; las arenas opcionales siguen siendo cerradas. Los fondos completos se conservan para menú y miniaturas; el terreno de combate combina muestras de suelo, caminos y obstáculos locales.
 
+## Botín y equipo
+src/systems/loot.js centraliza cofres, catálogo de objetos, monedas de partida, reemplazo reversible de accesorios y reducción de daño. Terrain.damage delega la creación del botín y protege contra premios duplicados. Game.start reinicia el sistema después de generar el terreno; Game.update avanza los cofres solo en estado play. World ordena los cofres por profundidad y dibuja monedas e indicadores de equipo.
+Encounters.win crea el cofre dorado y difiere su selector de recompensas mediante una función onOpen. El inventario no altera el catálogo base del personaje. scripts/modules.cjs carga Loot antes del renderizador y las pantallas. La prueba local de interacción está en tests/manual/serve-loot.cjs y se sirve por el puerto 4186; sus controles no se distribuyen en dist.
+
 
 ## Poderes configurables
 src/data/powers.js amplía el catálogo después de data/catalog.js. Combat interpreta count, spread, speed, pierce, motion, cloud y arc; las colisiones de proyectil recorren el segmento entre dos posiciones para evitar atravesar blancos al disparar rápido. El conjunto hits evita daño repetido por el mismo proyectil; el bumerán lo reinicia al regresar.
@@ -73,3 +77,12 @@ src/development/lab.js se carga después de la UI y antes del arranque. El estad
 P.Ultimate encapsula carga, duración y dibujo procedural pixel art. Los modificadores se consultan al mover y disparar sin alterar estadísticas base ni mejoras. La transformación es visual, conserva colisiones y vida. El servidor local de QA permite recargar y cambiar personaje sin distribuir esos controles.
 
 P.Audio usa Web Audio con ruido y osciladores originales, volumen maestro moderado, límite de voces y antirrebote por sonido. Se inicializa tras gesto, detiene voces al silenciar o perder foco y funciona sin AudioContext.
+
+## Regiones y caminos continuos
+P.Chunks.zone selecciona una distribución determinista por regiones de 1536 unidades. node y roadDistance construyen una red global con nodos desplazados y segmentos compartidos, independiente de los límites de caché. ground usa esa misma geometría para pintar y get la consulta para reservar corredores de paso. Las regiones modulan densidad, mezcla de objetos, orientación de muros y color del suelo sin añadir imágenes ni cambiar colisiones de arenas.
+
+MapArt.simpleStyle desactiva la carga y dibujo de los atlas detallados; Chunks usa la muestra original de suelo y Terrain su renderer de formas simples. Los recursos se conservan para evitar perder variantes.
+
+Ambient genera decoración determinista solo en la ventana visible de Campo de Marte; no mantiene cachés ni altera terreno. Usa elapsed para animación y matchMedia para movimiento reducido. World dibuja pasto/hojas debajo de actores e intercala arbustos por profundidad; Terrain desplaza únicamente las copas.
+
+La capa de efectos de la ulti se rasteriza en un lienzo de media resolución y se escala por nearest-neighbor. Evita texto/rotaciones suavizados en el mundo. Se conserva el estilo simple del entorno y Ambient de la rama de mapas.
