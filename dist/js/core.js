@@ -1,9 +1,9 @@
 'use strict';
 P.$=s=>document.querySelector(s);
-P.state={mode:'menu',chosen:0,player:null,enemies:[],shots:[],gems:[],effects:[],elapsed:0,spawn:0,fire:0,kills:0,level:1,xp:0,need:6,bossSpawned:false};
+P.state={mode:'menu',chosen:0,player:null,enemies:[],shots:[],danger:[],gems:[],effects:[],elapsed:0,spawn:0,fire:0,kills:0,level:1,xp:0,need:6,bossSpawned:false};
 P.Core=(()=>{
 const canvas=P.$('#game'),ctx=canvas.getContext('2d'),keys={};let width,height,touch=null;
-function resize(){width=innerWidth;height=innerHeight;const d=Math.min(devicePixelRatio||1,2);canvas.width=width*d;canvas.height=height*d;ctx.setTransform(d,0,0,d,0,0)}
+function resize(){width=innerWidth;height=innerHeight;const d=Math.min(devicePixelRatio||1,2);canvas.width=width*d;canvas.height=height*d;ctx.setTransform(d,0,0,d,0,0);ctx.imageSmoothingEnabled=false}
 function release(){touch=null;P.$('#stick').hidden=true}
 function direction(){if(touch)return {x:touch.dx,y:touch.dy};return {x:(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),y:(keys.s||keys.arrowdown?1:0)-(keys.w||keys.arrowup?1:0)}}
 function clear(){Object.keys(keys).forEach(k=>delete keys[k]);release()}

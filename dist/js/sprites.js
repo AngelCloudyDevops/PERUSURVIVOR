@@ -1,0 +1,13 @@
+'use strict';
+P.Sprites={
+ready:false,sheets:{},
+init(){if(typeof Image==='undefined')return;const configs=[{id:'base',file:'causas-atlas-v1.png',rows:8,edges:[0,227,455,649,851,1095,1323,1562,1774].map(v=>v/1774)},{id:'streamers',file:'streamers-atlas-v1.png',rows:7,edges:[0,262,496,742,995,1232,1456,1658].map(v=>v/1658)}];
+for(const config of configs){const image=new Image(),sheet={image,ready:false,cells:[]};this.sheets[config.id]=sheet;image.onload=()=>{this.measure(sheet,config);sheet.ready=true;this.ready=true;P.UI.lastArt=0;P.UI.animate(200);P.$('#art-status').textContent='PIXEL ART · REPOSO / CAMINATA / ATAQUE'};image.onerror=()=>{P.$('#art-status').textContent='Arte pendiente de cargar. Recarga para reintentar.'};image.src='assets/sprites/'+config.file}
+},
+measure(sheet,config){const image=sheet.image,cw=image.width/4,cv=document.createElement('canvas');cv.width=image.width;cv.height=image.height;const ctx=cv.getContext('2d');ctx.drawImage(image,0,0);const pixels=ctx.getImageData(0,0,cv.width,cv.height).data;
+for(let row=0;row<config.rows;row++){const frames=[];for(let col=0;col<4;col++){const sx=Math.round(col*cw),sy=Math.round((config.edges?config.edges[row]:row/config.rows)*image.height),end=Math.round((config.edges?config.edges[row+1]:(row+1)/config.rows)*image.height),ch=end-sy;let left=cw,right=0,top=ch,bottom=0;for(let y=1;y<ch-1;y++)for(let x=1;x<cw-1;x++){const index=((sy+y)*cv.width+sx+x)*4;if(pixels[index+3]>160){left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y)}}frames.push(right>left?{sx:sx+left,sy:sy+top,w:right-left+1,h:bottom-top+1}:{sx,sy,w:cw,h:ch})}sheet.cells.push(frames)}
+},
+draw(ctx,x,y,r,c,frame=0,flip=false){const sheet=this.sheets[c.atlas||'base'];if(!sheet?.ready||c.spriteRow===undefined)return false;const cell=sheet.cells[c.spriteRow]?.[frame];if(!cell)return false;const height=r*2.5,width=cell.w/cell.h*height;ctx.save();ctx.imageSmoothingEnabled=false;ctx.translate(Math.round(x),Math.round(y+r*.8));if(flip)ctx.scale(-1,1);ctx.drawImage(sheet.image,cell.sx,cell.sy,cell.w,cell.h,Math.round(-width/2),-Math.round(height),Math.round(width),Math.round(height));ctx.restore();return true},
+frame(p){if(p.castUntil>P.state.elapsed)return 3;if(p.moving)return 1+Math.floor(P.state.elapsed*9)%2;return 0},
+actor(ctx,p){ctx.save();ctx.fillStyle='#11192966';ctx.beginPath();ctx.ellipse(p.x,p.y+20,22,7,0,0,7);ctx.fill();ctx.restore();return this.draw(ctx,p.x,p.y,27,p,this.frame(p),p.facing<0)}
+};
