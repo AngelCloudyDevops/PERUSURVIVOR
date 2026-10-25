@@ -107,6 +107,7 @@ Loot usa una semilla de partida y Chunks.hash para derivar densidad, posición y
 
 Sprites.draw acepta una marcha opcional para deformar bandas de brazos y pies del actor sin afectar los retratos ni la pose de ataque. Systems.ranged administra aviso, dirección fijada y enfriamiento de minions; Combat comparte la colisión de proyectiles y acepta daño específico con valor previo por defecto.
 
+World dibuja el fondo de menú con Chunks y props sencillos cuando simpleStyle está activo, sin cargar entidades de juego ni reiniciar estado. Terrain y Exploration añaden contornos visuales conservando la geometría física.
 La entrada espera los tres atlas jugables, el mapa inicial y los rivales antes de revelar el menú. El HTML incluye un estado de carga con estilo mínimo para evitar arte provisional incluso antes de la hoja CSS. UI.loading suspende el dibujo del mundo durante esta espera y permite reintentar ante fallo o 20 segundos de espera; los recursos iniciales tienen preload. El HUD de botín tolera que su atlas llegue antes de crear al jugador.
 
 ## Actualizaciones del navegador
