@@ -120,6 +120,10 @@ module.exports = [
     "output": "js/performance.js"
   },
   {
+    "source": "src/scenes/practice.js",
+    "output": "js/practice.js"
+  },
+  {
     "source": "src/scenes/game.js",
     "output": "js/game.js"
   }

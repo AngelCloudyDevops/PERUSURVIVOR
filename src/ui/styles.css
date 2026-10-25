@@ -27,6 +27,9 @@ footer{position:static;grid-column:1/-1;margin-top:12px}#menu{align-content:star
 /* Más espacio de combate para la cámara cercana. */
 #hud.boss-hud{top:76px;padding:8px 14px;width:min(500px,90vw)}#hud.boss-hud .xp,#hud.boss-hud #level,#hud.boss-hud #ability,#hud.boss-hud #loot-hud,#hud.boss-hud #loot-message{display:none}#hud.boss-hud #portal-status{margin-top:4px;font-size:10px}@media(max-width:760px){#hud.boss-hud{top:65px;padding:7px 10px}#hud.boss-hud #portal-status{font-size:9px}}
 
+.practice-entry{width:100%;margin:12px 0;padding:14px;border:1px solid #e5ad55;border-radius:8px;background:#26344a;color:#ffe6a3;font-weight:700;cursor:pointer}#practice-tools{position:fixed;bottom:12px;left:12px;right:12px;z-index:45;display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#142032f2;color:#fff1c2;padding:12px;border:1px solid #e5ad55;border-radius:10px}#practice-tools[hidden]{display:none}#practice-tools button{padding:10px;cursor:pointer}#practice-info{font-size:12px}@media(max-width:600px){#practice-tools{bottom:8px;padding:8px;gap:6px}#practice-tools b{width:100%}#practice-info{width:100%}}
+
+
 #coop-panel{margin-top:20px;padding:18px;border:1px solid #73b4b7;border-radius:12px;background:#142b35;color:#f9efdf}#coop-panel h3{margin:0 0 8px;font-size:15px}#coop-panel p,#coop-panel small{font-size:12px;line-height:1.5}#coop-panel .coop-actions{display:flex;gap:8px;flex-wrap:wrap}#coop-panel button,#coop-panel input{padding:10px;border:1px solid #73b4b7;border-radius:6px;background:#213d49;color:#fff}#coop-panel input{width:120px;text-transform:uppercase}#coop-panel button:disabled{opacity:.5}#coop-status{overflow-wrap:anywhere}
 #game-update{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);z-index:20;background:#edc86e;color:#17212c;border:2px solid #fff0c0;border-radius:8px;padding:12px 18px;font-weight:800;box-shadow:0 3px 18px #0006}
 
