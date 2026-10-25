@@ -101,3 +101,6 @@ Exploration administra un puesto por partida, sin persistencia externa. Se reini
 La marcha de los rivales usa la distancia real tras resolver colisiones en Systems.move. EnemyArt combina los dos cuadros del atlas con balanceo, rebote y desplazamiento alternado de pies; el ciclo se detiene sin desplazamiento y conserva la dirección horizontal. No modifica velocidad, daño ni colisiones.
 
 P.CoverArt carga el atlas exclusivo de arena antes del arranque y dibuja solo props con id arena:. P.Terrain conserva la física y el fallback geométrico. P.World.zoomFor calcula el encuadre según ancho de ventana; P.BossArt.camera sigue al jugador dentro del fondo.
+
+## Distribución de cofres por sectores
+Loot usa una semilla de partida y Chunks.hash para derivar densidad, posición y rareza por sector. Mantiene solo los nueve sectores vecinos y el cofre de jefe, más los IDs de cofres abiertos durante la partida. Al volver se reconstruyen las mismas posiciones y el estado abierto. Safe comprueba objetos de sectores vecinos aunque aún no estén en el índice de colisiones activo. Tick sincroniza solo al cambiar de sector, fuera de pausas y arenas.
