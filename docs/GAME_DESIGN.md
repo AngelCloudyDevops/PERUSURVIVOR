@@ -243,3 +243,6 @@ Al morir, el minion conserva su cuerpo completo, muestra ojos en X, cae y mantie
 Manchas de color deterministas y flores dispersas reemplazan la muestra de suelo repetida. Caminos con curvas suaves y bordes de hierba, compartidos entre sectores; los obstáculos respetan su misma geometría. Copas orgánicas con transparencia cuando el jugador pasa detrás, sombras ovales y referencias locales: picnic, jardines coloniales y terrazas de piedra. No se cambian las cámaras ni las arenas de jefe.
 
 La prueba de rendimiento permite marcar «Probar el dibujo anterior para comparar». Solo cambia cómo se dibujan los proyectiles durante esa prueba; mantiene el número de enemigos, ataques, estelas y patrones. El resumen identifica el método usado. La composición se fija en un 20 % de minions pesados para que las repeticiones sean comparables. Las partidas normales usan el dibujo optimizado.
+
+## Corrección de césped y apoyo al suelo
+Se recupera la textura anterior aprobada y se eliminan las manchas grandes planas. Caminos curvos, cámara y personajes se conservan. Las sombras se anclan al pie dibujado de cada objeto; árboles con sombra pequeña bajo el tronco para evitar apariencia de flotación.
