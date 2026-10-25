@@ -33,6 +33,6 @@ for(const shot of s.shots){const oldX=shot.x,oldY=shot.y,oldAge=shot.age;shot.hi
 }
 s.shots=s.shots.filter(shot=>shot.life>0);s.enemies=s.enemies.filter(e=>e.hp>0);
 for(const field of s.fields){field.life-=dt;field.tick-=dt;if(field.tick<=0){field.tick=.4;for(const e of s.enemies){if(e.hp>0&&Math.hypot(e.x-field.x,e.y-field.y)<field.r+e.r)P.Entities.hurt(e,field.power);if(s.mode!=='play')return}}}s.fields=s.fields.filter(f=>f.life>0);
-for(const shot of s.danger){shot.history.push({x:shot.x,y:shot.y});if(shot.history.length>8)shot.history.shift();shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;shot.age+=dt;shot.life-=dt;if(s.encounter&&P.Terrain.hit(shot.x,shot.y,7)){shot.life=0;continue}if(Math.hypot(shot.x-p.x,shot.y-p.y)<24&&p.inv<=0){p.hp=Math.max(0,p.hp-P.Loot.damage(p,14));p.inv=.7;shot.life=0;P.Entities.burst(p.x,p.y,'#d89cff');if(p.hp<=0){P.Game.finish(false);return}}}s.danger=s.danger.filter(shot=>shot.life>0)
+for(const shot of s.danger){shot.history.push({x:shot.x,y:shot.y});if(shot.history.length>8)shot.history.shift();shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;shot.age+=dt;shot.life-=dt;if((s.encounter||shot.minion)&&P.Terrain.hit(shot.x,shot.y,7)){shot.life=0;continue}if(Math.hypot(shot.x-p.x,shot.y-p.y)<24&&p.inv<=0){p.hp=Math.max(0,p.hp-P.Loot.damage(p,shot.damage??14));p.inv=.7;shot.life=0;P.Entities.burst(p.x,p.y,'#d89cff');if(p.hp<=0){P.Game.finish(false);return}}}s.danger=s.danger.filter(shot=>shot.life>0)
 }
 };

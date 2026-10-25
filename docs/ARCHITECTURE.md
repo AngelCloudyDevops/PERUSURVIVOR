@@ -101,3 +101,5 @@ Exploration administra un puesto por partida, sin persistencia externa. Se reini
 La marcha de los rivales usa la distancia real tras resolver colisiones en Systems.move. EnemyArt combina los dos cuadros del atlas con balanceo, rebote y desplazamiento alternado de pies; el ciclo se detiene sin desplazamiento y conserva la dirección horizontal. No modifica velocidad, daño ni colisiones.
 
 P.CoverArt carga el atlas exclusivo de arena antes del arranque y dibuja solo props con id arena:. P.Terrain conserva la física y el fallback geométrico. P.World.zoomFor calcula el encuadre según ancho de ventana; P.BossArt.camera sigue al jugador dentro del fondo.
+
+Sprites.draw acepta una marcha opcional para deformar bandas de brazos y pies del actor sin afectar los retratos ni la pose de ataque. Systems.ranged administra aviso, dirección fijada y enfriamiento de minions; Combat comparte la colisión de proyectiles y acepta daño específico con valor previo por defecto.
