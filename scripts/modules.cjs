@@ -72,7 +72,8 @@ module.exports = [
     "output": "js/terrain.js"
   },
   {
-    "source": "src/rendering/loot-art.js", "output":"js/loot-art.js"
+    "source": "src/rendering/loot-art.js",
+    "output": "js/loot-art.js"
   },
   {
     "source": "src/systems/loot.js",
@@ -101,6 +102,10 @@ module.exports = [
   {
     "source": "src/systems/ultimate.js",
     "output": "js/ultimate.js"
+  },
+  {
+    "source": "src/core/updates.js",
+    "output": "js/updates.js"
   },
   {
     "source": "src/network/cooperative.js",

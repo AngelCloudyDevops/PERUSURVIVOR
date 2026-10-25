@@ -3,7 +3,7 @@ const root=path.resolve(__dirname,'..'),modules=require('../scripts/modules.cjs'
 const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 test('El HTML carga todos los módulos en el orden declarado',()=>{
  const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');
- const scripts=[...html.matchAll(/<script src="([^"]+)"/g)].map(m=>m[1]);
+ const scripts=[...html.matchAll(/<script src="([^"]+)"/g)].map(m=>m[1].split('?')[0]);
  assert.deepEqual(scripts,modules.map(m=>m.output));
  for(const file of [...scripts,'style.css'])assert(fs.existsSync(path.join(root,'dist',file)),file);
  assert(!fs.existsSync(path.join(root,'dist/qa-portals.html')),'No distribuir controles locales de QA');
@@ -45,3 +45,21 @@ test('Audio: inicio por gesto, silencio, pausa y temas por mapa',()=>{
 test('Emoliente: distancia, pausa, salida y recompensa única',()=>{
  const vm=require('node:vm'),P={Maps:{selected:'campo'},state:{mode:'play',player:{x:850,y:400,hp:20,maxHp:100},coins:0,enemies:[]},Terrain:{hit:()=>false,resolve(){}},Data:{arena:{enemyCap:100}},Entities:{enemy:()=>({r:13})},Loot:{notify(){}},Audio:{fx(){} }};vm.runInNewContext(fs.readFileSync(path.join(root,'src/systems/exploration.js'),'utf8'),{P});const e=P.Exploration;e.reset();e.start();assert.equal(e.station.phase,'active');e.tick(5);assert.equal(e.station.progress,5);P.state.mode='pause';e.tick(10);assert.equal(e.station.progress,5);P.state.mode='play';P.state.encounter={};e.tick(10);assert.equal(e.station.progress,5);P.state.encounter=null;P.state.player.x=0;e.tick(1);assert.equal(e.station.progress,0);P.state.player.x=850;for(let n=0;n<20;n++)e.tick(1);assert.equal(e.station.phase,'done');assert.equal(P.state.coins,25);assert.equal(P.state.player.hp,55);e.tick(30);e.start();assert.equal(P.state.coins,25);e.reset();assert.equal(e.station.phase,'idle');P.Maps.selected='machu';e.reset();assert.equal(e.station,null);
 });
+
+test('Carga inicial: oculta arte provisional, espera recursos y ofrece reintento',()=>{
+ const vm=require('node:vm'),elements=new Map(),classes=new Set(['assets-loading']);
+ const P={$:id=>{if(!elements.has(id))elements.set(id,{hidden:false,textContent:''});return elements.get(id)},Sprites:{ready:false,sheets:{base:{},streamers:{},powers:{}}},Maps:{selected:'campo',ready:{}},EnemyArt:{ready:false},state:{mode:'menu'}};
+ const context={P,Image:function(){},document:{body:{classList:{remove(c){classes.delete(c)}}}}};
+ vm.runInNewContext(fs.readFileSync(path.join(root,'src/ui/screens.js'),'utf8'),context);
+ let portraits=0;P.UI.animate=()=>portraits++;
+ assert.equal(P.UI.loading(100),true);assert(classes.has('assets-loading'));assert.equal(portraits,0);
+ P.Sprites.sheets.base.ready=true;P.Sprites.sheets.streamers.ready=true;P.Maps.ready.campo=true;P.EnemyArt.ready=true;
+ assert.equal(P.UI.loading(200),true,'No revelar un atlas incompleto');
+ P.Sprites.sheets.powers.ready=true;assert.equal(P.UI.loading(300),false);assert.equal(portraits,1);assert(!classes.has('assets-loading'));assert(P.$('#loading-screen').hidden);assert.equal(P.UI.loading(400),false);assert.equal(portraits,1);
+ P.UI.assetsReady=false;P.Sprites.sheets.powers.ready=false;P.Sprites.sheets.powers.failed=true;assert(P.UI.loading(500));assert.equal(P.$('#loading-retry').hidden,false);assert.match(P.$('#loading-message').textContent,/conexión/);
+ P.Sprites.sheets.powers.failed=false;P.$('#loading-retry').hidden=true;assert(P.UI.loading(20200));assert.equal(P.$('#loading-retry').hidden,false);
+ const html=fs.readFileSync(path.join(root,'src/index.html'),'utf8');assert.match(html,/body class="assets-loading"/);assert.match(html,/body.assets-loading #menu/);assert.equal((html.match(/rel="preload"/g)||[]).length,4);
+});
+
+test('Cada build identifica su contenido y versiona scripts y estilos',()=>{const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8'),version=JSON.parse(fs.readFileSync(path.join(root,'dist/version.json'),'utf8')).version;assert.match(version,/^[a-f0-9]{20}$/);assert(html.includes('name="game-version" content="'+version+'"'));for(const m of [...modules,{output:'style.css'}])assert(html.includes(m.output+'?v='+hash(path.join(root,'dist',m.output)).slice(0,16)))});
+test('Actualizaciones: menú automático, partida preservada y red sin conexión',async()=>{const vm=require('node:vm');let reloads=0,request,answer={version:'aaaaaaaaaaaaaaaaaaaa'};const button={hidden:true},P={state:{mode:'play'}};const env={P,console,Date,location:{reload(){reloads++}},fetch:async(url,options)=>{request={url,options};if(answer instanceof Error)throw answer;return {ok:true,json:async()=>answer}}};vm.createContext(env);vm.runInContext(fs.readFileSync(path.join(root,'src/core/updates.js'),'utf8'),env);const u=P.Updates;u.version='aaaaaaaaaaaaaaaaaaaa';u.button=button;await u.check();assert.equal(reloads,0);assert.equal(request.options.cache,'no-store');answer=new Error('offline');await u.check();assert.equal(reloads,0);assert(!u.pending);answer={version:'bbbbbbbbbbbbbbbbbbbb'};await u.check();assert(u.pending);assert.equal(reloads,0);assert.equal(button.hidden,false);P.state.mode='menu';await u.check();assert.equal(reloads,1);await u.check();assert.equal(reloads,1)});

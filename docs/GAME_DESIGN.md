@@ -93,7 +93,7 @@ El suelo del combate usa texturas extraídas de los fondos originales y caminos 
 
 ## Cajas, cofres y objetos
 - Las cajas tienen 55 de vida y se pueden atacar incluso sin enemigos cercanos. Al romperse dejan curación de 18 puntos y 3 de fama; además tienen un 70% de probabilidad de dejar 5 monedas. Una caja rota no vuelve a dar botín.
-- Cada mapa tiene dos cofres comunes. Se abren al permanecer quieto a menos de 75 unidades durante 1,8 segundos. Alejarse o moverse reinicia la apertura; las pantallas de pausa o selección detienen el progreso.
+- Los cofres se distribuyen aleatoriamente por sectores durante la exploración. Se abren al permanecer quieto a menos de 75 unidades durante 1,8 segundos. Alejarse o moverse reinicia la apertura; las pantallas de pausa o selección detienen el progreso.
 - Un cofre común revela un objeto y ofrece usarlo/equiparlo o conservar lo que llevas. Solo se equipa un accesorio; el reemplazo retira el efecto anterior y conserva las mejoras de nivel.
 - Emoliente: curación instantánea del 35% de vida máxima, sin superar el máximo. No ocupa el hueco de equipo.
 - Imán: +60% de radio de recogida. Chaleco: -20% de daño recibido por contacto, jefes y proyectiles. Batería externa: -15% de recarga entre ataques.
@@ -149,7 +149,7 @@ Plaza de Armas incorpora reflejos y gotas animadas en la fuente, palomas pequeñ
 Al terminar los 1,8 segundos de apertura, el mundo se detiene durante 0,65 segundos para mostrar la tapa abriéndose en cuatro poses y destellos. Después aparece la elección del objeto; el premio solo se concede una vez. Las cajas muestran grietas tras recibir daño y una animación breve de tablas rotas al destruirse. Los iconos del HUD y del premio comparten el atlas de objetos.
 
 ## Rarezas de cofres
-Cada mapa tiene un cofre común de madera, uno raro azul y uno legendario violeta/dorado, en puntos seguros separados. Además del color se muestran símbolo y nombre. Cada cofre entrega solo objetos de su nivel. Emoliente cura 35/60/100% de vida máxima; imán aumenta alcance 60/100/160%; chaleco reduce daño 20/30/40%; batería reduce recarga 15/28/40%. Solo hay un accesorio equipado y reemplazarlo conserva mejoras de nivel. Los cofres de jefe siguen separados y mantienen su recompensa especial. Apertura animada y premio único en todas las rarezas.
+Los cofres comunes son de madera, los raros azules y los legendarios violetas/dorados. Se distribuyen por sectores según las reglas de exploración siguientes. Además del color se muestran símbolo y nombre. Cada cofre entrega solo objetos de su nivel. Emoliente cura 35/60/100% de vida máxima; imán aumenta alcance 60/100/160%; chaleco reduce daño 20/30/40%; batería reduce recarga 15/28/40%. Solo hay un accesorio equipado y reemplazarlo conserva mejoras de nivel. Los cofres de jefe siguen separados y mantienen su recompensa especial. Apertura animada y premio único en todas las rarezas.
 
 
 ## Audio
@@ -160,9 +160,29 @@ Campo de Marte tiene un puesto cerca de la zona inicial. Al acercarse a 150 unid
 ## Cámara y coberturas detalladas
 El zoom de combate escala con el ancho de escritorio: arenas 1,5 a 1280 px y 2,25 a 1920 px; terreno 1,7 y 2,55 respectivamente. En móvil se limita el acercamiento para conservar espacio de maniobra. La cámara de arena sigue al jugador en vertical y lo mantiene dentro del encuadre. Las cuatro coberturas conservan posición, tamaño de colisión y bloqueo de proyectiles; su atlas detallado distingue barreras, jardineras y muros incas.
 
+## Cofres al explorar
+Los cofres se distribuyen por sectores de 768 unidades con posiciones y una semilla nuevas por partida. Cada sector tiene un 60% de posibilidad de contener uno; el sector de inicio garantiza un común en posición aleatoria segura. Entre cofres fuera del inicio: común 72%, raro 26%, legendario 2%; los legendarios requieren estar a 1800 unidades del punto de aparición. Un sorteo legendario cercano se convierte en raro. Se generan al explorar y se conservan las aperturas al regresar, sin repetir premios. Se comprueban obstáculos, fuente y portal. Las arenas no generan cofres normales; el cofre de jefe conserva su recompensa.
+
 Los personajes jugables animan brazos y pies según la distancia recorrida; se detienen al chocar. La PNP y los Tyrone pesados pueden disparar orbes de 8 de daño: avisan 0,7 s, apuntan a la posición inicial, disparan a 180 unidades/s y esperan 4,2 s. Alcance de activación 120–480, proyectil de 2,5 s, bloqueado por coberturas y máximo 40 proyectiles hostiles para iniciar disparos.
 
 ## Cooperativo privado (2 jugadores)
 El menú conserva el inicio individual y añade Crear sala / Unirme por código de 8 caracteres. Cada persona elige su personaje antes de entrar; el anfitrión fija el mapa y comienza cuando hay exactamente dos conectados. Los 18 personajes conservan los ataques del catálogo y se puede elegir cualquiera de los tres mapas.
 El servidor valida movimiento, ataques, enemigos, daño, cajas, fama y jefe final. La fama es compartida; cada nivel otorga a ambos +12% de daño y hasta 15 de curación, sin selector que interrumpa la sala. No hay fuego amigo. La distancia entre compañeros vivos se limita a 720 unidades. Un jugador caído revive con 50% de vida si el compañero permanece a 85 unidades durante 4 segundos. Si ambos caen, termina la partida. ElZeein aparece a los 5 minutos y su derrota gana para los dos.
 Esta primera versión no incluye portales opcionales, cofres de equipo ni evento de emoliente en cooperativo; siguen presentes en individual. Los récords cooperativos no se mezclan con los locales individuales. La desconexión detiene la simulación hasta 30 segundos para recuperar la misma sesión; recargar cierra la sesión local y exige crear otra sala. Las salas viven en memoria: una actualización del servidor las finaliza. Límite inicial de despliegue: 6 salas simultáneas; no implica capacidad garantizada sin pruebas de carga.
+Las publicaciones nuevas se cargan automáticamente desde el menú. Una partida iniciada puede terminar sin interrupciones: aparece “Nueva versión disponible · Actualizar” y al volver al menú se recarga. El botón permite actualizar antes de terminar, reiniciando la partida.
+## Coherencia cartoon pixel art
+Los personajes definen el dibujo: objetos simples con contornos oscuros y sombras en pocos tonos. Árboles, mobiliario, arbustos, piedra y puesto comparten esos bordes. El menú usa el terreno sencillo del juego en lugar de la ilustración detallada. Se conservan animaciones, eventos, caminos y colisiones.
+
+### Ataques propios de minions
+Todos los ejemplares de cada tipo, pesados incluidos, comparten un ataque. Se detienen y anuncian su direccion o area; apuntan a la posicion inicial y respetan coberturas. Maximo 40 proyectiles especiales hostiles. La pausa congela preparacion y animaciones.
+
+| Rival | Ataque y animacion | Aviso | Espera | Dano |
+| --- | --- | --- | --- | --- |
+| Pablo | Aleteo y abanico de tres cristales de hielo | 0,85 s | 5,8 s | 6/cristal |
+| Tyrone | Se agacha y embiste 126 unidades en direccion fija; chocar lo detiene | 0,85 s | 5 s | 12/contacto durante embestida |
+| Uniqua | Alza brazos y lanza dos estrellas divergentes | 0,65 s | 4,8 s | 6/estrella |
+| Tasha | Se comprime, salta y pisa; circulo de radio 85, un golpe por onda | 1 s | 5,5 s | 12 |
+| Austin | Salto y rayo violeta en zigzag | 0,75 s | 5 s | 7 |
+| PNP | Apunta, retrocede y lanza tres pulsos separados 0,18 s | 0,7 s | 5 s | 8/pulso |
+
+Sustituye el ataque a distancia provisional de solo PNP y Tyrone pesado. El contacto normal conserva 10 de dano y la invulnerabilidad existente evita golpes simultaneos.
