@@ -116,6 +116,10 @@ module.exports = [
     "output": "js/cooperative.js"
   },
   {
+    "source": "src/development/performance.js",
+    "output": "js/performance.js"
+  },
+  {
     "source": "src/scenes/practice.js",
     "output": "js/practice.js"
   },
