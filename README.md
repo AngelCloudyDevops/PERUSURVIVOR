@@ -41,7 +41,7 @@ public/assets/
   characters/    Hojas de personajes y sus prompts
   enemies/       Hoja de rivales y su prompt
   maps/          Tres fondos y sus prompts
-  audio/         Reservado; no hay audio implementado
+  audio/         Reservado; la ulti usa síntesis Web Audio
 scripts/         Compilación y orden de carga
 tests/           Regresión, compilación, HTTP y herramientas manuales
 docs/            Diseño y arquitectura
@@ -91,6 +91,8 @@ Toda contribución debe respetar la dirección artística elegida por el usuario
 ### Implementación de referencia
 
 src/rendering/map-art.js mantiene simpleStyle activado: los atlas detallados de public/assets/environment/ se conservan como variantes archivadas, no como referencia visual vigente. El suelo se dibuja en src/systems/chunks.js y los objetos sencillos en src/systems/terrain.js. No reactivar los atlas detallados para una mejora rutinaria. La interfaz puede mantener su tipografía actual; estas reglas de píxel se aplican al dibujo del mundo, personajes y efectos.
+
+La prueba de poderes respeta esta referencia: efectos de Kingteka rasterizados a píxeles de dos unidades, sin halo desenfocado, conservando globos de cómic y sello. Audio y controles de ulti se mantienen.
 
 ## Pixel art modular por lugar
 Se conservan los tres mapas y el mundo continuo, ahora con atlas de objetos y texturas específicos. Campo de Marte tiene monumento y mobiliario de parque; Plaza de Armas, fachada colonial, palmeras y fuente; Machu Picchu, ruinas, rocas y muros incas. Arte original generado con image_gen; PNG y prompts en public/assets/environment/. El código y las colisiones se mantienen separados en src/rendering/map-art.js y src/systems/terrain.js.

@@ -7,9 +7,9 @@ const r=a.range*p.reach;if(a.kind==='melee'&&Math.hypot(target.x-p.x,target.y-p.
 p.aim=Math.atan2(target.y-p.y,target.x-p.x);p.facing=Math.cos(p.aim)<0?-1:1;p.castUntil=s.elapsed+.28;s.effects.push({kind:'cast',x:p.x,y:p.y-15,life:.25,maxLife:.25,color:p.color});
 if(a.shout)s.effects.push({kind:'shout',text:a.shout,x:p.x,y:p.y-60,life:.55,maxLife:.55,color:p.color});
 if(a.kind==='spread'||a.kind==='boomerang'){
- const count=(a.count||(p.attack==='feathers'?5:a.kind==='spread'?3:1))+(p.projectileBonus||0),speed=a.speed||470;
- for(let i=0;i<count;i++){const angle=p.aim+(i-(count-1)/2)*(a.spread===undefined?.18:a.spread);s.shots.push({x:p.x,y:p.y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,angle,life:a.kind==='boomerang'?1.3*p.reach:r/speed,turnAt:.55*p.reach,age:0,history:[],kind:a.kind,glyph:a.glyph,color:p.color,power:p.power*(a.powerScale||1),hits:new Set(),remaining:a.kind==='boomerang'?Infinity:(a.pierce||1),motion:a.motion,amplitude:a.amplitude||0,frequency:a.frequency||0,cloud:!!a.cloud,returning:false})}
- if(['BULLET','FISH','ROACH','DIAPER'].includes(a.glyph))s.effects.push({kind:'muzzle',x:p.x+Math.cos(p.aim)*24,y:p.y+Math.sin(p.aim)*24,angle:p.aim,life:.12,maxLife:.12,color:a.glyph==='BULLET'?'#ffd48c':p.color});
+ P.Ultimate.shot();const count=(a.count||(p.attack==='feathers'?5:a.kind==='spread'?3:1))+(p.projectileBonus||0),speed=a.speed||470;
+ for(let i=0;i<count;i++){const angle=p.aim+(i-(count-1)/2)*(a.spread===undefined?.18:a.spread);s.shots.push({x:p.x,y:p.y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,angle,life:a.kind==='boomerang'?1.3*p.reach:r/speed,turnAt:.55*p.reach,age:0,history:[],kind:a.kind,glyph:a.glyph,color:p.color,power:p.power*(a.powerScale||1),hits:new Set(),remaining:a.kind==='boomerang'?Infinity:(a.pierce||1),ultimate:P.Ultimate.active(),motion:a.motion,amplitude:a.amplitude||0,frequency:a.frequency||0,cloud:!!a.cloud,returning:false})}
+ if(['BULLET','FISH','ROACH','DIAPER'].includes(a.glyph))s.effects.push({kind:'muzzle',x:p.x+Math.cos(p.aim)*24,y:p.y+Math.sin(p.aim)*24,angle:p.aim,ultimate:P.Ultimate.active(),life:.12,maxLife:.12,color:a.glyph==='BULLET'?'#ffd48c':p.color});
 }
 if(['nova','cone','melee'].includes(a.kind)){
  const arc=a.kind==='nova'?Math.PI*2:(a.arc||1.3);
@@ -22,13 +22,13 @@ return true
 },
 impact(shot){if(!shot.cloud)return;P.state.fields.push({x:shot.x,y:shot.y,r:85,power:shot.power*.25,life:2.5,tick:0,color:'#a6bb78'});shot.cloud=false},
 segmentHit(shot,e,oldX,oldY){const dx=shot.x-oldX,dy=shot.y-oldY,len=dx*dx+dy*dy,t=len?Math.max(0,Math.min(1,((e.x-oldX)*dx+(e.y-oldY)*dy)/len)):0;return Math.hypot(e.x-oldX-t*dx,e.y-oldY-t*dy)<e.r+7},
-tick(dt){const s=P.state,p=s.player;s.fire-=dt;if(s.fire<=0)s.fire=this.cast()?p.rate:.05;if(s.mode!=='play')return;
+tick(dt){const s=P.state,p=s.player;s.fire-=dt;if(s.fire<=0)s.fire=this.cast()?p.rate/(P.Ultimate.active()?2:1):.05;if(s.mode!=='play')return;
 for(const shot of s.shots){const oldX=shot.x,oldY=shot.y,oldAge=shot.age;shot.history.push({x:shot.x,y:shot.y});if(shot.history.length>8)shot.history.shift();shot.age+=dt;shot.life-=dt;
  if(shot.kind==='boomerang'&&shot.age>shot.turnAt){if(!shot.returning){shot.returning=true;shot.hits.clear()}const dx=p.x-shot.x,dy=p.y-shot.y,d=Math.hypot(dx,dy)||1;shot.vx=dx/d*530;shot.vy=dy/d*530;if(d<18)shot.life=0}
  shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;
  if(shot.motion==='zigzag'){const wobble=(Math.sin(shot.age*shot.frequency)-Math.sin(oldAge*shot.frequency))*shot.amplitude;shot.x-=Math.sin(shot.angle)*wobble;shot.y+=Math.cos(shot.angle)*wobble}
  const obstacle=P.Terrain.hit(shot.x,shot.y,5);if(obstacle){P.Terrain.damage(obstacle,shot.power);this.impact(shot);shot.life=0;continue}
- for(const e of s.enemies){if(e.hp<=0||shot.hits.has(e)||shot.life<=0)continue;if(this.segmentHit(shot,e,oldX,oldY)){shot.hits.add(e);P.Entities.hurt(e,shot.power);if(s.mode!=='play')return;shot.remaining--;if(shot.remaining<=0)shot.life=0;this.impact(shot);if(s.mode!=='play')return}}
+ for(const e of s.enemies){if(e.hp<=0||shot.hits.has(e)||shot.life<=0)continue;if(this.segmentHit(shot,e,oldX,oldY)){shot.hits.add(e);P.Ultimate.hit(shot,e);P.Entities.hurt(e,shot.power);if(s.mode!=='play')return;shot.remaining--;if(shot.remaining<=0)shot.life=0;this.impact(shot);if(s.mode!=='play')return}}
  if(shot.life<=0)this.impact(shot)
 }
 s.shots=s.shots.filter(shot=>shot.life>0);s.enemies=s.enemies.filter(e=>e.hp>0);
