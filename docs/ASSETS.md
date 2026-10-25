@@ -18,3 +18,6 @@ Referencias visuales consultadas durante la creación:
 - https://www.google.com/search?udm=2&q=CHARLES+AXELBENBA (facilitada por el usuario)
 - https://www.google.com/search?udm=2&q=shakadoto+najasor+cirilotv+fuzo
 Las fotografías de referencia no se distribuyen con el juego.
+
+## Apariencias de los poderes
+public/assets/characters/powers-atlas-v1.png: nueve caricaturas con poses de reposo, dos de movimiento y ataque. Arte original generado con image_gen integrado. Los prompts completos, nombres de filas y poses están en powers-atlas.json. Los proyectiles adicionales se dibujan como píxeles mediante Canvas.

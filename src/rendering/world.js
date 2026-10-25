@@ -4,6 +4,7 @@ collide(p,old){P.Maps.collide(p,old)},
 draw(ctx,cx,cy,w,h,time){P.Maps.draw(ctx,cx,cy,w,h,time)},
 render(time){const s=P.state,{ctx,width:w,height:h}=P.Core,playing=s.mode!=='menu',p=s.player,zoom=Math.max(playing?1.15:.6,w/2400,h/1600),target=P.Maps.camera(playing?p.x:0,(playing?p.y:-100)-(playing?55:160),w/zoom,h/zoom);if(playing){const follow=1-Math.exp(-Math.min((time-(this.lastCamera||time))/1000,.05)*10);P.Terrain.cameraX+=(target.x-P.Terrain.cameraX)*follow;P.Terrain.cameraY+=(target.y-P.Terrain.cameraY)*follow}this.lastCamera=time;const cx=playing?P.Terrain.cameraX:target.x,cy=playing?P.Terrain.cameraY:target.y;P.Terrain.zoom=zoom;ctx.clearRect(0,0,w,h);ctx.save();ctx.translate(w*.5,h*.5);ctx.scale(zoom,zoom);ctx.translate(-cx,-cy);this.draw(ctx,cx,cy,w/zoom,h/zoom,time);if(playing)P.Encounters.draw(ctx,time);
 if(playing){
+for(const field of s.fields)P.PowerFX.field(ctx,field);
 for(const g of s.gems){ctx.save();ctx.translate(g.x,g.y);ctx.rotate(Math.PI/4);ctx.fillStyle=g.kind==='heal'?'#93e7a6':'#f6cc65';ctx.fillRect(-4,-4,8,8);ctx.restore()}
 const props=P.Terrain.active().filter(o=>o.solid).map(o=>({terrainProp:o,y:o.y+o.h/2}));const actors=[...s.enemies,p,...props].sort((a,b)=>a.y-b.y);
 for(const actor of actors){if(actor.terrainProp){P.Terrain.draw(ctx,actor.terrainProp);continue}if(actor===p){if(p.inv<=0||Math.floor(time/70)%2){if(!P.Sprites.actor(ctx,p))P.Entities.portrait(ctx,p.x,p.y,24,p)}ctx.fillStyle='#fbefdc';ctx.font='bold 10px monospace';ctx.textAlign='center';ctx.fillText(p.name,p.x,p.y+37);continue}
