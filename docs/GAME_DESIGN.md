@@ -193,3 +193,5 @@ Sustituye el ataque a distancia provisional de solo PNP y Tyrone pesado. El cont
 
 ## Visibilidad de exploración
 Zoom base de exploración 1,3 en 1280 px y mínimo móvil 0,95; aproximadamente 24% menos acercamiento que el anterior 1,7. Cámaras de jefes intactas. HUD compacto con vida, tiempo, nivel, botín y objetivos, sin repetir nombre y habilidad del personaje.
+
+Las jardineras muestran maceta en perspectiva, arbustos escalonados y flores con pétalos y centro; la disposición alterna alturas y colores para evitar el aspecto de tablero. Conservan su volumen de colisión.
