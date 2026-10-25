@@ -1,4 +1,3 @@
-// Orden explícito de los módulos clásicos.
 module.exports = [
   {
     "source": "src/data/catalog.js",
@@ -55,6 +54,10 @@ module.exports = [
   {
     "source": "src/ui/screens.js",
     "output": "js/ui.js"
+  },
+  {
+    "source": "src/development/lab.js",
+    "output": "js/lab.js"
   },
   {
     "source": "src/scenes/game.js",
