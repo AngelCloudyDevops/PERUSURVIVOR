@@ -1,0 +1,4 @@
+const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+function combat(file=path.join(__dirname,'../src/systems/combat.js')){const events=[],P={state:{mode:'play',fire:999,player:{x:0,y:0,rate:1,hp:1e9},enemies:[],shots:[],fields:[],danger:[]},Terrain:{hit(){},damage(){}},Entities:{hurt(e,n){e.hp-=n;events.push(e.id)},burst(){}},Ultimate:{active(){return false},hit(){}},Loot:{damage(p,n){return n}},Game:{finish(){}}};vm.runInNewContext(fs.readFileSync(file,'utf8'),{P,Math,Map,Set});return {P,events}}
+function populate(P){const s=P.state;s.enemies=Array.from({length:80},(_,i)=>({id:i,x:(i%10)*200-900,y:Math.floor(i/10)*200-700,r:i===0?100:13,hp:1e6}));s.shots=Array.from({length:400},(_,i)=>({x:(i%20)*100-950,y:Math.floor(i/20)*80-760,vx:i%3?420:-530,vy:120,age:0,life:2,history:[],hits:new Set(),remaining:i%5===0?Infinity:1,power:8,kind:'spread'}));}
+module.exports={combat,populate};
