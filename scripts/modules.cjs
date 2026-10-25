@@ -1,4 +1,4 @@
-// Orden de carga explícito: scripts clásicos que comparten P.
+// Scripts clásicos; orden de carga del espacio P.
 module.exports = [
   {
     "source": "src/data/catalog.js",
@@ -39,6 +39,10 @@ module.exports = [
   {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
+  },
+  {
+    "source": "src/systems/chunks.js",
+    "output": "js/chunks.js"
   },
   {
     "source": "src/systems/terrain.js",
