@@ -162,6 +162,19 @@ P.$('#lab-boss').value='campo';P.$('#lab-invincible').checked=false;P.Lab.run();
 
 
 
+P.UI.select(P.Data.characters.findIndex(c=>c.id==='kingteka'));P.Game.start();
+assert.equal(P.Ultimate.activate(),false);for(let i=0;i<20;i++)P.Ultimate.gain();assert.equal(s.ultimate.charge,100);
+const baseSpeed=s.player.speed,baseRate=s.player.rate;assert(P.Ultimate.activate());assert.equal(P.Ultimate.activate(),false);assert(P.Ultimate.active());const weak=target(s.player.x+60,s.player.y,100),strong={...target(s.player.x+60,s.player.y,100),boss:true};P.Entities.hurt(weak,10);P.Entities.hurt(strong,10);assert.equal(weak.hp,80);assert.equal(strong.hp,90);P.Ultimate.tick(.01);P.Ultimate.draw(drawing);
+s.enemies=[target(s.player.x+80,s.player.y)];s.fire=0;P.Combat.tick(0);assert.equal(s.fire,baseRate/2);
+assert(P.Ultimate.bird(drawing,s.enemies[0]));assert.equal(P.Ultimate.bird(drawing,{boss:true}),false);assert.equal(P.Ultimate.bird(drawing,{mapBoss:true}),false);
+P.UI.pause();const remaining=s.ultimate.left;P.Game.update(1);assert.equal(s.ultimate.left,remaining);P.UI.pause();P.Ultimate.tick(8);assert(!P.Ultimate.active());assert.equal(s.ultimate.paper,2.6);P.Ultimate.draw(drawing);assert.equal(s.player.speed,baseSpeed);assert.equal(s.player.rate,baseRate);
+P.Ultimate.tick(1);assert(s.ultimate.stampHit);assert(s.ultimate.particles.some(p=>p.kind==='stamp'));P.Ultimate.draw(drawing);P.Ultimate.hit({ultimate:true},s.enemies[0]);assert(s.ultimate.impacts.length);assert.equal(s.enemies[0].ultiFlash,.12);P.Ultimate.tick(3);assert.equal(s.ultimate.impacts.length,0);assert.equal(s.ultimate.paper,0);P.Game.start();assert.equal(s.ultimate.left,0);assert.equal(s.ultimate.charge,0);
+P.UI.select(P.Data.characters.findIndex(c=>c.id==='g5'));P.Game.start();s.ultimate.charge=100;assert.equal(P.Ultimate.activate(),false);
+console.log('OK ulti: carga, activación única, cadencia, gallinazos, jefes, pausa, denuncia y reinicio');
+
+P.UI.select(P.Data.characters.findIndex(c=>c.id==='kingteka'));P.Game.start();const sounds=[],playAudio=P.Audio.play;P.Audio.play=k=>sounds.push(k);s.ultimate.charge=100;P.Ultimate.activate();assert(sounds.includes('flap'));P.Ultimate.shot();assert(sounds.includes('shot'));s.enemies=[target(100,100)];P.Ultimate.tick(.01);const flapCount=sounds.filter(k=>k==='flap').length;P.Ultimate.tick(.01);assert.equal(sounds.filter(k=>k==='flap').length,flapCount);P.Ultimate.tick(8);P.Ultimate.tick(1);assert.equal(sounds.filter(k=>k==='stamp').length,1);P.Ultimate.tick(.1);assert.equal(sounds.filter(k=>k==='stamp').length,1);P.Audio.play=playAudio;P.Audio.unlock();P.Audio.play('shot');
+console.log('OK audio: aleteo, escopeta, sello único y entorno sin AudioContext');
+
 const alphaFixture=new Uint8Array(10*10*4);for(let y=1;y<=3;y++)for(let x=1;x<=3;x++)alphaFixture[(y*10+x)*4+3]=255;alphaFixture[(9*10+9)*4+3]=255;
 const cut=P.BossArt.mainBounds(alphaFixture,10,0,0,10,10);assert.equal(cut.x,1);assert.equal(cut.y,1);assert.equal(cut.w,3);assert.equal(cut.h,3);
 P.$('#lab-boss').value='campo';P.Lab.run();const charger=s.enemies[0],arenaBounds=s.encounter.scene.bounds;charger.phase='charge';charger.dx=1;charger.dy=1;charger.windup=1;charger.x=arenaBounds.right-1;charger.y=arenaBounds.bottom-1;P.Encounters.bossMove(charger,.04);assert(charger.x<=arenaBounds.right-charger.r);assert(charger.y<=arenaBounds.bottom-charger.r);assert.equal(charger.phase,'recover');

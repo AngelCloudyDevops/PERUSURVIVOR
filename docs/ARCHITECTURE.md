@@ -73,12 +73,19 @@ src/rendering/map-art.js carga tres atlas de objetos (3 columnas por 2 filas) y 
 ## Laboratorio de desarrollo
 src/development/lab.js se carga después de la UI y antes del arranque. El estado devRun separa las pruebas de la progresión: spawn omite las oleadas y los finales y victorias de arena delegan en Lab.finish, evitando el guardado del récord. La herramienta reutiliza el combate, el personaje y las escenas reales del juego.
 
+## Ultimates
+P.Ultimate encapsula carga, duración y dibujo procedural pixel art. Los modificadores se consultan al mover y disparar sin alterar estadísticas base ni mejoras. La transformación es visual, conserva colisiones y vida. El servidor local de QA permite recargar y cambiar personaje sin distribuir esos controles.
+
+P.Audio usa Web Audio con ruido y osciladores originales, volumen maestro moderado, límite de voces y antirrebote por sonido. Se inicializa tras gesto, detiene voces al silenciar o perder foco y funciona sin AudioContext.
+
 ## Regiones y caminos continuos
 P.Chunks.zone selecciona una distribución determinista por regiones de 1536 unidades. node y roadDistance construyen una red global con nodos desplazados y segmentos compartidos, independiente de los límites de caché. ground usa esa misma geometría para pintar y get la consulta para reservar corredores de paso. Las regiones modulan densidad, mezcla de objetos, orientación de muros y color del suelo sin añadir imágenes ni cambiar colisiones de arenas.
 
 MapArt.simpleStyle desactiva la carga y dibujo de los atlas detallados; Chunks usa la muestra original de suelo y Terrain su renderer de formas simples. Los recursos se conservan para evitar perder variantes.
 
 Ambient genera decoración determinista solo en la ventana visible de Campo de Marte; no mantiene cachés ni altera terreno. Usa elapsed para animación y matchMedia para movimiento reducido. World dibuja pasto/hojas debajo de actores e intercala arbustos por profundidad; Terrain desplaza únicamente las copas.
+
+La capa de efectos de la ulti se rasteriza en un lienzo de media resolución y se escala por nearest-neighbor. Evita texto/rotaciones suavizados en el mundo. Se conserva el estilo simple del entorno y Ambient de la rama de mapas.
 
 Ambient comparte la ventana determinista entre los tres mapas. En Plaza dibuja palomas por profundidad y anima la fuente según su posición real; en Machu usa ichu y niebla debajo del combate. Todo depende de elapsed y no introduce entidades de combate ni estado persistente.
 

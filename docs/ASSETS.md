@@ -24,3 +24,7 @@ public/assets/bosses/boss-atlas-v1.png contiene los tres jefes en seis poses. pu
 
 ## Apariencias de los poderes
 public/assets/characters/powers-atlas-v1.png: nueve caricaturas con poses de reposo, dos de movimiento y ataque. Arte original generado con image_gen integrado. Los prompts completos, nombres de filas y poses están en powers-atlas.json. Los proyectiles adicionales se dibujan como píxeles mediante Canvas.
+Gallinazos: public/assets/enemies/gallinazos-atlas-v1.png, cuatro poses originales generadas con image_gen integrado. Prompt en gallinazos-atlas.json. Recortes con ancla de cuerpo fija y escala nearest-neighbor; sombra añadida en runtime.
+
+### Jefes y arenas: estilo geométrico
+La Combi, el Gabinete y el Guardián se dibujan mediante rectángulos en una retícula de 3 unidades, con contornos oscuros y paletas cortas. Conservan las fases de reposo, movimiento, aviso, ataque y recuperación. Las arenas usan suelos discretos, caminos claros y bordes simples; las coberturas conservan sus colisiones. Los PNG detallados anteriores permanecen archivados y no se usan en el dibujo del combate. Implementación en src/rendering/boss-art.js.

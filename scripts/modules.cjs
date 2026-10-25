@@ -88,6 +88,10 @@ module.exports = [
     "output": "js/lab.js"
   },
   {
+    "source": "src/systems/ultimate.js",
+    "output": "js/ultimate.js"
+  },
+  {
     "source": "src/scenes/game.js",
     "output": "js/game.js"
   }
