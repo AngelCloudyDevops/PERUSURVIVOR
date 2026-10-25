@@ -247,4 +247,23 @@ P.Game.start();s.mapTime=90;s.encounter={};P.Loot.spawnKeepers();assert.equal(s.
 console.log('OK llaves: portadores, caída y recogida únicas, rareza correcta, consumo único, jefe gratis, límites y reinicio');
 
 P.Game.start();s.gems=[{x:s.player.x,y:s.player.y,kind:'key',rarity:'rare'}];const keyXp=s.xp;P.Systems.collect(0);assert.equal(s.keys.rare,1);assert.equal(s.xp,keyXp);assert.equal(s.gems.length,0);s.gems=[{x:s.player.x+5000,y:s.player.y,kind:'key',rarity:'legendary'}];P.Game.update(.01);assert(s.gems.some(g=>g.kind==='key'),'No perder una llave al alejarse');
+{
+ P.Game.start();const calls=[],wholeCtx=new Proxy({drawImage(...args){calls.push(args)}},{get:(target,key)=>target[key]||(()=>{})});
+ const savedSheets=P.Sprites.sheets;P.Sprites.sheets={};
+ for(const character of P.Data.characters){const id=character.atlas||'base';P.Sprites.sheets[id]??={ready:true,image:{},cells:[]};P.Sprites.sheets[id].cells[character.spriteRow]=Array.from({length:4},(_,frame)=>({sx:frame*80,sy:0,w:80,h:120}));}
+ for(const character of P.Data.characters)for(const phase of [0,Math.PI/2,Math.PI,Math.PI*1.5]){calls.length=0;assert(P.Sprites.draw(wholeCtx,0,0,27,character,1,false,{phase}));assert.equal(calls.length,1,'Caminata debe dibujar un cuadro completo: '+character.name);assert.deepEqual(calls[0].slice(1,5),[80,0,80,120]);}
+ P.Sprites.sheets=savedSheets;P.EnemyArt.ready=true;P.EnemyArt.image={};
+ for(let design=0;design<6;design++){
+  P.EnemyArt.cells[design]=[{sx:0,sy:0,w:80,h:120},{sx:80,sy:0,w:80,h:120}];const enemy={x:s.player.x+200,y:s.player.y,hp:50,max:50,r:13,design,heavy:false,speed:65,facing:1,moving:true,walkPhase:1,hit:0};
+  for(const walkPhase of [0,Math.PI/2,Math.PI,Math.PI*1.5]){calls.length=0;P.EnemyArt.draw(wholeCtx,{...enemy,walkPhase});assert.equal(calls.length,1,'Minion no debe dividirse en bandas');assert.equal(calls[0][3],80);assert.equal(calls[0][4],120);}
+  s.enemies=[enemy];s.effects=[];const kills=s.kills,gems=s.gems.length;P.Entities.hurt(enemy,5);assert.equal(enemy.hp,45);assert.equal(enemy.speed,65);assert.equal(enemy.hit,.22);const hitEffect=s.effects.find(e=>e.kind==='minion-hit');assert(hitEffect);assert.equal(hitEffect.design,design);const hitPose=P.EnemyArt.hitPose(enemy);assert(hitPose);calls.length=0;P.EnemyArt.draw(wholeCtx,enemy);assert.equal(calls.length,1);P.FX.effect(drawing,hitEffect);
+  const life=hitEffect.life;s.mode='pause';P.Game.update(.04);assert.equal(hitEffect.life,life);assert.equal(enemy.hit,.22);s.mode='play';
+  P.Entities.hurt(enemy,100);const death=s.effects.find(e=>e.kind==='minion-death');assert(death);assert.equal(s.kills,kills+1);assert.equal(s.gems.length,gems+1);assert.equal(death.design,design);P.Entities.hurt(enemy,100);assert.equal(s.effects.filter(e=>e.kind==='minion-death').length,1,'Muerte unica');assert.equal(s.kills,kills+1);
+  for(const progress of [0,.25,.5,.9]){calls.length=0;P.EnemyArt.feedbackDraw(wholeCtx,death,progress);assert.equal(calls.length,1,'Muerte conserva la silueta completa');assert.equal(calls[0][3],80);assert.equal(calls[0][4],120);}
+  P.Combat.tick(0);assert(!s.enemies.includes(enemy),'El enemigo muerto deja de combatir mientras su efecto continua');assert(s.effects.includes(death));P.Systems.collect(1.1);assert(!s.effects.includes(death),'La animacion de muerte se limpia');
+ }
+ assert.equal(new Set(P.EnemyArt.feedbackProfiles.map(p=>p.style)).size,6);s.effects=Array.from({length:300},()=>({kind:'spark',life:1}));const cap=s.effects.length;P.EnemyArt.feedback({design:0,x:0,y:0},true);assert.equal(s.effects.length,cap);P.EnemyArt.ready=false;P.Game.start();assert.equal(s.effects.length,0);
+ console.log('OK sprites completos de 18 personajes y seis minions; dano, muerte unica, recompensas, pausa y limpieza de efectos');
+}
+
 });

@@ -89,3 +89,10 @@ test('Decoración: reutiliza posiciones e invalida por colisión, mapa y cámara
 test('Cámara: conserva márgenes de animación y descarta objetos lejanos',()=>{
  const vm=require('node:vm'),P={};vm.runInNewContext(fs.readFileSync(path.join(root,'src/rendering/world.js'),'utf8'),{P});P.World.view={left:-400,right:400,top:-300,bottom:300};assert(P.World.visible(550,0,200));assert(P.World.visible(0,450,200));assert(!P.World.visible(2000,0,200));assert(!P.World.visible(0,2000,200));assert(P.World.visible(-600,0,201));
 });
+test('Los cuadros de personajes conservan la figura principal y excluyen pies vecinos',()=>{
+ const vm=require('node:vm'),scope={P:{}};vm.createContext(scope);vm.runInContext(fs.readFileSync(path.join(root,'src/rendering/sprites.js'),'utf8'),scope);const width=240,height=100,pixels=new Uint8ClampedArray(width*height*4);
+ function box(left,top,right,bottom){for(let y=top;y<=bottom;y++)for(let x=left;x<=right;x++)pixels[(y*width+x)*4+3]=255}
+ box(40,25,80,80);box(53,19,65,22);box(105,70,115,82);box(130,5,220,95);
+ const cell=scope.P.Sprites.bounds(pixels,width,0,0,120,100);assert(cell.sx<=40);assert(cell.sy<=19,'Conservar detalle cercano del sombrero');assert(cell.sx+cell.w<105,'Excluir pie suelto del vecino');assert(cell.sy+cell.h>80,'Conservar pies propios');assert(cell.sx+cell.w<=120);
+ const empty=scope.P.Sprites.bounds(new Uint8ClampedArray(width*height*4),width,120,0,120,100);assert.equal(empty.sx,120);assert.equal(empty.w,120);assert.equal(empty.h,100);
+});
