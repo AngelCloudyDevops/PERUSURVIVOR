@@ -140,3 +140,6 @@ Sprites.bounds recorta la figura conexa principal por alfa y conserva detalles c
 Ambient.leafMass rasteriza elipses por franjas de dos unidades; foliage agrupa esas masas en siluetas orgánicas. Ambient.bush y Terrain.planter reutilizan el dibujo, sin nuevos recursos ni cambios físicos.
 ## Señales de portadores y llaves
 Terrain.minimapSignals consulta los enemigos vivos con keyTier y las gems key no recogidas, valida posición y rareza, y reutiliza la proyección y rango del minimapa. minimapSignal dibuja siluetas de rombo/llave con contraste oscuro y la paleta compartida de Loot.rarity. La misma función alimenta la leyenda de tipos; los marcadores se dibujan antes del jugador y dentro del recorte. No agrega estado persistente ni altera el botín.
+
+## Indicador de objetivo de llaves
+Loot.keyTarget recorre gems key y enemigos keyTier, descarta entidades muertas/recogidas y coordenadas inválidas y elige la menor distancia. keyDirection convierte atan2 en ocho sectores. targetHud actualiza el elemento key-target con texto y la paleta de Loot.rarity desde el HUD existente, sin temporizadores ni estado adicional. Usa el mismo origen de coordenadas que el minimapa.

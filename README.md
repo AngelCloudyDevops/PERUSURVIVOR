@@ -131,3 +131,6 @@ Repositorio Git: https://github.com/AngelCloudyDevops/PERUSURVIVOR. Los cambios 
 Los arbustos deben tener silueta orgánica, redondeada e irregular, con masas de hojas y sombras de pocos tonos. El acabado pixelado no justifica dibujarlos como cajas apiladas. La misma regla se aplica al follaje de jardineras; conservar el movimiento suave y la lectura del combate.
 ## Portadores y llaves en el minimapa
 Los portadores vivos y las llaves que quedan en el suelo se muestran hasta 900 unidades: azul para rareza rara y violeta para legendaria. El portador usa un rombo y la llave su propia silueta; una leyenda explica ambos símbolos. Los marcadores se actualizan al moverse, desaparecen al derrotar al portador o recoger la llave y se ocultan en arenas y menús. El cambio se conserva en Git mediante commit y PR, y main se publica automáticamente en Hostinger tras pasar CI.
+
+## Flecha hacia portadores y llaves
+El HUD indica con una flecha de ocho direcciones y distancia al portador vivo o llave sin recoger más cercano. Usa azul para raros y violeta para legendarios, cambia automáticamente al desaparecer el objetivo y también orienta hacia llaves fuera del alcance del minimapa. Se oculta sin objetivos, en arenas, laboratorio, cooperativo y al terminar la partida. Implementación guardada mediante commits y PR en Git; main se publica en Hostinger tras CI.

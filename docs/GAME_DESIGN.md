@@ -216,3 +216,6 @@ La invulnerabilidad, los ataques y las recompensas conservan sus reglas. Al paus
 Arbustos y follaje de jardineras comparten copas redondeadas con lóbulos asimétricos, contorno oscuro y hojas agrupadas. Se conservan posiciones, profundidad, viento y colisiones originales.
 ## Señales de llaves en el minimapa
 El minimapa identifica portadores vivos con un rombo y llaves del suelo con un icono de llave, siempre en el color de su rareza (azul raro y violeta legendario). Comparte el alcance circular de 900 unidades de los cofres. No muestra portadores muertos ni llaves recogidas, eliminadas o lejanas. El marcador del jugador conserva la prioridad visual; hay leyenda de símbolos y colores. No se muestra en arenas o menús.
+
+## Orientación a llaves
+El indicador del HUD elige por distancia entre portadores vivos y llaves no recogidas; en un empate exacto prefiere la llave. Muestra tipo, rareza, flecha en ocho direcciones y distancia redondeada en las mismas unidades que la exploración. No limita la búsqueda a las 900 unidades del minimapa. Al recoger la llave o morir el portador se recalcula con los objetivos restantes. No se muestra sin objetivos, en menú/final, arenas, laboratorio o cooperativo. En pausa conserva la orientación congelada.
