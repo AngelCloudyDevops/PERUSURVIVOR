@@ -28,3 +28,61 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: npm test
+
+      - name: Test deployment receiver
+        if: runner.os == 'Linux'
+        run: python3 -m unittest discover -s tests/deployment -p "test_*.py"
+
+  deploy:
+    name: Deploy PERUSURVIVOR
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.PERUSURVIVOR_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: perusurvivor-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - name: Check this is still the latest main commit
+        id: latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          (async () => {
+            const response = await fetch('https://api.github.com/repos/' + process.env.GITHUB_REPOSITORY + '/branches/main', {
+              headers: {Authorization: 'Bearer ' + process.env.GH_TOKEN, Accept: 'application/vnd.github+json'}
+            });
+            if (!response.ok) throw new Error('Cannot verify main: ' + response.status);
+            const data = await response.json();
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'current=' + (data.commit.sha === process.env.GITHUB_SHA) + '\n');
+          })().catch(error => { console.error(error.message); process.exitCode = 1; });
+          NODE
+      - name: Upload and atomically activate the game
+        if: steps.latest.outputs.current == 'true'
+        env:
+          DEPLOY_KEY: ${{ secrets.PERUSURVIVOR_DEPLOY_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_KEY"
+          key="$RUNNER_TEMP/perusurvivor-key"
+          archive="$RUNNER_TEMP/perusurvivor-$GITHUB_SHA.tar.gz"
+          trap 'rm -f "$key" "$archive"' EXIT
+          umask 077
+          printf '%s\n' "$DEPLOY_KEY" > "$key"
+          tar -czf "$archive" -C dist .
+          ssh -T -i "$key" -o BatchMode=yes -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes -o UserKnownHostsFile=ops/hostinger/known_hosts \
+            perusurvivor-deploy@179.236.77.159 "deploy $GITHUB_SHA" < "$archive"

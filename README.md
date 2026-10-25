@@ -71,3 +71,7 @@ GitHub Actions ejecuta las mismas comprobaciones en cada push y pull request. La
 .openai/hosting.json conserva la identidad del sitio existente y su carpeta estática dist/. Antes de empaquetar cualquier publicación ejecuta npm run build. Subir código a GitHub no despliega automáticamente el sitio.
 
 Esta es una versión de un jugador, sin cuentas, pagos, multijugador ni voces de figuras reales. El récord se guarda en el navegador. Las figuras públicas aparecen como caricaturas de parodia con habilidades inventadas; no existe afiliación.
+
+## Despliegue automático
+La preparación y el estado de activación están documentados en [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). El job de publicación permanece deshabilitado hasta completar la instalación restringida en el VPS.
+

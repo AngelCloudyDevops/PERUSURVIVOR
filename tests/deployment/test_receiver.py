@@ -1,0 +1,64 @@
+import importlib.util
+import io
+import json
+from pathlib import Path
+import tarfile
+import tempfile
+import unittest
+from unittest.mock import patch
+
+ROOT = Path(__file__).resolve().parents[2]
+spec = importlib.util.spec_from_file_location("receiver", ROOT / "ops/hostinger/receive.py")
+receiver = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(receiver)
+SHA = "a" * 40
+
+def package(entries=None):
+    output = io.BytesIO()
+    entries = entries or [("index.html", b"CAUSAS DEL CAOS"), ("js/game.js", b"game")]
+    with tarfile.open(fileobj=output, mode="w:gz") as archive:
+        for name, data in entries:
+            item = tarfile.TarInfo(name); item.size = len(data)
+            archive.addfile(item, io.BytesIO(data))
+    return output.getvalue()
+
+class ReceiverTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.base = Path(self.temp.name)
+        (self.base / "releases").mkdir()
+        (self.base / "live").mkdir()
+        self.patch = patch.object(receiver, "BASE", self.base); self.patch.start()
+    def tearDown(self):
+        self.patch.stop(); self.temp.cleanup()
+    def test_commands(self):
+        self.assertEqual(receiver.parse_command("deploy " + SHA), SHA)
+        for command in ["bash", "deploy ../escape", "deploy " + SHA + ";id", ""]:
+            with self.assertRaises(ValueError): receiver.parse_command(command)
+    def test_valid_release(self):
+        path = receiver.extract_release(package(), SHA)
+        self.assertEqual(json.loads((path / "__release.json").read_text())["git_sha"], SHA)
+        self.assertTrue((path / "js/game.js").is_file())
+    def test_traversal(self):
+        for name in ["../escape", "/etc/passwd", "dir/../../escape"]:
+            with self.assertRaises(ValueError): receiver.extract_release(package([(name, b"bad")]), SHA)
+        self.assertFalse((self.base / "escape").exists())
+    def test_links(self):
+        output = io.BytesIO()
+        with tarfile.open(fileobj=output, mode="w:gz") as archive:
+            item = tarfile.TarInfo("link"); item.type = tarfile.SYMTYPE; item.linkname = "/etc"
+            archive.addfile(item)
+        with self.assertRaises(ValueError): receiver.extract_release(output.getvalue(), SHA)
+    def test_missing_game(self):
+        with self.assertRaises(ValueError): receiver.extract_release(package([("index.html", b"other")]), SHA)
+    def test_payload_limit(self):
+        with patch.object(receiver, "MAX_ARCHIVE", 1):
+            with self.assertRaises(ValueError): receiver.extract_release(package(), SHA)
+    @unittest.skipIf(__import__("sys").platform == "win32", "flock y symlinks de producción requieren Linux")
+    def test_rollback(self):
+        (self.base / "live/current").symlink_to("../releases/old")
+        with patch.object(receiver, "healthy", return_value=False):
+            with self.assertRaises(RuntimeError): receiver.deploy(package(), SHA)
+        self.assertEqual(__import__("os").readlink(self.base / "live/current"), "../releases/old")
+
+if __name__ == "__main__": unittest.main()
