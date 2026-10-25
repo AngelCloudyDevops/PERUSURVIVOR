@@ -64,3 +64,15 @@ Las pruebas de check.cjs cubren selección, puntos de aparición, límites, elim
 Repositorio: https://github.com/AngelCloudyDevops/PERUSURVIVOR
 
 Requiere Node.js 20 o superior. No hay dependencias que instalar: ejecuta npm start para abrir el servidor en http://127.0.0.1:4173 y npm test para comprobar el juego.
+
+## Portales y jefes de mapa
+A los 3:00 del reloj del mapa aparece un portal opcional. El HUD muestra dirección y distancia; acércate y pulsa E o el botón táctil. La confirmación permite entrar o seguir entrenando.
+- Campo de Marte: La Combi Final, con embestida marcada antes de cargar.
+- Plaza de Armas: El Gabinete Infinito, con avisos y abanicos de decretos.
+- Machu Picchu: El Guardián de la Niebla, con avisos y anillos de proyectiles.
+Dentro hay una arena cerrada y se suspenden las oleadas normales y el reloj del mapa. El tiempo total de la partida sigue contando para animaciones y estadísticas. Al ganar se restauran los enemigos y la fama del mapa, vuelves al punto de entrada con dos segundos de invulnerabilidad y eliges una recompensa única (daño, vida o cadencia).
+El portal cierra al comenzar ElZeein a los 5:00 del reloj del mapa. Ignorarlo no evita el jefe final. Perder dentro de la arena termina la partida. El módulo dist/js/encounters.js contiene este flujo y los patrones de los tres jefes; su arte inicial se dibuja con Canvas.
+Las pruebas incluyen umbrales exactos, entrada por cercanía, rechazo, pausa del reloj, aislamiento, victoria, retorno, premio único, final obligatorio, derrota y reinicio en los tres mapas.
+## Terreno interactivo
+La cámara de partida sigue al personaje con zoom 1.15 y suavizado. Un minimapa muestra posición y encuadre. Árboles, bancas, jardineras, rocas y muros tienen colisión; se dibujan por profundidad junto a los personajes. Las cajas bloquean proyectiles, se destruyen y dejan curación y fama. Los enemigos calculan rutas sobre una cuadrícula compartida para rodear obstáculos. Los objetos se reinician con cada partida y no aparecen en las arenas opcionales de los portales.
+Implementación: dist/js/terrain.js. El terreno permanece finito; no hay generación infinita ni altura física.
