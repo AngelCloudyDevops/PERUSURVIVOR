@@ -79,3 +79,6 @@ P.Chunks.zone selecciona una distribución determinista por regiones de 1536 uni
 MapArt.simpleStyle desactiva la carga y dibujo de los atlas detallados; Chunks usa la muestra original de suelo y Terrain su renderer de formas simples. Los recursos se conservan para evitar perder variantes.
 
 Ambient genera decoración determinista solo en la ventana visible de Campo de Marte; no mantiene cachés ni altera terreno. Usa elapsed para animación y matchMedia para movimiento reducido. World dibuja pasto/hojas debajo de actores e intercala arbustos por profundidad; Terrain desplaza únicamente las copas.
+
+## Atlas de botín
+P.LootArt carga y mide un atlas alfa de 4×4 celdas. Las filas de cajas y cofres comparten el recorte por fila para mantener escala y anclaje entre poses; los objetos tienen recortes individuales. El filtrado se desactiva al dibujar. P.Loot gestiona loot-opening y el premio pendiente; Game.update solo avanza esa animación durante la apertura, sin combate ni reloj. El reinicio elimina premios pendientes y escombros. Terrain delega únicamente el dibujo de cajas; las colisiones y el botín permanecen independientes del arte.

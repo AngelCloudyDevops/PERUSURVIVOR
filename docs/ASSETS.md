@@ -24,3 +24,5 @@ public/assets/bosses/boss-atlas-v1.png contiene los tres jefes en seis poses. pu
 
 ## Apariencias de los poderes
 public/assets/characters/powers-atlas-v1.png: nueve caricaturas con poses de reposo, dos de movimiento y ataque. Arte original generado con image_gen integrado. Los prompts completos, nombres de filas y poses están en powers-atlas.json. Los proyectiles adicionales se dibujan como píxeles mediante Canvas.
+## Botín animado
+public/assets/loot/loot-atlas-v1.png: atlas original generado con image_gen, fondo alfa, 4 columnas por 4 filas: caja intacta/agrietada/rotura/escombros; cofre común cerrado/entreabierto/abriendo/abierto; cofre dorado equivalente; emoliente/imán/chaleco/batería. Prompt en public/assets/loot/prompts.json.

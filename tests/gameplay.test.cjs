@@ -56,7 +56,7 @@ for(const map of P.Maps.catalog){
  const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
  if(map.id==='campo')assert.equal(localBoss.phase,'charge');else assert(s.danger.length>0);
  s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=s.encounter.scene.bounds.right&&s.player.y>=s.encounter.scene.bounds.top);
- P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'play');P.Loot.open(P.Loot.chests.find(c=>c.gold));assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
+ P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'play');P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Loot.advance(.7);assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
  const power=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.mode,'play');assert.equal(s.player.power,power*1.3);P.Encounters.reward(()=>s.player.power=0);assert(s.player.power>0,'No repetir recompensa');
  P.Game.update(.04);assert(s.mapTime>clock);assert(!s.portal.open);
  s.mapTime=300;P.Game.update(.01);assert(s.bossSpawned);assert.equal(s.enemies.filter(e=>e.boss).length,1);P.Game.update(.01);assert.equal(s.enemies.filter(e=>e.boss).length,1);assert(!s.portal.open);
@@ -96,7 +96,7 @@ for(const map of P.Maps.catalog){
  const local=s.enemies[0];local.phase='warning';assert.equal(P.BossArt.frame(local),3);local.phase='charge';assert.equal(P.BossArt.frame(local),4);local.phase='recover';local.attackUntil=0;assert.equal(P.BossArt.frame(local),5);
  local.phase='warning';local.windup=.01;P.Encounters.bossMove(local,.02);if(local.kind!=='combi'){assert.equal(local.phase,'recover');assert.equal(P.BossArt.frame(local),4);s.elapsed+=.3;assert.equal(P.BossArt.frame(local),5)}
  const png=fs.readFileSync(path.join(root,'public/assets/arenas/'+s.encounter.scene.asset+'-v1.png'));assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
- P.Entities.hurt(local,99999);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
+ P.Entities.hurt(local,99999);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Loot.advance(.7);P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
 }
 const bossPng=fs.readFileSync(path.join(root,'public/assets/bosses/boss-atlas-v1.png'));assert.equal(bossPng.toString('hex',0,8),'89504e470d0a1a0a');
 P.Game.start();s.mapTime=180;P.Encounters.tick();const uiPoint=P.Encounters.definition().portal;s.player.x=uiPoint.x;s.player.y=uiPoint.y;elements.get('#portal-enter').hidden=true;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,false,'El HUD debe mostrar el botón cercano');s.player.x=-900;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,true,'El HUD oculta el botón lejano');console.log('OK: botón de portal conectado al HUD');
@@ -107,7 +107,7 @@ for(const map of P.Maps.catalog){
  const crate=P.Terrain.props.find(o=>o.kind==='crate');P.Terrain.damage(crate,999);const drops=s.gems.length;assert(s.gems.some(g=>g.kind==='heal'));assert(s.gems.some(g=>!g.kind));P.Terrain.damage(crate,999);assert.equal(s.gems.length,drops,'No duplicar botín de una caja destruida');
  const chest=P.Loot.chests[0];s.player.x=chest.x;s.player.y=chest.y;s.player.moving=true;P.Loot.tick(1);assert.equal(chest.progress,0);
  s.player.moving=false;P.Loot.tick(.9);assert(!chest.opened);s.player.x+=150;P.Loot.tick(.1);assert.equal(chest.progress,0);
- s.player.x=chest.x;s.player.y=chest.y;P.Loot.tick(1.81);assert(chest.opened);assert.equal(s.mode,'item');elements.get('#overlay').children.filter(c=>c.tag==='button')[1].onclick();assert.equal(s.mode,'play');assert(!s.player.equipment);P.Loot.open(chest);assert.equal(s.mode,'play','Un cofre abierto no vuelve a dar objetos');
+ s.player.x=chest.x;s.player.y=chest.y;P.Loot.tick(1.81);assert.equal(s.mode,'loot-opening');P.Loot.advance(.7);assert(chest.opened);assert.equal(s.mode,'item');elements.get('#overlay').children.filter(c=>c.tag==='button')[1].onclick();assert.equal(s.mode,'play');assert(!s.player.equipment);P.Loot.open(chest);assert.equal(s.mode,'play','Un cofre abierto no vuelve a dar objetos');
  P.Game.start();assert(P.Loot.chests.every(c=>!c.opened));assert.equal(s.coins,0);
  console.log('OK botín de mapa: '+map.name)
 }
@@ -120,7 +120,7 @@ P.Loot.equip('vest');player.hp=player.maxHp-1;P.Loot.use('emoliente');assert.equ
 const coin={x:player.x,y:player.y,kind:'coin',value:5};s.gems=[coin];const xp=s.xp;P.Systems.collect(0);assert.equal(s.coins,5);assert.equal(s.xp,xp,'Las monedas no son experiencia');
 P.Game.start();s.mapTime=180;P.Encounters.tick();const portal=P.Encounters.definition().portal;s.player.x=portal.x;s.player.y=portal.y;P.Encounters.offer();P.Encounters.enter();const frozen=P.Loot.chests.map(c=>c.progress);P.Loot.tick(3);assert.equal(P.Loot.active().length,0);assert.deepEqual(P.Loot.chests.map(c=>c.progress),frozen);
 P.Entities.hurt(s.enemies[0],99999);assert.equal(s.mode,'play');const gold=P.Loot.chests.find(c=>c.gold);assert(gold);P.Loot.bossChest(()=>{});assert.equal(P.Loot.chests.filter(c=>c.gold).length,1);
-s.player.x=gold.x;s.player.y=gold.y;s.player.moving=false;P.Loot.tick(1.81);assert.equal(s.mode,'reward');const before=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.player.power,before*1.3);P.Loot.open(gold);assert.equal(s.mode,'play');assert.equal(s.player.power,before*1.3);
+s.player.x=gold.x;s.player.y=gold.y;s.player.moving=false;P.Loot.tick(1.81);assert.equal(s.mode,'loot-opening');P.Loot.advance(.7);assert.equal(s.mode,'reward');const before=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.player.power,before*1.3);P.Loot.open(gold);assert.equal(s.mode,'play');assert.equal(s.player.power,before*1.3);
 P.Game.start();assert.equal(s.player.equipment,null);assert.equal(s.player.equipmentReduction,0);assert(!P.Loot.bossDropped);console.log('OK equipo, curación, monedas, cofre de jefe y reinicio');
 
 
@@ -170,4 +170,14 @@ P.World.render(800);assert(P.Terrain.zoom>=1.05);assert(arenaBounds.right<900&&a
 
 for(const map of ['campo','plaza','machu']){P.$('#lab-boss').value=map;P.Lab.run();const covers=P.Terrain.active();assert.equal(covers.length,4);assert(!P.Terrain.hit(s.player.x,s.player.y,14));assert(!P.Terrain.hit(s.enemies[0].x,s.enemies[0].y,s.enemies[0].r));const o=covers[0],body={x:o.x,y:o.y};P.Terrain.resolve(body,{x:o.x-200,y:o.y},14);assert(!P.Terrain.hit(body.x,body.y,13));assert(!P.Terrain.clear(o.x-200,o.y,o.x+200,o.y));s.fire=100;s.player.inv=0;s.player.x=o.x+20;s.player.y=o.y;s.danger=[{x:o.x-90,y:o.y,vx:1000,vy:0,age:0,life:5,history:[]}];const hp=s.player.hp;P.Combat.tick(.08);assert.equal(s.danger.length,0);assert.equal(s.player.hp,hp);if(map==='campo'){const e=s.enemies[0];e.x=o.x-o.w/2-e.r-2;e.y=o.y;e.dx=1;e.dy=0;e.phase='charge';e.windup=1;P.Encounters.bossMove(e,.04);assert.equal(e.phase,'recover');assert(!P.Terrain.hit(e.x,e.y,e.r-1))}P.World.render(1000)}
 P.UI.menu();P.Game.start();assert(!P.Terrain.active().some(o=>String(o.id).startsWith('arena:')));console.log('OK cobertura: bloqueo de movimiento, proyectiles, embestida y retorno limpio');
+
+P.UI.menu();P.Maps.select('campo');P.Game.start();
+const animatedChest=P.Loot.chests[0],clockBeforeOpen=s.mapTime,healthBeforeOpen=s.player.hp;
+P.Loot.open(animatedChest);assert.equal(s.mode,'loot-opening');assert.equal(animatedChest.openAge,0);
+P.Game.update(.16);assert.equal(s.mode,'loot-opening');assert(animatedChest.openAge>=.16);assert.equal(s.mapTime,clockBeforeOpen);assert.equal(s.player.hp,healthBeforeOpen);
+P.UI.pause();assert.equal(s.mode,'loot-opening','La pausa no interrumpe la apertura');
+P.Loot.open(animatedChest);P.Game.update(.49);assert.equal(s.mode,'item');assert.equal(P.Loot.pending,null);
+const choices=elements.get('#overlay').children.length;P.Loot.advance(1);assert.equal(elements.get('#overlay').children.length,choices,'Revelar premio una sola vez');
+P.Game.start();const animatedBox=P.Terrain.props.find(o=>o.kind==='crate');P.Terrain.damage(animatedBox,999);assert.equal(P.Loot.debris.length,1);P.Loot.tick(.9);assert.equal(P.Loot.debris.length,0);P.Game.start();assert.equal(P.Loot.pending,null);assert.equal(P.Loot.debris.length,0);
+console.log('OK animación de botín: fases, reloj congelado, premio único, escombros y reinicio');
 });
