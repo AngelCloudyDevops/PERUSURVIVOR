@@ -212,3 +212,6 @@ La caminata de personajes y minions alterna sus cuadros originales con balanceo 
 | PNP | Retroceso y chispas verdes | Se ladea y se desvanece con pulsos verdes |
 
 La invulnerabilidad, los ataques y las recompensas conservan sus reglas. Al pausar se congelan las reacciones y al reiniciar desaparecen.
+
+## Señales de llaves en el minimapa
+El minimapa identifica portadores vivos con un rombo y llaves del suelo con un icono de llave, siempre en el color de su rareza (azul raro y violeta legendario). Comparte el alcance circular de 900 unidades de los cofres. No muestra portadores muertos ni llaves recogidas, eliminadas o lejanas. El marcador del jugador conserva la prioridad visual; hay leyenda de símbolos y colores. No se muestra en arenas o menús.
