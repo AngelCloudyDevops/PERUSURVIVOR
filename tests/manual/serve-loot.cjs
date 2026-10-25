@@ -1,7 +1,7 @@
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'../..'),base=require('../../server.cjs').createServer().listeners('request')[0];
 const controls=`<div style="position:fixed;bottom:0;left:0;z-index:100;background:#142032;color:white;padding:6px">QA LOCAL <button id="qa-common">Común</button><button id="qa-rare">Raro</button><button id="qa-legendary">Legendario</button><button id="qa-crate">Romper caja</button></div><script>
-function previewChest(tier){P.UI.menu();P.Game.start();const c=P.Loot.chests.find(c=>c.rarity===tier);P.state.player.x=c.x;P.state.player.y=c.y+55;P.Terrain.cameraX=c.x;P.Terrain.cameraY=c.y;P.state.player.inv=10}
+function previewChest(tier){P.UI.menu();P.Game.start();let c=P.Loot.chests.find(c=>c.rarity===tier);if(!c){c={...P.Loot.chests[0],id:'qa-'+tier,rarity:tier,opened:false};P.Loot.chests.push(c)}P.state.player.x=c.x;P.state.player.y=c.y+55;P.Terrain.cameraX=c.x;P.Terrain.cameraY=c.y;P.state.player.inv=10}
 for(const tier of ['common','rare','legendary'])document.querySelector('#qa-'+tier).onclick=()=>previewChest(tier);
 document.querySelector('#qa-crate').onclick=()=>{if(P.state.mode==='menu')P.Game.start();const box=P.Terrain.props.find(o=>o.kind==='crate'&&o.solid);if(box){P.state.player.x=box.x;P.state.player.y=box.y+65;P.Terrain.cameraX=box.x;P.Terrain.cameraY=box.y;P.Terrain.damage(box,100)}};
 const params=new URLSearchParams(location.search);if(params.has('auto'))window.addEventListener('load',()=>previewChest(params.get('tier')||'legendary'));
