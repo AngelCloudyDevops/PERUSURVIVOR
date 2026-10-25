@@ -84,6 +84,10 @@ module.exports = [
     "output": "js/ambient.js"
   },
   {
+    "source": "src/systems/exploration.js",
+    "output": "js/exploration.js"
+  },
+  {
     "source": "src/rendering/world.js",
     "output": "js/world.js"
   },

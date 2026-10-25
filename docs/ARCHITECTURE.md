@@ -97,8 +97,14 @@ P.Loot.init genera cuatro objetos por cada rareza, con base compartida para icon
 
 Audio usa Web Audio con osciladores y envolventes cortas, polifonía limitada y desconexión de nodos al terminar. El secuenciador sigue el frame y adapta el tema al mapa/jefe. Si Web Audio no está disponible, el juego continúa sin audio. El estado mute se guarda en localStorage.
 
+Exploration administra un puesto por partida, sin persistencia externa. Se reinicia después de Terrain/Loot, avanza únicamente en play y fuera de arenas/laboratorio. World dibuja su zona debajo de actores y el puesto por profundidad. UI ofrece distancia, dirección, progreso y botón táctil.
 La marcha de los rivales usa la distancia real tras resolver colisiones en Systems.move. EnemyArt combina los dos cuadros del atlas con balanceo, rebote y desplazamiento alternado de pies; el ciclo se detiene sin desplazamiento y conserva la dirección horizontal. No modifica velocidad, daño ni colisiones.
 
 P.CoverArt carga el atlas exclusivo de arena antes del arranque y dibuja solo props con id arena:. P.Terrain conserva la física y el fallback geométrico. P.World.zoomFor calcula el encuadre según ancho de ventana; P.BossArt.camera sigue al jugador dentro del fondo.
 
 P.Practice es un modo público explícito, separado del servidor local QA. Game.update delega mientras practice=true; reutiliza movimiento, colisión, combate y Ultimate, sin progresión. UI.menu y Game.start limpian el indicador.
+
+## Distribución de cofres por sectores
+Loot usa una semilla de partida y Chunks.hash para derivar densidad, posición y rareza por sector. Mantiene solo los nueve sectores vecinos y el cofre de jefe, más los IDs de cofres abiertos durante la partida. Al volver se reconstruyen las mismas posiciones y el estado abierto. Safe comprueba objetos de sectores vecinos aunque aún no estén en el índice de colisiones activo. Tick sincroniza solo al cambiar de sector, fuera de pausas y arenas.
+
+Sprites.draw acepta una marcha opcional para deformar bandas de brazos y pies del actor sin afectar los retratos ni la pose de ataque. Systems.ranged administra aviso, dirección fijada y enfriamiento de minions; Combat comparte la colisión de proyectiles y acepta daño específico con valor previo por defecto.

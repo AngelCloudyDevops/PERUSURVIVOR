@@ -115,3 +115,6 @@ Música retro original por mapa, tema de jefe y efectos sintetizados mediante We
 
 ### Práctica de Kingteka en producción
 En https://perusurvivor.michitech.tech usa «Probar ulti de Kingteka · Gallinazos y sonidos». Empieza con carga completa, objetivos resistentes e invencibilidad. «Recargar ulti» permite repetirla sin bajas. Si sigue activa, espera el remate DENUNCIADO antes de volver a activarla. No modifica récords ni progreso; «Salir de práctica» regresa al menú.
+
+## Cofres al explorar
+Los cofres se distribuyen por sectores de 768 unidades con posiciones y una semilla nuevas por partida. Cada sector tiene un 60% de posibilidad de contener uno; el sector de inicio garantiza un común en posición aleatoria segura. Entre cofres fuera del inicio: común 72%, raro 26%, legendario 2%; los legendarios requieren estar a 1800 unidades del punto de aparición. Un sorteo legendario cercano se convierte en raro. Se generan al explorar y se conservan las aperturas al regresar, sin repetir premios. Se comprueban obstáculos, fuente y portal. Las arenas no generan cofres normales; el cofre de jefe conserva su recompensa.
