@@ -283,6 +283,9 @@ P.Game.start();s.player.x=0;s.player.y=0;s.enemies=[{x:300,y:400,hp:100,keyTier:
 for(const [dx,dy,arrow] of [[1,0,'→'],[1,1,'↘'],[0,1,'↓'],[-1,1,'↙'],[-1,0,'←'],[-1,-1,'↖'],[0,-1,'↑'],[1,-1,'↗'],[0,0,'●']])assert.equal(P.Loot.keyDirection(dx,dy),arrow);
 s.gems=[{x:3000,y:4000,kind:'key',rarity:'legendary'}];assert.equal(P.Loot.keyTarget().distance,5000,'Orientar también a llaves fuera del minimapa');s.player.x=2900;s.player.y=4000;P.UI.hud();assert.equal(elements.get('#key-target').textContent,'→ Llave legendaria · 100 m');s.mode='pause';P.UI.hud();assert(!elements.get('#key-target').hidden);s.encounter={};P.Loot.targetHud();assert(elements.get('#key-target').hidden);s.encounter=null;s.devRun=true;P.Loot.targetHud();assert(elements.get('#key-target').hidden);s.devRun=false;s.mode='end';P.UI.hud();assert(elements.get('#key-target').hidden);P.Game.start();P.UI.hud();assert(elements.get('#key-target').hidden);
 console.log('OK brújula de llaves: objetivo más cercano, ocho direcciones, distancia, color, recogida, muerte, alcance y modos');
+
+P.Game.start();s.gems=[{x:s.player.x+120,y:s.player.y,kind:'key',rarity:'rare'}];P.Coop.active=true;P.Loot.targetHud();assert.equal(elements.get('#key-target').hidden,false);assert.equal(elements.get('#key-target').textContent,'→ Llave rara · 120 m');P.Coop.active=false;P.Game.start();
+
 {
  P.Game.start();const playerBase=s.player;for(let design=0;design<6;design++){
   const base={x:playerBase.x+200,y:playerBase.y,hp:100,max:100,r:19,design,heavy:true,rangedAim:{x:-1,y:0},rangedWindup:.5,hit:0};

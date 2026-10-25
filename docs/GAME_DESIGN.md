@@ -224,7 +224,7 @@ Arbustos y follaje de jardineras comparten copas redondeadas con lóbulos asimé
 El minimapa identifica portadores vivos con un rombo y llaves del suelo con un icono de llave, siempre en el color de su rareza (azul raro y violeta legendario). Comparte el alcance circular de 900 unidades de los cofres. No muestra portadores muertos ni llaves recogidas, eliminadas o lejanas. El marcador del jugador conserva la prioridad visual; hay leyenda de símbolos y colores. No se muestra en arenas o menús.
 
 ## Orientación a llaves
-El indicador del HUD elige por distancia entre portadores vivos y llaves no recogidas; en un empate exacto prefiere la llave. Muestra tipo, rareza, flecha en ocho direcciones y distancia redondeada en las mismas unidades que la exploración. No limita la búsqueda a las 900 unidades del minimapa. Al recoger la llave o morir el portador se recalcula con los objetivos restantes. No se muestra sin objetivos, en menú/final, arenas, laboratorio o cooperativo. En pausa conserva la orientación congelada.
+El indicador del HUD elige por distancia entre portadores vivos y llaves no recogidas; en un empate exacto prefiere la llave. Muestra tipo, rareza, flecha en ocho direcciones y distancia redondeada en las mismas unidades que la exploración. No limita la búsqueda a las 900 unidades del minimapa. Al recoger la llave o morir el portador se recalcula con los objetivos restantes. No se muestra sin objetivos, en menú/final, arenas o laboratorio. En pausa conserva la orientación congelada.
 
 
 ## Contador y prueba de rendimiento
@@ -232,7 +232,10 @@ En Desarrollo se puede activar el contador de FPS para las partidas y elegir una
 
 ## Animación de la picada del Gallinazo
 Durante el aviso, el ave levanta las alas, asciende y una sombra recorre la franja roja. La franja termina antes de la primera cobertura o borde previsto. Al lanzarse deja una estela acotada de plumas; al chocar o aterrizar produce polvo y un anillo de impacto, y comprime el cuerpo mientras recupera el equilibrio durante 0,65 s. Esa ventana permite atacarlo. La doble picada conserva su segundo aviso. El daño y la velocidad no cambian. Las partículas se pausan con la simulación, están limitadas a 32 por jefe y se omiten con movimiento reducido, conservando el aviso de peligro.
+El indicador también funciona en cooperativo: cada jugador ve la dirección y distancia desde su propia posición, usando los portadores y llaves compartidos por el servidor.
+
 ### Resistencia durante la preparación y muerte legible
 Los seis tipos de minion pesado reducen un 40 % el daño recibido solo mientras preparan su ataque (rangedAim activo y rangedWindup positivo). Un golpe de 20 inflige 12: siguen siendo vulnerables y pueden morir. Un halo dorado pulsante y un pequeño escudo indican la resistencia; desaparecen al ejecutar el ataque. Los normales y los jefes conservan el daño completo. Embestidas y ráfagas ya iniciadas no prolongan esta protección. Los portadores de llaves siguen las mismas reglas de pesado.
 
 Al morir, el minion conserva su cuerpo completo, muestra ojos en X, cae y mantiene la pose antes de desvanecerse durante el tramo final. La duración varía entre 0,95 y 1,05 s y se conservan los seis efectos de partículas. Las recompensas y la eliminación del combate son inmediatas; el cadáver es cosmético.
+
