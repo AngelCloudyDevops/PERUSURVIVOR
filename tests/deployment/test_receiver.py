@@ -39,6 +39,7 @@ class ReceiverTests(unittest.TestCase):
         path = receiver.extract_release(package(), SHA)
         self.assertEqual(json.loads((path / "__release.json").read_text())["git_sha"], SHA)
         self.assertTrue((path / "js/game.js").is_file())
+        self.assertEqual(path.stat().st_mode & 0o005, 0o005, "Nginx debe poder atravesar la release")
     def test_traversal(self):
         for name in ["../escape", "/etc/passwd", "dir/../../escape"]:
             with self.assertRaises(ValueError): receiver.extract_release(package([(name, b"bad")]), SHA)

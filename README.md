@@ -73,5 +73,5 @@ GitHub Actions ejecuta las mismas comprobaciones en cada push y pull request. La
 Esta es una versión de un jugador, sin cuentas, pagos, multijugador ni voces de figuras reales. El récord se guarda en el navegador. Las figuras públicas aparecen como caricaturas de parodia con habilidades inventadas; no existe afiliación.
 
 ## Despliegue automático
-La preparación y el estado de activación están documentados en [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). El job de publicación permanece deshabilitado hasta completar la instalación restringida en el VPS.
+La preparación y el estado de activación están documentados en [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Cada push a main publica el juego después de las pruebas, mediante la cuenta restringida del VPS y comprobación HTTPS con reversión automática.
 

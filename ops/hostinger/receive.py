@@ -64,12 +64,14 @@ def extract_release(payload, sha):
         if not (stage / "js/game.js").is_file():
             raise ValueError("Falta el código del juego")
         (stage / "__release.json").write_text(json.dumps({"git_sha": sha}) + "\n")
+        stage.chmod(0o755)
         if target.exists():
             if (target / "__release.json").read_text() != (stage / "__release.json").read_text():
                 raise ValueError("Ya existe una release incompatible")
         else:
             stage.rename(target)
             # TemporaryDirectory permite que el directorio se haya movido.
+    target.chmod(0o755)
     return target
 
 def switch_link(target):

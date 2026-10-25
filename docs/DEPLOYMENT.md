@@ -20,7 +20,7 @@ ops/hostinger/known_hosts fija la identidad SSH del VPS.
 La variable de repositorio PERUSURVIVOR_DEPLOY_ENABLED debe ser true para activar la publicación.
 
 ## Estado
-El código está preparado. No activar la variable hasta instalar y probar el receptor, la cuenta y la clave en el VPS. Esa instalación requiere acceso administrativo temporal; la clave administrativa se retira después.
+Instalación restringida completada el 2026-10-25. La variable de activación se habilita después de la prueba real de envío y verificación HTTPS. El siguiente push a main ejecuta el flujo completo. La clave administrativa de instalación se retira al terminar la verificación; la clave permanente de GitHub solo permite publicar el juego.
 
 El despliegue automático no reinicia Caddy, Docker ni ninguna aplicación. Solo modifica releases/ y live/ del juego. Las versiones anteriores se conservan; no se eliminan automáticamente.
 
