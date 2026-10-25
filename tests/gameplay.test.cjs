@@ -56,7 +56,7 @@ for(const map of P.Maps.catalog){
  const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
  if(map.id==='campo')assert.equal(localBoss.phase,'charge');else assert(s.danger.length>0);
  s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=s.encounter.scene.bounds.right&&s.player.y>=s.encounter.scene.bounds.top);
- P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
+ P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'play');P.Loot.open(P.Loot.chests.find(c=>c.gold));assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
  const power=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.mode,'play');assert.equal(s.player.power,power*1.3);P.Encounters.reward(()=>s.player.power=0);assert(s.player.power>0,'No repetir recompensa');
  P.Game.update(.04);assert(s.mapTime>clock);assert(!s.portal.open);
  s.mapTime=300;P.Game.update(.01);assert(s.bossSpawned);assert.equal(s.enemies.filter(e=>e.boss).length,1);P.Game.update(.01);assert.equal(s.enemies.filter(e=>e.boss).length,1);assert(!s.portal.open);
@@ -96,9 +96,37 @@ for(const map of P.Maps.catalog){
  const local=s.enemies[0];local.phase='warning';assert.equal(P.BossArt.frame(local),3);local.phase='charge';assert.equal(P.BossArt.frame(local),4);local.phase='recover';local.attackUntil=0;assert.equal(P.BossArt.frame(local),5);
  local.phase='warning';local.windup=.01;P.Encounters.bossMove(local,.02);if(local.kind!=='combi'){assert.equal(local.phase,'recover');assert.equal(P.BossArt.frame(local),4);s.elapsed+=.3;assert.equal(P.BossArt.frame(local),5)}
  const png=fs.readFileSync(path.join(root,'public/assets/arenas/'+s.encounter.scene.asset+'-v1.png'));assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
- P.Entities.hurt(local,99999);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
+ P.Entities.hurt(local,99999);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
 }
 const bossPng=fs.readFileSync(path.join(root,'public/assets/bosses/boss-atlas-v1.png'));assert.equal(bossPng.toString('hex',0,8),'89504e470d0a1a0a');
 P.Game.start();s.mapTime=180;P.Encounters.tick();const uiPoint=P.Encounters.definition().portal;s.player.x=uiPoint.x;s.player.y=uiPoint.y;elements.get('#portal-enter').hidden=true;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,false,'El HUD debe mostrar el botón cercano');s.player.x=-900;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,true,'El HUD oculta el botón lejano');console.log('OK: botón de portal conectado al HUD');
+
+for(const map of P.Maps.catalog){
+ P.UI.menu();P.Maps.select(map.id);P.Game.start();
+ assert.equal(P.Loot.chests.length,2);assert(P.Loot.chests.every(c=>!P.Terrain.hit(c.x,c.y,28)));
+ const crate=P.Terrain.props.find(o=>o.kind==='crate');P.Terrain.damage(crate,999);const drops=s.gems.length;assert(s.gems.some(g=>g.kind==='heal'));assert(s.gems.some(g=>!g.kind));P.Terrain.damage(crate,999);assert.equal(s.gems.length,drops,'No duplicar botín de una caja destruida');
+ const chest=P.Loot.chests[0];s.player.x=chest.x;s.player.y=chest.y;s.player.moving=true;P.Loot.tick(1);assert.equal(chest.progress,0);
+ s.player.moving=false;P.Loot.tick(.9);assert(!chest.opened);s.player.x+=150;P.Loot.tick(.1);assert.equal(chest.progress,0);
+ s.player.x=chest.x;s.player.y=chest.y;P.Loot.tick(1.81);assert(chest.opened);assert.equal(s.mode,'item');elements.get('#overlay').children.filter(c=>c.tag==='button')[1].onclick();assert.equal(s.mode,'play');assert(!s.player.equipment);P.Loot.open(chest);assert.equal(s.mode,'play','Un cofre abierto no vuelve a dar objetos');
+ P.Game.start();assert(P.Loot.chests.every(c=>!c.opened));assert.equal(s.coins,0);
+ console.log('OK botín de mapa: '+map.name)
+}
+P.Game.start();const player=s.player,originalRate=player.rate,originalMagnet=player.magnet;
+assert(P.Loot.equip('magnet'));assert.equal(player.magnet,originalMagnet*1.6);assert(!P.Loot.equip('magnet'));assert.equal(player.magnet,originalMagnet*1.6);
+assert(P.Loot.equip('battery'));assert.equal(player.magnet,originalMagnet);assert.equal(player.rate,originalRate*.85);
+player.rate*=.82;assert(P.Loot.equip('vest'));assert(Math.abs(player.rate-originalRate*.82)<1e-10,'Reemplazar equipo conserva mejoras de nivel');assert.equal(P.Loot.damage(player,25),20);
+P.Loot.equip('magnet');assert.equal(P.Loot.damage(player,25),25);
+P.Loot.equip('vest');player.hp=player.maxHp-1;P.Loot.use('emoliente');assert.equal(player.hp,player.maxHp);assert.equal(player.equipment,'vest','La bebida no reemplaza el accesorio');
+const coin={x:player.x,y:player.y,kind:'coin',value:5};s.gems=[coin];const xp=s.xp;P.Systems.collect(0);assert.equal(s.coins,5);assert.equal(s.xp,xp,'Las monedas no son experiencia');
+P.Game.start();s.mapTime=180;P.Encounters.tick();const portal=P.Encounters.definition().portal;s.player.x=portal.x;s.player.y=portal.y;P.Encounters.offer();P.Encounters.enter();const frozen=P.Loot.chests.map(c=>c.progress);P.Loot.tick(3);assert.equal(P.Loot.active().length,0);assert.deepEqual(P.Loot.chests.map(c=>c.progress),frozen);
+P.Entities.hurt(s.enemies[0],99999);assert.equal(s.mode,'play');const gold=P.Loot.chests.find(c=>c.gold);assert(gold);P.Loot.bossChest(()=>{});assert.equal(P.Loot.chests.filter(c=>c.gold).length,1);
+s.player.x=gold.x;s.player.y=gold.y;s.player.moving=false;P.Loot.tick(1.81);assert.equal(s.mode,'reward');const before=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.player.power,before*1.3);P.Loot.open(gold);assert.equal(s.mode,'play');assert.equal(s.player.power,before*1.3);
+P.Game.start();assert.equal(s.player.equipment,null);assert.equal(s.player.equipmentReduction,0);assert(!P.Loot.bossDropped);console.log('OK equipo, curación, monedas, cofre de jefe y reinicio');
+
+
+P.Game.start();s.enemies=[];const singleBox=P.Terrain.props.find(o=>o.kind==='crate');s.player.x=singleBox.x-70;s.player.y=singleBox.y;s.player.power=100;P.Combat.cast();assert(s.shots.length>0,'Se debe poder atacar cajas sin enemigos');s.fire=999;for(let i=0;i<7;i++)P.Combat.tick(.04);assert(!singleBox.solid);
+P.Game.start();s.enemies=[];s.player.attack='orbit';s.player.power=100;const orbitBox=P.Terrain.props.find(o=>o.kind==='crate');s.player.x=orbitBox.x-100;s.player.y=orbitBox.y;P.Combat.cast();assert(!orbitBox.solid,'Los ataques orbitales también rompen cajas');
+P.Game.start();P.Loot.equip('vest');s.player.hp=100;s.player.inv=0;s.enemies=[target(s.player.x,s.player.y)];P.Systems.move(.01);assert.equal(s.player.hp,92,'El chaleco reduce daño real de contacto');console.log('OK: cajas sin enemigos, ataques orbitales y reducción real de daño');
+
 
 });
