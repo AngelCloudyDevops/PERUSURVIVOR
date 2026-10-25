@@ -1,0 +1,85 @@
+{
+  "capturedFrom": "9f2374f43ed5a3f64370847fb642ab2a6f8bd588",
+  "files": [
+    {
+      "before": "dist/js/data.js",
+      "after": "src/data/catalog.js",
+      "sha256": "9bde2ecc2355fba6005d6913a1d74a01c84be0b19d910ce5ea831742bf93a1ba"
+    },
+    {
+      "before": "dist/js/core.js",
+      "after": "src/core/runtime.js",
+      "sha256": "d0752af779cf999e04876a4e3da2e7f0cd4591f6955125cd87987e6dc6d49c07"
+    },
+    {
+      "before": "dist/js/sprites.js",
+      "after": "src/rendering/sprites.js",
+      "sha256": "6363b7b10be521e70c7f6f09beb158026c59eaf9a678ef2f5436f6420d427a4f"
+    },
+    {
+      "before": "dist/js/enemy-art.js",
+      "after": "src/rendering/enemy-art.js",
+      "sha256": "0c38321fbc2d0ac911ac709f808e34911b8cf7422b70f9f7d2367ec472db7f71"
+    },
+    {
+      "before": "dist/js/fx.js",
+      "after": "src/rendering/effects.js",
+      "sha256": "139e86be5f5b4e33340247ad2010987756c2c89f9eeec404008e28c0f2b68b95"
+    },
+    {
+      "before": "dist/js/entities.js",
+      "after": "src/entities/actors.js",
+      "sha256": "27df390092d33758e8271c76bc45fc8c55e2c6162b36110d45f9d26e501cb0db"
+    },
+    {
+      "before": "dist/js/combat.js",
+      "after": "src/systems/combat.js",
+      "sha256": "6ee36b00826a997dc6ecbe192324f6f5ad9bab4671ab87b8a2a277c3032ba47f"
+    },
+    {
+      "before": "dist/js/systems.js",
+      "after": "src/systems/progression.js",
+      "sha256": "f89dbab6833e8175553fa831a9de19bd91e6f8418269e1e6b36c47d88f89e4b5"
+    },
+    {
+      "before": "dist/js/maps.js",
+      "after": "src/scenes/maps.js",
+      "sha256": "1b5b74d384f17530cc8284895af56324fe22f9749b459075413e7b0d533a8457"
+    },
+    {
+      "before": "dist/js/encounters.js",
+      "after": "src/systems/encounters.js",
+      "sha256": "458b543aaabd531244a3b7f4096f90c4fdfd287659553063122f83b2ddb505eb"
+    },
+    {
+      "before": "dist/js/terrain.js",
+      "after": "src/systems/terrain.js",
+      "sha256": "cd070f681c542d9ccfb05325ef35b9f139b4b96a0c14853e1e00a42af8923dba"
+    },
+    {
+      "before": "dist/js/world.js",
+      "after": "src/rendering/world.js",
+      "sha256": "01382849dffac49f046c7e69dafb328c218b3c953c2fa4dbb2321f68819464a6"
+    },
+    {
+      "before": "dist/js/ui.js",
+      "after": "src/ui/screens.js",
+      "sha256": "f0de8e9f899f939afa8c9c37c462dd86ed27bd11b834e60d02cadd904ba59c7d"
+    },
+    {
+      "before": "dist/js/game.js",
+      "after": "src/scenes/game.js",
+      "sha256": "7432e065994d8349ec0cdd745f9e755e4a31a5080f233bd62e9e9b0f6339536c"
+    },
+    {
+      "before": "dist/index.html",
+      "after": "src/index.html",
+      "sha256": "ddd0865fd44d70923859670acc2e3e6ee96e5e19f0362780a94cd81d5521d596"
+    },
+    {
+      "before": "dist/style.css",
+      "after": "src/ui/styles.css",
+      "sha256": "83fb83e65a678d2638fbd3e9e54fcd6e9c3bdaa838598168345c22de1e99bf9e"
+    }
+  ]
+}

@@ -4,8 +4,12 @@
   "private": true,
   "description": "Causas del Caos: juego de supervivencia y parodia peruana",
   "scripts": {
+    "build": "node scripts/build.cjs",
+    "prestart": "npm run build",
     "start": "node server.cjs",
-    "test": "node check.cjs"
+    "check": "node scripts/check-syntax.cjs",
+    "pretest": "npm run build",
+    "test": "node --test tests/build.test.cjs tests/gameplay.test.cjs tests/server.test.cjs"
   },
   "engines": {
     "node": ">=20"
