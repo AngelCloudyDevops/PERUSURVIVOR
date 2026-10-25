@@ -126,5 +126,9 @@ module.exports = [
   {
     "source": "src/scenes/practice.js",
     "output": "js/practice.js"
+  },
+  {
+    "source": "src/rendering/ultimate-comic.js",
+    "output": "js/ultimate-comic.js"
   }
 ];
