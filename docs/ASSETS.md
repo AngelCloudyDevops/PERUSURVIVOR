@@ -28,3 +28,8 @@ public/assets/characters/powers-atlas-v1.png: nueve caricaturas con poses de rep
 public/assets/loot/loot-atlas-v1.png: atlas original generado con image_gen, fondo alfa, 4 columnas por 4 filas: caja intacta/agrietada/rotura/escombros; cofre común cerrado/entreabierto/abriendo/abierto; cofre dorado equivalente; emoliente/imán/chaleco/batería. Prompt en public/assets/loot/prompts.json.
 
 public/assets/loot/chest-rarities-v1.png: hoja original de cofres comunes, raros y legendarios, 4 poses por fila y transparencia, creada con image_gen; prompt en rarity-prompts.json.
+
+Gallinazos: public/assets/enemies/gallinazos-atlas-v1.png, cuatro poses originales generadas con image_gen integrado. Prompt en gallinazos-atlas.json. Recortes con ancla de cuerpo fija y escala nearest-neighbor; sombra añadida en runtime.
+
+### Jefes y arenas: estilo geométrico
+La Combi, el Gabinete y el Guardián se dibujan mediante rectángulos en una retícula de 3 unidades, con contornos oscuros y paletas cortas. Conservan las fases de reposo, movimiento, aviso, ataque y recuperación. Las arenas usan suelos discretos, caminos claros y bordes simples; las coberturas conservan sus colisiones. Los PNG detallados anteriores permanecen archivados y no se usan en el dibujo del combate. Implementación en src/rendering/boss-art.js.

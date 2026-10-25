@@ -41,7 +41,7 @@ public/assets/
   characters/    Hojas de personajes y sus prompts
   enemies/       Hoja de rivales y su prompt
   maps/          Tres fondos y sus prompts
-  audio/         Reservado; no hay audio implementado
+  audio/         Reservado; la ulti usa síntesis Web Audio
 scripts/         Compilación y orden de carga
 tests/           Regresión, compilación, HTTP y herramientas manuales
 docs/            Diseño y arquitectura
@@ -64,11 +64,11 @@ Edita src/ y public/, nunca dist/. Los scripts clásicos siguen compartiendo P; 
 
 Las pruebas cubren los ataques de los dieciocho personajes, oleadas, mejoras, pausa, bumerán, daño del jefe, los tres mapas, portales y sus recompensas, colisiones, cajas y rutas enemigas. También comprueban los recursos compilados y el servidor HTTP. La lógica corre en un entorno simulado; estas pruebas no sustituyen la revisión visual en navegador.
 
-GitHub Actions ejecuta las mismas comprobaciones en cada push y pull request. La CI no publica ni modifica el juego.
+GitHub Actions ejecuta las mismas comprobaciones en cada push y pull request. La CI publica en el VPS únicamente tras un push a main y después de superar todas las pruebas.
 
 ## Publicación
 
-.openai/hosting.json conserva la identidad del sitio existente y su carpeta estática dist/. Antes de empaquetar cualquier publicación ejecuta npm run build. Subir código a GitHub no despliega automáticamente el sitio.
+El destino principal es https://perusurvivor.michitech.tech, en el VPS de Hostinger srv2060131.hstgr.cloud (179.236.77.159). Nginx (perusurvivor-web) sirve /opt/perusurvivor/live/current detrás de Caddy. Un push a main despliega automáticamente dist/ después de CI; las ramas y PR no publican. Véase docs/DEPLOYMENT.md. El sitio de ChatGPT configurado en .openai/hosting.json es una copia separada: publicarlo no actualiza el dominio principal.
 
 Esta es una versión de un jugador, sin cuentas, pagos, multijugador ni voces de figuras reales. El récord se guarda en el navegador. Las figuras públicas aparecen como caricaturas de parodia con habilidades inventadas; no existe afiliación.
 
@@ -91,6 +91,9 @@ Toda contribución debe respetar la dirección artística elegida por el usuario
 ### Implementación de referencia
 
 src/rendering/map-art.js mantiene simpleStyle activado: los atlas detallados de public/assets/environment/ se conservan como variantes archivadas, no como referencia visual vigente. El suelo se dibuja en src/systems/chunks.js y los objetos sencillos en src/systems/terrain.js. No reactivar los atlas detallados para una mejora rutinaria. La interfaz puede mantener su tipografía actual; estas reglas de píxel se aplican al dibujo del mundo, personajes y efectos.
+
+La prueba de poderes respeta esta referencia: efectos de Kingteka rasterizados a píxeles de dos unidades, sin halo desenfocado, conservando globos de cómic y sello. Audio y controles de ulti se mantienen.
+
 ## Despliegue automático
 La preparación y el estado de activación están documentados en [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Cada push a main publica el juego después de las pruebas, mediante la cuenta restringida del VPS y comprobación HTTPS con reversión automática.
 
@@ -103,6 +106,9 @@ Cajas, cofres comunes y dorados y los cuatro objetos usan el atlas pixel art pub
 
 ## Cofres por rareza
 Común (madera, ●), raro (azul, ◆) y legendario (violeta/dorado, ★), con cuatro objetos mejorados por nivel. Las aperturas y el arte se distribuyen desde GitHub al hosting de producción https://perusurvivor.michitech.tech según docs/DEPLOYMENT.md. El sitio chatgpt.site es una copia independiente y no es el destino principal.
+
+## Kingteka: ulti y sonido
+La ulti se carga con 20 bajas y se activa con Q o el botón táctil: ocho segundos de gallinazos animados, velocidad ×1,5 y cadencia ×2; rivales normales reciben ×2 daño. Incluye aleteo, escopeta reforzada, efectos pixel art y sello DENUNCIADO con golpe sincronizado. El botón Sonido permite silenciar. La recarga instantánea y el selector de pruebas son utilidades locales y no se publican.
 
 ## Sonido y música
 Música retro original por mapa, tema de jefe y efectos sintetizados mediante Web Audio. El botón Sonido recuerda el silencio. Requiere una interacción inicial y se pausa fuera de la partida. No descarga grabaciones externas.
