@@ -14,6 +14,14 @@ test('La compilación copia el código y recursos sin transformarlos',()=>{
  inspect(path.join(root,'public'));
 });
 test('Las hojas y mapas PNG contienen imágenes válidas de tamaño no nulo',()=>{
- const files=['characters/causas-atlas-v1.png','characters/streamers-atlas-v1.png','enemies/rivales-atlas-v1.png','maps/campo-v1.png','maps/plaza-v1.png','maps/machu-v1.png','bosses/boss-atlas-v1.png','arenas/combi-v1.png','arenas/cabinet-v1.png','arenas/guardian-v1.png'];
+ const files=["characters/causas-atlas-v1.png","characters/streamers-atlas-v1.png","enemies/rivales-atlas-v1.png","maps/campo-v1.png","maps/plaza-v1.png","maps/machu-v1.png","environment/campo-props-v1.png","environment/plaza-props-v1.png","environment/machu-props-v1.png","environment/ground-tiles-v1.png","bosses/boss-atlas-v1.png","arenas/combi-v1.png","arenas/cabinet-v1.png","arenas/guardian-v1.png"];
  for(const file of files){const data=fs.readFileSync(path.join(root,'public/assets',file));assert.equal(data.toString('hex',0,8),'89504e470d0a1a0a');assert(data.readUInt32BE(16)>0);assert(data.readUInt32BE(20)>0)}
+});
+
+test('El recorte del atlas excluye fragmentos de la celda vecina',()=>{
+ const vm=require('node:vm'),width=1536,height=1024,data=new Uint8ClampedArray(width*height*4);
+ for(const [x,y,w,h] of [[1190,150,120,180],[1026,150,22,70]])for(let yy=y;yy<y+h;yy++)for(let xx=x;xx<x+w;xx++)data[(yy*width+xx)*4+3]=255;
+ const ctx={drawImage(){},getImageData(){return {data}},putImageData(){}},P={};
+ vm.runInNewContext(fs.readFileSync(path.join(root,'src/rendering/map-art.js'),'utf8'),{P,document:{createElement(){return {getContext(){return ctx}}}}});
+ const sheet={id:'machu',image:{width,height},cells:[]};P.MapArt.measure(sheet);assert.equal(sheet.cells.length,6);assert(sheet.cells[2].x>=1180);assert(sheet.cells[2].w<150);assert(sheet.cells[2].h>=180);
 });

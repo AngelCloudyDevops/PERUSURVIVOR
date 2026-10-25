@@ -1,5 +1,4 @@
-// Orden explícito de los módulos clásicos.
-// Scripts clásicos; orden de carga del espacio P.
+// Scripts clásicos del espacio P; orden explícito.
 module.exports = [
   {
     "source": "src/data/catalog.js",
@@ -50,6 +49,10 @@ module.exports = [
     "output": "js/chunks.js"
   },
   {
+    "source": "src/rendering/map-art.js",
+    "output": "js/map-art.js"
+  },
+  {
     "source": "src/systems/terrain.js",
     "output": "js/terrain.js"
   },
@@ -61,6 +64,10 @@ module.exports = [
   {
     "source": "src/ui/screens.js",
     "output": "js/ui.js"
+  },
+  {
+    "source": "src/development/lab.js",
+    "output": "js/lab.js"
   },
   {
     "source": "src/scenes/game.js",
