@@ -103,3 +103,5 @@ La marcha de los rivales usa la distancia real tras resolver colisiones en Syste
 P.CoverArt carga el atlas exclusivo de arena antes del arranque y dibuja solo props con id arena:. P.Terrain conserva la física y el fallback geométrico. P.World.zoomFor calcula el encuadre según ancho de ventana; P.BossArt.camera sigue al jugador dentro del fondo.
 
 Sprites.draw acepta una marcha opcional para deformar bandas de brazos y pies del actor sin afectar los retratos ni la pose de ataque. Systems.ranged administra aviso, dirección fijada y enfriamiento de minions; Combat comparte la colisión de proyectiles y acepta daño específico con valor previo por defecto.
+
+World dibuja el fondo de menú con Chunks y props sencillos cuando simpleStyle está activo, sin cargar entidades de juego ni reiniciar estado. Terrain y Exploration añaden contornos visuales conservando la geometría física.
