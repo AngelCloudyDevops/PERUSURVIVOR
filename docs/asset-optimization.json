@@ -1,0 +1,239 @@
+{
+  "format": "WebP lossless, exact RGBA comparison",
+  "assets": [
+    {
+      "source": "assets/arena-cover/cover-atlas-v1.png",
+      "output": "assets/arena-cover/cover-atlas-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 1834641,
+      "optimizedBytes": 1342216,
+      "sourceSha256": "11f3a403bf69f3870ffe7103e4264401197835208edf46b6c7f7132042161511",
+      "outputSha256": "554d7d96fb782719dcbfcc3f335144efeb13a275624e73d9be310032fd144bea",
+      "rgbaSha256": "b11be560cf0ca49c509c3aa0423d5dca2d0a1c3e118a305a38883b3b290afb82"
+    },
+    {
+      "source": "assets/arenas/cabinet-v1.png",
+      "output": "assets/arenas/cabinet-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 3007482,
+      "optimizedBytes": 2155324,
+      "sourceSha256": "f2c27437d3043b03c4c68c34aa446a13f3f0af663b9682355012bdd0139297c4",
+      "outputSha256": "405ef8fd8ec2eb9578a6046f43b5f8200069a6c266bacc90991f599631bce746",
+      "rgbaSha256": "8b30d4308284d01bc349c2aae2de826bda9d54f686c0646e306d48cef1859a0f"
+    },
+    {
+      "source": "assets/arenas/combi-v1.png",
+      "output": "assets/arenas/combi-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 2925332,
+      "optimizedBytes": 2151590,
+      "sourceSha256": "d4e03acc5d34a345d88287561d2b53a7e07e2f573dcd359df4e5b50a57726703",
+      "outputSha256": "cec52643daaa8a2a914f34a88bd8612b6e686c73d9d7c84d2a8aa3e8bd6f0655",
+      "rgbaSha256": "9792d2506344d6e5b1105b5c379b3e03883fd8fe01f850493bbfdc7da22b4004"
+    },
+    {
+      "source": "assets/arenas/guardian-v1.png",
+      "output": "assets/arenas/guardian-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 3819270,
+      "optimizedBytes": 2666012,
+      "sourceSha256": "608b891d6ded62f11e2167b97cc28a306315338d735a9571acd4bfcb6e6eeae3",
+      "outputSha256": "7612d5630abb896464ffcf240e3e17308365f2b8392788ec8c175e051cea8903",
+      "rgbaSha256": "a3b3d5cb0c58dc1278fc7fb489239f1b2d190cd916d1320884be83e9a7e55c40"
+    },
+    {
+      "source": "assets/bosses/boss-atlas-v1.png",
+      "output": "assets/bosses/boss-atlas-v1.webp",
+      "width": 1774,
+      "height": 887,
+      "originalBytes": 2923353,
+      "optimizedBytes": 2133078,
+      "sourceSha256": "c2a49b6e69d961dcddba45d75b7572f38a4fd6b4ee1d650bb976fa8f84edacd3",
+      "outputSha256": "b55d11841fa72a62288dabb378102d471f420c8c5355134daabc7c793ee3ee33",
+      "rgbaSha256": "611ed239256890e407cbd5aaa92edeea149a54d4d62f796fa4f1d89398d4bc05"
+    },
+    {
+      "source": "assets/characters/causas-atlas-v1.png",
+      "output": "assets/characters/causas-atlas-v1.webp",
+      "width": 887,
+      "height": 1774,
+      "originalBytes": 1932691,
+      "optimizedBytes": 1431884,
+      "sourceSha256": "50ea80a0d8449f540e24bc4e7f2e07e195350c2379802e7655cbfaa19df54d32",
+      "outputSha256": "82b7baafc853a8c95099cb4581edecc8296c4e3c1447881c29ce11b6b1d237df",
+      "rgbaSha256": "0db3967fc1fceb730dbcf82d68a38040483175c1aa51e49ae2b7b2f181800bbe"
+    },
+    {
+      "source": "assets/characters/powers-atlas-v1.png",
+      "output": "assets/characters/powers-atlas-v1.webp",
+      "width": 836,
+      "height": 1881,
+      "originalBytes": 1941572,
+      "optimizedBytes": 1388510,
+      "sourceSha256": "25800f194a4ed18d08d9db2ee1a7e0f30e0f1151a527c828d75e4e8b0f0118a8",
+      "outputSha256": "fdbdf4737a0dbe372a304911dfb431f3e101598eb405e1731ac6607874678f2b",
+      "rgbaSha256": "7fa95a7a4c38bbd3bd64bc29589be9a3b981b80cf78cfeb81c602e3132285e62"
+    },
+    {
+      "source": "assets/characters/streamers-atlas-v1.png",
+      "output": "assets/characters/streamers-atlas-v1.webp",
+      "width": 949,
+      "height": 1658,
+      "originalBytes": 1698396,
+      "optimizedBytes": 1279970,
+      "sourceSha256": "269ae44f5f574e0ee51dfe7fe286a7cdc8f3f94b5954fc7bf7ab5ab620cc19c4",
+      "outputSha256": "a296c566ab8caa2306df28ad0cae3d0b1ee3e6ea8472870d69711535a8413b9a",
+      "rgbaSha256": "4e8b7c690d58059f89911cfb62217f24b82da854f7a7de5676d520daf02f0fa4"
+    },
+    {
+      "source": "assets/enemies/gallinazos-atlas-v1.png",
+      "output": "assets/enemies/gallinazos-atlas-v1.webp",
+      "width": 2172,
+      "height": 724,
+      "originalBytes": 624326,
+      "optimizedBytes": 432496,
+      "sourceSha256": "ab97fe4360e4fce32f4fe3a3f68956f6735dd7316af983e24ee9f8c97aae5a24",
+      "outputSha256": "e1d45a2475bac1f4f5aa10bd9ea5f2ea8c2e40a308440f002470c9f08570b03c",
+      "rgbaSha256": "23fb789ec9d53165ab3411b3da5554be0dcfb81a759b6b1d6f5279a15f849874"
+    },
+    {
+      "source": "assets/enemies/rivales-atlas-v1.png",
+      "output": "assets/enemies/rivales-atlas-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 1696207,
+      "optimizedBytes": 1178874,
+      "sourceSha256": "ac89071cbf48a6a79f10e124e051f366d077a66923dcc5e6e3a9eade991960d8",
+      "outputSha256": "d5a93ec24239986677248e62f55083dee50adca2d649c6cd665a066390aa528a",
+      "rgbaSha256": "f82fbe29ebcd3d33e53e6fdb4b5cc43a6ea6d3997c3c88f0c7b2997fe0d9c571"
+    },
+    {
+      "source": "assets/environment/campo-props-v1.png",
+      "output": "assets/environment/campo-props-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 2072064,
+      "optimizedBytes": 1439776,
+      "sourceSha256": "682d8ae6a20ce2c661f426e579471f1d560a65f6a2b199574edb9894f85c3afc",
+      "outputSha256": "6f35e676f9e17ecc4bb4f283b082669aea31060544382ef321ae084dc4148ab2",
+      "rgbaSha256": "bbe9475e64834d99f3039e84b29c2990539eb594c60563f68d8403afe4c42ec6"
+    },
+    {
+      "source": "assets/environment/ground-tiles-v1.png",
+      "output": "assets/environment/ground-tiles-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 2769824,
+      "optimizedBytes": 1950586,
+      "sourceSha256": "9ae0de200a5c65f6825f2db2a939ff57e6becb6742f452477a3a0c4b0b296ca2",
+      "outputSha256": "c6b4cdcbcfe91b49f06a158d35a09a5eab90f86cbbb947d802e155b1f27774fa",
+      "rgbaSha256": "74b5ded58d17a3cbfdb328d014be8dd40c2257cdad4388c9b6d8d55a7b3c586d"
+    },
+    {
+      "source": "assets/environment/machu-props-v1.png",
+      "output": "assets/environment/machu-props-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 2012225,
+      "optimizedBytes": 1437240,
+      "sourceSha256": "a5683eb8cb11521a7f7e948076848163a09350904fc114a2533b449faba5b333",
+      "outputSha256": "0479b45152f74790bc286ebb9e285b1e4ca5a81b72de1534cb2c9422408059c0",
+      "rgbaSha256": "0008dda091e73ecfc52f2410d09fd8a250db2f743b0cb813000486141f17526a"
+    },
+    {
+      "source": "assets/environment/plaza-props-v1.png",
+      "output": "assets/environment/plaza-props-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 2264752,
+      "optimizedBytes": 1615500,
+      "sourceSha256": "b4a990788cd364027f84d4d8f3d8f731a1f3db940a45fa8f2a15e04658ee0710",
+      "outputSha256": "9d2cc651585744fff1a262e75016d68eb7c3a2052706701851fa3dd6faa627b1",
+      "rgbaSha256": "0bbde107097463190c385f0ed007307a5ff98e26cc57c5d107094d04f0ca57c2"
+    },
+    {
+      "source": "assets/loot/chest-rarities-v1.png",
+      "output": "assets/loot/chest-rarities-v1.webp",
+      "width": 1448,
+      "height": 1086,
+      "originalBytes": 1490200,
+      "optimizedBytes": 1169076,
+      "sourceSha256": "679bbf63feceb50b38be0a702f0a9929d2239693292447af37d7d19214a5fde2",
+      "outputSha256": "d7c9895e14b96435e9344084048d2eadcc1ab2ef39225f31642103cfa59e53ff",
+      "rgbaSha256": "d20d47dfe9fd540dc59df813c497686f41057d9856a03d5d112978261f384460"
+    },
+    {
+      "source": "assets/loot/loot-atlas-v1.png",
+      "output": "assets/loot/loot-atlas-v1.webp",
+      "width": 1448,
+      "height": 1086,
+      "originalBytes": 1682791,
+      "optimizedBytes": 1360056,
+      "sourceSha256": "192d32c034763a6757092317e5f87cbfd13311ba652976f34eff77e9074838bb",
+      "outputSha256": "0cdb2f4950e28f846ab725e17ddf7493aa94706077aac72ca1d385d3b19e0c26",
+      "rgbaSha256": "acdc2c54d0d71abddabfd3f5b68b6e5f73415150e1efb69fa37f88e88163defd"
+    },
+    {
+      "source": "assets/maps/campo-v1.png",
+      "output": "assets/maps/campo-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 3731941,
+      "optimizedBytes": 2814784,
+      "sourceSha256": "0f199ba4a1e3363e919f5a252c217e198475bbab32672fc7592225be79e641e5",
+      "outputSha256": "26c4c34b529f4a1f424c1ed87b8843c1a5ba127010b5c9b739fc0f2561c7c93c",
+      "rgbaSha256": "315cd21299136dc2d1b8c6e46f70c5054a0a0a1ce69007f51a0e5f6b2564447d"
+    },
+    {
+      "source": "assets/maps/machu-v1.png",
+      "output": "assets/maps/machu-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 3553375,
+      "optimizedBytes": 2627792,
+      "sourceSha256": "744421b181c2920b43e923b42c6c2091ad6fa4b810915c084249e7aec63d476f",
+      "outputSha256": "940872b295268d2b35104dc4c0402e31f39b6bb6a3150b7ee4edf4d4150f40e6",
+      "rgbaSha256": "0c99ba5ba38da04abdd5c10c29f079f4007b87c35d9139b6fc12b12a25c724d1"
+    },
+    {
+      "source": "assets/maps/plaza-v1.png",
+      "output": "assets/maps/plaza-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 3690059,
+      "optimizedBytes": 2650912,
+      "sourceSha256": "328b1fb1bedf835ad6a2aff4880aa9d1c5576ef75b2e046369b28ca0997d6802",
+      "outputSha256": "2262aeeeaf30b3a9b22025231da5994320d615db60bac323ebf5a08c2a5f2d21",
+      "rgbaSha256": "d2e90d6067cd80c14ac79e3f4526f048738ce29a48febb1c59de1f51c74cf029"
+    }
+  ],
+  "previews": [
+    {
+      "output": "assets/maps/campo-menu-v1.webp",
+      "width": 384,
+      "height": 256,
+      "bytes": 189594,
+      "sha256": "1b2325bcb12f5097dd3dd25dee6f9a54e81fbb591ed279cd2fb963d0d5d31fe2"
+    },
+    {
+      "output": "assets/maps/machu-menu-v1.webp",
+      "width": 384,
+      "height": 256,
+      "bytes": 191670,
+      "sha256": "b1272c8855a372fa6010c02daa71c72df1462033987ad361ab0d3014b491ec28"
+    },
+    {
+      "output": "assets/maps/plaza-menu-v1.webp",
+      "width": 384,
+      "height": 256,
+      "bytes": 178346,
+      "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
+    }
+  ],
+  "originalBytes": 45670501,
+  "optimizedBytes": 33225676
+}

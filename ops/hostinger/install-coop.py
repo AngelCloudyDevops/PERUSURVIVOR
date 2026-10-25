@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Instala solo el servidor cooperativo y la ruta nginx del juego existente."""
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import time
@@ -71,10 +72,11 @@ networks:
   location = /coop/health { proxy_pass http://perusurvivor-coop:4180; }
 '''
     if marker not in original:
-        if '  location / {' not in original:
+        match = re.search(r'(?m)^[ \t]*location / \{', original)
+        if not match:
             raise RuntimeError('Configuración nginx inesperada')
         shutil.copyfile(conf, BASE / 'nginx.before-coop.conf')
-        conf.write_text(original.replace('  location / {', routes + '  location / {', 1))
+        conf.write_text(original[:match.start()] + routes + original[match.start():])
         try:
             print(run('docker', 'exec', 'perusurvivor-web', 'nginx', '-t'))
             print(run('docker', 'exec', 'perusurvivor-web', 'nginx', '-s', 'reload'))
