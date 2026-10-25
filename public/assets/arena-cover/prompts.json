@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen built-in",
+  "asset": "cover-atlas-v1.png",
+  "layout": "3 columns × 2 rows; long then short; barrier, planter, Inca wall",
+  "prompt": "Detailed 16 bit RPG pixel art, transparent alpha atlas. Chipped concrete hazard barricade; carved colonial stone planter with foliage and red/gold flowers; mossy fitted Inca wall with teal/gold carving. Overhead ground and front 3/4 props, dark outlines, crisp pixel clusters, short shadows, no labels or floor."
+}

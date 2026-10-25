@@ -64,8 +64,15 @@ module.exports = [
     "output": "js/map-art.js"
   },
   {
+    "source": "src/rendering/cover-art.js",
+    "output": "js/cover-art.js"
+  },
+  {
     "source": "src/systems/terrain.js",
     "output": "js/terrain.js"
+  },
+  {
+    "source": "src/rendering/loot-art.js", "output":"js/loot-art.js"
   },
   {
     "source": "src/systems/loot.js",
