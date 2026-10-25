@@ -136,3 +136,6 @@ Plaza de Armas incorpora reflejos y gotas animadas en la fuente, palomas pequeñ
 
 ## Animación del botín
 Al terminar los 1,8 segundos de apertura, el mundo se detiene durante 0,65 segundos para mostrar la tapa abriéndose en cuatro poses y destellos. Después aparece la elección del objeto; el premio solo se concede una vez. Las cajas muestran grietas tras recibir daño y una animación breve de tablas rotas al destruirse. Los iconos del HUD y del premio comparten el atlas de objetos.
+
+## Rarezas de cofres
+Cada mapa tiene un cofre común de madera, uno raro azul y uno legendario violeta/dorado, en puntos seguros separados. Además del color se muestran símbolo y nombre. Cada cofre entrega solo objetos de su nivel. Emoliente cura 35/60/100% de vida máxima; imán aumenta alcance 60/100/160%; chaleco reduce daño 20/30/40%; batería reduce recarga 15/28/40%. Solo hay un accesorio equipado y reemplazarlo conserva mejoras de nivel. Los cofres de jefe siguen separados y mantienen su recompensa especial. Apertura animada y premio único en todas las rarezas.

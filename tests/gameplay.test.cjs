@@ -103,7 +103,7 @@ P.Game.start();s.mapTime=180;P.Encounters.tick();const uiPoint=P.Encounters.defi
 
 for(const map of P.Maps.catalog){
  P.UI.menu();P.Maps.select(map.id);P.Game.start();
- assert.equal(P.Loot.chests.length,2);assert(P.Loot.chests.every(c=>!P.Terrain.hit(c.x,c.y,28)));
+ assert.equal(P.Loot.chests.length,3);assert(P.Loot.chests.every(c=>!P.Terrain.hit(c.x,c.y,28)));
  const crate=P.Terrain.props.find(o=>o.kind==='crate');P.Terrain.damage(crate,999);const drops=s.gems.length;assert(s.gems.some(g=>g.kind==='heal'));assert(s.gems.some(g=>!g.kind));P.Terrain.damage(crate,999);assert.equal(s.gems.length,drops,'No duplicar botín de una caja destruida');
  const chest=P.Loot.chests[0];s.player.x=chest.x;s.player.y=chest.y;s.player.moving=true;P.Loot.tick(1);assert.equal(chest.progress,0);
  s.player.moving=false;P.Loot.tick(.9);assert(!chest.opened);s.player.x+=150;P.Loot.tick(.1);assert.equal(chest.progress,0);
@@ -180,4 +180,9 @@ P.Loot.open(animatedChest);P.Game.update(.49);assert.equal(s.mode,'item');assert
 const choices=elements.get('#overlay').children.length;P.Loot.advance(1);assert.equal(elements.get('#overlay').children.length,choices,'Revelar premio una sola vez');
 P.Game.start();const animatedBox=P.Terrain.props.find(o=>o.kind==='crate');P.Terrain.damage(animatedBox,999);assert.equal(P.Loot.debris.length,1);P.Loot.tick(.9);assert.equal(P.Loot.debris.length,0);P.Game.start();assert.equal(P.Loot.pending,null);assert.equal(P.Loot.debris.length,0);
 console.log('OK animación de botín: fases, reloj congelado, premio único, escombros y reinicio');
+
+for(const map of P.Maps.catalog){P.UI.menu();P.Maps.select(map.id);P.Game.start();assert.deepEqual(Array.from(P.Loot.chests,c=>c.rarity),['common','rare','legendary']);for(const tier of ['common','rare','legendary']){const c=P.Loot.chests.find(c=>c.rarity===tier);assert(!P.Terrain.hit(c.x,c.y,28));P.Loot.open(c);assert.equal(s.mode,'loot-opening');P.Loot.advance(.7);assert.equal(s.mode,'item');assert.equal(P.Loot.items[c.item].rarity,tier,'El premio debe coincidir con la rareza');elements.get('#overlay').children.filter(c=>c.tag==='button')[1].onclick();assert.equal(s.mode,'play')}}
+for(const base of ['magnet','vest','battery']){const common=P.Loot.items[base],rare=P.Loot.items[base+'_rare'],legend=P.Loot.items[base+'_legendary'];assert.equal(rare.base,base);assert.equal(legend.base,base);if(base==='battery')assert(legend.rate<rare.rate&&rare.rate<common.rate);else{const stat=base==='vest'?'reduction':'magnet';assert(legend[stat]>rare[stat]&&rare[stat]>common[stat])}}
+P.Game.start();const rarityPlayer=s.player,baseMagnet=rarityPlayer.magnet,baseRate=rarityPlayer.rate;P.Loot.equip('magnet_rare');assert.equal(rarityPlayer.magnet,baseMagnet*2);P.Loot.equip('magnet_legendary');assert.equal(rarityPlayer.magnet,baseMagnet*2.6);P.Loot.equip('battery_legendary');assert(Math.abs(rarityPlayer.magnet-baseMagnet)<1e-9);rarityPlayer.rate*=.82;P.Loot.equip('vest_legendary');assert(Math.abs(rarityPlayer.rate-baseRate*.82)<1e-9);assert.equal(P.Loot.damage(rarityPlayer,100),60);assert(!P.Loot.equip('vest_legendary'));rarityPlayer.hp=1;P.Loot.use('emoliente_legendary');assert.equal(rarityPlayer.hp,rarityPlayer.maxHp);assert.equal(rarityPlayer.equipment,'vest_legendary');P.Game.start();assert.equal(s.player.equipment,null);
+console.log('OK rarezas: tres cofres por mapa, premios por nivel, balance creciente y reemplazo reversible');
 });

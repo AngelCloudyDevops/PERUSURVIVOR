@@ -84,3 +84,6 @@ Ambient comparte la ventana determinista entre los tres mapas. En Plaza dibuja p
 
 ## Atlas de botín
 P.LootArt carga y mide un atlas alfa de 4×4 celdas. Las filas de cajas y cofres comparten el recorte por fila para mantener escala y anclaje entre poses; los objetos tienen recortes individuales. El filtrado se desactiva al dibujar. P.Loot gestiona loot-opening y el premio pendiente; Game.update solo avanza esa animación durante la apertura, sin combate ni reloj. El reinicio elimina premios pendientes y escombros. Terrain delega únicamente el dibujo de cajas; las colisiones y el botín permanecen independientes del arte.
+
+## Catálogo de rarezas
+P.Loot.init genera cuatro objetos por cada rareza, con base compartida para iconos y valores independientes. El filtro del cofre limita el sorteo a su nivel. Equip conserva su reemplazo reversible mediante multiplicadores; la curación usa item.heal. LootArt carga un segundo atlas de 4×3 para las tres rarezas y conserva el atlas original de cajas, objetos y cofre de jefe. Etiquetas y símbolos identifican los niveles también sin percepción del color.
