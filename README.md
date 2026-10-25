@@ -94,3 +94,9 @@ src/rendering/map-art.js mantiene simpleStyle activado: los atlas detallados de 
 ## Despliegue automático
 La preparación y el estado de activación están documentados en [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Cada push a main publica el juego después de las pruebas, mediante la cuenta restringida del VPS y comprobación HTTPS con reversión automática.
 
+
+## Pixel art modular por lugar
+Se conservan los tres mapas y el mundo continuo, ahora con atlas de objetos y texturas específicos. Campo de Marte tiene monumento y mobiliario de parque; Plaza de Armas, fachada colonial, palmeras y fuente; Machu Picchu, ruinas, rocas y muros incas. Arte original generado con image_gen; PNG y prompts en public/assets/environment/. El código y las colisiones se mantienen separados en src/rendering/map-art.js y src/systems/terrain.js.
+
+## Arte del botín
+Cajas, cofres comunes y dorados y los cuatro objetos usan el atlas pixel art public/assets/loot/loot-atlas-v1.png. Conservan siluetas sencillas y contornos visibles; las tablas y herrajes añaden detalle. Los cofres animan la tapa antes de revelar el premio.
