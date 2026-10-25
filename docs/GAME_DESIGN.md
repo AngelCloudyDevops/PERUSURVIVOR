@@ -191,6 +191,8 @@ Todos los ejemplares de cada tipo, pesados incluidos, comparten un ataque. Se de
 
 Sustituye el ataque a distancia provisional de solo PNP y Tyrone pesado. El contacto normal conserva 10 de dano y la invulnerabilidad existente evita golpes simultaneos.
 
+## El Gallinazo del Caos
+Jefe opcional alternativo de 1800 PV en Techos de Lima, disponible desde el portal de las 3:00 y en Desarrollo → Probar jefes. Elegirlo consume el encuentro opcional del mapa como los otros jefes; ElZeein sigue obligatorio al minuto 5. Alterna picada avisada de 1,05 s, abanico de 7 plumas (12 de daño) e invocación de hasta 3 gallinazos de 48 PV. Al bajar del 50 % encadena dos picadas con aviso separado, dispara 11 plumas y permite hasta 6 esbirros vivos (4 antes). Las coberturas frenan picadas y plumas. Se conservan pausas, recompensas, retorno y reloj de mapa congelado en la arena.
 ## Visibilidad de exploración
 Zoom base de exploración 1,3 en 1280 px y mínimo móvil 0,95; aproximadamente 24% menos acercamiento que el anterior 1,7. Cámaras de jefes intactas. HUD compacto con vida, tiempo, nivel, botín y objetivos, sin repetir nombre y habilidad del personaje.
 
@@ -202,3 +204,25 @@ Los cofres raros y legendarios necesitan una llave de su mismo nivel. Sin ella, 
 Los portales se desbloquean al minuto 3. Ambos jugadores vivos deben estar cerca y confirmar con E o el botón; volver a pulsar cancela, y alejarse elimina el voto. Los dos entran a la misma arena, con coberturas y ataques del jefe del mapa. Se detiene solo el reloj del mapa; al vencer, ambos vuelven a sus posiciones originales y aparece un cofre dorado. Cada jugador escoge individualmente daño, vida o cadencia. ElZeein sigue apareciendo al minuto 5 del mapa.
 Los cofres se generan en el servidor para la zona de ambos jugadores. Cualquiera puede detenerse 1.8 s cerca para abrir; los raros y legendarios consumen una única llave del equipo. La sala pausa el combate durante la animación y las dos elecciones. Cada uno recibe una copia del objeto sorteado y puede equiparlo/beberlo o conservar lo que llevaba. Cada elección y cada cofre se reclaman una sola vez, incluso con mensajes repetidos.
 El evento del emoliente sigue en Campo de Marte. Cualquiera puede iniciarlo cerca del puesto. Basta un jugador vivo dentro del círculo para avanzar la defensa; los dos pueden alternarse. Salir ambos reinicia el progreso. Completar 20 s entrega una sola vez 25 monedas de equipo y cura 35% de vida máxima a cada jugador vivo, sin repetir por volver al puesto. Los cofres y el evento conservan su estado durante un portal. Las actividades se detienen si falta la conexión de uno.
+Los cofres raros y legendarios necesitan una llave de su mismo nivel. Sin ella, la apertura no progresa y se muestra el requisito; una llave no sustituye a la de otro nivel. Se consume exactamente una al iniciar la apertura animada. Los comunes y los de jefe no requieren llave. Los portadores raros aparecen desde el segundo 30 y tienen ×2,5 de vida; los legendarios desde el segundo 90 y tienen ×4. Son enemigos normales reforzados con aura y llave visibles, conservan sus patrones de ataque y dejan una llave garantizada al caer. No aparecen en arenas, laboratorio, pausa ni durante el jefe final, y no se acumulan dos vivos del mismo tipo. Las llaves se recogen del suelo, no dan fama y se cuentan en el HUD; se pierden al reiniciar la partida. La función corresponde a la partida individual, donde existen los cofres.
+### Reacciones de minions y sprites integros
+La caminata de personajes y minions alterna sus cuadros originales con balanceo suave del cuerpo entero, sin separar las extremidades. Al recibir dano, el cuerpo reacciona durante 0,22 s y muestra un acento visual propio. Las muertes duran menos de un segundo, son cosmeticas y no demoran el botin ni dejan un enemigo activo.
+
+| Rival | Al recibir dano | Al morir |
+| --- | --- | --- |
+| Pablo | Sacudida y cristales celestes | Se encoge y dispersa cristales |
+| Tyrone | Se ladea y levanta polvo | Cae de lado en una nube de polvo |
+| Uniqua | Rebote y destellos rosados | Giro suave y estrellas en espiral |
+| Tasha | Compresion y aro dorado | Se aplasta y emite tres ondas |
+| Austin | Pequeno salto y chispas violetas | Se estrecha y desaparece con aros violetas |
+| PNP | Retroceso y chispas verdes | Se ladea y se desvanece con pulsos verdes |
+
+La invulnerabilidad, los ataques y las recompensas conservan sus reglas. Al pausar se congelan las reacciones y al reiniciar desaparecen.
+
+Arbustos y follaje de jardineras comparten copas redondeadas con lóbulos asimétricos, contorno oscuro y hojas agrupadas. Se conservan posiciones, profundidad, viento y colisiones originales.
+## Señales de llaves en el minimapa
+El minimapa identifica portadores vivos con un rombo y llaves del suelo con un icono de llave, siempre en el color de su rareza (azul raro y violeta legendario). Comparte el alcance circular de 900 unidades de los cofres. No muestra portadores muertos ni llaves recogidas, eliminadas o lejanas. El marcador del jugador conserva la prioridad visual; hay leyenda de símbolos y colores. No se muestra en arenas o menús.
+
+
+## Contador y prueba de rendimiento
+En Desarrollo se puede activar el contador de FPS para las partidas y elegir una carga de 80 minions/200 proyectiles, 80/400 o 160/600. La prueba usa el escenario y personaje seleccionados, permite movimiento y pausa, mantiene ataques y animaciones, da invulnerabilidad y repone la carga. No guarda récords ni activa cofres o eventos opcionales. Tras 3 segundos de preparación mide 30 segundos visibles, con salida anticipada y resumen de FPS medios, ms por fotograma y P95. P95 es el tiempo que no superan el 95 % de los fotogramas; menor es mejor. El resultado depende del dispositivo, frecuencia de pantalla y navegador.
