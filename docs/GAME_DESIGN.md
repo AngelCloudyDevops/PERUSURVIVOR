@@ -93,7 +93,7 @@ El suelo del combate usa texturas extraídas de los fondos originales y caminos 
 
 ## Cajas, cofres y objetos
 - Las cajas tienen 55 de vida y se pueden atacar incluso sin enemigos cercanos. Al romperse dejan curación de 18 puntos y 3 de fama; además tienen un 70% de probabilidad de dejar 5 monedas. Una caja rota no vuelve a dar botín.
-- Cada mapa tiene dos cofres comunes. Se abren al permanecer quieto a menos de 75 unidades durante 1,8 segundos. Alejarse o moverse reinicia la apertura; las pantallas de pausa o selección detienen el progreso.
+- Los cofres se distribuyen aleatoriamente por sectores durante la exploración. Se abren al permanecer quieto a menos de 75 unidades durante 1,8 segundos. Alejarse o moverse reinicia la apertura; las pantallas de pausa o selección detienen el progreso.
 - Un cofre común revela un objeto y ofrece usarlo/equiparlo o conservar lo que llevas. Solo se equipa un accesorio; el reemplazo retira el efecto anterior y conserva las mejoras de nivel.
 - Emoliente: curación instantánea del 35% de vida máxima, sin superar el máximo. No ocupa el hueco de equipo.
 - Imán: +60% de radio de recogida. Chaleco: -20% de daño recibido por contacto, jefes y proyectiles. Batería externa: -15% de recarga entre ataques.
@@ -149,7 +149,7 @@ Plaza de Armas incorpora reflejos y gotas animadas en la fuente, palomas pequeñ
 Al terminar los 1,8 segundos de apertura, el mundo se detiene durante 0,65 segundos para mostrar la tapa abriéndose en cuatro poses y destellos. Después aparece la elección del objeto; el premio solo se concede una vez. Las cajas muestran grietas tras recibir daño y una animación breve de tablas rotas al destruirse. Los iconos del HUD y del premio comparten el atlas de objetos.
 
 ## Rarezas de cofres
-Cada mapa tiene un cofre común de madera, uno raro azul y uno legendario violeta/dorado, en puntos seguros separados. Además del color se muestran símbolo y nombre. Cada cofre entrega solo objetos de su nivel. Emoliente cura 35/60/100% de vida máxima; imán aumenta alcance 60/100/160%; chaleco reduce daño 20/30/40%; batería reduce recarga 15/28/40%. Solo hay un accesorio equipado y reemplazarlo conserva mejoras de nivel. Los cofres de jefe siguen separados y mantienen su recompensa especial. Apertura animada y premio único en todas las rarezas.
+Los cofres comunes son de madera, los raros azules y los legendarios violetas/dorados. Se distribuyen por sectores según las reglas de exploración siguientes. Además del color se muestran símbolo y nombre. Cada cofre entrega solo objetos de su nivel. Emoliente cura 35/60/100% de vida máxima; imán aumenta alcance 60/100/160%; chaleco reduce daño 20/30/40%; batería reduce recarga 15/28/40%. Solo hay un accesorio equipado y reemplazarlo conserva mejoras de nivel. Los cofres de jefe siguen separados y mantienen su recompensa especial. Apertura animada y premio único en todas las rarezas.
 
 
 ## Audio
@@ -159,6 +159,9 @@ Música instrumental sintetizada original por mapa y tema de jefe. Efectos de at
 Campo de Marte tiene un puesto cerca de la zona inicial. Al acercarse a 150 unidades se ofrece una defensa opcional con botón, accesible también en móvil. Mantenerse a menos de 200 unidades durante 20 segundos otorga una sola vez 25 monedas y cura el 35% de vida máxima. Salir reinicia el progreso; cada 4 segundos dentro aparece un rival adicional respetando el límite global. Pausa, mejoras y portales suspenden el evento. El jefe final lo interrumpe. Reiniciar la partida reinicia el puesto. El puesto es decorativo, sin nuevas colisiones, y usa el dibujo simple del README.
 ## Cámara y coberturas detalladas
 El zoom de combate escala con el ancho de escritorio: arenas 1,5 a 1280 px y 2,25 a 1920 px; terreno 1,7 y 2,55 respectivamente. En móvil se limita el acercamiento para conservar espacio de maniobra. La cámara de arena sigue al jugador en vertical y lo mantiene dentro del encuadre. Las cuatro coberturas conservan posición, tamaño de colisión y bloqueo de proyectiles; su atlas detallado distingue barreras, jardineras y muros incas.
+
+## Cofres al explorar
+Los cofres se distribuyen por sectores de 768 unidades con posiciones y una semilla nuevas por partida. Cada sector tiene un 60% de posibilidad de contener uno; el sector de inicio garantiza un común en posición aleatoria segura. Entre cofres fuera del inicio: común 72%, raro 26%, legendario 2%; los legendarios requieren estar a 1800 unidades del punto de aparición. Un sorteo legendario cercano se convierte en raro. Se generan al explorar y se conservan las aperturas al regresar, sin repetir premios. Se comprueban obstáculos, fuente y portal. Las arenas no generan cofres normales; el cofre de jefe conserva su recompensa.
 
 Los personajes jugables animan brazos y pies según la distancia recorrida; se detienen al chocar. La PNP y los Tyrone pesados pueden disparar orbes de 8 de daño: avisan 0,7 s, apuntan a la posición inicial, disparan a 180 unidades/s y esperan 4,2 s. Alcance de activación 120–480, proyectil de 2,5 s, bloqueado por coberturas y máximo 40 proyectiles hostiles para iniciar disparos.
 
