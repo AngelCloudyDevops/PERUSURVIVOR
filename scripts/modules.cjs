@@ -72,6 +72,9 @@ module.exports = [
     "output": "js/terrain.js"
   },
   {
+    "source": "src/rendering/loot-art.js", "output":"js/loot-art.js"
+  },
+  {
     "source": "src/systems/loot.js",
     "output": "js/loot.js"
   },
@@ -90,6 +93,10 @@ module.exports = [
   {
     "source": "src/development/lab.js",
     "output": "js/lab.js"
+  },
+  {
+    "source": "src/systems/ultimate.js",
+    "output": "js/ultimate.js"
   },
   {
     "source": "src/scenes/game.js",

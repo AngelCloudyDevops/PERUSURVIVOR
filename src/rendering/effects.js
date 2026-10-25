@@ -2,7 +2,7 @@
 P.FX={
 pixel(ctx,x,y,size,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x-size/2),Math.round(y-size/2),size,size)},
 trail(ctx,points,color){if(!points)return;for(let i=0;i<points.length;i++){ctx.globalAlpha=(i+1)/points.length*.45;this.pixel(ctx,points[i].x,points[i].y,3+i/3,color)}ctx.globalAlpha=1},
-projectile(ctx,s){this.trail(ctx,s.history,s.color);ctx.save();ctx.translate(Math.round(s.x),Math.round(s.y));ctx.rotate(s.kind==='boomerang'?s.age*13:Math.atan2(s.vy,s.vx));ctx.shadowColor=s.color;ctx.shadowBlur=8;
+projectile(ctx,s){this.trail(ctx,s.history,s.color);ctx.save();ctx.translate(Math.round(s.x),Math.round(s.y));ctx.rotate(s.kind==='boomerang'?s.age*13:Math.atan2(s.vy,s.vx));ctx.shadowColor=s.color;ctx.shadowBlur=s.ultimate?0:8;
 if(P.PowerFX.projectile(ctx,s)){ctx.restore();return}
 if(s.glyph==='MIC'){ctx.fillStyle='#182132';ctx.fillRect(-7,-10,14,20);ctx.fillStyle='#d1dce5';ctx.fillRect(-6,-10,12,9);ctx.fillStyle='#90a4b5';for(let i=0;i<3;i++)ctx.fillRect(-5,-9+i*3,10,1);ctx.fillStyle='#53697b';ctx.fillRect(-3,2,6,13)}
 else if(s.glyph==='FAN'){for(let i=0;i<5;i++){ctx.save();ctx.rotate((i-2)*.32);ctx.fillStyle=i%2?'#ffc078':'#ed843b';ctx.fillRect(-3,-23,6,26);ctx.restore()}this.pixel(ctx,0,2,5,'#fff1bb')}

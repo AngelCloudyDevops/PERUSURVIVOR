@@ -31,7 +31,8 @@ assert.equal(P.Data.boss.id,'zein');assert(!P.Data.characters.some(c=>c.id==='ze
 P.Game.start();const bossAttack=P.Entities.enemy(true);bossAttack.x=s.player.x+250;bossAttack.y=s.player.y;bossAttack.attackT=0;s.enemies=[bossAttack];P.Systems.move(.01);assert.equal(s.danger.length,5,'El jefe debe disparar cinco proyectiles');const hpBefore=s.player.hp;s.danger=[{...s.danger[0],x:s.player.x,y:s.player.y}];P.Combat.tick(0);assert.equal(s.player.hp,hpBefore-14,'Los proyectiles del jefe deben hacer daño');
 for(const name of ['causas-atlas-v1.png','streamers-atlas-v1.png']){const png=fs.readFileSync(root+'/public/assets/characters/'+name);assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a')}
 P.Game.start();const designs=new Set(Array.from({length:6},()=>P.Entities.enemy().design));assert.equal(designs.size,6,'Deben aparecer los cinco Backyardigans y la PNP');
-console.log('OK: seis diseños de rivales.');
+P.Game.start();const walker=P.Entities.enemy();walker.x=s.player.x+200;walker.y=s.player.y;s.enemies=[walker];const startX=walker.x,startY=walker.y;P.Systems.move(.04);assert(walker.moving);assert(Math.abs(walker.walkPhase-Math.hypot(walker.x-startX,walker.y-startY)/(walker.heavy?10:8))<1e-9,'Pasos ligados al recorrido real');assert.equal(walker.facing,-1);const phase=walker.walkPhase;walker.speed=0;P.Systems.move(.04);assert(!walker.moving);assert.equal(walker.walkPhase,phase);assert.equal(P.EnemyArt.gait(walker).lift,0);assert.equal(P.EnemyArt.gait(walker).step,0);for(let design=0;design<6;design++){P.EnemyArt.ready=true;P.EnemyArt.image={};P.EnemyArt.cells[design]=[{sx:0,sy:0,w:80,h:120},{sx:80,sy:0,w:80,h:120}];for(const walkPhase of [0,Math.PI/2,Math.PI,Math.PI*1.5])assert(P.EnemyArt.draw(drawing,{...walker,design,moving:true,walkPhase}));}P.EnemyArt.ready=false;
+console.log('OK: seis diseños de rivales, pasos por distancia y reposo.');
 console.log('OK: ElZeein como jefe, ráfaga hostil y archivos PNG.');
 console.log('OK: movimiento, pausa, mejora, colisión de fuente, bumerán, simulación de cinco minutos, jefe, victoria, derrota y retorno al menú.');
 for(const map of P.Maps.catalog){
@@ -56,7 +57,7 @@ for(const map of P.Maps.catalog){
  const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
  if(map.id==='campo')assert.equal(localBoss.phase,'charge');else assert(s.danger.length>0);
  s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=s.encounter.scene.bounds.right&&s.player.y>=s.encounter.scene.bounds.top);
- P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'play');P.Loot.open(P.Loot.chests.find(c=>c.gold));assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
+ P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'play');P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Loot.advance(.7);assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
  const power=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.mode,'play');assert.equal(s.player.power,power*1.3);P.Encounters.reward(()=>s.player.power=0);assert(s.player.power>0,'No repetir recompensa');
  P.Game.update(.04);assert(s.mapTime>clock);assert(!s.portal.open);
  s.mapTime=300;P.Game.update(.01);assert(s.bossSpawned);assert.equal(s.enemies.filter(e=>e.boss).length,1);P.Game.update(.01);assert.equal(s.enemies.filter(e=>e.boss).length,1);assert(!s.portal.open);
@@ -96,18 +97,18 @@ for(const map of P.Maps.catalog){
  const local=s.enemies[0];local.phase='warning';assert.equal(P.BossArt.frame(local),3);local.phase='charge';assert.equal(P.BossArt.frame(local),4);local.phase='recover';local.attackUntil=0;assert.equal(P.BossArt.frame(local),5);
  local.phase='warning';local.windup=.01;P.Encounters.bossMove(local,.02);if(local.kind!=='combi'){assert.equal(local.phase,'recover');assert.equal(P.BossArt.frame(local),4);s.elapsed+=.3;assert.equal(P.BossArt.frame(local),5)}
  const png=fs.readFileSync(path.join(root,'public/assets/arenas/'+s.encounter.scene.asset+'-v1.png'));assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
- P.Entities.hurt(local,99999);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
+ P.Entities.hurt(local,99999);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Loot.advance(.7);P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
 }
 const bossPng=fs.readFileSync(path.join(root,'public/assets/bosses/boss-atlas-v1.png'));assert.equal(bossPng.toString('hex',0,8),'89504e470d0a1a0a');
 P.Game.start();s.mapTime=180;P.Encounters.tick();const uiPoint=P.Encounters.definition().portal;s.player.x=uiPoint.x;s.player.y=uiPoint.y;elements.get('#portal-enter').hidden=true;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,false,'El HUD debe mostrar el botón cercano');s.player.x=-900;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,true,'El HUD oculta el botón lejano');console.log('OK: botón de portal conectado al HUD');
 
 for(const map of P.Maps.catalog){
  P.UI.menu();P.Maps.select(map.id);P.Game.start();
- assert.equal(P.Loot.chests.length,2);assert(P.Loot.chests.every(c=>!P.Terrain.hit(c.x,c.y,28)));
+ assert.equal(P.Loot.chests.length,3);assert(P.Loot.chests.every(c=>!P.Terrain.hit(c.x,c.y,28)));
  const crate=P.Terrain.props.find(o=>o.kind==='crate');P.Terrain.damage(crate,999);const drops=s.gems.length;assert(s.gems.some(g=>g.kind==='heal'));assert(s.gems.some(g=>!g.kind));P.Terrain.damage(crate,999);assert.equal(s.gems.length,drops,'No duplicar botín de una caja destruida');
  const chest=P.Loot.chests[0];s.player.x=chest.x;s.player.y=chest.y;s.player.moving=true;P.Loot.tick(1);assert.equal(chest.progress,0);
  s.player.moving=false;P.Loot.tick(.9);assert(!chest.opened);s.player.x+=150;P.Loot.tick(.1);assert.equal(chest.progress,0);
- s.player.x=chest.x;s.player.y=chest.y;P.Loot.tick(1.81);assert(chest.opened);assert.equal(s.mode,'item');elements.get('#overlay').children.filter(c=>c.tag==='button')[1].onclick();assert.equal(s.mode,'play');assert(!s.player.equipment);P.Loot.open(chest);assert.equal(s.mode,'play','Un cofre abierto no vuelve a dar objetos');
+ s.player.x=chest.x;s.player.y=chest.y;P.Loot.tick(1.81);assert.equal(s.mode,'loot-opening');P.Loot.advance(.7);assert(chest.opened);assert.equal(s.mode,'item');elements.get('#overlay').children.filter(c=>c.tag==='button')[1].onclick();assert.equal(s.mode,'play');assert(!s.player.equipment);P.Loot.open(chest);assert.equal(s.mode,'play','Un cofre abierto no vuelve a dar objetos');
  P.Game.start();assert(P.Loot.chests.every(c=>!c.opened));assert.equal(s.coins,0);
  console.log('OK botín de mapa: '+map.name)
 }
@@ -120,7 +121,7 @@ P.Loot.equip('vest');player.hp=player.maxHp-1;P.Loot.use('emoliente');assert.equ
 const coin={x:player.x,y:player.y,kind:'coin',value:5};s.gems=[coin];const xp=s.xp;P.Systems.collect(0);assert.equal(s.coins,5);assert.equal(s.xp,xp,'Las monedas no son experiencia');
 P.Game.start();s.mapTime=180;P.Encounters.tick();const portal=P.Encounters.definition().portal;s.player.x=portal.x;s.player.y=portal.y;P.Encounters.offer();P.Encounters.enter();const frozen=P.Loot.chests.map(c=>c.progress);P.Loot.tick(3);assert.equal(P.Loot.active().length,0);assert.deepEqual(P.Loot.chests.map(c=>c.progress),frozen);
 P.Entities.hurt(s.enemies[0],99999);assert.equal(s.mode,'play');const gold=P.Loot.chests.find(c=>c.gold);assert(gold);P.Loot.bossChest(()=>{});assert.equal(P.Loot.chests.filter(c=>c.gold).length,1);
-s.player.x=gold.x;s.player.y=gold.y;s.player.moving=false;P.Loot.tick(1.81);assert.equal(s.mode,'reward');const before=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.player.power,before*1.3);P.Loot.open(gold);assert.equal(s.mode,'play');assert.equal(s.player.power,before*1.3);
+s.player.x=gold.x;s.player.y=gold.y;s.player.moving=false;P.Loot.tick(1.81);assert.equal(s.mode,'loot-opening');P.Loot.advance(.7);assert.equal(s.mode,'reward');const before=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.player.power,before*1.3);P.Loot.open(gold);assert.equal(s.mode,'play');assert.equal(s.player.power,before*1.3);
 P.Game.start();assert.equal(s.player.equipment,null);assert.equal(s.player.equipmentReduction,0);assert(!P.Loot.bossDropped);console.log('OK equipo, curación, monedas, cofre de jefe y reinicio');
 
 
@@ -162,6 +163,19 @@ P.$('#lab-boss').value='campo';P.$('#lab-invincible').checked=false;P.Lab.run();
 
 
 
+P.UI.select(P.Data.characters.findIndex(c=>c.id==='kingteka'));P.Game.start();
+assert.equal(P.Ultimate.activate(),false);for(let i=0;i<20;i++)P.Ultimate.gain();assert.equal(s.ultimate.charge,100);
+const baseSpeed=s.player.speed,baseRate=s.player.rate;assert(P.Ultimate.activate());assert.equal(P.Ultimate.activate(),false);assert(P.Ultimate.active());const weak=target(s.player.x+60,s.player.y,100),strong={...target(s.player.x+60,s.player.y,100),boss:true};P.Entities.hurt(weak,10);P.Entities.hurt(strong,10);assert.equal(weak.hp,80);assert.equal(strong.hp,90);P.Ultimate.tick(.01);P.Ultimate.draw(drawing);
+s.enemies=[target(s.player.x+80,s.player.y)];s.fire=0;P.Combat.tick(0);assert.equal(s.fire,baseRate/2);
+assert(P.Ultimate.bird(drawing,s.enemies[0]));assert.equal(P.Ultimate.bird(drawing,{boss:true}),false);assert.equal(P.Ultimate.bird(drawing,{mapBoss:true}),false);
+P.UI.pause();const remaining=s.ultimate.left;P.Game.update(1);assert.equal(s.ultimate.left,remaining);P.UI.pause();P.Ultimate.tick(8);assert(!P.Ultimate.active());assert.equal(s.ultimate.paper,2.6);P.Ultimate.draw(drawing);assert.equal(s.player.speed,baseSpeed);assert.equal(s.player.rate,baseRate);
+P.Ultimate.tick(1);assert(s.ultimate.stampHit);assert(s.ultimate.particles.some(p=>p.kind==='stamp'));P.Ultimate.draw(drawing);P.Ultimate.hit({ultimate:true},s.enemies[0]);assert(s.ultimate.impacts.length);assert.equal(s.enemies[0].ultiFlash,.12);P.Ultimate.tick(3);assert.equal(s.ultimate.impacts.length,0);assert.equal(s.ultimate.paper,0);P.Game.start();assert.equal(s.ultimate.left,0);assert.equal(s.ultimate.charge,0);
+P.UI.select(P.Data.characters.findIndex(c=>c.id==='g5'));P.Game.start();s.ultimate.charge=100;assert.equal(P.Ultimate.activate(),false);
+console.log('OK ulti: carga, activación única, cadencia, gallinazos, jefes, pausa, denuncia y reinicio');
+
+P.UI.select(P.Data.characters.findIndex(c=>c.id==='kingteka'));P.Game.start();const sounds=[],playAudio=P.Audio.play;P.Audio.play=k=>sounds.push(k);s.ultimate.charge=100;P.Ultimate.activate();assert(sounds.includes('flap'));P.Ultimate.shot();assert(sounds.includes('shot'));s.enemies=[target(100,100)];P.Ultimate.tick(.01);const flapCount=sounds.filter(k=>k==='flap').length;P.Ultimate.tick(.01);assert.equal(sounds.filter(k=>k==='flap').length,flapCount);P.Ultimate.tick(8);P.Ultimate.tick(1);assert.equal(sounds.filter(k=>k==='stamp').length,1);P.Ultimate.tick(.1);assert.equal(sounds.filter(k=>k==='stamp').length,1);P.Audio.play=playAudio;P.Audio.unlock();P.Audio.play('shot');
+console.log('OK audio: aleteo, escopeta, sello único y entorno sin AudioContext');
+
 const alphaFixture=new Uint8Array(10*10*4);for(let y=1;y<=3;y++)for(let x=1;x<=3;x++)alphaFixture[(y*10+x)*4+3]=255;alphaFixture[(9*10+9)*4+3]=255;
 const cut=P.BossArt.mainBounds(alphaFixture,10,0,0,10,10);assert.equal(cut.x,1);assert.equal(cut.y,1);assert.equal(cut.w,3);assert.equal(cut.h,3);
 P.$('#lab-boss').value='campo';P.Lab.run();const charger=s.enemies[0],arenaBounds=s.encounter.scene.bounds;charger.phase='charge';charger.dx=1;charger.dy=1;charger.windup=1;charger.x=arenaBounds.right-1;charger.y=arenaBounds.bottom-1;P.Encounters.bossMove(charger,.04);assert(charger.x<=arenaBounds.right-charger.r);assert(charger.y<=arenaBounds.bottom-charger.r);assert.equal(charger.phase,'recover');
@@ -171,5 +185,19 @@ P.World.render(800);assert(P.Terrain.zoom>=1.05);assert(arenaBounds.right<900&&a
 for(const map of ['campo','plaza','machu']){P.$('#lab-boss').value=map;P.Lab.run();const covers=P.Terrain.active();assert.equal(covers.length,4);assert(!P.Terrain.hit(s.player.x,s.player.y,14));assert(!P.Terrain.hit(s.enemies[0].x,s.enemies[0].y,s.enemies[0].r));const o=covers[0],body={x:o.x,y:o.y};P.Terrain.resolve(body,{x:o.x-200,y:o.y},14);assert(!P.Terrain.hit(body.x,body.y,13));assert(!P.Terrain.clear(o.x-200,o.y,o.x+200,o.y));s.fire=100;s.player.inv=0;s.player.x=o.x+20;s.player.y=o.y;s.danger=[{x:o.x-90,y:o.y,vx:1000,vy:0,age:0,life:5,history:[]}];const hp=s.player.hp;P.Combat.tick(.08);assert.equal(s.danger.length,0);assert.equal(s.player.hp,hp);if(map==='campo'){const e=s.enemies[0];e.x=o.x-o.w/2-e.r-2;e.y=o.y;e.dx=1;e.dy=0;e.phase='charge';e.windup=1;P.Encounters.bossMove(e,.04);assert.equal(e.phase,'recover');assert(!P.Terrain.hit(e.x,e.y,e.r-1))}P.World.render(1000)}
 P.UI.menu();P.Game.start();assert(!P.Terrain.active().some(o=>String(o.id).startsWith('arena:')));console.log('OK cobertura: bloqueo de movimiento, proyectiles, embestida y retorno limpio');
 
+P.UI.menu();P.Maps.select('campo');P.Game.start();
+const animatedChest=P.Loot.chests[0],clockBeforeOpen=s.mapTime,healthBeforeOpen=s.player.hp;
+P.Loot.open(animatedChest);assert.equal(s.mode,'loot-opening');assert.equal(animatedChest.openAge,0);
+P.Game.update(.16);assert.equal(s.mode,'loot-opening');assert(animatedChest.openAge>=.16);assert.equal(s.mapTime,clockBeforeOpen);assert.equal(s.player.hp,healthBeforeOpen);
+P.UI.pause();assert.equal(s.mode,'loot-opening','La pausa no interrumpe la apertura');
+P.Loot.open(animatedChest);P.Game.update(.49);assert.equal(s.mode,'item');assert.equal(P.Loot.pending,null);
+const choices=elements.get('#overlay').children.length;P.Loot.advance(1);assert.equal(elements.get('#overlay').children.length,choices,'Revelar premio una sola vez');
+P.Game.start();const animatedBox=P.Terrain.props.find(o=>o.kind==='crate');P.Terrain.damage(animatedBox,999);assert.equal(P.Loot.debris.length,1);P.Loot.tick(.9);assert.equal(P.Loot.debris.length,0);P.Game.start();assert.equal(P.Loot.pending,null);assert.equal(P.Loot.debris.length,0);
+console.log('OK animación de botín: fases, reloj congelado, premio único, escombros y reinicio');
+
+for(const map of P.Maps.catalog){P.UI.menu();P.Maps.select(map.id);P.Game.start();assert.deepEqual(Array.from(P.Loot.chests,c=>c.rarity),['common','rare','legendary']);for(const tier of ['common','rare','legendary']){const c=P.Loot.chests.find(c=>c.rarity===tier);assert(!P.Terrain.hit(c.x,c.y,28));P.Loot.open(c);assert.equal(s.mode,'loot-opening');P.Loot.advance(.7);assert.equal(s.mode,'item');assert.equal(P.Loot.items[c.item].rarity,tier,'El premio debe coincidir con la rareza');elements.get('#overlay').children.filter(c=>c.tag==='button')[1].onclick();assert.equal(s.mode,'play')}}
+for(const base of ['magnet','vest','battery']){const common=P.Loot.items[base],rare=P.Loot.items[base+'_rare'],legend=P.Loot.items[base+'_legendary'];assert.equal(rare.base,base);assert.equal(legend.base,base);if(base==='battery')assert(legend.rate<rare.rate&&rare.rate<common.rate);else{const stat=base==='vest'?'reduction':'magnet';assert(legend[stat]>rare[stat]&&rare[stat]>common[stat])}}
+P.Game.start();const rarityPlayer=s.player,rarityBaseMagnet=rarityPlayer.magnet,rarityBaseRate=rarityPlayer.rate;P.Loot.equip('magnet_rare');assert.equal(rarityPlayer.magnet,rarityBaseMagnet*2);P.Loot.equip('magnet_legendary');assert.equal(rarityPlayer.magnet,rarityBaseMagnet*2.6);P.Loot.equip('battery_legendary');assert(Math.abs(rarityPlayer.magnet-rarityBaseMagnet)<1e-9);rarityPlayer.rate*=.82;P.Loot.equip('vest_legendary');assert(Math.abs(rarityPlayer.rate-rarityBaseRate*.82)<1e-9);assert.equal(P.Loot.damage(rarityPlayer,100),60);assert(!P.Loot.equip('vest_legendary'));rarityPlayer.hp=1;P.Loot.use('emoliente_legendary');assert.equal(rarityPlayer.hp,rarityPlayer.maxHp);assert.equal(rarityPlayer.equipment,'vest_legendary');P.Game.start();assert.equal(s.player.equipment,null);
+console.log('OK rarezas: tres cofres por mapa, premios por nivel, balance creciente y reemplazo reversible');
 assert.equal(P.World.zoomFor(1920,1080,true,true),2.25);assert.equal(P.World.zoomFor(1280,720,true,true),1.5);assert(P.World.zoomFor(1920,1080,true,false)>2.5);for(const [w,h] of [[1920,1080],[1280,720],[390,844]]){const zoom=P.World.zoomFor(w,h,true,true);for(const x of [-680,680])for(const y of [-360,360]){const c=P.BossArt.camera({x,y},w/zoom,h/zoom);assert(Math.abs(x-c.x)<w/zoom/2-14);assert(Math.abs(y-c.y)<h/zoom/2-14)}}console.log('OK zoom responsivo y jugador visible en extremos de arena');
 });
