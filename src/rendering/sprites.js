@@ -1,7 +1,7 @@
 'use strict';
 P.Sprites={
 ready:false,sheets:{},
-init(){if(typeof Image==='undefined')return;const configs=[{id:'powers',file:'powers-atlas-v1.png',rows:9,edges:[0,213,424,632,839,1042,1253,1460,1665,1881].map(y=>y/1881)},{id:'base',file:'causas-atlas-v1.png',rows:8,edges:[0,227,455,649,851,1095,1323,1562,1774].map(v=>v/1774)},{id:'streamers',file:'streamers-atlas-v1.png',rows:7,edges:[0,262,496,742,995,1232,1456,1658].map(v=>v/1658)}];
+init(){if(typeof Image==='undefined')return;const configs=[{id:'powers',file:'powers-atlas-v1.webp',rows:9,edges:[0,213,424,632,839,1042,1253,1460,1665,1881].map(y=>y/1881)},{id:'base',file:'causas-atlas-v1.webp',rows:8,edges:[0,227,455,649,851,1095,1323,1562,1774].map(v=>v/1774)},{id:'streamers',file:'streamers-atlas-v1.webp',rows:7,edges:[0,262,496,742,995,1232,1456,1658].map(v=>v/1658)}];
 for(const config of configs){const image=new Image(),sheet={image,ready:false,cells:[]};this.sheets[config.id]=sheet;image.onload=()=>{this.measure(sheet,config);sheet.ready=true;this.ready=true;P.UI.lastArt=0;P.UI.animate(200);P.$('#art-status').textContent='PIXEL ART · REPOSO / CAMINATA / ATAQUE'};image.onerror=()=>{sheet.failed=true;P.$('#art-status').textContent='Arte pendiente de cargar. Recarga para reintentar.'};image.src='assets/characters/'+config.file}
 },
 measure(sheet,config){const image=sheet.image,cw=image.width/4,cv=document.createElement('canvas');cv.width=image.width;cv.height=image.height;const ctx=cv.getContext('2d');ctx.drawImage(image,0,0);const pixels=ctx.getImageData(0,0,cv.width,cv.height).data;

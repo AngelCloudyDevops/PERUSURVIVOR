@@ -9,7 +9,7 @@ function build(){
  copy(path.join(root,'src/index.html'),path.join(out,'index.html'));
  copy(path.join(root,'src/ui/styles.css'),path.join(out,'style.css'));
  for(const m of modules)copy(path.join(root,m.source),path.join(out,m.output));
- fs.cpSync(path.join(root,'public'),out,{recursive:true});
+ fs.cpSync(path.join(root,'public'),out,{recursive:true,filter:source=>!source.endsWith('.png')||!fs.existsSync(source.slice(0,-4)+'.webp')});
  fs.cpSync(path.join(root,'backend'),path.join(out,'backend'),{recursive:true});
  fs.writeFileSync(path.join(out,'backend/modules.json'),JSON.stringify(modules));
  for(const file of ['package.json','package-lock.json'])copy(path.join(root,file),path.join(out,'backend',file));

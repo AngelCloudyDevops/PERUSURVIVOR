@@ -1,7 +1,7 @@
 'use strict';
 P.EnemyArt={
 names:['Pablo','Tyrone','Uniqua','Tasha','Austin','PNP'],ready:false,cells:[],
-init(){if(typeof Image==='undefined')return;this.image=new Image();this.image.onload=()=>{this.measure();this.ready=true};this.image.onerror=()=>{this.failed=true;console.warn('No se pudo cargar el atlas de rivales')};this.image.src='assets/enemies/rivales-atlas-v1.png'},
+init(){if(typeof Image==='undefined')return;this.image=new Image();this.image.onload=()=>{this.measure();this.ready=true};this.image.onerror=()=>{this.failed=true;console.warn('No se pudo cargar el atlas de rivales')};this.image.src='assets/enemies/rivales-atlas-v1.webp'},
 measure(){const image=this.image,cv=document.createElement('canvas');cv.width=image.width;cv.height=image.height;const ctx=cv.getContext('2d');ctx.drawImage(image,0,0);const pixels=ctx.getImageData(0,0,cv.width,cv.height).data;
 for(let row=0;row<6;row++){const frames=[];for(let col=0;col<2;col++){const sx=Math.round(col*image.width/2),sy=Math.round([0,246,491,738,976,1246,1536][row]/1536*image.height),rightEdge=Math.round((col+1)*image.width/2),bottomEdge=Math.round([0,246,491,738,976,1246,1536][row+1]/1536*image.height),cw=rightEdge-sx,ch=bottomEdge-sy;let left=cw,right=0,top=ch,bottom=0;for(let y=1;y<ch-1;y++)for(let x=1;x<cw-1;x++)if(pixels[((sy+y)*cv.width+sx+x)*4+3]>160){left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y)}frames.push({sx:sx+left,sy:sy+top,w:Math.max(1,right-left+1),h:Math.max(1,bottom-top+1)})}this.cells.push(frames)}
 },

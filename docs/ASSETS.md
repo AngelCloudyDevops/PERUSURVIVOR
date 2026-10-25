@@ -36,3 +36,6 @@ La Combi, el Gabinete y el Guardián se dibujan mediante rectángulos en una ret
 
 ## Coberturas de jefe detalladas
 public/assets/arena-cover/cover-atlas-v1.png: atlas original generado con image_gen integrado, tres columnas por dos filas, versiones largas y cortas de barrera de concreto, jardinera colonial y muro inca. Prompt y distribución en prompts.json. El dibujo recorta la silueta alfa y conserva las colisiones anteriores.
+
+## Compresión sin pérdida
+Los PNG originales se conservan como fuentes. El navegador y el build usan copias WebP lossless; el build omite los PNG que tienen una copia WebP para evitar duplicar el paquete. scripts/optimize-assets.py (Pillow con soporte WebP) regenera las copias y compara cada byte RGBA, incluidas transparencias. Ejecutar con --check verifica las copias sin regenerarlas. docs/asset-optimization.json guarda tamaños y SHA-256 de fuentes, salidas y píxeles. Los mapas completos y atlas mantienen resolución y píxeles; únicamente las miniaturas del selector tienen una versión de 384×256, suficiente para su tamaño de presentación.
