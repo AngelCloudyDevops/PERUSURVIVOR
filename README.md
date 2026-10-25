@@ -127,3 +127,5 @@ En partidas individuales, los cofres comunes son gratis. Los raros requieren una
 
 ### Control de versiones
 Repositorio Git: https://github.com/AngelCloudyDevops/PERUSURVIVOR. Los cambios se guardan mediante commits y pull requests; main conserva el historial integrado. Antes de publicar se ejecutan npm run check y npm test. GitHub Actions valida main y despliega en https://perusurvivor.michitech.tech, según docs/DEPLOYMENT.md. No se versionan credenciales ni dist/.
+
+Los arbustos deben tener silueta orgánica, redondeada e irregular, con masas de hojas y sombras de pocos tonos. El acabado pixelado no justifica dibujarlos como cajas apiladas. La misma regla se aplica al follaje de jardineras; conservar el movimiento suave y la lectura del combate.

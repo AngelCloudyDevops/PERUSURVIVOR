@@ -212,3 +212,5 @@ La caminata de personajes y minions alterna sus cuadros originales con balanceo 
 | PNP | Retroceso y chispas verdes | Se ladea y se desvanece con pulsos verdes |
 
 La invulnerabilidad, los ataques y las recompensas conservan sus reglas. Al pausar se congelan las reacciones y al reiniciar desaparecen.
+
+Arbustos y follaje de jardineras comparten copas redondeadas con lóbulos asimétricos, contorno oscuro y hojas agrupadas. Se conservan posiciones, profundidad, viento y colisiones originales.

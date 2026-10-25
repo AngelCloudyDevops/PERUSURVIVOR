@@ -41,9 +41,7 @@ ctx.fillStyle='#66513b';ctx.fillRect(left+w-12,bottom-2,8,18);
 ctx.fillStyle='#3e4230';ctx.fillRect(left+5,top-4,w-10,h+3);
 for(let row=0,y=top+5;y<bottom-3;y+=17,row++)for(let col=0,x=left+11;x<left+w-7;x+=22,col++){
  const shift=(col+row)%3,px=Math.round(x+(row%2)*4),py=Math.round(y-shift*3);
- ctx.fillStyle='#223d30';ctx.fillRect(px-10,py-13,20,18);ctx.fillRect(px-6,py-18,12,8);
- ctx.fillStyle='#3d7046';ctx.fillRect(px-8,py-12,16,13);ctx.fillRect(px-4,py-17,10,9);
- ctx.fillStyle='#72934e';ctx.fillRect(px-5,py-15,7,4);ctx.fillRect(px+3,py-8,5,3);
+ P.Ambient.foliage(ctx,px,py+4,.48,col+row*3);
  if((row+col)%3!==1){const fx=px+(col%2?3:-3),fy=py-12;ctx.fillStyle='#2b4232';ctx.fillRect(fx-5,fy-3,10,7);ctx.fillRect(fx-3,fy-5,6,11);ctx.fillStyle=(row+col)%2?'#d57370':'#eee0a1';ctx.fillRect(fx-4,fy-1,9,3);ctx.fillRect(fx-1,fy-4,3,9);ctx.fillStyle='#eeb856';ctx.fillRect(fx-1,fy-1,3,3)}
 }
 ctx.fillStyle='#293a36';ctx.fillRect(left-3,bottom-4,w+6,5);
