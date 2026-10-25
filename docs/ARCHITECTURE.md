@@ -77,3 +77,5 @@ src/development/lab.js se carga después de la UI y antes del arranque. El estad
 P.Chunks.zone selecciona una distribución determinista por regiones de 1536 unidades. node y roadDistance construyen una red global con nodos desplazados y segmentos compartidos, independiente de los límites de caché. ground usa esa misma geometría para pintar y get la consulta para reservar corredores de paso. Las regiones modulan densidad, mezcla de objetos, orientación de muros y color del suelo sin añadir imágenes ni cambiar colisiones de arenas.
 
 MapArt.simpleStyle desactiva la carga y dibujo de los atlas detallados; Chunks usa la muestra original de suelo y Terrain su renderer de formas simples. Los recursos se conservan para evitar perder variantes.
+
+Ambient genera decoración determinista solo en la ventana visible de Campo de Marte; no mantiene cachés ni altera terreno. Usa elapsed para animación y matchMedia para movimiento reducido. World dibuja pasto/hojas debajo de actores e intercala arbustos por profundidad; Terrain desplaza únicamente las copas.
