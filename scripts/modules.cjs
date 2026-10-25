@@ -68,6 +68,9 @@ module.exports = [
     "output": "js/terrain.js"
   },
   {
+    "source": "src/rendering/loot-art.js", "output":"js/loot-art.js"
+  },
+  {
     "source": "src/systems/loot.js",
     "output": "js/loot.js"
   },
