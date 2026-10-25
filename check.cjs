@@ -61,7 +61,7 @@ for(const map of P.Maps.catalog){
 }
 P.Game.start();s.mapTime=300;P.Game.update(.01);assert(s.bossSpawned);assert(!s.portal.open);assert(!s.portal.cleared);console.log('OK: ignorar portal mantiene el jefe final obligatorio');
 P.Game.start();s.mapTime=180;P.Encounters.tick();const entrance=P.Encounters.definition().portal;s.player.x=entrance.x;s.player.y=entrance.y;P.Encounters.offer();P.Encounters.enter();s.player.hp=1;s.player.inv=0;s.enemies[0].x=s.player.x;s.enemies[0].y=s.player.y;P.Game.update(.01);assert.equal(s.mode,'end');P.Game.start();assert(!s.encounter);assert.equal(s.mapTime,0);assert(!s.portal.cleared);console.log('OK: derrota en arena y reinicio limpio');
-
+P.Game.start();s.mapTime=180;P.Encounters.tick();const uiPoint=P.Encounters.definition().portal;s.player.x=uiPoint.x;s.player.y=uiPoint.y;elements.get('#portal-enter').hidden=true;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,false,'El HUD debe mostrar el botón cercano');s.player.x=-900;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,true,'El HUD oculta el botón lejano');console.log('OK: botón de portal conectado al HUD');
 for(const map of P.Maps.catalog){
  P.UI.menu();P.Maps.select(map.id);P.Game.start();assert(P.Terrain.props.length>=10);
  const obstacle=P.Terrain.props.find(o=>o.kind==='bench'||o.kind==='wall');const start={x:obstacle.x-obstacle.w/2-30,y:obstacle.y};const body={x:obstacle.x-obstacle.w/2+3,y:obstacle.y};P.Terrain.resolve(body,start,14);assert(body.x<=obstacle.x-obstacle.w/2-14,'No atravesar obstáculos');
