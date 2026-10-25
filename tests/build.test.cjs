@@ -76,3 +76,16 @@ test('El inicio descarga solo el mapa seleccionado y reutiliza las solicitudes',
  vm.runInNewContext(fs.readFileSync(path.join(root,'src/scenes/maps.js'),'utf8'),{P,document,Image:function(){requests.push(this)}});
  P.Maps.init();assert.equal(requests.length,1);assert.equal(requests[0].src,'assets/maps/campo-v1.webp');P.Maps.load('campo');assert.equal(requests.length,1);requests[0].onload();assert(P.Maps.ready.campo);P.Maps.select('plaza');assert.equal(requests.length,2);assert.equal(requests[1].src,'assets/maps/plaza-v1.webp');
 });
+
+test('Índice de enemigos: conserva impactos, orden y trayectorias largas',()=>{
+ const {combat,populate}=require('./performance-fixture.cjs'),{P,events}=combat();populate(P);const reference=P.state.enemies.map(e=>({...e})),expected=[];
+ for(const shot of P.state.shots){const tx=shot.x+shot.vx*.04,ty=shot.y+shot.vy*.04,dx=tx-shot.x,dy=ty-shot.y,len=dx*dx+dy*dy;let remaining=shot.remaining;for(const e of reference){const t=Math.max(0,Math.min(1,((e.x-shot.x)*dx+(e.y-shot.y)*dy)/len));if(e.hp>0&&Math.hypot(e.x-shot.x-t*dx,e.y-shot.y-t*dy)<e.r+7){e.hp-=shot.power;expected.push(e.id);if(--remaining<=0)break}}}
+ P.Combat.tick(.04);assert.deepEqual(events,expected);assert.deepEqual(Array.from(P.state.enemies,e=>e.hp),reference.map(e=>e.hp));
+ const index=P.Combat.indexEnemies([{x:-500,y:-500,r:140},{x:1500,y:1500,r:13}]);assert.equal(P.Combat.nearSegment(index,-1000,-500,2000,-500).length,1);assert.equal(P.Combat.nearSegment(index,5000,5000,5010,5010).length,0);
+});
+test('Decoración: reutiliza posiciones e invalida por colisión, mapa y cámara',()=>{
+ const vm=require('node:vm');let tests=0;const P={state:{mode:'play'},Maps:{selected:'campo'},Terrain:{revision:1,hit(){tests++;return false}},Chunks:{hash(){return 12345},roadDistance(){return 150},ground(){return {road:false}}}};vm.runInNewContext(fs.readFileSync(path.join(root,'src/rendering/ambient.js'),'utf8'),{P,Math});const a=P.Ambient.items(0,0,800,600),n=tests;assert(a.length);assert.strictEqual(P.Ambient.items(0,0,800,600),a);assert.equal(tests,n);P.Terrain.revision++;assert.notStrictEqual(P.Ambient.items(0,0,800,600),a);assert(tests>n);const b=P.Ambient.items(0,0,800,600);assert.notStrictEqual(P.Ambient.items(1000,0,800,600),b);P.state.encounter={};assert.equal(P.Ambient.items(0,0,800,600).length,0);
+});
+test('Cámara: conserva márgenes de animación y descarta objetos lejanos',()=>{
+ const vm=require('node:vm'),P={};vm.runInNewContext(fs.readFileSync(path.join(root,'src/rendering/world.js'),'utf8'),{P});P.World.view={left:-400,right:400,top:-300,bottom:300};assert(P.World.visible(550,0,200));assert(P.World.visible(0,450,200));assert(!P.World.visible(2000,0,200));assert(!P.World.visible(0,2000,200));assert(P.World.visible(-600,0,201));
+});
