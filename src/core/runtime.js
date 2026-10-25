@@ -1,6 +1,6 @@
 'use strict';
 P.$=s=>document.querySelector(s);
-P.state={mode:'menu',chosen:0,player:null,enemies:[],shots:[],danger:[],gems:[],effects:[],elapsed:0,spawn:0,fire:0,kills:0,level:1,xp:0,need:6,bossSpawned:false,enemySerial:0};
+P.state={mode:'menu',chosen:0,player:null,enemies:[],shots:[],fields:[],danger:[],gems:[],effects:[],elapsed:0,spawn:0,fire:0,kills:0,level:1,xp:0,need:6,bossSpawned:false,enemySerial:0};
 P.Core=(()=>{
 const canvas=P.$('#game'),ctx=canvas.getContext('2d'),keys={};let width,height,touch=null;
 function resize(){width=innerWidth;height=innerHeight;const d=Math.min(devicePixelRatio||1,2);canvas.width=width*d;canvas.height=height*d;ctx.setTransform(d,0,0,d,0,0);ctx.imageSmoothingEnabled=false}
