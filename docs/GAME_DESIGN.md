@@ -162,3 +162,5 @@ El zoom de combate escala con el ancho de escritorio: arenas 1,5 a 1280 px y 2,2
 
 ## Cofres al explorar
 Los cofres se distribuyen por sectores de 768 unidades con posiciones y una semilla nuevas por partida. Cada sector tiene un 60% de posibilidad de contener uno; el sector de inicio garantiza un común en posición aleatoria segura. Entre cofres fuera del inicio: común 72%, raro 26%, legendario 2%; los legendarios requieren estar a 1800 unidades del punto de aparición. Un sorteo legendario cercano se convierte en raro. Se generan al explorar y se conservan las aperturas al regresar, sin repetir premios. Se comprueban obstáculos, fuente y portal. Las arenas no generan cofres normales; el cofre de jefe conserva su recompensa.
+
+Los personajes jugables animan brazos y pies según la distancia recorrida; se detienen al chocar. La PNP y los Tyrone pesados pueden disparar orbes de 8 de daño: avisan 0,7 s, apuntan a la posición inicial, disparan a 180 unidades/s y esperan 4,2 s. Alcance de activación 120–480, proyectil de 2,5 s, bloqueado por coberturas y máximo 40 proyectiles hostiles para iniciar disparos.
