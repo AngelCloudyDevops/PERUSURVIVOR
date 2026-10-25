@@ -51,3 +51,7 @@ Esta evidencia corresponde a la reorganización; no impide introducir funcionali
 
 ## Distribución
 .openai/hosting.json mantiene static.directory=dist y la identidad del sitio. Todo despliegue debe ejecutar npm run build antes de empaquetar. La CI comprueba el proyecto sin publicar ni alterar servicios externos.
+
+## Renderizado de encuentros
+src/rendering/boss-art.js carga y recorta el atlas de jefes y registra las tres escenas de portal. scripts/modules.cjs lo carga antes de encounters.js. El encuentro guarda su scene, y World.draw elige exclusivamente BossArt.background o Maps.draw. La cámara de las arenas se centra en horizontal y sigue al jugador en pantallas verticales; abre el encuadre para mantener legibles el suelo, los ataques y los bordes. El retorno restaura la cámara del mapa de origen. El build copia los recursos originales de public/assets/bosses y public/assets/arenas.
+Prueba visual local: npm run build y node tests/manual/serve-bosses.cjs; abrir /__qa/boss-arenas en el puerto 4184. Los controles de prueba se sirven solo en esa ruta local y nunca forman parte de dist.

@@ -1,4 +1,4 @@
-// Orden de carga explícito: scripts clásicos que comparten P.
+// Orden explícito de los módulos clásicos.
 module.exports = [
   {
     "source": "src/data/catalog.js",
@@ -35,6 +35,10 @@ module.exports = [
   {
     "source": "src/scenes/maps.js",
     "output": "js/maps.js"
+  },
+  {
+    "source": "src/rendering/boss-art.js",
+    "output": "js/boss-art.js"
   },
   {
     "source": "src/systems/encounters.js",
