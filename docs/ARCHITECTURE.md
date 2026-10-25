@@ -64,5 +64,7 @@ src/data/powers.js amplía el catálogo después de data/catalog.js. Combat inte
 Los campos temporales viven en P.state.fields y se eliminan en arranque y transiciones. src/rendering/power-effects.js dibuja los proyectiles y los efectos adicionales; effects.js lo invoca conservando los efectos anteriores. El atlas powers-atlas-v1.png usa nueve filas y cuatro poses, y se carga con el renderizador de sprites existente.
 Prueba visual: npm run build y node tests/manual/serve-powers.cjs; abrir /__qa/powers en el puerto 4185. Esta ruta y los controles no forman parte de la distribución.
 
+## Arte modular del entorno
+src/rendering/map-art.js carga tres atlas de objetos (3 columnas por 2 filas) y un atlas opaco de suelos/caminos. Los PNG y prompts están en public/assets/environment/. El cargador recorta por alfa y ancla cada sprite a su base; el render usa nearest-neighbor. Los sectores invalidan sus lienzos cuando termina de cargar el atlas de suelo. P.Terrain mantiene la geometría física independiente del dibujo; P.World ordena los objetos y los personajes por la coordenada de sus pies. Se conserva el renderer procedural como respaldo durante la carga.
 ## Laboratorio de desarrollo
 src/development/lab.js se carga después de la UI y antes del arranque. El estado devRun separa las pruebas de la progresión: spawn omite las oleadas y los finales y victorias de arena delegan en Lab.finish, evitando el guardado del récord. La herramienta reutiliza el combate, el personaje y las escenas reales del juego.
