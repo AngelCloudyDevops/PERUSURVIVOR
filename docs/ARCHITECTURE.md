@@ -143,3 +143,6 @@ Terrain.minimapSignals consulta los enemigos vivos con keyTier y las gems key no
 
 ## Indicador de objetivo de llaves
 Loot.keyTarget recorre gems key y enemigos keyTier, descarta entidades muertas/recogidas y coordenadas inválidas y elige la menor distancia. keyDirection convierte atan2 en ocho sectores. targetHud actualiza el elemento key-target con texto y la paleta de Loot.rarity desde el HUD existente, sin temporizadores ni estado adicional. Usa el mismo origen de coordenadas que el minimapa.
+
+
+Performance toma intervalos reales de requestAnimationFrame, sin usar el dt limitado de la simulación. Actualiza el panel cada 500 ms con una ventana de 240 muestras. La prueba acumula métricas solo en play, excluye la pestaña oculta y la preparación, y limita las muestras almacenadas a 20.000. Usa el laboratorio autorizado por el usuario y devRun para no escribir récords; salir al menú o iniciar otra partida cancela la prueba. Los perfiles están acotados a 160 enemigos y 600 proyectiles objetivo, con enemigos resistentes para mantener la carga y reponer proyectiles durante el combate normal.
