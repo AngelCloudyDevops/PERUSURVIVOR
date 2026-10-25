@@ -24,3 +24,5 @@ public/assets/bosses/boss-atlas-v1.png contiene los tres jefes en seis poses. pu
 
 ## Apariencias de los poderes
 public/assets/characters/powers-atlas-v1.png: nueve caricaturas con poses de reposo, dos de movimiento y ataque. Arte original generado con image_gen integrado. Los prompts completos, nombres de filas y poses están en powers-atlas.json. Los proyectiles adicionales se dibujan como píxeles mediante Canvas.
+## Coberturas de jefe detalladas
+public/assets/arena-cover/cover-atlas-v1.png: atlas original generado con image_gen integrado, tres columnas por dos filas, versiones largas y cortas de barrera de concreto, jardinera colonial y muro inca. Prompt y distribución en prompts.json. El dibujo recorta la silueta alfa y conserva las colisiones anteriores.

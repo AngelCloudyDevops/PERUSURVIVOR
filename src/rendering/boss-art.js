@@ -8,7 +8,7 @@ cabinet:{id:'salon-gabinete',name:'Salón del Gabinete Infinito',asset:'cabinet'
 stone:{id:'santuario-niebla',name:'Santuario de la Niebla',asset:'guardian',color:'#5e9b8e',bounds:{left:-680,right:680,top:-360,bottom:360}}
 },
 scene(kind){return this.scenes[kind]},
-camera(p,w,h){const x=p.x*.65,y=p.y*.5-65;return {x:Math.max(-960+w/2,Math.min(960-w/2,x)),y:Math.max(-640+h/2,Math.min(640-h/2,y))}},
+camera(p,w,h){const x=p.x*.9,y=p.y-70;return {x:Math.max(-960+w/2,Math.min(960-w/2,x)),y:Math.max(-640+h/2,Math.min(640-h/2,y))}},
 init(){if(typeof Image==='undefined')return;const image=new Image();this.image=image;image.onload=()=>{this.measure();this.ready=true};image.onerror=()=>console.warn('No se pudo cargar el atlas de jefes');image.src='assets/bosses/boss-atlas-v1.png';
 for(const [kind,scene] of Object.entries(this.scenes)){const art=new Image();art.onload=()=>this.images[kind]=art;art.onerror=()=>console.warn('No se pudo cargar la arena '+scene.name);art.src='assets/arenas/'+scene.asset+'-v1.png'}
 },

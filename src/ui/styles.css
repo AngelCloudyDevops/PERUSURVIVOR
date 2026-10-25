@@ -19,3 +19,6 @@ footer{position:static;grid-column:1/-1;margin-top:12px}#menu{align-content:star
 
 #audio-toggle{width:auto;min-width:110px;height:auto;flex-shrink:0}@media(max-width:600px){#audio-toggle{min-width:94px}}
 .deploy-badge{display:inline-block;margin-top:12px;padding:6px 10px;border:1px solid #88c99a66;border-radius:5px;background:#203c31;color:#b8edbd;font-size:10px;font-weight:600;letter-spacing:.3px}
+
+/* Más espacio de combate para la cámara cercana. */
+#hud.boss-hud{top:76px;padding:8px 14px;width:min(500px,90vw)}#hud.boss-hud .xp,#hud.boss-hud #level,#hud.boss-hud #ability,#hud.boss-hud #loot-hud,#hud.boss-hud #loot-message{display:none}#hud.boss-hud #portal-status{margin-top:4px;font-size:10px}@media(max-width:760px){#hud.boss-hud{top:65px;padding:7px 10px}#hud.boss-hud #portal-status{font-size:9px}}

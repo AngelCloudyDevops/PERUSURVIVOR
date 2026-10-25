@@ -83,3 +83,5 @@ Ambient genera decoración determinista solo en la ventana visible de Campo de M
 Ambient comparte la ventana determinista entre los tres mapas. En Plaza dibuja palomas por profundidad y anima la fuente según su posición real; en Machu usa ichu y niebla debajo del combate. Todo depende de elapsed y no introduce entidades de combate ni estado persistente.
 
 Audio usa Web Audio con osciladores y envolventes cortas, polifonía limitada y desconexión de nodos al terminar. El secuenciador sigue el frame y adapta el tema al mapa/jefe. Si Web Audio no está disponible, el juego continúa sin audio. El estado mute se guarda en localStorage.
+
+P.CoverArt carga el atlas exclusivo de arena antes del arranque y dibuja solo props con id arena:. P.Terrain conserva la física y el fallback geométrico. P.World.zoomFor calcula el encuadre según ancho de ventana; P.BossArt.camera sigue al jugador dentro del fondo.

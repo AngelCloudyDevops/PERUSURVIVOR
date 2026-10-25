@@ -64,6 +64,10 @@ module.exports = [
     "output": "js/map-art.js"
   },
   {
+    "source": "src/rendering/cover-art.js",
+    "output": "js/cover-art.js"
+  },
+  {
     "source": "src/systems/terrain.js",
     "output": "js/terrain.js"
   },
