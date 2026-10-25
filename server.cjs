@@ -8,4 +8,4 @@ function createServer(){return http.createServer((req,res)=>{
  res.setHeader('Content-Type',file.endsWith('.png')?'image/png':file.endsWith('.js')?'text/javascript; charset=utf-8':file.endsWith('.css')?'text/css; charset=utf-8':file.endsWith('.json')?'application/json; charset=utf-8':'text/html; charset=utf-8');
  fs.createReadStream(file).pipe(res)
 })}
-module.exports={createServer};if(require.main===module)createServer().listen(4173,'127.0.0.1',()=>console.log('http://127.0.0.1:4173'));
+module.exports={createServer};if(require.main===module){const local=createServer();require('./backend/cooperative.cjs').createCoopServer({httpServer:local});local.listen(Number(process.env.PORT)||4173,'127.0.0.1',()=>console.log('http://127.0.0.1:4173'))}

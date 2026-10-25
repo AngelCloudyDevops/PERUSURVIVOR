@@ -27,3 +27,7 @@ El despliegue automático no reinicia Caddy, Docker ni ninguna aplicación. Solo
 ## Pruebas
 python3 -m unittest discover -s tests/deployment -p "test_*.py"
 La comprobación de rollback usa flock y se ejecuta en Linux. No hay paquetes Python externos en el VPS ni en CI.
+
+## Servicio cooperativo
+Instalación administrativa única, después de publicar una release con backend: ejecutar `python3 /opt/perusurvivor/live/current/backend/install-vps.py`. El instalador crea exclusivamente /opt/perusurvivor/coop, construye Node con npm ci del lock publicado, inicia perusurvivor-coop en la red existente del juego y añade /coop y /coop/health al nginx perusurvivor-web. Guarda nginx.before-coop.conf y valida nginx antes de recargarlo. No reinicia Caddy ni otros proyectos.
+El contenedor corre como uid 1000, filesystem de solo lectura, sin capacidades, sin Docker socket ni puertos publicados, 512 MiB y 0.75 CPU. MAX_ROOMS=6 inicialmente. /coop/health verifica el proceso. El launcher observa live/current cada 2 segundos y reinicia únicamente el servidor cooperativo al cambiar la release. Las salas en curso terminan en un despliegue: avisar antes de actualizar si hay jugadores. Para retirar el cooperativo, restaurar nginx.before-coop.conf, validar y recargar solo perusurvivor-web, luego detener el proyecto perusurvivor-coop; el individual sigue estático.

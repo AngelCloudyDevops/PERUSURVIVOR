@@ -168,9 +168,17 @@ Los cofres se distribuyen por sectores de 768 unidades con posiciones y una semi
 
 Los personajes jugables animan brazos y pies según la distancia recorrida; se detienen al chocar. La PNP y los Tyrone pesados pueden disparar orbes de 8 de daño: avisan 0,7 s, apuntan a la posición inicial, disparan a 180 unidades/s y esperan 4,2 s. Alcance de activación 120–480, proyectil de 2,5 s, bloqueado por coberturas y máximo 40 proyectiles hostiles para iniciar disparos.
 
+## Cooperativo privado (2 jugadores)
+El menú conserva el inicio individual y añade Crear sala / Unirme por código de 8 caracteres. Cada persona elige su personaje antes de entrar; el anfitrión fija el mapa y comienza cuando hay exactamente dos conectados. Los 18 personajes conservan los ataques del catálogo y se puede elegir cualquiera de los tres mapas.
+El servidor valida movimiento, ataques, enemigos, daño, cajas, fama y jefe final. La fama es compartida; cada nivel otorga a ambos +12% de daño y hasta 15 de curación, sin selector que interrumpa la sala. No hay fuego amigo. La distancia entre compañeros vivos se limita a 720 unidades. Un jugador caído revive con 50% de vida si el compañero permanece a 85 unidades durante 4 segundos. Si ambos caen, termina la partida. ElZeein aparece a los 5 minutos y su derrota gana para los dos.
+Esta primera versión no incluye portales opcionales, cofres de equipo ni evento de emoliente en cooperativo; siguen presentes en individual. Los récords cooperativos no se mezclan con los locales individuales. La desconexión detiene la simulación hasta 30 segundos para recuperar la misma sesión; recargar cierra la sesión local y exige crear otra sala. Las salas viven en memoria: una actualización del servidor las finaliza. Límite inicial de despliegue: 6 salas simultáneas; no implica capacidad garantizada sin pruebas de carga.
 Las publicaciones nuevas se cargan automáticamente desde el menú. Una partida iniciada puede terminar sin interrupciones: aparece “Nueva versión disponible · Actualizar” y al volver al menú se recarga. El botón permite actualizar antes de terminar, reiniciando la partida.
 ## Coherencia cartoon pixel art
 Los personajes definen el dibujo: objetos simples con contornos oscuros y sombras en pocos tonos. Árboles, mobiliario, arbustos, piedra y puesto comparten esos bordes. El menú usa el terreno sencillo del juego en lugar de la ilustración detallada. Se conservan animaciones, eventos, caminos y colisiones.
+
+## Cofres en el minimapa
+El minimapa muestra cofres sin abrir a un máximo de 900 unidades del jugador, con el mismo color de rareza: común arena, raro azul y legendario violeta. Los iconos tienen forma de cofre y una leyenda de colores. El cofre de jefe usa dorado. Los marcadores desaparecen al abrirse y no se dibujan dentro de arenas ni en el menú.
+
 
 ### Ataques propios de minions
 Todos los ejemplares de cada tipo, pesados incluidos, comparten un ataque. Se detienen y anuncian su direccion o area; apuntan a la posicion inicial y respetan coberturas. Maximo 40 proyectiles especiales hostiles. La pausa congela preparacion y animaciones.
