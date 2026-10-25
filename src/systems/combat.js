@@ -7,9 +7,9 @@ const r=a.range*p.reach;if(a.kind==='melee'&&Math.hypot(target.x-p.x,target.y-p.
 p.aim=Math.atan2(target.y-p.y,target.x-p.x);p.facing=Math.cos(p.aim)<0?-1:1;p.castUntil=s.elapsed+.28;s.effects.push({kind:'cast',x:p.x,y:p.y-15,life:.25,maxLife:.25,color:p.color});
 if(a.shout)s.effects.push({kind:'shout',text:a.shout,x:p.x,y:p.y-60,life:.55,maxLife:.55,color:p.color});
 if(a.kind==='spread'||a.kind==='boomerang'){
- const count=(a.count||(p.attack==='feathers'?5:a.kind==='spread'?3:1))+(p.projectileBonus||0),speed=a.speed||470;
- for(let i=0;i<count;i++){const angle=p.aim+(i-(count-1)/2)*(a.spread===undefined?.18:a.spread);s.shots.push({x:p.x,y:p.y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,angle,life:a.kind==='boomerang'?1.3*p.reach:r/speed,turnAt:.55*p.reach,age:0,history:[],kind:a.kind,glyph:a.glyph,color:p.color,power:p.power*(a.powerScale||1),hits:new Set(),remaining:a.kind==='boomerang'?Infinity:(a.pierce||1),motion:a.motion,amplitude:a.amplitude||0,frequency:a.frequency||0,cloud:!!a.cloud,returning:false})}
- if(['BULLET','FISH','ROACH','DIAPER'].includes(a.glyph))s.effects.push({kind:'muzzle',x:p.x+Math.cos(p.aim)*24,y:p.y+Math.sin(p.aim)*24,angle:p.aim,life:.12,maxLife:.12,color:a.glyph==='BULLET'?'#ffd48c':p.color});
+ P.Ultimate.shot();const count=(a.count||(p.attack==='feathers'?5:a.kind==='spread'?3:1))+(p.projectileBonus||0),speed=a.speed||470;
+ for(let i=0;i<count;i++){const angle=p.aim+(i-(count-1)/2)*(a.spread===undefined?.18:a.spread);s.shots.push({x:p.x,y:p.y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,angle,life:a.kind==='boomerang'?1.3*p.reach:r/speed,turnAt:.55*p.reach,age:0,history:[],kind:a.kind,glyph:a.glyph,color:p.color,power:p.power*(a.powerScale||1),hits:new Set(),remaining:a.kind==='boomerang'?Infinity:(a.pierce||1),ultimate:P.Ultimate.active(),motion:a.motion,amplitude:a.amplitude||0,frequency:a.frequency||0,cloud:!!a.cloud,returning:false})}
+ if(['BULLET','FISH','ROACH','DIAPER'].includes(a.glyph))s.effects.push({kind:'muzzle',x:p.x+Math.cos(p.aim)*24,y:p.y+Math.sin(p.aim)*24,angle:p.aim,ultimate:P.Ultimate.active(),life:.12,maxLife:.12,color:a.glyph==='BULLET'?'#ffd48c':p.color});
 }
 if(['nova','cone','melee'].includes(a.kind)){
  const arc=a.kind==='nova'?Math.PI*2:(a.arc||1.3);

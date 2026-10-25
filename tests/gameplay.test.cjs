@@ -136,7 +136,7 @@ P.$('#lab-boss').value='campo';P.$('#lab-invincible').checked=false;P.Lab.run();
 
 P.UI.select(P.Data.characters.findIndex(c=>c.id==='kingteka'));P.Game.start();
 assert.equal(P.Ultimate.activate(),false);for(let i=0;i<20;i++)P.Ultimate.gain();assert.equal(s.ultimate.charge,100);
-const baseSpeed=s.player.speed,baseRate=s.player.rate;assert(P.Ultimate.activate());assert.equal(P.Ultimate.activate(),false);assert(P.Ultimate.active());
+const baseSpeed=s.player.speed,baseRate=s.player.rate;assert(P.Ultimate.activate());assert.equal(P.Ultimate.activate(),false);assert(P.Ultimate.active());const weak=target(s.player.x+60,s.player.y,100),strong={...target(s.player.x+60,s.player.y,100),boss:true};P.Entities.hurt(weak,10);P.Entities.hurt(strong,10);assert.equal(weak.hp,80);assert.equal(strong.hp,90);P.Ultimate.tick(.01);P.Ultimate.draw(drawing);
 s.enemies=[target(s.player.x+80,s.player.y)];s.fire=0;P.Combat.tick(0);assert.equal(s.fire,baseRate/2);
 assert(P.Ultimate.bird(drawing,s.enemies[0]));assert.equal(P.Ultimate.bird(drawing,{boss:true}),false);assert.equal(P.Ultimate.bird(drawing,{mapBoss:true}),false);
 P.UI.pause();const remaining=s.ultimate.left;P.Game.update(1);assert.equal(s.ultimate.left,remaining);P.UI.pause();P.Ultimate.tick(8);assert(!P.Ultimate.active());assert.equal(s.ultimate.paper,2.6);P.Ultimate.draw(drawing);assert.equal(s.player.speed,baseSpeed);assert.equal(s.player.rate,baseRate);
