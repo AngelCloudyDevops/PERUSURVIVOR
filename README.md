@@ -1,4 +1,4 @@
-# Causas del Caos
+# PERUSURVIVOR — Causas del Caos
 Supervivencia y parodia peruana con HTML, CSS, JavaScript y Canvas 2D. Código y recursos originales; no incorpora código ni sprites de PokéSurvivor.
 
 ## Jugar
@@ -17,13 +17,13 @@ Dos hojas PNG transparentes, generadas con la herramienta integrada image_gen:
 - atlas.json y streamers-atlas.json: prompts completos y metadatos de generación.
 
 Cada fila tiene reposo, dos poses de caminata y ataque. El motor recorta cada celda usando alfa, conserva el ancla de los pies, desactiva el suavizado e invierte horizontalmente según dirección. No hay animaciones independientes de ocho direcciones.
-Los emotes, micrófonos, teclados, teléfonos, abanicos, plumas, ondas y bandas tienen efectos animados, estelas e impactos. Los enemigos comunes conservan su arte procedural.
+Los emotes, micrófonos, teclados, teléfonos, abanicos, plumas, ondas y bandas tienen efectos animados, estelas e impactos. Los enemigos comunes son Pablo, Tyrone, Uniqua, Tasha, Austin y policías ficticios de la PNP, con dos poses de caminata en rivales-atlas-v1.png. Se alternan los seis diseños al aparecer.
 
 ## Estructura
 - dist/js/data.js: personajes, ataques, jefe, escenario y mejoras.
 - dist/js/core.js: controles, estado compartido, tamaño del lienzo y récord local.
 - dist/js/sprites.js: carga, recorte y reproducción de atlas.
-- dist/js/fx.js: dibujo de proyectiles, estelas, ondas e impactos.
+- dist/js/enemy-art.js: carga y animación de los seis diseños de rivales.\n- dist/js/fx.js: dibujo de proyectiles, estelas, ondas e impactos.
 - dist/js/entities.js: creación de entidades, daño y fallback de retratos.
 - dist/js/combat.js: comportamientos de ataque y proyectiles hostiles.
 - dist/js/systems.js: oleadas, movimiento, fama y mejoras.
@@ -46,3 +46,21 @@ El escenario se repite por sectores. La fuente bloquea al jugador; los puestos y
 Las fotos de referencia no se distribuyen con el juego.
 
 Versión de un jugador. Sin cuentas, pagos ni voces de figuras reales. El récord permanece en el navegador.
+
+## Mapas y fondos
+Selector de tres escenarios antes de la partida: Campo de Marte (Lima), Plaza de Armas de Lima y Machu Picchu (Cusco). Son interpretaciones de pixel art para el juego, no planos geográficos exactos.
+
+Cada escenario es una arena finita de 2400 × 1600 unidades, con límites transitables específicos, punto de aparición, miniatura y ambientación. La cámara se detiene en los bordes del fondo. La fuente de Plaza de Armas tiene colisión elíptica; los bordes arquitectónicos de los demás mapas son decorativos y quedan fuera del área transitable. El sistema de oleadas y las habilidades se mantienen.
+
+- dist/js/maps.js: catálogo, selección, carga del arte, límites y colisión.
+- dist/assets/maps/campo-v1.png: césped, senderos y monumento estilizado.
+- dist/assets/maps/plaza-v1.png: fuente, balcones y edificios coloniales.
+- dist/assets/maps/machu-v1.png: terrazas, ruinas y paisaje andino.
+- dist/assets/maps/prompts.json: prompts completos, generados con image_gen integrado.
+
+Las pruebas de check.cjs cubren selección, puntos de aparición, límites, eliminación de la fuente en Campo de Marte y persistencia de la colisión de la fuente en Plaza de Armas.
+
+## Desarrollo desde GitHub
+Repositorio: https://github.com/AngelCloudyDevops/PERUSURVIVOR
+
+Requiere Node.js 20 o superior. No hay dependencias que instalar: ejecuta npm start para abrir el servidor en http://127.0.0.1:4173 y npm test para comprobar el juego.

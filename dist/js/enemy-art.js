@@ -1,0 +1,9 @@
+'use strict';
+P.EnemyArt={
+names:['Pablo','Tyrone','Uniqua','Tasha','Austin','PNP'],ready:false,cells:[],
+init(){if(typeof Image==='undefined')return;this.image=new Image();this.image.onload=()=>{this.measure();this.ready=true};this.image.onerror=()=>console.warn('No se pudo cargar el atlas de rivales');this.image.src='assets/sprites/rivales-atlas-v1.png'},
+measure(){const image=this.image,cv=document.createElement('canvas');cv.width=image.width;cv.height=image.height;const ctx=cv.getContext('2d');ctx.drawImage(image,0,0);const pixels=ctx.getImageData(0,0,cv.width,cv.height).data;
+for(let row=0;row<6;row++){const frames=[];for(let col=0;col<2;col++){const sx=Math.round(col*image.width/2),sy=Math.round([0,246,491,738,976,1246,1536][row]/1536*image.height),rightEdge=Math.round((col+1)*image.width/2),bottomEdge=Math.round([0,246,491,738,976,1246,1536][row+1]/1536*image.height),cw=rightEdge-sx,ch=bottomEdge-sy;let left=cw,right=0,top=ch,bottom=0;for(let y=1;y<ch-1;y++)for(let x=1;x<cw-1;x++)if(pixels[((sy+y)*cv.width+sx+x)*4+3]>160){left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y)}frames.push({sx:sx+left,sy:sy+top,w:Math.max(1,right-left+1),h:Math.max(1,bottom-top+1)})}this.cells.push(frames)}
+},
+draw(ctx,e){if(!this.ready)return false;const row=e.design||0,frame=Math.floor(P.state.elapsed*7+row*.3)%2,cell=this.cells[row][frame],height=e.heavy?67:50,width=cell.w/cell.h*height;ctx.save();ctx.translate(Math.round(e.x),Math.round(e.y+e.r*.8));ctx.fillStyle='#14203255';ctx.beginPath();ctx.ellipse(0,0,e.r,5,0,0,7);ctx.fill();if(P.state.player.x<e.x)ctx.scale(-1,1);ctx.imageSmoothingEnabled=false;if(e.hit>0)ctx.globalAlpha=.6;ctx.drawImage(this.image,cell.sx,cell.sy,cell.w,cell.h,Math.round(-width/2),-height,Math.round(width),height);ctx.restore();return true}
+};
