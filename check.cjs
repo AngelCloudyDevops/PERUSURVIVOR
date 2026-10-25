@@ -1,6 +1,27 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
-const elements=new Map();function element(){return {style:{},hidden:false,dataset:{},classList:{toggle(){}},append(){},replaceChildren(){},addEventListener(){},setPointerCapture(){}}}const context={console,Math,innerWidth:1280,innerHeight:800,devicePixelRatio:1,addEventListener(){},requestAnimationFrame(){},localStorage:{getItem(){return null},setItem(){}},document:{querySelector(s){if(!elements.has(s))elements.set(s,element());return elements.get(s)},querySelectorAll(){return []},createElement:element}};context.document.querySelector('#game').getContext=()=>new Proxy({createRadialGradient:()=>({addColorStop(){}}),createLinearGradient:()=>({addColorStop(){}})},{get(t,k){return t[k]||(()=>{})}});vm.createContext(context);vm.runInContext(fs.readFileSync(__dirname+'/dist/game.js','utf8'),context);
-vm.runInContext(`start();assertion=mode==='play'&&player.hp===100;`,context);assert(context.assertion);
-vm.runInContext(`keys.d=true;update(.1);assertion=player.x>0;keys={};pause();assertion=assertion&&mode==='pause';pause();assertion=assertion&&mode==='play';xp=need;levelup();assertion=assertion&&mode==='upgrade'&&level===2;`,context);assert(context.assertion);
-vm.runInContext(`start();player.hp=999999;for(let i=0;i<4000;i++){if(mode==='upgrade'){upgrades[0].fn();mode='play'}if(mode==='play')update(.04)}draw(100);assertion=Number.isFinite(player.x)&&elapsed>100;`,context);assert(context.assertion);
-vm.runInContext(`start();elapsed=300;update(.01);assertion=bossSpawned&&enemies.some(e=>e.boss);finish(true);assertion=assertion&&mode==='end';menu();draw(100);assertion=assertion&&mode==='menu';`,context);assert(context.assertion);console.log('OK: inicio, movimiento, pausa, evolución, simulación, jefe y fin.');
+const elements=new Map(),events={},storage={};
+const drawing=new Proxy({createRadialGradient:()=>({addColorStop(){}})}, {get(t,k){return t[k]||(()=>{})}});
+function element(tag='div'){return {tag,children:[],style:{},hidden:false,dataset:{},classList:{add(){},remove(){},toggle(){}},setAttribute(){},append(...c){this.children.push(...c)},replaceChildren(){this.children=[]},querySelector(){return this.children.find(c=>c.tag==='button')},focus(){},addEventListener(n,f){this[n]=f},getContext(){return drawing},setPointerCapture(){}}}
+const context={console,Math,innerWidth:1280,innerHeight:800,devicePixelRatio:1,requestAnimationFrame(){},addEventListener(n,f){events[n]=f},localStorage:{getItem(k){return storage[k]},setItem(k,v){storage[k]=v}},document:{body:element(),querySelector(s){if(!elements.has(s))elements.set(s,element());return elements.get(s)},querySelectorAll(){return elements.get('#characters')?.children||[]},createElement:element}};
+context.window=context;vm.createContext(context);
+for(const file of ['data','core','entities','combat','systems','world','ui','game'])vm.runInContext(fs.readFileSync(__dirname+'/dist/js/'+file+'.js','utf8'),context,{filename:file});
+const P=context.P,s=P.state;
+assert.equal(P.Data.characters.length,6);assert.equal(elements.get('#characters').children.length,6);
+function target(x,y,hp=2000){return {x,y,hp,max:hp,r:13,speed:0,hit:0,boss:false,heavy:false}}
+for(let i=0;i<6;i++){
+ P.UI.select(i);P.Game.start();const p=s.player;
+ assert.equal(p.id,P.Data.characters[i].id);
+ let point=p.attack==='orbit'?P.Combat.orbitPoints(p,0)[0]:{x:p.x+90,y:p.y};
+ const e=target(point.x,point.y);s.enemies=[e];P.Combat.cast();
+ if(s.shots.length)for(let t=0;t<8;t++)P.Combat.tick(.04);
+ assert(e.hp<2000,'Ataque no daña: '+p.name);
+ P.World.render(100);console.log('OK ataque: '+p.name);
+}
+P.Game.start();const old=s.player.x;P.Core.keys.d=true;P.Game.update(.04);assert(s.player.x>old);
+P.UI.pause();assert.equal(s.mode,'pause');const elapsed=s.elapsed;P.Game.update(.04);assert.equal(s.elapsed,elapsed);P.UI.pause();assert.equal(s.mode,'play');
+s.xp=s.need;P.Systems.collect(0);assert.equal(s.mode,'upgrade');assert.equal(s.level,2);const btn=elements.get('#overlay').children.find(c=>c.tag==='button');btn.onclick();assert.equal(s.mode,'play');
+const p=s.player;p.x=0;p.y=80;P.World.collide(p,{x:0,y:95});assert(Math.hypot(p.x,p.y)>=90);
+P.UI.select(1);P.Game.start();s.enemies=[target(s.player.x+150,s.player.y)];P.Combat.cast();let shot=s.shots[0];for(let i=0;i<15;i++)P.Combat.tick(.04);assert(shot.returning,'El micrófono debe regresar');
+P.Game.start();s.player.hp=s.player.maxHp=999999;for(let i=0;i<7600;i++){if(s.mode==='upgrade'){elements.get('#overlay').children.find(c=>c.tag==='button').onclick()}P.Game.update(.04)}assert(s.bossSpawned);const boss=s.enemies.find(e=>e.boss);assert(boss);P.Entities.hurt(boss,999999);assert.equal(s.mode,'end');assert(storage['causas-best']);
+P.Game.start();s.player.hp=1;s.enemies=[target(s.player.x,s.player.y)];P.Game.update(.04);assert.equal(s.mode,'end');P.UI.menu();assert.equal(s.mode,'menu');P.World.render(100);
+console.log('OK: movimiento, pausa, mejora, colisión de fuente, bumerán, simulación de cinco minutos, jefe, victoria, derrota y retorno al menú.');

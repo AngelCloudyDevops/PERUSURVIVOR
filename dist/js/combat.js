@@ -1,0 +1,12 @@
+'use strict';
+P.Combat={
+orbitPoints(p,time){return Array.from({length:3},(_,i)=>{const a=time*2.8+i*Math.PI*2/3;return {x:p.x+Math.cos(a)*100*p.reach,y:p.y+Math.sin(a)*100*p.reach}})},
+cast(){const s=P.state,p=s.player,a=P.Data.attacks[p.attack],targets=s.enemies.filter(e=>e.hp>0);if(!targets.length)return;const target=targets.reduce((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)<Math.hypot(b.x-p.x,b.y-p.y)?a:b);p.aim=Math.atan2(target.y-p.y,target.x-p.x);const r=a.range*p.reach;
+if(a.kind==='spread'||a.kind==='boomerang'){const count=p.attack==='feathers'?5:a.kind==='spread'?3:1;for(let i=0;i<count;i++){let angle=p.aim+(i-(count-1)/2)*.18;s.shots.push({x:p.x,y:p.y,vx:Math.cos(angle)*470,vy:Math.sin(angle)*470,life:a.kind==='boomerang'?1.3*p.reach:r/470,turnAt:.55*p.reach,age:0,kind:a.kind,glyph:a.glyph,color:p.color,power:p.power,hits:new Set(),returning:false})}}
+if(a.kind==='nova'||a.kind==='cone'){s.effects.push({kind:a.kind,x:p.x,y:p.y,angle:p.aim,r,life:.32,maxLife:.32,color:p.color,glyph:a.glyph});for(const e of targets){let d=Math.hypot(e.x-p.x,e.y-p.y),angle=Math.atan2(e.y-p.y,e.x-p.x)-p.aim;angle=Math.atan2(Math.sin(angle),Math.cos(angle));if(d<r+e.r&&(a.kind==='nova'||Math.abs(angle)<.65))P.Entities.hurt(e,p.power,a.kind==='nova'?28:10);if(s.mode!=='play')return}}
+if(a.kind==='orbit')for(const point of this.orbitPoints(p,s.elapsed))for(const e of targets){if(Math.hypot(point.x-e.x,point.y-e.y)<e.r+24)P.Entities.hurt(e,p.power);if(s.mode!=='play')return}
+},
+tick(dt){const s=P.state,p=s.player;s.fire-=dt;if(s.fire<=0){this.cast();s.fire=p.rate}if(s.mode!=='play')return;
+for(const shot of s.shots){shot.age+=dt;shot.life-=dt;if(shot.kind==='boomerang'&&shot.age>shot.turnAt){if(!shot.returning){shot.returning=true;shot.hits.clear()}let dx=p.x-shot.x,dy=p.y-shot.y,d=Math.hypot(dx,dy)||1;shot.vx=dx/d*530;shot.vy=dy/d*530;if(d<18)shot.life=0}shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;for(const e of s.enemies){if(e.hp<=0||shot.hits.has(e)||shot.life<=0)continue;if(Math.hypot(e.x-shot.x,e.y-shot.y)<e.r+10){shot.hits.add(e);P.Entities.hurt(e,shot.power);if(shot.kind!=='boomerang')shot.life=0;if(s.mode!=='play')return}}}
+s.shots=s.shots.filter(p=>p.life>0);s.enemies=s.enemies.filter(e=>e.hp>0)}
+};
