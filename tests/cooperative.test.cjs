@@ -48,7 +48,7 @@ test('Cofres cooperativos: llave compartida, apertura única, elecciones separad
  sim.tick(.04,[{},{}]);assert(s.elapsed>elapsed);assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));
 });
 test('Evento cooperativo: cualquiera inicia, defensa alternada, curación de ambos y premio irrepetible',()=>{
- const sim=new Simulation('campo',[0,6]),P=sim.P,s=P.state,a=sim.activities;P.Systems.spawn=()=>{};const station=P.Exploration.station;assert(station);
+ const sim=new Simulation('campo',[0,6]),P=sim.P,s=P.state,a=sim.activities;P.Systems.spawn=()=>{};P.Loot.active=()=>[]; /* Aislar la defensa de aperturas aleatorias de cofres. */const station=P.Exploration.station;assert(station);
  assert(!a.action(0,'event'));for(const p of sim.players){p.x=station.x;p.y=station.y;p.hp=30;p.inv=99999}
  assert(a.action(1,'event'));assert.equal(station.phase,'active');assert(!a.action(0,'event'));
  for(let i=0;i<501;i++){s.enemies=[];s.danger=[];if(i===230){sim.players[0].x=station.x+250;sim.players[1].x=station.x}sim.tick(.04,[{},{}])}

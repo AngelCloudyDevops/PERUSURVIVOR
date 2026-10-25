@@ -122,5 +122,9 @@ module.exports = [
   {
     "source": "src/scenes/game.js",
     "output": "js/game.js"
+  },
+  {
+    "source": "src/scenes/practice.js",
+    "output": "js/practice.js"
   }
 ];
