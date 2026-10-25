@@ -138,3 +138,5 @@ EnemyArt.feedbackProfiles define seis reacciones visuales de impacto y muerte. E
 Sprites.bounds recorta la figura conexa principal por alfa y conserva detalles cercanos, descartando islas lejanas del personaje vecino. Sprites.measure y EnemyArt.measure comparten este recorte y reinician sus celdas al cargar para evitar acumulaciones. Los atlas originales no se modifican.
 
 Ambient.leafMass rasteriza elipses por franjas de dos unidades; foliage agrupa esas masas en siluetas orgánicas. Ambient.bush y Terrain.planter reutilizan el dibujo, sin nuevos recursos ni cambios físicos.
+## Señales de portadores y llaves
+Terrain.minimapSignals consulta los enemigos vivos con keyTier y las gems key no recogidas, valida posición y rareza, y reutiliza la proyección y rango del minimapa. minimapSignal dibuja siluetas de rombo/llave con contraste oscuro y la paleta compartida de Loot.rarity. La misma función alimenta la leyenda de tipos; los marcadores se dibujan antes del jugador y dentro del recorte. No agrega estado persistente ni altera el botín.
