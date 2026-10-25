@@ -157,3 +157,6 @@ Música instrumental sintetizada original por mapa y tema de jefe. Efectos de at
 
 ## Cámara y coberturas detalladas
 El zoom de combate escala con el ancho de escritorio: arenas 1,5 a 1280 px y 2,25 a 1920 px; terreno 1,7 y 2,55 respectivamente. En móvil se limita el acercamiento para conservar espacio de maniobra. La cámara de arena sigue al jugador en vertical y lo mantiene dentro del encuadre. Las cuatro coberturas conservan posición, tamaño de colisión y bloqueo de proyectiles; su atlas detallado distingue barreras, jardineras y muros incas.
+
+## Práctica pública de Kingteka
+Entrada desde menú, carga inicial completa y recarga manual gratuita; objetivos estáticos resistentes reponibles. Invencible, sin oleadas, portales, final por tiempo ni récords. La ulti usa los mismos sonidos, sprites y duración de combate. Recargar durante el efecto prepara la siguiente activación, conserva el remate.

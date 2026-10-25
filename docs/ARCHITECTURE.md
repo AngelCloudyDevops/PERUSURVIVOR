@@ -100,3 +100,5 @@ Audio usa Web Audio con osciladores y envolventes cortas, polifonía limitada y 
 La marcha de los rivales usa la distancia real tras resolver colisiones en Systems.move. EnemyArt combina los dos cuadros del atlas con balanceo, rebote y desplazamiento alternado de pies; el ciclo se detiene sin desplazamiento y conserva la dirección horizontal. No modifica velocidad, daño ni colisiones.
 
 P.CoverArt carga el atlas exclusivo de arena antes del arranque y dibuja solo props con id arena:. P.Terrain conserva la física y el fallback geométrico. P.World.zoomFor calcula el encuadre según ancho de ventana; P.BossArt.camera sigue al jugador dentro del fondo.
+
+P.Practice es un modo público explícito, separado del servidor local QA. Game.update delega mientras practice=true; reutiliza movimiento, colisión, combate y Ultimate, sin progresión. UI.menu y Game.start limpian el indicador.

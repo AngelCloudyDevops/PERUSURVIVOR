@@ -112,3 +112,6 @@ La ulti se carga con 20 bajas y se activa con Q o el botón táctil: ocho segund
 
 ## Sonido y música
 Música retro original por mapa, tema de jefe y efectos sintetizados mediante Web Audio. El botón Sonido recuerda el silencio. Requiere una interacción inicial y se pausa fuera de la partida. No descarga grabaciones externas.
+
+### Práctica de Kingteka en producción
+En https://perusurvivor.michitech.tech usa «Probar ulti de Kingteka · Gallinazos y sonidos». Empieza con carga completa, objetivos resistentes e invencibilidad. «Recargar ulti» permite repetirla sin bajas. Si sigue activa, espera el remate DENUNCIADO antes de volver a activarla. No modifica récords ni progreso; «Salir de práctica» regresa al menú.
