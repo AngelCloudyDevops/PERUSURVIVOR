@@ -1,6 +1,6 @@
 'use strict';
 P.World={
-zoomFor(w,h,playing,encounter){if(!playing)return Math.max(.6,w/2400,h/1600);const desktop=Math.max(1,w/1280),mobile=Math.min(1,w/760);return Math.max(encounter?1.05:1.15,(encounter?1.5:1.7)*desktop*mobile)},
+zoomFor(w,h,playing,encounter){if(!playing)return Math.max(.6,w/2400,h/1600);const desktop=Math.max(1,w/1280),mobile=Math.min(1,w/760);return encounter?Math.max(1.05,1.5*desktop*mobile):Math.max(.95,1.3*desktop*mobile)},
 visible(x,y,r=160){const v=this.view;return !v||x+r>=v.left&&x-r<=v.right&&y+r>=v.top&&y-r<=v.bottom},
 collide(p,old){P.Maps.collide(p,old)},
 draw(ctx,cx,cy,w,h,time){if(P.state.mode==='menu'&&P.MapArt.simpleStyle){if(this.menuMap!==P.Maps.selected){P.Chunks.cache.clear();this.menuMap=P.Maps.selected}P.Chunks.draw(ctx,cx,cy,w,h);const id=P.Maps.selected;for(const [x,y] of [[-650,-250],[-350,100],[420,-100],[750,260],[-650,500],[150,520]])P.Terrain.draw(ctx,{kind:id==='machu'?'rock':id==='plaza'?'planter':'tree',x,y,w:id==='plaza'?100:60,h:45});return}if(P.state.encounter)P.BossArt.background(ctx,cx,cy,w,h,time);else P.Maps.draw(ctx,cx,cy,w,h,time)},
