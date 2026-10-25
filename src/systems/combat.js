@@ -21,14 +21,16 @@ if(a.kind==='orbit')for(const point of this.orbitPoints(p,s.elapsed)){const obst
 return true
 },
 impact(shot){if(!shot.cloud)return;P.state.fields.push({x:shot.x,y:shot.y,r:85,power:shot.power*.25,life:2.5,tick:0,color:'#a6bb78'});shot.cloud=false},
-segmentHit(shot,e,oldX,oldY){const dx=shot.x-oldX,dy=shot.y-oldY,len=dx*dx+dy*dy,t=len?Math.max(0,Math.min(1,((e.x-oldX)*dx+(e.y-oldY)*dy)/len)):0;return Math.hypot(e.x-oldX-t*dx,e.y-oldY-t*dy)<e.r+7},
-tick(dt){const s=P.state,p=s.player;s.fire-=dt;if(s.fire<=0)s.fire=this.cast()?p.rate/(P.Ultimate.active()?2:1):.05;if(s.mode!=='play')return;
+segmentHit(shot,e,oldX,oldY){const radius=e.r+7;if(e.x<Math.min(oldX,shot.x)-radius||e.x>Math.max(oldX,shot.x)+radius||e.y<Math.min(oldY,shot.y)-radius||e.y>Math.max(oldY,shot.y)+radius)return false;const dx=shot.x-oldX,dy=shot.y-oldY,len=dx*dx+dy*dy,t=len?Math.max(0,Math.min(1,((e.x-oldX)*dx+(e.y-oldY)*dy)/len)):0;return Math.hypot(e.x-oldX-t*dx,e.y-oldY-t*dy)<e.r+7},
+indexEnemies(enemies){const buckets=new Map();let radius=0;for(let i=0;i<enemies.length;i++){const e=enemies[i];radius=Math.max(radius,e.r||0);const key=Math.floor(e.x/128)+','+Math.floor(e.y/128);let bucket=buckets.get(key);if(!bucket)buckets.set(key,bucket=[]);bucket.push({e,i})}return {buckets,radius}},
+nearSegment(index,x,y,tx,ty){const r=index.radius+7,found=[];for(let cy=Math.floor((Math.min(y,ty)-r)/128);cy<=Math.floor((Math.max(y,ty)+r)/128);cy++)for(let cx=Math.floor((Math.min(x,tx)-r)/128);cx<=Math.floor((Math.max(x,tx)+r)/128);cx++){const bucket=index.buckets.get(cx+','+cy);if(bucket)for(const entry of bucket)found.push(entry)}found.sort((a,b)=>a.i-b.i);return found},
+tick(dt){const s=P.state,p=s.player;s.fire-=dt;if(s.fire<=0)s.fire=this.cast()?p.rate/(P.Ultimate.active()?2:1):.05;if(s.mode!=='play')return;const enemyIndex=s.shots.length>=8&&s.enemies.length>=24?this.indexEnemies(s.enemies):null;
 for(const shot of s.shots){const oldX=shot.x,oldY=shot.y,oldAge=shot.age;shot.history.push({x:shot.x,y:shot.y});if(shot.history.length>8)shot.history.shift();shot.age+=dt;shot.life-=dt;
  if(shot.kind==='boomerang'&&shot.age>shot.turnAt){if(!shot.returning){shot.returning=true;shot.hits.clear()}const dx=p.x-shot.x,dy=p.y-shot.y,d=Math.hypot(dx,dy)||1;shot.vx=dx/d*530;shot.vy=dy/d*530;if(d<18)shot.life=0}
  shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;
  if(shot.motion==='zigzag'){const wobble=(Math.sin(shot.age*shot.frequency)-Math.sin(oldAge*shot.frequency))*shot.amplitude;shot.x-=Math.sin(shot.angle)*wobble;shot.y+=Math.cos(shot.angle)*wobble}
  const obstacle=P.Terrain.hit(shot.x,shot.y,5);if(obstacle){P.Terrain.damage(obstacle,shot.power);this.impact(shot);shot.life=0;continue}
- for(const e of s.enemies){if(e.hp<=0||shot.hits.has(e)||shot.life<=0)continue;if(this.segmentHit(shot,e,oldX,oldY)){shot.hits.add(e);P.Ultimate.hit(shot,e);P.Entities.hurt(e,shot.power);if(s.mode!=='play')return;shot.remaining--;if(shot.remaining<=0)shot.life=0;this.impact(shot);if(s.mode!=='play')return}}
+ const candidates=enemyIndex?this.nearSegment(enemyIndex,oldX,oldY,shot.x,shot.y):s.enemies;for(const entry of candidates){if(shot.life<=0)break;const e=enemyIndex?entry.e:entry;if(e.hp<=0||shot.hits.has(e))continue;if(this.segmentHit(shot,e,oldX,oldY)){shot.hits.add(e);P.Ultimate.hit(shot,e);P.Entities.hurt(e,shot.power);if(s.mode!=='play')return;shot.remaining--;if(shot.remaining<=0)shot.life=0;this.impact(shot);if(s.mode!=='play')return}}
  if(shot.life<=0)this.impact(shot)
 }
 s.shots=s.shots.filter(shot=>shot.life>0);s.enemies=s.enemies.filter(e=>e.hp>0);
