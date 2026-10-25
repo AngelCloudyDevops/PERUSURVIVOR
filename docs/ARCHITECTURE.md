@@ -108,3 +108,6 @@ Loot usa una semilla de partida y Chunks.hash para derivar densidad, posición y
 Sprites.draw acepta una marcha opcional para deformar bandas de brazos y pies del actor sin afectar los retratos ni la pose de ataque. Systems.ranged administra aviso, dirección fijada y enfriamiento de minions; Combat comparte la colisión de proyectiles y acepta daño específico con valor previo por defecto.
 
 La entrada espera los tres atlas jugables, el mapa inicial y los rivales antes de revelar el menú. El HTML incluye un estado de carga con estilo mínimo para evitar arte provisional incluso antes de la hoja CSS. UI.loading suspende el dibujo del mundo durante esta espera y permite reintentar ante fallo o 20 segundos de espera; los recursos iniciales tienen preload. El HUD de botín tolera que su atlas llegue antes de crear al jugador.
+
+## Actualizaciones del navegador
+El build genera version.json con una huella reproducible del contenido y añade hashes a las URLs de JavaScript y CSS. P.Updates consulta la versión sin caché al abrir, al recuperar el foco y cada 30 segundos. Recarga automáticamente en menú o fin de partida; durante una partida muestra un botón y espera para no perder el progreso. Errores de red no interrumpen el juego. El HTML de Hostinger se revalida con Cache-Control: no-cache. No se usa service worker.

@@ -1,4 +1,4 @@
-const fs=require('node:fs'),path=require('node:path');
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist'),modules=require('./modules.cjs');
 function copy(from,to){fs.mkdirSync(path.dirname(to),{recursive:true});fs.copyFileSync(from,to)}
 function build(){
@@ -10,6 +10,9 @@ function build(){
  copy(path.join(root,'src/ui/styles.css'),path.join(out,'style.css'));
  for(const m of modules)copy(path.join(root,m.source),path.join(out,m.output));
  fs.cpSync(path.join(root,'public'),out,{recursive:true});
+ // Identidad reproducible del contenido; cada recurso cambia de URL cuando cambia.
+ const digest=crypto.createHash('sha256');function fingerprint(dir){for(const name of fs.readdirSync(dir).sort()){const file=path.join(dir,name);if(fs.statSync(file).isDirectory())fingerprint(file);else{digest.update(path.relative(out,file).split(path.sep).join('/'));digest.update(fs.readFileSync(file))}}}fingerprint(out);const version=digest.digest('hex').slice(0,20);
+ const index=path.join(out,'index.html');let html=fs.readFileSync(index,'utf8');html=html.replace('</head>','<meta name="game-version" content="'+version+'"></head>');html=html.replace(/(src|href)="((?:js\/[^"?]+\.js|style\.css))"/g,(_,attribute,file)=>attribute+'="'+file+'?v='+crypto.createHash('sha256').update(fs.readFileSync(path.join(out,file))).digest('hex').slice(0,16)+'"');fs.writeFileSync(index,html);fs.writeFileSync(path.join(out,'version.json'),JSON.stringify({version})+'\n');
  const qa=path.join(out,'qa-portals.html');if(fs.existsSync(qa))fs.unlinkSync(qa);
  console.log('Build listo: dist/ ('+modules.length+' módulos)');
 }
