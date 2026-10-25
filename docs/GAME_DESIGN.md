@@ -220,3 +220,6 @@ El minimapa identifica portadores vivos con un rombo y llaves del suelo con un i
 
 ## Contador y prueba de rendimiento
 En Desarrollo se puede activar el contador de FPS para las partidas y elegir una carga de 80 minions/200 proyectiles, 80/400 o 160/600. La prueba usa el escenario y personaje seleccionados, permite movimiento y pausa, mantiene ataques y animaciones, da invulnerabilidad y repone la carga. No guarda récords ni activa cofres o eventos opcionales. Tras 3 segundos de preparación mide 30 segundos visibles, con salida anticipada y resumen de FPS medios, ms por fotograma y P95. P95 es el tiempo que no superan el 95 % de los fotogramas; menor es mejor. El resultado depende del dispositivo, frecuencia de pantalla y navegador.
+
+## Animación de la picada del Gallinazo
+Durante el aviso, el ave levanta las alas, asciende y una sombra recorre la franja roja. La franja termina antes de la primera cobertura o borde previsto. Al lanzarse deja una estela acotada de plumas; al chocar o aterrizar produce polvo y un anillo de impacto, y comprime el cuerpo mientras recupera el equilibrio durante 0,65 s. Esa ventana permite atacarlo. La doble picada conserva su segundo aviso. El daño y la velocidad no cambian. Las partículas se pausan con la simulación, están limitadas a 32 por jefe y se omiten con movimiento reducido, conservando el aviso de peligro.

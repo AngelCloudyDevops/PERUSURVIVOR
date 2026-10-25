@@ -143,3 +143,5 @@ Terrain.minimapSignals consulta los enemigos vivos con keyTier y las gems key no
 
 
 Performance toma intervalos reales de requestAnimationFrame, sin usar el dt limitado de la simulación. Actualiza el panel cada 500 ms con una ventana de 240 muestras. La prueba acumula métricas solo en play, excluye la pestaña oculta y la preparación, y limita las muestras almacenadas a 20.000. Usa el laboratorio autorizado por el usuario y devRun para no escribir récords; salir al menú o iniciar otra partida cancela la prueba. Los perfiles están acotados a 160 enemigos y 600 proyectiles objetivo, con enemigos resistentes para mantener la carga y reponer proyectiles durante el combate normal.
+
+P.Vulture mantiene sus partículas en cada enemigo, las actualiza con dt de combate y separa ground (sombras bajo los actores) de effects (plumas y polvo). pose devuelve la elevación y compresión del sprite sin modificar el cuerpo de colisión. pathLength calcula la franja de picada a partir de los mismos límites y coberturas de la escena. No se añaden imágenes ni temporizadores independientes.
