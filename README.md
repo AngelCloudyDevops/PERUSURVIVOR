@@ -134,3 +134,6 @@ Los portadores vivos y las llaves que quedan en el suelo se muestran hasta 900 u
 
 ## Flecha hacia portadores y llaves
 El HUD indica con una flecha de ocho direcciones y distancia al portador vivo o llave sin recoger más cercano. Usa azul para raros y violeta para legendarios, cambia automáticamente al desaparecer el objetivo y también orienta hacia llaves fuera del alcance del minimapa. Se oculta sin objetivos, en arenas, laboratorio, cooperativo y al terminar la partida. Implementación guardada mediante commits y PR en Git; main se publica en Hostinger tras CI.
+
+## Suelo, caminos y profundidad
+El césped usa manchas amplias de verdes y detalles dispersos, sin repetir una ilustración de flores. Los caminos curvos comparten sus extremos entre sectores y reservan corredores libres para caminar. Árboles con copas orgánicas, sombra oval y transparencia al pasar detrás. Campo de Marte incorpora mesas de picnic; Plaza, jardines pareados y plazoletas; Machu Picchu, franjas de terrazas y pasos de piedra. Mantener el dibujo cartoon, las señales de combate visibles y el suelo cacheado por sector.
