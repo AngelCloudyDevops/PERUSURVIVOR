@@ -55,7 +55,7 @@ for(const map of P.Maps.catalog){
  const clock=s.mapTime,normalX=normal.x;P.Game.update(.04);assert.equal(s.mapTime,clock);assert.equal(normal.x,normalX);assert(!s.bossSpawned);
  const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
  if(map.id==='campo')assert.equal(localBoss.phase,'charge');else assert(s.danger.length>0);
- s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=590&&s.player.y>=-370);
+ s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=s.encounter.scene.bounds.right&&s.player.y>=s.encounter.scene.bounds.top);
  P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
  const power=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.mode,'play');assert.equal(s.player.power,power*1.3);P.Encounters.reward(()=>s.player.power=0);assert(s.player.power>0,'No repetir recompensa');
  P.Game.update(.04);assert(s.mapTime>clock);assert(!s.portal.open);
@@ -78,6 +78,18 @@ s.encounter={};assert.equal(P.Terrain.active().length,0,'Las arenas del portal n
 console.log('OK cobertura y compatibilidad con arenas de portales');
 
 
+
+for(const map of P.Maps.catalog){
+ P.UI.menu();P.Maps.select(map.id);P.Game.start();s.mapTime=180;P.Encounters.tick();const point=P.Encounters.definition().portal;s.player.x=point.x;s.player.y=point.y;P.Encounters.offer();P.Encounters.enter();
+ assert(s.encounter.scene);assert.notEqual(P.BossArt.sceneId(),map.id,'El portal debe seleccionar otra escena');
+ const originalMapDraw=P.Maps.draw;let originDraws=0;P.Maps.draw=()=>originDraws++;P.World.render(700);P.Maps.draw=originalMapDraw;assert.equal(originDraws,0,'No se debe dibujar el mapa de origen detrás de la arena');
+ assert.equal(P.Terrain.active().length,0);
+ const local=s.enemies[0];local.phase='warning';assert.equal(P.BossArt.frame(local),3);local.phase='charge';assert.equal(P.BossArt.frame(local),4);local.phase='recover';local.attackUntil=0;assert.equal(P.BossArt.frame(local),5);
+ local.phase='warning';local.windup=.01;P.Encounters.bossMove(local,.02);if(local.kind!=='combi'){assert.equal(local.phase,'recover');assert.equal(P.BossArt.frame(local),4);s.elapsed+=.3;assert.equal(P.BossArt.frame(local),5)}
+ const png=fs.readFileSync(path.join(root,'public/assets/arenas/'+s.encounter.scene.asset+'-v1.png'));assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
+ P.Entities.hurt(local,99999);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
+}
+const bossPng=fs.readFileSync(path.join(root,'public/assets/bosses/boss-atlas-v1.png'));assert.equal(bossPng.toString('hex',0,8),'89504e470d0a1a0a');
 P.Game.start();s.mapTime=180;P.Encounters.tick();const uiPoint=P.Encounters.definition().portal;s.player.x=uiPoint.x;s.player.y=uiPoint.y;elements.get('#portal-enter').hidden=true;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,false,'El HUD debe mostrar el botón cercano');s.player.x=-900;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,true,'El HUD oculta el botón lejano');console.log('OK: botón de portal conectado al HUD');
 
 });
