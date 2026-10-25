@@ -9,9 +9,9 @@ const context={console,Math,innerWidth:1280,innerHeight:800,devicePixelRatio:1,r
 context.window=context;vm.createContext(context);
 for(const m of modules)vm.runInContext(fs.readFileSync(path.join(root,m.source),'utf8'),context,{filename:m.source});
 const P=context.P,s=P.state;
-assert.equal(P.Data.characters.length,14);assert.equal(elements.get('#characters').children.length,14);
+assert.equal(P.Data.characters.length,18);assert.equal(elements.get('#characters').children.length,18);
 function target(x,y,hp=2000){return {x,y,hp,max:hp,r:13,speed:0,hit:0,boss:false,heavy:false}}
-for(let i=0;i<14;i++){
+for(let i=0;i<18;i++){
  P.UI.select(i);P.Game.start();const p=s.player;
  assert.equal(p.id,P.Data.characters[i].id);
  let point=p.attack==='orbit'?P.Combat.orbitPoints(p,0)[0]:{x:p.x+90,y:p.y};
@@ -128,6 +128,27 @@ P.Game.start();s.enemies=[];const singleBox=P.Terrain.props.find(o=>o.kind==='cr
 P.Game.start();s.enemies=[];s.player.attack='orbit';s.player.power=100;const orbitBox=P.Terrain.props.find(o=>o.kind==='crate');s.player.x=orbitBox.x-100;s.player.y=orbitBox.y;P.Combat.cast();assert(!orbitBox.solid,'Los ataques orbitales también rompen cajas');
 P.Game.start();P.Loot.equip('vest');s.player.hp=100;s.player.inv=0;s.enemies=[target(s.player.x,s.player.y)];P.Systems.move(.01);assert.equal(s.player.hp,92,'El chaleco reduce daño real de contacto');console.log('OK: cajas sin enemigos, ataques orbitales y reducción real de daño');
 
+
+
+function usePower(id){P.UI.menu();P.UI.select(P.Data.characters.findIndex(c=>c.id===id));P.Game.start();P.Terrain.props=[];s.player.x=0;s.player.y=0;s.fire=999;s.enemies=[];return s.player}
+function enemyAtAngle(deg,distance=100){const a=deg*Math.PI/180;return target(Math.cos(a)*distance,Math.sin(a)*distance,2000)}
+let fighter=usePower('g5');s.enemies=[target(45,0),enemyAtAngle(72),enemyAtAngle(73),target(-95,0),target(170,0)];const victims=[...s.enemies];P.Combat.cast();assert.equal(s.shots.length,0);assert(victims[0].hp<2000);assert(victims[1].hp<2000);assert.equal(victims[2].hp,2000);assert.equal(victims[3].hp,2000);assert.equal(victims[4].hp,2000);assert(Math.abs(s.effects.find(e=>e.kind==='kick').arc-145*Math.PI/180)<1e-9);
+fighter=usePower('g5');s.enemies=[target(500,0)];assert.equal(P.Combat.cast(),false);assert.equal(s.effects.length,0);
+for(const [id,count,glyph] of [['kingteka',5,'BULLET'],['cerdito',7,'BULLET'],['najasor',3,'FISH'],['cevichero',2,'ROACH'],['sustento',1,'ROACH'],['shaka',2,'BANANA']]){
+ usePower(id);s.enemies=[target(400,0)];P.Combat.cast();assert.equal(s.shots.length,count);assert(s.shots.every(shot=>shot.glyph===glyph));if(id==='najasor'){assert.equal(s.effects.filter(e=>e.kind==='shout'&&e.text==='CPEZ').length,1);P.Combat.cast();assert.equal(s.effects.filter(e=>e.kind==='shout').length,2)}
+ if(id==='cevichero'||id==='sustento'){const shot=s.shots[0],oldY=shot.y,vy=shot.vy;P.Combat.tick(.08);assert(Math.abs(shot.y-oldY-vy*.08)>1,'Las cucarachas deben zigzaguear')}
+}
+usePower('fuzo');s.enemies=[target(40,0)];P.Combat.cast();s.shots=[s.shots[0]];const card=s.shots[0];s.enemies=[40,80,120,160].map(d=>target(Math.cos(card.angle)*d,Math.sin(card.angle)*d));const line=[...s.enemies];P.Combat.tick(.3);assert(line.slice(0,3).every(e=>e.hp<2000));assert.equal(line[3].hp,2000);assert.equal(s.shots.length,0);
+usePower('charles');s.enemies=[target(100,0)];P.Combat.cast();P.Combat.tick(.4);assert.equal(s.fields.length,1);const cloud=s.fields[0],inside=target(cloud.x,cloud.y),outside=target(cloud.x+150,cloud.y);s.enemies=[inside,outside];P.Combat.tick(.41);assert(inside.hp<2000);assert.equal(outside.hp,2000);
+s.mapTime=180;P.Encounters.tick();const door=P.Encounters.definition().portal;s.player.x=door.x;s.player.y=door.y;P.Encounters.offer();P.Encounters.enter();assert.equal(s.fields.length,0,'No llevar nubes a la arena');P.Entities.hurt(s.enemies[0],99999);assert.equal(s.fields.length,0,'No traer nubes de vuelta');
+usePower('cevichero');P.Data.upgrades.find(u=>u.id==='projectiles').apply(s.player);s.enemies=[target(400,0)];P.Combat.cast();assert.equal(s.shots.length,3);
+usePower('g5');const previousPower=s.player.power;P.Data.upgrades.find(u=>u.id==='projectiles').apply(s.player);assert(s.player.power>previousPower);assert.equal(s.player.projectileBonus||0,0);
+usePower('kingteka');s.enemies=[target(60,0)];s.enemies[0].r=3;const narrow=s.enemies[0];P.Combat.cast();P.Combat.tick(.1);assert(narrow.hp<2000,'Las balas rápidas deben usar colisión de segmento');
+for(const c of P.Data.characters)assert(P.Data.attacks[c.attack],'Todos los personajes necesitan un ataque válido');
+const powerPng=fs.readFileSync(path.join(root,'public/assets/characters/powers-atlas-v1.png'));assert.equal(powerPng.toString('hex',0,8),'89504e470d0a1a0a');
+console.log('OK poderes: arco 145°, alcance melee, escopetas, CPEZ, zigzag, penetración, nubes, portales y mejoras');
+
+
 const recordBeforeLab=P.Save.best;
 for(const bossId of ['campo','plaza','machu','final']){
  P.$('#lab-boss').value=bossId;P.$('#lab-invincible').checked=true;P.Lab.run();assert(s.devRun);assert.equal(s.enemies.length,1);assert(!elements.get('#lab-tools').hidden);
@@ -137,6 +158,7 @@ for(const bossId of ['campo','plaza','machu','final']){
  console.log('OK laboratorio: '+bossId)
 }
 P.$('#lab-boss').value='campo';P.$('#lab-invincible').checked=false;P.Lab.run();s.player.inv=0;s.enemies[0].x=s.player.x;s.enemies[0].y=s.player.y;const vulnerableHp=s.player.hp;P.Game.update(.04);assert(s.player.hp<vulnerableHp);P.UI.menu();P.Game.start();assert(!s.devRun);assert(!s.encounter);assert.equal(s.mapTime,0);console.log('OK: invencibilidad opcional y retorno al modo normal');
+
 
 
 });

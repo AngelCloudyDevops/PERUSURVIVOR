@@ -3,6 +3,7 @@ P.FX={
 pixel(ctx,x,y,size,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x-size/2),Math.round(y-size/2),size,size)},
 trail(ctx,points,color){if(!points)return;for(let i=0;i<points.length;i++){ctx.globalAlpha=(i+1)/points.length*.45;this.pixel(ctx,points[i].x,points[i].y,3+i/3,color)}ctx.globalAlpha=1},
 projectile(ctx,s){this.trail(ctx,s.history,s.color);ctx.save();ctx.translate(Math.round(s.x),Math.round(s.y));ctx.rotate(s.kind==='boomerang'?s.age*13:Math.atan2(s.vy,s.vx));ctx.shadowColor=s.color;ctx.shadowBlur=8;
+if(P.PowerFX.projectile(ctx,s)){ctx.restore();return}
 if(s.glyph==='MIC'){ctx.fillStyle='#182132';ctx.fillRect(-7,-10,14,20);ctx.fillStyle='#d1dce5';ctx.fillRect(-6,-10,12,9);ctx.fillStyle='#90a4b5';for(let i=0;i<3;i++)ctx.fillRect(-5,-9+i*3,10,1);ctx.fillStyle='#53697b';ctx.fillRect(-3,2,6,13)}
 else if(s.glyph==='FAN'){for(let i=0;i<5;i++){ctx.save();ctx.rotate((i-2)*.32);ctx.fillStyle=i%2?'#ffc078':'#ed843b';ctx.fillRect(-3,-23,6,26);ctx.restore()}this.pixel(ctx,0,2,5,'#fff1bb')}
 else if(s.glyph==='KEY'){ctx.fillStyle='#1a2333';ctx.fillRect(-20,-9,40,18);for(let y=0;y<3;y++)for(let x=0;x<8;x++)this.pixel(ctx,-16+x*4.5,-5+y*4,3,(x+y)%2?'#6bd9e7':'#b59afa')}
@@ -13,6 +14,7 @@ else{ctx.fillStyle='#332b59';ctx.fillRect(-11,-11,22,22);ctx.fillStyle=s.color;c
 ctx.restore()},
 orbit(ctx,p){const points=P.Combat.orbitPoints(p,P.state.elapsed);ctx.save();ctx.strokeStyle='#edb26b55';ctx.lineWidth=1;ctx.setLineDash([3,9]);ctx.beginPath();ctx.ellipse(p.x,p.y,100*p.reach,100*p.reach,0,0,7);ctx.stroke();ctx.setLineDash([]);for(let i=0;i<points.length;i++){const o=points[i],a=P.state.elapsed*2.8+i*Math.PI*2/3;for(let j=8;j>0;j--){ctx.globalAlpha=(1-j/9)*.35;const t=a-j*.045;this.pixel(ctx,p.x+Math.cos(t)*100*p.reach,p.y+Math.sin(t)*100*p.reach,6,'#edb26b')}ctx.globalAlpha=1;ctx.save();ctx.translate(o.x,o.y);ctx.rotate(a+Math.PI/2);for(let k=-3;k<=3;k++){ctx.fillStyle=k%3===0?'#f4ead3':'#e76b5d';ctx.fillRect(k*5,-7+Math.sin(P.state.elapsed*12+k)*3,5,14)}ctx.restore()}ctx.restore()},
 effect(ctx,e){const progress=1-e.life/e.maxLife;ctx.save();ctx.globalAlpha=Math.min(1,e.life/e.maxLife*2);
+if(P.PowerFX.effect(ctx,e,progress)){ctx.restore();return}
 if(e.kind==='spark'){this.pixel(ctx,e.x,e.y,4,e.color)}
 else if(e.kind==='damage'){ctx.fillStyle='#fff1bc';ctx.font='bold 12px monospace';ctx.textAlign='center';ctx.fillText(e.text,e.x,e.y-progress*26)}
 else if(e.kind==='cast'){for(let i=0;i<6;i++){const a=i*Math.PI/3+progress*2;this.pixel(ctx,e.x+Math.cos(a)*(8+progress*20),e.y+Math.sin(a)*(8+progress*20),4,e.color)}}

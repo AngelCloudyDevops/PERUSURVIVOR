@@ -5,6 +5,10 @@ module.exports = [
     "output": "js/data.js"
   },
   {
+    "source": "src/data/powers.js",
+    "output": "js/powers.js"
+  },
+  {
     "source": "src/core/runtime.js",
     "output": "js/core.js"
   },
@@ -15,6 +19,10 @@ module.exports = [
   {
     "source": "src/rendering/enemy-art.js",
     "output": "js/enemy-art.js"
+  },
+  {
+    "source": "src/rendering/power-effects.js",
+    "output": "js/power-fx.js"
   },
   {
     "source": "src/rendering/effects.js",

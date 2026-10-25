@@ -62,6 +62,12 @@ src/systems/chunks.js se carga antes del terreno. P.Chunks mantiene una ventana 
 src/systems/loot.js centraliza cofres, catálogo de objetos, monedas de partida, reemplazo reversible de accesorios y reducción de daño. Terrain.damage delega la creación del botín y protege contra premios duplicados. Game.start reinicia el sistema después de generar el terreno; Game.update avanza los cofres solo en estado play. World ordena los cofres por profundidad y dibuja monedas e indicadores de equipo.
 Encounters.win crea el cofre dorado y difiere su selector de recompensas mediante una función onOpen. El inventario no altera el catálogo base del personaje. scripts/modules.cjs carga Loot antes del renderizador y las pantallas. La prueba local de interacción está en tests/manual/serve-loot.cjs y se sirve por el puerto 4186; sus controles no se distribuyen en dist.
 
+
+## Poderes configurables
+src/data/powers.js amplía el catálogo después de data/catalog.js. Combat interpreta count, spread, speed, pierce, motion, cloud y arc; las colisiones de proyectil recorren el segmento entre dos posiciones para evitar atravesar blancos al disparar rápido. El conjunto hits evita daño repetido por el mismo proyectil; el bumerán lo reinicia al regresar.
+Los campos temporales viven en P.state.fields y se eliminan en arranque y transiciones. src/rendering/power-effects.js dibuja los proyectiles y los efectos adicionales; effects.js lo invoca conservando los efectos anteriores. El atlas powers-atlas-v1.png usa nueve filas y cuatro poses, y se carga con el renderizador de sprites existente.
+Prueba visual: npm run build y node tests/manual/serve-powers.cjs; abrir /__qa/powers en el puerto 4185. Esta ruta y los controles no forman parte de la distribución.
+
 ## Arte modular del entorno
 src/rendering/map-art.js carga tres atlas de objetos (3 columnas por 2 filas) y un atlas opaco de suelos/caminos. Los PNG y prompts están en public/assets/environment/. El cargador recorta por alfa y ancla cada sprite a su base; el render usa nearest-neighbor. Los sectores invalidan sus lienzos cuando termina de cargar el atlas de suelo. P.Terrain mantiene la geometría física independiente del dibujo; P.World ordena los objetos y los personajes por la coordenada de sus pies. Se conserva el renderer procedural como respaldo durante la carga.
 ## Laboratorio de desarrollo
