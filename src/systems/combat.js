@@ -28,7 +28,7 @@ for(const shot of s.shots){const oldX=shot.x,oldY=shot.y,oldAge=shot.age;shot.hi
  shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;
  if(shot.motion==='zigzag'){const wobble=(Math.sin(shot.age*shot.frequency)-Math.sin(oldAge*shot.frequency))*shot.amplitude;shot.x-=Math.sin(shot.angle)*wobble;shot.y+=Math.cos(shot.angle)*wobble}
  const obstacle=P.Terrain.hit(shot.x,shot.y,5);if(obstacle){P.Terrain.damage(obstacle,shot.power);this.impact(shot);shot.life=0;continue}
- for(const e of s.enemies){if(e.hp<=0||shot.hits.has(e)||shot.life<=0)continue;if(this.segmentHit(shot,e,oldX,oldY)){shot.hits.add(e);P.Entities.hurt(e,shot.power);if(s.mode!=='play')return;shot.remaining--;if(shot.remaining<=0)shot.life=0;this.impact(shot);if(s.mode!=='play')return}}
+ for(const e of s.enemies){if(e.hp<=0||shot.hits.has(e)||shot.life<=0)continue;if(this.segmentHit(shot,e,oldX,oldY)){shot.hits.add(e);P.Ultimate.hit(shot,e);P.Entities.hurt(e,shot.power);if(s.mode!=='play')return;shot.remaining--;if(shot.remaining<=0)shot.life=0;this.impact(shot);if(s.mode!=='play')return}}
  if(shot.life<=0)this.impact(shot)
 }
 s.shots=s.shots.filter(shot=>shot.life>0);s.enemies=s.enemies.filter(e=>e.hp>0);
