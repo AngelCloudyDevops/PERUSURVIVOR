@@ -216,3 +216,7 @@ La invulnerabilidad, los ataques y las recompensas conservan sus reglas. Al paus
 Arbustos y follaje de jardineras comparten copas redondeadas con lóbulos asimétricos, contorno oscuro y hojas agrupadas. Se conservan posiciones, profundidad, viento y colisiones originales.
 ## Señales de llaves en el minimapa
 El minimapa identifica portadores vivos con un rombo y llaves del suelo con un icono de llave, siempre en el color de su rareza (azul raro y violeta legendario). Comparte el alcance circular de 900 unidades de los cofres. No muestra portadores muertos ni llaves recogidas, eliminadas o lejanas. El marcador del jugador conserva la prioridad visual; hay leyenda de símbolos y colores. No se muestra en arenas o menús.
+
+
+## Contador y prueba de rendimiento
+En Desarrollo se puede activar el contador de FPS para las partidas y elegir una carga de 80 minions/200 proyectiles, 80/400 o 160/600. La prueba usa el escenario y personaje seleccionados, permite movimiento y pausa, mantiene ataques y animaciones, da invulnerabilidad y repone la carga. No guarda récords ni activa cofres o eventos opcionales. Tras 3 segundos de preparación mide 30 segundos visibles, con salida anticipada y resumen de FPS medios, ms por fotograma y P95. P95 es el tiempo que no superan el 95 % de los fotogramas; menor es mejor. El resultado depende del dispositivo, frecuencia de pantalla y navegador.

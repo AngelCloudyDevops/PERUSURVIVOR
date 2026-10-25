@@ -140,3 +140,6 @@ Sprites.bounds recorta la figura conexa principal por alfa y conserva detalles c
 Ambient.leafMass rasteriza elipses por franjas de dos unidades; foliage agrupa esas masas en siluetas orgánicas. Ambient.bush y Terrain.planter reutilizan el dibujo, sin nuevos recursos ni cambios físicos.
 ## Señales de portadores y llaves
 Terrain.minimapSignals consulta los enemigos vivos con keyTier y las gems key no recogidas, valida posición y rareza, y reutiliza la proyección y rango del minimapa. minimapSignal dibuja siluetas de rombo/llave con contraste oscuro y la paleta compartida de Loot.rarity. La misma función alimenta la leyenda de tipos; los marcadores se dibujan antes del jugador y dentro del recorte. No agrega estado persistente ni altera el botín.
+
+
+Performance toma intervalos reales de requestAnimationFrame, sin usar el dt limitado de la simulación. Actualiza el panel cada 500 ms con una ventana de 240 muestras. La prueba acumula métricas solo en play, excluye la pestaña oculta y la preparación, y limita las muestras almacenadas a 20.000. Usa el laboratorio autorizado por el usuario y devRun para no escribir récords; salir al menú o iniciar otra partida cancela la prueba. Los perfiles están acotados a 160 enemigos y 600 proyectiles objetivo, con enemigos resistentes para mantener la carga y reponer proyectiles durante el combate normal.
