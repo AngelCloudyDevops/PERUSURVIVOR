@@ -51,7 +51,7 @@ for(const map of P.Maps.catalog){
  s.mapTime=180;P.Encounters.tick();assert(s.portal.open);const pos=P.Encounters.definition().portal;
  P.Encounters.offer();assert.equal(s.mode,'play','No ofrecer a distancia');
  s.player.x=pos.x;s.player.y=pos.y;const normal=target(600,300);s.enemies=[normal];s.gems=[{x:700,y:200,value:2}];
- P.Encounters.offer();assert.equal(s.mode,'portal');elements.get('#overlay').children.filter(c=>c.tag==='button')[1].onclick();assert.equal(s.mode,'play');assert(s.portal.open);
+ P.Encounters.offer();assert.equal(s.mode,'portal');elements.get('#overlay').children.find(c=>c.tag==='button'&&c.textContent==='Seguir entrenando').onclick();assert.equal(s.mode,'play');assert(s.portal.open);
  P.Encounters.offer();elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert(s.encounter);assert(s.enemies[0].mapBoss);assert.equal(s.enemies.length,1);
  const clock=s.mapTime,normalX=normal.x;P.Game.update(.04);assert.equal(s.mapTime,clock);assert.equal(normal.x,normalX);assert(!s.bossSpawned);
  const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
@@ -238,4 +238,12 @@ P.Game.start();const charger=P.Entities.enemy();charger.design=1;charger.x=s.pla
 console.log('OK seis ataques de minions: aviso, ejecucion, animacion, rafaga, colisiones, pausa, dano y limites');
 
 }
+
+{P.$('#lab-boss').value='vulture';P.Lab.run();assert(s.devRun);assert.equal(s.encounter.scene.id,'techos-lima');assert.equal(s.enemies[0].name,'El Gallinazo del Caos');assert.equal(P.Terrain.active().length,4);const e=s.enemies[0],time=s.mapTime;P.Game.update(.04);assert.equal(s.mapTime,time);
+e.phase='approach';e.attackT=0;e.attackIndex=0;P.Vulture.move(e,.01);assert.equal(e.phase,'vulture-warning');assert.equal(e.attack,'dive');const dx=e.dx,dy=e.dy;s.player.x+=100;P.Vulture.move(e,.2);assert.equal(e.dx,dx);assert.equal(e.dy,dy);e.windup=0;P.Vulture.move(e,.01);assert.equal(e.phase,'vulture-dive');
+const cover=P.Terrain.active()[0];e.x=cover.x-cover.w/2-e.r-2;e.y=cover.y;e.dx=1;e.dy=0;e.windup=.8;P.Vulture.move(e,.04);assert.equal(e.phase,'vulture-recover');assert(!P.Terrain.hit(e.x,e.y,e.r-1));
+e.x=-180;e.y=70;e.hp=800;e.phase='approach';e.attackT=0;e.attackIndex=0;P.Vulture.move(e,.01);assert.equal(e.diveRemaining,2);e.windup=0;P.Vulture.move(e,.01);for(let i=0;i<30&&e.phase==='vulture-dive';i++)P.Vulture.move(e,.04);assert.equal(e.diveRemaining,1);P.Vulture.move(e,.7);assert.equal(e.phase,'vulture-warning');assert.equal(e.attack,'dive');
+s.danger=[];e.aim=0;P.Vulture.feathers(e);assert.equal(s.danger.length,11);assert(s.danger.every(q=>q.glyph==='FEATHER'));s.fire=100;s.player.x=cover.x+20;s.player.y=cover.y;s.player.inv=0;s.danger=[{x:cover.x-90,y:cover.y,vx:1000,vy:0,age:0,life:5,history:[],glyph:'FEATHER'}];const hp=s.player.hp;P.Combat.tick(.08);assert.equal(s.player.hp,hp);assert.equal(s.danger.length,0);
+s.player.x=0;s.player.y=220;e.x=-180;e.y=70;for(let i=0;i<10;i++)P.Vulture.summon(e);assert(s.enemies.filter(q=>q.vultureMinion).length>0);assert(s.enemies.filter(q=>q.vultureMinion).length<=6);for(const q of s.enemies.filter(q=>q.vultureMinion))assert(!P.Terrain.hit(q.x,q.y,q.r));P.World.render(1800);P.Entities.hurt(e,99999);assert.equal(s.mode,'end');P.UI.menu();P.Game.start();assert(!s.encounter);assert(!s.enemies.some(q=>q.vultureMinion));
+s.mapTime=180;P.Encounters.tick();const point=P.Encounters.definition().portal;s.player.x=point.x;s.player.y=point.y;P.Encounters.offer();const choice=elements.get('#overlay').children.find(c=>c.tag==='button'&&c.textContent.includes('Subir a los techos'));assert(choice);choice.onclick();assert.equal(s.encounter.definition.kind,'vulture');const returnX=s.encounter.returnX;P.Entities.hurt(s.enemies[0],99999);assert(!s.encounter);assert.equal(s.player.x,returnX);assert(s.portal.cleared);console.log('OK Gallinazo: laboratorio, portal, reloj, picada, cobertura, plumas, bandada, furia y retorno');}
 });
