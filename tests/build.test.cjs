@@ -25,3 +25,13 @@ test('El recorte del atlas excluye fragmentos de la celda vecina',()=>{
  vm.runInNewContext(fs.readFileSync(path.join(root,'src/rendering/map-art.js'),'utf8'),{P,document:{createElement(){return {getContext(){return ctx}}}}});
  const sheet={id:'machu',image:{width,height},cells:[]};P.MapArt.measure(sheet);assert.equal(sheet.cells.length,6);assert(sheet.cells[2].x>=1180);assert(sheet.cells[2].w<150);assert(sheet.cells[2].h>=180);
 });
+
+test('Las zonas varían y la red de caminos conecta sectores sin obstáculos',()=>{
+ const vm=require('node:vm'),P={Maps:{selected:'campo'},state:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'src/systems/chunks.js'),'utf8'),{P});const c=P.Chunks;
+ for(const map of ['campo','plaza','machu']){P.Maps.selected=map;c.reset();const zones=new Set(),layouts=new Set();let count=0,vertical=0,horizontal=0;
+ for(let cy=-7;cy<=7;cy++)for(let cx=-7;cx<=7;cx++){zones.add(c.zone(cx*512,cy*512).type);const ch=c.get(cx,cy);layouts.add(ch.props.map(o=>o.kind).join(','));count+=ch.props.length;for(const o of ch.props){assert(c.roadDistance(o.x,o.y)>=Math.hypot(o.w,o.h)/2+65);assert(!c.ground(o.x,o.y).road);if(o.kind==='wall'){if(o.w>o.h)horizontal++;else vertical++}}}
+ assert.equal(zones.size,4,map);assert(layouts.size>15,map);assert(count>150,map);if(map==='machu')assert(vertical>0&&horizontal>0);
+ for(let gy=-3;gy<=3;gy++)for(let gx=-3;gx<=3;gx++){const a=c.node(gx,gy),b=c.node(gx+1,gy);for(let n=0;n<=16;n++)assert(c.ground(a.x+(b.x-a.x)*n/16,a.y+(b.y-a.y)*n/16).road,'Conexión horizontal continua')}
+ const before=JSON.stringify(c.get(4,-3).props);c.cache.delete('4,-3');assert.equal(JSON.stringify(c.get(4,-3).props),before);assert(c.node(4,3).y!==c.node(5,3).y,'Caminos con desvíos');
+ }
+});
