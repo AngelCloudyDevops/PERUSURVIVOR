@@ -161,4 +161,10 @@ P.$('#lab-boss').value='campo';P.$('#lab-invincible').checked=false;P.Lab.run();
 
 
 
+
+const alphaFixture=new Uint8Array(10*10*4);for(let y=1;y<=3;y++)for(let x=1;x<=3;x++)alphaFixture[(y*10+x)*4+3]=255;alphaFixture[(9*10+9)*4+3]=255;
+const cut=P.BossArt.mainBounds(alphaFixture,10,0,0,10,10);assert.equal(cut.x,1);assert.equal(cut.y,1);assert.equal(cut.w,3);assert.equal(cut.h,3);
+P.$('#lab-boss').value='campo';P.Lab.run();const charger=s.enemies[0],arenaBounds=s.encounter.scene.bounds;charger.phase='charge';charger.dx=1;charger.dy=1;charger.windup=1;charger.x=arenaBounds.right-1;charger.y=arenaBounds.bottom-1;P.Encounters.bossMove(charger,.04);assert(charger.x<=arenaBounds.right-charger.r);assert(charger.y<=arenaBounds.bottom-charger.r);assert.equal(charger.phase,'recover');
+P.World.render(800);assert(P.Terrain.zoom>=1.05);assert(arenaBounds.right<900&&arenaBounds.bottom<500);P.UI.menu();P.Game.start();P.World.render(900);assert(P.Terrain.zoom>=1.45);console.log('OK: cámara cercana, arena compacta, embestida dentro de límites y recorte sin vecinos');
+
 });
