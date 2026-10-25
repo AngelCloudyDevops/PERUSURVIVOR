@@ -12,6 +12,10 @@ module.exports = [
     "output": "js/core.js"
   },
   {
+    "source": "src/systems/audio.js",
+    "output": "js/audio.js"
+  },
+  {
     "source": "src/rendering/sprites.js",
     "output": "js/sprites.js"
   },
@@ -82,10 +86,6 @@ module.exports = [
   {
     "source": "src/development/lab.js",
     "output": "js/lab.js"
-  },
-  {
-    "source": "src/systems/audio.js",
-    "output": "js/audio.js"
   },
   {
     "source": "src/systems/ultimate.js",

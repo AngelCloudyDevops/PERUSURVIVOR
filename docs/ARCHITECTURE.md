@@ -88,3 +88,5 @@ Ambient genera decoración determinista solo en la ventana visible de Campo de M
 La capa de efectos de la ulti se rasteriza en un lienzo de media resolución y se escala por nearest-neighbor. Evita texto/rotaciones suavizados en el mundo. Se conserva el estilo simple del entorno y Ambient de la rama de mapas.
 
 Ambient comparte la ventana determinista entre los tres mapas. En Plaza dibuja palomas por profundidad y anima la fuente según su posición real; en Machu usa ichu y niebla debajo del combate. Todo depende de elapsed y no introduce entidades de combate ni estado persistente.
+
+Audio usa Web Audio con osciladores y envolventes cortas, polifonía limitada y desconexión de nodos al terminar. El secuenciador sigue el frame y adapta el tema al mapa/jefe. Si Web Audio no está disponible, el juego continúa sin audio. El estado mute se guarda en localStorage.
