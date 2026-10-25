@@ -156,6 +156,7 @@ Entities.chargingArmor centraliza la condición de resistencia (pesado vivo, per
 
 Chunks.curve y edges describen las curvas con polilíneas compartidas y una caché acotada de 100 entradas. roadDistance usa esas líneas tanto al colocar obstáculos como en las comprobaciones. floor rasteriza suelo y caminos a 128×128 y amplía con nearest-neighbor a 512×512; el trabajo queda cacheado por sector. patch interpola ruido de valor a escala 192 para manchas continuas entre sectores. Terrain reutiliza Ambient.foliage para copas y leafMass para sombras, con transparencia local.
 
+P.Vulture anima el aletazo con warningTime y wingPulse, dibuja viento bajo los actores y registra una rotura de pluma por proyectil bloqueado. Combat invoca breakFeather al colisionar con terreno y FX dibuja los fragmentos con el reloj normal de efectos. No se agregan recursos ni temporizadores externos.
 ## Composición reutilizable de proyectiles
 FX.glyph conserva el dibujo vectorial completo. FX.cachedGlyph compone una vez la geometría y sus sombras a la resolución efectiva de Canvas (DPR × zoom) y reutiliza la superficie. Las estelas, posiciones y giros siguen calculándose cada fotograma. La cucaracha guarda sus dos estados por separado; estrellas y ondas expansivas siguen en dibujo dinámico. La clave incluye glifo, color, ulti, estado y escala. La caché tiene un máximo de 4.194.304 píxeles (16 MiB RGBA) y 96 superficies; usa el dibujado anterior si no hay contexto válido o la superficie excede el presupuesto. No baja el DPR ni elimina efectos.
 
