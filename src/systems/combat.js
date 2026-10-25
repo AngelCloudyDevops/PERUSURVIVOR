@@ -4,7 +4,7 @@ orbitPoints(p,time){return Array.from({length:3},(_,i)=>{const a=time*2.8+i*Math
 inArc(p,e,range,arc){const dx=e.x-p.x,dy=e.y-p.y;if(Math.hypot(dx,dy)>range+(e.r||0))return false;const angle=Math.atan2(dy,dx)-p.aim;return Math.abs(Math.atan2(Math.sin(angle),Math.cos(angle)))<=arc/2+1e-9},
 cast(){const s=P.state,p=s.player,a=P.Data.attacks[p.attack],targets=s.enemies.filter(e=>e.hp>0),props=P.Terrain.active().filter(o=>o.solid&&Number.isFinite(o.hp)&&o.hp>0),candidates=[...targets,...props];if(!candidates.length)return false;const target=candidates.reduce((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)<Math.hypot(b.x-p.x,b.y-p.y)?a:b);
 const r=a.range*p.reach;if(a.kind==='melee'&&Math.hypot(target.x-p.x,target.y-p.y)>r+(target.r||0))return false;
-p.aim=Math.atan2(target.y-p.y,target.x-p.x);p.facing=Math.cos(p.aim)<0?-1:1;p.castUntil=s.elapsed+.28;s.effects.push({kind:'cast',x:p.x,y:p.y-15,life:.25,maxLife:.25,color:p.color});
+P.Audio.fx('attack');p.aim=Math.atan2(target.y-p.y,target.x-p.x);p.facing=Math.cos(p.aim)<0?-1:1;p.castUntil=s.elapsed+.28;s.effects.push({kind:'cast',x:p.x,y:p.y-15,life:.25,maxLife:.25,color:p.color});
 if(a.shout)s.effects.push({kind:'shout',text:a.shout,x:p.x,y:p.y-60,life:.55,maxLife:.55,color:p.color});
 if(a.kind==='spread'||a.kind==='boomerang'){
  const count=(a.count||(p.attack==='feathers'?5:a.kind==='spread'?3:1))+(p.projectileBonus||0),speed=a.speed||470;

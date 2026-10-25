@@ -94,3 +94,6 @@ src/rendering/map-art.js mantiene simpleStyle activado: los atlas detallados de 
 ## Despliegue automático
 La preparación y el estado de activación están documentados en [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Cada push a main publica el juego después de las pruebas, mediante la cuenta restringida del VPS y comprobación HTTPS con reversión automática.
 
+
+## Sonido y música
+Música retro original por mapa, tema de jefe y efectos sintetizados mediante Web Audio. El botón Sonido recuerda el silencio. Requiere una interacción inicial y se pausa fuera de la partida. No descarga grabaciones externas.

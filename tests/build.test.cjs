@@ -35,3 +35,9 @@ test('Las zonas varían y la red de caminos conecta sectores sin obstáculos',()
  const before=JSON.stringify(c.get(4,-3).props);c.cache.delete('4,-3');assert.equal(JSON.stringify(c.get(4,-3).props),before);assert(c.node(4,3).y!==c.node(5,3).y,'Caminos con desvíos');
  }
 });
+
+test('Audio: inicio por gesto, silencio, pausa y temas por mapa',()=>{
+ const vm=require('node:vm'),gains=[],saved={},P={state:{mode:'play'},Maps:{selected:'campo'},$:()=>({setAttribute(){}})},context={P,localStorage:{getItem:k=>saved[k],setItem:(k,v)=>saved[k]=v},document:{hidden:false},addEventListener(){}};
+ class AC{constructor(){this.currentTime=0;this.state='running';this.destination={}}createGain(){const g={gain:{value:0,setTargetAtTime(v){this.value=v}},connect(){}};gains.push(g);return g}}
+ context.window={AudioContext:AC};vm.runInNewContext(fs.readFileSync(path.join(root,'src/systems/audio.js'),'utf8'),context);const a=P.Audio;a.init();assert.equal(a.ctx,null,'Sin autoplay');a.unlock();assert(a.ctx);const notes=[];a.tone=(...v)=>notes.push(v);a.tick();assert.equal(a.theme,'campo');assert(notes.length>0);P.state.mode='pause';a.tick();assert.equal(a.master.gain.value,0);P.state.mode='upgrade';a.tick();assert.equal(a.music.gain.value,0);assert(a.master.gain.value>0);a.fx('upgrade');assert(notes.length>=6);a.muted=true;a.tick();assert.equal(a.master.gain.value,0);a.muted=false;P.state.mode='play';P.Maps.selected='machu';a.ctx.currentTime+=1;a.tick();assert.equal(a.theme,'machu');context.document.hidden=true;a.tick();assert.equal(a.master.gain.value,0);
+});

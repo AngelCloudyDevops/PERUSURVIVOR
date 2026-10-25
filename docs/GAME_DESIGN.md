@@ -133,3 +133,6 @@ Arbustos y matas de pasto decorativos aparecen fuera de caminos y obstáculos. E
 
 ## Vida en Plaza y Machu Picchu
 Plaza de Armas incorpora reflejos y gotas animadas en la fuente, palomas pequeñas que picotean y partículas de viento discretas. Machu Picchu añade matas de ichu que oscilan y tres franjas de niebla escalonada de muy baja opacidad, debajo de los actores. La decoración no bloquea ni daña. Conserva las formas geométricas del README, pausa y movimiento reducido (sin niebla ni partículas, vegetación y aves estáticas).
+
+## Audio
+Música instrumental sintetizada original por mapa y tema de jefe. Efectos de ataques, impactos, daño, mejora y resultado. El botón Sonido activa o silencia todo y recuerda la elección. Solo arranca tras interacción; no suena en menú, pausa o pestaña oculta. No utiliza voces ni grabaciones de personas.
