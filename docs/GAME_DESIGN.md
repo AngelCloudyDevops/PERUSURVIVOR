@@ -194,6 +194,8 @@ Todos los ejemplares de cada tipo, pesados incluidos, comparten un ataque. Se de
 
 Sustituye el ataque a distancia provisional de solo PNP y Tyrone pesado. El contacto normal conserva 10 de dano y la invulnerabilidad existente evita golpes simultaneos.
 
+## El Gallinazo del Caos
+Jefe opcional alternativo de 1800 PV en Techos de Lima, disponible desde el portal de las 3:00 y en Desarrollo → Probar jefes. Elegirlo consume el encuentro opcional del mapa como los otros jefes; ElZeein sigue obligatorio al minuto 5. Alterna picada avisada de 1,05 s, abanico de 7 plumas (12 de daño) e invocación de hasta 3 gallinazos de 48 PV. Al bajar del 50 % encadena dos picadas con aviso separado, dispara 11 plumas y permite hasta 6 esbirros vivos (4 antes). Las coberturas frenan picadas y plumas. Se conservan pausas, recompensas, retorno y reloj de mapa congelado en la arena.
 ## Visibilidad de exploración
 Zoom base de exploración 1,3 en 1280 px y mínimo móvil 0,95; aproximadamente 24% menos acercamiento que el anterior 1,7. Cámaras de jefes intactas. HUD compacto con vida, tiempo, nivel, botín y objetivos, sin repetir nombre y habilidad del personaje.
 
