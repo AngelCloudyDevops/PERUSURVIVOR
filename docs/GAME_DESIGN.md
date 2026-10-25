@@ -172,3 +172,17 @@ Los personajes definen el dibujo: objetos simples con contornos oscuros y sombra
 ## Cofres en el minimapa
 El minimapa muestra cofres sin abrir a un máximo de 900 unidades del jugador, con el mismo color de rareza: común arena, raro azul y legendario violeta. Los iconos tienen forma de cofre y una leyenda de colores. El cofre de jefe usa dorado. Los marcadores desaparecen al abrirse y no se dibujan dentro de arenas ni en el menú.
 
+
+### Ataques propios de minions
+Todos los ejemplares de cada tipo, pesados incluidos, comparten un ataque. Se detienen y anuncian su direccion o area; apuntan a la posicion inicial y respetan coberturas. Maximo 40 proyectiles especiales hostiles. La pausa congela preparacion y animaciones.
+
+| Rival | Ataque y animacion | Aviso | Espera | Dano |
+| --- | --- | --- | --- | --- |
+| Pablo | Aleteo y abanico de tres cristales de hielo | 0,85 s | 5,8 s | 6/cristal |
+| Tyrone | Se agacha y embiste 126 unidades en direccion fija; chocar lo detiene | 0,85 s | 5 s | 12/contacto durante embestida |
+| Uniqua | Alza brazos y lanza dos estrellas divergentes | 0,65 s | 4,8 s | 6/estrella |
+| Tasha | Se comprime, salta y pisa; circulo de radio 85, un golpe por onda | 1 s | 5,5 s | 12 |
+| Austin | Salto y rayo violeta en zigzag | 0,75 s | 5 s | 7 |
+| PNP | Apunta, retrocede y lanza tres pulsos separados 0,18 s | 0,7 s | 5 s | 8/pulso |
+
+Sustituye el ataque a distancia provisional de solo PNP y Tyrone pesado. El contacto normal conserva 10 de dano y la invulnerabilidad existente evita golpes simultaneos.
