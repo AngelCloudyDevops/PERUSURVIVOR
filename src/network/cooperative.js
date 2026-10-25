@@ -31,7 +31,7 @@ open(message){
 },
 receive(m){
  const first=!this.active;this.active=true;this.reconnecting=false;
- if(first){P.Maps.selected=m.map;P.state.chosen=P.Data.characters.findIndex(c=>c.id===m.players[this.session.slot].id);this.initializing=true;P.Game.start();this.initializing=false;P.Loot.chests=[];P.Loot.debris=[];P.$('#pause').setAttribute('aria-label','Opciones cooperativas')}
+ if(first){P.Maps.select(m.map);P.state.chosen=P.Data.characters.findIndex(c=>c.id===m.players[this.session.slot].id);this.initializing=true;P.Game.start();this.initializing=false;P.Loot.chests=[];P.Loot.debris=[];P.$('#pause').setAttribute('aria-label','Opciones cooperativas')}
  const s=P.state;for(const key of ['coins','elapsed','mapTime','kills','level','xp','need','bossSpawned','shots','fields','enemies','gems','danger','effects'])s[key]=m[key];
  s.mode='play';s.player=m.players[this.session.slot];s.ultimate=s.player.ultimate;this.peers=m.players.filter(p=>p.slot!==this.session.slot);P.Maps.selected=m.map;
  for(const p of m.players)p.coopPlayer=true;
@@ -45,5 +45,5 @@ tick(dt){
  // El servidor es la única autoridad: no se ejecuta Game.update en este cliente.
 },
 pause(){if(this.reconnecting)return;if(this.paused){this.paused=false;P.$('#overlay').hidden=true;return}this.paused=true;P.Core.clear();this.send({type:'input',x:0,y:0});P.UI.show('Cooperativo · Opciones','Tu amigo continúa jugando. Esta pantalla no pausa la sala.',[{title:'Seguir jugando',action:()=>this.pause()},{title:'Salir de la sala',action:()=>{this.leave();P.UI.menu()}}])},
-leave(menu=true){this.session=null;this.active=false;this.peers=[];this.paused=false;this.reconnecting=false;if(this.ws){this.send({type:'leave'});const ws=this.ws;this.ws=null;ws.close()}P.$('#coop-begin').hidden=true;P.$('#coop-leave').hidden=true;P.$('#coop-create').disabled=false;P.$('#coop-join').disabled=false;this.status('');if(menu)P.UI.menu()}
+leave(menu=true){this.session=null;this.active=false;this.peers=[];this.paused=false;this.reconnecting=false;if(this.ws){this.send({type:'leave'});const ws=this.ws;this.ws=null;ws.close()}P.$('#coop-begin').hidden=true;P.$('#coop-leave').hidden=true;P.$('#coop-create').disabled=false;P.$('#coop-join').disabled=false;this.status('');P.$('#pause').setAttribute('aria-label','Pausar partida');if(menu)P.UI.menu()}
 };
