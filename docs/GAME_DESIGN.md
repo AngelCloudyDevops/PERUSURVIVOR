@@ -190,3 +190,6 @@ Todos los ejemplares de cada tipo, pesados incluidos, comparten un ataque. Se de
 | PNP | Apunta, retrocede y lanza tres pulsos separados 0,18 s | 0,7 s | 5 s | 8/pulso |
 
 Sustituye el ataque a distancia provisional de solo PNP y Tyrone pesado. El contacto normal conserva 10 de dano y la invulnerabilidad existente evita golpes simultaneos.
+
+## Llaves de cofres
+Los cofres raros y legendarios necesitan una llave de su mismo nivel. Sin ella, la apertura no progresa y se muestra el requisito; una llave no sustituye a la de otro nivel. Se consume exactamente una al iniciar la apertura animada. Los comunes y los de jefe no requieren llave. Los portadores raros aparecen desde el segundo 30 y tienen ×2,5 de vida; los legendarios desde el segundo 90 y tienen ×4. Son enemigos normales reforzados con aura y llave visibles, conservan sus patrones de ataque y dejan una llave garantizada al caer. No aparecen en arenas, laboratorio, pausa ni durante el jefe final, y no se acumulan dos vivos del mismo tipo. Las llaves se recogen del suelo, no dan fama y se cuentan en el HUD; se pierden al reiniciar la partida. La función corresponde a la partida individual, donde existen los cofres.
