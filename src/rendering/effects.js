@@ -4,7 +4,12 @@ pixel(ctx,x,y,size,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x-size/2),
 trail(ctx,points,color){if(!points)return;for(let i=0;i<points.length;i++){ctx.globalAlpha=(i+1)/points.length*.45;this.pixel(ctx,points[i].x,points[i].y,3+i/3,color)}ctx.globalAlpha=1},
 projectile(ctx,s){this.trail(ctx,s.history,s.color);ctx.save();ctx.translate(Math.round(s.x),Math.round(s.y));ctx.rotate(s.kind==='boomerang'?s.age*13:Math.atan2(s.vy,s.vx));ctx.shadowColor=s.color;ctx.shadowBlur=s.ultimate?0:8;
 if(P.PowerFX.projectile(ctx,s)){ctx.restore();return}
-if(s.glyph==='ORB'){ctx.fillStyle=s.color;ctx.beginPath();ctx.arc(0,0,6,0,Math.PI*2);ctx.fill();this.pixel(ctx,-1,-1,4,'#fff3ce')}
+if(s.kind==='stomp'){ctx.strokeStyle=s.color;ctx.lineWidth=4;ctx.beginPath();ctx.ellipse(0,0,s.radius*(.5+Math.min(1,s.age/.2)*.5),s.radius*(.5+Math.min(1,s.age/.2)*.5),0,0,Math.PI*2);ctx.stroke()}
+else if(s.glyph==='ICE'){ctx.fillStyle=s.color;ctx.beginPath();ctx.moveTo(11,0);ctx.lineTo(0,-6);ctx.lineTo(-8,0);ctx.lineTo(0,6);ctx.closePath();ctx.fill();ctx.fillStyle='#fff';ctx.fillRect(-3,-1,11,2)}
+else if(s.glyph==='STAR'){ctx.rotate(s.age*8);ctx.fillStyle=s.color;ctx.beginPath();for(let i=0;i<10;i++){const r=i%2?3:8,a=i*Math.PI/5;ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r)}ctx.closePath();ctx.fill()}
+else if(s.glyph==='ZIG'){ctx.strokeStyle=s.color;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(-10,-4);ctx.lineTo(-2,3);ctx.lineTo(3,-3);ctx.lineTo(10,3);ctx.stroke()}
+else if(s.glyph==='PULSE'){ctx.fillStyle=s.color;ctx.fillRect(-10,-3,20,6);this.pixel(ctx,7,0,5,'#f3fff0')}
+else if(s.glyph==='ORB'){ctx.fillStyle=s.color;ctx.beginPath();ctx.arc(0,0,6,0,Math.PI*2);ctx.fill();this.pixel(ctx,-1,-1,4,'#fff3ce')}
 else if(s.glyph==='MIC'){ctx.fillStyle='#182132';ctx.fillRect(-7,-10,14,20);ctx.fillStyle='#d1dce5';ctx.fillRect(-6,-10,12,9);ctx.fillStyle='#90a4b5';for(let i=0;i<3;i++)ctx.fillRect(-5,-9+i*3,10,1);ctx.fillStyle='#53697b';ctx.fillRect(-3,2,6,13)}
 else if(s.glyph==='FAN'){for(let i=0;i<5;i++){ctx.save();ctx.rotate((i-2)*.32);ctx.fillStyle=i%2?'#ffc078':'#ed843b';ctx.fillRect(-3,-23,6,26);ctx.restore()}this.pixel(ctx,0,2,5,'#fff1bb')}
 else if(s.glyph==='KEY'){ctx.fillStyle='#1a2333';ctx.fillRect(-20,-9,40,18);for(let y=0;y<3;y++)for(let x=0;x<8;x++)this.pixel(ctx,-16+x*4.5,-5+y*4,3,(x+y)%2?'#6bd9e7':'#b59afa')}

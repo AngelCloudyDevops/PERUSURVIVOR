@@ -104,6 +104,10 @@ module.exports = [
     "output": "js/ultimate.js"
   },
   {
+    "source": "src/core/updates.js",
+    "output": "js/updates.js"
+  },
+  {
     "source": "src/scenes/practice.js",
     "output": "js/practice.js"
   },
