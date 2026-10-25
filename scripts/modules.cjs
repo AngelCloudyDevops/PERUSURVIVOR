@@ -76,6 +76,10 @@ module.exports = [
     "output": "js/lab.js"
   },
   {
+    "source": "src/systems/audio.js",
+    "output": "js/audio.js"
+  },
+  {
     "source": "src/systems/ultimate.js",
     "output": "js/ultimate.js"
   },

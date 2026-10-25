@@ -143,4 +143,7 @@ P.UI.pause();const remaining=s.ultimate.left;P.Game.update(1);assert.equal(s.ult
 P.Ultimate.tick(1);assert(s.ultimate.stampHit);assert(s.ultimate.particles.some(p=>p.kind==='stamp'));P.Ultimate.draw(drawing);P.Ultimate.hit({ultimate:true},s.enemies[0]);assert(s.ultimate.impacts.length);assert.equal(s.enemies[0].ultiFlash,.12);P.Ultimate.tick(3);assert.equal(s.ultimate.impacts.length,0);assert.equal(s.ultimate.paper,0);P.Game.start();assert.equal(s.ultimate.left,0);assert.equal(s.ultimate.charge,0);
 P.UI.select(P.Data.characters.findIndex(c=>c.id==='g5'));P.Game.start();s.ultimate.charge=100;assert.equal(P.Ultimate.activate(),false);
 console.log('OK ulti: carga, activación única, cadencia, gallinazos, jefes, pausa, denuncia y reinicio');
+
+P.UI.select(P.Data.characters.findIndex(c=>c.id==='kingteka'));P.Game.start();const sounds=[],playAudio=P.Audio.play;P.Audio.play=k=>sounds.push(k);s.ultimate.charge=100;P.Ultimate.activate();assert(sounds.includes('flap'));P.Ultimate.shot();assert(sounds.includes('shot'));s.enemies=[target(100,100)];P.Ultimate.tick(.01);const flapCount=sounds.filter(k=>k==='flap').length;P.Ultimate.tick(.01);assert.equal(sounds.filter(k=>k==='flap').length,flapCount);P.Ultimate.tick(8);P.Ultimate.tick(1);assert.equal(sounds.filter(k=>k==='stamp').length,1);P.Ultimate.tick(.1);assert.equal(sounds.filter(k=>k==='stamp').length,1);P.Audio.play=playAudio;P.Audio.unlock();P.Audio.play('shot');
+console.log('OK audio: aleteo, escopeta, sello único y entorno sin AudioContext');
 });
