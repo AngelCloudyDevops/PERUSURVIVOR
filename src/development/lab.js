@@ -10,7 +10,7 @@ else{s.mapTime=P.Encounters.unlock;P.Encounters.tick();const point=P.Encounters.
 P.Core.clear();this.tick();P.UI.hud();P.$('#hint').textContent='DESARROLLO · PRUEBA AISLADA · SIN RÉCORDS'
 },
 tick(){if(P.Performance.active){P.Performance.tick();return}if(P.state.devRun&&P.$('#lab-invincible').checked)P.state.player.inv=1},
-hud(){const s=P.state;P.$('#lab-tools').hidden=!s.devRun||s.mode!=='play';if(P.Performance.active){P.$('#level').textContent='PRUEBA DE RENDIMIENTO · SIN RÉCORDS';return}if(s.devRun)P.$('#level').textContent='DESARROLLO · '+(this.boss==='final'?'ELZEEIN':this.boss==='vulture'?P.Vulture.definition.name:P.Encounters.definition().name)+' · SIN RÉCORDS'},
+hud(){const s=P.state;P.$('#lab-tools').hidden=!s.devRun||s.mode!=='play'||s.performanceRun;if(s.performanceRun){P.$('#level').textContent='PRUEBA DE RENDIMIENTO · SIN RÉCORDS';return}if(s.devRun)P.$('#level').textContent='DESARROLLO · '+(this.boss==='final'?'ELZEEIN':this.boss==='vulture'?P.Vulture.definition.name:P.Encounters.definition().name)+' · SIN RÉCORDS'},
 hide(){P.state.devRun=false;P.$('#lab-tools').hidden=true},
 finish(win){if(P.Performance.active){P.Performance.finish();return}const s=P.state;s.mode='end';P.UI.hud();P.UI.show(win?'Prueba completada':'Fin de la prueba','Modo de desarrollo: esta partida no modifica tu récord.',[{title:'Repetir este jefe ↗',action:()=>this.run()},{title:'Elegir otro jefe',action:()=>this.open()},{title:'Volver al menú',action:()=>P.UI.menu()}])}
 };

@@ -27,6 +27,7 @@ function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=(
    if(now()-windowAt>1000){count=0;windowAt=now()}if(++count>40)throw Error('Demasiados mensajes');
    const msg=JSON.parse(raw);if(!msg||typeof msg!=='object')throw Error('Mensaje inválido');
    if(msg.type==='input'){const m=ws.room?.members.find(m=>m.ws===ws);if(!m||!ws.room.sim)return;const x=msg.x,y=msg.y;if(!Number.isFinite(x)||!Number.isFinite(y)||Math.abs(x)>1||Math.abs(y)>1)throw Error('Movimiento inválido');m.input={x,y,ultimate:msg.ultimate===true};return}
+   if(msg.type==='activity'){const room=ws.room,slot=room?.members.findIndex(m=>m.ws===ws);if(!room?.sim||slot<0)return;if(!room.members.every(m=>m.ws))throw Error('Espera a que tu compañero vuelva a conectarse');if(!room.sim.activities.action(slot,msg.action,msg.id,msg.choice))throw Error('La acción ya no está disponible: acércate o espera a tu compañero');broadcast(room,{type:'state',...room.sim.snapshot()});return}
    if(msg.type==='leave'){detach(ws);ws.close(1000);return}
    if(msg.type==='start'){const r=ws.room;if(!r||r.members[0].ws!==ws||r.members.length!==2||r.members.some(m=>!m.ws)||r.sim)throw Error('Se necesitan dos jugadores conectados y que el anfitrión inicie');r.sim=new Simulation(r.map,r.members.map(m=>m.character),root);r.frame=0;broadcast(r,lobby(r));broadcast(r,{type:'state',...r.sim.snapshot()});return}
    if(ws.room)throw Error('Ya estás en una sala');
