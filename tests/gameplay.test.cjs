@@ -282,4 +282,19 @@ P.Game.start();s.player.x=0;s.player.y=0;s.enemies=[{x:300,y:400,hp:100,keyTier:
 for(const [dx,dy,arrow] of [[1,0,'→'],[1,1,'↘'],[0,1,'↓'],[-1,1,'↙'],[-1,0,'←'],[-1,-1,'↖'],[0,-1,'↑'],[1,-1,'↗'],[0,0,'●']])assert.equal(P.Loot.keyDirection(dx,dy),arrow);
 s.gems=[{x:3000,y:4000,kind:'key',rarity:'legendary'}];assert.equal(P.Loot.keyTarget().distance,5000,'Orientar también a llaves fuera del minimapa');s.player.x=2900;s.player.y=4000;P.UI.hud();assert.equal(elements.get('#key-target').textContent,'→ Llave legendaria · 100 m');s.mode='pause';P.UI.hud();assert(!elements.get('#key-target').hidden);s.encounter={};P.Loot.targetHud();assert(elements.get('#key-target').hidden);s.encounter=null;s.devRun=true;P.Loot.targetHud();assert(elements.get('#key-target').hidden);s.devRun=false;s.mode='end';P.UI.hud();assert(elements.get('#key-target').hidden);P.Game.start();P.UI.hud();assert(elements.get('#key-target').hidden);
 console.log('OK brújula de llaves: objetivo más cercano, ocho direcciones, distancia, color, recogida, muerte, alcance y modos');
+{
+ P.Game.start();const playerBase=s.player;for(let design=0;design<6;design++){
+  const base={x:playerBase.x+200,y:playerBase.y,hp:100,max:100,r:19,design,heavy:true,rangedAim:{x:-1,y:0},rangedWindup:.5,hit:0};
+  const heavy={...base};assert(P.Entities.chargingArmor(heavy));P.Entities.hurt(heavy,20);assert.equal(heavy.hp,88,'Pesado recibe 60% durante preparacion');assert(heavy.hp<100,'Resistencia parcial, nunca invulnerabilidad');assert(P.EnemyArt.armorGlow(drawing,heavy,67));
+  const normal={...base,heavy:false};assert(!P.Entities.chargingArmor(normal));P.Entities.hurt(normal,20);assert.equal(normal.hp,80);assert.equal(P.EnemyArt.armorGlow(drawing,normal,50),false);
+  for(const after of [{rangedAim:null},{rangedWindup:0},{rangedAim:null,charge:{x:-1,y:0,time:.3}},{rangedAim:null,burst:{left:2,timer:.18}}]){const exposed={...base,...after};assert(!P.Entities.chargingArmor(exposed));P.Entities.hurt(exposed,20);assert.equal(exposed.hp,80,'Sin resistencia tras preparar el ataque');}
+  for(const flag of ['boss','mapBoss']){const boss={...base,[flag]:true};assert(!P.Entities.chargingArmor(boss));P.Entities.hurt(boss,20);assert.equal(boss.hp,80);}
+  const dead={...base,hp:0};assert(!P.Entities.chargingArmor(dead));
+  P.EnemyArt.ready=true;P.EnemyArt.image={width:1024,height:1536};P.EnemyArt.cells[design]=[{sx:0,sy:0,w:80,h:120},{sx:80,sy:0,w:80,h:120}];let images=0,eyes=0;const faceCtx=new Proxy({drawImage(){images++},ellipse(){eyes++}},{get:(target,key)=>target[key]||(()=>{})});P.EnemyArt.feedbackDraw(faceCtx,{...base,kind:'minion-death',facing:1},.45);assert.equal(images,1,'Cadaver entero');assert(eyes>=2,'Ojos en X superpuestos al cuadro completo');
+ }
+ assert.equal(P.EnemyArt.deathOpacity(0),1);assert.equal(P.EnemyArt.deathOpacity(.6),1,'Mantener pose de muerte visible antes de desvanecer');assert(P.EnemyArt.deathOpacity(.8)<1);assert.equal(P.EnemyArt.deathOpacity(1),0);assert(P.EnemyArt.feedbackProfiles.every(p=>p.duration>=.95&&p.duration<=1.05));
+ P.Game.start();P.UI.select(P.Data.characters.findIndex(c=>c.id==='kingteka'));P.Game.start();s.ultimate.left=1;const combo={x:s.player.x+200,y:s.player.y,hp:100,r:19,design:0,heavy:true,rangedAim:{x:-1,y:0},rangedWindup:.5};P.Entities.hurt(combo,20);assert.equal(combo.hp,76,'Resistencia conserva el multiplicador de la ulti');P.EnemyArt.ready=false;P.UI.select(0);P.Game.start();
+ console.log('OK resistencia parcial de seis pesados, normales vulnerables, brillo coherente, fases, jefes, ulti y muerte con ojos X visible');
+}
+
 });
