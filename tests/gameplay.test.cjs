@@ -55,7 +55,7 @@ for(const map of P.Maps.catalog){
  const clock=s.mapTime,normalX=normal.x;P.Game.update(.04);assert.equal(s.mapTime,clock);assert.equal(normal.x,normalX);assert(!s.bossSpawned);
  const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
  if(map.id==='campo')assert.equal(localBoss.phase,'charge');else assert(s.danger.length>0);
- s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=590&&s.player.y>=-370);
+ s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=s.encounter.scene.bounds.right&&s.player.y>=s.encounter.scene.bounds.top);
  P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
  const power=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.mode,'play');assert.equal(s.player.power,power*1.3);P.Encounters.reward(()=>s.player.power=0);assert(s.player.power>0,'No repetir recompensa');
  P.Game.update(.04);assert(s.mapTime>clock);assert(!s.portal.open);
@@ -78,6 +78,38 @@ s.encounter={};assert.equal(P.Terrain.active().length,0,'Las arenas del portal n
 console.log('OK cobertura y compatibilidad con arenas de portales');
 
 
+
+for(const map of P.Maps.catalog){
+ P.UI.menu();P.Maps.select(map.id);P.Game.start();s.mapTime=180;P.Encounters.tick();const point=P.Encounters.definition().portal;s.player.x=point.x;s.player.y=point.y;P.Encounters.offer();P.Encounters.enter();
+ assert(s.encounter.scene);assert.notEqual(P.BossArt.sceneId(),map.id,'El portal debe seleccionar otra escena');
+ const originalMapDraw=P.Maps.draw;let originDraws=0;P.Maps.draw=()=>originDraws++;P.World.render(700);P.Maps.draw=originalMapDraw;assert.equal(originDraws,0,'No se debe dibujar el mapa de origen detrás de la arena');
+ assert.equal(P.Terrain.active().length,4);
+ const local=s.enemies[0];local.phase='warning';assert.equal(P.BossArt.frame(local),3);local.phase='charge';assert.equal(P.BossArt.frame(local),4);local.phase='recover';local.attackUntil=0;assert.equal(P.BossArt.frame(local),5);
+ local.phase='warning';local.windup=.01;P.Encounters.bossMove(local,.02);if(local.kind!=='combi'){assert.equal(local.phase,'recover');assert.equal(P.BossArt.frame(local),4);s.elapsed+=.3;assert.equal(P.BossArt.frame(local),5)}
+ const png=fs.readFileSync(path.join(root,'public/assets/arenas/'+s.encounter.scene.asset+'-v1.png'));assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
+ P.Entities.hurt(local,99999);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
+}
+const bossPng=fs.readFileSync(path.join(root,'public/assets/bosses/boss-atlas-v1.png'));assert.equal(bossPng.toString('hex',0,8),'89504e470d0a1a0a');
 P.Game.start();s.mapTime=180;P.Encounters.tick();const uiPoint=P.Encounters.definition().portal;s.player.x=uiPoint.x;s.player.y=uiPoint.y;elements.get('#portal-enter').hidden=true;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,false,'El HUD debe mostrar el botón cercano');s.player.x=-900;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,true,'El HUD oculta el botón lejano');console.log('OK: botón de portal conectado al HUD');
 
+
+const recordBeforeLab=P.Save.best;
+for(const bossId of ['campo','plaza','machu','final']){
+ P.$('#lab-boss').value=bossId;P.$('#lab-invincible').checked=true;P.Lab.run();assert(s.devRun);assert.equal(s.enemies.length,1);assert(!elements.get('#lab-tools').hidden);
+ if(bossId==='final'){assert(s.bossSpawned);assert(s.enemies[0].boss)}else{assert(s.encounter);assert(s.enemies[0].mapBoss);assert.equal(s.encounter.definition,P.Encounters.catalog[bossId])}
+ const hp=s.player.hp;const boss=s.enemies[0];boss.x=s.player.x;boss.y=s.player.y;for(let i=0;i<10;i++)P.Game.update(.04);assert.equal(s.player.hp,hp,'Invencible durante prueba');assert.equal(s.enemies.length,1,'No añadir oleadas en laboratorio');
+ P.Entities.hurt(boss,999999);assert.equal(s.mode,'end');assert.equal(P.Save.best,recordBeforeLab,'No guardar récords de desarrollo');P.Lab.run();assert(s.devRun);assert.equal(s.player.hp,s.player.maxHp);P.UI.menu();assert(!s.devRun);assert(elements.get('#lab-tools').hidden);
+ console.log('OK laboratorio: '+bossId)
+}
+P.$('#lab-boss').value='campo';P.$('#lab-invincible').checked=false;P.Lab.run();s.player.inv=0;s.enemies[0].x=s.player.x;s.enemies[0].y=s.player.y;const vulnerableHp=s.player.hp;P.Game.update(.04);assert(s.player.hp<vulnerableHp);P.UI.menu();P.Game.start();assert(!s.devRun);assert(!s.encounter);assert.equal(s.mapTime,0);console.log('OK: invencibilidad opcional y retorno al modo normal');
+
+
+const alphaFixture=new Uint8Array(10*10*4);for(let y=1;y<=3;y++)for(let x=1;x<=3;x++)alphaFixture[(y*10+x)*4+3]=255;alphaFixture[(9*10+9)*4+3]=255;
+const cut=P.BossArt.mainBounds(alphaFixture,10,0,0,10,10);assert.equal(cut.x,1);assert.equal(cut.y,1);assert.equal(cut.w,3);assert.equal(cut.h,3);
+P.$('#lab-boss').value='campo';P.Lab.run();const charger=s.enemies[0],arenaBounds=s.encounter.scene.bounds;charger.phase='charge';charger.dx=1;charger.dy=1;charger.windup=1;charger.x=arenaBounds.right-1;charger.y=arenaBounds.bottom-1;P.Encounters.bossMove(charger,.04);assert(charger.x<=arenaBounds.right-charger.r);assert(charger.y<=arenaBounds.bottom-charger.r);assert.equal(charger.phase,'recover');
+P.World.render(800);assert(P.Terrain.zoom>=1.05);assert(arenaBounds.right<900&&arenaBounds.bottom<500);P.UI.menu();P.Game.start();P.World.render(900);assert(P.Terrain.zoom>=1.45);console.log('OK: cámara cercana, arena compacta, embestida dentro de límites y recorte sin vecinos');
+
+
+for(const map of ['campo','plaza','machu']){P.$('#lab-boss').value=map;P.Lab.run();const covers=P.Terrain.active();assert.equal(covers.length,4);assert(!P.Terrain.hit(s.player.x,s.player.y,14));assert(!P.Terrain.hit(s.enemies[0].x,s.enemies[0].y,s.enemies[0].r));const o=covers[0],body={x:o.x,y:o.y};P.Terrain.resolve(body,{x:o.x-200,y:o.y},14);assert(!P.Terrain.hit(body.x,body.y,13));assert(!P.Terrain.clear(o.x-200,o.y,o.x+200,o.y));s.fire=100;s.player.inv=0;s.player.x=o.x+20;s.player.y=o.y;s.danger=[{x:o.x-90,y:o.y,vx:1000,vy:0,age:0,life:5,history:[]}];const hp=s.player.hp;P.Combat.tick(.08);assert.equal(s.danger.length,0);assert.equal(s.player.hp,hp);if(map==='campo'){const e=s.enemies[0];e.x=o.x-o.w/2-e.r-2;e.y=o.y;e.dx=1;e.dy=0;e.phase='charge';e.windup=1;P.Encounters.bossMove(e,.04);assert.equal(e.phase,'recover');assert(!P.Terrain.hit(e.x,e.y,e.r-1))}P.World.render(1000)}
+P.UI.menu();P.Game.start();assert(!P.Terrain.active().some(o=>String(o.id).startsWith('arena:')));console.log('OK cobertura: bloqueo de movimiento, proyectiles, embestida y retorno limpio');
 });

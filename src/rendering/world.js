@@ -1,8 +1,8 @@
 'use strict';
 P.World={
 collide(p,old){P.Maps.collide(p,old)},
-draw(ctx,cx,cy,w,h,time){P.Maps.draw(ctx,cx,cy,w,h,time)},
-render(time){const s=P.state,{ctx,width:w,height:h}=P.Core,playing=s.mode!=='menu',p=s.player,zoom=Math.max(playing?1.15:.6,w/2400,h/1600),target=P.Maps.camera(playing?p.x:0,(playing?p.y:-100)-(playing?55:160),w/zoom,h/zoom);if(playing){const follow=1-Math.exp(-Math.min((time-(this.lastCamera||time))/1000,.05)*10);P.Terrain.cameraX+=(target.x-P.Terrain.cameraX)*follow;P.Terrain.cameraY+=(target.y-P.Terrain.cameraY)*follow}this.lastCamera=time;const cx=playing?P.Terrain.cameraX:target.x,cy=playing?P.Terrain.cameraY:target.y;P.Terrain.zoom=zoom;ctx.clearRect(0,0,w,h);ctx.save();ctx.translate(w*.5,h*.5);ctx.scale(zoom,zoom);ctx.translate(-cx,-cy);this.draw(ctx,cx,cy,w/zoom,h/zoom,time);if(playing)P.Encounters.draw(ctx,time);
+draw(ctx,cx,cy,w,h,time){if(P.state.encounter)P.BossArt.background(ctx,cx,cy,w,h,time);else P.Maps.draw(ctx,cx,cy,w,h,time)},
+render(time){const s=P.state,{ctx,width:w,height:h}=P.Core,playing=s.mode!=='menu',p=s.player,zoom=Math.max(s.encounter ? 1.05 : playing ? 1.45 : .6,w/2400,h/1600),target=s.encounter?P.BossArt.camera(p,w/zoom,h/zoom):P.Maps.camera(playing?p.x:0,(playing?p.y:-100)-(playing?55:160),w/zoom,h/zoom);if(playing&&s.encounter){P.Terrain.cameraX=target.x;P.Terrain.cameraY=target.y}else if(playing){const follow=1-Math.exp(-Math.min((time-(this.lastCamera||time))/1000,.05)*10);P.Terrain.cameraX+=(target.x-P.Terrain.cameraX)*follow;P.Terrain.cameraY+=(target.y-P.Terrain.cameraY)*follow}this.lastCamera=time;const cx=playing?P.Terrain.cameraX:target.x,cy=playing?P.Terrain.cameraY:target.y;P.Terrain.zoom=zoom;ctx.clearRect(0,0,w,h);ctx.save();ctx.translate(w*.5,h*.5);ctx.scale(zoom,zoom);ctx.translate(-cx,-cy);this.draw(ctx,cx,cy,w/zoom,h/zoom,time);if(playing)P.Encounters.draw(ctx,time);
 if(playing){
 for(const g of s.gems){ctx.save();ctx.translate(g.x,g.y);ctx.rotate(Math.PI/4);ctx.fillStyle=g.kind==='heal'?'#93e7a6':'#f6cc65';ctx.fillRect(-4,-4,8,8);ctx.restore()}
 const props=P.Terrain.active().filter(o=>o.solid).map(o=>({terrainProp:o,y:o.y+o.h/2}));const actors=[...s.enemies,p,...props].sort((a,b)=>a.y-b.y);
@@ -12,5 +12,5 @@ for(const shot of [...s.shots,...s.danger])P.FX.projectile(ctx,shot);
 if(p.attack==='orbit')P.FX.orbit(ctx,p);
 for(const effect of s.effects)P.FX.effect(ctx,effect)
 }
-ctx.restore();const g=ctx.createRadialGradient(w/2,h/2,150,w/2,h/2,Math.max(w,h)*.7);g.addColorStop(0,'#14203200');g.addColorStop(1,'#14203299');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);if(playing)P.Terrain.minimap(ctx,w,h)}
+ctx.restore();const g=ctx.createRadialGradient(w/2,h/2,150,w/2,h/2,Math.max(w,h)*.7);g.addColorStop(0,'#14203200');g.addColorStop(1,'#14203299');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);if(playing&&!s.encounter)P.Terrain.minimap(ctx,w,h)}
 };
