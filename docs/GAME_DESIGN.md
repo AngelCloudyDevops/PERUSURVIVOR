@@ -244,3 +244,4 @@ Manchas de color deterministas y flores dispersas reemplazan la muestra de suelo
 
 ## Aletazo animado del Gallinazo
 El aviso de 0,8 s levanta las alas y polvo, muestra el sector del abanico con dirección fija y arcos de viento. Al lanzar las plumas, el cuerpo acompaña el golpe y vuelve a su pose de recuperación. Las plumas tienen silueta afilada y se fragmentan una sola vez al chocar con una cobertura. Se conservan cantidad, daño, velocidad y bloqueo de proyectiles; las partículas se pausan, respetan movimiento reducido y comparten los límites existentes.
+La prueba de rendimiento permite marcar «Probar el dibujo anterior para comparar». Solo cambia cómo se dibujan los proyectiles durante esa prueba; mantiene el número de enemigos, ataques, estelas y patrones. El resumen identifica el método usado. La composición se fija en un 20 % de minions pesados para que las repeticiones sean comparables. Las partidas normales usan el dibujo optimizado.
