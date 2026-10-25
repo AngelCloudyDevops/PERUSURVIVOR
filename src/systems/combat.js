@@ -22,7 +22,7 @@ return true
 },
 impact(shot){if(!shot.cloud)return;P.state.fields.push({x:shot.x,y:shot.y,r:85,power:shot.power*.25,life:2.5,tick:0,color:'#a6bb78'});shot.cloud=false},
 segmentHit(shot,e,oldX,oldY){const dx=shot.x-oldX,dy=shot.y-oldY,len=dx*dx+dy*dy,t=len?Math.max(0,Math.min(1,((e.x-oldX)*dx+(e.y-oldY)*dy)/len)):0;return Math.hypot(e.x-oldX-t*dx,e.y-oldY-t*dy)<e.r+7},
-tick(dt){const s=P.state,p=s.player;s.fire-=dt;if(s.fire<=0)s.fire=this.cast()?p.rate:.05;if(s.mode!=='play')return;
+tick(dt){const s=P.state,p=s.player;s.fire-=dt;if(s.fire<=0)s.fire=this.cast()?p.rate/(P.Ultimate.active()?2:1):.05;if(s.mode!=='play')return;
 for(const shot of s.shots){const oldX=shot.x,oldY=shot.y,oldAge=shot.age;shot.history.push({x:shot.x,y:shot.y});if(shot.history.length>8)shot.history.shift();shot.age+=dt;shot.life-=dt;
  if(shot.kind==='boomerang'&&shot.age>shot.turnAt){if(!shot.returning){shot.returning=true;shot.hits.clear()}const dx=p.x-shot.x,dy=p.y-shot.y,d=Math.hypot(dx,dy)||1;shot.vx=dx/d*530;shot.vy=dy/d*530;if(d<18)shot.life=0}
  shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;

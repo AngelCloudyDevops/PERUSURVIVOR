@@ -1,0 +1,12 @@
+'use strict';
+P.Ultimate={
+reset(){P.state.ultimate={charge:0,left:0,paper:0}},
+active(){return P.state.player?.id==='kingteka'&&(P.state.ultimate?.left||0)>0},
+gain(){const u=P.state.ultimate;if(u&&!u.left)u.charge=Math.min(100,u.charge+5)},
+activate(){const s=P.state,u=s.ultimate;if(s.mode!=='play'||s.player.id!=='kingteka'||!u||u.left>0||u.charge<100)return false;u.charge=0;u.left=8;u.paper=0;s.fire=0;return true},
+tick(dt){const u=P.state.ultimate;if(!u)return;if(u.left>0){u.left=Math.max(0,u.left-dt);if(!u.left)u.paper=2.6}else u.paper=Math.max(0,u.paper-dt)},
+init(){const b=document.createElement('button');b.id='ultimate';b.style.cssText='position:fixed;right:18px;bottom:90px;z-index:30;padding:14px;background:#26344a;color:#ffe6a3;border:2px solid #e5ad55;border-radius:12px';b.onclick=()=>this.activate();document.body.append(b);addEventListener('keydown',e=>{if(e.key.toLowerCase()==='q'&&!e.repeat)this.activate()});this.hud()},
+hud(){const b=P.$('#ultimate'),s=P.state,u=s.ultimate;if(!b)return;b.hidden=s.mode!=='play'||s.player?.id!=='kingteka';b.disabled=!u||u.left>0||u.charge<100;b.textContent=u?.left>0?'GALLINAZOS · '+u.left.toFixed(1)+'s':'Q · ULTI '+Math.floor(u?.charge||0)+'%'},
+bird(ctx,e){if(!this.active()||e.boss||e.mapBoss)return false;const flap=Math.sin(P.state.elapsed*18+e.x)*8;ctx.save();ctx.translate(Math.round(e.x),Math.round(e.y));ctx.fillStyle='#151923';ctx.fillRect(-10,-9,20,24);ctx.fillStyle='#333541';ctx.fillRect(-28,-13-flap,19,9);ctx.fillRect(9,-13-flap,19,9);ctx.fillStyle='#70717a';ctx.fillRect(-25,-10-flap,14,3);ctx.fillRect(12,-10-flap,14,3);ctx.fillStyle='#995e55';ctx.fillRect(-5,-20,11,12);ctx.fillStyle='#e6c887';ctx.fillRect(5,-16,10,5);ctx.fillStyle='#fff';ctx.fillRect(2,-19,3,3);ctx.fillStyle='#bb985b';ctx.fillRect(-7,15,3,6);ctx.fillRect(5,15,3,6);ctx.restore();return true},
+draw(ctx){const s=P.state,u=s.ultimate,p=s.player;if(!u)return;if(this.active()){ctx.save();ctx.strokeStyle='#f7c55b';ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(p.x,p.y+20,33+Math.sin(s.elapsed*14)*4,14,0,0,7);ctx.stroke();ctx.restore()}if(u.paper>0){const age=2.6-u.paper,y=p.y-35-Math.max(0,1-age)*230;ctx.save();ctx.translate(p.x,y);ctx.rotate(age<1?Math.sin(age*12)*.2:Math.sin(age*5)*.04);ctx.fillStyle='#0005';ctx.fillRect(-47,-28,100,65);ctx.fillStyle='#fff5d9';ctx.fillRect(-50,-32,100,64);ctx.fillStyle='#b43434';ctx.font='bold 16px monospace';ctx.textAlign='center';ctx.fillText('DENUNCIA',0,0);ctx.fillStyle='#8c8575';ctx.fillRect(-34,10,68,2);ctx.fillRect(-34,18,48,2);ctx.restore()}}
+};

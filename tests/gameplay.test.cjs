@@ -133,4 +133,14 @@ P.$('#lab-boss').value='campo';P.$('#lab-invincible').checked=false;P.Lab.run();
 
 
 
+
+P.UI.select(P.Data.characters.findIndex(c=>c.id==='kingteka'));P.Game.start();
+assert.equal(P.Ultimate.activate(),false);for(let i=0;i<20;i++)P.Ultimate.gain();assert.equal(s.ultimate.charge,100);
+const baseSpeed=s.player.speed,baseRate=s.player.rate;assert(P.Ultimate.activate());assert.equal(P.Ultimate.activate(),false);assert(P.Ultimate.active());
+s.enemies=[target(s.player.x+80,s.player.y)];s.fire=0;P.Combat.tick(0);assert.equal(s.fire,baseRate/2);
+assert(P.Ultimate.bird(drawing,s.enemies[0]));assert.equal(P.Ultimate.bird(drawing,{boss:true}),false);assert.equal(P.Ultimate.bird(drawing,{mapBoss:true}),false);
+P.UI.pause();const remaining=s.ultimate.left;P.Game.update(1);assert.equal(s.ultimate.left,remaining);P.UI.pause();P.Ultimate.tick(8);assert(!P.Ultimate.active());assert.equal(s.ultimate.paper,2.6);P.Ultimate.draw(drawing);assert.equal(s.player.speed,baseSpeed);assert.equal(s.player.rate,baseRate);
+P.Ultimate.tick(3);assert.equal(s.ultimate.paper,0);P.Game.start();assert.equal(s.ultimate.left,0);assert.equal(s.ultimate.charge,0);
+P.UI.select(P.Data.characters.findIndex(c=>c.id==='g5'));P.Game.start();s.ultimate.charge=100;assert.equal(P.Ultimate.activate(),false);
+console.log('OK ulti: carga, activación única, cadencia, gallinazos, jefes, pausa, denuncia y reinicio');
 });

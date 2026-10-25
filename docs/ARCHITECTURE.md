@@ -68,3 +68,6 @@ Prueba visual: npm run build y node tests/manual/serve-powers.cjs; abrir /__qa/p
 src/rendering/map-art.js carga tres atlas de objetos (3 columnas por 2 filas) y un atlas opaco de suelos/caminos. Los PNG y prompts están en public/assets/environment/. El cargador recorta por alfa y ancla cada sprite a su base; el render usa nearest-neighbor. Los sectores invalidan sus lienzos cuando termina de cargar el atlas de suelo. P.Terrain mantiene la geometría física independiente del dibujo; P.World ordena los objetos y los personajes por la coordenada de sus pies. Se conserva el renderer procedural como respaldo durante la carga.
 ## Laboratorio de desarrollo
 src/development/lab.js se carga después de la UI y antes del arranque. El estado devRun separa las pruebas de la progresión: spawn omite las oleadas y los finales y victorias de arena delegan en Lab.finish, evitando el guardado del récord. La herramienta reutiliza el combate, el personaje y las escenas reales del juego.
+
+## Ultimates
+P.Ultimate encapsula carga, duración y dibujo procedural pixel art. Los modificadores se consultan al mover y disparar sin alterar estadísticas base ni mejoras. La transformación es visual, conserva colisiones y vida. El servidor local de QA permite recargar y cambiar personaje sin distribuir esos controles.
