@@ -30,7 +30,26 @@ else if(o.kind==='grass'){ctx.fillStyle='#799b50';for(const x of [-10,0,9])ctx.f
 else if(o.kind==='landmark'){ctx.fillStyle='#343d38';ctx.fillRect(-w/2-3,-21,w+6,42);ctx.fillRect(-w/2+1,-133,w-2,30);for(const x of [-w/2+9,w/2-47])ctx.fillRect(x,-115,38,107);ctx.fillStyle='#827b68';ctx.fillRect(-w/2,-18,w,36);ctx.fillStyle='#c9bfa0';for(const x of [-w/2+12,w/2-44]){ctx.fillRect(x,-112,32,104);ctx.fillStyle='#e1d4b1';ctx.fillRect(x,-112,8,104);ctx.fillStyle='#c9bfa0'}ctx.fillRect(-w/2+4,-126,w-8,20);ctx.fillStyle='#e1d4b1';ctx.fillRect(-w/2,-130,w,7);ctx.fillRect(-w/2,-18,w,7)}
 else if(o.kind==='bench'){ctx.fillStyle='#243538';ctx.fillRect(-w/2-3,-41,w+6,37);ctx.fillStyle='#253c40';ctx.fillRect(-w/2+10,-10,6,28);ctx.fillRect(w/2-16,-10,6,28);for(let i=0;i<3;i++){ctx.fillStyle=i%2?'#b78550':'#d0a269';ctx.fillRect(-w/2,-38+i*9,w,7)}ctx.fillStyle='#96613b';ctx.fillRect(-w/2,-9,w,14);ctx.fillStyle='#d9b37d';ctx.fillRect(-w/2,-9,w,4)}
 else if(o.kind==='crate'){ctx.fillStyle=o.flash>0?'#f6d9ab':'#785033';ctx.fillRect(-19,-31,38,46);ctx.fillStyle='#bb8549';ctx.fillRect(-17,-28,34,35);ctx.fillStyle='#e0b572';ctx.fillRect(-17,-28,34,5);ctx.fillRect(-17,2,34,5);ctx.fillRect(-17,-28,5,35);ctx.fillRect(12,-28,5,35);for(let i=0;i<7;i++)ctx.fillRect(-13+i*4,-24+i*4,5,5);ctx.fillStyle='#493c32';ctx.fillRect(-19,10,38,5)}
-else if(o.kind==='planter'){ctx.fillStyle='#263b36';ctx.fillRect(-w/2-3,-h/2-19,w+6,h+28);ctx.fillStyle='#756b60';ctx.fillRect(-w/2,-h/2-12,w,h+18);ctx.fillStyle='#b6a48c';ctx.fillRect(-w/2,-h/2-16,w,10);ctx.fillStyle='#38674a';ctx.fillRect(-w/2+5,-h/2-12,w-10,h-6);for(let x=-w/2+12;x<w/2-5;x+=18)for(let y=-h/2-8;y<h/2-10;y+=15){ctx.fillStyle=(x+y)%3?'#f0bc73':'#d96872';ctx.fillRect(x,y,6,6)}}
+else if(o.kind==='planter'){
+// Maceta en perspectiva: borde, tierra, follaje irregular y flores con pétalos.
+const left=-w/2,top=-h/2,bottom=h/2;
+ctx.fillStyle='#293a36';ctx.fillRect(left-3,top-10,w+6,h+31);
+ctx.fillStyle='#806548';ctx.fillRect(left,top-5,w,h+23);
+ctx.fillStyle='#b79566';ctx.fillRect(left+4,bottom-4,w-8,20);
+ctx.fillStyle='#d1b381';ctx.fillRect(left+5,bottom-4,6,18);
+ctx.fillStyle='#66513b';ctx.fillRect(left+w-12,bottom-2,8,18);
+ctx.fillStyle='#3e4230';ctx.fillRect(left+5,top-4,w-10,h+3);
+for(let row=0,y=top+5;y<bottom-3;y+=17,row++)for(let col=0,x=left+11;x<left+w-7;x+=22,col++){
+ const shift=(col+row)%3,px=Math.round(x+(row%2)*4),py=Math.round(y-shift*3);
+ ctx.fillStyle='#223d30';ctx.fillRect(px-10,py-13,20,18);ctx.fillRect(px-6,py-18,12,8);
+ ctx.fillStyle='#3d7046';ctx.fillRect(px-8,py-12,16,13);ctx.fillRect(px-4,py-17,10,9);
+ ctx.fillStyle='#72934e';ctx.fillRect(px-5,py-15,7,4);ctx.fillRect(px+3,py-8,5,3);
+ if((row+col)%3!==1){const fx=px+(col%2?3:-3),fy=py-12;ctx.fillStyle='#2b4232';ctx.fillRect(fx-5,fy-3,10,7);ctx.fillRect(fx-3,fy-5,6,11);ctx.fillStyle=(row+col)%2?'#d57370':'#eee0a1';ctx.fillRect(fx-4,fy-1,9,3);ctx.fillRect(fx-1,fy-4,3,9);ctx.fillStyle='#eeb856';ctx.fillRect(fx-1,fy-1,3,3)}
+}
+ctx.fillStyle='#293a36';ctx.fillRect(left-3,bottom-4,w+6,5);
+ctx.fillStyle='#d8bd8c';ctx.fillRect(left-2,bottom-2,w+4,5);ctx.fillStyle='#a28158';ctx.fillRect(left,bottom+3,w,4);
+ctx.fillStyle='#28382f';ctx.fillRect(left+3,bottom+18,w-6,3)
+}
 else{ctx.fillStyle='#283b37';ctx.fillRect(-w/2-3,-h/2-31,w+6,h+34);ctx.fillStyle=o.kind==='rock'?'#626969':'#606966';ctx.fillRect(-w/2,-h/2-25,w,h+25);ctx.fillStyle='#aaa993';ctx.fillRect(-w/2,-h/2-28,w,8);ctx.fillStyle='#8c9381';for(let y=-h/2-15;y<h/2;y+=16)for(let x=-w/2+2;x<w/2-2;x+=32){ctx.fillRect(x+(Math.floor(y/16)%2?6:0),y,25,10)}ctx.fillStyle='#687f4b';ctx.fillRect(-w/2+4,-h/2-29,Math.min(35,w-8),5)}
 if(o.flash>0)o.flash-=.02;ctx.restore()},
 minimap(ctx,w,h){if(P.state.mode==='menu'||P.state.encounter)return;const p=P.state.player,x=18,y=h-128,mw=156,mh=104,range=900;ctx.save();ctx.fillStyle='#172a31ed';ctx.fillRect(x-5,y-5,mw+10,mh+10);ctx.fillStyle=P.Maps.current().color;ctx.globalAlpha=.35;ctx.fillRect(x,y,mw,mh);ctx.globalAlpha=1;ctx.save();ctx.beginPath();ctx.rect(x,y,mw,mh);ctx.clip();for(const o of this.active()){if(!o.solid)continue;ctx.fillStyle=o.kind==='crate'?'#edc47d':'#344b3d';ctx.fillRect(x+mw/2+(o.x-p.x)/range*mw/2-2,y+mh/2+(o.y-p.y)/range*mh/2-2,4,4)}// Draw unopened nearby rewards above obstacles, using the world-to-minimap transform.
