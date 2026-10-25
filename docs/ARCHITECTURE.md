@@ -112,3 +112,6 @@ La entrada espera los tres atlas jugables, el mapa inicial y los rivales antes d
 
 ## Marcadores de botín
 Terrain.minimap transforma las coordenadas de Loot.active con la misma escala del terreno, filtra por distancia y estado abierto, y consulta Loot.rarity para compartir la paleta. Se dibujan sobre los obstáculos y bajo el jugador, respetando el recorte existente. La leyenda queda fuera del área recortada.
+
+## Actualizaciones del navegador
+El build genera version.json con una huella reproducible del contenido y añade hashes a las URLs de JavaScript y CSS. P.Updates consulta la versión sin caché al abrir, al recuperar el foco y cada 30 segundos. Recarga automáticamente en menú o fin de partida; durante una partida muestra un botón y espera para no perder el progreso. Errores de red no interrumpen el juego. El HTML de Hostinger se revalida con Cache-Control: no-cache. No se usa service worker.
