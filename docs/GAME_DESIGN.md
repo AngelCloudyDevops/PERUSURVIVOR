@@ -131,5 +131,8 @@ Se restaura el suelo original con textura y el dibujo geométrico de árboles, b
 ## Campo de Marte vivo
 Arbustos y matas de pasto decorativos aparecen fuera de caminos y obstáculos. El follaje oscila dos píxeles con fases distintas y siete hojas cruzan suavemente la vista, por debajo del combate. Los arbustos se ordenan por profundidad. No bloquean al jugador ni cambian el botín. El tiempo ambiental se pausa con la partida; la preferencia de movimiento reducido deja la vegetación estática y elimina las hojas.
 
+## Vida en Plaza y Machu Picchu
+Plaza de Armas incorpora reflejos y gotas animadas en la fuente, palomas pequeñas que picotean y partículas de viento discretas. Machu Picchu añade matas de ichu que oscilan y tres franjas de niebla escalonada de muy baja opacidad, debajo de los actores. La decoración no bloquea ni daña. Conserva las formas geométricas del README, pausa y movimiento reducido (sin niebla ni partículas, vegetación y aves estáticas).
+
 ## Animación del botín
 Al terminar los 1,8 segundos de apertura, el mundo se detiene durante 0,65 segundos para mostrar la tapa abriéndose en cuatro poses y destellos. Después aparece la elección del objeto; el premio solo se concede una vez. Las cajas muestran grietas tras recibir daño y una animación breve de tablas rotas al destruirse. Los iconos del HUD y del premio comparten el atlas de objetos.
