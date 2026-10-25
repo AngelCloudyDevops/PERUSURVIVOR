@@ -4,6 +4,8 @@
 
 Juego de supervivencia y parodia peruana para navegador: dieciocho personajes, Backyardigans y policías ficticios como rivales, tres mapas y encuentros opcionales. HTML, CSS y Canvas 2D, sin dependencias de ejecución.
 
+Modo público: [Práctica de Kingteka con recarga gratuita](docs/KINGTEKA_PRACTICE.md).
+
 ## Desarrollo
 
 Requiere Node.js 20 o superior. CI verifica Node 22 y 24 en Linux y Windows.
