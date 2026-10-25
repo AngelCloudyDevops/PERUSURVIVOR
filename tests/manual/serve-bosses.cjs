@@ -1,0 +1,8 @@
+const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'../..'),base=require('../../server.cjs').createServer().listeners('request')[0];
+const controls=`<div style="position:fixed;bottom:0;left:0;z-index:100;background:#142032;color:white;padding:6px;font:12px sans-serif">QA LOCAL <select id="qa-map"><option value="campo">Combi</option><option value="plaza">Gabinete</option><option value="machu">Guardián</option></select><button id="qa-portal">Probar portal</button><button id="qa-attack">Preparar ataque</button><button id="qa-win">Vencer jefe</button></div><script>
+document.querySelector('#qa-portal').onclick=()=>{P.UI.menu();P.Maps.select(document.querySelector('#qa-map').value);P.Game.start();P.state.mapTime=180;P.state.player.hp=P.state.player.maxHp=10000;P.Encounters.tick();const point=P.Encounters.definition().portal;P.state.player.x=point.x;P.state.player.y=point.y+80;P.UI.hud();P.Encounters.offer()};
+document.querySelector('#qa-attack').onclick=()=>{const boss=P.state.enemies.find(e=>e.mapBoss);if(boss){boss.attackT=0;boss.phase='approach'}};
+document.querySelector('#qa-win').onclick=()=>{const boss=P.state.enemies.find(e=>e.mapBoss);if(boss)P.Entities.hurt(boss,99999)};
+</script>`;
+http.createServer((req,res)=>{if(req.url==='/__qa/boss-arenas'){let html=fs.readFileSync(path.join(root,'src/index.html'),'utf8').replace('<head>','<head><base href="/">').replace('</body>',controls+'</body>');res.setHeader('Content-Type','text/html; charset=utf-8');return res.end(html)}base(req,res)}).listen(4184,'127.0.0.1',()=>console.log('http://127.0.0.1:4184/__qa/boss-arenas'));

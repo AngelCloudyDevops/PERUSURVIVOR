@@ -44,8 +44,16 @@ module.exports = [
     "output": "js/maps.js"
   },
   {
+    "source": "src/rendering/boss-art.js",
+    "output": "js/boss-art.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
+  },
+  {
+    "source": "src/systems/chunks.js",
+    "output": "js/chunks.js"
   },
   {
     "source": "src/systems/terrain.js",

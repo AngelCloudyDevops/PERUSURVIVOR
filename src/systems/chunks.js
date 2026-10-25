@@ -1,0 +1,20 @@
+'use strict';
+// Sectores deterministas: el contenido depende del mapa y de coordenadas enteras.
+P.Chunks={
+size:512,cache:new Map(),broken:new Set(),signature:'',
+hash(x,y,salt=0){let n=Math.imul(x|0,374761393)^Math.imul(y|0,668265263)^Math.imul(salt+P.Maps.selected.length,2246822519);n=Math.imul(n^(n>>>13),1274126177);return (n^(n>>>16))>>>0},
+reset(){this.cache.clear();this.broken.clear();this.signature=''},
+get(cx,cy){const key=cx+','+cy;let chunk=this.cache.get(key);if(chunk)return chunk;chunk={x:cx,y:cy,key,props:[],canvas:null};const id=P.Maps.selected;
+for(let ly=0;ly<4;ly++)for(let lx=0;lx<4;lx++){const x=cx*512+lx*128+64,y=cy*512+ly*128+64,h=this.hash(cx*4+lx,cy*4+ly,31);if(Math.abs(x)<1050&&Math.abs(y)<700)continue;if(h%100<52||Math.abs(x%512)<100||Math.abs(y%512)<100)continue;
+const kinds=id==='campo'?['tree','tree','bench','crate']:id==='plaza'?['planter','bench','crate','planter']:['rock','wall','crate','rock'],kind=kinds[h%4],w=kind==='bench'?100:kind==='wall'?150:kind==='planter'?95:kind==='crate'?38:60,depth=kind==='wall'?35:kind==='planter'?45:kind==='bench'?30:kind==='crate'?38:50,oid=id+':'+key+':'+lx+':'+ly;
+chunk.props.push({id:oid,kind,x,y,w,h:depth,solid:!this.broken.has(oid),hp:kind==='crate'?55:Infinity,maxHp:55,generated:true})}
+this.cache.set(key,chunk);return chunk},
+sync(){if(P.state.encounter)return;const p=P.state.player,cx=Math.floor(p.x/512),cy=Math.floor(p.y/512),zoom=Math.max(1.15,P.Core.width/2400,P.Core.height/1600),radius=Math.min(4,Math.ceil(Math.max(P.Core.width,P.Core.height)/zoom/1024)+1),sig=P.Maps.selected+':'+cx+':'+cy+':'+radius;if(sig===this.signature)return;this.signature=sig;const props=[];for(let y=cy-radius;y<=cy+radius;y++)for(let x=cx-radius;x<=cx+radius;x++)props.push(...this.get(x,y).props);for(const [key,c] of this.cache)if(Math.abs(c.x-cx)>radius||Math.abs(c.y-cy)>radius)this.cache.delete(key);P.Terrain.props=[...P.Terrain.originProps,...props];P.Terrain.revision++;P.Terrain.flow=null;P.Terrain.indexProps()},
+floor(chunk){if(chunk.canvas)return chunk.canvas;const cv=document.createElement('canvas');cv.width=cv.height=512;const ctx=cv.getContext('2d'),id=P.Maps.selected,image=P.Maps.images[id];ctx.imageSmoothingEnabled=false;
+const palettes=id==='plaza'?['#b8a587','#c6b393','#ac9a80']:id==='machu'?['#78915a','#829c61','#718954']:['#75934e','#7b9d55','#6c8a48'];
+for(let y=0;y<512;y+=32)for(let x=0;x<512;x+=32){const wx=chunk.x*512+x,wy=chunk.y*512+y,h=this.hash(wx/32,wy/32),road=((wx%768+768)%768)<64||((wy%768+768)%768)<64;ctx.fillStyle=road?(id==='plaza'?'#d1bea0':'#c9b48c'):palettes[0];ctx.fillRect(x,y,32,32);
+if(image&&!road){const sample=id==='plaza'?{x:.37,y:.71}:id==='machu'?{x:.35,y:.36}:{x:.25,y:.35};const sx=Math.floor(image.width*sample.x+((wx%128+128)%128)/1.55),sy=Math.floor(image.height*sample.y+((wy%128+128)%128)/1.55);ctx.globalAlpha=.65;ctx.drawImage(image,sx,sy,22,22,x,y,32,32);ctx.globalAlpha=1}
+ctx.fillStyle=id==='plaza'?'#7d746044':'#d2d4a13b';if(id==='plaza'){ctx.fillRect(x,y,32,1);ctx.fillRect(x,y,1,32)}else{ctx.fillRect(x+3+h%22,y+4+(h>>>5)%20,3,2);ctx.fillRect(x+8+(h>>>7)%15,y+3+(h>>>9)%23,2,3)}}chunk.canvas=cv;return cv},
+draw(ctx,cx,cy,w,h){const left=Math.floor((cx-w/2-64)/512),right=Math.floor((cx+w/2+64)/512),top=Math.floor((cy-h/2-64)/512),bottom=Math.floor((cy+h/2+64)/512);for(let y=top;y<=bottom;y++)for(let x=left;x<=right;x++){const c=this.get(x,y);ctx.drawImage(this.floor(c),x*512,y*512)}const f=P.Maps.current().fountain;if(f&&Math.abs(cx)<w&&Math.abs(cy)<h){ctx.save();ctx.translate(f.x,f.y);for(const [rx,ry,y,color] of [[176,105,0,'#8e8b76'],[158,88,-9,'#477f86'],[135,70,-15,'#77bac0']]){ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(0,y,rx,ry,0,0,7);ctx.fill()}ctx.fillStyle='#3d5147';ctx.fillRect(-10,-135,20,135);for(const [rad,y] of [[60,-70],[36,-115]]){ctx.beginPath();ctx.ellipse(0,y,rad,12,0,0,7);ctx.fill()}ctx.fillStyle='#c1d8bd';ctx.fillRect(-5,-155,10,25);ctx.restore()}},
+index:''
+};

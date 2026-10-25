@@ -71,3 +71,6 @@ GitHub Actions ejecuta las mismas comprobaciones en cada push y pull request. La
 .openai/hosting.json conserva la identidad del sitio existente y su carpeta estática dist/. Antes de empaquetar cualquier publicación ejecuta npm run build. Subir código a GitHub no despliega automáticamente el sitio.
 
 Esta es una versión de un jugador, sin cuentas, pagos, multijugador ni voces de figuras reales. El récord se guarda en el navegador. Las figuras públicas aparecen como caricaturas de parodia con habilidades inventadas; no existe afiliación.
+
+## Terreno continuo
+El mapa principal ahora continúa sin bordes mediante sectores deterministas. Conserva los tres temas, obstáculos y cajas destruibles; las arenas de portales siguen cerradas. El terreno de combate usa texturas de suelo de los fondos, no mosaicos de la ilustración completa. Código en src/systems/chunks.js; build generado con npm run build. Las pruebas verifican viaje a coordenadas lejanas, caché acotada, cámara libre y persistencia de cajas destruidas.

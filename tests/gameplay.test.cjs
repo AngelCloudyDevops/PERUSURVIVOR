@@ -36,7 +36,7 @@ console.log('OK: ElZeein como jefe, ráfaga hostil y archivos PNG.');
 console.log('OK: movimiento, pausa, mejora, colisión de fuente, bumerán, simulación de cinco minutos, jefe, victoria, derrota y retorno al menú.');
 for(const map of P.Maps.catalog){
  P.UI.menu();P.Maps.select(map.id);P.Game.start();assert.equal(s.player.x,map.spawn.x);assert.equal(s.player.y,map.spawn.y);
- const old={x:s.player.x,y:s.player.y};s.player.x=99999;s.player.y=-99999;P.World.collide(s.player,old);assert(s.player.x<=map.bounds.right&&s.player.y>=map.bounds.top);
+ const old={x:s.player.x,y:s.player.y};s.player.x=99999;s.player.y=-99999;P.World.collide(s.player,old);assert.equal(s.player.x,99999);assert.equal(s.player.y,-99999);
  const selected=P.Maps.selected;P.Maps.select('invalid');assert.equal(P.Maps.selected,selected);P.World.render(100);
  const png=fs.readFileSync(root+'/public/assets/maps/'+map.id+'-v1.png');assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
  console.log('OK mapa: '+map.name+' / aparición, límites, dibujo y PNG')
@@ -55,7 +55,7 @@ for(const map of P.Maps.catalog){
  const clock=s.mapTime,normalX=normal.x;P.Game.update(.04);assert.equal(s.mapTime,clock);assert.equal(normal.x,normalX);assert(!s.bossSpawned);
  const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
  if(map.id==='campo')assert.equal(localBoss.phase,'charge');else assert(s.danger.length>0);
- s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=590&&s.player.y>=-370);
+ s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=s.encounter.scene.bounds.right&&s.player.y>=s.encounter.scene.bounds.top);
  P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
  const power=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.mode,'play');assert.equal(s.player.power,power*1.3);P.Encounters.reward(()=>s.player.power=0);assert(s.player.power>0,'No repetir recompensa');
  P.Game.update(.04);assert(s.mapTime>clock);assert(!s.portal.open);
@@ -76,8 +76,29 @@ for(const map of P.Maps.catalog){
 P.UI.menu();P.Maps.select('campo');P.Game.start();const box=P.Terrain.props.find(o=>o.kind==='crate');s.player.x=box.x-100;s.player.y=box.y;s.player.power=100;s.player.attack='emotes';const covered=target(box.x+90,box.y);s.enemies=[covered];s.fire=999;P.Combat.cast();for(let i=0;i<6;i++)P.Combat.tick(.04);assert(!box.solid);assert.equal(covered.hp,2000,'Las cajas deben bloquear los proyectiles');
 s.encounter={};assert.equal(P.Terrain.active().length,0,'Las arenas del portal no heredan obstáculos');
 console.log('OK cobertura y compatibilidad con arenas de portales');
+for(const map of P.Maps.catalog){
+ P.UI.menu();P.Maps.select(map.id);P.Game.start();const far={x:12100,y:-13200};s.player.x=far.x;s.player.y=far.y;P.Chunks.sync();P.World.collide(s.player,far);assert.equal(s.player.x,far.x);assert.equal(s.player.y,far.y);const camera=P.Maps.camera(18000,-22000,1000,700);assert.equal(camera.x,18000);assert.equal(camera.y,-22000);
+ const c=P.Chunks.get(20,-24),snapshot=JSON.stringify(c.props.map(o=>[o.id,o.kind,o.x,o.y]));P.Chunks.cache.delete(c.key);assert.equal(JSON.stringify(P.Chunks.get(20,-24).props.map(o=>[o.id,o.kind,o.x,o.y])),snapshot,'Generación determinista');
+ let crate;for(let cy=20;cy<30&&!crate;cy++)for(let cx=20;cx<30&&!crate;cx++)crate=P.Chunks.get(cx,cy).props.find(o=>o.kind==='crate');assert(crate,'Hay cajas fuera de la zona inicial');P.Terrain.damage(crate,60);const key=crate.id.split(':')[1],coords=key.split(',').map(Number);P.Chunks.cache.delete(key);assert(!P.Chunks.get(...coords).props.find(o=>o.id===crate.id).solid,'No reaparece una caja destruida al volver');
+ for(let i=0;i<80;i++){s.player.x=i*620;s.player.y=-i*580;P.Chunks.sync();assert(P.Chunks.cache.size<=81,'Caché de sectores acotada')}
+ const origin=P.Terrain.props[0];s.player.x=0;s.player.y=0;P.Chunks.sync();assert(P.Terrain.props.some(o=>o===origin)||P.Terrain.originProps.includes(origin));
+ console.log('OK infinito: '+map.name+' / coordenadas lejanas, cámara, determinismo, memoria y cajas persistentes')
+}
 
 
+
+
+for(const map of P.Maps.catalog){
+ P.UI.menu();P.Maps.select(map.id);P.Game.start();s.mapTime=180;P.Encounters.tick();const point=P.Encounters.definition().portal;s.player.x=point.x;s.player.y=point.y;P.Encounters.offer();P.Encounters.enter();
+ assert(s.encounter.scene);assert.notEqual(P.BossArt.sceneId(),map.id,'El portal debe seleccionar otra escena');
+ const originalMapDraw=P.Maps.draw;let originDraws=0;P.Maps.draw=()=>originDraws++;P.World.render(700);P.Maps.draw=originalMapDraw;assert.equal(originDraws,0,'No se debe dibujar el mapa de origen detrás de la arena');
+ assert.equal(P.Terrain.active().length,0);
+ const local=s.enemies[0];local.phase='warning';assert.equal(P.BossArt.frame(local),3);local.phase='charge';assert.equal(P.BossArt.frame(local),4);local.phase='recover';local.attackUntil=0;assert.equal(P.BossArt.frame(local),5);
+ local.phase='warning';local.windup=.01;P.Encounters.bossMove(local,.02);if(local.kind!=='combi'){assert.equal(local.phase,'recover');assert.equal(P.BossArt.frame(local),4);s.elapsed+=.3;assert.equal(P.BossArt.frame(local),5)}
+ const png=fs.readFileSync(path.join(root,'public/assets/arenas/'+s.encounter.scene.asset+'-v1.png'));assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
+ P.Entities.hurt(local,99999);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
+}
+const bossPng=fs.readFileSync(path.join(root,'public/assets/bosses/boss-atlas-v1.png'));assert.equal(bossPng.toString('hex',0,8),'89504e470d0a1a0a');
 P.Game.start();s.mapTime=180;P.Encounters.tick();const uiPoint=P.Encounters.definition().portal;s.player.x=uiPoint.x;s.player.y=uiPoint.y;elements.get('#portal-enter').hidden=true;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,false,'El HUD debe mostrar el botón cercano');s.player.x=-900;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,true,'El HUD oculta el botón lejano');console.log('OK: botón de portal conectado al HUD');
 
 
