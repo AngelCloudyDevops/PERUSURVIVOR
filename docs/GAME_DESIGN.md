@@ -241,3 +241,5 @@ Al morir, el minion conserva su cuerpo completo, muestra ojos en X, cae y mantie
 
 ## Fondos naturales cartoon
 Manchas de color deterministas y flores dispersas reemplazan la muestra de suelo repetida. Caminos con curvas suaves y bordes de hierba, compartidos entre sectores; los obstáculos respetan su misma geometría. Copas orgánicas con transparencia cuando el jugador pasa detrás, sombras ovales y referencias locales: picnic, jardines coloniales y terrazas de piedra. No se cambian las cámaras ni las arenas de jefe.
+
+La prueba de rendimiento permite marcar «Probar el dibujo anterior para comparar». Solo cambia cómo se dibujan los proyectiles durante esa prueba; mantiene el número de enemigos, ataques, estelas y patrones. El resumen identifica el método usado. La composición se fija en un 20 % de minions pesados para que las repeticiones sean comparables. Las partidas normales usan el dibujo optimizado.
