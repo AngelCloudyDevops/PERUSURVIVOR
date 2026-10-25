@@ -103,6 +103,10 @@ module.exports = [
     "output": "js/ultimate.js"
   },
   {
+    "source": "src/network/cooperative.js",
+    "output": "js/cooperative.js"
+  },
+  {
     "source": "src/scenes/game.js",
     "output": "js/game.js"
   }

@@ -10,6 +10,10 @@ function build(){
  copy(path.join(root,'src/ui/styles.css'),path.join(out,'style.css'));
  for(const m of modules)copy(path.join(root,m.source),path.join(out,m.output));
  fs.cpSync(path.join(root,'public'),out,{recursive:true});
+ fs.cpSync(path.join(root,'backend'),path.join(out,'backend'),{recursive:true});
+ fs.writeFileSync(path.join(out,'backend/modules.json'),JSON.stringify(modules));
+ for(const file of ['package.json','package-lock.json'])copy(path.join(root,file),path.join(out,'backend',file));
+ copy(path.join(root,'ops/hostinger/install-coop.py'),path.join(out,'backend/install-vps.py'));
  const qa=path.join(out,'qa-portals.html');if(fs.existsSync(qa))fs.unlinkSync(qa);
  console.log('Build listo: dist/ ('+modules.length+' módulos)');
 }
