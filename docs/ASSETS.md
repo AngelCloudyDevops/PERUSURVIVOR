@@ -18,3 +18,6 @@ Referencias visuales consultadas durante la creación:
 - https://www.google.com/search?udm=2&q=CHARLES+AXELBENBA (facilitada por el usuario)
 - https://www.google.com/search?udm=2&q=shakadoto+najasor+cirilotv+fuzo
 Las fotografías de referencia no se distribuyen con el juego.
+
+## Jefes y fondos de portal
+public/assets/bosses/boss-atlas-v1.png contiene los tres jefes en seis poses. public/assets/arenas contiene combi-v1.png, cabinet-v1.png y guardian-v1.png. Son imágenes originales generadas con image_gen integrado; los prompts completos y el orden de las poses están en public/assets/bosses/prompts.json. Los escenarios de fantasía no pretenden reproducir edificios o deidades reales.

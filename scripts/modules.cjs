@@ -37,6 +37,10 @@ module.exports = [
     "output": "js/maps.js"
   },
   {
+    "source": "src/rendering/boss-art.js",
+    "output": "js/boss-art.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
   },
@@ -59,6 +63,10 @@ module.exports = [
   {
     "source": "src/ui/screens.js",
     "output": "js/ui.js"
+  },
+  {
+    "source": "src/development/lab.js",
+    "output": "js/lab.js"
   },
   {
     "source": "src/scenes/game.js",
