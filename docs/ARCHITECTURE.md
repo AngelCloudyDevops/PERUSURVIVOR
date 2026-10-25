@@ -87,3 +87,5 @@ P.LootArt carga y mide un atlas alfa de 4×4 celdas. Las filas de cajas y cofres
 
 ## Catálogo de rarezas
 P.Loot.init genera cuatro objetos por cada rareza, con base compartida para iconos y valores independientes. El filtro del cofre limita el sorteo a su nivel. Equip conserva su reemplazo reversible mediante multiplicadores; la curación usa item.heal. LootArt carga un segundo atlas de 4×3 para las tres rarezas y conserva el atlas original de cajas, objetos y cofre de jefe. Etiquetas y símbolos identifican los niveles también sin percepción del color.
+
+Audio usa Web Audio con osciladores y envolventes cortas, polifonía limitada y desconexión de nodos al terminar. El secuenciador sigue el frame y adapta el tema al mapa/jefe. Si Web Audio no está disponible, el juego continúa sin audio. El estado mute se guarda en localStorage.
