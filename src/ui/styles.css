@@ -10,3 +10,5 @@
 footer{position:static;grid-column:1/-1;margin-top:12px}#menu{align-content:start;row-gap:18px}.map-card img{object-position:center 20%}
 
 #portal-status{text-align:center;margin-top:8px;color:#e1b6ff;font-size:11px}#portal-enter{position:fixed;bottom:55px;left:50%;transform:translateX(-50%);padding:15px 24px;border:1px solid #ddb1ff;border-radius:10px;background:#533273;color:#fff2ff;font-weight:700;z-index:4;box-shadow:0 0 25px #bd7bdf44}#portal-enter:hover{background:#714592}@media(max-width:600px){#portal-status{font-size:9px}#portal-enter{bottom:40px;width:80%}}
+
+#loot-hud{display:flex;align-items:center;justify-content:center;gap:6px;font-size:10px;color:#e9d09b;margin-top:5px}#loot-icon{width:24px;height:24px;image-rendering:pixelated}#loot-message{min-height:12px;text-align:center;font-size:9px;color:#c8dfb1}#overlay{max-height:85vh;overflow-y:auto}
