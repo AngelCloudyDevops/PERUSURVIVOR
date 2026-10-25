@@ -90,3 +90,5 @@ La capa de efectos de la ulti se rasteriza en un lienzo de media resolución y s
 Ambient comparte la ventana determinista entre los tres mapas. En Plaza dibuja palomas por profundidad y anima la fuente según su posición real; en Machu usa ichu y niebla debajo del combate. Todo depende de elapsed y no introduce entidades de combate ni estado persistente.
 
 Audio usa Web Audio con osciladores y envolventes cortas, polifonía limitada y desconexión de nodos al terminar. El secuenciador sigue el frame y adapta el tema al mapa/jefe. Si Web Audio no está disponible, el juego continúa sin audio. El estado mute se guarda en localStorage.
+
+La marcha de los rivales usa la distancia real tras resolver colisiones en Systems.move. EnemyArt combina los dos cuadros del atlas con balanceo, rebote y desplazamiento alternado de pies; el ciclo se detiene sin desplazamiento y conserva la dirección horizontal. No modifica velocidad, daño ni colisiones.
