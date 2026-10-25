@@ -4,7 +4,7 @@ const drawing=new Proxy({createRadialGradient:()=>({addColorStop(){}})}, {get(t,
 function element(tag='div'){return {tag,children:[],style:{},hidden:false,dataset:{},classList:{add(){},remove(){},toggle(){}},setAttribute(){},append(...c){this.children.push(...c)},replaceChildren(){this.children=[]},querySelector(){return this.children.find(c=>c.tag==='button')},focus(){},addEventListener(n,f){this[n]=f},getContext(){return drawing},setPointerCapture(){}}}
 const context={console,Math,innerWidth:1280,innerHeight:800,devicePixelRatio:1,requestAnimationFrame(){},addEventListener(n,f){events[n]=f},localStorage:{getItem(k){return storage[k]},setItem(k,v){storage[k]=v}},document:{body:element(),querySelector(s){if(!elements.has(s))elements.set(s,element());return elements.get(s)},querySelectorAll(){return elements.get('#characters')?.children||[]},createElement:element}};
 context.window=context;vm.createContext(context);
-for(const file of ['data','core','sprites','enemy-art','fx','entities','combat','systems','maps','world','ui','game'])vm.runInContext(fs.readFileSync(__dirname+'/dist/js/'+file+'.js','utf8'),context,{filename:file});
+for(const file of ['data','core','sprites','enemy-art','fx','entities','combat','systems','maps','encounters','world','ui','game'])vm.runInContext(fs.readFileSync(__dirname+'/dist/js/'+file+'.js','utf8'),context,{filename:file});
 const P=context.P,s=P.state;
 assert.equal(P.Data.characters.length,14);assert.equal(elements.get('#characters').children.length,14);
 function target(x,y,hp=2000){return {x,y,hp,max:hp,r:13,speed:0,hit:0,boss:false,heavy:false}}
@@ -40,3 +40,24 @@ for(const map of P.Maps.catalog){
 }
 P.UI.menu();P.Maps.select('plaza');P.Game.start();const f=P.Maps.current().fountain;s.player.x=0;s.player.y=f.y+10;P.Maps.collide(s.player,{x:0,y:220});assert(Math.hypot((s.player.x-f.x)/f.rx,(s.player.y-f.y)/f.ry)>=.999);
 P.UI.menu();P.Maps.select('campo');P.Game.start();s.player.x=0;s.player.y=0;P.Maps.collide(s.player,{x:0,y:10});assert.equal(s.player.y,0,'Campo de Marte no debe conservar la fuente');
+
+for(const map of P.Maps.catalog){
+ P.UI.menu();P.Maps.select(map.id);P.Game.start();
+ s.mapTime=179.99;P.Encounters.tick();assert(!s.portal.open,'No abrir antes de 3:00');
+ s.mapTime=180;P.Encounters.tick();assert(s.portal.open);const pos=P.Encounters.definition().portal;
+ P.Encounters.offer();assert.equal(s.mode,'play','No ofrecer a distancia');
+ s.player.x=pos.x;s.player.y=pos.y;const normal=target(600,300);s.enemies=[normal];s.gems=[{x:700,y:200,value:2}];
+ P.Encounters.offer();assert.equal(s.mode,'portal');elements.get('#overlay').children.filter(c=>c.tag==='button')[1].onclick();assert.equal(s.mode,'play');assert(s.portal.open);
+ P.Encounters.offer();elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert(s.encounter);assert(s.enemies[0].mapBoss);assert.equal(s.enemies.length,1);
+ const clock=s.mapTime,normalX=normal.x;P.Game.update(.04);assert.equal(s.mapTime,clock);assert.equal(normal.x,normalX);assert(!s.bossSpawned);
+ const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
+ if(map.id==='campo')assert.equal(localBoss.phase,'charge');else assert(s.danger.length>0);
+ s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=590&&s.player.y>=-370);
+ P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
+ const power=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.mode,'play');assert.equal(s.player.power,power*1.3);P.Encounters.reward(()=>s.player.power=0);assert(s.player.power>0,'No repetir recompensa');
+ P.Game.update(.04);assert(s.mapTime>clock);assert(!s.portal.open);
+ s.mapTime=300;P.Game.update(.01);assert(s.bossSpawned);assert.equal(s.enemies.filter(e=>e.boss).length,1);P.Game.update(.01);assert.equal(s.enemies.filter(e=>e.boss).length,1);assert(!s.portal.open);
+ console.log('OK portal: '+map.name+' / 3:00, distancia, declinar, arena, aviso, recompensa única, retorno y ElZeein');
+}
+P.Game.start();s.mapTime=300;P.Game.update(.01);assert(s.bossSpawned);assert(!s.portal.open);assert(!s.portal.cleared);console.log('OK: ignorar portal mantiene el jefe final obligatorio');
+P.Game.start();s.mapTime=180;P.Encounters.tick();const entrance=P.Encounters.definition().portal;s.player.x=entrance.x;s.player.y=entrance.y;P.Encounters.offer();P.Encounters.enter();s.player.hp=1;s.player.inv=0;s.enemies[0].x=s.player.x;s.enemies[0].y=s.player.y;P.Game.update(.01);assert.equal(s.mode,'end');P.Game.start();assert(!s.encounter);assert.equal(s.mapTime,0);assert(!s.portal.cleared);console.log('OK: derrota en arena y reinicio limpio');
