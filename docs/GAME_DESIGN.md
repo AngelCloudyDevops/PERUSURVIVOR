@@ -206,7 +206,7 @@ Los cofres se generan en el servidor para la zona de ambos jugadores. Cualquiera
 El evento del emoliente sigue en Campo de Marte. Cualquiera puede iniciarlo cerca del puesto. Basta un jugador vivo dentro del círculo para avanzar la defensa; los dos pueden alternarse. Salir ambos reinicia el progreso. Completar 20 s entrega una sola vez 25 monedas de equipo y cura 35% de vida máxima a cada jugador vivo, sin repetir por volver al puesto. Los cofres y el evento conservan su estado durante un portal. Las actividades se detienen si falta la conexión de uno.
 Los cofres raros y legendarios necesitan una llave de su mismo nivel. Sin ella, la apertura no progresa y se muestra el requisito; una llave no sustituye a la de otro nivel. Se consume exactamente una al iniciar la apertura animada. Los comunes y los de jefe no requieren llave. Los portadores raros aparecen desde el segundo 30 y tienen ×2,5 de vida; los legendarios desde el segundo 90 y tienen ×4. Son enemigos normales reforzados con aura y llave visibles, conservan sus patrones de ataque y dejan una llave garantizada al caer. No aparecen en arenas, laboratorio, pausa ni durante el jefe final, y no se acumulan dos vivos del mismo tipo. Las llaves se recogen del suelo, no dan fama y se cuentan en el HUD; se pierden al reiniciar la partida. La función corresponde a la partida individual, donde existen los cofres.
 ### Reacciones de minions y sprites integros
-La caminata de personajes y minions alterna sus cuadros originales con balanceo suave del cuerpo entero, sin separar las extremidades. Al recibir dano, el cuerpo reacciona durante 0,22 s y muestra un acento visual propio. Las muertes duran menos de un segundo, son cosmeticas y no demoran el botin ni dejan un enemigo activo.
+La caminata de personajes y minions alterna sus cuadros originales con balanceo suave del cuerpo entero, sin separar las extremidades. Al recibir dano, el cuerpo reacciona durante 0,22 s y muestra un acento visual propio. Las muertes duran aproximadamente un segundo, son cosmeticas y no demoran el botin ni dejan un enemigo activo.
 
 | Rival | Al recibir dano | Al morir |
 | --- | --- | --- |
@@ -217,7 +217,7 @@ La caminata de personajes y minions alterna sus cuadros originales con balanceo 
 | Austin | Pequeno salto y chispas violetas | Se estrecha y desaparece con aros violetas |
 | PNP | Retroceso y chispas verdes | Se ladea y se desvanece con pulsos verdes |
 
-La invulnerabilidad, los ataques y las recompensas conservan sus reglas. Al pausar se congelan las reacciones y al reiniciar desaparecen.
+Los ataques y las recompensas conservan sus reglas. Al pausar se congelan las reacciones y al reiniciar desaparecen.
 
 Arbustos y follaje de jardineras comparten copas redondeadas con lóbulos asimétricos, contorno oscuro y hojas agrupadas. Se conservan posiciones, profundidad, viento y colisiones originales.
 ## Señales de llaves en el minimapa
@@ -231,3 +231,8 @@ El indicador del HUD elige por distancia entre portadores vivos y llaves no reco
 En Desarrollo se puede activar el contador de FPS para las partidas y elegir una carga de 80 minions/200 proyectiles, 80/400 o 160/600. La prueba usa el escenario y personaje seleccionados, permite movimiento y pausa, mantiene ataques y animaciones, da invulnerabilidad y repone la carga. No guarda récords ni activa cofres o eventos opcionales. Tras 3 segundos de preparación mide 30 segundos visibles, con salida anticipada y resumen de FPS medios, ms por fotograma y P95. P95 es el tiempo que no superan el 95 % de los fotogramas; menor es mejor. El resultado depende del dispositivo, frecuencia de pantalla y navegador.
 
 El indicador también funciona en cooperativo: cada jugador ve la dirección y distancia desde su propia posición, usando los portadores y llaves compartidos por el servidor.
+
+### Resistencia durante la preparación y muerte legible
+Los seis tipos de minion pesado reducen un 40 % el daño recibido solo mientras preparan su ataque (rangedAim activo y rangedWindup positivo). Un golpe de 20 inflige 12: siguen siendo vulnerables y pueden morir. Un halo dorado pulsante y un pequeño escudo indican la resistencia; desaparecen al ejecutar el ataque. Los normales y los jefes conservan el daño completo. Embestidas y ráfagas ya iniciadas no prolongan esta protección. Los portadores de llaves siguen las mismas reglas de pesado.
+
+Al morir, el minion conserva su cuerpo completo, muestra ojos en X, cae y mantiene la pose antes de desvanecerse durante el tramo final. La duración varía entre 0,95 y 1,05 s y se conservan los seis efectos de partículas. Las recompensas y la eliminación del combate son inmediatas; el cadáver es cosmético.
