@@ -1,4 +1,3 @@
-// Scripts clásicos del espacio P; orden explícito.
 module.exports = [
   {
     "source": "src/data/catalog.js",
@@ -64,7 +63,14 @@ module.exports = [
     "source": "src/systems/terrain.js",
     "output": "js/terrain.js"
   },
-  {"source":"src/systems/loot.js","output":"js/loot.js"},
+  {
+    "source": "src/systems/loot.js",
+    "output": "js/loot.js"
+  },
+  {
+    "source": "src/rendering/ambient.js",
+    "output": "js/ambient.js"
+  },
   {
     "source": "src/rendering/world.js",
     "output": "js/world.js"
