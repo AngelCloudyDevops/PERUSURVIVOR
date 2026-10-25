@@ -10,7 +10,7 @@ test('El HTML carga todos los módulos en el orden declarado',()=>{
 });
 test('La compilación copia el código y recursos sin transformarlos',()=>{
  for(const m of modules)assert.equal(hash(path.join(root,m.source)),hash(path.join(root,'dist',m.output)),m.source);
- function inspect(folder){for(const name of fs.readdirSync(folder)){const file=path.join(folder,name);if(fs.statSync(file).isDirectory())inspect(file);else{const rel=path.relative(path.join(root,'public'),file);assert.equal(hash(file),hash(path.join(root,'dist',rel)),rel)}}}
+ function inspect(folder){for(const name of fs.readdirSync(folder)){const file=path.join(folder,name);if(fs.statSync(file).isDirectory())inspect(file);else{if(file.endsWith('.png')&&fs.existsSync(file.slice(0,-4)+'.webp')){assert(!fs.existsSync(path.join(root,'dist',path.relative(path.join(root,'public'),file))));continue}const rel=path.relative(path.join(root,'public'),file);assert.equal(hash(file),hash(path.join(root,'dist',rel)),rel)}}}
  inspect(path.join(root,'public'));
 });
 test('Las hojas y mapas PNG contienen imágenes válidas de tamaño no nulo',()=>{
@@ -63,3 +63,16 @@ test('Carga inicial: oculta arte provisional, espera recursos y ofrece reintento
 
 test('Cada build identifica su contenido y versiona scripts y estilos',()=>{const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8'),version=JSON.parse(fs.readFileSync(path.join(root,'dist/version.json'),'utf8')).version;assert.match(version,/^[a-f0-9]{20}$/);assert(html.includes('name="game-version" content="'+version+'"'));for(const m of [...modules,{output:'style.css'}])assert(html.includes(m.output+'?v='+hash(path.join(root,'dist',m.output)).slice(0,16)))});
 test('Actualizaciones: menú automático, partida preservada y red sin conexión',async()=>{const vm=require('node:vm');let reloads=0,request,answer={version:'aaaaaaaaaaaaaaaaaaaa'};const button={hidden:true},P={state:{mode:'play'}};const env={P,console,Date,location:{reload(){reloads++}},fetch:async(url,options)=>{request={url,options};if(answer instanceof Error)throw answer;return {ok:true,json:async()=>answer}}};vm.createContext(env);vm.runInContext(fs.readFileSync(path.join(root,'src/core/updates.js'),'utf8'),env);const u=P.Updates;u.version='aaaaaaaaaaaaaaaaaaaa';u.button=button;await u.check();assert.equal(reloads,0);assert.equal(request.options.cache,'no-store');answer=new Error('offline');await u.check();assert.equal(reloads,0);assert(!u.pending);answer={version:'bbbbbbbbbbbbbbbbbbbb'};await u.check();assert(u.pending);assert.equal(reloads,0);assert.equal(button.hidden,false);P.state.mode='menu';await u.check();assert.equal(reloads,1);await u.check();assert.equal(reloads,1)});
+
+test('Arte WebP sin pérdida: integridad del informe y salida sin PNG duplicados',()=>{
+ const report=require('../docs/asset-optimization.json');assert.equal(report.assets.length,19);let before=0,after=0;
+ for(const asset of report.assets){const source=path.join(root,'public',asset.source),output=path.join(root,'public',asset.output),built=path.join(root,'dist',asset.output),data=fs.readFileSync(output);assert.equal(hash(source),asset.sourceSha256);assert.equal(hash(output),asset.outputSha256);assert.equal(hash(output),hash(built));assert.equal(data.toString('ascii',0,4),'RIFF');assert.equal(data.toString('ascii',8,12),'WEBP');assert(asset.optimizedBytes<asset.originalBytes);assert(!fs.existsSync(path.join(root,'dist',asset.source)));before+=asset.originalBytes;after+=asset.optimizedBytes}
+ assert.equal(before,report.originalBytes);assert.equal(after,report.optimizedBytes);assert(after<before*.75);
+ for(const p of report.previews){assert.equal(hash(path.join(root,'public',p.output)),p.sha256);assert(p.width<=384);assert(p.height<=256);assert(p.bytes<200000)}
+});
+test('El inicio descarga solo el mapa seleccionado y reutiliza las solicitudes',()=>{
+ const vm=require('node:vm'),requests=[],elements=new Map();const P={state:{mode:'menu'},UI:{},Core:{canvas:{setAttribute(){}}},$:id=>{if(!elements.has(id))elements.set(id,{textContent:'',append(){}});return elements.get(id)}};
+ const document={createElement(){return {dataset:{},setAttribute(){},append(){}}},querySelectorAll(){return []},body:{classList:{add(){}}}};
+ vm.runInNewContext(fs.readFileSync(path.join(root,'src/scenes/maps.js'),'utf8'),{P,document,Image:function(){requests.push(this)}});
+ P.Maps.init();assert.equal(requests.length,1);assert.equal(requests[0].src,'assets/maps/campo-v1.webp');P.Maps.load('campo');assert.equal(requests.length,1);requests[0].onload();assert(P.Maps.ready.campo);P.Maps.select('plaza');assert.equal(requests.length,2);assert.equal(requests[1].src,'assets/maps/plaza-v1.webp');
+});

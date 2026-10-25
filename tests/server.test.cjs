@@ -5,7 +5,7 @@ test('El servidor entrega el juego y los sprites y rechaza rutas inexistentes',a
  function get(route){return new Promise((resolve,reject)=>{http.get({host:'127.0.0.1',port,path:route},res=>{let chunks=[];res.on('data',c=>chunks.push(c));res.on('end',()=>resolve({status:res.statusCode,type:res.headers['content-type'],body:Buffer.concat(chunks)}))}).on('error',reject)})}
  try{let res=await get('/');assert.equal(res.status,200);assert.match(res.body.toString(),/CAUSAS/);
  res=await get('/js/game.js');assert.equal(res.status,200);assert.match(res.type,/javascript/);
- res=await get('/assets/enemies/rivales-atlas-v1.png');assert.equal(res.status,200);assert.equal(res.type,'image/png');
+ res=await get('/assets/enemies/rivales-atlas-v1.webp');assert.equal(res.status,200);assert.equal(res.type,'image/webp');
  assert.equal((await get('/missing-file.js')).status,404);
  assert.equal((await get('/%2e%2e/package.json')).status,404);
  }finally{await new Promise(resolve=>server.close(resolve))}
