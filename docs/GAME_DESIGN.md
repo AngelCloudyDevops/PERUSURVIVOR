@@ -394,3 +394,5 @@ Los minions no muestran nombres, incluidos los pesados y la PNP. Los portadores 
 Campo de Marte: monumento de piedra con arco y relieves, más dos variantes de picnic con madera, metal y accesorios. Interpretación estilizada de parque, sin reconstrucción histórica. Mantiene sombra al pie, transparencia detrás del monumento, posiciones y colisiones. Referencia: CAMPO_LANDMARKS.md.
 
 HUD de combate distribuido en los bordes: XP de ancho completo arriba, personaje/nivel/vida a la izquierda, tiempo al centro y habilidad abajo. La información de botín y eventos permanece visible sin un panel central opaco.
+
+Machu Picchu: tres variantes de roca, dos orientaciones de muro y terrazas con escalera, piedra irregular y musgo sutil. Conserva rutas, cantidades y colisiones, sombras apoyadas y transparencia detrás. Los bordes de piedra del suelo mantienen su distribución y se integran en la caché del terreno. Referencia: MACHU_STONE.md.

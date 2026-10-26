@@ -231,3 +231,6 @@ Campo y Plaza usan [árboles y jardineras cartoon con acabado pixel](docs/TREES_
 
 ## Monumento y picnic de Campo de Marte
 El [monumento y las mesas de picnic](docs/CAMPO_LANDMARKS.md) conservan el estilo cartoon con acabado pixel: piedra tallada, relieves, madera y metal, mantel o canasta/termo. Mantener sombras pegadas a la base y patas, escala coherente y transparencia detrás del monumento. Atlas compartido de unos 96 KB, una llamada de dibujo por objeto, sin cambiar cantidades ni colisiones.
+
+## Piedra de Machu Picchu
+Las [rocas, muros y terrazas](docs/MACHU_STONE.md) usan sprites cartoon con acabado pixel, grietas y musgo discreto. Mantener siluetas irregulares, piedra coherente y sombras al pie. Atlas compartido de unos 287 KB, una llamada de imagen por obstáculo y bordes del suelo cacheados por sector. Conserva colisiones, rutas y cantidades; sin añadir partículas ni animaciones.

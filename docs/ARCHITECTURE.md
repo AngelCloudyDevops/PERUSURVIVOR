@@ -312,3 +312,8 @@ EnemyArt.labelTop calcula el borde superior de la pose dibujada, a partir del cu
 CampoArt intercepta landmark/picnic en Terrain solo para Campo fuera de arenas. Carga un atlas de tres celdas y selecciona el picnic de forma determinista por coordenadas. Una llamada de imagen y una sombra pequeña por objeto; reutiliza descarte/orden de World sin nuevas entidades, temporizadores ni estado por sector. Auditoría y empaquetado: campo-landmarks-audit.json y pack-campo-landmarks.py.
 
 El HUD conserva IDs y sistemas existentes. UI.hud actualiza nombre, nivel y la barra accesible de vida; XP expone valores ARIA. CSS posiciona las zonas del HUD de forma independiente, manteniendo el contenedor único para ocultar todo en menú y cinemáticas.
+
+MachuArt intercepta rock/wall/landmark en Terrain únicamente para Machu fuera de arenas. Un atlas de seis celdas, variante de roca por coordenadas y orientación del muro según w/h. Una llamada por obstáculo. Chunks.floor usa MachuArt.edge solo al construir el canvas del sector; la carga del atlas invalida esos canvas una vez si Machu sigue seleccionado. Ningún cambio de física, rutas o entidades. Auditoría y empaquetado: machu-stone-audit.json y pack-machu-stone.py.
+
+
+Los bordes de piedra se componen sobre el canvas final de 512 px del sector, después de ampliar la base de 128 px, para conservar el detalle del sprite sin bloques excesivos. La composición sigue ocurriendo solo al reconstruir el sector.
