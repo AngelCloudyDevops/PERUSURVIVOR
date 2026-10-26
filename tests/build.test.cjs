@@ -11,7 +11,7 @@ test('El HTML carga todos los módulos en el orden declarado',()=>{
 });
 test('La compilación copia el código y recursos sin transformarlos',()=>{
  for(const m of modules)assert.equal(hash(path.join(root,m.source)),hash(path.join(root,'dist',m.output)),m.source);
- function inspect(folder){for(const name of fs.readdirSync(folder)){const file=path.join(folder,name);if(fs.statSync(file).isDirectory())inspect(file);else{if(file.endsWith('.png')&&fs.existsSync(file.slice(0,-4)+'.webp')){assert(!fs.existsSync(path.join(root,'dist',path.relative(path.join(root,'public'),file))));continue}const rel=path.relative(path.join(root,'public'),file);assert.equal(hash(file),hash(path.join(root,'dist',rel)),rel)}}}
+ function inspect(folder){for(const name of fs.readdirSync(folder)){const file=path.join(folder,name);if(fs.statSync(file).isDirectory())inspect(file);else{if(/(?:^|[\\/])(?:.*-)?prompts?\.json$/.test(file)){assert(!fs.existsSync(path.join(root,'dist',path.relative(path.join(root,'public'),file))),'Los prompts de autoría no se distribuyen');continue}if(file.endsWith('.png')&&fs.existsSync(file.slice(0,-4)+'.webp')){assert(!fs.existsSync(path.join(root,'dist',path.relative(path.join(root,'public'),file))));continue}const rel=path.relative(path.join(root,'public'),file);assert.equal(hash(file),hash(path.join(root,'dist',rel)),rel)}}}
  inspect(path.join(root,'public'));
 });
 test('Las hojas y mapas PNG contienen imágenes válidas de tamaño no nulo',()=>{
