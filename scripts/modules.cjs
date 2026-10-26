@@ -56,6 +56,10 @@ module.exports = [
     "output": "js/fx.js"
   },
   {
+    "source": "src/systems/meta-progress.js",
+    "output": "js/meta-progress.js"
+  },
+  {
     "source": "src/entities/actors.js",
     "output": "js/entities.js"
   },
@@ -96,7 +100,8 @@ module.exports = [
     "output": "js/vulture-cinematic.js"
   },
   {
-    "source": "src/rendering/vulture-strike-art.js", "output": "js/vulture-strike-art.js"
+    "source": "src/rendering/vulture-strike-art.js",
+    "output": "js/vulture-strike-art.js"
   },
   {
     "source": "src/systems/encounters.js",
@@ -133,7 +138,8 @@ module.exports = [
     "source": "src/rendering/street-art.js", "output": "js/street-art.js"
   },
   {
-    "source": "src/rendering/plaza-art.js", "output": "js/plaza-art.js"
+    "source": "src/rendering/plaza-art.js",
+    "output": "js/plaza-art.js"
   },
   {
     "source": "src/rendering/ambient.js",

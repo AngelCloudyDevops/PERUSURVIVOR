@@ -218,5 +218,13 @@ La portada muestra «Pulsa para empezar» sobre el escenario con nueve personaje
 ## Bancas y faroles
 El mobiliario de Campo y Plaza utiliza [sprites cartoon con acabado pixel](docs/STREET_FURNITURE.md): dos bancas con madera y hierro ornamentales y farol colonial. Conservar perspectiva, sombras pequeñas pegadas a las patas y base del poste. Atlas compartido de unos 50 KB; luz del vidrio cacheada y ligada al ciclo de día/noche. No cambiar colisiones, cantidades ni añadir luces dinámicas por objeto.
 
+## Progreso permanente por personaje
+El progreso se guarda automáticamente en localStorage de este navegador (causas-progress-v1), conservando el récord anterior. No sincroniza cuentas ni guarda una partida en curso. El panel Mejoras muestra saldo, partidas, victorias, rivales y mejores marcas de cada causa.
+
+Las monedas permanentes son distintas del dinero temporal del mapa. Al terminar una partida de al menos 15 s se entregan 1 por cada 5 rivales, 2 por cada 30 s y 50 extra por victoria. Cada partida tiene ID y recibo para impedir cobros repetidos. No se premian abandonos, prácticas, laboratorios ni pruebas de rendimiento. El cooperativo entrega recompensa local a cada participante a partir del resultado de la sala.
+
+Cada personaje tiene cinco rangos de Vitalidad (+8 vida/rango), Fuerza (+4% daño base/rango), Reflejos (recarga ×0.97/rango), Zapatillas (+3% velocidad base/rango) e Imán (+12% recogida base/rango). El coste es base × (rango actual + 1): 40, 50, 55, 35 y 35 respectivamente. Las mejoras se aplican una sola vez al comenzar el combate individual normal. El cooperativo mantiene sus atributos de servidor y los rangos de poderes de cada partida continúan reiniciándose.
+
+P.Meta valida esquema, identificadores, rangos y saldo. Compra y premio escriben un único documento; las operaciones releen el estado y usan Web Locks cuando está disponible. Los cambios de otras pestañas se reflejan por storage. Una lectura corrupta o un fallo de escritura no confirma gasto ni premio: conserva el guardado y muestra estado y reintento. No se utiliza el monedero local como autoridad de combate cooperativo.
 ## Árboles y jardineras
 Campo y Plaza usan [árboles y jardineras cartoon con acabado pixel](docs/TREES_PLANTERS.md): dos copas orgánicas y jardineras de piedra en orientación horizontal y alargada. Mantener raíces y sombras apoyadas; solo la parte alta del árbol oscila, con transparencia al pasar detrás. Un atlas compartido, dos llamadas de imagen por árbol y una por jardinera; sin cambiar colisiones ni cantidades. Pausa y movimiento reducido detienen el movimiento.
