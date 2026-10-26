@@ -634,3 +634,6 @@ El despegue del Tricéfalo tiene carga de peso, aletazo descendente y recuperaci
 El vuelo del Tricéfalo usa 16 pasos de aleteo y 12 pasos de despegue cacheados, derivados del atlas con muestreo sin suavizado. Una malla continua mantiene la raíz del ala y el agarre, repliega las patas hacia el vientre y transmite un movimiento leve al jinete. El ciclo comparte fase entre cinemática y combate; hasta 28 superficies por atlas, sin recalcular la malla cada cuadro. Movimiento reducido conserva una pose quieta y no cambia el combate.
 
 DomainFinale conserva el reporte durante 3 segundos y calcula su edad con ese intervalo; smokePlan sigue expirando a los 2 segundos, sin prolongar el humo.
+
+### Derrota del Chosicano
+ChosicanoCombat administra defeat/defeatTick y una pose pura por tiempo de simulación. Usa encounter.defeat como Fujimori y Gallinazo: actor separado de enemigos, actualización exclusiva y retorno único mediante Encounters.win. ChosicanoArt conserva el cuadro entero del frenazo y añade humo pixelado y cartel; sin partículas persistentes ni atlas nuevos.

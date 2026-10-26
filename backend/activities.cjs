@@ -97,6 +97,6 @@ class Activities{
    if(!opener){chest.progress=0;continue}sim.use(opener);if(!P.Loot.canOpen(chest)){P.Loot.locked(chest);continue}chest.progress+=dt;if(chest.progress>=1.8){this.open(chest);break}
   }
  }
- snapshot(){const P=this.P,s=P.state;return {portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
+ snapshot(){const P=this.P,s=P.state;return {portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles,defeat:s.encounter.defeat||null}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
 }
 module.exports={Activities};
