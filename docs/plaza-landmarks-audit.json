@@ -1,0 +1,26 @@
+{
+  "source": "public/assets/environment/plaza-landmarks-v1.png",
+  "runtime": "public/assets/environment/plaza-landmarks-v1.webp",
+  "source_sha256": "00cae400e6299b17515a5adbfac8c6ddebc959bdba1f1f75b0d7b3c1be7e2f08",
+  "runtime_sha256": "98b5e06c7bf9111ff92bc3ddcfc2e0119cbb463941e66bf2436484e7f4639762",
+  "bytes": 415448,
+  "width": 1024,
+  "height": 512,
+  "cells": [
+    {
+      "id": "fountain",
+      "x": 16,
+      "y": 39,
+      "w": 480,
+      "h": 457
+    },
+    {
+      "id": "facade",
+      "x": 528,
+      "y": 167,
+      "w": 480,
+      "h": 329
+    }
+  ],
+  "method": "Built-in image_gen; mechanical crop along transparent gap and nearest-neighbor packing."
+}

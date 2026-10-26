@@ -354,6 +354,8 @@ Los quince jugables con ataques de proyectil o cono usan cinco orientaciones dib
 
 
 Ulti de Alberto Fujimori: TRIBUNAL. Carga 20 bajas como Kingteka; Q inicia una escena de 3,4 s que congela combate y reloj de ambos jugadores. El publico muestra minions de espaldas, Fujimori sentado al centro, aliado vivo como abogado y un juez original. Tras SOY INOCENTE y el martillazo, el mapa retorna: elimina minions normales y pesados con centro a 340 unidades o menos del punto de activacion. Excluye jefes, subjefes y mimicos. No carga la propia ulti con esas bajas, mantiene recompensas normales y concede 1,2 s de proteccion al volver. La sala autoriza, sincroniza y resuelve una sola vez; nunca acepta objetivos del cliente. Practica publica de Fujimori con recarga y reposicion de objetivos, sin records. No usa voz real.
+La Plaza reemplaza la pileta y fachada geométricas por sprites cartoon detallados. Mantiene la física y escala del lugar, sombras al pie y ocho reflejos pequeños de agua. El jugador se mantiene visible detrás con opacidad reducida del objeto; pausa congela el agua y movimiento reducido la desactiva. Referencia: PLAZA_LANDMARKS.md.
+
 ## Inicio y demostraciones de ataques
 El inicio se organiza como un lobby: causa destacado, botón Jugar ahora y accesos a mapas, personajes, habilidades y cooperativo. Conserva el estilo peruano y todos los controles existentes; no añade funciones de cuenta ni tiendas inexistentes.
 

@@ -272,6 +272,8 @@ Los originales de image_gen se conservan como PNG, con prompts y auditoría en `
 
 
 Ulti de Alberto Fujimori: TRIBUNAL. Carga 20 bajas como Kingteka; Q inicia una escena de 3,4 s que congela combate y reloj de ambos jugadores. El publico muestra minions de espaldas, Fujimori sentado al centro, aliado vivo como abogado y un juez original. Tras SOY INOCENTE y el martillazo, el mapa retorna: elimina minions normales y pesados con centro a 340 unidades o menos del punto de activacion. Excluye jefes, subjefes y mimicos. No carga la propia ulti con esas bajas, mantiene recompensas normales y concede 1,2 s de proteccion al volver. La sala autoriza, sincroniza y resuelve una sola vez; nunca acepta objetivos del cliente. Practica publica de Fujimori con recarga y reposicion de objetivos, sin records. No usa voz real.
+PlazaArt carga bajo demanda un atlas de 1024×512. Terrain delega landmark/fountain; Chunks conserva la fuente anterior hasta que el atlas esté listo y World integra la nueva en el orden de actores con descarte fuera de cámara. Ambient no superpone el agua antigua. Una llamada drawImage por objeto y ocho reflejos como máximo; no crea entidades, partículas ni colisiones. Originales, empaquetado y hashes: PLAZA_LANDMARKS.md y plaza-landmarks-audit.json.
+
 ## Inicio y demostraciones de ataques
 El inicio se organiza como un lobby: causa destacado, botón Jugar ahora y accesos a mapas, personajes, habilidades y cooperativo. Conserva el estilo peruano y todos los controles existentes; no añade funciones de cuenta ni tiendas inexistentes.
 
