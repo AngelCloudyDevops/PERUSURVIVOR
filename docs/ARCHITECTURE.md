@@ -497,3 +497,5 @@ BackgroundMusic.choice inicia en alternate; el selector HTML declara la misma op
 Audio.musicLive distingue continuidad musical (play/upgrade/loot-opening/item) de actividad del combate: BackgroundMusic y melodía sintetizada usan musicLive, mientras Soundscape y MinionAudio reciben solo play. Los controles music-control y enemy-audio-control se fijan al viewport en partida para evitar el desplazamiento y recorte causado por header de altura cero; sus anclajes cambian para móvil.
 
 VultureRig.tickFlight calcula desplazamiento real entre ticks y mezcla rigFlight para despegar/aterrizar sin saltos. flightPose deriva altura, aleteo, recogida de patas e inclinación desde el reloj de simulación. Solo desplaza el render: conserva coordenadas físicas, sombra de suelo y cinemática lunar.
+
+VultureRig.attackPose deriva carga, descarga y recuperación de chaosTime y de windup/warningTime, sin timers ni modificación de coordenadas. Sustituye la oscilación de reposo durante ataques y conserva el reloj y los disparos originales. attackFX representa arcos de aire locales en cada descarga y respeta movimiento reducido.

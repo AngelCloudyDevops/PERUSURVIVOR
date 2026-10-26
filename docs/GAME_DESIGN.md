@@ -584,3 +584,5 @@ La música predeterminada para navegadores sin preferencia guardada es Alternar 
 Cofres (loot-opening/item) y mejoras (upgrade) conservan la música y su fundido; no cuentan como pausa musical. Pausa explícita, menú, portal, fin de partida, silencio y pérdida de visibilidad/foco detienen la música. Ambiente y voces de combate siguen ligados exclusivamente a play.
 
 Gallinazo fase dos: al desplazarse despega suavemente, recoge las patas y bate las alas con un ciclo completo. La sombra permanece en el piso y el aura acompaña el cuerpo elevado; al detenerse baja progresivamente. No cambia la colisión ni el daño. Movimiento reducido mantiene altura estable sin oscilación.
+
+Fase dos: cada ráfaga de plumas tiene su propio aletazo, sincronizado a 1,10 y 1,52 segundos. Abre y carga las alas, descarga con cuello/pico y arcos de aire y recupera entre ráfagas. Antes de la picada eleva el cuerpo, abre las alas y las recoge; después adopta una silueta de vuelo inclinado. La carga conserva su posición física.
