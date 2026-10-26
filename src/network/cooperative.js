@@ -35,7 +35,7 @@ open(message){
  ws.onclose=()=>{if(this.ws!==ws)return;this.ws=null;if(this.session){if(!this.reconnecting)this.reconnectDeadline=performance.now()+30000;this.reconnecting=true;this.paused=true;P.Core.clear();P.$('#hint').textContent='Conexión perdida. Intentando volver a la sala…';const session=this.session;setTimeout(()=>{if(this.session===session)this.open({type:'resume',protocol:2,...session})},1500)}else this.status('No se pudo conectar. Prueba de nuevo o juega individual.')};
 },
 receive(m){
- P.CoopMotion?.accept(m,performance.now());this.team=m.team||null;this.duoEvent=m.duoEvent||null;
+ P.CoopMotion?.accept(m,performance.now());this.team=m.team||null;this.duoEvent=m.duoEvent||null;this.escort=m.escort||null;this.signals=m.signals||[];
  const first=!this.active;if(first){this.resultShown=false;this.resultVisible=false;this.resultSummary=null;}this.active=true;this.reconnecting=false;
  if(first){P.Maps.select(m.map);P.state.chosen=P.Data.characters.findIndex(c=>c.id===m.players[this.session.slot].id);this.initializing=true;P.Game.start();this.initializing=false;P.Loot.chests=[];P.Loot.debris=[];P.$('#pause').setAttribute('aria-label','Opciones cooperativas')}
  const s=P.state,previousScene=s.encounter?.scene?.id;for(const key of ['domain','domainAftermath','sideralDomain','miniReport','court','courtBurst','miniWarning','keys','portal','encounter','mapBossWon','coins','elapsed','mapTime','kills','level','xp','need','bossSpawned','shots','fields','enemies','gems','danger','effects'])s[key]=m[key];
