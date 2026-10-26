@@ -613,3 +613,5 @@ La revelación secreta encadena un falso resultado Jade, un último giro, vapor 
 ### Boletos del Chosicano
 ChosicanoCombat comparte ticketAngles entre aviso y disparo; busTicket usa el procesamiento de proyectiles y el barrido de coberturas existente. ChosicanoArt pinta puerta, cobrador y boletos sin alterar el atlas. Todo el tiempo procede de la simulación; giro desactivado con movimiento reducido.
 El gesto de Cristorata usa piezas pixel art rígidas de manga, antebrazo y mano con índice definido. El hombro queda fijo al torso; codo y muñeca conservan sus longitudes al extender y recoger el brazo. Las piezas y la limpieza del recorte se cachean por imagen, sin deformar el atlas ni modificar la duración de la ulti.
+
+La subida de Cristorata al Tricéfalo mantiene al personaje opaco durante el recorrido: extiende ambas manos, eleva la pierna, aproxima las caderas a la silla y flexiona las piernas al asentarse. El agarre y el asiento preceden al despegue; torso y piernas reutilizan píxeles del atlas y las manos cerradas son piezas cacheadas. Conserva la escena de 6,4 s y los ocho segundos completos de montura.
