@@ -116,7 +116,8 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
-    "source": "src/rendering/plaza-art.js", "output": "js/plaza-art.js"
+    "source": "src/rendering/plaza-art.js",
+    "output": "js/plaza-art.js"
   },
   {
     "source": "src/rendering/ambient.js",
@@ -145,6 +146,10 @@ module.exports = [
   {
     "source": "src/ui/skill-preview.js",
     "output": "js/skill-preview.js"
+  },
+  {
+    "source": "src/ui/lobby.js",
+    "output": "js/lobby.js"
   },
   {
     "source": "src/ui/screens.js",
