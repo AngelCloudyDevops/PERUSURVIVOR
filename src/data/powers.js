@@ -45,6 +45,9 @@ Object.assign(P.Data.attacks.roachCast,{powerScale:.75});
 P.Data.attacks.royalEcho={name:'Puño de la realeza',description:'Puñetazo cuerpo a cuerpo en arco de 120°, con empuje corto.',kind:'melee',cooldown:.56,range:100,arc:120*Math.PI/180,push:24,glyph:'FIST',color:'#ef92cf'};
 P.Data.characters.push({id:'makanaky',name:'Makanaky · La Realeza',category:'Streamer · parodia',look:'headset',atlas:'makanaky',spriteRow:0,color:'#ef92cf',skin:'#cb976d',hp:125,speed:200,power:32,attack:'royalEcho'});
 P.CharacterProfiles.roles.makanaky=['Luchador de presión','Puños rápidos contra grupos cercanos.','Necesita acercarse y aprovechar el agotamiento de los minijefes.'];
+P.Data.attacks.sideralFear={name:'Mirada Sideral',description:'Una mueca exagerada aterra a los minions en un cono frontal.',kind:'cone',cooldown:1.35,range:270,arc:1.55,powerScale:.42,push:8,fear:true,fearDuration:.9,fearCooldown:2.5,glyph:'!'};
+P.Data.characters.push({id:'sideral',name:'Sideral · Espantaminions',category:'Streamer · parodia',look:'headset',atlas:'sideral',spriteRow:0,color:'#ff465f',skin:'#d99368',hp:120,speed:195,power:27,attack:'sideralFear'});
+P.CharacterProfiles.roles.sideral=['Control UR','Hace huir a los minions en un cono frontal.','El mismo rival resiste nuevos sustos durante 2,5 s.'];
 
 Object.assign(P.Data.attacks.pigShotgun,{cooldown:.72,powerScale:.56,falloff:{near:165,min:.35}});
 Object.assign(P.Data.attacks.g5Kick,{cooldown:.68});

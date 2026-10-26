@@ -9,7 +9,7 @@ const context={console,Math,innerWidth:1280,innerHeight:800,devicePixelRatio:1,r
 context.window=context;vm.createContext(context);
 for(const m of modules)vm.runInContext(fs.readFileSync(path.join(root,m.source),'utf8'),context,{filename:m.source});
 const P=context.P,s=P.state;
-assert.equal(P.Data.characters.length,19);assert.equal(elements.get('#characters').children.length,19);
+assert.equal(P.Data.characters.length,20);assert.equal(elements.get('#characters').children.length,20);
 function target(x,y,hp=2000){return {x,y,hp,max:hp,r:13,speed:0,hit:0,boss:false,heavy:false}}
 const practiceRecord=storage['causas-best'];P.Practice.start();assert.equal(s.player.id,'kingteka');assert(s.practice);assert.equal(s.ultimate.charge,100);assert.equal(s.enemies.length,8);assert(P.Ultimate.activate());P.Practice.recharge();assert.equal(s.ultimate.left,8);assert.equal(P.Ultimate.activate(),false);const practiceMapTime=s.mapTime;for(let n=0;n<250;n++)P.Game.update(.04);assert.equal(s.mapTime,practiceMapTime);assert.equal(s.player.hp,s.player.maxHp);assert.equal(s.enemies.length,8);assert.equal(storage['causas-best'],practiceRecord);assert.equal(s.ultimate.left,0);assert.equal(s.ultimate.charge,100);assert(P.Ultimate.activate());P.Practice.targets();assert.equal(s.enemies.length,8);P.UI.menu();assert(!s.practice);P.Game.start();assert(!s.practice);assert(!s.devRun);assert.equal(s.ultimate.charge,0);console.log('OK práctica: carga gratis, recarga sin interrumpir remate, objetivos, invencibilidad, sin tiempo ni récord y salida limpia');
 for(let i=0;i<P.Data.characters.length;i++){

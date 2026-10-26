@@ -291,6 +291,7 @@ module.exports = [
     "source": "src/rendering/court-art.js",
     "output": "js/court-art.js"
   },
+  {"source":"src/rendering/sideral-art.js","output":"js/sideral-art.js"},
   {
     "source": "src/systems/animal-ultimates.js",
     "output": "js/animal-ultimates.js"
