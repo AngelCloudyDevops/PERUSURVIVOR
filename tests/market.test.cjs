@@ -14,3 +14,11 @@ test('Mercado e impostor cooperativos: compras autoritativas, stock compartido y
  const {sim,P,s}=setup();s.mapTime=45;P.Market.tick();const m=P.Market.merchant;sim.players[0].x=m.x;sim.players[0].y=m.y;s.coins=200;const offer=m.offers.find(o=>o.item==='key_legendary');assert(sim.activities.action(0,'market-buy',offer.id));assert.equal(s.coins,100);assert.equal(s.keys.legendary,1);assert.equal(sim.activities.action(0,'market-buy',offer.id),false);const rare=m.offers.find(o=>o.item==='key_rare');assert.equal(sim.activities.action(1,'market-buy',rare.id),false);assert.equal(s.coins,100);assert.equal(sim.snapshot().merchant.offers.find(o=>o.id===offer.id).left,0);
  const p=sim.players[0];P.Loot.chests=[{id:'coop:trap',x:p.x,y:p.y,rarity:'legendary',impostor:true,opened:false,progress:0}];sim.activities.chestWindow=sim.players.map(p=>Math.floor(p.x/768)+','+Math.floor(p.y/768)).join('|');sim.activities.tick(.01);const e=s.enemies.find(e=>e.mimic);assert(e);assert.equal(s.keys.legendary,1);P.Entities.hurt(e,99999);const reward=P.Loot.chests.find(c=>c.rewardDrop);assert(reward);assert(sim.activities.open(reward));assert.equal(s.keys.legendary,1);sim.activities.advance(.7);const id=sim.activities.pending.id;assert(sim.activities.choose(0,id,0));assert(sim.activities.choose(1,id,0));assert.equal(sim.activities.pending,null);assert.equal(sim.activities.choose(0,id,0),false);
 });
+
+test('Minimapa del ambulante: posición, borde, cuenta regresiva y desaparición',()=>{
+ const {P,s,p}=setup();s.mapTime=45;P.Market.tick();const m=P.Market.merchant,rects=[],labels=[],ctx={save(){},restore(){},fillRect(...r){rects.push(r)},fillText(...t){labels.push([this.fillStyle,...t])}};
+ m.x=p.x;m.y=p.y;P.Market.minimap(ctx,p,18,200,156,104,900);assert.deepEqual(rects[0],[89,245,14,14]);assert.equal(labels[0][1],'TIENDA · 45 s');
+ m.x=p.x+5000;m.y=p.y-5000;rects.length=0;s.mapTime=m.until-9.2;P.Market.minimap(ctx,p,18,200,156,104,900);assert.deepEqual(rects[0],[159,201,14,14]);assert.equal(labels.at(-1)[0],'#ffad88');assert.equal(labels.at(-1)[1],'TIENDA · 10 s');
+ s.mapTime=m.until;rects.length=0;P.Market.minimap(ctx,p,18,200,156,104,900);assert.equal(rects.length,0);assert.equal(P.Market.remaining(),0);
+ s.mapTime=m.until-1;s.encounter={};P.Market.minimap(ctx,p,18,200,156,104,900);assert.equal(rects.length,0);
+});
