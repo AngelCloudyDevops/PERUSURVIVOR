@@ -507,3 +507,7 @@ Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Pal
 
 
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
+# Apoyos y combinaciones en el laboratorio
+La sección «Poderes de apoyo» ofrece dos espacios distintos con Onda causa, Tarjetas del caos y Escudo de bandas. Cada espacio permite rango 1–5 o evolución inmediata, sin nivel ni recursos. Se pueden combinar con cualquiera de las 18 armas y sus evoluciones, en objetivos o jefes. No se puede repetir el mismo apoyo. Cambiar la configuración reinicia la prueba y elimina ataques anteriores; quitar un apoyo también retira su evolución y temporizadores. La configuración se conserva al cambiar de causa y al repetir, pero no se transfiere a partidas normales.
+«Activar combos compatibles» está desactivado inicialmente para permitir comparar: Onda habilita Directo viral con el arma principal; Tarjetas + Escudo habilitan Prensa blindada. Sólo se aplican los combos cuyos apoyos están equipados. La interfaz describe sus efectos y el estado activo/disponible. Son las mismas reglas y efectos del combate normal, sin desbloqueos permanentes.
+
