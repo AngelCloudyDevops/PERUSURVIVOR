@@ -375,5 +375,7 @@ Bancas y faroles: variantes de parque y colonial con contornos cartoon y acabado
 Las seis armas que producen fogonazo (Kingteka, Cerdito, Najasor, Sustento, Charles y Cevichero) usan 180 anclajes revisados: cinco direcciones dibujadas por seis pasos, reflejados para cubrir ocho sentidos. Balas y destello nacen en el mismo punto del cuadro actual. El fogonazo sigue la punta durante su breve vida; las balas ya lanzadas continúan su trayectoria. Quieto se usa la postura con los pies apoyados.
 Se apunta al objetivo desde la boca del arma y se conserva el radio máximo de alcance. Un barrido inicial impide que el nuevo origen atraviese una cobertura o salte enemigos cercanos; el vuelo de estas balas también comprueba el segmento frente a paredes finas. Daño, cadencia, cantidad de proyectiles, dispersión y evoluciones permanecen. El anclaje incorpora el retroceso y la reacción al daño sin cortar el cuerpo. Individual y cooperativo comparten los cálculos.
 
+Los minijefes muestran nombre y vida en el HUD superior: una barra con divisor al 50 %, valores reales y distintivo de fase. La segunda fase cambia el color a coral sin rellenar vida ni añadir otra reserva. El aviso previo ocupa el mismo panel sin barra.
+
 ## Etiquetas de minions
 Los minions no muestran nombres, incluidos los pesados y la PNP. Los portadores conservan únicamente su barra de vida y la indicación de llave sobre la cabeza, ajustadas a la pose visible al caminar, atacar o recibir daño.
