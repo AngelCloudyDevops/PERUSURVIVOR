@@ -438,3 +438,7 @@ Cada minijefe tiene motivos sintetizados propios de entrada, aviso de ataque, ag
 Variantes creativas de veteranos y élites: Pablo ingeniero con casco blanco, chaleco y pala; Tyrone musculoso con camiseta y cinturón; Uniqua abanderada del Perú; Tasha guardaespaldas de terno negro; Austin mecánico con casco blanco y llave; PNP con escudo y vara. Los élites añaden acabados propios al oficio, sin armadura genérica. Los accesorios siguen seis claves de caminata y una pose de preparación/liberación, bajo la transformación del cuerpo completo. No cambian ataques ni colisiones.
 
 Los minions con oficio de rangos veterano/élite atacan según su accesorio: Pablo golpea con pala en un sector de 70/77 unidades, Tyrone da un puñetazo de 58/63,8 unidades y Uniqua barre con la bandera en un arco de 2,7 radianes y 88/96,8 unidades. Preparación mínima 0,9/0,85/0,85 s; el aviso muestra el alcance y dirección fijados antes del golpe. El impacto dura 0,28 s, causa daño una vez y respeta cobertura. Los normales conservan sus patrones originales. Se refinan casco, pala, manos y anatomía de brazos con contornos, luces y sombra.
+
+### Consulta de personajes
+Las fichas de Causas muestran valores base de rango 1 sin mochila ni mejoras permanentes, rol descriptivo y evolución. El daño por impacto incluye powerScale; no se presenta como DPS. La rareza de personajes sigue sin asignarse. Véase CHARACTER_PROFILES.md.
+

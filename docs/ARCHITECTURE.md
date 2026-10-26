@@ -355,3 +355,7 @@ Minibosses observa contadores serializados de ataque/recuperación y efectos de 
 MinionEvolution.accessoryPose deriva agarres del índice de los seis cuadros y de EnemyArt.attackPose, sin alterar walkPhase ni crear estado de simulación. gear dibuja vestuario específico, manos y herramientas en coordenadas del cuerpo, conservando un solo sprite base íntegro. Muerte conserva accesorios estáticos bajo su giro y opacidad; banderas conservan bandas verticales rojo-blanco-rojo.
 
 MinionEvolution.themed compone perfiles de pala, puño y bandera para rangos con oficio. melee crea una amenaza estacionaria con theme/angle/arc/radius serializados. hits comparte intersección sectorial entre Combat y Simulation; continúa respetando la cobertura y el cupo global. themedCue y drawMelee usan la misma geometría, con tierra agrietada, impacto de puño y barrido rojo-blanco-rojo. No se corta ni deforma el sprite base.
+
+### Perfiles de consulta
+P.CharacterProfiles en powers.js deriva los valores de P.Data.characters y P.Data.attacks al consultar. Lobby.details los presenta solo al seleccionar, sin trabajo por fotograma ni alterar el combate.
+
