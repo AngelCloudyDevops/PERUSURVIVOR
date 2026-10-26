@@ -430,3 +430,5 @@ P.Gacha usa la clave independiente causas-collection-preferences-v1 con version/
 
 # Configuración de apoyos de laboratorio
 `TestBench.supports()` normaliza dos espacios y elimina duplicados. `attackFixture()` aplica sus rangos, evoluciones y combos compatibles mediante `Progression.apply`. La firma de `applyAttack()` incluye toda la configuración; reconstruye los campos de arma y apoyos, borra evoluciones retiradas, reinicia temporizadores y sustituye los combos sin acumulación. La ejecución conserva el tick y render de `Progression` existentes. Las pruebas recorren los apoyos/rangos de los 18 causas con daño real y verifican los dos combos, retirada, cambio de escenario/jefe y salida limpia.
+
+El paquete también excluye tres metadatos de autoría conservados en public/Git (gallinazo-phase2-frames.json, gallinazo-rig-frames.json y kingteka-ultimate-portrait.json). Los frames usados en ejecución ya están integrados en los módulos JS; ningún runtime solicita estos JSON. Se conserva el margen de tamaño existente sin cambiar imágenes ni reglas.
