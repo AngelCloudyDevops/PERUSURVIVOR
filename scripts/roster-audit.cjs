@@ -1,8 +1,8 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),{Simulation}=require('../backend/simulation.cjs'),baseline=require('../docs/roster-balance-baseline.json');
-function measure(id,scene,evolved=false,previous=false){
+function measure(id,scene,evolved=false,previous=false,reference=null){
  const P=new Simulation('campo',[0,1]).P,s=P.state;
- if(previous){P.Data.characters=structuredClone(baseline.characters);P.Data.attacks=structuredClone(baseline.attacks);P.Evolutions.profiles=structuredClone(baseline.evolutions)}
+ if(previous||reference){const snapshot=previous?baseline:reference;P.Data.characters=structuredClone(snapshot.characters);P.Data.attacks=structuredClone(snapshot.attacks);P.Evolutions.profiles=structuredClone(snapshot.evolutions)}
  const c=P.Data.characters.find(c=>c.id===id),p=P.Entities.player(c);s.player=p;p.x=p.y=0;p.aimView={hw:490,hh:275,dx:0,dy:0};s.mode='play';s.elapsed=0;s.fire=0;s.shots=[];s.fields=[];s.effects=[];P.Progression.tick=()=>{};P.Terrain.active=()=>[];P.Terrain.hit=()=>null;P.Muzzle.blocker=()=>null;P.Ultimate.hit=()=>{};
  if(evolved){s.level=8;for(let i=0;i<4;i++)P.Progression.apply(p,'primary');P.Progression.apply(p,'evolve:primary')}
  const radius=scene==='boss'?40:18,count=scene==='line'||scene==='ring'?8:1;

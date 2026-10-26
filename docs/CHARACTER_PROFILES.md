@@ -15,13 +15,13 @@ Base de rango 1 sin mejoras permanentes ni mochila. La rareza de colección no a
 | Shakadoto | Épico | Control de pasillos | 140 | 160 | 17.5 | 0.95 | 550 | 2 | Sin límite por trayecto |
 | Najasor | Raro | Tirador móvil | 95 | 215 | 17 | 0.85 | 650 | 3 | 1 |
 | CiriloTV | Común | Hostigador equilibrado | 120 | 175 | 22 | 0.95 | 520 | 1 | Sin límite por trayecto |
-| Fuzo | Raro | Perforador de filas | 115 | 180 | 20.4 | 0.75 | 850 | 2 | 3 |
+| Fuzo | R · Raro | Perforador de filas | 115 | 180 | 19.2 | 0.75 | 850 | 2 | 3 |
 | Charles | Raro | Control de zonas | 130 | 165 | 26.4 | 1.2 | 600 | 1 | 1 |
 | Axel Benba | Común | Tirador de abanico | 100 | 200 | 16.8 | 0.7 | 700 | 3 | 1 |
-| Cerdito VTuber | Épico | Escopetero de cobertura | 130 | 170 | 13.5 | 0.72 | 400 | 7 | 1 |
+| Cerdito VTuber | SR · Súper raro | Escopetero de cobertura | 130 | 170 | 15.12 | 0.72 | 400 | 7 | 1 |
 | Sustento | Raro | Tirador de cadencia | 105 | 190 | 12 | 0.22 | 750 | 1 | 1 |
 | Cevichero | Común | Hostigador de enjambre | 115 | 190 | 18 | 0.62 | 680 | 2 | 1 |
-| La G5 | Raro | Luchadora móvil | 135 | 195 | 36 | 0.62 | 118 | Área | Área |
+| La G5 | R · Raro | Luchadora móvil | 135 | 195 | 36 | 0.68 | 118 | Área | Área |
 
 ## Cristorata
 

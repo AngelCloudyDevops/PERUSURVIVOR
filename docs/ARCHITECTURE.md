@@ -418,3 +418,7 @@ Catálogo de minijefes separa clave visual de mapa mediante map opcional. miniKe
 
 
 AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
+
+### Comparación controlada del trío
+full-run-audit.play acepta catalogSnapshot solo en la herramienta local para restaurar definiciones de jugador/armas/evoluciones anteriores. trio-balance-audit.cjs empareja 27 partidas antes y 27 después con el mismo motor, mapas, semillas y política; no cambia enemigos, XP ni física. Conserva snapshots completos y trazas fuera de dist. Las comprobaciones históricas de roster-audit usan una referencia explícita para no reescribir resultados antiguos al ajustar parámetros actuales.
+
