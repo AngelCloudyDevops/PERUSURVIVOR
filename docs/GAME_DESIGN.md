@@ -395,3 +395,5 @@ Los minions no muestran nombres, incluidos los pesados y la PNP. Los portadores 
 Campo de Marte: monumento de piedra con arco y relieves, más dos variantes de picnic con madera, metal y accesorios. Interpretación estilizada de parque, sin reconstrucción histórica. Mantiene sombra al pie, transparencia detrás del monumento, posiciones y colisiones. Referencia: CAMPO_LANDMARKS.md.
 
 HUD de combate distribuido en los bordes: XP de ancho completo arriba, personaje/nivel/vida a la izquierda, tiempo al centro y habilidad abajo. La información de botín y eventos permanece visible sin un panel central opaco.
+
+Minijefes: conos y luces ámbar, sombras/plumas y símbolos/polvo identifican el combate en su mapa, sin añadir colisiones inesperadas. Se desvanecen durante la derrota. Tras terminar el combo hay 1,5 s de agotamiento, sin daño por contacto y con +35 % de daño recibido. Un choque corta la cadena y concede 2 s. Las plumas se bloquean con cobertura; la onda del huaco exige salir del radio avisado, incluso detrás de paredes.
