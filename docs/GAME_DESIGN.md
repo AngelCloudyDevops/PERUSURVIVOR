@@ -1,5 +1,10 @@
 # Documento de diseño — PERUSURVIVOR
 
+## Persistencia de la vista de colección
+Filtros y orden se recuerdan entre visitas en el mismo navegador. Se restauran antes de presentar la colección; la prioridad de listos para ascender se recalcula con el progreso actual. Limpiar filtros también queda guardado y mantiene el criterio de orden. La sincronización entre pestañas no escribe otra vez ni consume recursos del juego. Si no hay acceso al almacenamiento, se informa que la vista solo se aplica a la sesión.
+
+
+
 ## Identidad y objetivo
 Título visible: Causas del Caos. Supervivencia de acción en vista superior con humor y referencias peruanas. El jugador controla el movimiento y esquiva rivales mientras su personaje ataca automáticamente. La meta es crecer durante la partida y derrotar al jefe final ElZeein.
 
@@ -506,10 +511,11 @@ La colección se ordena por rareza (SSR→SR→R→C), estrellas o copias dispon
 Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Paloma en Plaza de Armas (uno activo). Abanico de tres ondas bloqueables y pulso cercano de 110 unidades, ambos avisados; al 50 % encadena dos abanicos. Conserva navegación, agotamiento, bonus, resumen, cobertura y derrota sin daño. Cofre: Silbato del caos o 50 monedas. Disponible directamente en Probar jefes. Arte nuevo de cuatro poses, sin sustituir personajes existentes.
 
 
+Entradas animales v2: Paloma prepara el vuelo, eleva alas, empuja hacia abajo y recoge las patas antes de elevarse. Cuy usa anticipación, impulso, patas recogidas, extensión para aterrizar, compresión y recuperación. Se elimina el ala artificial superpuesta. Duración, protección y daño permanecen iguales.
+
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
 
-## Persistencia de la vista de colección
-Filtros y orden se recuerdan entre visitas en el mismo navegador. Se restauran antes de presentar la colección; la prioridad de listos para ascender se recalcula con el progreso actual. Limpiar filtros también queda guardado y mantiene el criterio de orden. La sincronización entre pestañas no escribe otra vez ni consume recursos del juego. Si no hay acceso al almacenamiento, se informa que la vista solo se aplica a la sesión.
+
 ### Ajuste fino del trío
 Se modera la cadencia de G5 y el daño evolucionado de G5/Fuzo, conservando sus geometrías. Cerdito recibe más daño cercano y una pequeña mejora evolucionada; conserva caída por distancia, descuento de impactos sobre un mismo enemigo, alcance, vida y velocidad. No se añade resistencia específica por enemigo ni ventaja de rareza. Parámetros y partidas en TRIO_BALANCE.md.
 
