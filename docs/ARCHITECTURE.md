@@ -427,3 +427,5 @@ AnimalEntryPoses carga dos hojas de seis figuras completas mediante WalkArt.meas
 # Configuración de apoyos de laboratorio
 `TestBench.supports()` normaliza dos espacios y elimina duplicados. `attackFixture()` aplica sus rangos, evoluciones y combos compatibles mediante `Progression.apply`. La firma de `applyAttack()` incluye toda la configuración; reconstruye los campos de arma y apoyos, borra evoluciones retiradas, reinicia temporizadores y sustituye los combos sin acumulación. La ejecución conserva el tick y render de `Progression` existentes. Las pruebas recorren los apoyos/rangos de los 18 causas con daño real y verifican los dos combos, retirada, cambio de escenario/jefe y salida limpia.
 
+
+Las láminas judge-v1 y fujimori-objection-v1 del Tribunal se conservan en public como archivo de autoría, pero build las omite mientras CourtArt use joints-v2. Esto recupera 1,1 MB de margen de despliegue sin retirar las fuentes.
