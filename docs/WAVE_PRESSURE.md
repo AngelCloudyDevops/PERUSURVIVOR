@@ -4,7 +4,7 @@
 
 La partida debe exigir movimiento desde el primer minuto sin convertir los primeros segundos en daño inevitable, sin alterar el sistema de Fuerza/Técnica/Ingenio y sin elevar los límites que protegen el rendimiento.
 
-La vida y la velocidad ya son estadísticas de cada personaje y de cada perfil enemigo. Siguen dependiendo de su identidad y función —resistente, móvil, pesado o corredor—, no de la rareza de colección. Hacer que C/R/SR/SSR/UR aumente automáticamente esas dos cifras volvería obsoletos a los personajes comunes y mezclaría colección con equilibrio. Las estrellas y mejoras permanentes conservan sus bonificaciones separadas.
+La vida y la velocidad base siguen dependiendo de la identidad y función —resistente, móvil, pesado o corredor—, no de la rareza. La rareza tampoco concede poder gratuito en 1★ y rango cero: multiplica únicamente las ganancias que el jugador obtiene al invertir en estrellas y mejoras permanentes. C/R/SR/SSR/UR usan ×1,00/×1,03/×1,06/×1,09/×1,12; velocidad y recarga reciben la mitad de esa diferencia. Así un común invertido sigue siendo viable y una unidad rara progresa mejor sin saltarse el equilibrio inicial.
 
 ## Reglas implementadas
 

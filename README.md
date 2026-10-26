@@ -237,7 +237,7 @@ El progreso se guarda automáticamente en localStorage de este navegador (causas
 
 Las monedas permanentes son distintas del dinero temporal del mapa. Al terminar una partida de al menos 15 s se entregan 1 por cada 5 rivales, 2 por cada 30 s y 50 extra por victoria. Cada partida tiene ID y recibo para impedir cobros repetidos. No se premian abandonos, prácticas, laboratorios ni pruebas de rendimiento. El cooperativo entrega recompensa local a cada participante a partir del resultado de la sala.
 
-Cada personaje tiene cinco rangos de Vitalidad (+8 vida/rango), Fuerza (+4% daño base/rango), Reflejos (recarga ×0.97/rango), Zapatillas (+3% velocidad base/rango) e Imán (+12% recogida base/rango). El coste es base × (rango actual + 1): 40, 50, 55, 35 y 35 respectivamente. Las mejoras se aplican una sola vez al comenzar el combate individual normal. El cooperativo mantiene sus atributos de servidor y los rangos de poderes de cada partida continúan reiniciándose.
+Cada personaje tiene cinco rangos de Vitalidad (+8 vida/rango), Fuerza (+4% daño base/rango), Reflejos (3% menos de recarga/rango), Zapatillas (+3% velocidad base/rango) e Imán (+12% recogida base/rango), antes del crecimiento por rareza. C/R/SR/SSR/UR multiplican las ganancias por ×1,00/×1,03/×1,06/×1,09/×1,12; velocidad y recarga usan la mitad de esa diferencia. El coste es base × (rango actual + 1): 40, 50, 55, 35 y 35. Se aplica una sola vez al comenzar el individual; cooperativo conserva sus atributos de servidor.
 
 P.Meta valida esquema, identificadores, rangos y saldo. Compra y premio escriben un único documento; las operaciones releen el estado y usan Web Locks cuando está disponible. Los cambios de otras pestañas se reflejan por storage. Una lectura corrupta o un fallo de escritura no confirma gasto ni premio: conserva el guardado y muestra estado y reintento. No se utiliza el monedero local como autoridad de combate cooperativo.
 ## Árboles y jardineras
@@ -273,7 +273,7 @@ Cada tirada cuesta 60 monedas permanentes. Probabilidades base por rareza: comú
 
 Perfiles nuevos reciben Cristorata, Cuy Supremo y Paloma del Centro. El esquema v3 conserva saldo, mochila y mejoras de v1/v2 y desbloquea además los personajes con partidas, premios o mejoras anteriores. El formato antiguo no puede sobrescribir el nuevo. La colección marca bloqueados y rareza: se pueden consultar habilidades y prácticas, pero para jugar en individual o solicitar sala debe estar desbloqueado. El servidor cooperativo sigue usando su catálogo y atributos; el progreso del navegador no es autoridad de cuenta en la sala.
 
-P.Gacha resuelve cargo, devolución, desbloqueo, garantías e historial en una sola P.Meta.transaction. El resultado se guarda antes de la animación y se puede consultar de nuevo sin pagar; cerrar o recargar no vuelve a tirar. La animación comparte el bucle de dibujo, se detiene al salir/ocultar pestaña y se revela inmediatamente con movimiento reducido. La rareza de colección no cambia las estadísticas de combate.
+P.Gacha resuelve cargo, devolución, desbloqueo, garantías e historial en una sola P.Meta.transaction. El resultado se guarda antes de la animación y se puede consultar de nuevo sin pagar; cerrar o recargar no vuelve a tirar. La animación comparte el bucle de dibujo, se detiene al salir/ocultar pestaña y se revela inmediatamente con movimiento reducido. La rareza no modifica los stats base: mejora únicamente las ganancias de estrellas y mejoras permanentes en individual.
 ## Acabado de caminos
 Los [caminos](docs/PATH_FINISH.md) conservan sus rutas y texturas aprobadas, con bordes de pasto en Campo, juntas de pavimento en Plaza y desgaste sutil en Machu. Acabado de dos unidades por píxel, detalles deterministas y composición cacheada por sector. Sin imágenes adicionales ni cambios de colisiones; hasta 96 grupos de pasto en los bordes, fuera del corredor.
 
@@ -288,9 +288,9 @@ El menú Gacha permite una tirada por 60 monedas o diez por 600. Se requiere el 
 ## Historial, copias y estrellas
 Gacha incorpora pestañas Invocar, Historial y Estrellas. El historial guarda las últimas 200 tiradas con personaje, rareza, nuevo/repetido y fecha/hora local; incluye filtros y páginas de 20. Las tiradas antiguas disponibles se conservan como «Fecha no registrada» y no se recuperan registros que el límite anterior ya había descartado.
 
-Los repetidos mantienen su devolución de monedas y añaden una copia del mismo personaje hasta 5★. Todos empiezan a 1★; ascender manualmente a 2★/3★/4★/5★ consume 2/3/4/5 copias respectivamente, sin monedas adicionales. Cada ascenso añade +3% de vida y daño en individual (máximo +12%); no altera partidas cooperativas ni prácticas. Puedes seguir invocando con la colección completa para obtener copias, hasta tener todos a 5★. A 5★, los repetidos solo devuelven monedas. El perfil v4 migra los repetidos del historial v3 conservado a copias una sola vez y conserva saldo, colección, mochila y mejoras.
+Los repetidos mantienen su devolución de monedas y añaden una copia del mismo personaje hasta 5★. Todos empiezan a 1★; ascender manualmente a 2★/3★/4★/5★ consume 2/3/4/5 copias respectivamente, sin monedas adicionales. Cada estrella suma 3% de vida y daño multiplicado por el crecimiento de su rareza: a 5★ va de +12% C a +13,44% UR. Solo se aplica en individual; no altera cooperativo ni prácticas. Puedes seguir invocando con la colección completa para obtener copias, hasta tener todos a 5★.
 ### Balance de los 18 causas
-Comparación reproducible de ataques base y evolucionados contra blancos cercanos, medios, jefe móvil, filas y enemigos alrededor. Se moderan bumeranes, ráfagas y nubes dominantes y se refuerzan Cristorata, Cuy, Alberto y Cerdito. Consulta [los valores y motivos](docs/ROSTER_BALANCE.md). La rareza de colección no multiplica estadísticas; cada rol conserva ventajas y límites. Las fichas muestran el catálogo actualizado.
+Comparación reproducible de ataques base y evolucionados contra blancos cercanos, medios, jefe móvil, filas y enemigos alrededor. Se moderan bumeranes, ráfagas y nubes dominantes y se refuerzan Cristorata, Cuy, Alberto y Cerdito. Consulta [los valores y motivos](docs/ROSTER_BALANCE.md). El catálogo base conserva el balance por rol; la rareza multiplica solamente el progreso permanente posterior. Las fichas muestran el catálogo actualizado.
 
 
 ### Validación con partidas completas
@@ -307,7 +307,7 @@ Práctica de Fujimori: incluye ElZeein de entrenamiento, inmóvil y sin ataques,
 ## Filtros de colección y etiquetas
 La colección permite combinar rareza, estrellas exactas (1–5) y Solo listos para ascender. Las tarjetas listas muestran marca verde y copias/coste; los bloqueados no cumplen filtros de estrellas o ascenso y los de 5★ no aparecen como listos. Limpiar filtros restaura la vista completa. Filtrar no cambia el personaje seleccionado: si queda fuera del filtro, la ficha lo indica. Los filtros duran durante la sesión y se actualizan tras ascender o recibir cambios de progreso en otra pestaña.
 
-Etiquetas de colección: C · Común, R · Raro, SR · Súper raro y SSR · Ultra raro. SR corresponde al antiguo Épico y SSR al antiguo Legendario; no se añade otra rareza ni cambian probabilidades, personajes o devoluciones. El progreso de estrellas sigue separado de la rareza.
+Etiquetas de colección: C · Común, R · Raro, SR · Súper raro, SSR · Ultra raro y UR · Supremo. SR corresponde al antiguo Épico y SSR al antiguo Legendario. Las estrellas siguen siendo progreso separado, pero su ganancia usa el multiplicador de crecimiento de la rareza.
 
 ## Ultis del Cuy y la Paloma
 Cuy Supremo: Estampida Suprema (5 s, daño de área y coraza del 50 %). Paloma del Centro: Bandada del Centro (6 s, espiral de palomas y remate de área). Carga con 20 bajas; pulsa Q o el botón. En Ajustes están las dos prácticas gratuitas, con recarga y cambio directo de personaje. Conservan los sprites cartoon pixel art actuales.
@@ -367,7 +367,7 @@ En Música ♫ puedes ajustar Música y Efectos por separado. Efectos controla a
 
 Fuerza → Técnica → Ingenio → Fuerza: ventaja +15% de daño, desventaja −10%; mismo atributo es neutral. Personajes, minions, minijefes y jefes tienen ficha de combate. La selección muestra el atributo, el tipo principal y los índices de ataque y defensa física/especial. Los actores llevan una insignia F/T/I y los minijefes muestran el atributo junto a su nombre.
 
-El daño existente de cada habilidad se multiplica por `2 × ataque / (ataque + defensa)` y por la ventaja de atributo. 100 contra 100 conserva el daño neutral; 100 contra 200 deja el 66,7%. El índice principal de cada personaje es 100 y el secundario 85; las mejoras de poder siguen aumentando el presupuesto de daño de ambos canales. Rareza no multiplica estadísticas.
+El daño existente de cada habilidad se multiplica por `2 × ataque / (ataque + defensa)` y por la ventaja de atributo. 100 contra 100 conserva el daño neutral; 100 contra 200 deja el 66,7%. El índice principal de cada personaje es 100 y el secundario 85; la rareza no cambia esos índices base, pero multiplica la ganancia de las mejoras permanentes y estrellas en individual.
 
 Los proyectiles conservan dueño y tipo al crearse, también en cooperativo. Contactos y golpes son físicos; ondas, nubes y tarjetas de apoyo son especiales. Cuy y Paloma usan daño físico en sus estampidas aunque su ataque principal pueda ser especial. Las ejecuciones y la sentencia porcentual conservan su daño fijo y sus límites. Véase [auditoría de atributos](docs/ATTRIBUTES_BALANCE.md).
 
@@ -377,6 +377,6 @@ Los tres atributos aparecen desde el inicio. Hay ocho segundos sin ataques espec
 
 Las apariciones se sitúan fuera de la cámara, con margen de 90 u y separación mínima de 230 u; en cooperativo se consideran ambas cámaras. Se evitan obstáculos sólidos, con un máximo de ocho intentos y una aparición por tick, sin recuperar de golpe los spawns de una pausa. No se aumentan el máximo de 80 enemigos ni los límites de 40 peligros/8 atacantes normales; los minijefes conservan su presupuesto propio. No se añaden partículas o recursos gráficos.
 
-Para evitar que la densidad regale niveles, los minions de oleada dan 0,75 de fama, los corredores 0,5 y los pesados 2,25; las cantidades son cuartos exactos. Minijefes, cofres y recompensas especiales mantienen sus reglas. Vida y velocidad son estadísticas por personaje y rol, independientes de la rareza de colección. Las bonificaciones existentes de estrellas o mejoras siguen sus propias reglas.
+Para evitar que la densidad regale niveles, los minions de oleada dan 0,75 de fama, los corredores 0,5 y los pesados 2,25; las cantidades son cuartos exactos. Minijefes, cofres y recompensas especiales mantienen sus reglas. Vida y velocidad base siguen definidas por personaje y rol; la rareza afecta solo cuánto crecen mediante estrellas y mejoras permanentes en individual.
 
 Comparación y límites de las pruebas en [WAVE_PRESSURE.md](docs/WAVE_PRESSURE.md).
