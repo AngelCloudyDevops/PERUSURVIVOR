@@ -546,3 +546,5 @@ Makanaky pasa a UR · Supremo, por encima de SSR, sin cambiar sus estadísticas 
 
 ### Makanaky cuerpo a cuerpo
 UR gratuito conservado. Puño de la realeza: 100 unidades, arco 120°, recarga 0,56 s y empuje 24. Base: 125 PV, velocidad 200 y daño 32. Evolución Combo de la realeza: alcance 135, arco 150°, daño ×1,35 y empuje 42; no dispara ondas. Seis poses de caminata ligadas a distancia recorrida y seis cuadros de golpe ligados al reloj de ataque. El minijefe conserva su arte y sus ataques.
+
+Panel exclusivo de ReySuperior: consultar hasta 20 usuarios por página, buscar nombres, entregar monedas enteras positivas (máximo 100.000 por operación, saldo máximo 10.000.000) o desbloquear un personaje existente. Nunca consume tiradas ni copias, no altera estrellas, victorias o estadísticas y no elimina contenido. Cada entrega requiere revisar destinatario y contenido, luego confirmar. El destinatario con una sesión antigua recibirá conflicto al guardar; debe descargar la copia de su cuenta o volver a iniciar sesión para recoger el cambio.

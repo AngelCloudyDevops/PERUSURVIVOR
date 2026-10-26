@@ -10,7 +10,8 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
  CREATE TABLE IF NOT EXISTS sessions(token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, expires_at INTEGER NOT NULL);
  CREATE TABLE IF NOT EXISTS saves(user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, revision INTEGER NOT NULL DEFAULT 0, payload TEXT NOT NULL, updated_at INTEGER NOT NULL);
  CREATE TABLE IF NOT EXISTS user_roles(user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, role TEXT NOT NULL CHECK(role='admin'));
- PRAGMA user_version=2;`);
+ CREATE TABLE IF NOT EXISTS admin_actions(id INTEGER PRIMARY KEY AUTOINCREMENT,actor_id TEXT NOT NULL REFERENCES users(id),target_id TEXT NOT NULL REFERENCES users(id),request_id TEXT NOT NULL,fingerprint TEXT NOT NULL,result TEXT NOT NULL,kind TEXT NOT NULL,amount INTEGER,character_id TEXT,created_at INTEGER NOT NULL,UNIQUE(actor_id,request_id));
+ PRAGMA user_version=3;`);
  const attempts=new Map();let running=0;
  function reply(res,status,data){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data))}
  function cookie(res,token,age=TTL/1000){res.setHeader('Set-Cookie',`${COOKIE}=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${age}${secure?'; Secure':''}`)}
@@ -20,6 +21,7 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
  async function body(req){let text='',size=0;if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))throw Object.assign(Error('Se requiere JSON'),{status:415});for await(const chunk of req){size+=Buffer.byteLength(chunk);if(size>131072)throw Object.assign(Error('Guardado demasiado grande'),{status:413});text+=chunk}try{return JSON.parse(text)}catch{throw Object.assign(Error('JSON inválido'),{status:400})}}
  function limit(req){const key=req.socket.remoteAddress||'local',time=now();for(const [ip,a]of attempts)if(time-a.at>900000)attempts.delete(ip);if(attempts.size>10000&&!attempts.has(key))return false;const a=attempts.get(key)||{at:time,count:0};attempts.set(key,a);return ++a.count<=30}
  function credentials(b){if(typeof b.username!=='string'||!/^[a-zA-Z0-9_]{3,24}$/.test(b.username)||typeof b.password!=='string'||b.password.length<12||b.password.length>128)throw Object.assign(Error('Usuario: 3–24 letras, números o _. Contraseña: 12–128 caracteres.'),{status:400});return b.username.toLowerCase()}
+ const admin=require('./admin.cjs').createAdmin({db,reply,body,now});
  async function handle(req,res){try{
   const url=new URL(req.url,'http://localhost');if(!url.pathname.startsWith('/api/'))return false;
   if(req.method!=='GET'&&!origins.includes(req.headers.origin)){reply(res,403,{error:'Origen no permitido'});return true}
@@ -44,6 +46,7 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
   }
   if(!user){reply(res,401,{error:'Inicia sesión'});return true}
   if(req.headers['x-account-id']!==user.id){reply(res,409,{error:'La sesión cambió en otra pestaña. Recarga la página antes de guardar.'});return true}
+  if(route.startsWith('/api/admin/')){await admin.handle(req,res,user,url,()=>session(req));return true}
   if(route==='/api/logout'&&req.method==='POST'){db.prepare('DELETE FROM sessions WHERE user_id=?').run(user.id);cookie(res,'',0);reply(res,200,{ok:true});return true}
   if(route==='/api/save'&&req.method==='GET'){const row=db.prepare('SELECT * FROM saves WHERE user_id=?').get(user.id);reply(res,200,row?{revision:row.revision,data:JSON.parse(row.payload),updatedAt:row.updated_at}:{revision:0,data:null});return true}
   if(route==='/api/save'&&req.method==='PUT'){
