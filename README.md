@@ -9,6 +9,10 @@ El dominio de Makanaky encadena jab izquierdo, jab derecho, cruzado y uppercut c
 ## Prototipo: dominio de Makanaky
 El UR usa Expansión de dominio con Q (35 bajas). Entra al callejón en primera persona: A/D o flechas para esquivar, ratón para apuntar, clic/Espacio para golpear. En cooperativo el compañero se refugia detrás y puede pulsar ¡GA!. En el laboratorio de administrador, elige Makanaky y activa recarga automática; conserva los permisos existentes. Daño a jefes y arte del callejón son provisionales.
 
+### Compañero cooperativo del dominio
+
+Los 18 personajes que pueden acompañar a Makanaky tienen un atlas exclusivo de cuatro reacciones cartoon pixel art: carrera agachada hacia el refugio, cobertura con miedo, temblor/asomo y celebración. En tercera persona siguen al luchador desde atrás; en cámara cercana aparecen parcialmente en una esquina. Los avisos señalan el lado del peligro y el compañero reacciona si Makanaky recibe daño. Su botón «¡GA!» no ataca: si se pulsa dentro de la ventana del cuarto impacto, amplía el impulso de la oleada de 0,8 a 1,25 s y muestra «¡GA PERFECTO!». El compañero permanece protegido y no genera bajas, daño ni recompensas.
+
 ## Preferencias de colección persistentes
 Rareza, estrellas, Solo listos para ascender y orden se guardan automáticamente en este navegador al cambiar un control y se restauran al recargar o volver a abrir el juego. Limpiar filtros guarda los filtros iniciales y conserva el orden elegido. Las pestañas del mismo sitio se sincronizan. Si el navegador impide guardar, los controles siguen funcionando durante la sesión y aparece un aviso con reintento; el progreso del personaje se conserva.
 
