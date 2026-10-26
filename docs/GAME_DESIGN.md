@@ -292,3 +292,7 @@ El reloj de mapa controla ocho etapas; pausa, mejoras y arenas de jefes no adela
 Los límites de población suben de 16 a 80, los proyectiles de 0 a 40 y los ataques simultáneos de 0 a 8. Los pesados aparecen gradualmente (0–25 %) y conservan su resistencia parcial al cargar. El laboratorio y la prueba de rendimiento muestran el repertorio completo.
 Los 18 jugables disponen de seis cuerpos completos de ataque: armas apuntadas, lanzamientos, abanico, megáfono, alas, grito y patada. Los ataques en marcha siguen la fase de los pies; en reposo muestran preparación, ejecución y recuperación. La G5 ejecuta seis fases de patada. La dirección de la pose sigue la puntería. No cambian daño, alcance ni proyectiles jugables.
 
+
+## Vegetación reactiva y palomas
+Los arbustos de Campo de Marte y las matas de Machu Picchu se sacuden brevemente al pasar cerca; las palomas de la Plaza levantan vuelo y vuelven al suelo. Mantener el estilo cartoon con acabado pixel, masas redondeadas y sombras ancladas al suelo. Son decoración local: no afectan combate, colisiones ni sincronización. Máximo seis palomas y 32 plantas reactivas del grupo visible, detección limitada a 30 Hz y estado descartado al salir de cámara. El reloj de mapa respeta pausa y arenas; movimiento reducido desactiva reacciones y vuelo.
+
