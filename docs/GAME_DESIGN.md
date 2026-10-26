@@ -459,3 +459,7 @@ Una compra de diez requiere 600 monedas de saldo inicial. Cada tirada actualiza 
 ### Consulta de personajes
 Las fichas de Causas muestran valores base de rango 1 sin mochila ni mejoras permanentes, rol descriptivo y evolución. El daño por impacto incluye powerScale; no se presenta como DPS. La rareza de colección no aumenta atributos. Véase CHARACTER_PROFILES.md.
 
+
+### Balance por rol
+La rareza afecta a la obtención, sin bonus automático de combate. La tercera pasada compara los 18 personajes con progresión idéntica y ajusta ataques base y evolucionados. Véase ROSTER_BALANCE.md para parámetros, resultados y límites del ensayo.
+

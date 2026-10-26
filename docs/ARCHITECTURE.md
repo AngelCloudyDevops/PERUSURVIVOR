@@ -375,3 +375,7 @@ P.Gacha.pull acepta únicamente 1 o 10 y procesa cargo, diez resoluciones secuen
 ### Perfiles de consulta
 P.CharacterProfiles en powers.js deriva los valores de P.Data.characters y P.Data.attacks al consultar. Lobby.details los presenta solo al seleccionar, sin trabajo por fotograma ni alterar el combate.
 
+
+### Multiplicador del ataque evolucionado
+Evolutions.profiles.damageScale limita exclusivamente el ataque principal evolucionado, incluidos áreas, contactos, extras y campos. Combat y afterCast aplican ese factor al crear impactos/campos; no mutan la potencia global del jugador ni la de sus apoyos. Auditoría local en scripts/roster-audit.cjs, sin utilidades de QA distribuidas.
+
