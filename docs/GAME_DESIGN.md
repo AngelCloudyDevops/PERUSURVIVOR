@@ -731,3 +731,6 @@ El HUD de resultado de Makanaky permanece 3 segundos después de regresar al map
 
 ### Derrota del Chosicano
 Al llegar a cero PV, el bus deja de atacar y frena en su posición. Durante 3 s la carrocería se asienta, apaga faros, sale humo y aparece FUERA DE SERVICIO. Se limpian peligros; la recompensa llega una sola vez al terminar. Pausar congela la secuencia; movimiento reducido omite inclinación, caída y humo.
+
+### Diseño del Chosicano blanco y verde
+El bus usa la referencia aportada: carrocería blanca, franja verde, frente rojo y amarillo, cuatro faros y parabrisas amplio. Seis poses del mismo vehículo mantienen ataques y derrota actuales.

@@ -641,3 +641,6 @@ Corrección visual de Cristorata: las poses completas del atlas cristorata-react
 Cristorata usa doce poses completas del atlas reaction-v3 para señalar, girar, elevar la rodilla y sentarse. La escala común y el anclaje de cabeza evitan saltos de tamaño y posición. Reacción y subida comparten la misma selección de cuadro y una inclinación continua; sin fundidos o siluetas dobles. Documentación de arte: docs/CRISTORATA_REACTION_ART.md.
 
 El cierre del asiento converge al anclaje y ancho de cabeza del jinete de la montura, compartiendo el mismo cálculo para posición y escala. La sala de revelación añade suelo en perspectiva, paneles con pliegues, luces laterales, reflejo cálido localizado y hasta 18 motas ambientales; todo procede del reloj de la escena, sin entidades de combate. Movimiento reducido retira las motas y se conserva el alfa de la transición al mapa.
+
+### Atlas Chosicano v2
+chosicano-v2 conserva la cuadrícula 3×2 y la medición por alfa del renderer. PNG fuente y prompt permanecen en Git; solo WebP v2 va al runtime, con v1 archivado para evitar duplicar la descarga. No cambian colisiones, balance ni tiempos.
