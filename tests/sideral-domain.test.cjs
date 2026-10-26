@@ -8,7 +8,7 @@ function setup(){
 }
 
 test('Sideral: reemplaza el mapa por una habitación física y la serializa en cooperativo',()=>{
- const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);assert(s.sideralDomain.card>0);assert.equal(s.sideralDomain.age,0);for(let i=0;i<148;i++)sim.tick(.04,[{},{}]);
+ const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);for(let i=0;i<112;i++)sim.tick(.04,[{},{}]);
  assert.equal(s.sideralDomain.arena,true);assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,4);
  assert(P.Terrain.active().some(o=>o.kind==='sideral-desk'));assert(P.Terrain.active().some(o=>o.kind==='sideral-library'));
  assert(!P.Terrain.active().some(o=>o.kind==='sideral-rug'));assert(!P.Terrain.hit(p.x,p.y,p.r));
@@ -18,14 +18,14 @@ test('Sideral: reemplaza el mapa por una habitación física y la serializa en c
 });
 
 test('Sideral: choque daña, rebota y al terminar restaura coordenadas',()=>{
- const {sim,P,s,p}=setup(),e={x:640,y:90,hp:100,max:100,r:14,speed:0,boss:false,hit:0,attackT:9};P.Attributes.init(e);s.enemies=[e];p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);for(let i=0;i<148;i++)sim.tick(.04,[{},{}]);
+ const {sim,P,s,p}=setup(),e={x:640,y:90,hp:100,max:100,r:14,speed:0,boss:false,hit:0,attackT:9};P.Attributes.init(e);s.enemies=[e];p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);for(let i=0;i<112;i++)sim.tick(.04,[{},{}]);
  const d=s.sideralDomain,b=P.SideralDomain.bounds(d);e.x=b.right-e.r-20;e.sideralFear=.9;e.sideralWallHit={side:'right'};P.SideralDomain.boundary(e,d,.04);
  assert.equal(e.hp,92);assert.equal(e.domainEdgeHits,1);assert(e.charge.x<0);assert.equal(e._sideralReturnX,640);
  P.SideralDomain.end();assert.equal(s.sideralDomain,null);assert.equal(e.x,640);assert.equal(e._sideralReturnX,undefined);assert.equal(p.x,120);assert.equal(p.y,90);
 });
 
-test('Sideral: la tarjeta precede la intro y cada pulso nace desde el personaje',()=>{
+test('Sideral: el dominio entra directamente y cada pulso nace desde el personaje',()=>{
  const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);const d=s.sideralDomain;
- sim.tick(.4,[{},{}]);assert.equal(d.age,0);assert(d.card>0);for(let i=0;i<30;i++)sim.tick(.04,[{},{}]);assert(d.age>0);
+ sim.tick(.4,[{},{}]);assert(d.age>0);assert.equal(d.card,undefined);
  p.x=333;p.y=222;P.SideralDomain.burst();assert.equal(d.waveX,333);assert.equal(d.waveY,222);
 });
