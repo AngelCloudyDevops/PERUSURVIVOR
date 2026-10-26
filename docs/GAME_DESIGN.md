@@ -1,5 +1,7 @@
 # Documento de diseño — PERUSURVIVOR
 
+Las tarjetas de ulti siguen el contrato visual de docs/ULTIMATE_ART.md: 40 % × 82 %, borde izquierdo x=0, entrada 1,3 s y retrato dedicado. Makanaky muestra la tarjeta antes del dominio y usa seis poses cartoon pixel art de espalda para tercera persona; las reglas de combate y carga no cambian.
+
 ## Dominio de Makanaky: combos y cámaras
 Makanaky: golpes encadenados jab/jab/cruzado/uppercut. Conectar suma racha GA; fallar o esperar 1,1 s la corta, sin perder energía acumulada. Uppercut añade 0,65 de alcance. Enemigos en fila de profundidad con leve variación lateral. Tarjeta protegida de 1,3 s antes de mostrar el callejón y habilitar golpes; cámaras V equivalentes en daño y alcance. Práctica administrativa con recarga explícita gratuita.
 

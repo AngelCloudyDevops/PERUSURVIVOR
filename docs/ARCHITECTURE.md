@@ -1,5 +1,7 @@
 # Arquitectura
 
+DomainArt comparte UltimateComic.layout y panelFrame. La tarjeta evita el letterbox del dominio y se compone en resolución nativa; el actor de tercera persona también se dibuja al final en el contexto nativo. Dos atlas WebP con seis poses de espalda y cuatro retratos, límites alfa compartidos y fallback al sprite actual mientras cargan.
+
 ## Dominio de Makanaky: combos y cámaras
 Domain serializa combo, comboTimer, step, strike, punchLength, move, impact y freeze; autoridad idéntica en cliente individual y servidor cooperativo. Domain.camera permanece local y no se transmite. Microparada de 45 ms solo detiene desplazamiento visual de objetivos/suelo, no el reloj ni la red. DomainArt mantiene el mapa original bajo la tarjeta y cambia al callejón después; rayos y poses se dibujan en el lienzo pixel sin suavizado. El enlace practice=makanaky reutiliza TestBench con comprobación del rol administrador existente.
 

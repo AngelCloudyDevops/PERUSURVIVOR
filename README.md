@@ -1,5 +1,8 @@
 # PERUSURVIVOR — Causas del Caos
 
+## Estándar obligatorio de tarjetas de ulti
+Todas las entradas usan 40 % de ancho, 82 % de alto, x = 0, y = 8 %, 1,3 s, borde diagonal con marco oscuro y retrato dedicado de cintura arriba. Render a resolución de pantalla, sin margen ni ampliación del lienzo del dominio. Las vistas de espalda deben usar sprites cartoon pixel art completos y contorneados, nunca figuras geométricas de sustitución. Detalles y assets: [Contrato visual de ultis](docs/ULTIMATE_ART.md).
+
 ## Dominio de Makanaky: combos y cámaras
 El dominio de Makanaky ahora encadena jab, jab, cruzado y uppercut, con racha ¡GA! independiente de la energía, impactos y rayos violetas. V o el botón cambia entre primera y tercera persona sin alterar el combate. La tarjeta aparece durante 1,3 s sobre el mapa original antes del callejón. Prueba directa de administrador: /?practice=makanaky tras iniciar sesión; incluye Recargar dominio y Reponer objetivos.
 
