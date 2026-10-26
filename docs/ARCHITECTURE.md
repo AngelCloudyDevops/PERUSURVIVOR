@@ -448,3 +448,6 @@ VultureRig.arenaMotion conserva motion(4) durante la gracia y dirige la misma je
 # Configuración de apoyos de laboratorio
 `TestBench.supports()` normaliza dos espacios y elimina duplicados. `attackFixture()` aplica sus rangos, evoluciones y combos compatibles mediante `Progression.apply`. La firma de `applyAttack()` incluye toda la configuración; reconstruye los campos de arma y apoyos, borra evoluciones retiradas, reinicia temporizadores y sustituye los combos sin acumulación. La ejecución conserva el tick y render de `Progression` existentes. Las pruebas recorren los apoyos/rangos de los 18 causas con daño real y verifican los dos combos, retirada, cambio de escenario/jefe y salida limpia.
 
+
+
+AnimalUltimate.swarmPose calcula trayectorias continuas y fases independientes por criatura. Cuy usa WalkArt con seis pasos; Paloma usa los seis cuadros íntegros de AnimalEntryPoses. Sin círculos de alcance ni recuadro de coraza: polvo/plumas deterministas y hasta 24 impactos serializados por jugador, creados solo al reducir HP. No altera radio, daño ni cadencia.
