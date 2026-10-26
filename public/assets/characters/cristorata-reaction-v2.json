@@ -1,0 +1,17 @@
+{
+  "origin": "image_gen built-in",
+  "width": 1536,
+  "height": 1024,
+  "columns": 3,
+  "rows": 2,
+  "poses": [
+    "hands-on-head",
+    "reach",
+    "point",
+    "approach",
+    "climb",
+    "seated"
+  ],
+  "reference": "cristorata-secret-v1.webp",
+  "prompt": "Production 3x2 transparent full-body sprite atlas matching the reference detailed cartoon pixel art, identity, clothing and proportions. Top row: rear hands on head; rear three-quarter arm beginning to extend; right index pointing naturally. Bottom row: right-facing reach with both hands; climbing with raised bent right knee and left leg pushing; seated astride invisible saddle, knees bent, hands gripping reins. Complete connected silhouettes, no cropped or detached limbs, no dragon, no scenery, no text."
+}

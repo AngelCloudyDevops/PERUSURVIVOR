@@ -447,7 +447,6 @@ Inicia sesión, abre Cooperativo y agrega a tu amigo por su nombre exacto de usu
 
 La revelación secreta encadena un falso resultado Jade, un último giro, vapor y un seguro que salta al dorarse la máquina. Los ojos preceden a cada cabeza con desplazamientos propios; Cristorata retrocede y extiende el brazo durante su frase. El dragón se inclina para la subida y el aleteo final levanta polvo. Todo deriva de la edad autoritativa de la ulti, conserva los 6,4 s y la pausa compartida; movimiento reducido omite sacudidas, vapor y ráfagas. No añade daño ni entidades.
 
-El gesto de Cristorata usa piezas pixel art rígidas de manga, antebrazo y mano con índice definido. El hombro queda fijo al torso; codo y muñeca conservan sus longitudes al extender y recoger el brazo. Las piezas y la limpieza del recorte se cachean por imagen, sin deformar el atlas ni modificar la duración de la ulti.
 
 ### Fluidez y diagnóstico cooperativo
 El servidor envía posiciones cada 40 ms (25 Hz). El cliente interpola aliados y enemigos y anticipa visualmente su movimiento con reconciliación y colisión local; daño y posición real siguen siendo del servidor. Los cambios de dirección se envían al siguiente frame. El panel de rendimiento distingue FPS, ping RED, coste de tick del servidor y frecuencia de snapshots. El ping depende de la conexión y distancia al VPS.
@@ -455,8 +454,9 @@ El servidor envía posiciones cada 40 ms (25 Hz). El cliente interpola aliados y
 ### Revancha cooperativa
 Al terminar una partida, ambos pulsan **Volver juntos a la sala**. El grupo, código y anfitrión se conservan; pueden cambiar personajes y mapa y deben confirmar **Estoy listo** de nuevo. Una sola confirmación espera al compañero sin cerrar su resultado. **Salir del grupo** termina la sesión compartida. La actualización pendiente del juego se aplaza mientras regresan juntos.
 
-La subida de Cristorata al Tricéfalo mantiene al personaje opaco durante el recorrido: extiende ambas manos, eleva la pierna, aproxima las caderas a la silla y flexiona las piernas al asentarse. El agarre y el asiento preceden al despegue; torso y piernas reutilizan píxeles del atlas y las manos cerradas son piezas cacheadas. Conserva la escena de 6,4 s y los ocho segundos completos de montura.
 
 El despegue del Tricéfalo tiene carga de peso, aletazo descendente y recuperación con poses completas del atlas. La montura se inclina alrededor de la silla con Cristorata agarrado; la elevación espera al impulso y el polvo permanece en el suelo. No recorta ni estira alas o manos, respeta movimiento reducido y mantiene la duración y el combate.
 
 El vuelo del Tricéfalo usa 16 pasos de aleteo y 12 pasos de despegue cacheados, derivados del atlas con muestreo sin suavizado. Una malla continua mantiene la raíz del ala y el agarre, repliega las patas hacia el vientre y transmite un movimiento leve al jinete. El ciclo comparte fase entre cinemática y combate; hasta 28 superficies por atlas, sin recalcular la malla cada cuadro. Movimiento reducido conserva una pose quieta y no cambia el combate.
+
+Corrección visual de Cristorata: las poses completas del atlas cristorata-reaction-v2 sustituyen los recortes de brazos y piernas. El dibujo conserva sus proporciones al señalar y subir; el Tricéfalo aparece completo sin cortes horizontales. Véase docs/CRISTORATA_REACTION_ART.md para origen y prompt.
