@@ -1,0 +1,21 @@
+{
+  "tool": "image_gen",
+  "mode": "built-in",
+  "assets": [
+    {
+      "key": "judge-rig",
+      "reference": "C:/Users/reyin/Documents/ChatGPT/JUEGO/poderes/public/assets/court/judge-v1.png",
+      "prompt": "EDIT the supplied cartoon pixel-art judge into a TWO-PART RIGGING ATLAS. Transparent background, exactly TWO equal columns in ONE row, ample gutters, NO text. Preserve the judge's exact recognizable face, gray hair, stern expression, robe, colors and dark pixel outlines. LEFT CELL: complete seated waist-up judge torso and head, stationary shoulder and upper arm on viewer's LEFT, but REMOVE the raised forearm and fist completely: the upper arm ends cleanly at the low elbow at torso bottom-left. His viewer-right resting hand stays as in reference. Fill the area formerly covered by raised fist with matching black robe, no hole or duplicate hand. RIGHT CELL: ONLY the detached matching viewer-left FOREARM, white cuff and closed gripping fist, extracted/recreated in the same pixel-art style; includes the elbow end at the bottom, bends up and slightly to the right to the empty clenched fist at the top. No upper arm, no shoulder, no torso, no gavel. Anatomically coherent single wrist and one fist, preserve finger shape, opaque pixel clusters with 3-4 tones. Parts must be truly separated, each fully inside its own cell with 15% transparency margins, no overlapping components. This atlas is for rotating the forearm around the elbow without deforming the shoulder. No backdrop, glow, shadows, bench, chair, or decorative elements."
+    },
+    {
+      "key": "fuji-rig",
+      "reference": "C:/Users/reyin/Documents/ChatGPT/JUEGO/poderes/public/assets/court/fujimori-objection-v1.png",
+      "prompt": "EDIT the supplied waist-up Fujimori caricature into a TWO-PART animation RIGGING ATLAS. Transparent background, exactly TWO equal columns in ONE row, no text. Match EXACT face, glasses, side-parted gray black hair, open speaking mouth, navy suit and red-white sash, cartoon PIXEL ART dark outlines and crisp grouped shading. LEFT CELL: complete torso/head from waist up; viewer-left hand still clutches sash as reference; viewer-right shoulder and upper arm remain fixed but the raised FOREARM and pointing HAND are entirely removed, ending in a clean low elbow on the right side of torso. Restore any navy clothing where the removed arm overlapped, no hole, no duplicate pointing hand. RIGHT CELL: ONLY the matching detached viewer-right FOREARM from elbow at bottom to white cuff, wrist, hand and raised index finger at top. Index finger anatomically straight and extended, other fingers curled, one hand only. Forearm slightly angled up and right, elbow attachment at its lower left end. No shoulder, torso or head in this cell. Each part is a coherent opaque pixel-art cutout fully inside its equal cell with 15% transparent margin; genuine alpha, no background, no glow, no particles, no speech bubble. Designed so the entire forearm and pointing finger rotate rigidly together while the character face and shoulder stay still. Do not change identity, clothing, palette or art style."
+    }
+  ],
+  "paths": [
+    "public/assets/court/judge-joints-v2.png",
+    "public/assets/court/fujimori-joints-v2.png"
+  ],
+  "runtime": "Lossless WebP copies; torso and forearm remain rigid, original v1 art preserved."
+}
