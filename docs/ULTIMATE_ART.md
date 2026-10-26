@@ -27,3 +27,5 @@ MakanakyBoxing anima los dos brazos mediante hombro, codo y puño, con preparaci
 Los rivales mantienen una coordenada fija de ruta; profundidad = ruta − avance del jugador. Pasos, polvo y suelo siguen el mismo avance, mientras los rivales dejan de reproducir una caminata de aproximación. La cámara acompaña al jugador, con desplazamiento y zancada visibles. Los tiempos globales, posiciones de retorno y autoridad cooperativa se conservan.
 
 Asset actual: public/assets/characters/makanaky-boxing-rig-v1.png / .webp; origen y prompt en makanaky-boxing-rig-v1.json. Creado con image_gen integrado a partir del atlas de espalda. El atlas anterior de seis poses permanece en Git como referencia y no se publica.
+
+Mantener el botón recorre el ciclo completo también al golpear al aire. Fallar reinicia únicamente la racha de aciertos GA; el indicador sigue identificando el golpe actual. El botón apunta al frente para evitar que su posición en pantalla desvíe la puntería.
