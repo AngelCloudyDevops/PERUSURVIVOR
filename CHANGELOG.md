@@ -1,5 +1,11 @@
 # Cambios
 
+## Cartas revelables al subir de nivel — 2026-10-26
+- El menú de progreso presenta tres cartas boca abajo y exige revelar las tres antes de permitir una elección.
+- Las cartas comparan habilidad, rango, rareza y efecto; funcionan con ratón, teclado y cooperativo.
+- Rareza informa el aspecto y la probabilidad de aparición, sin escalar el poder de la mejora. Los pactos compiten por uno de los tres espacios.
+- Añadidas animación/sonido de revelación, presentación adaptable y documentación de las reglas.
+
 ## Reorganización del proyecto — 2026-10-25
 - Código editable en src/, separado por responsabilidad.
 - Recursos originales en public/assets/characters, enemies, maps y audio.

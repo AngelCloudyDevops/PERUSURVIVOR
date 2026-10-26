@@ -2,6 +2,7 @@
 // Una VM por sala: reutiliza catálogos, ataques y terreno sin DOM ni autoridad del cliente.
 const {Activities}=require('./activities.cjs');
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const engineScripts=new Map();
 function loadEngine(root){
  const elements=new Map(),drawing=new Proxy({createRadialGradient:()=>({addColorStop(){}})},{get:(t,k)=>t[k]||(()=>{})});
  function element(){return {children:[],style:{},dataset:{},classList:{add(){},remove(){},toggle(){}},setAttribute(){},append(...c){this.children.push(...c)},replaceChildren(){this.children=[]},querySelector(){return this.children[0]},focus(){},addEventListener(){},getContext(){return drawing},setPointerCapture(){}}}
@@ -9,7 +10,8 @@ function loadEngine(root){
  context.window=context;vm.createContext(context);
  const built=fs.existsSync(path.join(root,'js/data.js'));
  const modules=built?require(path.join(root,'backend/modules.json')).map(m=>typeof m==='string'?{output:m}:m):require('../scripts/modules.cjs');
- for(const m of modules)vm.runInContext(fs.readFileSync(path.join(root,built?m.output:m.source),'utf8'),context,{filename:m.source||m.output,timeout:1000});
+ let scripts=engineScripts.get(root);if(!scripts){scripts=modules.map(m=>new vm.Script(fs.readFileSync(path.join(root,built?m.output:m.source),'utf8'),{filename:m.source||m.output}));if(engineScripts.size>=4)engineScripts.delete(engineScripts.keys().next().value);engineScripts.set(root,scripts)}
+ for(const script of scripts)script.runInContext(context,{timeout:1000});
  return context.P;
 }
 class Simulation{
