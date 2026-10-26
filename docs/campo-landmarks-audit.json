@@ -1,0 +1,33 @@
+{
+  "source": "public/assets/environment/campo-landmarks-v1.png",
+  "runtime": "public/assets/environment/campo-landmarks-v1.webp",
+  "source_sha256": "00fd7ea0feb46ab9b7105e581e8466ed45f83bd903efdb62c846d309bdf5b5c7",
+  "runtime_sha256": "4018ae61d9a4e9ac23e9958df54081d19580d72256809f7adeeb703f4287d63c",
+  "bytes": 98056,
+  "width": 512,
+  "height": 256,
+  "cells": [
+    {
+      "id": "monument",
+      "x": 12,
+      "y": 90,
+      "w": 232,
+      "h": 158
+    },
+    {
+      "id": "picnic-cloth",
+      "x": 277,
+      "y": 8,
+      "w": 214,
+      "h": 112
+    },
+    {
+      "id": "picnic-basket",
+      "x": 296,
+      "y": 136,
+      "w": 176,
+      "h": 112
+    }
+  ],
+  "method": "Built-in image_gen; mechanical transparent-gap cropping and nearest-neighbor packing."
+}
