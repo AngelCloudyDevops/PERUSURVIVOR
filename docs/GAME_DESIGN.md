@@ -501,5 +501,7 @@ Audio de oficios: avisos breves y sonidos originales de pala, puño y tela para 
 El selector «Arma principal» permite probar base (rango 1), rangos 2–5 y la evolución exclusiva de cualquiera de los 18 causas, tanto con objetivos como con jefes. Usa las mejoras reales del arma sin exigir nivel 8 ni subir el nivel del jugador. Muestra el nombre, descripción y estadísticas de la configuración; conserva la selección al cambiar de causa o repetir. Cambiarla reinicia la prueba y limpia los proyectiles, campos y animaciones anteriores. Volver a base reconstruye el arma sin acumular multiplicadores. La selección es exclusiva del laboratorio: no desbloquea evoluciones permanentes, consume recursos ni cambia los requisitos de las partidas normales o cooperativas.
 
 
+Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Paloma en Plaza de Armas (uno activo). Abanico de tres ondas bloqueables y pulso cercano de 110 unidades, ambos avisados; al 50 % encadena dos abanicos. Conserva navegación, agotamiento, bonus, resumen, cobertura y derrota sin daño. Cofre: Silbato del caos o 50 monedas. Disponible directamente en Probar jefes. Arte nuevo de cuatro poses, sin sustituir personajes existentes.
+
 
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
