@@ -697,3 +697,6 @@ Sustituye visualmente a La Combi Final: minibús blanco y azul, cristales oscuro
 # Sideral · UR de control
 
 Sideral es un personaje UR de Ingenio cuyo ataque automático, **Mirada Sideral**, cubre un cono frontal de 270 unidades. Los minions normales huyen durante 0,9 s; los pesados resisten y retroceden menos, los minijefes solo sufren una interrupción breve y los jefes no abandonan su patrón. Cada objetivo obtiene 2,5 s de resistencia antes de poder ser asustado otra vez. Su evolución **Rostro prohibido** ensancha el cono y prolonga el miedo, sin convertir la rareza en daño bruto gratuito.
+
+
+Primera entrega social: buscar usuario exacto, solicitud de amistad aceptada por ambos, lista persistente con Conectado/En sala/Jugando/Desconectado, invitaciones dentro del juego, sala de espera para dos con retratos animados, selección individual y mapa del anfitrión. Ambos deben pulsar Estoy listo; el botón inicia solo cuando las dos conexiones están preparadas. Los códigos permanecen para invitados. Las invitaciones vencen al minuto, no permiten entrar a salas llenas/iniciadas y no revelan información a terceros. Límite 100 relaciones por usuario, 20 solicitudes entrantes y 30 acciones sociales por minuto. Cargar figuras falla de forma recuperable y no confirma un personaje distinto del elegido.
