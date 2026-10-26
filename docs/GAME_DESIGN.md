@@ -267,3 +267,6 @@ La patada cuerpo a cuerpo de La G5 conserva su pose de ataque incluso en movimie
 ## Día, atardecer y noche
 Ciclo visual por mapTime: día hasta 90 s, atardecer hasta 180 s, anochecer hasta 270 s y noche desde 270 s. Faroles se encienden gradualmente entre 165 y 225 s. La noche oscurece solo el fondo un máximo de 30%; los personajes y peligros se dibujan después. Pausa y arenas no avanzan el ciclo; la práctica queda de día. No incorpora clima ni efectos de dificultad.
 Entrada cómic del Gallinazo: ojo 0–0,55 s, grito 0,55–1,15 s, alas fuera del panel 1,15–1,8 s y ruptura en plumas 1,8–2 s. Viñeta diagonal con azoteas, texto propio y dibujos IA exclusivos. Movimiento reducido usa una viñeta estática de alas. El combate, vulnerabilidad y duración no cambian.
+
+
+Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
