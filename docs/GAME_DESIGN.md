@@ -260,3 +260,5 @@ Los 18 personajes jugables y los seis tipos de rival usan una lámina propia con
 El menú espera las caminatas necesarias antes de iniciar una partida individual. En cooperativo la autoridad del servidor no espera recursos del navegador; se solicita la lámina del aliado al aparecer. Los recursos tienen reintento y la carga puede cancelarse antes de empezar.
 
 La patada cuerpo a cuerpo de La G5 conserva su pose de ataque incluso en movimiento; los disparos mantienen la caminata y sus efectos de arma.
+
+Entrada cómic del Gallinazo: ojo 0–0,55 s, grito 0,55–1,15 s, alas fuera del panel 1,15–1,8 s y ruptura en plumas 1,8–2 s. Viñeta diagonal con azoteas, texto propio y dibujos IA exclusivos. Movimiento reducido usa una viñeta estática de alas. El combate, vulnerabilidad y duración no cambian.
