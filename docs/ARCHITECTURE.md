@@ -480,3 +480,6 @@ Entregas en vivo v4: `/api/events?account=UUID` usa SSE con cookie HttpOnly, cue
 
 
 VultureRig.cardLayout y cardEnvelope separan geometría adaptable y tiempos cosméticos. card reutiliza un canvas de retrato, sin descargas ni timers; proyecta su sombra y compone trama/rayos, arcos del grito, plumas y marco en el canvas principal. No altera la jerarquía articulada ni el estado de combate. VultureMoon.overlay sincroniza body.vulture-card en todas las fases para ocultar el laboratorio durante la entrada y restituirlo al despegar. La prueba cubre límites de composición en escritorio/móvil, título escalonado, movimiento reducido y ausencia de mutaciones de simulación.
+
+
+Domain serializa combo, comboTimer, step, strike, punchLength, move, impact y freeze; autoridad idéntica en cliente individual y servidor cooperativo. Domain.camera permanece local y no se transmite. Microparada de 45 ms solo detiene desplazamiento visual de objetivos/suelo, no el reloj ni la red. DomainArt mantiene el mapa original bajo la tarjeta y cambia al callejón después; rayos y poses se dibujan en el lienzo pixel sin suavizado. El enlace practice=makanaky reutiliza TestBench con comprobación del rol administrador existente.
