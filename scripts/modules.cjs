@@ -330,4 +330,6 @@ module.exports = [
     "output": "js/domain-art.js"
   },
   {"source":"src/network/live-gifts.js","output":"js/live-gifts.js"}
+, {source:"src/systems/dragon-ultimate.js",output:"js/dragon-ultimate.js"}
+, {source:"src/rendering/dragon-art.js",output:"js/dragon-art.js"}
 ];
