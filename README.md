@@ -288,3 +288,6 @@ La sentencia conserva 340 u y añade grietas y onda doradas, expedientes «CASO 
 La colección permite combinar rareza, estrellas exactas (1–5) y Solo listos para ascender. Las tarjetas listas muestran marca verde y copias/coste; los bloqueados no cumplen filtros de estrellas o ascenso y los de 5★ no aparecen como listos. Limpiar filtros restaura la vista completa. Filtrar no cambia el personaje seleccionado: si queda fuera del filtro, la ficha lo indica. Los filtros duran durante la sesión y se actualizan tras ascender o recibir cambios de progreso en otra pestaña.
 
 Etiquetas de colección: C · Común, R · Raro, SR · Súper raro y SSR · Ultra raro. SR corresponde al antiguo Épico y SSR al antiguo Legendario; no se añade otra rareza ni cambian probabilidades, personajes o devoluciones. El progreso de estrellas sigue separado de la rareza.
+
+## Ultis del Cuy y la Paloma
+Cuy Supremo: Estampida Suprema (5 s, daño de área y coraza del 50 %). Paloma del Centro: Bandada del Centro (6 s, espiral de palomas y remate de área). Carga con 20 bajas; pulsa Q o el botón. En Ajustes están las dos prácticas gratuitas, con recarga y cambio directo de personaje. Conservan los sprites cartoon pixel art actuales.
