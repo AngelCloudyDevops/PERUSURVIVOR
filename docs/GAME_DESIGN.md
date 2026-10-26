@@ -1,5 +1,7 @@
 # Documento de diseño — PERUSURVIVOR
 
+Dominio: mantener clic/Espacio encadena jab izquierdo → jab derecho → cruzado izquierdo → uppercut derecho. Duración 0,34/0,34/0,46/0,60 s; daño al contacto (40 %), con 45 ms de pausa de impacto. Makanaky avanza automáticamente, da pasos y reduce la zancada al golpear; minions fijos en su fila, sin caminata de aproximación. Se conserva la tarjeta previa, el cambio de cámara y la recarga del laboratorio.
+
 Las tarjetas de ulti siguen el contrato visual de docs/ULTIMATE_ART.md: 40 % × 82 %, borde izquierdo x=0, entrada 1,3 s y retrato dedicado. Makanaky muestra la tarjeta antes del dominio y usa seis poses cartoon pixel art de espalda para tercera persona; las reglas de combate y carga no cambian.
 
 ## Dominio de Makanaky: combos y cámaras
@@ -622,3 +624,4 @@ Jefe opcional alternativo del portal del minuto 3, además de su versión jugabl
 Picada lunar: apunta a la posición del jugador al comenzar el descenso y conserva la marca fija para permitir esquivar. La cámara sigue la altura visual del jefe manteniendo al jugador visible, enlaza el cielo con la arena en 0,32 s y regresa durante 0,95 s tras el impacto. El choque añade sacudida de 0,42 s, onda de presión, sonido y mayor dispersión de escombros/polvo. Movimiento reducido omite la sacudida. Daño y radio no cambian.
 
 Continuidad nocturna del Gallinazo: panorama extendido de Lima cubre el encuadre completo al subir/abrir el plano. La arena conserva su geometría y textura, con iluminación azul violeta que progresa durante tarjeta/despegue y permanece durante cielo, caída y segunda fase. El horizonte cálido se desvanece en el nuevo cielo; no reaparece de día al impactar.
+Fujimori jefe tiene atlas propio de 16 poses: reposo y pasos, preparación/lanzamiento de expedientes, preparación/golpe de sello y cuatro etapas de derrota. La derrota dura 2,8 s, despeja los ataques y congela el combate antes de entregar una sola recompensa. Pausa detiene la secuencia; movimiento reducido mantiene la pose final y un fundido. Los avisos, daño y ventanas de contraataque no cambian.

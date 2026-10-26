@@ -1,5 +1,7 @@
 # Arquitectura
 
+MakanakyBoxing usa seis piezas raster de un atlas y cinemática de dos huesos por brazo; anclajes coincidentes, piernas con malla continua acotada y render nativo sin suavizado. No alterna las seis poses antiguas. Domain serializa pending (objetivo y tiempo de contacto), route y move; resuelve el daño al 40 % de cada golpe.
+
 DomainArt comparte UltimateComic.layout y panelFrame. La tarjeta evita el letterbox del dominio y se compone en resolución nativa; el actor de tercera persona también se dibuja al final en el contexto nativo. Dos atlas WebP con seis poses de espalda y cuatro retratos, límites alfa compartidos y fallback al sprite actual mientras cargan.
 
 ## Dominio de Makanaky: combos y cámaras
@@ -528,3 +530,6 @@ FujimoriBoss extiende el movimiento y dibujo de Encounters solo para kind fujimo
 VultureMoon.cameraFrame incluye landing y el primer tramo posterior al impacto; compensa cameraScale para conservar el zoom al cambiar de fase y converge al objetivo normal antes de liberar la cámara. arrivalOverlay reutiliza una captura del último cielo. landedAge usa elapsed y la marca de impacto, por lo que pausa detiene cámara, onda y sacudida. World suma impactShake en unidades compensadas por zoom. Los renderizadores existentes de polvo/escombros amplían solo el impacto lunar.
 
 VultureMoon precarga gallinazo-lima-night-v1.webp al iniciar el jefe. Background combina panorama exterior y dos capas de la azotea original, cacheadas una vez por imagen, con máscara de borde/horizonte. nightStrength usa relojes existentes, sin tiempos reales ni cambios al mapa/colisión. moonlight integra actores/obstáculos con la luz de fondo. Fuente PNG original y prompt conservados junto al WebP.
+FujimoriBossArt carga bajo demanda fujimori-boss-v1.webp; fuente PNG y prompt permanecen en Git. Sus 16 figuras completas comparten escala y centro de celda con anclaje al suelo. Encounters espera la carga antes de entrar, permite reintento y cancela la entrada si se abandona el diálogo. Game.update despacha la derrota por tipo de jefe; Entities inicia la secuencia de Fujimori después de contabilizar una sola baja.
+
+El build omite los antiguos atlas de ataque de personajes con atlas direccional activo: WalkArt.url ya pide exclusivamente assets/aim para esos personajes. PNG y WebP históricos siguen en public y se auditan; esto deja margen de despliegue para el nuevo atlas del jefe sin reducir su resolución ni cambiar imágenes activas.

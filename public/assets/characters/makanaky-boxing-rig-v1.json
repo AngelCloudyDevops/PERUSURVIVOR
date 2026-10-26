@@ -1,0 +1,47 @@
+{
+  "tool": "image_gen built-in",
+  "reference": "makanaky-domain-back-v1.png",
+  "image": "makanaky-boxing-rig-v1.webp",
+  "width": 1536,
+  "height": 1024,
+  "parts": {
+    "torso": {
+      "sx": 101,
+      "sy": 38,
+      "w": 375,
+      "h": 493
+    },
+    "upperL": {
+      "sx": 694,
+      "sy": 194,
+      "w": 148,
+      "h": 275
+    },
+    "upperR": {
+      "sx": 1161,
+      "sy": 194,
+      "w": 147,
+      "h": 275
+    },
+    "foreL": {
+      "sx": 212,
+      "sy": 607,
+      "w": 164,
+      "h": 300
+    },
+    "foreR": {
+      "sx": 646,
+      "sy": 607,
+      "w": 165,
+      "h": 300
+    },
+    "legs": {
+      "sx": 955,
+      "sy": 606,
+      "w": 534,
+      "h": 347
+    }
+  },
+  "sha256": "678e51ea732c382b2848870ce0dc9486956abf32608de3249629f3cc3b570ac1",
+  "prompt": "Six modular cartoon pixel art components in a transparent 3x2 atlas: rear torso/head, left upper arm, right upper arm, left forearm/fist, right forearm/fist, pants/legs. Preserve Makanaky identity and strong dark outlines. Rounded joint ends for continuous skeletal animation; shoulder/elbow/hand segments separate, no scenery, weapons or text."
+}
