@@ -515,6 +515,8 @@ Entradas animales v2: Paloma prepara el vuelo, eleva alas, empuja hacia abajo y 
 
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
 
+Makanaky también es jugable y está disponible sin tirada inicial, manteniendo su minijefe separado. Vida 105, velocidad 190 y potencia 20; tres ondas a alcance medio, evolución de cinco ondas perforantes. Comparte el atlas de cuatro poses, a escala de jugador; el guardado conserva colección y añade su disponibilidad. Se integra en mejoras, habilidades, laboratorio y cooperativo.
+
 
 ### Ajuste fino del trío
 Se modera la cadencia de G5 y el daño evolucionado de G5/Fuzo, conservando sus geometrías. Cerdito recibe más daño cercano y una pequeña mejora evolucionada; conserva caída por distancia, descuento de impactos sobre un mismo enemigo, alcance, vida y velocidad. No se añade resistencia específica por enemigo ni ventaja de rareza. Parámetros y partidas en TRIO_BALANCE.md.
