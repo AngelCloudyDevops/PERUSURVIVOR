@@ -5,8 +5,10 @@ Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posici
 ## Estándar obligatorio de tarjetas de ulti
 Las entradas de ulti, salvo la cinemática de dominio de Makanaky, usan 40 % de ancho, 82 % de alto, x = 0, y = 8 %, 1,3 s, borde diagonal con marco oscuro y retrato dedicado de cintura arriba. Render a resolución de pantalla, sin margen ni ampliación del lienzo del dominio. Las vistas de espalda deben usar sprites cartoon pixel art completos y contorneados, nunca figuras geométricas de sustitución. Detalles y assets: [Contrato visual de ultis](docs/ULTIMATE_ART.md).
 
+Las Expansiones de Dominio UR —Makanaky y Sideral— son un sistema distinto de las ultis: comienzan directamente con su cinemática propia a pantalla completa y nunca usan tarjeta lateral.
+
 ## Dominio de Sideral: «¿QUÉ, EN SERIO?»
-Antes de transformar el mapa aparece durante 1,3 s una tarjeta UR diagonal pegada a la izquierda, con animación propia de Sideral, rayos violetas y el título «¿QUÉ, EN SERIO?». Después comienza su secuencia cinematográfica completa. Cada onda morada nace desde la posición actual de Sideral al gritar, incluso si se ha movido desde el centro de la habitación.
+Como Expansión de Dominio UR, Sideral no usa tarjeta lateral: al activarla comienza directamente su cinemática propia a pantalla completa, igual que Makanaky. Cada onda morada nace desde la posición actual de Sideral al gritar, incluso si se ha movido desde el centro de la habitación.
 
 Sideral es UR y carga su expansión con 35 bajas. La entrada cinematográfica ocupa toda la pantalla durante 4,4 s sobre una versión pixel art del estudio del video: empieza feliz, escucha algo fuera de cuadro, duda, levanta solamente la mano derecha y dice «¿EN SERIO?». Al terminar la frase adelanta ambas manos y, todavía encorvado y sin reír, da cuatro saltos completos hacia atrás. Solo entonces estalla la carcajada. El cuarto salto rompe visualmente la habitación y forma un sello de dominio con ondas concéntricas, grietas violetas, ecos visuales y pulsos sonoros.
 
