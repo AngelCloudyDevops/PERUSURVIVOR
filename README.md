@@ -52,6 +52,8 @@ Abre http://127.0.0.1:4173. El comando de inicio genera primero dist/. Para ver 
 
 WASD o flechas para moverse, ataque automático, Esc para pausar y E para entrar a un portal cercano. En móvil se arrastra el dedo y se usa el botón del portal.
 
+Al subir de nivel aparecen tres cartas boca abajo. Revela las tres con un clic para comparar poderes, rangos, rareza y cambios de atributos; recién entonces puedes escoger una. La rareza cambia la probabilidad de que una mejora salga y su marco visual, pero no multiplica su efecto: el poder depende de la mejora descrita y del rango. Los pactos también ocupan uno de los tres espacios. En teclado, 1–3 revela la carta correspondiente; después de revelar las tres, 1–3 selecciona.
+
 ## Estructura
 
 ```text
