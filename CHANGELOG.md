@@ -1,5 +1,10 @@
 # Cambios
 
+## Destellos de rareza al revelar cartas — 2026-10-26
+- Rareza rara revela un barrido turquesa, épica uno violeta y legendaria un destello dorado de izquierda a derecha con pulso de marco.
+- Los brillos son breves, cosméticos y compatibles con movimiento reducido; no cambian el poder de la mejora.
+- Documentadas las señales visuales en README y guía de diseño.
+
 ## Cartas revelables al subir de nivel — 2026-10-26
 - El menú de progreso presenta tres cartas boca abajo y exige revelar las tres antes de permitir una elección.
 - Las cartas comparan habilidad, rango, rareza y efecto; funcionan con ratón, teclado y cooperativo.
