@@ -195,3 +195,6 @@ body.menu #causa-combo{display:none!important}
 #lobby-meta .meta-upgrades small{min-height:0;margin:5px 0 9px}
 #lobby-meta .meta-alert{padding:10px;border-left:3px solid #f0bf66;background:#3c2e27;color:#ffe6b5!important}
 @media(max-width:760px){#lobby-meta .meta-toolbar{grid-template-columns:1fr 1fr}#lobby-meta .meta-toolbar details{grid-column:1/-1}#lobby-meta .meta-toolbar details p{left:0;right:auto;width:100%}#lobby-meta .meta-stat-grid{grid-template-columns:repeat(2,1fr)}#lobby-meta .meta-traits{grid-template-columns:1fr}#lobby-meta .meta-traits small{grid-column:1}#lobby-meta .gacha-stars{grid-template-columns:1fr}#lobby-meta .gacha-stars button{grid-column:1;grid-row:auto}#lobby-meta .meta-score{min-width:64px}}
+
+/* Keep vitals and controls readable while the two-second domain result owns the center header. */
+body.domain-result #hud>.stats,body.domain-result #hud>#level{visibility:hidden}
