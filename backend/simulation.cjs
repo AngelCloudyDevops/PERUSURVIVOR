@@ -18,8 +18,7 @@ class Simulation{
   this.players=characters.map((id,i)=>{const p=P.Entities.player(P.Data.characters[id]);Object.assign(p,{x:P.state.player.x+i*45,y:P.state.player.y,slot:i,fire:0,shots:[],fields:[],revive:0});P.state.player=p;P.Ultimate.reset();p.ultimate=P.state.ultimate;return p});
   P.state.player=this.players[0];this.result=null;
   P.Game.finish=win=>{if(win)this.result='win'};
-  // En cooperativo la fama y las mejoras son del equipo. No hay menús que congelen a un jugador.
-  P.Systems.levelup=()=>{const s=P.state;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.3+2);for(const p of this.players){p.power*=1.12;p.hp=Math.min(p.maxHp,p.hp+15)}};
+  P.Systems.levelup=()=>{if(!this.activities.pending)this.activities.levelup()};
   this.activities=new Activities(this);
  }
  use(p){const s=this.P.state;s.player=p;s.fire=p.fire;s.shots=p.shots;s.fields=p.fields;s.ultimate=p.ultimate}

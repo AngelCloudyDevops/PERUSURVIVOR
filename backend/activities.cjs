@@ -54,10 +54,13 @@ class Activities{
   for(const p of this.sim.players)p.moving=false;
   return true;
  }
+ levelup(){const P=this.P,s=P.state;if(this.pending||s.xp<s.need)return;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.3+2);this.pending={id:++this.serial,kind:'level',phase:'choice',applied:[false,false],options:this.sim.players.map(p=>P.Progression.options(p))};for(const p of this.sim.players)p.moving=false}
  choose(slot,id,choice){
   const pending=this.pending;if(!pending||pending.id!==id||pending.phase!=='choice'||pending.applied[slot]||!Number.isInteger(choice))return false;
   const P=this.P,p=this.sim.players[slot];this.sim.use(p);
-  if(pending.kind==='portal-reward'){
+  if(pending.kind==='level'){
+   const offer=pending.options[slot]?.[choice];if(!offer)return false;P.Progression.apply(p,offer.id);
+  }else if(pending.kind==='portal-reward'){
    if(choice<0||choice>2)return false;
    if(choice===0)p.power*=1.3;
    if(choice===1){p.maxHp+=40;p.hp=p.maxHp}
@@ -67,7 +70,7 @@ class Activities{
    if(choice===0)P.Loot.use(pending.item);
   }
   pending.applied[slot]=true;
-  if(pending.applied.every(Boolean)){this.pending=null;this.notice('Recompensas entregadas a los dos. ¡Sigan explorando!')}
+  if(pending.applied.every(Boolean)){this.pending=null;this.notice('Recompensas entregadas a los dos. ¡Sigan explorando!');if(P.state.xp>=P.state.need)this.levelup()}
   return true;
  }
  advance(dt){
@@ -75,6 +78,7 @@ class Activities{
  }
  tick(dt){
   const sim=this.sim,P=this.P,s=P.state;this.messageTime=Math.max(0,this.messageTime-dt);P.Loot.messageTime=Math.max(0,P.Loot.messageTime-dt);
+  if(this.pending)return;
   if(this.returning)this.returnFromArena();
   P.Encounters.tick();this.tryPortal();if(s.encounter)return;
   this.syncChests();P.Loot.animate(dt);sim.use(sim.players.find(p=>p.hp>0)||sim.players[0]);P.Loot.spawnKeepers();P.Market.tick();

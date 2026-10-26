@@ -46,3 +46,5 @@ footer{position:static;grid-column:1/-1;margin-top:12px}#menu{align-content:star
 body.vulture-cinematic header,body.vulture-cinematic #hud,body.vulture-cinematic #lab-tools,body.vulture-cinematic #hint,body.vulture-cinematic #performance-panel,body.vulture-cinematic #stick{visibility:hidden}
 
 #difficulty-status{font-size:11px;color:#b5c3d2;margin-top:4px;max-width:90vw}
+
+#hud:not(.boss-hud) #ability{display:block;font-size:9px;line-height:1.35;margin-top:4px;color:#e7d99d;overflow-wrap:anywhere}

@@ -210,6 +210,10 @@ El ambulante tiene un sprite pixel art de 48×52 con dos cuadros de animación: 
 Los originales PNG de image_gen se conservan en `public/assets/attacks/`; el juego usa WebP sin pérdida a 288 px, reducido mecánicamente con vecino más cercano. Prompts y hashes: `docs/attack-art-prompts.json` y `docs/attack-art-audit.json`. El build omite PNG duplicados. No se distribuyen vistas ni utilidades locales de QA.
 
 
+## Progresión survivor por partida
+Los rivales dejan experiencia (fama). Al llenar la barra, subes de nivel y eliges exactamente una de tres mejoras, con el mundo pausado. El exceso de XP se conserva y encadena elecciones. El arma inicial puede subir hasta rango 5; se ofrecen desbloqueos de Onda causa (área), Tarjetas del caos (perforantes) y Escudo de bandas (área cercana), con un máximo de dos apoyos. Cada poder tiene cinco rangos. A partir de nivel 8, los poderes de rango 5 pueden evolucionar mediante una elección especial: el arma gana daño, alcance, proyectiles y perforación; los apoyos duplican daño y amplían alcance. Las mejoras de atributos tienen cinco rangos y no ocupan espacios de poderes. El HUD muestra XP, poderes, rangos y estrellas de evolución. Todo se reinicia al empezar otra partida.
+
+P.Progression centraliza opciones, aplicación, efectos automáticos y resumen. El servidor cooperativo pausa la sala y genera tres ofertas por jugador; valida ID de elección y aplica cada mejora una sola vez. Espera a ambos y encadena niveles pendientes. Los rangos y tiempos de los apoyos se serializan con cada jugador. No se cambian las ultis ni se requieren compras para evolucionar.
 
 Ambient.react procesa el grupo visible ya cacheado, con cupos de seis aves y 32 plantas, detección a 30 Hz y estados locales eliminados al cambiar de cámara/mapa o reiniciar reloj. Incluye proximidad de aliados sin mensajes de red. World llama react antes del dibujo ordenado; no se crean entidades ni partículas. El vuelo dura 3,2 s con enfriamiento de 6 s y exige salir/reingresar al radio; la sacudida dura 0,65 s. Solo el dibujo de copa se desplaza: la sombra permanece en el suelo.
 
