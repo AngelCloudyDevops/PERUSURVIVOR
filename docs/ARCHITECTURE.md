@@ -1,5 +1,7 @@
 # Arquitectura
 
+Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posición validada por servidor, 5 s de duración, una por jugador y recarga de 2 s. Ayuda funciona al estar caído. La escolta de la combi se desbloquea a los 90 s: acérquense y pulsen Iniciar escolta. Ambos vivos a 200 unidades; dos paradas de 6 s despejadas de enemigos. Vida 150, límite 100 s, reintento 20 s; premio único +50 monedas compartidas y 25% de vida a cada superviviente. Se suspende durante arenas, escenas, mejoras y desconexiones; no coincide con la defensa doble. Backend Escort/Signals serializados en activities; CoopExtras dibuja vehículo, avisos y controles sin autoridad sobre premios.
+
 DomainArt separa la proyección lateral por cámara: tercera persona fija el lateral del escenario y desplaza playerX; la cámara cercana aplica la misma cámara a muros, suelo, rivales y proyectiles. lean y sideSteps viajan en domain para reproducir inclinación y zancada. La cámara cercana carga el atlas de seis poses de espalda y lo compone en resolución nativa sobre el escenario, con desplazamiento continuo de cuerpo, retroceso y estela; no usa puños geométricos flotantes. La mira y el ratón incorporan el desplazamiento del actor y el letterbox.
 
 MakanakyBoxing usa seis piezas raster de un atlas y cinemática de dos huesos por brazo; anclajes coincidentes, piernas con malla continua acotada y render nativo sin suavizado. No alterna las seis poses antiguas. Domain serializa pending (objetivo y tiempo de contacto), route y move; resuelve el daño al 40 % de cada golpe.

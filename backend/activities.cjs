@@ -1,14 +1,16 @@
 'use strict';
 // Actividades de sala. Solo acepta intenciones; posiciones, premios y consumo de llaves se validan aquí.
 class Activities{
- constructor(sim){this.sim=sim;this.votes=new Set();this.serial=0;this.pending=null;this.returning=false;this.message='';this.messageTime=0;this.duo=new (require('./duo-event.cjs').DuoEvent)(sim);sim.P.Encounters.win=()=>{this.returning=true}}
+ constructor(sim){this.sim=sim;this.votes=new Set();this.serial=0;this.pending=null;this.returning=false;this.message='';this.messageTime=0;this.escort=new (require('./escort.cjs').Escort)(sim);this.signals=new (require('./signals.cjs').Signals)(sim);this.duo=new (require('./duo-event.cjs').DuoEvent)(sim);sim.P.Encounters.win=()=>{this.returning=true}}
  get P(){return this.sim.P}
  notice(text){this.message=text;this.messageTime=4}
  action(slot,action,id,choice){
   const sim=this.sim,P=this.P,s=P.state,p=sim.players[slot];if(!p||sim.result)return false;
+  if(action==='signal')return this.signals.send(slot,id);
   if(action==='choose')return this.choose(slot,id,choice);
   if(this.pending||p.hp<=0||s.mode!=='play')return false;
   sim.use(p);
+  if(action==='escort')return this.escort.start(slot);
   if(action==='duo-event')return this.duo.start(slot);
   if(action==='market-buy')return P.Market.buy(id);
   if(action==='portal'){
@@ -80,12 +82,12 @@ class Activities{
  advance(dt){
   this.P.Loot.animate(dt);if(this.pending?.phase==='opening'){this.pending.age+=dt;if(this.pending.age>=.65)this.pending.phase='choice'}
  }
- tick(dt){
+ tick(dt){this.signals.tick(dt);
   const sim=this.sim,P=this.P,s=P.state;this.messageTime=Math.max(0,this.messageTime-dt);P.Loot.messageTime=Math.max(0,P.Loot.messageTime-dt);
   if(this.pending)return;
   if(this.returning)this.returnFromArena();
   P.Encounters.tick();this.tryPortal();if(s.encounter)return;
-  this.duo.tick(dt);this.syncChests();P.Loot.animate(dt);sim.use(sim.players.find(p=>p.hp>0)||sim.players[0]);P.Loot.spawnKeepers();P.Market.tick();
+  this.escort.tick(dt);this.duo.tick(dt);this.syncChests();P.Loot.animate(dt);sim.use(sim.players.find(p=>p.hp>0)||sim.players[0]);P.Loot.spawnKeepers();P.Market.tick();
   const o=P.Exploration.station;
   if(o&&o.phase==='active'){
    const defender=sim.players.find(p=>p.hp>0&&Math.hypot(p.x-o.x,p.y-o.y)<=200)||sim.players.find(p=>p.hp>0)||sim.players[0];sim.use(defender);
@@ -98,6 +100,6 @@ class Activities{
    if(!opener){chest.progress=0;continue}sim.use(opener);if(!P.Loot.canOpen(chest)){P.Loot.locked(chest);continue}chest.progress+=dt;if(chest.progress>=1.8){this.open(chest);break}
   }
  }
- snapshot(){const P=this.P,s=P.state;return {duoEvent:this.duo.snapshot(),portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles,defeat:s.encounter.defeat||null}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
+ snapshot(){const P=this.P,s=P.state;return {escort:this.escort.snapshot(),signals:this.signals.snapshot(),duoEvent:this.duo.snapshot(),portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles,defeat:s.encounter.defeat||null}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
 }
 module.exports={Activities};

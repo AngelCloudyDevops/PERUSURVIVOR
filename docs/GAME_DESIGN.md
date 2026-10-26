@@ -1,5 +1,7 @@
 # Documento de diseño — PERUSURVIVOR
 
+Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posición validada por servidor, 5 s de duración, una por jugador y recarga de 2 s. Ayuda funciona al estar caído. La escolta de la combi se desbloquea a los 90 s: acérquense y pulsen Iniciar escolta. Ambos vivos a 200 unidades; dos paradas de 6 s despejadas de enemigos. Vida 150, límite 100 s, reintento 20 s; premio único +50 monedas compartidas y 25% de vida a cada superviviente. Se suspende durante arenas, escenas, mejoras y desconexiones; no coincide con la defensa doble. Backend Escort/Signals serializados en activities; CoopExtras dibuja vehículo, avisos y controles sin autoridad sobre premios.
+
 Mover A/D o flechas desplaza al propio Makanaky en tercera persona; la fila y el escenario conservan su lateral. La cámara cercana muestra el paso con perspectiva del callejón completo y a Makanaky grande desde atrás, interpuesto entre cámara y rival. Jab izquierdo, derecho, cruzado y uppercut usan poses de espalda dedicadas, embestida corporal, retroceso y estela pixel art. Conserva alcance, daño, secuencia, tarjeta y retorno al mapa.
 
 Mantener el combo recorre siempre los cuatro golpes, aunque fallen o no queden rivales. Fallar corta la racha GA, sin reiniciar la secuencia visual. El botón de combo apunta al frente; ratón/canvas conservan la puntería manual.
