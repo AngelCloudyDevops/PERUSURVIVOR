@@ -174,6 +174,10 @@ module.exports = [
     "output": "js/performance.js"
   },
   {
+    "source": "src/systems/miniboss-relics.js",
+    "output": "js/miniboss-relics.js"
+  },
+  {
     "source": "src/scenes/game.js",
     "output": "js/game.js"
   },
