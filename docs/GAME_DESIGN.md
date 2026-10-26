@@ -510,7 +510,12 @@ Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: pre
 
 
 Entradas animales v2: Paloma prepara el vuelo, eleva alas, empuja hacia abajo y recoge las patas antes de elevarse. Cuy usa anticipación, impulso, patas recogidas, extensión para aterrizar, compresión y recuperación. Se elimina el ala artificial superpuesta. Duración, protección y daño permanecen iguales.
+### Ajuste anatómico del Gallinazo articulado
+Las dos alas tienen raíces, tamaños y ángulos diferenciados para mantener una silueta legible al abrirse. El torso limita la capa de ala plegada que incluía el dibujo original, con borde de plumas, para evitar una tercera ala aparente. Pico inferior más corto y giro reducido; collar cubre la unión al cuello en la forma base, y cresta/puntas marfil son más pequeñas. La arena de fase II reutiliza el mismo rig de la cinemática y conserva su pose final durante la gracia; después mueve alas y pico al cargar y disparar. No altera daño, avisos ni el combate activo durante la tarjeta.
+## Cuentas opcionales
+
+El juego permite invitado o usuario registrado. La cuenta conserva colección, estrellas, mejoras, monedas e inventario entre dispositivos; no reanuda una partida en curso. El primer guardado puede importar explícitamente al invitado sin eliminarlo. Ante versiones en conflicto, se conserva la copia local y no se suman monedas ni se fuerzan reemplazos. Las copias individuales proceden del cliente y no habilitan ranking competitivo ni premios reales. Recuperación mediante código privado mostrado una vez, sin correo configurado en esta versión. Detalles en [ACCOUNTS.md](ACCOUNTS.md).
+
 # Apoyos y combinaciones en el laboratorio
 La sección «Poderes de apoyo» ofrece dos espacios distintos con Onda causa, Tarjetas del caos y Escudo de bandas. Cada espacio permite rango 1–5 o evolución inmediata, sin nivel ni recursos. Se pueden combinar con cualquiera de las 18 armas y sus evoluciones, en objetivos o jefes. No se puede repetir el mismo apoyo. Cambiar la configuración reinicia la prueba y elimina ataques anteriores; quitar un apoyo también retira su evolución y temporizadores. La configuración se conserva al cambiar de causa y al repetir, pero no se transfiere a partidas normales.
 «Activar combos compatibles» está desactivado inicialmente para permitir comparar: Onda habilita Directo viral con el arma principal; Tarjetas + Escudo habilitan Prensa blindada. Sólo se aplican los combos cuyos apoyos están equipados. La interfaz describe sus efectos y el estado activo/disponible. Son las mismas reglas y efectos del combate normal, sin desbloqueos permanentes.
-
