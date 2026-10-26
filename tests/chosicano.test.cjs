@@ -30,3 +30,5 @@ test('Dominio vial: controles reales, render de entrada y bloqueo de ultis',()=>
 test('Dominio vial: jugador caído no recibe objetivo y morir cancela sin recompensa',()=>{const {P,s,C,sim}=road(true);sim.players[0].hp=0;C.tryStart();advanceRoad(C,3.1);assert.equal(s.roadDomain.target,1);sim.players[1].hp=1;sim.players[1].inv=0;s.roadDomain.runners[1].lane=s.roadDomain.lane;advanceRoad(C,2);assert.equal(s.roadDomain,null);assert(sim.players[1].hp<=0);assert(!s.portal.cleared)});
 
 test('Dominio vial: quedarse entre carriles no vuelve inmune y movimiento extremo se limita',()=>{const {P,s,C}=road();C.tryStart();s.roadDomain.runners[0].lane=.5;let hits=0;P.PlayerFeedback.hit=()=>hits++;advanceRoad(C,5.2);assert.equal(hits,1);advanceRoad(C,.1,{0:{x:999}});assert(Math.abs(s.roadDomain.runners[0].lane)<=1)});
+
+test('Dominio vial dúo: combo de equipo no interrumpe la persecución ni consume carga',()=>{const {sim,C}=road(true);C.tryStart();sim.team.charge=100;assert.equal(sim.team.eligible(),false);assert.equal(sim.team.request(0),false);assert.equal(sim.team.request(1),false);assert.equal(sim.team.charge,100)});
