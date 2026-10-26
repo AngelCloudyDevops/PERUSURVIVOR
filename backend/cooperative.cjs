@@ -6,15 +6,15 @@ function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=(
  const sharedAccounts=httpServer?.accounts;const accounts=sharedAccounts||(process.env.ACCOUNTS_DB?require('./accounts.cjs').createAccounts({filename:process.env.ACCOUNTS_DB,origins:allowedOrigins,secure:process.env.ACCOUNTS_INSECURE!=='true',now}):null);
  const server=httpServer||http.createServer(async(req,res)=>{if(accounts&&await accounts.handle(req,res))return;res.setHeader('Content-Type','application/json');res.setHeader('Cache-Control','no-store');res.writeHead(req.url==='/coop/health'?200:404);res.end(JSON.stringify(req.url==='/coop/health'?{ok:true,protocol:PROTOCOL,rooms:rooms.size}:{error:'Not found'}))});
  const wss=new WebSocketServer({noServer:true,maxPayload:2048,perMessageDeflate:false});
- function send(ws,data){if(ws?.readyState===1&&ws.bufferedAmount<512*1024)ws.send(JSON.stringify(data))}
+ function send(ws,data){if(ws?.readyState===1&&ws.bufferedAmount<512*1024)ws.send(typeof data==='string'?data:JSON.stringify(data))}
  function lobby(room){return {type:'room',code:room.code,map:room.map,revision:room.revision,round:room.round||0,finished:!!room.sim?.result,started:!!room.sim,players:room.members.map((m,i)=>({slot:i,character:m.character,username:m.username||'Invitado '+(i+1),ready:!!m.ready,returning:!!m.returning,connected:!!m.ws}))}}
  function reset(room){room.revision=(room.revision||0)+1;for(const m of room.members)m.ready=false}
  const userRoom=id=>[...rooms.values()].find(r=>r.members.some(m=>m.userId===id&&m.ws));
  accounts?.friends.setCoop({status:id=>{const r=userRoom(id);return r?(r.sim?'Jugando':'En sala'):null},inviteCode:id=>{const r=userRoom(id);return r&&!r.sim&&r.members.length===1&&r.members[0].userId===id?r.code:null},open:code=>{const r=rooms.get(code);return !!r&&!r.sim&&r.members.length<2&&!!r.members[0]?.ws}});
- function broadcast(room,data){for(const m of room.members)send(m.ws,data)}
+ function broadcast(room,data){const encoded=JSON.stringify(data);for(const m of room.members)send(m.ws,encoded)}
  function detach(ws){const room=ws.room,m=room?.members.find(m=>m.ws===ws);if(m){m.ws=null;m.lastSeen=now();m.input={x:0,y:0};if(!room.sim)reset(room);broadcast(room,lobby(room))}ws.room=null}
  function tick(){const time=now();for(const [code,room] of rooms){if(room.members.some(m=>!m.ws&&time-m.lastSeen>30000)||time-room.created>45*60*1000){broadcast(room,{type:'closed',message:'La sala terminó. Crea otra para volver a jugar.'});for(const m of room.members){if(m.ws){m.ws.room=null;m.ws.close(1000)}}rooms.delete(code);continue}
-   if(room.sim&&room.members.every(m=>m.ws)&&!room.sim.result){room.sim.tick(.04,room.members.map(m=>m.input));room.frame++;if(room.frame%2===0||room.sim.result)broadcast(room,{type:'state',...room.sim.snapshot()})}
+   if(room.sim&&room.members.every(m=>m.ws)&&!room.sim.result){const began=performance.now();room.sim.tick(.04,room.members.map(m=>m.input));room.tickMs=performance.now()-began;room.frame++;broadcast(room,{type:'state',...room.sim.snapshot()})}
   }
  }
  server.on('upgrade',(req,socket,head)=>{
@@ -32,6 +32,7 @@ function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=(
    if(now()-windowAt>1000){count=0;windowAt=now()}if(++count>40)throw Error('Demasiados mensajes');
    if(ws.user&&accounts?.session(req)?.id!==ws.user.id){send(ws,{type:'closed',message:'La sesión de tu cuenta terminó. Vuelve a iniciar sesión.'});ws.close(1008);return}
    const msg=JSON.parse(raw);if(!msg||typeof msg!=='object')throw Error('Mensaje inválido');
+   if(msg.type==='ping'){if(ws.room&&Number.isFinite(msg.sent))send(ws,{type:'pong',sent:msg.sent,tickMs:ws.room.tickMs||0,snapshotMs:40});return}
    if(msg.type==='input'){const m=ws.room?.members.find(m=>m.ws===ws);if(!m||!ws.room.sim)return;const x=msg.x,y=msg.y,weapon=Number(msg.weapon)||0;if(!Number.isFinite(x)||!Number.isFinite(y)||Math.abs(x)>1||Math.abs(y)>1)throw Error('Movimiento inválido');if(!Number.isInteger(weapon)||weapon<0||weapon>3)throw Error('Arma inválida');m.input={x,y,weapon,punch:msg.punch===true,ga:msg.ga===true,domainAim:Number.isFinite(msg.domainAim)?Math.max(-1,Math.min(1,msg.domainAim)):0,ultimate:msg.ultimate===true,view:ws.room.sim.P.Combat.sanitizeView(msg.view)||m.input?.view||null};return}
    if(msg.type==='activity'){const room=ws.room,slot=room?.members.findIndex(m=>m.ws===ws);if(!room?.sim||slot<0)return;if(!room.members.every(m=>m.ws))throw Error('Espera a que tu compañero vuelva a conectarse');if(!room.sim.activities.action(slot,msg.action,msg.id,msg.choice))throw Error('La acción ya no está disponible: acércate o espera a tu compañero');broadcast(room,{type:'state',...room.sim.snapshot()});return}
    if(msg.type==='leave'){const r=ws.room,slot=r?.members.findIndex(m=>m.ws===ws);if(r){if(r.sim||slot===0){broadcast(r,{type:'closed',message:'El grupo salió de la sala.'});rooms.delete(r.code);for(const m of r.members){if(m.ws){m.ws.room=null;m.ws.close(1000)}}}else if(slot>=0){r.members.splice(slot,1);ws.room=null;reset(r);broadcast(r,lobby(r))}}ws.close(1000);return}

@@ -64,6 +64,7 @@ test('Salas reales: código privado, máximo dos, autoridad, reconexión, limpie
   const b=await connect();b.send({type:'join',protocol:2,code:joined.code,character:18});const bj=await b.receive('joined');assert.equal(bj.slot,1);
   const third=await connect();third.send({type:'join',protocol:2,code:joined.code,character:1});assert.match((await third.receive('error')).message,/completa/);
   a.send({type:'ready',ready:true,revision:2});b.send({type:'ready',ready:true,revision:2});await new Promise(r=>setTimeout(r,20));b.send({type:'start'});assert.equal((await b.receive('error')).type,'error');a.send({type:'start'});const stateA=await a.receive('state'),stateB=await b.receive('state');assert.deepEqual(stateA.players,stateB.players);assert.equal(stateA.players[1].id,'makanaky');
+  a.send({type:'ping',sent:123});const pong=await a.receive('pong');assert.equal(pong.sent,123);assert.equal(pong.snapshotMs,40);app.tick();assert((await a.receive('state')).elapsed>stateA.elapsed,'Transmitir cada tick de 40 ms, sin saltar uno');await b.receive('state');
   const sim=app.rooms.get(joined.code).sim;
   async function stateUntil(client,predicate){for(let i=0;i<40;i++){const m=await client.receive('state');if(predicate(m))return m}assert.fail('No llegó el estado de actividad esperado')}
   const chest={id:'wire:chest',x:250,y:250,progress:0,opened:false,gold:false,rarity:'common'};sim.P.Loot.chests.push(chest);sim.activities.open(chest);for(let i=0;i<18;i++)app.tick();
@@ -119,4 +120,20 @@ test('Revancha cliente: conserva sesión/socket, limpia el resultado y abre la s
  P.Coop.pause();assert(P.Coop.paused,'Esc no cierra el resultado ni oculta el regreso a la sala');assert.match(shown.description,/1\/2/);
  P.Coop.backToRoom();assert.equal(P.Coop.session,session);assert.equal(P.Coop.ws,socket);assert.equal(leaves,0);assert.equal(reloads,0);assert.equal(P.state.mode,'menu');assert.equal(P.Lobby.route,'coop');assert(!P.Coop.active&&!P.Coop.paused&&!P.Coop.resultVisible&&!P.Coop.activityPending&&!P.Coop.ultimate);assert.equal(P.Coop.resultSummary,null);assert.equal(P.Coop.peers.length,0);
  P.UI.menu();assert.equal(reloads,1,'Salir normalmente sigue aplicando las actualizaciones pendientes');
+});
+
+test('Red: interpolación entre paquetes es continua y no modifica el estado autoritativo',()=>{
+ const vm=require('node:vm'),fs=require('node:fs'),P={};vm.runInNewContext(fs.readFileSync('src/network/coop-motion.js','utf8'),{P,Map,Math});const motion=P.CoopMotion;
+ const packet=(x,t=1,scene=null)=>({map:'campo',elapsed:t,players:[{slot:0,x:0,y:0,hp:95,speed:205},{slot:1,x,y:10,hp:95,speed:205,walkPhase:x/10}],enemies:[{minionId:8,x,y:20,hp:30,walkPhase:x/8}],encounter:scene?{scene:{id:scene}}:null});
+ motion.accept(packet(0),0);const latest=packet(8,1.04);motion.accept(latest,40);P.state={player:latest.players[0],enemies:latest.enemies};P.Coop={active:true,session:{slot:0},peers:[latest.players[1]],net:{rtt:130}};P.Core={direction:()=>({x:0,y:0})};P.Terrain={clear:()=>true};const before=JSON.stringify(latest),seen=[];
+ for(const time of [40,50,60,70,80])motion.draw(time,()=>seen.push(P.Coop.peers[0].x));assert.deepEqual(seen,[0,2,4,6,8]);assert.equal(JSON.stringify(latest),before,'Render no decide colisiones ni conserva posiciones visuales');assert.throws(()=>motion.draw(60,()=>{throw Error('render')}));assert.equal(JSON.stringify(latest),before,'Restaurar también si el dibujo falla');
+ motion.accept(packet(600,1.08),80);assert.equal(motion.sample(motion.poses.get('p:1'),90).x,600,'Teletransporte no atraviesa el mapa');motion.accept(packet(700,1.12,'arena'),120);assert.equal(motion.sample(motion.poses.get('p:1'),130).x,700,'Cambiar de escena corta el arrastre');motion.accept(packet(0,0),160);assert.equal(motion.poses.size,3,'Revancha reemplaza todos los actores');
+});
+
+test('Red: movimiento local anticipado, colisiones respetadas y congelación al faltar paquetes',()=>{
+ const vm=require('node:vm'),fs=require('node:fs'),P={};vm.runInNewContext(fs.readFileSync('src/network/coop-motion.js','utf8'),{P,Map,Math});const m={map:'campo',elapsed:1,players:[{slot:0,x:0,y:0,hp:95,speed:200,walkPhase:0}],enemies:[]},player=m.players[0];P.state={player,enemies:[]};P.Coop={active:true,session:{slot:0},peers:[],net:{rtt:130}};P.Core={direction:()=>({x:1,y:0})};P.Terrain={clear:()=>true};P.CoopMotion.accept(m,0);const seen=[];for(const t of [0,16,32,48])P.CoopMotion.draw(t,()=>seen.push(player.x));assert(seen[1]>0&&seen[2]>seen[1]&&seen[3]>seen[2]);assert.equal(player.x,0);P.Terrain.clear=()=>false;P.CoopMotion.draw(64,()=>assert.equal(player.x,0));P.CoopMotion.draw(300,()=>assert.equal(player.x,0));assert.equal(P.CoopMotion.local,null);
+});
+
+test('Red: cambios de dirección priorizados sin saturar el límite de mensajes',()=>{
+ const vm=require('node:vm'),fs=require('node:fs'),sent=[],P={state:{player:{}},Core:{direction:()=>({x:0,y:0})},Combat:{sanitizeView:v=>v,view:()=>({})}};let time=10;vm.runInNewContext(fs.readFileSync('src/network/cooperative.js','utf8'),{P,performance:{now:()=>time},Math});P.Coop.active=true;P.Coop.send=m=>sent.push(m);P.Coop.tick(.016);assert.equal(sent.filter(m=>m.type==='input').length,1);P.Coop.tick(.016);assert.equal(sent.filter(m=>m.type==='input').length,1);P.Core.direction=()=>({x:1,y:0});P.Coop.tick(.016);assert.equal(sent.at(-1).x,1);P.Core.direction=()=>({x:0,y:0});P.Coop.tick(.016);P.Coop.tick(.016);assert.equal(sent.at(-1).x,0);assert(sent.some(m=>m.type==='ping'));sent.length=0;for(let i=0;i<60;i++){time+=1000/60;P.Core.direction=()=>({x:i%2,y:0});P.Coop.tick(1/60)}assert(sent.filter(m=>m.type==='input').length<=31,'El joystick no supera el límite de 40 mensajes/s');
 });
