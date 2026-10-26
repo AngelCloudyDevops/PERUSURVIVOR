@@ -506,10 +506,14 @@ La colección se ordena por rareza (SSR→SR→R→C), estrellas o copias dispon
 Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Paloma en Plaza de Armas (uno activo). Abanico de tres ondas bloqueables y pulso cercano de 110 unidades, ambos avisados; al 50 % encadena dos abanicos. Conserva navegación, agotamiento, bonus, resumen, cobertura y derrota sin daño. Cofre: Silbato del caos o 50 monedas. Disponible directamente en Probar jefes. Arte nuevo de cuatro poses, sin sustituir personajes existentes.
 
 
+Entradas animales v2: Paloma prepara el vuelo, eleva alas, empuja hacia abajo y recoge las patas antes de elevarse. Cuy usa anticipación, impulso, patas recogidas, extensión para aterrizar, compresión y recuperación. Se elimina el ala artificial superpuesta. Duración, protección y daño permanecen iguales.
+
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
 
 
-Entradas animales v2: Paloma prepara el vuelo, eleva alas, empuja hacia abajo y recoge las patas antes de elevarse. Cuy usa anticipación, impulso, patas recogidas, extensión para aterrizar, compresión y recuperación. Se elimina el ala artificial superpuesta. Duración, protección y daño permanecen iguales.
+### Ajuste fino del trío
+Se modera la cadencia de G5 y el daño evolucionado de G5/Fuzo, conservando sus geometrías. Cerdito recibe más daño cercano y una pequeña mejora evolucionada; conserva caída por distancia, descuento de impactos sobre un mismo enemigo, alcance, vida y velocidad. No se añade resistencia específica por enemigo ni ventaja de rareza. Parámetros y partidas en TRIO_BALANCE.md.
+
 ### Ajuste anatómico del Gallinazo articulado
 Las dos alas tienen raíces, tamaños y ángulos diferenciados para mantener una silueta legible al abrirse. El torso limita la capa de ala plegada que incluía el dibujo original, con borde de plumas, para evitar una tercera ala aparente. Pico inferior más corto y giro reducido; collar cubre la unión al cuello en la forma base, y cresta/puntas marfil son más pequeñas. La arena de fase II reutiliza el mismo rig de la cinemática y conserva su pose final durante la gracia; después mueve alas y pico al cargar y disparar. No altera daño, avisos ni el combate activo durante la tarjeta.
 ## Cuentas opcionales

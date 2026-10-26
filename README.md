@@ -303,6 +303,11 @@ El selector Ordenar colección permite rareza, estrellas o copias disponibles, d
 Validación integrada adicional: 54 partidas sobre b10eef1 (18 causas × 3 mapas, semilla 404), con coberturas revisadas y nuevas ultis de Cuy/Paloma. Sobreviven 54/54 a 300 s: 47 victorias, 4 derrotas y 3 límites; 169/169 minijefes abatidos. Las dos muestras quedan separadas por versión y política de habilidades; sus tasas no se mezclan. G5 y Fuzo fueron los más rápidos en esta validación, sin que eso pruebe superioridad universal.
 
 
+### Ajuste fino de G5, Fuzo y Cerdito
+G5 conserva vida, movilidad y arco: recarga 0,62 → 0,68 s y multiplicador evolucionado 0,65 → 0,58. Fuzo conserva alcance y perforación: impacto 0,85 → 0,80 y evolución 0,65 → 0,58. Cerdito mantiene siete perdigones y alcance 400: impacto 0,50 → 0,56, inicio de caída 140 → 165 u y evolución 0,65 → 0,70. Consulta [la comparación emparejada](docs/TRIO_BALANCE.md), con partidas antes/después en los mismos mapas y semillas. Las fichas se derivan de los valores nuevos.
+
+En 54 partidas emparejadas, la mediana de minijefe cambia de 5,8 → 9,1 s para G5, 5,4 → 7,5 s para Fuzo y 13,5 → 12,8 s para Cerdito. Las 27 posteriores sobreviven cinco minutos: 26 victorias y un límite con vida. Se conservan los resultados completos, incluidos minijefes no abatidos, y los límites de una sola estrategia automatizada.
+
 # Cuentas y guardado en el VPS
 
 El vestíbulo incluye **Cuenta / Login**: registro, acceso, recuperación con código privado y guardado por cuenta en Hostinger. Jugar como invitado sigue disponible. El progreso incluye monedas, colección, estrellas, mejoras e inventario; se conserva separado del invitado y detecta conflictos entre dispositivos. No guarda partidas a medio jugar ni proporciona un ranking verificado.

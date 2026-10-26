@@ -420,15 +420,20 @@ collectionOrder vive en P.Gacha sin cambiar el esquema v4. compareCollection/sor
 Catálogo de minijefes separa clave visual de mapa mediante map opcional. miniKey en avisos permite alternar variantes conservando el mapa real en el estado cooperativo. miniPlazaTurn se incrementa sólo al aparecer y se reinicia por partida. El atlas Makanaky conserva el recorte de cuatro componentes y la ruta de carga existente.
 
 
+AnimalEntryPoses carga dos hojas de seis figuras completas mediante WalkArt.measure; no corta alas ni añade piezas sobre la silueta. Paloma se ancla al ojo naranja para mantener la cabeza estable al cambiar de aleteo; Cuy conserva base y escala uniforme. Fuentes PNG, WebP optimizados con alfa completo y prompts versionados en docs/animal-entry-prompts.json.
+
+Las láminas judge-v1 y fujimori-objection-v1 del Tribunal se conservan en public como archivo de autoría, pero build las omite mientras CourtArt use joints-v2. Esto recupera 1,1 MB de margen de despliegue sin retirar las fuentes.
+
 AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
 
 
-AnimalEntryPoses carga dos hojas de seis figuras completas mediante WalkArt.measure; no corta alas ni añade piezas sobre la silueta. Paloma se ancla al ojo naranja para mantener la cabeza estable al cambiar de aleteo; Cuy conserva base y escala uniforme. Fuentes PNG, WebP optimizados con alfa completo y prompts versionados en docs/animal-entry-prompts.json.
 # Configuración de apoyos de laboratorio
 `TestBench.supports()` normaliza dos espacios y elimina duplicados. `attackFixture()` aplica sus rangos, evoluciones y combos compatibles mediante `Progression.apply`. La firma de `applyAttack()` incluye toda la configuración; reconstruye los campos de arma y apoyos, borra evoluciones retiradas, reinicia temporizadores y sustituye los combos sin acumulación. La ejecución conserva el tick y render de `Progression` existentes. Las pruebas recorren los apoyos/rangos de los 18 causas con daño real y verifican los dos combos, retirada, cambio de escenario/jefe y salida limpia.
 
 
-Las láminas judge-v1 y fujimori-objection-v1 del Tribunal se conservan en public como archivo de autoría, pero build las omite mientras CourtArt use joints-v2. Esto recupera 1,1 MB de margen de despliegue sin retirar las fuentes.
+### Comparación controlada del trío
+full-run-audit.play acepta catalogSnapshot solo en la herramienta local para restaurar definiciones de jugador/armas/evoluciones anteriores. trio-balance-audit.cjs empareja 27 partidas antes y 27 después con el mismo motor, mapas, semillas y política; no cambia enemigos, XP ni física. Conserva snapshots completos y trazas fuera de dist. Las comprobaciones históricas de roster-audit usan una referencia explícita para no reescribir resultados antiguos al ajustar parámetros actuales.
+
 VultureRig.arenaMotion conserva motion(4) durante la gracia y dirige la misma jerarquía de piezas en combate, sustituyendo el regreso al atlas de poses de fase II. Las poses de carga, ráfaga y picada comparten anclaje de torso/patas. La máscara del torso conserva patas y pecho y delimita con borde dentado la zona de ala plegada ya pintada en el asset; no modifica archivos de imagen ni colisiones.
 ## Cuentas y persistencia privada
 
