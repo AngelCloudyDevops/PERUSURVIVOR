@@ -226,6 +226,10 @@ module.exports = [
     "output": "js/day-night.js"
   },
   {
+    "source": "src/rendering/reactive-background.js",
+    "output": "js/reactive-background.js"
+  },
+  {
     "source": "src/rendering/world.js",
     "output": "js/world.js"
   },

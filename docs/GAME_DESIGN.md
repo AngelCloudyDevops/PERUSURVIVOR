@@ -650,3 +650,8 @@ Ataques visuales del Gallinazo: las plumas base usan el arte detallado existente
 Identidad sonora del Gallinazo: graznido descendente, aleteo pesado, silbido de plumas, caída en picada, impacto de suelo y derrota usan seis firmas sintetizadas diferentes. Cada evento acompaña su animación tanto en el combate normal como en el remate, la secuencia lunar y la fase dos. Cada firma tiene un intervalo mínimo propio, utiliza como máximo tres voces y comparte la atenuación musical para evitar saturación.
 
 Sin objetivos, la estampida de Cuy corre en órbitas elípticas y la bandada de Paloma alterna aleteo y planeo con cambios de altura. Ambas orientan su cuerpo según el desplazamiento; no añaden daño ni cambian el radio de la ulti. Movimiento reducido conserva poses quietas.
+# Fondo reactivo de Campo de Marte
+
+El fondo del mapa principal evoluciona antes del jefe final. La intensidad combina tiempo de partida, amenazas cercanas, vida baja y eventos mayores. Los enemigos normales aumentan gradualmente el viento; pesados y minijefes pesan más; la llegada del jefe final y la activación de una ulti generan una sola onda ambiental breve. La respuesta es informativa y estética: no concede ventajas, no modifica el terreno y no esconde proyectiles.
+
+Las reacciones se mantienen cerca de la cámara y del evento. La onda alcanza 190 unidades para arbustos, dura 1,2 segundos y no se repite mientras la misma ulti siga activa. Movimiento reducido elimina ondas, ráfagas y reacciones adicionales. Pausa congela el reloj ambiental.
