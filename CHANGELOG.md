@@ -1,3 +1,7 @@
+# Ajuste del frente de las cartas ilustradas — 2026-10-26
+- La cara de la carta vuelve a ocupar todo el marco al revelarse; la ilustración y los datos ya no quedan comprimidos arriba.
+- Conserva el giro, el arte completo y las placas de información.
+
 # Cambios
 
 ## Cartas full art de Kingteka — 2026-10-26

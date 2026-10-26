@@ -234,7 +234,7 @@ body.domain-result #hud>.stats,body.domain-result #hud>#level{visibility:hidden}
 .upgrade-card[data-revealed=true][data-rarity=legendary] .upgrade-front:after{background:linear-gradient(110deg,transparent 20%,#ffd45f22 34%,#fff4b4 48%,#ffd45f 53%,#fff1a566 61%,transparent 77%);filter:drop-shadow(0 0 12px #ffd45f);animation:rarityCardSweep 1s cubic-bezier(.16,.7,.2,1) .1s both}
 .upgrade-card[data-revealed=true][data-rarity=epic] .upgrade-front:before,.upgrade-card[data-revealed=true][data-rarity=legendary] .upgrade-front:before{inset:8px;border:1px solid var(--rarity);border-radius:6px;box-shadow:inset 0 0 18px color-mix(in srgb,var(--rarity) 22%,transparent);animation:rarityCardPulse .7s steps(2) .12s both}
 .upgrade-card[data-revealed=true][data-rarity=legendary] .upgrade-front:before{inset:5px;border-width:2px;box-shadow:inset 0 0 24px #ffd45f55,0 0 14px #ffd45f88;animation-duration:1s}
-.illustrated-cards .upgrade-front{position:relative;gap:0;padding:0;justify-content:flex-end;background:#151c22}
+.illustrated-cards .upgrade-front{position:absolute;inset:0;gap:0;padding:0;justify-content:flex-end;background:#151c22}
 .illustrated-cards .upgrade-art{position:absolute;z-index:0;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center 42%;background:#151c22;image-rendering:pixelated}
 .illustrated-cards .upgrade-card[data-full-art=true] .upgrade-icon,.illustrated-cards .upgrade-preview{display:none}
 .illustrated-cards .upgrade-front .upgrade-icon{position:absolute;z-index:2;top:12px;right:12px;display:grid;flex:0 0 44px;width:44px;height:44px;padding:3px;border:1px solid var(--rarity);border-radius:2px;background:#111820eF;box-shadow:3px 3px #0d1013;image-rendering:pixelated}
