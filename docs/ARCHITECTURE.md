@@ -421,3 +421,5 @@ Catálogo de minijefes separa clave visual de mapa mediante map opcional. miniKe
 
 
 AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
+
+VultureRig.arenaMotion conserva motion(4) durante la gracia y dirige la misma jerarquía de piezas en combate, sustituyendo el regreso al atlas de poses de fase II. Las poses de carga, ráfaga y picada comparten anclaje de torso/patas. La máscara del torso conserva patas y pecho y delimita con borde dentado la zona de ala plegada ya pintada en el asset; no modifica archivos de imagen ni colisiones.
