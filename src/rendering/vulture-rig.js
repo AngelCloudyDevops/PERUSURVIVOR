@@ -1,6 +1,6 @@
 'use strict';
 P.VultureRig={
-  ready:false,failed:false,parts:[],title:'¡BAJO MIS ALAS!',
+  ready:false,failed:false,parts:[],title:'ECLIPSE CARROÑERO',arenaHeight:221,
   init(){
     if(this.started||typeof Image==='undefined')return;this.started=true;
     const image=new Image();image.onload=()=>{try{
@@ -45,11 +45,14 @@ P.VultureRig={
       if(e.ultimateTime>=4&&e.ultimateGrace<=0)for(const k of ['near','far','head','ruffle'])m[k]+=idle[k];
       return m;
     }
-    const m={near:.05,far:.65,jaw:0,head:0,phase:1,ruffle:0};
+    // En reposo las alas quedan contenidas; vuelo, carga y disparo las abren
+    // desde articulaciones distintas sin agrandar ni trasladar el torso.
+    const m={near:-.04,far:.42,jaw:0,head:0,phase:1,ruffle:0};
     if(e.phase==='vulture-dive'){m.near=-.9;m.far=-.55}
     for(const k of ['near','far','head','ruffle'])m[k]+=idle[k];
     const flight=this.flightPose(e,reduced);m.near+=flight.near;m.far+=flight.far;m.tuck=flight.tuck;
     const attack=this.attackPose(e,reduced);if(attack)for(const k of ['near','far','head','jaw','ruffle','tuck'])m[k]=attack[k];
+    if((e.rigFlight||0)>0&&!attack)m.far=Math.max(m.far,.18)
     return m;
   },
   attackPose(e,reduced=false){
@@ -61,7 +64,7 @@ P.VultureRig={
         brace+=this.smooth((t-(hit-.32))/.16)*(1-this.smooth((t-(hit-.13))/.13));
       }
       const release= Math.min(1,stroke),power=reduced?0:release;
-      return {near:.05+load*1.15-power*1.85,far:.65+load*1.25-power*2.05,head:reduced?0:-load*.1+power*.17,jaw:reduced?0:power*.32,ruffle:reduced?0:(brace*.025+power*.07),tuck:0,bank:reduced?0:-load*.075+power*.18,lift:0,pulse:power};
+      return {near:-.04+load*1.08-power*1.72,far:.42+load*1.13-power*1.82,head:reduced?0:-load*.1+power*.17,jaw:reduced?0:power*.32,ruffle:reduced?0:(brace*.025+power*.07),tuck:0,bank:reduced?0:-load*.075+power*.18,lift:0,pulse:power};
     }
     if(e.phase==='vulture-warning'&&e.attack==='dive'){
       const p=Math.max(0,Math.min(1,1-e.windup/(e.warningTime||1.05))),open=this.smooth(p/.65),fold=this.smooth((p-.65)/.35);
@@ -120,7 +123,7 @@ P.VultureRig={
     c.restore();c.restore();return true;
   },
   eye(g){const h=g.rigHeight;return {x:g.baseX+h*.23+h*.33*(.69-.27),y:g.baseY-h*.4-h*.33*(.82-.28)*254/347}},
-  cardLayout(w,h){const base=P.UltimateComic?.layout(w,h)||{w:w*.4,h:h*.82,y:h*.08},cw=w<640?w*.58:base.w,ch=Math.min(base.h,cw*1.55),box={w:cw,h:ch,y:base.y};return {...box,px:cw*.46,py:ch*.62,birdHeight:Math.min(ch*.5,cw*.66),titleX:cw*.34}},
+  cardLayout(w,h){const base=P.UltimateComic?.layout(w,h)||{w:w*.4,h:h*.82,y:h*.08},cw=w<640?w*.62:base.w,ch=Math.min(base.h,cw*1.55),box={w:cw,h:ch,y:base.y};return {...box,px:cw*.47,py:ch*.59,birdHeight:Math.min(ch*.54,cw*.7),titleX:cw*.335}},
   cardEnvelope(t,reduced=false){return {slide:reduced?0:t<.14?-(1-this.smooth(t/.14)):t>1.04?-this.smooth((t-1.04)/.26):0,kick:reduced?0:Math.sin(Math.min(1,Math.max(0,(t-.32)/.19))*Math.PI)*.065,burst:reduced?0:this.smooth((t-.35)/.09)*(1-this.smooth((t-.58)/.18)),line1:reduced?1:this.smooth((t-.14)/.18),line2:reduced?1:this.smooth((t-.25)/.2)}},
   cardPath(c,w,h){c.beginPath();c.moveTo(0,0);c.lineTo(w,0);c.lineTo(w*.68,h);c.lineTo(0,h);c.closePath()},
   card(c,w,h,t,reduced){
@@ -143,21 +146,24 @@ P.VultureRig={
     // El grito expande arcos desde el pico, no un destello de pantalla completa.
     if(m.burst>0){const mouthX=box.px+box.birdHeight*.44,mouthY=box.py-box.birdHeight*.47;c.save();c.globalAlpha=m.burst*.8;c.strokeStyle='#ffebbf';c.lineWidth=2;for(let i=0;i<3;i++){const r=pw*(.04+i*.035)+(t-.35)*pw*.18;c.beginPath();c.arc(mouthX,mouthY,r,-.5,.45);c.stroke()}c.restore()}
     if(!reduced&&this.ready)for(let i=0;i<4;i++){const q=(i*.23+t*.3)%1;this.part(c,6,pw*(.05+q*.68),ph*(.62-q*.5),pw*(.025+(i%3)*.009),.5,.5,-.8+q*.7)}
-    // Identidad arriba; nombre del ataque abajo, dentro de la cuña de la tarjeta.
+    // Identidad arriba; el nombre propio de la ulti ocupa la cuña dorada.
     c.textAlign='left';c.fillStyle='#e7bf70';c.font='800 '+Math.max(9,pw*.025)+'px "Barlow Condensed", sans-serif';c.fillText('ULTIMATE',pw*.055,ph*.075);
     c.fillStyle='#f8e8d0';c.font='900 '+Math.max(17,pw*.052)+'px "Barlow Condensed", Impact, sans-serif';c.fillText('GALLINAZO',pw*.055,ph*.12);
     c.fillStyle='#c2a1d7';c.font='800 '+Math.max(10,pw*.027)+'px "Barlow Condensed", sans-serif';c.fillText('DEL CAOS',pw*.055,ph*.15);
     c.save();c.translate(3,6);c.fillStyle='#02040cdc';c.beginPath();c.moveTo(0,ph*.69);c.lineTo(pw*.76,ph*.715);c.lineTo(pw*.67,ph*.925);c.lineTo(0,ph*.895);c.closePath();c.fill();c.restore();
     c.fillStyle='#b77d35';c.beginPath();c.moveTo(0,ph*.69);c.lineTo(pw*.76,ph*.715);c.lineTo(pw*.67,ph*.925);c.lineTo(0,ph*.895);c.closePath();c.fill();
     c.fillStyle='#f2ce78';c.beginPath();c.moveTo(0,ph*.7);c.lineTo(pw*.744,ph*.726);c.lineTo(pw*.659,ph*.905);c.lineTo(0,ph*.88);c.closePath();c.fill();
-    const firstSize=Math.min(Math.max(18,pw*.09),ph*.082),secondSize=Math.min(Math.max(27,pw*.145),ph*.13),lineGap=secondSize*.94+Math.max(4,pw*.012);
+    const firstSize=Math.min(Math.max(18,pw*.082),ph*.075),secondSize=Math.min(Math.max(24,pw*.112),ph*.102),lineGap=secondSize*.98+Math.max(4,pw*.012);
     c.save();c.translate(box.titleX,ph*.72+firstSize*.85);c.scale(1+m.kick,1+m.kick);c.textAlign='center';c.lineJoin='round';
     const word=(text,y,size,q,color)=>{c.save();c.translate(-pw*.7*(1-q),y);c.font='900 '+size+'px "Barlow Condensed", Impact, sans-serif';c.fillStyle='#452541';c.fillText(text,3,5);c.lineWidth=5;c.strokeStyle='#201429';c.strokeText(text,0,0);c.fillStyle=color;c.fillText(text,0,0);c.restore()};
-    word('¡BAJO MIS',0,firstSize,m.line1,'#fff3da');word('ALAS!',lineGap,secondSize,m.line2,'#bda0ec');c.restore();
-    c.font='800 '+Math.max(9,pw*.022)+'px "Barlow Condensed", sans-serif';c.textAlign='center';c.fillStyle='#d6bfdf';c.fillText('SEÑOR DE LAS AZOTEAS',pw*.33,ph*.96);
+    word('ECLIPSE',0,firstSize,m.line1,'#fff3da');word('CARROÑERO',lineGap,secondSize,m.line2,'#4a244f');c.restore();
+    c.font='800 '+Math.max(9,pw*.022)+'px "Barlow Condensed", sans-serif';c.textAlign='center';c.fillStyle='#d6bfdf';c.fillText('SEÑOR DE LAS AZOTEAS · ¡BAJO MIS ALAS!',pw*.33,ph*.96);
     c.restore();
     c.strokeStyle='#100c1c';c.lineWidth=9;c.beginPath();c.moveTo(pw-2,0);c.lineTo(pw*.68-2,ph);c.stroke();c.strokeStyle='#e5bc6a';c.lineWidth=3;c.stroke();
     if(!reduced&&t>.25&&t<1){const q=(t-.25)/.75,y=ph*q;c.strokeStyle='#fff0ca';c.lineWidth=4;c.beginPath();c.moveTo(pw*(1-.32*q)-2,y);c.lineTo(pw*(1-.32*Math.min(1,q+.12))-2,Math.min(ph,y+ph*.12));c.stroke()}
+    // Plumas de primer plano cruzan el marco: la pose rompe el panel sin
+    // mostrar una segunda copia del jefe en la arena.
+    if(!reduced&&this.ready)for(let i=0;i<3;i++){const q=this.smooth((t-.28-i*.06)/.3),x=pw*(.74-.05*i)+q*pw*.13,y=ph*(.3+i*.16)-q*ph*.05;this.part(c,6,x,y,pw*(.055+i*.009),.5,.5,-.95+q*.75)}
     c.restore();
   }
 };
@@ -196,11 +202,11 @@ P.VultureRig={
     const facing=e.phase==='approach'?(e.rigFacing||(P.state.player?.x<e.x?-1:1)):(e.dx<0?-1:1);
     c.save();c.translate(e.x,e.y+e.r*.5-flight.lift);if(facing<0&&!(e.moonSequence&&e.ultimateGrace>0))c.scale(-1,1);c.rotate(flight.bank);
     // Aura exterior acompaña la altura del plumaje morado.
-    const g={x:-115,y:-210,w:230,h:215};P.VultureScene.ribbons?.(c,g,reduced?0:e.rigTime||0,reduced?.12:.24,false);
-    const result=R.draw(c,0,0,260,0,false,reduced,R.arenaMotion(e,reduced));
+    const h=R.arenaHeight,g={x:-h*.44,y:-h*.78,w:h*.88,h:h*.82};P.VultureScene.ribbons?.(c,g,reduced?0:e.rigTime||0,reduced?.12:.24,false);
+    const result=R.draw(c,0,0,h,0,false,reduced,R.arenaMotion(e,reduced));
     R.loadedFeathers(c,e,reduced);
     R.attackFX(c,e,reduced);
     const energy=e.phase==='vulture-chaos-charge'?.4+.4*(R.attackPose(e,reduced)?.pulse||0):e.phase==='vulture-ultimate'&&e.wavePulse>0?.65:.35;
-    F.electricity?.(c,0,-110,92,reduced?0:e.rigTime||0,reduced?.12:energy,reduced);c.restore();return result;
+    F.electricity?.(c,0,-h*.43,h*.34,reduced?0:e.rigTime||0,reduced?.12:energy,reduced);c.restore();return result;
   };
 }
