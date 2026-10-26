@@ -8,3 +8,6 @@ Asset: public/assets/characters/kingteka-ultimate-portrait-v1.png. Procedencia y
 
 
 Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
+
+
+Aleteo fluido: alas articuladas sobre la pose abierta del atlas existente, con subida y bajada continuas a 2,8 ciclos por segundo, ligera flexion de plumas, balanceo del cuerpo y sombra acompasada. Cada gallinazo tiene una fase propia estable, sin sincronizar toda la bandada. El panel de Kingteka comparte el mismo dibujo. Movimiento reducido mantiene alas y cuerpo fijos. No cambia dano, velocidad ni colisiones.
