@@ -1,6 +1,6 @@
 # Arquitectura
 
-DomainArt separa la proyección lateral por cámara: tercera persona fija el lateral del escenario y desplaza playerX; primera persona aplica la misma cámara a muros, suelo, rivales y proyectiles. lean y sideSteps viajan en domain para reproducir inclinación y zancada. Primera persona dibuja los cuatro segmentos raster de los brazos en resolución nativa; se eliminan los puños geométricos. La mira y el ratón incorporan el desplazamiento del actor y el letterbox.
+DomainArt separa la proyección lateral por cámara: tercera persona fija el lateral del escenario y desplaza playerX; la cámara cercana aplica la misma cámara a muros, suelo, rivales y proyectiles. lean y sideSteps viajan en domain para reproducir inclinación y zancada. La cámara cercana carga el atlas de seis poses de espalda y lo compone en resolución nativa sobre el escenario, con desplazamiento continuo de cuerpo, retroceso y estela; no usa puños geométricos flotantes. La mira y el ratón incorporan el desplazamiento del actor y el letterbox.
 
 MakanakyBoxing usa seis piezas raster de un atlas y cinemática de dos huesos por brazo; anclajes coincidentes, piernas con malla continua acotada y render nativo sin suavizado. No alterna las seis poses antiguas. Domain serializa pending (objetivo y tiempo de contacto), route y move; resuelve el daño al 40 % de cada golpe.
 
