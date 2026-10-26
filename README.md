@@ -4,7 +4,7 @@
 Todas las entradas usan 40 % de ancho, 82 % de alto, x = 0, y = 8 %, 1,3 s, borde diagonal con marco oscuro y retrato dedicado de cintura arriba. Render a resolución de pantalla, sin margen ni ampliación del lienzo del dominio. Las vistas de espalda deben usar sprites cartoon pixel art completos y contorneados, nunca figuras geométricas de sustitución. Detalles y assets: [Contrato visual de ultis](docs/ULTIMATE_ART.md).
 
 ## Dominio de Makanaky: combos y cámaras
-El dominio de Makanaky ahora encadena jab, jab, cruzado y uppercut, con racha ¡GA! independiente de la energía, impactos y rayos violetas. V o el botón cambia entre primera y tercera persona sin alterar el combate. La tarjeta aparece durante 1,3 s sobre el mapa original antes del callejón. Prueba directa de administrador: /?practice=makanaky tras iniciar sesión; incluye Recargar dominio y Reponer objetivos.
+El dominio de Makanaky encadena jab izquierdo, jab derecho, cruzado y uppercut con hombros/codos articulados, giro del cuerpo, pasos y avance del personaje. Mantén clic o Espacio para completar el ciclo; el daño llega al conectar el puño. Incluye una racha ¡GA! independiente de la energía, impactos y rayos violetas. V o el botón cambia entre primera y tercera persona sin alterar el combate. La tarjeta aparece durante 1,3 s sobre el mapa original antes del callejón. Prueba directa de administrador: /?practice=makanaky tras iniciar sesión; incluye Recargar dominio y Reponer objetivos.
 
 ## Prototipo: dominio de Makanaky
 El UR usa Expansión de dominio con Q (35 bajas). Entra al callejón en primera persona: A/D o flechas para esquivar, ratón para apuntar, clic/Espacio para golpear. En cooperativo el compañero se refugia detrás y puede pulsar ¡GA!. En el laboratorio de administrador, elige Makanaky y activa recarga automática; conserva los permisos existentes. Daño a jefes y arte del callejón son provisionales.
@@ -370,3 +370,4 @@ Fuerza → Técnica → Ingenio → Fuerza: ventaja +15% de daño, desventaja �
 El daño existente de cada habilidad se multiplica por `2 × ataque / (ataque + defensa)` y por la ventaja de atributo. 100 contra 100 conserva el daño neutral; 100 contra 200 deja el 66,7%. El índice principal de cada personaje es 100 y el secundario 85; las mejoras de poder siguen aumentando el presupuesto de daño de ambos canales. Rareza no multiplica estadísticas.
 
 Los proyectiles conservan dueño y tipo al crearse, también en cooperativo. Contactos y golpes son físicos; ondas, nubes y tarjetas de apoyo son especiales. Cuy y Paloma usan daño físico en sus estampidas aunque su ataque principal pueda ser especial. Las ejecuciones y la sentencia porcentual conservan su daño fijo y sus límites. Véase [auditoría de atributos](docs/ATTRIBUTES_BALANCE.md).
+
