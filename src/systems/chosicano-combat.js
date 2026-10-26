@@ -1,6 +1,10 @@
 'use strict';
 P.ChosicanoCombat={
  hornOrigin(e){const x=e.x+Math.cos(e.aim||0)*(e.r+20),y=e.y+Math.sin(e.aim||0)*(e.r+20);return P.Terrain.clear(e.x,e.y,x,y,5)?{x,y}:{x:e.x,y:e.y}},
+ defeatDuration:3,
+ defeat(e){const s=P.state;if(!s.encounter||s.encounter.defeat)return;e.hp=0;e.hit=0;e.busMoving=false;e.busFacing=P.ChosicanoArt.flip(e)?-1:1;e.phase='chosicano-defeat';e.attack='';s.encounter.defeat={actor:e,time:0,finished:false};s.enemies=[];s.shots=[];s.danger=[];s.fields=[];s.gems=[];s.effects=[];P.Core.clear();P.Audio.fx('chosicano-defeat');P.UI.hud()},
+ defeatTick(dt){const s=P.state,d=s.encounter?.defeat;if(!d||d.finished||s.mode!=='play')return;d.time=Math.min(this.defeatDuration,d.time+dt);s.elapsed+=dt;if(d.time>=this.defeatDuration){d.finished=true;P.Encounters.win()}else P.UI.hud()},
+ defeatPose(time,reduced=false){const t=Math.max(0,Math.min(this.defeatDuration,time)),settle=Math.min(1,t/.7);return {time:t,tilt:reduced?0:Math.sin(settle*Math.PI/2)*.09+(t<.7?Math.sin(t*30)*(1-settle)*.035:0),drop:reduced?0:settle*7,smoke:reduced?0:Math.max(0,Math.min(1,(t-.3)/.5)),sign:t>=1,alpha:t<2.5?1:Math.max(.35,1-(t-2.5)*1.3)}},
  ticketAngles:[-.75,-.45,.35,.6,.85],
  fireTickets(e){const s=P.state,o=this.hornOrigin(e);e.ticketAt=s.elapsed;for(const offset of this.ticketAngles){const a=e.aim+offset;s.danger.push({...P.Attributes.source(e,'physical'),...o,vx:Math.cos(a)*220,vy:Math.sin(a)*220,age:0,life:1.8,maxLife:1.8,kind:'spread',busTicket:true,minion:true,damage:11,color:'#ffe3a2',history:[]})}P.Audio.fx('chosicano-tickets')},
  doorPose(e){if(e.attack!=='tickets')return 0;if(e.phase==='warning')return Math.min(1,(1.2-e.windup)/.2);if(e.phase==='recover')return Math.max(0,1-(P.state.elapsed-(e.ticketAt??-10))/.3);return 0},
