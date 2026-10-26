@@ -1,8 +1,8 @@
 'use strict';
 // Poderes de parodia: los proyectiles y las armas son elementos de videojuego.
 Object.assign(P.Data.attacks,{
-shotgun:{name:'Escopeta arcade',description:'Cinco perdigones: gran daño cerca, pérdida de fuerza a distancia.',kind:'spread',cooldown:.78,range:480,speed:820,count:5,spread:.13,powerScale:.6,falloff:{near:180,min:.35},glyph:'BULLET'},
-pigShotgun:{name:'Escopeta VTuber',description:'Siete perdigones de corto alcance, con mayor dispersión.',kind:'spread',cooldown:.78,range:400,falloff:{near:140,min:.35},speed:780,count:7,spread:.16,powerScale:.5,glyph:'BULLET'},
+shotgun:{name:'Escopeta arcade',description:'Cinco perdigones: fuerte cerca, impactos extra reducidos por enemigo.',kind:'spread',cooldown:.78,range:480,speed:820,count:5,spread:.13,powerScale:.6,falloff:{near:180,min:.35},glyph:'BULLET'},
+pigShotgun:{name:'Escopeta VTuber',description:'Siete perdigones de corto alcance; impactos extra reducidos por enemigo.',kind:'spread',cooldown:.78,range:400,falloff:{near:140,min:.35},speed:780,count:7,spread:.16,powerScale:.5,glyph:'BULLET'},
 fishgun:{name:'¡CPEZ!',description:'Una escopeta de tres pescados. Cada disparo anuncia CPEZ.',kind:'spread',cooldown:.85,range:650,speed:430,count:3,spread:.22,glyph:'FISH',shout:'CPEZ'},
 roachRifle:{name:'Rifle de cucarachas',description:'Ráfaga rápida de cucarachas que zigzaguean.',kind:'spread',cooldown:.18,range:750,speed:580,count:1,motion:'zigzag',amplitude:18,frequency:17,glyph:'ROACH'},
 diaper:{name:'Bebé de juguete lanzador',description:'Lanza pañales caricaturescos que dejan una nube de área.',kind:'spread',cooldown:1.2,range:600,speed:320,count:1,glyph:'DIAPER',cloud:true},
