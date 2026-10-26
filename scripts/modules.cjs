@@ -173,5 +173,6 @@ module.exports = [
   {
     "source": "src/rendering/ultimate-comic.js",
     "output": "js/ultimate-comic.js"
-  }
+  },
+  {"source":"src/systems/court-ultimate.js","output":"js/court-ultimate.js"}
 ];
