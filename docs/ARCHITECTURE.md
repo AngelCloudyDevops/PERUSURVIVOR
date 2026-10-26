@@ -403,3 +403,6 @@ Tribunal legendario: al regresar, el radio de 340 unidades elimina minions y mue
 
 AnimalUltimate mantiene edad y pulsos dentro de ultimate.animal de cada jugador; usa el tick compartido de individual/servidor y snapshots existentes. La coraza usa animalGuardUntil con reloj de simulación. Renderiza sprites actuales sin suavizado, sin alterar el estado ni reutilizar la transformación de Kingteka.
 MinionAudio observa minionId y contadores serializados audioWarn/audioImpact con marcas de elapsed; deduplica por ID estable entre snapshots cooperativos y descarta eventos de más de 0,25 s, sin colas. Síntesis Web Audio local, dos slots y hasta dos voces por slot; deja margen del mezclador global para jefes. Se eliminan nodos y filtros al terminar. No reproduce audio en Simulation; Audio.tick sólo observa en navegador. No altera sprites ni daño.
+
+
+AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
