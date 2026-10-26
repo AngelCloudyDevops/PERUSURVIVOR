@@ -7,7 +7,7 @@ Regla obligatoria para nuevas tarjetas, incluidas las expansiones UR: usar la co
 - Marco oscuro visible, borde interior de color y filo claro. Tipografía de cómic con contorno oscuro. El color depende del personaje; la silueta y jerarquía se conservan.
 - Retrato dedicado de cintura arriba, con cabeza, hombros y puños completos. Animación propia; no ampliar un sprite de cuerpo entero ni cortar brazos en límites de celda.
 - Dibujar el panel y los retratos directamente a resolución de pantalla con imageSmoothingEnabled=false. No pasarlos por el lienzo de 640 × 360 del dominio ni añadir sus márgenes.
-- Tercera persona: sprite completo de espalda con anatomía y vestuario del personaje, sombra al pie y seis poses de boxeo. No usar muñecos geométricos ni puños separados encima del sprite. Render nativo tras componer el callejón.
+- Tercera persona: actor de espalda articulado con anatomía y vestuario del personaje, sombra al pie, pasos y brazos continuos. El atlas modular conserva cabeza/torso, brazos superiores, antebrazos con puños y piernas; hombros y codos comparten exactamente sus anclajes. No alternar figuras completas para simular el golpe ni superponer manos sueltas. Render nativo tras componer el callejón.
 - Movimiento reducido fija las poses y los efectos decorativos. Cámara, daño, carga y autoridad cooperativa conservan sus reglas.
 
 ## Assets de Makanaky
@@ -19,3 +19,11 @@ Referencia: public/assets/characters/makanaky-motion-v2.png. Generados con image
 - Los JSON correspondientes guardan procedencia, prompt resumido, SHA-256 y límites de las figuras. Los límites se detectan sobre alfa, no se cortan celdas nominales si el puño las atraviesa.
 
 Prompts: preservar identidad, proporciones chibi, pelo verde, gafas negras, camiseta rosa, joyas doradas, pantalón negro y zapatillas blancas; contornos oscuros y sombras agrupadas, sin fondos, texto ni efectos pintados. Para espalda: atlas 3 × 2 con seis poses completas y puños conectados al hombro. Para retrato: atlas 2 × 2 de cintura arriba con guardia, anticipación, uppercut y recuperación.
+
+## Boxeo continuo y avance
+
+MakanakyBoxing anima los dos brazos mediante hombro, codo y puño, con preparación, extensión, contacto, retroceso y guardia. El ciclo es jab izquierdo, jab derecho, cruzado izquierdo y uppercut derecho. Los tiempos son 0,34 / 0,34 / 0,46 / 0,60 s; mantener clic o Espacio encadena los cuatro. El daño se resuelve al 40 % del golpe, con una microparada de 45 ms también en los brazos.
+
+Los rivales mantienen una coordenada fija de ruta; profundidad = ruta − avance del jugador. Pasos, polvo y suelo siguen el mismo avance, mientras los rivales dejan de reproducir una caminata de aproximación. La cámara acompaña al jugador, con desplazamiento y zancada visibles. Los tiempos globales, posiciones de retorno y autoridad cooperativa se conservan.
+
+Asset actual: public/assets/characters/makanaky-boxing-rig-v1.png / .webp; origen y prompt en makanaky-boxing-rig-v1.json. Creado con image_gen integrado a partir del atlas de espalda. El atlas anterior de seis poses permanece en Git como referencia y no se publica.
