@@ -64,3 +64,4 @@ body.menu #game{opacity:1;filter:none}body.menu:before{content:"";position:fixed
 body.menu #menu{background:transparent}body.menu:before{background:linear-gradient(90deg,#08192120,#07111d44)}body[data-lobby-entered=false] #menu .home-banner,body[data-lobby-entered=false] #lobby-sidebar,body[data-lobby-entered=false] #menu footer,body.menu[data-lobby-entered=false] header{visibility:hidden}
 
 #menu #lobby-characters{grid-template-rows:max-content max-content max-content 180px max-content max-content max-content;grid-auto-rows:max-content}#lobby-characters #selected-info{min-height:min-content;height:auto;align-self:start}#lobby-characters>.lobby-back{justify-self:end;width:auto}
+body.vulture-cinematic #game-update{visibility:hidden}

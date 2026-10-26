@@ -49,8 +49,8 @@ class Activities{
   if(chest.impostor&&!chest.purified)return P.Market.wake(chest);
   const tier=P.Loot.keyType(chest);if(tier)P.state.keys[tier]--;
   chest.opened=true;chest.progress=1.8;chest.openAge=0;P.Loot.opened.add(chest.id);
-  let item=null;if(!chest.gold){const ids=Object.keys(P.Loot.items).filter(id=>P.Loot.items[id].rarity===(chest.rarity||'common'));item=ids[Math.floor(P.Loot.roll(Math.floor(chest.x),Math.floor(chest.y),271)*ids.length)];chest.item=item}
-  this.pending={id:++this.serial,kind:chest.gold?'portal-reward':'item',phase:'opening',age:0,item,rarity:chest.rarity||'common',applied:[false,false],chestId:chest.id};
+  let item=chest.miniReward?P.Relics.ids[chest.miniReward]:null;if(!chest.gold&&!chest.miniReward){const ids=Object.keys(P.Loot.items).filter(id=>P.Loot.items[id].rarity===(chest.rarity||'common'));item=ids[Math.floor(P.Loot.roll(Math.floor(chest.x),Math.floor(chest.y),271)*ids.length)];chest.item=item}
+  this.pending={id:++this.serial,kind:chest.miniReward?'mini-reward':chest.gold?'portal-reward':'item',phase:'opening',age:0,item,rarity:chest.rarity||'common',applied:[false,false],chestId:chest.id};
   for(const p of this.sim.players)p.moving=false;
   return true;
  }
@@ -65,6 +65,9 @@ class Activities{
    if(choice===0)p.power*=1.3;
    if(choice===1){p.maxHp+=40;p.hp=p.maxHp}
    if(choice===2)p.rate=Math.max(.1,p.rate*.75);
+  }else if(pending.kind==='mini-reward'){
+   if(choice<0||choice>1)return false;
+   if(choice===0){if(p.equipment===pending.item)return false;P.Loot.use(pending.item)}else P.state.coins+=P.Relics.coins;
   }else{
    if(choice<0||choice>1)return false;
    if(choice===0)P.Loot.use(pending.item);

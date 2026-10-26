@@ -33,7 +33,7 @@ open(message){
 receive(m){
  const first=!this.active;if(first)this.resultShown=false;this.active=true;this.reconnecting=false;
  if(first){P.Maps.select(m.map);P.state.chosen=P.Data.characters.findIndex(c=>c.id===m.players[this.session.slot].id);this.initializing=true;P.Game.start();this.initializing=false;P.Loot.chests=[];P.Loot.debris=[];P.$('#pause').setAttribute('aria-label','Opciones cooperativas')}
- const s=P.state,previousScene=s.encounter?.scene?.id;for(const key of ['miniWarning','keys','portal','encounter','mapBossWon','coins','elapsed','mapTime','kills','level','xp','need','bossSpawned','shots','fields','enemies','gems','danger','effects'])s[key]=m[key];
+ const s=P.state,previousScene=s.encounter?.scene?.id;for(const key of ['court','courtBurst','miniWarning','keys','portal','encounter','mapBossWon','coins','elapsed','mapTime','kills','level','xp','need','bossSpawned','shots','fields','enemies','gems','danger','effects'])s[key]=m[key];
  s.mode='play';s.player=m.players[this.session.slot];s.ultimate=s.player.ultimate;this.peers=m.players.filter(p=>p.slot!==this.session.slot);P.Maps.selected=m.map;
  for(const p of m.players)p.coopPlayer=true;
  const broken=new Set(m.broken);P.Chunks.broken=new Set(m.broken.filter(id=>typeof id==='string'));for(const prop of P.Terrain.props)if(prop.kind==='crate'&&broken.has(prop.id)){prop.solid=false;prop.hp=0;if(prop.generated)P.Chunks.broken.add(prop.id)}
@@ -55,6 +55,7 @@ showReward(pending){
  const choose=choice=>this.send({type:'activity',action:'choose',id:pending.id,choice});let buttons,title,description;
  if(pending.kind==='level'){title='¡SUBIERON DE NIVEL!';description='NIVEL '+P.state.level+' · Cada jugador elige 1 de 3 poderes. La sala está en pausa.';buttons=pending.options[this.session.slot].map((o,i)=>({title:o.title,description:o.description,action:()=>choose(i)}))}
  else if(pending.kind==='portal-reward'){title='¡Vencieron al jefe del portal!';description='Cada uno elige una mejora. El juego continúa cuando ambos terminen.';buttons=[{title:'Poder del portal · +30% de daño',action:()=>choose(0)},{title:'Corazón de la arena · +40 vida máxima y curación',action:()=>choose(1)},{title:'Ritmo del campeón · Ataques 25% más frecuentes',action:()=>choose(2)}]}
+ else if(pending.kind==='mini-reward'){const item=P.Loot.items[pending.item];title='Recompensa exclusiva · '+item.name;description=item.description+' · Reemplaza tu accesorio. Cada jugador elige; las monedas van al equipo.';buttons=[{title:(P.state.player.equipment===pending.item?'Ya equipado: ':'Equipar ')+item.name,disabled:P.state.player.equipment===pending.item,action:()=>choose(0)},{title:'Cobrar '+P.Relics.coins+' monedas',action:()=>choose(1)}]}
  else {const item=P.Loot.items[pending.item];title=P.Loot.rarity(pending.rarity).name+' · '+item.name;description=item.description+' · Cada jugador recibe su propia recompensa.';buttons=[{title:(item.consumable?'Beber ':'Equipar ')+item.name,action:()=>choose(0)},{title:'Conservar mi equipo',action:()=>choose(1)}]}
  P.UI.show(title,description,[...buttons,leave]);if(pending.item)P.LootArt.reveal(pending.item);
 },
