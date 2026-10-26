@@ -1,5 +1,27 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),{Simulation}=require('../backend/simulation.cjs');
+test('Laboratorio: apoyos reales en los 18 causas, rangos, evoluciones y máximo dos distintos',()=>{
+ const {P}=new Simulation('campo',[0,1]),bench=P.TestBench,s=P.state,meta=JSON.stringify(P.Meta.data);P.WalkArt.readyForStart=()=>true;P.Terrain.active=()=>[];
+ for(const c of P.Data.characters){bench.character=c.id;bench.kind='targets';bench.attack='evolved';bench.run();
+  for(const id of ['pulse','cards','orbit'])for(const stage of ['1','2','3','4','5','evolved']){
+   bench.support1=id;bench.supportRank1=stage;bench.support2='none';bench.supportCombos=false;bench.applyAttack();const p=s.player;
+   assert.equal(p.powerRanks[id],stage==='evolved'?5:Number(stage));assert.equal(!!p.evolved[id],stage==='evolved');assert(p.evolved.primary);assert.equal(s.level,1);assert.equal(s.xp,0);
+   assert.equal(Object.keys(p.powerRanks).length,2);const e={x:p.x+30,y:p.y,r:12,hp:999999,max:999999,speed:0};s.enemies=[e];s.shots=[];s.fields=[];s.effects=[];
+   P.Progression.tick(.01);if(id==='cards'){assert.equal(s.shots.filter(q=>q.glyph==='BCP').length,stage==='evolved'?3:1);for(let i=0;i<10;i++)P.Combat.tick(.04)}assert(e.hp<999999,c.id+' '+id+' '+stage+' daño real');
+  }
+  bench.support1='cards';bench.supportRank1='evolved';bench.support2='orbit';bench.supportRank2='3';bench.applyAttack();assert.equal(s.player.powerRanks.cards,5);assert.equal(s.player.powerRanks.orbit,3);assert.equal(Object.keys(s.player.powerRanks).length,3);
+  bench.support2='cards';bench.applyAttack();assert.equal(Object.keys(s.player.powerRanks).length,2,'No duplicar apoyo ni sumar sus rangos');assert.equal(s.player.powerRanks.cards,5);
+ }
+ assert.equal(JSON.stringify(P.Meta.data),meta);
+});
+test('Laboratorio: combos opcionales, retirada limpia y conservación al cambiar de causa o jefe',()=>{
+ const {P}=new Simulation('campo',[0,1]),bench=P.TestBench,s=P.state;P.WalkArt.readyForStart=()=>true;P.Terrain.active=()=>[];bench.kind='targets';bench.character='kingteka';bench.support1='pulse';bench.supportRank1='evolved';bench.support2='cards';bench.supportRank2='5';bench.run();
+ assert(!s.player.combos.direct);bench.supportCombos=true;bench.applyAttack();assert(s.player.combos.direct);s.enemies=[{x:s.player.x+30,y:s.player.y,hp:999999,r:12}];s.shots=[];P.Progression.tick(.01);assert.equal(s.shots.filter(q=>q.glyph==='BULLET').length,4,'Directo viral dispara cuatro copias');
+ bench.support1='orbit';bench.supportRank1='evolved';bench.support2='cards';bench.supportRank2='evolved';bench.applyAttack();assert(s.player.combos.press);assert(!s.player.combos.direct);s.shots=[];P.Progression.tick(.01);assert.equal(s.shots.filter(q=>q.glyph==='BCP').length,3);assert(s.shots.every(q=>q.remaining===5));
+ bench.character='alberto';bench.kind='boss';bench.boss='campo';bench.run();assert(s.encounter);assert.equal(s.player.powerRanks.orbit,5);assert(s.player.evolved.cards);assert(s.player.combos.press);assert.equal(s.level,1);
+ bench.support1='none';bench.support2='none';bench.run();assert.equal(Object.keys(s.player.powerRanks).length,1);assert.equal(Object.keys(s.player.combos).length,0);assert.equal(Object.keys(s.player.powerTimers).length,0);assert.equal(s.shots.length,0);assert.equal(s.fields.length,0);
+ bench.exit();P.Game.start({preview:true});P.Progression.init(s.player);assert.equal(Object.keys(s.player.powerRanks).length,1);assert.equal(Object.keys(s.player.combos).length,0);assert(!s.devRun);
+});
 test('Laboratorio: seis estados de las 18 armas, combate real, sin niveles ni acumulación',()=>{
  const {P}=new Simulation('campo',[0,1]),bench=P.TestBench,s=P.state,meta=JSON.stringify(P.Meta.data),catalog=JSON.stringify(P.Data.attacks);P.WalkArt.readyForStart=()=>true;P.Terrain.active=()=>[];
  for(const c of P.Data.characters){

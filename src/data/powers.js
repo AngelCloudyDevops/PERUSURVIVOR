@@ -36,13 +36,15 @@ Object.assign(P.Data.attacks.orbit,{cooldown:.42});
 Object.assign(P.Data.attacks.bananas,{cooldown:.95,powerScale:.5});
 Object.assign(P.Data.attacks.axelClip,{powerScale:.8});
 Object.assign(P.Data.attacks.fishgun,{powerScale:.85});
-Object.assign(P.Data.attacks.bankCards,{powerScale:.85});
+Object.assign(P.Data.attacks.bankCards,{powerScale:.8});
 Object.assign(P.Data.attacks.diaper,{powerScale:.8});
 Object.assign(P.Data.attacks.roachRifle,{cooldown:.22});
 Object.assign(P.Data.attacks.roachCast,{powerScale:.75});
-Object.assign(P.Data.attacks.pigShotgun,{cooldown:.72});
 
 // Makanaky comparte el atlas de su variante minijefe, no sus estadísticas.
 P.Data.attacks.royalEcho={name:'Grito de la realeza',description:'Tres ondas rosas en abanico que se bloquean con cobertura.',kind:'spread',cooldown:.9,range:520,speed:360,count:3,spread:.2,powerScale:.8,glyph:'PULSE',color:'#ef92cf'};
 P.Data.characters.push({id:'makanaky',name:'Makanaky · La Realeza',category:'Streamer · parodia',look:'headset',atlas:'makanaky',spriteRow:0,color:'#ef92cf',skin:'#cb976d',hp:105,speed:190,power:20,attack:'royalEcho'});
 P.CharacterProfiles.roles.makanaky=['Control de ondas','Abanico con alcance medio.','Necesita exponer su trayectoria; las paredes bloquean las ondas.'];
+
+Object.assign(P.Data.attacks.pigShotgun,{cooldown:.72,powerScale:.56,falloff:{near:165,min:.35}});
+Object.assign(P.Data.attacks.g5Kick,{cooldown:.68});

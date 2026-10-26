@@ -3,7 +3,8 @@ const http=require('node:http'),crypto=require('node:crypto'),{WebSocketServer}=
 const PROTOCOL=1;
 function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=()=>Date.now(),httpServer}={}){
  const rooms=new Map(),attempts=new Map(),characterCount=new Simulation('campo',[0],root).P.Data.characters.length;
- const server=httpServer||http.createServer((req,res)=>{res.setHeader('Content-Type','application/json');res.setHeader('Cache-Control','no-store');res.writeHead(req.url==='/coop/health'?200:404);res.end(JSON.stringify(req.url==='/coop/health'?{ok:true,protocol:PROTOCOL,rooms:rooms.size}:{error:'Not found'}))});
+ const accounts=process.env.ACCOUNTS_DB?require('./accounts.cjs').createAccounts({filename:process.env.ACCOUNTS_DB,origins:allowedOrigins,secure:process.env.ACCOUNTS_INSECURE!=='true'}):null;
+ const server=httpServer||http.createServer(async(req,res)=>{if(accounts&&await accounts.handle(req,res))return;res.setHeader('Content-Type','application/json');res.setHeader('Cache-Control','no-store');res.writeHead(req.url==='/coop/health'?200:404);res.end(JSON.stringify(req.url==='/coop/health'?{ok:true,protocol:PROTOCOL,rooms:rooms.size}:{error:'Not found'}))});
  const wss=new WebSocketServer({noServer:true,maxPayload:2048,perMessageDeflate:false});
  function send(ws,data){if(ws?.readyState===1&&ws.bufferedAmount<512*1024)ws.send(JSON.stringify(data))}
  function lobby(room){return {type:'room',code:room.code,map:room.map,started:!!room.sim,players:room.members.map((m,i)=>({slot:i,character:m.character,connected:!!m.ws}))}}
@@ -44,7 +45,7 @@ function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=(
  });
  const timer=autoTick?setInterval(()=>{try{tick()}catch(error){console.error('Coop tick failed:',error);for(const r of rooms.values())broadcast(r,{type:'closed',message:'La partida se interrumpió. Vuelve al menú.'});for(const ws of wss.clients)ws.close(1011);rooms.clear()}},40):null;
  const heartbeat=setInterval(()=>{for(const ws of wss.clients){if(!ws.isAlive){ws.terminate();continue}ws.isAlive=false;ws.ping()}for(const [ip,a] of attempts)if(now()-a.time>60000)attempts.delete(ip)},15000);heartbeat.unref();
- server.on('close',()=>{clearInterval(timer);clearInterval(heartbeat);for(const ws of wss.clients)ws.terminate();wss.close()});
+ server.on('close',()=>{clearInterval(timer);clearInterval(heartbeat);for(const ws of wss.clients)ws.terminate();wss.close();accounts?.close()});
  return {server,rooms,tick,close(){for(const ws of wss.clients)ws.terminate();return new Promise(resolve=>server.close(resolve))}};
 }
 if(require.main===module){const app=createCoopServer({root:require('node:path').resolve(__dirname,'..'),maxRooms:Number(process.env.MAX_ROOMS)||20,allowedOrigins:(process.env.COOP_ORIGINS||'https://perusurvivor.michitech.tech,https://srv2060131.hstgr.cloud').split(',')});app.server.listen(Number(process.env.PORT)||4180,'0.0.0.0',()=>console.log('Coop ready'));process.on('SIGTERM',()=>{app.close().then(()=>process.exit());setTimeout(()=>process.exit(0),3000).unref()})}

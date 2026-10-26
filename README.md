@@ -304,3 +304,14 @@ Validación integrada adicional: 54 partidas sobre b10eef1 (18 causas × 3 mapas
 
 
 Makanaky · La Realeza está disponible como causa jugable y conserva su aparición como minijefe en Plaza de Armas.
+
+### Ajuste fino de G5, Fuzo y Cerdito
+G5 conserva vida, movilidad y arco: recarga 0,62 → 0,68 s y multiplicador evolucionado 0,65 → 0,58. Fuzo conserva alcance y perforación: impacto 0,85 → 0,80 y evolución 0,65 → 0,58. Cerdito mantiene siete perdigones y alcance 400: impacto 0,50 → 0,56, inicio de caída 140 → 165 u y evolución 0,65 → 0,70. Consulta [la comparación emparejada](docs/TRIO_BALANCE.md), con partidas antes/después en los mismos mapas y semillas. Las fichas se derivan de los valores nuevos.
+
+En 54 partidas emparejadas, la mediana de minijefe cambia de 5,8 → 9,1 s para G5, 5,4 → 7,5 s para Fuzo y 13,5 → 12,8 s para Cerdito. Las 27 posteriores sobreviven cinco minutos: 26 victorias y un límite con vida. Se conservan los resultados completos, incluidos minijefes no abatidos, y los límites de una sola estrategia automatizada.
+
+# Cuentas y guardado en el VPS
+
+El vestíbulo incluye **Cuenta / Login**: registro, acceso, recuperación con código privado y guardado por cuenta en Hostinger. Jugar como invitado sigue disponible. El progreso incluye monedas, colección, estrellas, mejoras e inventario; se conserva separado del invitado y detecta conflictos entre dispositivos. No guarda partidas a medio jugar ni proporciona un ranking verificado.
+
+La activación del backend requiere el volumen persistente y la ruta `/api/` del juego; el formulario por sí solo no activa la base de datos. Consulta [cuentas, esquema, instalación, backup y límites de confianza](docs/ACCOUNTS.md). **Este repositorio se trata como público**: nunca subir claves, `.env`, bases de datos, usuarios o backups. Los datos reales viven fuera de la carpeta pública y de las releases.
