@@ -29,3 +29,9 @@ Los rivales mantienen una coordenada fija de ruta; profundidad = ruta − avance
 Asset actual: public/assets/characters/makanaky-boxing-rig-v1.png / .webp; origen y prompt en makanaky-boxing-rig-v1.json. Creado con image_gen integrado a partir del atlas de espalda. El atlas anterior de seis poses permanece en Git como referencia y no se publica.
 
 Mantener el botón recorre el ciclo completo también al golpear al aire. Fallar reinicia únicamente la racha de aciertos GA; el indicador sigue identificando el golpe actual. El botón apunta al frente para evitar que su posición en pantalla desvíe la puntería.
+
+## Primera persona y paso lateral
+
+Primera persona usa los segmentos raster del mismo atlas, con codo compartido y cuatro trayectorias continuas; se dibuja directamente a resolución de pantalla y se recorta al área del callejón. La perspectiva lateral afecta a paredes, suelo, rivales y proyectiles por igual. Una inclinación leve y el balanceo de brazos refuerzan el paso; movimiento reducido estabiliza esos adornos.
+
+En tercera persona el lateral de la cámara queda fijo: se mueve Makanaky por la pantalla, con inclinación del cuerpo y zancada, y su compañero lo sigue cuando observa desde el refugio. La mira se desplaza con la posición del actor; no simular el paso moviendo únicamente los minions.

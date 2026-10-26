@@ -1,5 +1,7 @@
 # Documento de diseño — PERUSURVIVOR
 
+Mover A/D o flechas desplaza al propio Makanaky en tercera persona; la fila y el escenario conservan su lateral. Primera persona muestra el paso con perspectiva del callejón completo, leve inclinación y balanceo de brazos. El jab izquierdo, derecho, cruzado y uppercut usan brazos pixel art detallados también en primera persona. Conserva alcance, daño, secuencia, tarjeta y retorno al mapa.
+
 Mantener el combo recorre siempre los cuatro golpes, aunque fallen o no queden rivales. Fallar corta la racha GA, sin reiniciar la secuencia visual. El botón de combo apunta al frente; ratón/canvas conservan la puntería manual.
 
 Dominio: mantener clic/Espacio encadena jab izquierdo → jab derecho → cruzado izquierdo → uppercut derecho. Duración 0,34/0,34/0,46/0,60 s; daño al contacto (40 %), con 45 ms de pausa de impacto. Makanaky avanza automáticamente, da pasos y reduce la zancada al golpear; minions fijos en su fila, sin caminata de aproximación. Se conserva la tarjeta previa, el cambio de cámara y la recarga del laboratorio.
