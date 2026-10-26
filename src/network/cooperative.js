@@ -31,7 +31,7 @@ open(message){
  ws.onclose=()=>{if(this.ws!==ws)return;this.ws=null;if(this.session){this.reconnecting=true;this.paused=true;P.Core.clear();P.$('#hint').textContent='Conexión perdida. Intentando volver a la sala…';const session=this.session;setTimeout(()=>{if(this.session===session)this.open({type:'resume',protocol:1,...session})},1500)}else this.status('No se pudo conectar. Prueba de nuevo o juega individual.')};
 },
 receive(m){
- const first=!this.active;this.active=true;this.reconnecting=false;
+ const first=!this.active;if(first)this.resultShown=false;this.active=true;this.reconnecting=false;
  if(first){P.Maps.select(m.map);P.state.chosen=P.Data.characters.findIndex(c=>c.id===m.players[this.session.slot].id);this.initializing=true;P.Game.start();this.initializing=false;P.Loot.chests=[];P.Loot.debris=[];P.$('#pause').setAttribute('aria-label','Opciones cooperativas')}
  const s=P.state,previousScene=s.encounter?.scene?.id;for(const key of ['miniWarning','keys','portal','encounter','mapBossWon','coins','elapsed','mapTime','kills','level','xp','need','bossSpawned','shots','fields','enemies','gems','danger','effects'])s[key]=m[key];
  s.mode='play';s.player=m.players[this.session.slot];s.ultimate=s.player.ultimate;this.peers=m.players.filter(p=>p.slot!==this.session.slot);P.Maps.selected=m.map;
@@ -43,7 +43,7 @@ receive(m){
  const votes=m.portal?.votes||[];if(m.portal?.open)P.$('#portal-status').textContent+=' · Listos '+votes.length+'/2 · Ambos cerca y E';P.$('#portal-enter').textContent=votes.includes(this.session.slot)?'Listo · E para cancelar':'Entrar juntos al portal · E';
  P.$('#hint').textContent=m.message||(s.player.hp<=0?'CAÍSTE · TU AMIGO PUEDE REANIMARTE ACERCÁNDOSE 4 S':'COOPERATIVO · EXPLORA COFRES, PORTALES Y EVENTOS CON TU AMIGO');
  this.showReward(m.pending);
- if(m.result){this.paused=true;P.UI.show(m.result==='win'?'¡Ganaron, causas!':'Cayó el equipo.',m.kills+' rivales · '+P.Core.clock(m.elapsed),[{title:'Volver al menú',action:()=>{this.leave();P.UI.menu()}}])}
+ if(m.result&&!this.resultShown){this.resultShown=true;this.paused=true;const show=()=>P.UI.show(m.result==='win'?'¡Ganaron, causas!':'Cayó el equipo.',m.kills+' rivales · '+P.Core.clock(m.elapsed),[{title:'Volver al menú',action:()=>{this.leave();P.UI.menu()}}]);if(m.result==='lose')P.PlayerFeedback.finish(show);else show()}
 },
 showReward(pending){
  this.activityPending=!!pending;const key=pending?pending.id+':'+pending.phase+':'+pending.applied[this.session.slot]:'';if(key===this.activityKey)return;this.activityKey=key;

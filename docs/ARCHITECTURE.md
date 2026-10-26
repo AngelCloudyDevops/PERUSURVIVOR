@@ -217,3 +217,7 @@ Ambient.react procesa el grupo visible ya cacheado, con cupos de seis aves y 32 
 
 Aleteo fluido: alas articuladas sobre la pose abierta del atlas existente, con subida y bajada continuas a 2,8 ciclos por segundo, ligera flexion de plumas, balanceo del cuerpo y sombra acompasada. Cada gallinazo tiene una fase propia estable, sin sincronizar toda la bandada. El panel de Kingteka comparte el mismo dibujo. Movimiento reducido mantiene alas y cuerpo fijos. No cambia dano, velocidad ni colisiones.
 
+
+## Reacciones de jugadores
+`rendering/player-feedback.js` comparte la entrada de daño de contacto, proyectiles y minijefes entre navegador y servidor. Registra `hurtAt`, vector del golpe y `deadAt` como datos serializables; reutiliza `Loot.damage` y los límites de invulnerabilidad existentes. La presentación transforma el cuerpo completo del atlas, sin recortes de extremidades ni nuevas descargas. La caída no borra al jugador y no modifica recompensas ni reanimación.
+El resultado terminal mantiene `mode=end`, congela el combate y usa un reloj visual de 0,95 s antes de mostrar los botones. `Game.start` y el menú cancelan cualquier resultado pendiente. El cooperativo procesa el resultado una sola vez y comparte el avance visual entre ambos cuerpos. `PlayerAttackArt` usa `attackAim` y `aimUntil`, registrados junto con los proyectiles, también para la orientación de respaldo. World evita el parpadeo durante las reacciones y oculta los adornos de equipo de jugadores caídos.
