@@ -526,3 +526,5 @@ VultureMoon.cameraFrame ofrece centro y zoom opcionales a World.render solo dura
 FujimoriBoss extiende el movimiento y dibujo de Encounters solo para kind fujimori. Reutiliza el sprite de Alberto y el fondo cabinet, sin modificar la ulti Court ni el personaje jugable.
 
 VultureMoon.cameraFrame incluye landing y el primer tramo posterior al impacto; compensa cameraScale para conservar el zoom al cambiar de fase y converge al objetivo normal antes de liberar la cámara. arrivalOverlay reutiliza una captura del último cielo. landedAge usa elapsed y la marca de impacto, por lo que pausa detiene cámara, onda y sacudida. World suma impactShake en unidades compensadas por zoom. Los renderizadores existentes de polvo/escombros amplían solo el impacto lunar.
+
+VultureMoon precarga gallinazo-lima-night-v1.webp al iniciar el jefe. Background combina panorama exterior y dos capas de la azotea original, cacheadas una vez por imagen, con máscara de borde/horizonte. nightStrength usa relojes existentes, sin tiempos reales ni cambios al mapa/colisión. moonlight integra actores/obstáculos con la luz de fondo. Fuente PNG original y prompt conservados junto al WebP.
