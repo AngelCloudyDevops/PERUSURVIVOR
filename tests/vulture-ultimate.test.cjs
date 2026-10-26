@@ -6,5 +6,5 @@ vm.runInNewContext(fs.readFileSync('src/systems/vulture-ultimate.js','utf8'),{P}
 P.Vulture.move(e,.01);assert.equal(e.phase,'vulture-ultimate');assert.equal(P.state.danger.length,1);assert.equal(moves,0);
 for(let i=0;i<6;i++){e.ultimateTime=i/3;assert.equal(u.frame(e),i)}e.ultimateTime=0;
 u.step(e,1.99);assert.equal(fans,0);u.step(e,.02);assert.equal(fans,1);u.step(e,.9);assert.equal(fans,2);u.step(e,.9);assert.equal(fans,3);u.step(e,.9);assert.equal(warnings,1);assert.equal(e.attack,'dive');assert.equal(e.windup,1.05);assert(!u.start(e));assert(u.start(e,true));
-P.Vulture.reduced=()=>true;assert.equal(u.frame(e),5);assert.equal(u.boss(),e);e.hp=0;assert.equal(u.boss(),undefined);
+e.ultimateTime=2.35;assert(Math.abs(u.cameraScale()-1.08)<1e-8);P.Vulture.reduced=()=>true;assert.equal(u.cameraScale(),1);assert.equal(u.frame(e),5);assert.equal(u.boss(),e);e.hp=0;assert.equal(u.boss(),undefined);
 });
