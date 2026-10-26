@@ -258,3 +258,8 @@ La ulti del Gallinazo añade retrato animado durante el aviso, viento y plumas d
 
 
 La entrada individual de Kingteka ocupa el 40 % del ancho durante 1,3 s; mantiene combate continuo e invulnerabilidad temporal. Véase KINGTEKA_COMIC.md.
+## Caminatas de seis cuadros completos
+Los 18 personajes jugables y los seis tipos de rival usan una lámina propia con seis poses dibujadas de caminata. Hay contactos de pie opuestos, flexión y paso de cruce; los brazos alternan o acompañan el objeto que sostienen. Cuy usa sus cuatro patas y Paloma alterna las dos patas. Gallinazo invocado y transformación de la ulti tienen seis poses de aleteo. El ciclo avanza con la distancia real, se congela al detenerse o chocar y se espeja íntegro al cambiar de dirección. En movimiento se conserva el ciclo al disparar; la pose de ataque original queda para el reposo y se mantienen los efectos de combate. Los minions conservan preparación, resistencia, impactos y muertes con ojos X.
+El menú espera las caminatas necesarias antes de iniciar una partida individual. En cooperativo la autoridad del servidor no espera recursos del navegador; se solicita la lámina del aliado al aparecer. Los recursos tienen reintento y la carga puede cancelarse antes de empezar.
+
+La patada cuerpo a cuerpo de La G5 conserva su pose de ataque incluso en movimiento; los disparos mantienen la caminata y sus efectos de arma.

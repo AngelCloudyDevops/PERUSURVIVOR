@@ -20,6 +20,10 @@ module.exports = [
     "output": "js/sprites.js"
   },
   {
+    "source": "src/rendering/walk-art.js",
+    "output": "js/walk-art.js"
+  },
+  {
     "source": "src/rendering/enemy-art.js",
     "output": "js/enemy-art.js"
   },
