@@ -314,6 +314,8 @@ CampoArt intercepta landmark/picnic en Terrain solo para Campo fuera de arenas. 
 
 El HUD conserva IDs y sistemas existentes. UI.hud actualiza nombre, nivel y la barra accesible de vida; XP expone valores ARIA. CSS posiciona las zonas del HUD de forma independiente, manteniendo el contenedor único para ocultar todo en menú y cinemáticas.
 
+UI.show admite metadatos card opcionales y crea nodos accesibles para tarjetas de nivel. UI.upgradeCard deriva icono y categoría del ID de la opción. Progression y el cliente cooperativo comparten el renderizador; otros diálogos restablecen el estilo habitual.
+
 El ambiente de Minibosses.environment usa un reloj serializado del enemigo y dibujo acotado sin entidades físicas; respeta pausa y movimiento reducido. La recuperación y su multiplicador de daño comparten simulación individual/cooperativa. groundWave distingue el golpe del huaco de otros pisotones y evita aplicar cobertura a su daño radial.
 ## Rangos de minions
 `systems/minion-evolution.js` selecciona y aplica una sola vez `evolution` (0–2) al crear un minion. El campo y los parámetros de embestida son serializables; navegador y Simulation comparten los modificadores de daño por contacto y de ataques. Difficulty compone primero la etapa de nacimiento y después el rango; `attackProfile` conserva ese resultado al preparar el ataque. Las cuotas globales y la duración de los avisos permanecen.

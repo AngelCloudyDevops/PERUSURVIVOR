@@ -396,6 +396,8 @@ Campo de Marte: monumento de piedra con arco y relieves, más dos variantes de p
 
 HUD de combate distribuido en los bordes: XP de ancho completo arriba, personaje/nivel/vida a la izquierda, tiempo al centro y habilidad abajo. La información de botín y eventos permanece visible sin un panel central opaco.
 
+Subida de nivel: tres tarjetas con icono, categoría (nuevo poder, rango, mejora o evolución), nombre y efecto. Paleta azul noche, crema y coral. Se elige una sola opción y la partida continúa; no cambia el sorteo ni el balance. Cooperativo conserva la espera por ambos jugadores.
+
 Minijefes: conos y luces ámbar, sombras/plumas y símbolos/polvo identifican el combate en su mapa, sin añadir colisiones inesperadas. Se desvanecen durante la derrota. Tras terminar el combo hay 1,5 s de agotamiento, sin daño por contacto y con +35 % de daño recibido. Un choque corta la cadena y concede 2 s. Las plumas se bloquean con cobertura; la onda del huaco exige salir del radio avisado, incluso detrás de paredes.
 ## Evolución de minions
 Las nuevas oleadas mezclan normales, veteranos y élites según el reloj de mapa: antes de 2:05 solo normales; desde 2:05 un 35 % de veteranos, desde 2:50 un 50 %; desde 3:35 un 20 % de élites y 45 % de veteranos; desde 4:15 un 40 % de cada rango evolucionado y 20 % de normales. El rango queda fijado al nacer, sin transformaciones imprevistas durante una carga. Pausas y arenas no adelantan la progresión. Jefes, minijefes e impostores quedan fuera.
