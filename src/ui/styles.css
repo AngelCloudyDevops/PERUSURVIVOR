@@ -41,3 +41,5 @@ footer{position:static;grid-column:1/-1;margin-top:12px}#menu{align-content:star
 @media(max-width:600px){#market-open{bottom:124px;max-width:90vw}}
 
 #time-of-day{display:block;text-align:center;color:#d9cfab;font-size:8px;letter-spacing:.8px;margin:2px 0}#hud.boss-hud #time-of-day{display:none}
+
+body.vulture-cinematic header,body.vulture-cinematic #hud,body.vulture-cinematic #lab-tools,body.vulture-cinematic #hint,body.vulture-cinematic #performance-panel,body.vulture-cinematic #stick{visibility:hidden}
