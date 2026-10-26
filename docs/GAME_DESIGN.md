@@ -253,3 +253,5 @@ Una vez por encuentro, al entrar en aproximación con 30 % de vida o menos, abre
 
 ### Derrota del Gallinazo
 Al agotar su vida, se detiene el combate de la azotea durante 2,8 segundos: tambaleo, caída de lado, polvo y plumas al impactar, reposo y desvanecimiento. La recompensa o el resultado del laboratorio llega al terminar. Esc pausa la secuencia; movimiento reducido conserva una pose caída y el desvanecimiento sin sacudidas ni partículas.
+
+La ulti del Gallinazo añade retrato animado durante el aviso, viento y plumas decorativas, ondas al suelo y acercamiento suave del 8 %. No alteran daño, colisiones ni duración. Movimiento reducido elimina zoom, pulsos y partículas.
