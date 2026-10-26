@@ -43,12 +43,12 @@ jobs:
           ref: ${{ steps.version.outputs.release_sha }}
           path: published-source
           persist-credentials: false
-      - name: Play three private two-player rooms
+      - name: Verify rescue, team finisher and reconnect
         env:
           COOP_SOURCE_ROOT: ${{ github.workspace }}/published-source
           COOP_EXPECTED_RELEASE: ${{ steps.version.outputs.release_sha }}
           COOP_REPORT_PATH: ${{ github.workspace }}/cooperative-live-report.json
-        run: node tests/live/cooperative.cjs
+        run: node tests/live/teamplay.cjs
       - name: Preserve public test evidence
         if: always()
         uses: actions/upload-artifact@v7
