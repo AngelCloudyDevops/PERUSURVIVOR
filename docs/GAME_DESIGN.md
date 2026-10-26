@@ -604,4 +604,7 @@ Minions 0/3 Fuerza, 1/4 Técnica, 2/5 Ingenio; pesados defensa física 110/espec
 
 Antes del despegue lunar, la cámara encuadra al Gallinazo junto al jugador durante el final de la tarjeta. Acompaña la altura visual del jefe y abre el plano para conservar al jugador dentro de márgenes seguros, también en móvil. El combate continúa durante tarjeta y despegue. Una transición de 0,35 s enlaza el último fotograma de la arena con el cielo; movimiento reducido conserva la cámara habitual.
 
+### Fujimori: El Expediente Final
+Jefe opcional alternativo del portal del minuto 3, además de su versión jugable. Arena Archivo del Expediente Final, reutiliza el salón y sus coberturas. 1600 PV. Alterna abanico de expedientes bloqueables y sello de área fijado a la posición al avisar (1,1 s para salir). Al 50 % aumenta el abanico de 5 a 7 y el radio del sello de 85 a 105. Recuperación visible de 1,1 s tras atacar. Disponible en Probar jefes, con reinicio y curación habituales.
+
 Picada lunar: apunta a la posición del jugador al comenzar el descenso y conserva la marca fija para permitir esquivar. La cámara sigue la altura visual del jefe manteniendo al jugador visible, enlaza el cielo con la arena en 0,32 s y regresa durante 0,95 s tras el impacto. El choque añade sacudida de 0,42 s, onda de presión, sonido y mayor dispersión de escombros/polvo. Movimiento reducido omite la sacudida. Daño y radio no cambian.

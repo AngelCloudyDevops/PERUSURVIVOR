@@ -19,6 +19,7 @@ else if(s.glyph==='PULSE'){ctx.fillStyle=s.color;ctx.fillRect(-10,-3,20,6);this.
 else if(s.glyph==='ORB'){ctx.fillStyle=s.color;ctx.beginPath();ctx.arc(0,0,6,0,Math.PI*2);ctx.fill();this.pixel(ctx,-1,-1,4,'#fff3ce')}
 else if(s.glyph==='MIC'){ctx.fillStyle='#182132';ctx.fillRect(-7,-10,14,20);ctx.fillStyle='#d1dce5';ctx.fillRect(-6,-10,12,9);ctx.fillStyle='#90a4b5';for(let i=0;i<3;i++)ctx.fillRect(-5,-9+i*3,10,1);ctx.fillStyle='#53697b';ctx.fillRect(-3,2,6,13)}
 else if(s.glyph==='FAN'){for(let i=0;i<5;i++){ctx.save();ctx.rotate((i-2)*.32);ctx.fillStyle=i%2?'#ffc078':'#ed843b';ctx.fillRect(-3,-23,6,26);ctx.restore()}this.pixel(ctx,0,2,5,'#fff1bb')}
+else if(s.glyph==='CARD'){ctx.fillStyle='#694b35';ctx.fillRect(-12,-9,24,18);ctx.fillStyle='#f6e4bf';ctx.fillRect(-10,-7,20,14);ctx.fillStyle='#bc6e58';ctx.fillRect(3,-5,5,5);ctx.fillStyle='#8e7b65';for(let i=0;i<3;i++)ctx.fillRect(-7,-4+i*4,8,1)}
 else if(s.glyph==='KEY'){ctx.fillStyle='#1a2333';ctx.fillRect(-20,-9,40,18);for(let y=0;y<3;y++)for(let x=0;x<8;x++)this.pixel(ctx,-16+x*4.5,-5+y*4,3,(x+y)%2?'#6bd9e7':'#b59afa')}
 else if(s.glyph==='PHONE'){ctx.fillStyle='#172236';ctx.fillRect(-8,-13,16,26);ctx.fillStyle='#87d8c9';ctx.fillRect(-6,-10,12,18);ctx.fillStyle='#eff7e7';ctx.fillRect(-2,10,4,2)}
 else if(s.glyph==='PAD'){ctx.fillStyle='#34304e';ctx.fillRect(-16,-8,32,16);ctx.fillRect(-19,-2,7,13);ctx.fillRect(12,-2,7,13);ctx.fillStyle='#d8c4ff';ctx.fillRect(-11,-5,3,10);ctx.fillRect(-14,-2,9,3);this.pixel(ctx,10,-2,4,'#e9acac');this.pixel(ctx,6,3,4,'#a8dbc4')}
