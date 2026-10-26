@@ -271,6 +271,13 @@ Campo tiene hojas y aves discretas; Plaza, agua que aumenta al acercarse a la pi
 ## Invocación ×10
 El menú Gacha permite una tirada por 60 monedas o diez por 600. Se requiere el saldo completo antes de comenzar, sin descuento adicional. Las diez se resuelven en orden con las mismas probabilidades, garantías y devoluciones por repetidos. Si la colección se completa dentro del lote, se terminan las diez tiradas; una colección ya completa impide iniciar otra compra. El resumen muestra cada causa, rareza, nuevo/repetido, devolución total y coste neto. La animación se puede saltar y respeta movimiento reducido. El último lote se recupera al recargar sin volver a cobrar.
 
+## Historial, copias y estrellas
+Gacha incorpora pestañas Invocar, Historial y Estrellas. El historial guarda las últimas 200 tiradas con personaje, rareza, nuevo/repetido y fecha/hora local; incluye filtros y páginas de 20. Las tiradas antiguas disponibles se conservan como «Fecha no registrada» y no se recuperan registros que el límite anterior ya había descartado.
+
+Los repetidos mantienen su devolución de monedas y añaden una copia del mismo personaje hasta 5★. Todos empiezan a 1★; ascender manualmente a 2★/3★/4★/5★ consume 2/3/4/5 copias respectivamente, sin monedas adicionales. Cada ascenso añade +3% de vida y daño en individual (máximo +12%); no altera partidas cooperativas ni prácticas. Puedes seguir invocando con la colección completa para obtener copias, hasta tener todos a 5★. A 5★, los repetidos solo devuelven monedas. El perfil v4 migra los repetidos del historial v3 conservado a copias una sola vez y conserva saldo, colección, mochila y mejoras.
 ### Balance de los 18 causas
 Comparación reproducible de ataques base y evolucionados contra blancos cercanos, medios, jefe móvil, filas y enemigos alrededor. Se moderan bumeranes, ráfagas y nubes dominantes y se refuerzan Cristorata, Cuy, Alberto y Cerdito. Consulta [los valores y motivos](docs/ROSTER_BALANCE.md). La rareza de colección no multiplica estadísticas; cada rol conserva ventajas y límites. Las fichas muestran el catálogo actualizado.
 
+
+## Tribunal legendario de Fujimori
+La sentencia conserva 340 u y añade grietas y onda doradas, expedientes «CASO ARCHIVADO» sobre los minions eliminados y escudo Expediente de 3 s para los jugadores vivos. Jefes alcanzados reciben 8 % de vida máxima (tope 200, no letal) y +20 % de daño recibido durante 5 s. Respeta fases invulnerables de entrada y la ulti del Gallinazo. No acumula vulnerabilidad ni recarga por sus propias bajas. Prueba: Ajustes → Probar ulti de Fujimori → Q; Recargar ulti y Reponer objetivos permiten repetir.

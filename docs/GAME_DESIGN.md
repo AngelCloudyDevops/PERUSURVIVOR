@@ -464,6 +464,10 @@ Una compra de diez requiere 600 monedas de saldo inicial. Cada tirada actualiza 
 Las fichas de Causas muestran valores base de rango 1 sin mochila ni mejoras permanentes, rol descriptivo y evolución. El daño por impacto incluye powerScale; no se presenta como DPS. La rareza de colección no aumenta atributos. Véase CHARACTER_PROFILES.md.
 
 
+## Historial y ascensos por copias
+Desde el perfil v4 se conservan las últimas 200 tiradas. Cada recibo nuevo registra fecha/hora del dispositivo, nuevo/repetido y copias concedidas. Historial en orden inverso, filtros de rareza y resultado, 20 filas por página. Los recibos anteriores no reciben fechas inventadas.
+
+Cada repetido entrega la devolución existente y una copia de su propio personaje mientras esté por debajo de 5★. Ascensos manuales de 1★ a 5★ con costes marginales de 2/3/4/5 copias (14 en total). Cada estrella adicional aporta 3% aditivo de vida y daño, hasta 12%, sobre el personaje con sus mejoras permanentes al empezar individual; cooperativo, prácticas y desarrollo conservan sus reglas. El ascenso no cobra monedas. Colección completa permite tiradas para copias; todos los personajes desbloqueados y a 5★ bloquea compras. Un repetido a 5★ conserva solo el reembolso. Esta regla sustituye el bloqueo anterior al completar la colección. En migración se reconocen exclusivamente los repetidos del historial v3 disponible; no se reconstruyen tiradas descartadas por el límite anterior de diez.
 ### Balance por rol
 La rareza afecta a la obtención, sin bonus automático de combate. La tercera pasada compara los 18 personajes con progresión idéntica y ajusta ataques base y evolucionados. Véase ROSTER_BALANCE.md para parámetros, resultados y límites del ensayo.
 
@@ -471,3 +475,5 @@ Navegación de minijefes: rutas locales rodean coberturas con su radio completo,
 Los seis oficios evolucionados usan sprites raster completos con vestuario y accesorios integrados en cada dibujo: seis pasos, preparación, impacto y derrota con ojos X. Se elimina la ropa geométrica superpuesta. Los normales conservan sus láminas y los rangos siguen diferenciándose por aros y efectos. Se mantienen los ataques, daños, avisos, fases y geometría de colisión existentes.
 
 Revisión de combate de minijefes: ataques directos, áreas, bandas, nubes y extras de evolución respetan cobertura al dañar minijefes. Durante estos encuentros los proyectiles también barren el trayecto frente a paredes finas. Los avisos tienen contorno oscuro/crema por encima de efectos. Impactos breves por material (metal, plumas, cerámica), cinco fragmentos como máximo por señal y límite de 0,12 s entre señales; movimiento reducido los suprime. Cada ventana aprovechada muestra una sola vez «¡BIEN! +35 %», sin multiplicador adicional ni interrumpir ataques.
+
+Tribunal legendario: al regresar, el radio de 340 unidades elimina minions y muestra expedientes CASO ARCHIVADO (máximo 48). Jefes reciben 8 % de salud máxima, tope 200, sin golpe letal; respeta entrada invulnerable de minijefes y ulti del Gallinazo. Sentenciado añade 20 % de daño recibido durante 5 s, sin acumular; escudo Expediente bloquea daño durante 3 s para ambos jugadores vivos. Ambos vencen por elapsed autoritativo y viajan como propiedades serializadas; pausa y Tribunal congelan el reloj. Grietas y onda doradas son cosméticas, sin daño duplicado.
