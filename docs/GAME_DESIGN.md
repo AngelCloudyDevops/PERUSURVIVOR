@@ -391,3 +391,5 @@ Los minijefes muestran nombre y vida en el HUD superior: una barra con divisor a
 Los minions no muestran nombres, incluidos los pesados y la PNP. Los portadores conservan únicamente su barra de vida y la indicación de llave sobre la cabeza, ajustadas a la pose visible al caminar, atacar o recibir daño.
 
 HUD de combate distribuido en los bordes: XP de ancho completo arriba, personaje/nivel/vida a la izquierda, tiempo al centro y habilidad abajo. La información de botín y eventos permanece visible sin un panel central opaco.
+
+Minijefes: conos y luces ámbar, sombras/plumas y símbolos/polvo identifican el combate en su mapa, sin añadir colisiones inesperadas. Se desvanecen durante la derrota. Tras terminar el combo hay 1,5 s de agotamiento, sin daño por contacto y con +35 % de daño recibido. Un choque corta la cadena y concede 2 s. Las plumas se bloquean con cobertura; la onda del huaco exige salir del radio avisado, incluso detrás de paredes.
