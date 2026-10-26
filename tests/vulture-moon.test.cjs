@@ -36,3 +36,7 @@ test('Caída: cámara sigue al jefe, conserva jugador y enlaza el impacto sin sa
 test('Impacto: sacudida acotada, pausa estable, movimiento reducido y regreso completo de cámara',()=>{
  const {P,e,M,u}=engine();P.Vulture.reduced=()=>false;P.BossArt={camera:p=>({x:p.x,y:p.y})};u.start(e);M.impact(e);const initial=M.impactShake();assert(initial.y>0&&initial.y<=7);P.state.elapsed+=.12;const shake=M.impactShake();assert(Math.abs(shake.x)<=8&&Math.abs(shake.y)<=7);const before=JSON.stringify(shake);P.state.mode='pause';u.introTick(.2);assert.equal(JSON.stringify(M.impactShake()),before);P.Vulture.reduced=()=>true;assert.equal(JSON.stringify(M.impactShake()),JSON.stringify({x:0,y:0}));P.Vulture.reduced=()=>false;P.state.elapsed+=1;assert.equal(JSON.stringify(M.impactShake()),JSON.stringify({x:0,y:0}));assert.equal(M.cameraFrame(P.state.player,1280,720,1.5),null);
 });
+
+test('Noche lunar: oscurece durante tarjeta/despegue y conserva la misma luz al regresar',()=>{
+ const {e,M}=engine();assert.equal(M.nightStrength(e),0);e.moonSequence=true;e.phase='vulture-activation';e.ultimateEntryTime=0;assert.equal(M.nightStrength(e),0);e.ultimateEntryTime=1.3;assert.equal(M.nightStrength(e),.75);e.phase='vulture-takeoff';e.moonStageTime=0;assert.equal(M.nightStrength(e),.75);e.moonStageTime=.65;assert.equal(M.nightStrength(e),1);for(const phase of ['vulture-moon','vulture-landing','vulture-ultimate','approach']){e.phase=phase;assert.equal(M.nightStrength(e),1)}
+});
