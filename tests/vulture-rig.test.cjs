@@ -16,3 +16,8 @@ test('Articulaciones: alas, mandíbula y primarias se mueven sin fundir ni trasl
 test('Continuidad de silueta: arena conserva el rig y la pose final durante la gracia',()=>{
  const {R}=engine();const end=R.motion(4),grace=R.arenaMotion({phase:'vulture-ultimate',ultimateTime:4,ultimateGrace:.7});assert.equal(JSON.stringify(grace),JSON.stringify(end));assert(end.far-end.near>.7);const idle=R.arenaMotion({phase:'approach'});assert.equal(idle.phase,1);const charge=R.arenaMotion({phase:'vulture-chaos-charge',chaosTime:1});assert(charge.near>idle.near);assert(charge.jaw>0);assert.equal(R.arenaMotion({phase:'vulture-chaos-charge',chaosTime:1},true).jaw,0);
 });
+test('Tarjeta: composición compacta en móvil, título escalonado y efectos locales sin tocar simulación',()=>{
+ const {P,R}=engine();for(const [w,h] of [[390,800],[844,390],[1280,720]]){const b=R.cardLayout(w,h);assert(b.w<w*.65);assert(b.h<=b.w*1.55+1e-8);assert(b.y+b.h<h);assert(b.py<b.h*.69);assert(b.birdHeight<=b.h*.5)}
+ const a=R.cardEnvelope(.3),b=R.cardEnvelope(.5);assert(a.line1>a.line2);assert.equal(b.line1,1);assert.equal(b.line2,1);assert(b.burst>0);assert.equal(R.cardEnvelope(.9).burst,0);assert.equal(R.cardEnvelope(.5,true).burst,0);assert.equal(R.cardEnvelope(.5,true).kick,0);
+ const text=[],state=JSON.stringify(P.state),noop=()=>{},c=new Proxy({fillText(word){text.push(word)}},{get:(o,k)=>o[k]||noop});R.card(c,1280,720,.65,false);assert(text.includes('GALLINAZO'));assert(text.includes('¡BAJO MIS'));assert(text.includes('ALAS!'));assert.equal(JSON.stringify(P.state),state);
+});

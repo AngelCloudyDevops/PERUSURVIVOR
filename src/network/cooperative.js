@@ -33,7 +33,7 @@ open(message){
 receive(m){
  const first=!this.active;if(first)this.resultShown=false;this.active=true;this.reconnecting=false;
  if(first){P.Maps.select(m.map);P.state.chosen=P.Data.characters.findIndex(c=>c.id===m.players[this.session.slot].id);this.initializing=true;P.Game.start();this.initializing=false;P.Loot.chests=[];P.Loot.debris=[];P.$('#pause').setAttribute('aria-label','Opciones cooperativas')}
- const s=P.state,previousScene=s.encounter?.scene?.id;for(const key of ['miniReport','court','courtBurst','miniWarning','keys','portal','encounter','mapBossWon','coins','elapsed','mapTime','kills','level','xp','need','bossSpawned','shots','fields','enemies','gems','danger','effects'])s[key]=m[key];
+ const s=P.state,previousScene=s.encounter?.scene?.id;for(const key of ['domain','miniReport','court','courtBurst','miniWarning','keys','portal','encounter','mapBossWon','coins','elapsed','mapTime','kills','level','xp','need','bossSpawned','shots','fields','enemies','gems','danger','effects'])s[key]=m[key];
  s.mode='play';s.player=m.players[this.session.slot];s.ultimate=s.player.ultimate;this.peers=m.players.filter(p=>p.slot!==this.session.slot);P.Maps.selected=m.map;
  for(const p of m.players)p.coopPlayer=true;
  const broken=new Set(m.broken);P.Chunks.broken=new Set(m.broken.filter(id=>typeof id==='string'));for(const prop of P.Terrain.props)if(prop.kind==='crate'&&broken.has(prop.id)){prop.solid=false;prop.hp=0;if(prop.generated)P.Chunks.broken.add(prop.id)}
@@ -60,7 +60,7 @@ showReward(pending){
  P.UI.show(title,description,[...buttons,leave]);if(pending.item)P.LootArt.reveal(pending.item);
 },
 tick(dt){
- if(!this.active)return;this.lastSend+=dt;if(this.lastSend>=.05){this.lastSend=0;const input=this.paused||this.reconnecting||this.activityPending?{x:0,y:0}:P.Core.direction();this.send({type:'input',x:input.x,y:input.y,ultimate:!!this.ultimate,view:P.Combat.sanitizeView(P.Combat.view(P.state.player))});this.ultimate=false}
+ if(!this.active)return;this.lastSend+=dt;if(this.lastSend>=.05){this.lastSend=0;const input=this.paused||this.reconnecting||this.activityPending?{x:0,y:0}:P.Core.direction();this.send({type:'input',x:input.x,y:input.y,ultimate:!!this.ultimate,...(P.state.domain&&!this.paused&&!this.reconnecting&&!this.activityPending?P.Domain.input():{}),view:P.Combat.sanitizeView(P.Combat.view(P.state.player))});this.ultimate=false;if(P.Domain){P.Domain.queued=false;P.Domain.ga=false}}
  // El servidor es la única autoridad: no se ejecuta Game.update en este cliente.
 },
 pause(){if(this.reconnecting||this.activityPending)return;if(this.paused){this.paused=false;P.$('#overlay').hidden=true;return}this.paused=true;P.Core.clear();this.send({type:'input',x:0,y:0});P.UI.show('Cooperativo · Opciones','Tu amigo continúa jugando. Esta pantalla no pausa la sala.',[{title:'Seguir jugando',action:()=>this.pause()},{title:'Salir de la sala',action:()=>{this.leave();P.UI.menu()}}])},

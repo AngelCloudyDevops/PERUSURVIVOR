@@ -1,5 +1,8 @@
 # Arquitectura
 
+## Dominio UR de Makanaky (prototipo)
+Domain mantiene un único encuentro autoritativo en state.domain. Cada objetivo referencia domainKey del enemigo real; los HP y callbacks de botín siguen usando Entities.hurt y la victoria se difiere hasta cerrar la escena. Simulation congela el combate y el reloj base, recibe punch/domainAim/ga validados y serializa el encuentro para ambos clientes. El propietario usa primera persona; el compañero ve a Makanaky desde atrás y queda protegido. No se cambian las coordenadas originales de jugadores o enemigos. DomainArt renderiza el callejón con perspectiva a 640×360 sin suavizado y controles táctiles.
+
 ## Almacenamiento de preferencias de colección
 P.Gacha usa la clave independiente causas-collection-preferences-v1 con version/tier/stars/ready/order. No cambia ni escribe el perfil v4. loadPrefs se ejecuta antes de crear controles; la normalización admite únicamente opciones conocidas. Cada gesto de control y Limpiar filtros guarda una instantánea pequeña; refresh, selección, ascensos y RAF no escriben preferencias. El evento storage actualiza controles/filtros/orden sin eco de escritura y contempla eliminación o clear. Errores de lectura usan valores iniciales sin borrar el contenido; errores de escritura conservan la vista de sesión y ofrecen reintento explícito. La preferencia no sincroniza navegadores ni crea una cuenta.
 
@@ -464,9 +467,14 @@ causa-combo.js se carga después de los adaptadores de ultis. ultimate.combo con
 
 Perfil: `src/ui/profile.js` agrega un diálogo con colección y agregados de estadísticas existentes. Proyecta las ventajas de la cuenta admin al leer su propio namespace; invitados y jugadores conservan sus guardados separados. SQLite v2 añade `user_roles` con FK, sin alterar cuentas ni progreso. Login y sesión devuelven el rol consultado por el servidor. `ops/hostinger/set-account-role.cjs` concede/revoca solo a usuarios ya registrados, invalida sus sesiones y queda fuera de dist. No existe endpoint para cambiar roles.
 
+
 MakanakyPlayerArt usa makanaky-motion-v2.webp, 6 columnas y 2 filas, con Sprites.bounds y escala compartida para caminar y golpear. royalEcho conserva su identificador por compatibilidad con perfiles antiguos, ahora con kind melee.
 
 Administración v3: `backend/admin.cjs` verifica sesión + rol SQLite + username canónico reysuperior en cada petición y vuelve a verificar antes de la entrega. `admin_actions` registra actor, destino, UUID de solicitud, huella del contenido y recibo. Guardado y auditoría se confirman en la misma transacción BEGIN IMMEDIATE; el UUID evita repetir envíos y la revisión impide pisar cambios concurrentes. Catálogo y normalización se cargan perezosamente desde una única Simulation aislada, reutilizando reglas y estados iniciales sin ejecutarlos en el cliente. `src/ui/admin.js` se oculta al cerrar sesión; ningún permiso depende de que el botón esté oculto.
+
 ### BackgroundMusic
 
 `src/systems/background-music.js` gestiona un único HTMLAudioElement creado de forma diferida y dos WebM/Opus en `public/assets/music/`. `Audio.init/sync/silence/unlock` integran selección, volumen, pausa y autorización por gesto. `Audio.tick` omite solo la melodía sintetizada cuando se reproduce una pista o se elige sin música; ambiente y voces siguen activos. No se decodifica música completa en el hilo principal ni se descarga al inicio (`preload=none`, URL asignada al reproducir). Se detienen reintentos de autoplay hasta otro gesto, se atienden promesas tardías tras pausa y se recupera la síntesis ante errores de carga. El servidor local entrega WebM/Opus como `audio/webm`.
+
+
+VultureRig.cardLayout y cardEnvelope separan geometría adaptable y tiempos cosméticos. card reutiliza un canvas de retrato, sin descargas ni timers; proyecta su sombra y compone trama/rayos, arcos del grito, plumas y marco en el canvas principal. No altera la jerarquía articulada ni el estado de combate. VultureMoon.overlay sincroniza body.vulture-card en todas las fases para ocultar el laboratorio durante la entrada y restituirlo al despegar. La prueba cubre límites de composición en escritorio/móvil, título escalonado, movimiento reducido y ausencia de mutaciones de simulación.
