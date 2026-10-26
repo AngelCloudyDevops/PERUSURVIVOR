@@ -6,9 +6,9 @@ P.KingtekaArsenal={
  icons:{shotgun:'gun',gallinazo:'feather',golpe:'power'},
  gates:[1,4,7,10,13],
  profiles:{
-  shotgun:{name:'Escopeta causa',description:'Ráfaga física corta: muy fuerte de cerca y débil a distancia.',kind:'spread',cooldown:.95,range:330,speed:780,count:4,spread:.14,powerScale:.62,falloff:{near:150,min:.28},glyph:'BULLET',damageType:'physical'},
-  gallinazo:{name:'Gallinazo',description:'Lanza plumas especiales que corrigen su vuelo hacia rivales visibles.',kind:'spread',cooldown:1.15,range:520,speed:420,count:2,spread:.2,powerScale:.54,pierce:1,homing:true,glyph:'PLUMA',color:'#d6c4a1',damageType:'special'},
-  golpe:{name:'Golpe de cuerpo',description:'Golpe físico frontal de corto alcance con fuerte empuje.',kind:'melee',cooldown:.72,range:105,arc:120*Math.PI/180,damageScale:1.2,push:34,glyph:'PUÑO',damageType:'physical'}
+  shotgun:{name:'Escopeta causa',description:'Ráfaga física corta: muy fuerte de cerca y débil a distancia.',kind:'spread',cooldown:.92,range:330,speed:780,count:4,spread:.14,powerScale:.62,falloff:{near:150,min:.28},glyph:'BULLET',damageType:'physical'},
+  gallinazo:{name:'Gallinazo',description:'Dos plumas especiales guiadas que atraviesan hasta dos rivales visibles.',kind:'spread',cooldown:1.15,range:520,speed:420,count:2,spread:.2,powerScale:.64,pierce:2,homing:true,glyph:'PLUMA',color:'#d6c4a1',damageType:'special'},
+  golpe:{name:'Golpe de cuerpo',description:'Golpe físico frontal de corto alcance con empuje y una cadencia más pausada.',kind:'melee',cooldown:.78,range:105,arc:120*Math.PI/180,damageScale:1.1,push:34,glyph:'PUÑO',damageType:'physical'}
  },
  init(p){if(p?.id!=='kingteka')return null;if(!p.arsenal)p.arsenal={active:'shotgun',unlocked:{shotgun:true,gallinazo:false,golpe:false},ranks:{shotgun:1,gallinazo:0,golpe:0},evolved:{},lastSwitch:-1};return p.arsenal},
  active(p){return this.init(p)?.active||'shotgun'},
