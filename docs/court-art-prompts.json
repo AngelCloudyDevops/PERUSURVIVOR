@@ -1,0 +1,24 @@
+{
+  "tool": "image_gen",
+  "mode": "built-in",
+  "assets": [
+    {
+      "key": "fuji",
+      "prompt": "Game asset: one transparent waist-up pixel-art caricature portrait of Alberto Fujimori, matching EXACTLY the character in row SIX of the reference sheet (older Japanese-Peruvian man, side parted gray black hair, square black glasses, navy suit, red white presidential sash). Three-quarter view facing right, expressive open mouth proclaiming innocence, RIGHT index finger raised beside his head pointing upwards, bent elbow near torso, left hand clutching lapel. Dedicated dynamic comic ultimate portrait, torso leaning forward, finger visible fully clear of face with ample empty margin at top. Waist-up only. Detailed CARTOON PIXEL ART: hard dark pixel outlines, crisp stair stepped clusters, 3-4 flat shades per material, expressive face, consistent proportions of reference; no photorealism, no smooth painting, no glow. Only this single figure, centered with 15% transparent margin all sides. No words, speech bubble, rays, backgrounds, props or extra figures. Genuine alpha transparency. Designed for runtime articulated animation of the raised arm."
+    },
+    {
+      "key": "judge",
+      "prompt": "Game sprite for a cartoon pixel art courtroom, matching dark outlined caricature pixel style of the supplied game characters. ONE original fictional elderly male judge, waist-up, frontal view seated, stern eyebrows, gray swept hair and sideburns, expressive face with nose and cheeks, black judicial robe with white collar and small gold medallion, sleeve folds, hands resting near front edge. His RIGHT hand is empty and held at chest height to grip a separately animated gavel; do NOT draw any gavel. No bench, no desk, no chair, no other objects. Head and shoulders detailed at game scale, 3-4 grouped flat shade tones, hard pixel edges, no smooth shading or 3D. Single figure centered, entire torso and sleeves visible with transparent margins 15% all sides; genuine transparent alpha background. No text or decorations. Do not copy any public figure's face."
+    },
+    {
+      "key": "audience",
+      "prompt": "Transparent game sprite atlas in EXACTLY 3 equal columns and 2 equal rows: six separated back-view seated cartoon pixel art figures based on the SIX DIFFERENT rows of supplied reference. These characters are sitting in a courtroom looking AWAY from viewer toward a judge. Show ONLY their backs, nape, back of heads, ears/antlers/hat and rounded bodies, short seated limbs and hands resting on lap. NO chairs or benches, NO faces or eyes visible, NO forward-facing figures, no shadows or background. Cell order row-major: 0 blue penguin with multicolor propeller cap and white lower back; 1 orange moose with branching antlers and blue orange striped shirt; 2 pink antenna bug with dark pink spots; 3 yellow hippo with orange flower dress; 4 purple long-eared kangaroo with blue shirt and yellow stripe; 5 original fictional Peruvian police officer with olive green uniform, cap, black belt. Every character fully inside own equal rectangular cell, 20% transparent gutters, equal body scale and baseline, no overlaps. Detailed matching CARTOON PIXEL ART, bold dark outlines, clear pixel clusters and few shaded colors, visible costume folds and fur shapes, no smooth painting, no text, no labels. Genuine transparent alpha."
+    }
+  ],
+  "paths": {
+    "fuji": "public/assets/court/fujimori-objection-v1.png",
+    "judge": "public/assets/court/judge-v1.png",
+    "audience": "public/assets/court/audience-back-v1.png"
+  },
+  "runtime": "Sibling .webp files are lossless copies with pixel-identical RGBA"
+}
