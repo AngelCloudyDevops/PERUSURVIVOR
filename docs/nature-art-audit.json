@@ -1,0 +1,92 @@
+{
+  "source": "public/assets/environment/nature-atlas-v2.png",
+  "runtime": "public/assets/environment/nature-atlas-v2.webp",
+  "source_sha256": "a08e884b967a678f88b696625cd9522ab3fe421132675e53d066ce02a491e9b8",
+  "runtime_sha256": "81cff0e59a37356fd0226f9bb9a858c9067b136141c0ba86aa95df13e9271586",
+  "width": 512,
+  "height": 256,
+  "bytes": 109820,
+  "cells": [
+    {
+      "row": 0,
+      "col": 0,
+      "bounds": [
+        23,
+        14,
+        122,
+        118
+      ]
+    },
+    {
+      "row": 0,
+      "col": 1,
+      "bounds": [
+        6,
+        35,
+        113,
+        120
+      ]
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "bounds": [
+        18,
+        13,
+        110,
+        116
+      ]
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "bounds": [
+        8,
+        24,
+        118,
+        111
+      ]
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "bounds": [
+        8,
+        25,
+        120,
+        120
+      ]
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "bounds": [
+        8,
+        47,
+        120,
+        120
+      ]
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "bounds": [
+        8,
+        20,
+        120,
+        120
+      ]
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "bounds": [
+        8,
+        20,
+        120,
+        120
+      ]
+    }
+  ],
+  "method": "Built-in image_gen; transparent 4x2 atlas. Mechanical nearest-neighbor packing only."
+}

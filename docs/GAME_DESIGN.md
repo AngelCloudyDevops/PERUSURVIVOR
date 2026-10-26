@@ -337,6 +337,9 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - g5: **Huracán G5** — Tres barridos consecutivos cubren frente y flancos, con fuerte empuje.
 
 P.Evolutions define perfiles de ataque inmutables y efectos serializables por personaje; Combat conserva el ID de ataque original para mantener sus sprites. Las animaciones nuevas son geometría pixel art de raíles, ondas, abanicos, enjambres, plumas y barridos, además de trayectorias radiales, retorno, búsqueda y zonas persistentes según el perfil. El servidor usa el mismo módulo. Movimiento reducido estabiliza la animación decorativa sin alterar impactos. El menú es solo de consulta: no concede niveles ni poderes.
+
+Arte ambiental v2: palomas reconocibles con cuello tornasolado y cuatro poses; tres arbustos orgánicos con flores o bayas y mata de ichu. Conserva escala discreta, sombras al pie, reacciones y cupos previos. Césped y árboles conservan su arte. Referencia: NATURE_ART.md.
+
 ### Entradas propias de minijefes
 El Fiscalizador entra caminando y emite un pitido doble (1,3 s). La Paloma desciende con alas abiertas y polvo de aterrizaje (1,5 s). El Huaco emerge entre piedras y polvo (1,5 s). Son entradas locales al encuentro: el jugador conserva control y los demás enemigos siguen activos. Durante su entrada el minijefe no golpea ni recibe daño; después conserva 1,4 s antes de preparar el primer ataque. El aviso de 60–90 s y las pruebas de laboratorio usan la misma entrada. Pausa y movimiento reducido se respetan.
 Las apariciones priorizan laterales visibles: entre 220 y 260 unidades del jugador y hasta 130 de separación vertical, siempre fuera de obstáculos. Si el jugador se aleja durante el aviso se busca otra posición segura antes de entrar.
