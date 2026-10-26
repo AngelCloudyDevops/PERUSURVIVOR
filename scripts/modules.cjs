@@ -115,6 +115,9 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
+    "source": "src/rendering/plaza-art.js", "output": "js/plaza-art.js"
+  },
+  {
     "source": "src/rendering/ambient.js",
     "output": "js/ambient.js"
   },
