@@ -158,3 +158,6 @@ Código guardado en rama propia, commits y PR de GitHub; main se publica en Host
 El reloj del mapa controla día (0–1:30), atardecer (1:30–3:00), anochecer (3:00–4:30) y noche (desde 4:30). Transiciones graduales y faroles que se encienden al oscurecer. El tinte afecta al suelo antes de dibujar actores, botín y avisos, manteniendo visible el combate. Pausa y arenas detienen el reloj del mapa; arenas y prácticas conservan su luz propia. No cambia dificultad, colisiones ni recompensas.
 
 Entrada de ulti de Kingteka: panel diagonal al 40 %, retrato animado de cintura arriba y 1,3 s sin pausa, con invulnerabilidad. Detalles en [KINGTEKA_COMIC](docs/KINGTEKA_COMIC.md).
+
+## Garúa de Campo de Marte
+Episodios visuales de 25 segundos desde el minuto 1, separados por 65 segundos despejados. Entrada y salida suaves, gotas y pequeñas salpicaduras debajo de actores y avisos. Sigue mapTime: pausa y arenas no avanzan el clima. No aparece en prácticas y se desactiva con movimiento reducido. No modifica daño, velocidad, colisiones ni premios.

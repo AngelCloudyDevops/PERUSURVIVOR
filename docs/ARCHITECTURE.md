@@ -187,5 +187,6 @@ Loot.candidate deriva impostor de su semilla. Market.wake marca el ID abierto an
 DayNight.sample es una función de mapTime sin temporizadores independientes ni estado acumulado. World aplica el tinte tras el ambiente de suelo y antes del combate, y dibuja luz rasterizada bajo los faroles visibles. UI muestra la fase. Terrain consulta la misma función para el color de las lámparas.
 VultureUltimate.comic reutiliza el reloj de la ulti, atlas de alas y gallinazo-comic-v1.png para ojo y grito. Las alas se pintan fuera del clip del panel; doce fragmentos decorativos simulan la ruptura. La imagen de primeros planos se precarga sin bloquear la arena y admite fallback al atlas de alas si falla.
 
+Weather.sample deriva la intensidad de mapTime, sin temporizadores ni acumulación de partículas. World dibuja hasta 80 gotas por ventana antes de los actores. DayNight añade GARÚA a la fase cuando corresponde.
 
 Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
