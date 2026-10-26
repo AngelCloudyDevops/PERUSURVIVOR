@@ -51,7 +51,18 @@ P.VultureRig={
     }
     if(e.phase==='vulture-dive'){m.near=-.9;m.far=-.55}
     for(const k of ['near','far','head','ruffle'])m[k]+=idle[k];
+    const flight=this.flightPose(e,reduced);m.near+=flight.near;m.far+=flight.far;m.tuck=flight.tuck;
     return m;
+  },
+  flightPose(e,reduced=false){
+    const dive=e.phase==='vulture-dive',q=Math.max(0,Math.min(1,e.rigFlight||0)),t=e.rigTime||0,beat=Math.sin(t*8),weight=reduced?0:q;
+    return {lift:q*(reduced?32:36+Math.cos(t*8-.7)*7),tuck:q*.85,near:dive?0:weight*(.42+beat*.85),far:dive?0:weight*(.5+Math.sin(t*8-.18)*.95),bank:reduced?0:dive?.16:weight*Math.sin(t*8-.8)*.035};
+  },
+  tickFlight(e,dt){
+    if(!(dt>0)||!Number.isFinite(e.x)||!Number.isFinite(e.y))return;
+    const moved=Number.isFinite(e.rigLastX)?Math.hypot(e.x-e.rigLastX,e.y-e.rigLastY)/dt:0;
+    const target=e.chaosForm&&(e.phase==='vulture-dive'||e.phase==='approach'&&moved>8)?1:0;
+    const q=e.rigFlight||0,step=dt*(target?4:2.8);e.rigFlight=q+Math.max(-step,Math.min(step,target-q));e.rigLastX=e.x;e.rigLastY=e.y;
   },
   idleMotion(e,reduced=false){
     const t=reduced?0:(e.rigTime||0),active=!reduced;
@@ -119,7 +130,7 @@ P.VultureRig={
 };
 {
   const R=P.VultureRig,F=P.VulturePhase2,u=P.VultureUltimate,scene=P.VultureScene,init=scene.init,pending=scene.pending,geometry=scene.geometry,eye=scene.eye,bird=scene.bird,start=u.start,tick=u.introTick,overlay=u.overlay,move=P.Vulture.move,draw=P.Vulture.draw,visuals=P.Vulture.tickVisuals;
-  P.Vulture.tickVisuals=function(e,dt){e.rigTime=(e.rigTime||0)+dt;return visuals.call(this,e,dt)};
+  P.Vulture.tickVisuals=function(e,dt){e.rigTime=(e.rigTime||0)+dt;R.tickFlight(e,dt);return visuals.call(this,e,dt)};
   scene.init=function(){R.init();return init.call(this)};
   scene.pending=()=>pending()||typeof Image!=='undefined'&&!R.ready&&!R.failed;
   scene.geometry=function(w,h){const g=geometry.call(this,w,h);g.rigHeight=h*.74;return g};
@@ -147,9 +158,9 @@ P.VultureRig={
   P.Vulture.draw=function(c,e){
     if(!R.ready||!e.chaosForm||F.entering(e)||e.phase==='vulture-defeat')return draw.call(this,c,e);
     if(e.phase==='vulture-ultimate')P.VultureImpact.telegraph(c,e);
-    c.save();c.translate(e.x,e.y+e.r*.5);if(e.dx<0&&!(e.moonSequence&&e.ultimateGrace>0))c.scale(-1,1);
-    const reduced=P.Vulture.reduced();
-    // Aura exterior: el plumaje conserva los colores del atlas original.
+    const reduced=P.Vulture.reduced(),flight=R.flightPose(e,reduced);
+    c.save();c.translate(e.x,e.y+e.r*.5-flight.lift);if(e.dx<0&&!(e.moonSequence&&e.ultimateGrace>0))c.scale(-1,1);c.rotate(flight.bank);
+    // Aura exterior acompaña la altura del plumaje morado.
     const g={x:-115,y:-210,w:230,h:215};P.VultureScene.ribbons?.(c,g,reduced?0:e.rigTime||0,reduced?.22:.5,false);
     const result=R.draw(c,0,0,260,0,false,reduced,R.arenaMotion(e,reduced));
     F.electricity?.(c,0,-110,92,reduced?0:e.rigTime||0,reduced?.2:.55,reduced);c.restore();return result;

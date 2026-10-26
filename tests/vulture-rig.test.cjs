@@ -34,3 +34,13 @@ test('Plumaje fase dos: paleta morada conserva alfa, luces y pico dorado',()=>{
  const {R}=engine(),p=new Uint8ClampedArray([60,60,65,255,180,110,20,255,240,240,240,255,0,0,0,0]);const original=[...p];R.tintPlumage(p,1);assert(p[2]>p[0]&&p[0]>p[1]);assert.equal(p[3],255);assert.deepEqual([...p.slice(4)],original.slice(4));
  const base=new Uint8ClampedArray(original);R.tintPlumage(base,0);assert.deepEqual([...base],original);
 });
+
+test('Vuelo fase dos: despega al desplazarse, recoge patas y aterriza suavemente al parar',()=>{
+ const {P,R}=engine(),e={x:100,y:100,phase:'approach',chaosForm:true};P.Vulture.tickVisuals(e,.1);
+ for(let i=0;i<8;i++){e.x+=6;P.Vulture.tickVisuals(e,.05)}assert.equal(e.rigFlight,1);
+ const a=R.flightPose(e);assert(a.lift>25);assert(a.tuck>.8);const near=R.arenaMotion(e).near;e.rigTime+=.25;assert(Math.abs(R.arenaMotion(e).near-near)>.2);
+ const quiet=R.flightPose(e,true);assert.equal(quiet.near,0);assert.equal(quiet.bank,0);assert.equal(quiet.lift,32);
+ P.Vulture.tickVisuals(e,.05);assert(e.rigFlight>0&&e.rigFlight<1);
+ for(let i=0;i<10;i++)P.Vulture.tickVisuals(e,.05);assert.equal(e.rigFlight,0);assert.equal(R.flightPose(e).lift,0);
+ const before=JSON.stringify(e);R.flightPose(e);assert.equal(JSON.stringify(e),before);
+});
