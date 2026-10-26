@@ -85,10 +85,6 @@ module.exports = [
     "output": "js/gacha.js"
   },
   {
-    "source": "src/systems/kingteka-arsenal.js",
-    "output": "js/kingteka-arsenal.js"
-  },
-  {
     "source": "src/entities/actors.js",
     "output": "js/entities.js"
   },
@@ -293,6 +289,10 @@ module.exports = [
   {
     "source": "src/rendering/court-art.js",
     "output": "js/court-art.js"
+  },
+  {
+    "source": "src/systems/kingteka-arsenal.js",
+    "output": "js/kingteka-arsenal.js"
   },
   {
     "source": "src/systems/animal-ultimates.js",
