@@ -68,6 +68,10 @@ module.exports = [
     "output": "js/supplies.js"
   },
   {
+    "source": "src/systems/gacha.js",
+    "output": "js/gacha.js"
+  },
+  {
     "source": "src/entities/actors.js",
     "output": "js/entities.js"
   },
@@ -116,8 +120,15 @@ module.exports = [
     "output": "js/vulture-impact.js"
   },
   {
+    "source": "src/systems/vulture-phase2.js",
+    "output": "js/vulture-phase2.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
+  },
+  {
+    "source": "src/rendering/path-details.js", "output": "js/path-details.js"
   },
   {
     "source": "src/systems/chunks.js",
@@ -144,7 +155,8 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
-    "source": "src/rendering/machu-art.js", "output": "js/machu-art.js"
+    "source": "src/rendering/machu-art.js",
+    "output": "js/machu-art.js"
   },
   {
     "source": "src/rendering/campo-art.js",
