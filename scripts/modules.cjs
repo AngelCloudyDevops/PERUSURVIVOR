@@ -48,6 +48,10 @@ module.exports = [
     "output": "js/enemy-art.js"
   },
   {
+    "source": "src/systems/minion-evolution.js",
+    "output": "js/minion-evolution.js"
+  },
+  {
     "source": "src/rendering/power-effects.js",
     "output": "js/power-fx.js"
   },
@@ -102,6 +106,9 @@ module.exports = [
   {
     "source": "src/rendering/vulture-strike-art.js",
     "output": "js/vulture-strike-art.js"
+  },
+  {
+    "source": "src/systems/vulture-impact.js", "output": "js/vulture-impact.js"
   },
   {
     "source": "src/systems/encounters.js",

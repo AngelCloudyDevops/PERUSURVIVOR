@@ -237,7 +237,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - alberto: **Órbita presidencial** — Seis bandas giran alrededor y una onda golpea el centro.
 - keiko: **Abanico solar** — Cuatro abanicos salen en cruz, regresan y dejan un remolino junto al objetivo.
 - ollanta: **Marcha del comando** — Un cono largo y estrecho empuja; dos ondas laterales cubren los flancos.
-- kingteka: **Escopeta Contra** — Tres disparos concentrados de alta velocidad perforan ocho rivales.
+- kingteka: **Escopeta Contra** — Tres disparos concentrados, tres penetraciones base y pérdida de fuerza a distancia.
 - shaka: **Tornado bananero** — Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.
 - najasor: **Marea CPEZ** — Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
@@ -287,6 +287,7 @@ Arte Tribunal v2: sprites dedicados de juez, seis minions sentados de espaldas y
 La portada muestra «Pulsa para empezar» sobre el escenario con nueve personajes decorativos en movimiento. Al entrar, el causa elegido ocupa el centro y una navegación lateral abre secciones independientes: Jugar (mapas y comienzo), Causas (colección y ficha con atributos), Habilidades (rama y comparación animada), Cooperativo (salas existentes) y Ajustes (sonido, controles y prácticas). En móvil la navegación se sitúa abajo. No introduce cuentas, monedas persistentes ni un gacha ficticio. El fondo y los retratos son cosméticos: no avanzan la partida, no crean enemigos ni consumen recursos. Se reutilizan los atlas cargados y se respeta movimiento reducido. El mejor récord mostrado sigue siendo local.
 StreetArt intercepta bench/lamp en Terrain solo en Campo y Plaza fuera de arenas. Carga un atlas compartido y crea una única superficie nocturna para el vidrio; una llamada de imagen en estados estables y dos en transición. Reutiliza el halo de suelo existente en DayNight, el descarte y orden de World. Sin nuevas entidades ni cambios de física. Auditoría y empaquetado: street-furniture-audit.json y pack-street-furniture.py.
 
+VultureImpact comparte sprite de pluma entre escena y proyectiles, historial de estela acotado y rotura única con máximo 300 efectos. Las cicatrices son datos de encounter (no colisionadores), se crean una vez desde introTick y se limpian al salir. World dibuja la arena congelada en los últimos 0,35 s para la transición por plumas; la escena se desvanece y el jefe usa el mismo atlas de recuperación. El ritmo de ráfagas y su aviso se calculan desde ultimateTime, sin temporizadores reales.
 
 GardenArt intercepta tree/planter en Terrain para Campo y Plaza fuera de arenas. Un atlas con cuatro celdas: dos árboles y dos jardineras. Cada árbol se divide sobre el tronco en dos recortes del mismo recurso: inferior fijo, superior con giro leve anclado a la unión. Sin filtros, partículas, nuevas entidades ni caché por objeto. Una llamada por jardinera; orientación según w/h. Auditoría y empaquetado: trees-planters-audit.json y pack-trees-planters.py.
 
@@ -309,9 +310,18 @@ Minibosses.hud crea una sola vez el panel de vida dentro de #hud y actualiza sus
 EnemyArt.labelTop calcula el borde superior de la pose dibujada, a partir del cuadro de caminata o del atlas y sus transformaciones de elevación, giro y escala. World no dibuja nombres de minions; Loot usa ese límite únicamente para apilar los datos del portador. La geometría de colisión y los ataques no cambian.
 
 
+Combat.view/onScreen/target separa visibilidad de puntería del margen de renderizado; Game.start invalida la vista anterior. Cooperativo transporta una vista relativa acotada en input, validada en recepción y simulación, y conserva la última válida. Combat.server usa aimView por jugador en vez de World.view. Cada proyectil de escopeta serializa origen y curva de daño; shotDamage se aplica al barrido inicial y a impactos durante el vuelo. Minions, cartas y búsqueda reutilizan la selección visible. La auditoría aislada de 18 ataques no modifica partidas ni se publica como herramienta de QA.
+
+
 CampoArt intercepta landmark/picnic en Terrain solo para Campo fuera de arenas. Carga un atlas de tres celdas y selecciona el picnic de forma determinista por coordenadas. Una llamada de imagen y una sombra pequeña por objeto; reutiliza descarte/orden de World sin nuevas entidades, temporizadores ni estado por sector. Auditoría y empaquetado: campo-landmarks-audit.json y pack-campo-landmarks.py.
 
 El HUD conserva IDs y sistemas existentes. UI.hud actualiza nombre, nivel y la barra accesible de vida; XP expone valores ARIA. CSS posiciona las zonas del HUD de forma independiente, manteniendo el contenedor único para ocultar todo en menú y cinemáticas.
 
 
 Ajuste Tribunal: entrada comparte el layout de Kingteka (40 % ancho, 82 % alto, origen vertical 8 %) y dura 1,3 s; tribunal 3,4 s, total 4,7 s. La mano del juez se deforma desde el codo y el mango usa exactamente el mismo punto de agarre, tambien en el acercamiento. El impacto se calibra contra el bloque de madera. Fujimori sentado levanta el dedo durante la frase y lo baja antes del golpe; la burbuja queda al lado para no ocultar el gesto.
+UI.show admite metadatos card opcionales y crea nodos accesibles para tarjetas de nivel. UI.upgradeCard deriva icono y categoría del ID de la opción. Progression y el cliente cooperativo comparten el renderizador; otros diálogos restablecen el estilo habitual.
+
+El ambiente de Minibosses.environment usa un reloj serializado del enemigo y dibujo acotado sin entidades físicas; respeta pausa y movimiento reducido. La recuperación y su multiplicador de daño comparten simulación individual/cooperativa. groundWave distingue el golpe del huaco de otros pisotones y evita aplicar cobertura a su daño radial.
+## Rangos de minions
+`systems/minion-evolution.js` selecciona y aplica una sola vez `evolution` (0–2) al crear un minion. El campo y los parámetros de embestida son serializables; navegador y Simulation comparten los modificadores de daño por contacto y de ataques. Difficulty compone primero la etapa de nacimiento y después el rango; `attackProfile` conserva ese resultado al preparar el ataque. Las cuotas globales y la duración de los avisos permanecen.
+EnemyArt dibuja el aro fuera de la transformación del cuerpo y la armadura bajo la misma transformación de caminar, ataque o daño. Reutiliza los cuadros completos y copia el rango a los efectos de muerte. No añade láminas, recorta extremidades ni pinta etiquetas. Las pruebas antiguas de patrones básicos fijan rango 0; las pruebas de evolución controlan los umbrales y validan los tres rangos, seis ataques, cupos, animaciones y cooperativo.
