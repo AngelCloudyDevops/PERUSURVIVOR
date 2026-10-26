@@ -51,3 +51,18 @@ test('Derrotas propias: cuerpo, fragmentos, pausa y resultado diferido',()=>{
   let finished=0;P.Lab.finish=()=>finished++;s.mode='play';M.tick(1.5);assert.equal(finished,0);M.tick(.8);assert.equal(finished,1);M.tick(.1);assert.equal(finished,1);
  }
 });
+
+test('Flecha de minijefe: ocho sentidos, zoom, regreso, muerte y arena',()=>{
+ const {P}=new Simulation('campo',[0,6]),M=P.Minibosses,s=P.state,e=M.create('campo',{x:0,y:0});s.enemies=[e];s.mode='play';assert.equal(M.edgePoint(e,0,0,1280,720,1.3),null);
+ for(const [x,y] of [[3000,0],[-3000,0],[0,3000],[0,-3000],[3000,3000],[-3000,-3000],[3000,-3000],[-3000,3000]])for(const [w,h,z] of [[1280,720,1.3],[390,844,.95]]){e.x=x;e.y=y;const q=M.edgePoint(e,0,0,w,h,z);assert(q);assert(q.x>=79&&q.x<=w-79);assert(q.y>=0&&q.y<=h);assert(Math.cos(q.angle*Math.PI/180)*x+Math.sin(q.angle*Math.PI/180)*y>0)}
+ e.x=3000;M.indicator(0,0,390,844,.95);assert.equal(M.arrow.hidden,false);e.x=e.y=0;M.indicator(0,0,390,844,.95);assert(M.arrow.hidden);e.x=3000;s.encounter={};M.indicator(0,0,390,844,.95);assert(M.arrow.hidden);s.encounter=null;e.hp=0;M.indicator(0,0,390,844,.95);assert(M.arrow.hidden);
+});
+test('Audio propio: eventos serializados únicos y pausa sin repetición',()=>{
+ const {P}=new Simulation('campo',[0,6]),M=P.Minibosses,s=P.state,calls=[];P.Audio.mini=(map,event)=>calls.push(map+':'+event);s.mode='play';
+ for(const map of ['campo','plaza','machu']){const e=M.create(map,{x:0,y:0});s.enemies=[e];s.effects=[];M.soundEvents();M.warn(e,M.primary(e));M.soundEvents();M.soundEvents();assert.equal(calls.filter(c=>c===map+':attack').length,1);e.chainLeft=0;M.recover(e);s.mode='pause';M.soundEvents();assert(!calls.includes(map+':recover'));s.mode='play';M.soundEvents();assert(calls.includes(map+':recover'));s.enemies=[];s.effects=[{...e,kind:'miniboss-death'}];M.soundEvents();M.soundEvents();assert.equal(calls.filter(c=>c===map+':defeat').length,1)}
+});
+test('Motivos sintetizados distintos y silencio respetado',()=>{
+ const {P}=new Simulation('campo',[0,6]),a=P.Audio,notes=[];a.ctx={currentTime:1};a.muted=false;a.blurred=false;P.state.mode='play';a.tone=(...n)=>notes.push(n);let time=1;
+ for(const map of ['campo','plaza','machu'])for(const event of ['entry','attack','recover','defeat']){a.ctx.currentTime=time++;const before=notes.length;a.mini(map,event);assert(notes.length>before)}
+ assert(new Set(notes.map(n=>n[0])).size>8);const count=notes.length;a.muted=true;a.mini('campo','entry');assert.equal(notes.length,count);a.muted=false;P.state.mode='pause';a.mini('plaza','defeat');assert.equal(notes.length,count);
+});

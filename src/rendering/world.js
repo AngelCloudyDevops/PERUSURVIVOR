@@ -16,5 +16,5 @@ for(const shots of [s.shots,s.danger])for(const shot of shots)if(this.visible(sh
 if(p.attack==='orbit')P.FX.orbit(ctx,p);
 for(const effect of s.effects)if(this.visible(effect.x,effect.y,(effect.r||0)+256))P.FX.effect(ctx,effect);P.Vulture.effects(ctx);P.Ultimate.draw(ctx)
 }
-ctx.restore();P.VultureUltimate.overlay();const g=ctx.createRadialGradient(w/2,h/2,150,w/2,h/2,Math.max(w,h)*.7);g.addColorStop(0,'#14203200');g.addColorStop(1,'#14203299');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);if(playing&&!s.encounter)P.Terrain.minimap(ctx,w,h)}
+ctx.restore();P.VultureUltimate.overlay();const g=ctx.createRadialGradient(w/2,h/2,150,w/2,h/2,Math.max(w,h)*.7);g.addColorStop(0,'#14203200');g.addColorStop(1,'#14203299');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);if(playing&&!s.encounter)P.Terrain.minimap(ctx,w,h);P.Minibosses.indicator(cx,cy,w,h,zoom)}
 };
