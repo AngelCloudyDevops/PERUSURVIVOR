@@ -126,6 +126,11 @@ El suelo del combate usa texturas extraídas de los fondos originales y caminos 
 - La fama, monedas, equipo, estado de cajas y cofres pertenecen a la partida; se reinician al comenzar otra. Esta versión no incluye una tienda ni guardado permanente de monedas.
 - El HUD muestra monedas, objeto equipado e icono, y avisos breves de recogida. Los cofres abiertos permanecen visibles, pero vacíos. No hay cofres ni obstáculos del mapa de origen dentro de la arena del portal.
 
+## Objetos de Dota 2 durante la partida
+Los objetos aparecen como opciones entre las tres cartas reveladas al subir de nivel y duran solo esa partida. Inventario separado del accesorio de cofres: cuatro espacios, sin duplicados. Elegir una evolución reemplaza la versión base en el mismo espacio; los objetos no se compran ni se guardan entre partidas. Las cartas base comienzan desde nivel 2; Magic Wand puede aparecer desde nivel 4 y las evoluciones de botas y Blink Dagger desde nivel 5. La selección usa rareza para ponderar la aparición.
+
+Familias iniciales: Boots of Speed → Phase Boots, Power Treads, Tranquil Boots, Arcane Boots o Boots of Travel; Magic Stick → Magic Wand; Blink Dagger → Swift Blink, Arcane Blink u Overwhelming Blink. Las ramas son excluyentes dentro de cada familia. Efectos adaptados: botas mejoran velocidad, cadencia, curación fuera de combate o alcance de recogida; Magic Stick/Wand acumula cargas al recibir daño y las convierte automáticamente en curación al bajar de vida; Blink y sus evoluciones realizan un escape automático al sufrir un golpe fuerte con poca vida, con recarga. Son adaptaciones propias, no una reproducción exacta de las estadísticas de Dota 2. El inventario individual se muestra en el HUD; el cooperativo aún no incorpora estos objetos.
+
 
 ## Poderes de personajes · primera versión
 Se añaden Cerdito VTuber, Sustento, Cevichero y La G5 (18 personajes en total), y se actualizan los poderes de Kingteka, Ñajasor, Charles, Shakadoto y Fuzo.
