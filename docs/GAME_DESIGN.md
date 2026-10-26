@@ -281,6 +281,8 @@ Garúa solo en Campo de Marte: 1:00–1:25, 2:30–2:55 y 4:00–4:25, con trans
 Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
 
 Cinemática de Lima: 3 s con azotea dedicada y visible, cámara lenta, cuerpo articulado continuo (sin cambiar de pose), primer plano del ojo que se retira, grito que levanta una bandada y aleteo que desplaza polvo/plumas y sacude antenas. Grietas solo desde las puntas de las alas al final; se eliminan los rayos radiales. Conserva pausa total y 0,7 s de aviso al regresar. Movimiento reducido conserva fondo y ave estáticos.
+### Ataques animados de minijefes
+Fiscalizador: anticipación hacia atrás, cuerpo inclinado y estela de figuras completas durante la embestida; polvo al frenar o chocar. Paloma: elevación, alas cerradas/abiertas en preparación y aleteo de ejecución, plumas sueltas y arcos de viento. Huaco: levanta el cuerpo con los puños, se comprime al golpear y produce polvo, grietas y onda decorativa. Los avisos, daño, velocidades, alcance y cadencias anteriores no cambian. Movimiento reducido omite las transformaciones y partículas.
 
 El clima episódico se extiende a Plaza de Armas (garúa y reflejos sutiles) y Machu Picchu (bancos de niebla de baja opacidad). Mantiene episodios de 25 s y pausas despejadas de 65 s, sin efectos físicos. Machu deja de dibujar su niebla permanente para evitar sumarla a la episódica.
 
@@ -291,3 +293,6 @@ El reloj de mapa controla ocho etapas; pausa, mejoras y arenas de jefes no adela
 Los límites de población suben de 16 a 80, los proyectiles de 0 a 40 y los ataques simultáneos de 0 a 8. Los pesados aparecen gradualmente (0–25 %) y conservan su resistencia parcial al cargar. El laboratorio y la prueba de rendimiento muestran el repertorio completo.
 Los 18 jugables disponen de seis cuerpos completos de ataque: armas apuntadas, lanzamientos, abanico, megáfono, alas, grito y patada. Los ataques en marcha siguen la fase de los pies; en reposo muestran preparación, ejecución y recuperación. La G5 ejecuta seis fases de patada. La dirección de la pose sigue la puntería. No cambian daño, alcance ni proyectiles jugables.
 
+
+
+Aleteo fluido: alas articuladas sobre la pose abierta del atlas existente, con subida y bajada continuas a 2,8 ciclos por segundo, ligera flexion de plumas, balanceo del cuerpo y sombra acompasada. Cada gallinazo tiene una fase propia estable, sin sincronizar toda la bandada. El panel de Kingteka comparte el mismo dibujo. Movimiento reducido mantiene alas y cuerpo fijos. No cambia dano, velocidad ni colisiones.

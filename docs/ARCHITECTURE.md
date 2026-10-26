@@ -197,6 +197,8 @@ Weather.sample deriva la intensidad de mapTime, sin temporizadores ni acumulaci�
 Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
 
 VultureScene renderiza a media resolución con 160 triángulos de malla articulada sobre un único sprite, con deformación continua y pies anclados. Efectos deterministas derivados del reloj: 36 gotas, 10 aves de fondo, 24 motas y 16 plumas; no crean entidades ni temporizadores. Fondo dedicado gallinazo-lima-cinematic-v1.png, fallback a azotea anterior si falla. VultureUltimate mantiene la lógica de combate y la duración de 3 s.
+### Poses y efectos de ataque de minijefes
+Minibosses.frame/pose derivan el dibujo de warning, charge y recovery. attackPulse y miniFx avanzan solo desde move con dt; miniFx tiene máximo 32 elementos por jefe y contiene datos serializables para cooperativo. Las estelas dibujan el sprite completo; la animación nunca modifica colisiones. Movimiento reducido elimina partículas y usa transformaciones neutras. Se reutilizan los cuatro cuadros del atlas sin imágenes adicionales.
 
 Weather despacha draw por mapa: gotas compartidas, reflections con hasta 36 marcas en Plaza y fog con cuatro bancos rasterizados en Machu. DayNight consulta Weather.label. Ambient deja de invocar la niebla fija de Machu.
 
@@ -207,3 +209,6 @@ El ambulante tiene un sprite pixel art de 48×52 con dos cuadros de animación: 
 `rendering/player-attack-art.js` se carga después de WalkArt. Combat registra `castStarted` y `castPoseDuration` tras validar el objetivo; el render selecciona la fase de caminar para ataques en movimiento o seis fases temporales para reposo y patada. Son campos serializables de jugador. WalkArt carga y empaqueta las 18 láminas adicionales bajo IDs `attack-<personaje>` con anclajes de cabeza y suelo, normaliza escala por resolución de origen y conserva en caché el par caminar/atacar del jugador y aliados. El inicio sigue siendo síncrono y la interfaz espera los recursos elegidos.
 Los originales PNG de image_gen se conservan en `public/assets/attacks/`; el juego usa WebP sin pérdida a 288 px, reducido mecánicamente con vecino más cercano. Prompts y hashes: `docs/attack-art-prompts.json` y `docs/attack-art-audit.json`. El build omite PNG duplicados. No se distribuyen vistas ni utilidades locales de QA.
 
+
+
+Aleteo fluido: alas articuladas sobre la pose abierta del atlas existente, con subida y bajada continuas a 2,8 ciclos por segundo, ligera flexion de plumas, balanceo del cuerpo y sombra acompasada. Cada gallinazo tiene una fase propia estable, sin sincronizar toda la bandada. El panel de Kingteka comparte el mismo dibujo. Movimiento reducido mantiene alas y cuerpo fijos. No cambia dano, velocidad ni colisiones.
