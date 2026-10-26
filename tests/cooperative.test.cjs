@@ -60,7 +60,7 @@ test('Salas reales: código privado, máximo dos, autoridad, reconexión, limpie
  let now=0;const app=createCoopServer({autoTick:false,now:()=>now});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const port=app.server.address().port,origin='http://127.0.0.1:'+port,url='ws://127.0.0.1:'+port+'/coop',clients=[];
  async function connect(){const ws=new WebSocket(url,{origin});const receive=mailbox(ws);clients.push(ws);await once(ws,'open');return {ws,receive,send:obj=>ws.send(JSON.stringify(obj))}}
  try{
-  const a=await connect();a.send({type:'create',protocol:2,map:'plaza',character:0});const joined=await a.receive('joined');assert.match(joined.code,/^[A-F0-9]{8}$/);
+  const a=await connect();assert.match(a.ws.extensions,/permessage-deflate/);a.send({type:'create',protocol:2,map:'plaza',character:0});const joined=await a.receive('joined');assert.match(joined.code,/^[A-F0-9]{8}$/);
   const b=await connect();b.send({type:'join',protocol:2,code:joined.code,character:18});const bj=await b.receive('joined');assert.equal(bj.slot,1);
   const third=await connect();third.send({type:'join',protocol:2,code:joined.code,character:1});assert.match((await third.receive('error')).message,/completa/);
   a.send({type:'ready',ready:true,revision:2});b.send({type:'ready',ready:true,revision:2});await new Promise(r=>setTimeout(r,20));b.send({type:'start'});assert.equal((await b.receive('error')).type,'error');a.send({type:'start'});const stateA=await a.receive('state'),stateB=await b.receive('state');assert.deepEqual(stateA.players,stateB.players);assert.equal(stateA.players[1].id,'makanaky');
