@@ -14,7 +14,7 @@ for(const actor of actors){if(actor.marketStall){P.Market.draw(ctx);continue}if(
 const e=actor;if(e.miniboss){P.Minibosses.draw(ctx,e);continue}if(e.mimic){P.Market.drawMimic(ctx,e);continue}if(e.vultureMinion&&P.Vulture.draw(ctx,e))continue;if(P.Ultimate.bird(ctx,e))continue;if(e.mapBoss){P.Encounters.drawBoss(ctx,e);continue}if(e.boss){P.Sprites.draw(ctx,e.x,e.y,43,P.Data.boss,e.castUntil>s.elapsed?3:1+Math.floor(s.elapsed*6)%2,p.x<e.x)}else if(!P.EnemyArt.draw(ctx,e))P.Entities.portrait(ctx,e.x,e.y,e.r,{look:e.boss?'headset':'cap',color:e.hit>0?'#fff':e.boss?'#bc66a0':e.heavy?'#8c7caa':'#667c97',skin:e.boss?'#a89bc3':'#9dabb7'});P.Loot.drawKeeper(ctx,e);if(e.boss){ctx.fillStyle='#182137';ctx.font='bold 18px monospace';ctx.textAlign='center';ctx.fillText('ELZEEIN',e.x,e.y-e.r-10)}if(e.boss){ctx.fillStyle='#303248';ctx.fillRect(e.x-50,e.y-65,100,6);ctx.fillStyle='#f0a75e';ctx.fillRect(e.x-50,e.y-65,100*Math.max(0,e.hp/e.max),6)}}
 for(const shots of [s.shots,s.danger])for(const shot of shots)if(this.visible(shot.x,shot.y,(shot.radius||0)+256))P.FX.projectile(ctx,shot);
 if(p.attack==='orbit')P.FX.orbit(ctx,p);
-for(const effect of s.effects)if(this.visible(effect.x,effect.y,(effect.r||0)+256))P.FX.effect(ctx,effect);P.Vulture.effects(ctx);P.Ultimate.draw(ctx)
+for(const effect of s.effects)if(this.visible(effect.x,effect.y,(effect.r||0)+256))P.FX.effect(ctx,effect);P.Vulture.effects(ctx);P.Ultimate.draw(ctx);P.Minibosses.foreground(ctx)
 }
 ctx.restore();P.VultureUltimate.overlay();const g=ctx.createRadialGradient(w/2,h/2,150,w/2,h/2,Math.max(w,h)*.7);g.addColorStop(0,'#14203200');g.addColorStop(1,'#14203299');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);if(playing&&!s.encounter)P.Terrain.minimap(ctx,w,h);P.Minibosses.indicator(cx,cy,w,h,zoom)}
 };

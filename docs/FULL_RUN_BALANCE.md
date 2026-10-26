@@ -49,12 +49,12 @@ Nueve partidas por personaje y una única política no bastan para declarar equi
 | plaza | 54 | 54 | 47 | 3 | 4 | 174/174 | 8.3 |
 | machu | 54 | 54 | 51 | 2 | 1 | 176/177 | 10.3 |
 
-## Lectura del balance y decisi�n
+## Lectura del balance y decisión
 
-160/162 sobrevivieron a 300 s; 143 victorias finales, 9 derrotas y 10 l�mites con vida. Se abatieron 526/529 minijefes. Hubo 2 derrotas antes de aparecer el jefe final.
+160/162 sobrevivieron a 300 s; 143 victorias finales, 9 derrotas y 10 límites con vida. Se abatieron 526/529 minijefes. Hubo 2 derrotas antes de aparecer el jefe final.
 
-Los m�s r�pidos contra minijefes fueron Sustento: 5.1 s; Charles: 5.2 s; Fuzo: 6.2 s. El m�s lento fue Paloma del Centro: 14.3 s. Es una diferencia de ritmo real en esta pol�tica, aunque no equivale a superioridad en todos los aspectos.
+Los más rápidos contra minijefes fueron Sustento: 5.1 s; Charles: 5.2 s; Fuzo: 6.2 s. El más lento fue Paloma del Centro: 14.3 s. Es una diferencia de ritmo real en esta política, aunque no equivale a superioridad en todos los aspectos.
 
-Alberto y Cevichero tuvieron una derrota temprana cada uno en Campo. Cristorata y Cirilo ganaron 6/9 y sus derrotas ocurrieron despu�s de 300 s: el foco de seguimiento es la pelea final, no aumentarles da�o contra minions por defecto. Kingteka gan� 8/9 y abati� los 30 minijefes aparecidos, con mediana de 6,6 s usando su ulti disponible; esta muestra no lo muestra como ganador universal.
+Alberto y Cevichero tuvieron una derrota temprana cada uno en Campo. Cristorata y Cirilo ganaron 6/9 y sus derrotas ocurrieron después de 300 s: el foco de seguimiento es la pelea final, no aumentarles daño contra minions por defecto. Kingteka ganó 8/9 y abatió los 30 minijefes aparecidos, con mediana de 6,6 s usando su ulti disponible; esta muestra no lo muestra como ganador universal.
 
-La supervivencia de superficie es parecida, pero no se declara balance definitivo: Sustento y Charles conservan una ventaja de rapidez contra minijefes y la tasa de abatidos global es muy alta para este bot. Antes de endurecer minijefes o reducir otra vez esos personajes, conviene contrastar con otra pol�tica y partidas humanas que incluyan esquiva y lectura de avisos. No se ajustaron estad�sticas en esta entrega: se publica la evidencia completa y los puntos concretos de seguimiento.
+La supervivencia de superficie es parecida, pero no se declara balance definitivo: Sustento y Charles conservan una ventaja de rapidez contra minijefes y la tasa de abatidos global es muy alta para este bot. Antes de endurecer minijefes o reducir otra vez esos personajes, conviene contrastar con otra política y partidas humanas que incluyan esquiva y lectura de avisos. No se ajustaron estadísticas en esta entrega: se publica la evidencia completa y los puntos concretos de seguimiento.
