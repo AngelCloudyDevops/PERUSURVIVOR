@@ -40,6 +40,11 @@ public/assets/arena-cover/cover-atlas-v1.png: atlas original generado con image_
 ## Compresión sin pérdida
 Los PNG originales se conservan como fuentes. El navegador y el build usan copias WebP lossless; el build omite los PNG que tienen una copia WebP para evitar duplicar el paquete. scripts/optimize-assets.py (Pillow con soporte WebP) regenera las copias y compara cada byte RGBA, incluidas transparencias. Ejecutar con --check verifica las copias sin regenerarlas. docs/asset-optimization.json guarda tamaños y SHA-256 de fuentes, salidas y píxeles. Los mapas completos y atlas mantienen resolución y píxeles; únicamente las miniaturas del selector tienen una versión de 384×256, suficiente para su tamaño de presentación.
 
+Para añadir una imagen sin regenerar los demás recursos, ejecutar `python scripts/optimize-assets.py --only public/assets/ruta/archivo.png`; agrega su WebP lossless y actualiza el manifiesto existente. El control integral continúa siendo `python scripts/optimize-assets.py --check`.
+
+## Cartas full art de Kingteka
+`public/assets/cards/` conserva las ilustraciones full art PNG originales y sus copias WebP para las cartas de escopeta, Gallinazo y golpe de cuerpo. El arte llena el frente de la carta y una placa inferior mantiene legibles el nombre y el efecto. Prompts y poses: `docs/kingteka-card-art-prompts.json`.
+
 Gallinazo del Caos: public/assets/bosses/gallinazo-atlas-v1.png, seis poses en tres columnas y dos filas, fondo alfa. Techos de Lima: public/assets/arenas/rooftops-v1.png y su versión nocturna coherente public/assets/arenas/rooftops-night-v2.png / .webp. La versión nocturna fue creada con image_gen integrado tomando la azotea original como geometría y el panorama de Lima como referencia cromática; conserva la perspectiva elevada y evita edificios debajo del piso jugable. El panorama experimental permanece como fuente archivada y no se distribuye. Se conserva el dibujo de los jefes anteriores.
 
 ## Caminatas completas v1
