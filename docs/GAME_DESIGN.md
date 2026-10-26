@@ -527,6 +527,8 @@ La colección se ordena por rareza (SSR→SR→R→C), estrellas o copias dispon
 Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Paloma en Plaza de Armas (uno activo). Abanico de tres ondas bloqueables y pulso cercano de 110 unidades, ambos avisados; al 50 % encadena dos abanicos. Conserva navegación, agotamiento, bonus, resumen, cobertura y derrota sin daño. Cofre: Silbato del caos o 50 monedas. Disponible directamente en Probar jefes. Arte nuevo de cuatro poses, sin sustituir personajes existentes.
 
 
+Contacto de ultis animales: los cuyes rebotan ligeramente al golpear y dejan polvo breve; las palomas inclinan el cuerpo, despliegan alas y sueltan pocas plumas al recuperar altura. Los rivales normales reaccionan según el lado del grupo atacante. Pisadas por grupo, sin sonidos superpuestos en cada criatura. Daño, empuje real, alcance y duración sin cambios.
+
 Trayectorias de ultis: cuyes en cuatro grupos de tres, con entradas por lados diferentes y cruce hacia enemigos cercanos. Las palomas planean, pican hacia objetivos del alcance y recuperan altura; sin objetivos solo planean. Se conserva el daño por pulsos, radio, duración y protección. No reaparecen círculos de alcance.
 
 Las ultis animales sustituyen las líneas de alcance y el recuadro amarillo por polvo, plumas y pequeños impactos. Los cuyes corren con seis pasos y las palomas aletean con poses de vuelo, fases desfasadas y trayectorias sin reinicios bruscos. La coraza mantiene su etiqueta; sus reglas y el daño permanecen iguales.
