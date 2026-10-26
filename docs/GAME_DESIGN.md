@@ -1,5 +1,7 @@
 # Documento de diseño — PERUSURVIVOR
 
+Mantener el combo recorre siempre los cuatro golpes, aunque fallen o no queden rivales. Fallar corta la racha GA, sin reiniciar la secuencia visual. El botón de combo apunta al frente; ratón/canvas conservan la puntería manual.
+
 Dominio: mantener clic/Espacio encadena jab izquierdo → jab derecho → cruzado izquierdo → uppercut derecho. Duración 0,34/0,34/0,46/0,60 s; daño al contacto (40 %), con 45 ms de pausa de impacto. Makanaky avanza automáticamente, da pasos y reduce la zancada al golpear; minions fijos en su fila, sin caminata de aproximación. Se conserva la tarjeta previa, el cambio de cámara y la recarga del laboratorio.
 
 Las tarjetas de ulti siguen el contrato visual de docs/ULTIMATE_ART.md: 40 % × 82 %, borde izquierdo x=0, entrada 1,3 s y retrato dedicado. Makanaky muestra la tarjeta antes del dominio y usa seis poses cartoon pixel art de espalda para tercera persona; las reglas de combate y carga no cambian.
