@@ -237,7 +237,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - alberto: **Órbita presidencial** — Seis bandas giran alrededor y una onda golpea el centro.
 - keiko: **Abanico solar** — Cuatro abanicos salen en cruz, regresan y dejan un remolino junto al objetivo.
 - ollanta: **Marcha del comando** — Un cono largo y estrecho empuja; dos ondas laterales cubren los flancos.
-- kingteka: **Escopeta Contra** — Tres disparos concentrados de alta velocidad perforan ocho rivales.
+- kingteka: **Escopeta Contra** — Tres disparos concentrados, tres penetraciones base y pérdida de fuerza a distancia.
 - shaka: **Tornado bananero** — Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.
 - najasor: **Marea CPEZ** — Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
@@ -310,6 +310,9 @@ Minibosses.hud crea una sola vez el panel de vida dentro de #hud y actualiza sus
 EnemyArt.labelTop calcula el borde superior de la pose dibujada, a partir del cuadro de caminata o del atlas y sus transformaciones de elevación, giro y escala. World no dibuja nombres de minions; Loot usa ese límite únicamente para apilar los datos del portador. La geometría de colisión y los ataques no cambian.
 
 
+Combat.view/onScreen/target separa visibilidad de puntería del margen de renderizado; Game.start invalida la vista anterior. Cooperativo transporta una vista relativa acotada en input, validada en recepción y simulación, y conserva la última válida. Combat.server usa aimView por jugador en vez de World.view. Cada proyectil de escopeta serializa origen y curva de daño; shotDamage se aplica al barrido inicial y a impactos durante el vuelo. Minions, cartas y búsqueda reutilizan la selección visible. La auditoría aislada de 18 ataques no modifica partidas ni se publica como herramienta de QA.
+
+
 CampoArt intercepta landmark/picnic en Terrain solo para Campo fuera de arenas. Carga un atlas de tres celdas y selecciona el picnic de forma determinista por coordenadas. Una llamada de imagen y una sombra pequeña por objeto; reutiliza descarte/orden de World sin nuevas entidades, temporizadores ni estado por sector. Auditoría y empaquetado: campo-landmarks-audit.json y pack-campo-landmarks.py.
 
 El HUD conserva IDs y sistemas existentes. UI.hud actualiza nombre, nivel y la barra accesible de vida; XP expone valores ARIA. CSS posiciona las zonas del HUD de forma independiente, manteniendo el contenedor único para ocultar todo en menú y cinemáticas.
@@ -320,3 +323,9 @@ El monedero permanente compra unidades de Lonchera del causa (20: +25 vida máxi
 La mochila es compartida entre personajes, tiene hasta 99 unidades por objeto y permite preparar como máximo tres tipos distintos, una unidad por tipo. Preparar, quitar o cambiar de mapa no gasta objetos. Al comenzar el individual normal se confirma un consumo atómico, se limpia la selección preparada y se aplican sus efectos una sola vez, después de las mejoras permanentes. Cada partida tiene un recibo de consumo para evitar descuentos duplicados. No se consumen en cooperativo, prácticas, laboratorio ni rendimiento; permanecen preparados para la siguiente partida individual.
 
 El esquema local v2 incorpora inventario, preparados y recibos, leyendo también los guardados v1 y conservando saldo, mejoras y marcas. Mantiene la clave local existente; al escribir migra a v2. Las versiones antiguas rechazan ese formato en lugar de sobrescribir la mochila. P.Supply reutiliza P.Meta.transaction y su bloqueo entre pestañas; compra, preparación y consumo validan cantidad, saldo, cupos y modo antes de persistir. El juego espera sin avanzar reloj mientras confirma la mochila; un fallo permite reintentar, conservar objetos y jugar o volver al menú. Nada se aplica si el consumo no queda confirmado. No se distribuyen controles de QA.
+UI.show admite metadatos card opcionales y crea nodos accesibles para tarjetas de nivel. UI.upgradeCard deriva icono y categoría del ID de la opción. Progression y el cliente cooperativo comparten el renderizador; otros diálogos restablecen el estilo habitual.
+
+El ambiente de Minibosses.environment usa un reloj serializado del enemigo y dibujo acotado sin entidades físicas; respeta pausa y movimiento reducido. La recuperación y su multiplicador de daño comparten simulación individual/cooperativa. groundWave distingue el golpe del huaco de otros pisotones y evita aplicar cobertura a su daño radial.
+## Rangos de minions
+`systems/minion-evolution.js` selecciona y aplica una sola vez `evolution` (0–2) al crear un minion. El campo y los parámetros de embestida son serializables; navegador y Simulation comparten los modificadores de daño por contacto y de ataques. Difficulty compone primero la etapa de nacimiento y después el rango; `attackProfile` conserva ese resultado al preparar el ataque. Las cuotas globales y la duración de los avisos permanecen.
+EnemyArt dibuja el aro fuera de la transformación del cuerpo y la armadura bajo la misma transformación de caminar, ataque o daño. Reutiliza los cuadros completos y copia el rango a los efectos de muerte. No añade láminas, recorta extremidades ni pinta etiquetas. Las pruebas antiguas de patrones básicos fijan rango 0; las pruebas de evolución controlan los umbrales y validan los tres rangos, seis ataques, cupos, animaciones y cooperativo.

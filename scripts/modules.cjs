@@ -48,6 +48,10 @@ module.exports = [
     "output": "js/enemy-art.js"
   },
   {
+    "source": "src/systems/minion-evolution.js",
+    "output": "js/minion-evolution.js"
+  },
+  {
     "source": "src/rendering/power-effects.js",
     "output": "js/power-fx.js"
   },

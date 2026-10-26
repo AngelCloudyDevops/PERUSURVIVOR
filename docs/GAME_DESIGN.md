@@ -324,7 +324,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - alberto: **Órbita presidencial** — Seis bandas giran alrededor y una onda golpea el centro.
 - keiko: **Abanico solar** — Cuatro abanicos salen en cruz, regresan y dejan un remolino junto al objetivo.
 - ollanta: **Marcha del comando** — Un cono largo y estrecho empuja; dos ondas laterales cubren los flancos.
-- kingteka: **Escopeta Contra** — Tres disparos concentrados de alta velocidad perforan ocho rivales.
+- kingteka: **Escopeta Contra** — Tres disparos concentrados, tres penetraciones base y pérdida de fuerza a distancia.
 - shaka: **Tornado bananero** — Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.
 - najasor: **Marea CPEZ** — Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
@@ -392,6 +392,9 @@ Los minijefes muestran nombre y vida en el HUD superior: una barra con divisor a
 Los minions no muestran nombres, incluidos los pesados y la PNP. Los portadores conservan únicamente su barra de vida y la indicación de llave sobre la cabeza, ajustadas a la pose visible al caminar, atacar o recibir daño.
 
 
+Primera pasada de equilibrio: objetivos visibles dentro del alcance, prioridad a enemigos sobre cajas; proyectiles y áreas activas pueden continuar fuera de pantalla. Minions no inician avisos fuera de vista. Kingteka: 480 de alcance, intervalo 0,78 s, escala 0,6 y caída desde 180 al 35 % máximo; evolución con tres penetraciones base. Cerdito: 400, caída desde 140, daño cercano intacto. Sin aumento global de salud ni cambios de patrones de jefes. Comparación y límites: COMBAT_BALANCE.md.
+
+
 Campo de Marte: monumento de piedra con arco y relieves, más dos variantes de picnic con madera, metal y accesorios. Interpretación estilizada de parque, sin reconstrucción histórica. Mantiene sombra al pie, transparencia detrás del monumento, posiciones y colisiones. Referencia: CAMPO_LANDMARKS.md.
 
 HUD de combate distribuido en los bordes: XP de ancho completo arriba, personaje/nivel/vida a la izquierda, tiempo al centro y habilidad abajo. La información de botín y eventos permanece visible sin un panel central opaco.
@@ -402,3 +405,10 @@ El monedero permanente compra unidades de Lonchera del causa (20: +25 vida máxi
 La mochila es compartida entre personajes, tiene hasta 99 unidades por objeto y permite preparar como máximo tres tipos distintos, una unidad por tipo. Preparar, quitar o cambiar de mapa no gasta objetos. Al comenzar el individual normal se confirma un consumo atómico, se limpia la selección preparada y se aplican sus efectos una sola vez, después de las mejoras permanentes. Cada partida tiene un recibo de consumo para evitar descuentos duplicados. No se consumen en cooperativo, prácticas, laboratorio ni rendimiento; permanecen preparados para la siguiente partida individual.
 
 El esquema local v2 incorpora inventario, preparados y recibos, leyendo también los guardados v1 y conservando saldo, mejoras y marcas. Mantiene la clave local existente; al escribir migra a v2. Las versiones antiguas rechazan ese formato en lugar de sobrescribir la mochila. P.Supply reutiliza P.Meta.transaction y su bloqueo entre pestañas; compra, preparación y consumo validan cantidad, saldo, cupos y modo antes de persistir. El juego espera sin avanzar reloj mientras confirma la mochila; un fallo permite reintentar, conservar objetos y jugar o volver al menú. Nada se aplica si el consumo no queda confirmado. No se distribuyen controles de QA.
+Subida de nivel: tres tarjetas con icono, categoría (nuevo poder, rango, mejora o evolución), nombre y efecto. Paleta azul noche, crema y coral. Se elige una sola opción y la partida continúa; no cambia el sorteo ni el balance. Cooperativo conserva la espera por ambos jugadores.
+
+Minijefes: conos y luces ámbar, sombras/plumas y símbolos/polvo identifican el combate en su mapa, sin añadir colisiones inesperadas. Se desvanecen durante la derrota. Tras terminar el combo hay 1,5 s de agotamiento, sin daño por contacto y con +35 % de daño recibido. Un choque corta la cadena y concede 2 s. Las plumas se bloquean con cobertura; la onda del huaco exige salir del radio avisado, incluso detrás de paredes.
+## Evolución de minions
+Las nuevas oleadas mezclan normales, veteranos y élites según el reloj de mapa: antes de 2:05 solo normales; desde 2:05 un 35 % de veteranos, desde 2:50 un 50 %; desde 3:35 un 20 % de élites y 45 % de veteranos; desde 4:15 un 40 % de cada rango evolucionado y 20 % de normales. El rango queda fijado al nacer, sin transformaciones imprevistas durante una carga. Pausas y arenas no adelantan la progresión. Jefes, minijefes e impostores quedan fuera.
+Veteranos: vida ×1,35, velocidad ×1,06, contacto ×1,15, daño especial ×1,20 y enfriamiento ×0,92. Élites: vida ×1,85, velocidad ×1,12, contacto ×1,30, daño especial ×1,45 y enfriamiento ×0,82. Los avisos previos conservan su duración. Los élites de Pablo lanzan cinco cristales, Uniqua aumenta sus estrellas (tres veterana, cuatro élite), Tasha amplía su pisotón, Austin élite lanza dos zigzags y la PNP élite añade una bala a la ráfaga, hasta cuatro. Tyrone gana velocidad y duración de embestida con el aviso de trayectoria correspondiente. Se respetan cobertura y cupos de amenazas.
+Los veteranos llevan detalles bronce y aro sencillo; los élites llevan armadura violeta y un aro con marcas laterales. Son adornos que acompañan el cuerpo completo, incluidos daño y muerte. Los seis pasos originales y las caras permanecen intactos. No se dibujan nombres ni rangos de texto sobre ellos. Pesados y portadores conservan sus propiedades adicionales.
