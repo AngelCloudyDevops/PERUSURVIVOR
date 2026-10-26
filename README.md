@@ -228,6 +228,9 @@ Campo de Marte responde durante toda la partida, no solamente al desenlace de El
 ## Evoluciones propias y menú de habilidades
 Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución exclusiva, disponible mediante elección con rango 5 y nivel 8. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.
 
+### Prototipo de arsenal de Kingteka
+Kingteka empieza con una escopeta corta de cuatro perdigones; su caída de daño mantiene el impacto cerca. En nivel 2 puede desbloquear Gallinazo, que lanza dos plumas especiales guiadas hacia rivales visibles; en nivel 4 puede desbloquear el golpe de cuerpo, físico, frontal y con empuje. `1`, `2` y `3` cambian de arma durante la partida, también desde los botones del HUD. Durante una subida de nivel, esas teclas siguen escogiendo tarjeta. Los rangos son independientes por arma, mejoran daño, alcance y cadencia y tienen requisitos escalonados; el arma activa recibe la tarjeta de arsenal cada dos niveles. La Escopeta Contra requiere rango 5 y nivel 14. El cambio funciona en cooperativo con autoridad del servidor.
+
 - cristorata: **Directo encadenado** — Dos micrófonos de retorno enlazan hasta tres rivales con sonido.
 - cuy: **Terremoto del cuy** — Una onda completa empuja y deja una zona de temblor a tus pies.
 - paloma: **Corona de plumas** — Doce plumas salen en todas direcciones y atraviesan dos rivales.
@@ -435,3 +438,8 @@ La revelación secreta dura 6,4 s después de la tarjeta: avería y silencio bre
 El Tricéfalo del Caos tiene un 5 % de probabilidad (el 95 % restante se reparte entre los tres dragones normales). Sprite original de tres cabezas, rodillos verde/rojo/azul, grieta, chispas y tres rugidos sintetizados; Cristorata reacciona con ambas manos en la cabeza y el globo ¡¿QUÉ DRAGÓN ES ESEEE?!. Alterna veneno, fuego y rayos y los combina cada ocho pulsos de ataque (dos segundos), conservando ocho segundos de montura.
 
 
+
+## Cooperativo con amigos
+Inicia sesión, abre Cooperativo y agrega a tu amigo por su nombre exacto de usuario. Debe aceptar la solicitud. Invitar crea una sala si hace falta; el destinatario acepta desde Invitaciones para jugar o el aviso del vestíbulo. Cada uno elige un causa desbloqueado, el anfitrión elige mapa y ambos pulsan Estoy listo. Al cargar sus sprites, el anfitrión puede comenzar. Cambiar mapa/personaje o desconectarse borra los listos. Invitaciones válidas durante un minuto. Como invitado se mantiene la entrada por código; no se necesita compartir un enlace.
+
+La revelación secreta encadena un falso resultado Jade, un último giro, vapor y un seguro que salta al dorarse la máquina. Los ojos preceden a cada cabeza con desplazamientos propios; Cristorata retrocede y extiende el brazo durante su frase. El dragón se inclina para la subida y el aleteo final levanta polvo. Todo deriva de la edad autoritativa de la ulti, conserva los 6,4 s y la pausa compartida; movimiento reducido omite sacudidas, vapor y ráfagas. No añade daño ni entidades.

@@ -294,6 +294,10 @@ module.exports = [
   },
   {"source":"src/rendering/sideral-art.js","output":"js/sideral-art.js"},
   {
+    "source": "src/systems/kingteka-arsenal.js",
+    "output": "js/kingteka-arsenal.js"
+  },
+  {
     "source": "src/systems/animal-ultimates.js",
     "output": "js/animal-ultimates.js"
   },
@@ -347,5 +351,5 @@ module.exports = [
   {"source":"src/network/live-gifts.js","output":"js/live-gifts.js"}
 , {source:"src/systems/dragon-ultimate.js",output:"js/dragon-ultimate.js"}
 , {source:"src/rendering/dragon-art.js",output:"js/dragon-art.js"}
-, {source:"src/rendering/dragon-epic.js",output:"js/dragon-epic.js"}
+, {source:"src/rendering/dragon-epic.js",output:"js/dragon-epic.js"}, {source:"src/network/friends.js",output:"js/friends.js"}
 ];
