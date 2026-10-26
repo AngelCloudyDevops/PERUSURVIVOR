@@ -1,0 +1,137 @@
+{
+  "sourceSha": "b07696b3f9ed097a2d76320cd02e9b3be8248eb0",
+  "characters": [
+    {
+      "id": "g5",
+      "name": "La G5",
+      "before": {
+        "id": "g5",
+        "runs": 9,
+        "survived300": 9,
+        "wins": 9,
+        "deaths": 0,
+        "timeouts": 0,
+        "medianSeconds": 328.3,
+        "medianKills": 432,
+        "medianLevel": 12,
+        "medianDamageTaken": 70.6,
+        "minisAppeared": 31,
+        "minisKilled": 31,
+        "medianMiniSeconds": 5.8,
+        "evolved": 9
+      },
+      "after": {
+        "id": "g5",
+        "runs": 9,
+        "survived300": 9,
+        "wins": 8,
+        "deaths": 0,
+        "timeouts": 1,
+        "medianSeconds": 334.9,
+        "medianKills": 453,
+        "medianLevel": 12,
+        "medianDamageTaken": 71.8,
+        "minisAppeared": 29,
+        "minisKilled": 28,
+        "medianMiniSeconds": 9.1,
+        "evolved": 9
+      },
+      "baseDps": {
+        "before": 57.6,
+        "after": 52.2
+      },
+      "evolvedDps": {
+        "before": 518.9,
+        "after": 423.6
+      }
+    },
+    {
+      "id": "fuzo",
+      "name": "Fuzo",
+      "before": {
+        "id": "fuzo",
+        "runs": 9,
+        "survived300": 9,
+        "wins": 9,
+        "deaths": 0,
+        "timeouts": 0,
+        "medianSeconds": 322.5,
+        "medianKills": 448,
+        "medianLevel": 11,
+        "medianDamageTaken": 51.8,
+        "minisAppeared": 28,
+        "minisKilled": 28,
+        "medianMiniSeconds": 5.4,
+        "evolved": 9
+      },
+      "after": {
+        "id": "fuzo",
+        "runs": 9,
+        "survived300": 9,
+        "wins": 9,
+        "deaths": 0,
+        "timeouts": 0,
+        "medianSeconds": 313.6,
+        "medianKills": 428,
+        "medianLevel": 11,
+        "medianDamageTaken": 43.4,
+        "minisAppeared": 28,
+        "minisKilled": 28,
+        "medianMiniSeconds": 7.5,
+        "evolved": 9
+      },
+      "baseDps": {
+        "before": 53,
+        "after": 49.9
+      },
+      "evolvedDps": {
+        "before": 454.9,
+        "after": 384.3
+      }
+    },
+    {
+      "id": "cerdito",
+      "name": "Cerdito VTuber",
+      "before": {
+        "id": "cerdito",
+        "runs": 9,
+        "survived300": 8,
+        "wins": 7,
+        "deaths": 1,
+        "timeouts": 1,
+        "medianSeconds": 318.5,
+        "medianKills": 424,
+        "medianLevel": 11,
+        "medianDamageTaken": 86.2,
+        "minisAppeared": 29,
+        "minisKilled": 29,
+        "medianMiniSeconds": 13.5,
+        "evolved": 9
+      },
+      "after": {
+        "id": "cerdito",
+        "runs": 9,
+        "survived300": 9,
+        "wins": 9,
+        "deaths": 0,
+        "timeouts": 0,
+        "medianSeconds": 319.8,
+        "medianKills": 427,
+        "medianLevel": 11,
+        "medianDamageTaken": 76.4,
+        "minisAppeared": 32,
+        "minisKilled": 31,
+        "medianMiniSeconds": 12.8,
+        "evolved": 9
+      },
+      "baseDps": {
+        "before": 39.5,
+        "after": 44.2
+      },
+      "evolvedDps": {
+        "before": 247.5,
+        "after": 261.4
+      }
+    }
+  ]
+}

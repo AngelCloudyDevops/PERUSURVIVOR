@@ -424,6 +424,9 @@ AnimalEntry compone un panel a resolución media con sprites íntegros y alas po
 
 ## Almacenamiento de preferencias de colección
 P.Gacha usa la clave independiente causas-collection-preferences-v1 con version/tier/stars/ready/order. No cambia ni escribe el perfil v4. loadPrefs se ejecuta antes de crear controles; la normalización admite únicamente opciones conocidas. Cada gesto de control y Limpiar filtros guarda una instantánea pequeña; refresh, selección, ascensos y RAF no escriben preferencias. El evento storage actualiza controles/filtros/orden sin eco de escritura y contempla eliminación o clear. Errores de lectura usan valores iniciales sin borrar el contenido; errores de escritura conservan la vista de sesión y ofrecen reintento explícito. La preferencia no sincroniza navegadores ni crea una cuenta.
+### Comparación controlada del trío
+full-run-audit.play acepta catalogSnapshot solo en la herramienta local para restaurar definiciones de jugador/armas/evoluciones anteriores. trio-balance-audit.cjs empareja 27 partidas antes y 27 después con el mismo motor, mapas, semillas y política; no cambia enemigos, XP ni física. Conserva snapshots completos y trazas fuera de dist. Las comprobaciones históricas de roster-audit usan una referencia explícita para no reescribir resultados antiguos al ajustar parámetros actuales.
+
 VultureRig.arenaMotion conserva motion(4) durante la gracia y dirige la misma jerarquía de piezas en combate, sustituyendo el regreso al atlas de poses de fase II. Las poses de carga, ráfaga y picada comparten anclaje de torso/patas. La máscara del torso conserva patas y pecho y delimita con borde dentado la zona de ala plegada ya pintada en el asset; no modifica archivos de imagen ni colisiones.
 ## Cuentas y persistencia privada
 

@@ -510,6 +510,9 @@ Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: pre
 
 ## Persistencia de la vista de colección
 Filtros y orden se recuerdan entre visitas en el mismo navegador. Se restauran antes de presentar la colección; la prioridad de listos para ascender se recalcula con el progreso actual. Limpiar filtros también queda guardado y mantiene el criterio de orden. La sincronización entre pestañas no escribe otra vez ni consume recursos del juego. Si no hay acceso al almacenamiento, se informa que la vista solo se aplica a la sesión.
+### Ajuste fino del trío
+Se modera la cadencia de G5 y el daño evolucionado de G5/Fuzo, conservando sus geometrías. Cerdito recibe más daño cercano y una pequeña mejora evolucionada; conserva caída por distancia, descuento de impactos sobre un mismo enemigo, alcance, vida y velocidad. No se añade resistencia específica por enemigo ni ventaja de rareza. Parámetros y partidas en TRIO_BALANCE.md.
+
 ### Ajuste anatómico del Gallinazo articulado
 Las dos alas tienen raíces, tamaños y ángulos diferenciados para mantener una silueta legible al abrirse. El torso limita la capa de ala plegada que incluía el dibujo original, con borde de plumas, para evitar una tercera ala aparente. Pico inferior más corto y giro reducido; collar cubre la unión al cuello en la forma base, y cresta/puntas marfil son más pequeñas. La arena de fase II reutiliza el mismo rig de la cinemática y conserva su pose final durante la gracia; después mueve alas y pico al cargar y disparar. No altera daño, avisos ni el combate activo durante la tarjeta.
 ## Cuentas opcionales

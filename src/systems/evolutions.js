@@ -16,7 +16,7 @@ cirilo:{name:'Concierto orbital',description:'Tres micros van y vuelven en abani
 fuzo:{name:'Banca infinita',description:'Cinco tarjetas rápidas atraviesan ocho rivales y enlazan al grupo más cercano.',kind:'spread',count:5,spread:.11,speed:900,pierce:8,extra:'chain',shape:'cards',color:'#80cfff'},
 charles:{name:'Lluvia de pañales',description:'Tres pañales dejan nubes y una nube adicional aparece junto al objetivo.',kind:'spread',count:3,spread:.35,cloud:true,extra:'cloud',shape:'rain',color:'#e3d3a1'},
 axelbenba:{name:'Tormenta relámpago',description:'Dos clips buscan al enemigo vivo más cercano durante su vuelo.',kind:'spread',count:2,spread:.35,speed:540,homing:true,pierce:3,shape:'lightning',color:'#ff8ea9'},
-cerdito:{name:'Fiesta del cerdito',description:'Doce balas salen en círculo; una onda corta despeja el puesto.',kind:'spread',count:12,radial:true,powerScale:.65,extra:'center',shape:'snout',color:'#ffb4dc'},
+cerdito:{name:'Fiesta del cerdito',description:'Doce balas salen en círculo; una onda corta despeja el puesto.',kind:'spread',count:12,radial:true,powerScale:.7,extra:'center',shape:'snout',color:'#ffb4dc'},
 sustento:{name:'Infestación veloz',description:'Tres cucarachas perforantes avanzan en zigzag; una zona de enjambre queda junto al objetivo.',kind:'spread',count:3,spread:.1,pierce:4,motion:'zigzag',amplitude:35,frequency:22,extra:'swarm',shape:'swarm',color:'#b2e57c'},
 cevichero:{name:'Marea del enjambre',description:'Seis cucarachas salen en círculo y regresan como bumeranes.',kind:'boomerang',count:6,radial:true,glyph:'ROACH',shape:'shell',color:'#79b5ff'},
 g5:{name:'Huracán G5',description:'Tres barridos consecutivos cubren frente y flancos, con fuerte empuje.',kind:'melee',range:155,arc:145*Math.PI/180,push:55,extra:'kicks',shape:'kicks',color:'#b8eeff'}
@@ -45,4 +45,4 @@ renderMenu(){const c=P.Data.characters[this.index],v=this.profile(c),p=P.state.m
 };
 
 // Multiplicador de toda la evolución, incluidos extras y campos persistentes.
-for(const [id,damageScale] of Object.entries({cuy:.8,ollanta:.8,shaka:.85,najasor:.65,fuzo:.65,charles:.55,sustento:.6,g5:.65}))P.Evolutions.profiles[id].damageScale=damageScale;
+for(const [id,damageScale] of Object.entries({cuy:.8,ollanta:.8,shaka:.85,najasor:.65,fuzo:.58,charles:.55,sustento:.6,g5:.58}))P.Evolutions.profiles[id].damageScale=damageScale;

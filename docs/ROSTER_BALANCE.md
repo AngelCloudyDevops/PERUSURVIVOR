@@ -1,3 +1,5 @@
+> Registro de la pasada anterior. Los ajustes posteriores de G5, Fuzo y Cerdito están en [TRIO_BALANCE.md](TRIO_BALANCE.md); las fichas actuales, en [CHARACTER_PROFILES.md](CHARACTER_PROFILES.md).
+
 # Balance de los 18 personajes
 
 20 s a 30 Hz, cámara fija 980x550 u, sin ulti/apoyos/mejoras permanentes, terreno vacío, blancos con vida ilimitada. close: 100 u/r18; mid: 250 u/r18; boss: r40 orbitando a 100 u a 0,55 rad/s; line: ocho r18 a 85+40i; ring: ocho r18 alrededor a 100 u. evolved: cuatro rangos y evolución al nivel 8. Daño agregado por segundo, no supervivencia ni tasa de victoria. Escopetas conservan caída y descuento real; órbitas se miden durante todo el ciclo.

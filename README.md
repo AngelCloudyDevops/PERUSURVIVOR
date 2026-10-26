@@ -305,6 +305,11 @@ Validación integrada adicional: 54 partidas sobre b10eef1 (18 causas × 3 mapas
 
 ## Preferencias de colección persistentes
 Rareza, estrellas, Solo listos para ascender y orden se guardan automáticamente en este navegador al cambiar un control y se restauran al recargar o volver a abrir el juego. Limpiar filtros guarda los filtros iniciales y conserva el orden elegido. Las pestañas del mismo sitio se sincronizan. Si el navegador impide guardar, los controles siguen funcionando durante la sesión y aparece un aviso con reintento; el progreso del personaje se conserva.
+### Ajuste fino de G5, Fuzo y Cerdito
+G5 conserva vida, movilidad y arco: recarga 0,62 → 0,68 s y multiplicador evolucionado 0,65 → 0,58. Fuzo conserva alcance y perforación: impacto 0,85 → 0,80 y evolución 0,65 → 0,58. Cerdito mantiene siete perdigones y alcance 400: impacto 0,50 → 0,56, inicio de caída 140 → 165 u y evolución 0,65 → 0,70. Consulta [la comparación emparejada](docs/TRIO_BALANCE.md), con partidas antes/después en los mismos mapas y semillas. Las fichas se derivan de los valores nuevos.
+
+En 54 partidas emparejadas, la mediana de minijefe cambia de 5,8 → 9,1 s para G5, 5,4 → 7,5 s para Fuzo y 13,5 → 12,8 s para Cerdito. Las 27 posteriores sobreviven cinco minutos: 26 victorias y un límite con vida. Se conservan los resultados completos, incluidos minijefes no abatidos, y los límites de una sola estrategia automatizada.
+
 # Cuentas y guardado en el VPS
 
 El vestíbulo incluye **Cuenta / Login**: registro, acceso, recuperación con código privado y guardado por cuenta en Hostinger. Jugar como invitado sigue disponible. El progreso incluye monedas, colección, estrellas, mejoras e inventario; se conserva separado del invitado y detecta conflictos entre dispositivos. No guarda partidas a medio jugar ni proporciona un ranking verificado.
