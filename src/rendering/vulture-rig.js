@@ -6,17 +6,25 @@ P.VultureRig={
     const image=new Image();image.onload=()=>{try{
       const cv=document.createElement('canvas');cv.width=image.width;cv.height=image.height;const c=cv.getContext('2d');c.drawImage(image,0,0);
       const r=c.getImageData(0,0,cv.width,cv.height);for(let i=3;i<r.data.length;i+=4)r.data[i]=r.data[i]<150?0:255;c.putImageData(r,0,0);
-      this.surface=cv;for(let row=0;row<2;row++)for(let col=0;col<4;col++)this.parts.push(P.BossArt.mainBounds(r.data,cv.width,col*cv.width/4,row*cv.height/2,(col+1)*cv.width/4,(row+1)*cv.height/2));this.ready=true;
+      this.surface=cv;this.palettes=[cv];for(let step=1;step<=8;step++){const pc=document.createElement('canvas');pc.width=cv.width;pc.height=cv.height;const ctx=pc.getContext('2d'),pixels=ctx.createImageData(cv.width,cv.height);pixels.data.set(r.data);this.tintPlumage(pixels.data,step/8);ctx.putImageData(pixels,0,0);this.palettes.push(pc)}
+      for(let row=0;row<2;row++)for(let col=0;col<4;col++)this.parts.push(P.BossArt.mainBounds(r.data,cv.width,col*cv.width/4,row*cv.height/2,(col+1)*cv.width/4,(row+1)*cv.height/2));this.ready=true;
     }catch{this.failed=true}};image.onerror=()=>{this.failed=true};image.src='assets/bosses/gallinazo-rig-v1.webp';
   },
   smooth(v){v=Math.max(0,Math.min(1,v));return v*v*(3-2*v)},
+  tintPlumage(data,q){
+    for(let i=0;i<data.length;i+=4){const r=data[i],g=data[i+1],b=data[i+2],hi=Math.max(r,g,b),lo=Math.min(r,g,b);
+      if(!data[i+3]||hi>185||hi-lo>65||b<r*.68)continue;
+      const light=r*.2126+g*.7152+b*.0722,target=[light*.7+8,light*.42+3,light*.98+18];
+      for(let k=0;k<3;k++)data[i+k]=Math.round(data[i+k]*(1-q)+target[k]*q);
+    }
+  },
   motion(t,card=false,reduced=false){
     if(reduced)return {near:-.45,far:-.2,jaw:0,head:0,phase:card?0:1,ruffle:0};
     const open=card?this.smooth((t-.08)/.4)*(1-this.smooth((t-.85)/.35)):this.smooth((t-1.25)/1.3),strike=card?0:this.smooth((t-2.95)/.2)*(1-this.smooth((t-3.35)/.4)),roar=card?this.smooth((t-.35)/.16)*(1-this.smooth((t-.88)/.2)):this.smooth((t-2.05)/.25)*(1-this.smooth((t-2.9)/.18));
     return {near:-.68+open*1.38-strike*1.25,far:-.25+open*1.75-strike*1.2,jaw:roar*.34,head:-roar*.08,phase:card?0:this.smooth((t-1.65)/1.05),ruffle:open*Math.sin(t*12)*.035};
   },
   part(c,id,x,y,w,px,py,angle=0,sx=1,sy=1){
-    const f=this.parts[id],h=w*f.h/f.w;c.save();c.translate(x,y);c.rotate(angle);c.scale(sx,sy);c.drawImage(this.surface,f.x,f.y,f.w,f.h,-w*px,-h*py,w,h);c.restore();
+    const f=this.parts[id],h=w*f.h/f.w;c.save();c.translate(x,y);c.rotate(angle);c.scale(sx,sy);c.drawImage(this.palettes?.[this.paletteStep||0]||this.surface,f.x,f.y,f.w,f.h,-w*px,-h*py,w,h);c.restore();
   },
   wing(c,id,x,y,w,angle,m,far=false){
     c.save();c.translate(x,y);c.rotate(angle);
@@ -29,9 +37,11 @@ P.VultureRig={
     c.restore();
   },
   arenaMotion(e,reduced=false){
+    const idle=this.idleMotion(e,reduced);
     if(e.phase==='vulture-ultimate'){
       const m=this.motion(Math.min(4,e.ultimateTime||0),false,reduced);
       if(e.ultimateTime>=4&&e.ultimateGrace<=0){m.near-=(e.wavePulse||0)*2.4;m.far-=(e.wavePulse||0)*1.8}
+      if(e.ultimateTime>=4&&e.ultimateGrace<=0)for(const k of ['near','far','head','ruffle'])m[k]+=idle[k];
       return m;
     }
     const m={near:-.6,far:-.25,jaw:0,head:0,phase:1,ruffle:0};
@@ -40,10 +50,15 @@ P.VultureRig={
       m.near+=open*1.3-strike*.85;m.far+=open*1.7-strike*.8;m.jaw=(1-strike)*open*.3;
     }
     if(e.phase==='vulture-dive'){m.near=-.9;m.far=-.55}
+    for(const k of ['near','far','head','ruffle'])m[k]+=idle[k];
     return m;
   },
+  idleMotion(e,reduced=false){
+    const t=reduced?0:(e.rigTime||0),active=!reduced;
+    return {near:active?Math.sin(t*3.4)*.13:0,far:active?Math.sin(t*3.4-.6)*.16:0,head:active?Math.sin(t*2.3)*.045:0,ruffle:active?Math.sin(t*7.2)*.055:0};
+  },
   draw(c,x,y,h,t,card=false,reduced=false,pose){
-    if(!this.ready)return false;const m=pose||this.motion(t,card,reduced);
+    if(!this.ready)return false;const m=pose||this.motion(t,card,reduced);this.paletteStep=Math.round(Math.max(0,Math.min(1,m.phase||0))*8);
     c.save();c.imageSmoothingEnabled=false;c.translate(x,y);
     // Torso y patas nunca reciben traslación, escala de pulso ni interpolación.
     this.wing(c,4,h*.12,-h*.5,h*.59,m.far,m,true);
@@ -51,8 +66,8 @@ P.VultureRig={
     // que parezca una tercera ala al levantar las dos piezas articuladas.
     const torso=()=>{c.save();c.beginPath();c.moveTo(h*.32,-h*.55);c.lineTo(-h*.16,-h*.46);for(const [xx,yy] of [[-.2,-.4],[-.16,-.36],[-.2,-.3],[-.15,-.25],[-.19,-.19],[-.14,-.13],[-.18,-.09],[-.15,-.05],[-.16,.04]])c.lineTo(h*xx,h*yy);c.lineTo(h*.32,h*.04);c.closePath();c.clip();this.part(c,0,0,0,h*.62,.58,1);c.restore();};
     if(m.tuck>0){c.save();c.beginPath();c.rect(-h,-h,h*2,h*.84);c.clip();torso();c.restore();c.save();c.translate(0,-h*.08*m.tuck);c.beginPath();c.rect(-h,-h*.16,h*2,h*.2);c.clip();torso();c.restore()}else torso();
-    this.part(c,7,h*.23,-h*.34,h*(.21+m.phase*.03),.55,.7,-.07*m.phase,1,.65+m.phase*.35);
-    if(m.phase>0)this.part(c,5,h*.23,-h*.48,h*.18,.5,1,-1.1*(1-m.phase),1,.15+m.phase*.85);
+    this.part(c,7,h*.23,-h*.34,h*(.21+m.phase*.03),.55,.7,-.07*m.phase+(m.ruffle||0)*1.2,1,.65+m.phase*.35);
+    if(m.phase>0)this.part(c,5,h*.23,-h*.48,h*.18,.5,1,-1.1*(1-m.phase)+(m.ruffle||0)*.9,1,.15+m.phase*.85);
     this.wing(c,3,h*.035,-h*.46,h*.72,m.near,m);
     c.save();c.translate(h*.23,-h*.4);c.rotate(m.head);
     this.part(c,1,0,0,h*.33,.27,.82);
@@ -103,7 +118,8 @@ P.VultureRig={
   }
 };
 {
-  const R=P.VultureRig,F=P.VulturePhase2,u=P.VultureUltimate,scene=P.VultureScene,init=scene.init,pending=scene.pending,geometry=scene.geometry,eye=scene.eye,bird=scene.bird,start=u.start,tick=u.introTick,overlay=u.overlay,move=P.Vulture.move,draw=P.Vulture.draw;
+  const R=P.VultureRig,F=P.VulturePhase2,u=P.VultureUltimate,scene=P.VultureScene,init=scene.init,pending=scene.pending,geometry=scene.geometry,eye=scene.eye,bird=scene.bird,start=u.start,tick=u.introTick,overlay=u.overlay,move=P.Vulture.move,draw=P.Vulture.draw,visuals=P.Vulture.tickVisuals;
+  P.Vulture.tickVisuals=function(e,dt){e.rigTime=(e.rigTime||0)+dt;return visuals.call(this,e,dt)};
   scene.init=function(){R.init();return init.call(this)};
   scene.pending=()=>pending()||typeof Image!=='undefined'&&!R.ready&&!R.failed;
   scene.geometry=function(w,h){const g=geometry.call(this,w,h);g.rigHeight=h*.74;return g};
@@ -132,6 +148,10 @@ P.VultureRig={
     if(!R.ready||!e.chaosForm||F.entering(e)||e.phase==='vulture-defeat')return draw.call(this,c,e);
     if(e.phase==='vulture-ultimate')P.VultureImpact.telegraph(c,e);
     c.save();c.translate(e.x,e.y+e.r*.5);if(e.dx<0&&!(e.moonSequence&&e.ultimateGrace>0))c.scale(-1,1);
-    const result=R.draw(c,0,0,260,0,false,P.Vulture.reduced(),R.arenaMotion(e,P.Vulture.reduced()));c.restore();return result;
+    const reduced=P.Vulture.reduced();
+    // Aura exterior: el plumaje conserva los colores del atlas original.
+    const g={x:-115,y:-210,w:230,h:215};P.VultureScene.ribbons?.(c,g,reduced?0:e.rigTime||0,reduced?.22:.5,false);
+    const result=R.draw(c,0,0,260,0,false,reduced,R.arenaMotion(e,reduced));
+    F.electricity?.(c,0,-110,92,reduced?0:e.rigTime||0,reduced?.2:.55,reduced);c.restore();return result;
   };
 }

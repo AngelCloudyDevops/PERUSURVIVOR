@@ -21,3 +21,16 @@ test('Tarjeta: composición compacta en móvil, título escalonado y efectos loc
  const a=R.cardEnvelope(.3),b=R.cardEnvelope(.5);assert(a.line1>a.line2);assert.equal(b.line1,1);assert.equal(b.line2,1);assert(b.burst>0);assert.equal(R.cardEnvelope(.9).burst,0);assert.equal(R.cardEnvelope(.5,true).burst,0);assert.equal(R.cardEnvelope(.5,true).kick,0);
  const text=[],state=JSON.stringify(P.state),noop=()=>{},c=new Proxy({fillText(word){text.push(word)}},{get:(o,k)=>o[k]||noop});R.card(c,1280,720,.65,false);assert(text.includes('GALLINAZO'));assert(text.includes('¡BAJO MIS'));assert(text.includes('ALAS!'));assert.equal(JSON.stringify(P.state),state);
 });
+
+test('Segunda fase: alas, cabeza y plumas continúan animadas con reloj de simulación',()=>{
+ const {P,R}=engine(),e={phase:'approach',chaosForm:true,rigTime:0};
+ const a=R.arenaMotion(e);P.Vulture.tickVisuals(e,.3);const b=R.arenaMotion(e);
+ for(const k of ['near','far','head','ruffle'])assert.notEqual(a[k],b[k]);
+ const still=R.arenaMotion(e,true);e.rigTime=10;assert.deepEqual(R.arenaMotion(e,true),still);
+ const before=JSON.stringify(e);R.arenaMotion(e);assert.equal(JSON.stringify(e),before);
+});
+
+test('Plumaje fase dos: paleta morada conserva alfa, luces y pico dorado',()=>{
+ const {R}=engine(),p=new Uint8ClampedArray([60,60,65,255,180,110,20,255,240,240,240,255,0,0,0,0]);const original=[...p];R.tintPlumage(p,1);assert(p[2]>p[0]&&p[0]>p[1]);assert.equal(p[3],255);assert.deepEqual([...p.slice(4)],original.slice(4));
+ const base=new Uint8ClampedArray(original);R.tintPlumage(base,0);assert.deepEqual([...base],original);
+});
