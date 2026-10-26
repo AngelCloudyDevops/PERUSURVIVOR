@@ -1,5 +1,8 @@
 # Arquitectura
 
+## Dominio UR de Makanaky (prototipo)
+Domain mantiene un único encuentro autoritativo en state.domain. Cada objetivo referencia domainKey del enemigo real; los HP y callbacks de botín siguen usando Entities.hurt y la victoria se difiere hasta cerrar la escena. Simulation congela el combate y el reloj base, recibe punch/domainAim/ga validados y serializa el encuentro para ambos clientes. El propietario usa primera persona; el compañero ve a Makanaky desde atrás y queda protegido. No se cambian las coordenadas originales de jugadores o enemigos. DomainArt renderiza el callejón con perspectiva a 640×360 sin suavizado y controles táctiles.
+
 ## Almacenamiento de preferencias de colección
 P.Gacha usa la clave independiente causas-collection-preferences-v1 con version/tier/stars/ready/order. No cambia ni escribe el perfil v4. loadPrefs se ejecuta antes de crear controles; la normalización admite únicamente opciones conocidas. Cada gesto de control y Limpiar filtros guarda una instantánea pequeña; refresh, selección, ascensos y RAF no escriben preferencias. El evento storage actualiza controles/filtros/orden sin eco de escritura y contempla eliminación o clear. Errores de lectura usan valores iniciales sin borrar el contenido; errores de escritura conservan la vista de sesión y ofrecen reintento explícito. La preferencia no sincroniza navegadores ni crea una cuenta.
 
@@ -463,6 +466,7 @@ La bienvenida de Lobby abre Account en login o registro sin desactivar el fondo 
 causa-combo.js se carga después de los adaptadores de ultis. ultimate.combo contiene solo números serializables; charge conserva compatibilidad con las activaciones y deriva de las tres cartas. El servidor avanza la mano de cada dueño y el cliente solo la muestra. Entities.hurt y Minibosses.hurt aceptan una fuente opcional; disparos y campos llevan comboBlocked para excluir bajas/daño tardíos de las ultis. No cambia el daño de combate. HUD de tres barras con escrituras al cambiar el entero; sin intervalos ni imágenes nuevas. Auditoría local y pruebas en causa-combo-*.cjs.
 
 Perfil: `src/ui/profile.js` agrega un diálogo con colección y agregados de estadísticas existentes. Proyecta las ventajas de la cuenta admin al leer su propio namespace; invitados y jugadores conservan sus guardados separados. SQLite v2 añade `user_roles` con FK, sin alterar cuentas ni progreso. Login y sesión devuelven el rol consultado por el servidor. `ops/hostinger/set-account-role.cjs` concede/revoca solo a usuarios ya registrados, invalida sus sesiones y queda fuera de dist. No existe endpoint para cambiar roles.
+
 
 MakanakyPlayerArt usa makanaky-motion-v2.webp, 6 columnas y 2 filas, con Sprites.bounds y escala compartida para caminar y golpear. royalEcho conserva su identificador por compatibilidad con perfiles antiguos, ahora con kind melee.
 

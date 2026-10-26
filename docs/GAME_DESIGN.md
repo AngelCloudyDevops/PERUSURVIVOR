@@ -1,5 +1,8 @@
 # Documento de diseño — PERUSURVIVOR
 
+## Expansión de dominio · ¡BÓTAME TU GA!
+Exclusiva del UR Makanaky. Carga con 35 bajas. Entrada de 1,3 s, combate de 7 s y salida de 0,4 s: callejón recto en primera persona, avance automático, desplazamiento lateral con A/D/flechas, puntería con ratón y puñetazo con clic/Espacio o botón táctil. Hasta 24 enemigos reales a 650 u entran; minions caen de un golpe conectado y jefes/minijefes reciben daño provisional finito (poder×4, máximo base 140). Las zonas de invulnerabilidad de jefe se respetan. Los ataques se anuncian y se esquivan lateralmente. GA de bajas (máximo 10) potencia el remate; no recarga el dominio. El reloj del mapa queda detenido, pero el encuentro avanza. El compañero se refugia protegido detrás de Makanaky, no ataca y puede animarlo con ¡GA!; otro dominio no consume su carga mientras hay uno activo. Al volver se mantienen bajas, botín y HP, sin duplicar recompensas. Los ataques de jefes dentro del dominio son genéricos en este prototipo; el daño se ajustará después de probarlo.
+
 ## Persistencia de la vista de colección
 Filtros y orden se recuerdan entre visitas en el mismo navegador. Se restauran antes de presentar la colección; la prioridad de listos para ascender se recalcula con el progreso actual. Limpiar filtros también queda guardado y mantiene el criterio de orden. La sincronización entre pestañas no escribe otra vez ni consume recursos del juego. Si no hay acceso al almacenamiento, se informa que la vista solo se aplica a la sesión.
 
@@ -548,6 +551,7 @@ Perfil de jugador: monedas, colección con bloqueos, partidas, victorias, bajas,
 
 ### Rareza UR de Makanaky
 Makanaky pasa a UR · Supremo, por encima de SSR, sin cambiar sus estadísticas ni su desbloqueo gratuito. La colección permite filtrar UR y la coloca primero al ordenar por rareza (después de los listos para ascender). Probabilidades base: C 60 %, R 27 %, SR 9 %, SSR 3 %, UR 1 %. UR reinicia ambas garantías; la garantía de 30 asegura SSR o superior y nunca rebaja un UR natural. Los recibos antiguos conservan su rareza histórica.
+
 
 ### Makanaky cuerpo a cuerpo
 UR gratuito conservado. Puño de la realeza: 100 unidades, arco 120°, recarga 0,56 s y empuje 24. Base: 125 PV, velocidad 200 y daño 32. Evolución Combo de la realeza: alcance 135, arco 150°, daño ×1,35 y empuje 42; no dispara ondas. Seis poses de caminata ligadas a distancia recorrida y seis cuadros de golpe ligados al reloj de ataque. El minijefe conserva su arte y sus ataques.

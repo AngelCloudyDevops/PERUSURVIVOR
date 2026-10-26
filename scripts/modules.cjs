@@ -283,10 +283,36 @@ module.exports = [
     "source": "src/development/test-bench.js",
     "output": "js/test-bench.js"
   },
-  {"source":"src/rendering/animal-entry.js","output":"js/animal-entry.js"},
-  {"source":"src/rendering/animal-entry-poses.js","output":"js/animal-entry-poses.js"},
-  {"source":"src/network/account.js","output":"js/account.js"},
-  {"source":"src/ui/profile.js","output":"js/profile.js"},
-  {"source":"src/ui/admin.js","output":"js/admin.js"},
-  {"source":"src/systems/causa-combo.js","output":"js/causa-combo.js"}
+  {
+    "source": "src/rendering/animal-entry.js",
+    "output": "js/animal-entry.js"
+  },
+  {
+    "source": "src/rendering/animal-entry-poses.js",
+    "output": "js/animal-entry-poses.js"
+  },
+  {
+    "source": "src/network/account.js",
+    "output": "js/account.js"
+  },
+  {
+    "source": "src/ui/profile.js",
+    "output": "js/profile.js"
+  },
+  {
+    "source": "src/ui/admin.js",
+    "output": "js/admin.js"
+  },
+  {
+    "source": "src/systems/causa-combo.js",
+    "output": "js/causa-combo.js"
+  },
+  {
+    "source": "src/systems/domain.js",
+    "output": "js/domain.js"
+  },
+  {
+    "source": "src/rendering/domain-art.js",
+    "output": "js/domain-art.js"
+  }
 ];
