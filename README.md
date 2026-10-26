@@ -364,3 +364,13 @@ Fuerza → Técnica → Ingenio → Fuerza: ventaja +15% de daño, desventaja �
 El daño existente de cada habilidad se multiplica por `2 × ataque / (ataque + defensa)` y por la ventaja de atributo. 100 contra 100 conserva el daño neutral; 100 contra 200 deja el 66,7%. El índice principal de cada personaje es 100 y el secundario 85; las mejoras de poder siguen aumentando el presupuesto de daño de ambos canales. Rareza no multiplica estadísticas.
 
 Los proyectiles conservan dueño y tipo al crearse, también en cooperativo. Contactos y golpes son físicos; ondas, nubes y tarjetas de apoyo son especiales. Cuy y Paloma usan daño físico en sus estampidas aunque su ataque principal pueda ser especial. Las ejecuciones y la sentencia porcentual conservan su daño fijo y sus límites. Véase [auditoría de atributos](docs/ATTRIBUTES_BALANCE.md).
+
+### Oleadas con presión desde el primer minuto
+
+Los tres atributos aparecen desde el inicio. Hay ocho segundos sin ataques especiales para orientarse; después entran ataques avisados y empujes de doce segundos dentro de ciclos de treinta. El HUD distingue EMPUJE y RESPIRO. Los corredores se acercan más rápido, pero tienen 15% menos vida base; la infantería también avanza más y los minijefes conservan acompañantes moderados.
+
+Las apariciones se sitúan fuera de la cámara, con margen de 90 u y separación mínima de 230 u; en cooperativo se consideran ambas cámaras. Se evitan obstáculos sólidos, con un máximo de ocho intentos y una aparición por tick, sin recuperar de golpe los spawns de una pausa. No se aumentan el máximo de 80 enemigos ni los límites de 40 peligros/8 atacantes normales; los minijefes conservan su presupuesto propio. No se añaden partículas o recursos gráficos.
+
+Para evitar que la densidad regale niveles, los minions de oleada dan 0,75 de fama, los corredores 0,5 y los pesados 2,25; las cantidades son cuartos exactos. Minijefes, cofres y recompensas especiales mantienen sus reglas. Vida y velocidad son estadísticas por personaje y rol, independientes de la rareza de colección. Las bonificaciones existentes de estrellas o mejoras siguen sus propias reglas.
+
+Comparación y límites de las pruebas en [WAVE_PRESSURE.md](docs/WAVE_PRESSURE.md).

@@ -1,0 +1,112 @@
+{
+  "engine": "a8c8df832bb8287feae60568b77000f99d105da4",
+  "stages": [
+    {
+      "at": 0,
+      "name": "Primeros pasos",
+      "types": 1,
+      "heavy": 0,
+      "interval": 1.15,
+      "cap": 16,
+      "danger": 0,
+      "casts": 0,
+      "tier": 0,
+      "windup": 1.35,
+      "cooldown": 1.4
+    },
+    {
+      "at": 20,
+      "name": "Primeras señales",
+      "types": 1,
+      "heavy": 0,
+      "interval": 1.05,
+      "cap": 24,
+      "danger": 6,
+      "casts": 2,
+      "tier": 0,
+      "windup": 1.35,
+      "cooldown": 1.4
+    },
+    {
+      "at": 45,
+      "name": "Embestidas",
+      "types": 2,
+      "heavy": 0.06,
+      "interval": 0.95,
+      "cap": 32,
+      "danger": 10,
+      "casts": 3,
+      "tier": 0,
+      "windup": 1.25,
+      "cooldown": 1.3
+    },
+    {
+      "at": 85,
+      "name": "Combos",
+      "types": 3,
+      "heavy": 0.1,
+      "interval": 0.85,
+      "cap": 40,
+      "danger": 16,
+      "casts": 3,
+      "tier": 1,
+      "windup": 1.15,
+      "cooldown": 1.2
+    },
+    {
+      "at": 125,
+      "name": "Control de área",
+      "types": 4,
+      "heavy": 0.14,
+      "interval": 0.75,
+      "cap": 48,
+      "danger": 20,
+      "casts": 4,
+      "tier": 1,
+      "windup": 1.1,
+      "cooldown": 1.1
+    },
+    {
+      "at": 170,
+      "name": "Trayectorias",
+      "types": 5,
+      "heavy": 0.18,
+      "interval": 0.65,
+      "cap": 60,
+      "danger": 26,
+      "casts": 5,
+      "tier": 2,
+      "windup": 1,
+      "cooldown": 1.05
+    },
+    {
+      "at": 215,
+      "name": "Fuego cruzado",
+      "types": 6,
+      "heavy": 0.22,
+      "interval": 0.55,
+      "cap": 72,
+      "danger": 32,
+      "casts": 6,
+      "tier": 2,
+      "windup": 1,
+      "cooldown": 1
+    },
+    {
+      "at": 255,
+      "name": "Caos total",
+      "types": 6,
+      "heavy": 0.25,
+      "interval": 0.42,
+      "cap": 80,
+      "danger": 40,
+      "casts": 8,
+      "tier": 3,
+      "windup": 1,
+      "cooldown": 1
+    }
+  ],
+  "enemy": "enemy(boss=false){const s=P.state,p=s.player,a=Math.random()*Math.PI*2,r=Math.hypot(P.Core.width,P.Core.height)/(2*Math.max(1.15,P.Core.width/2400,P.Core.height/1600))+70,stage=P.Difficulty.current(),heavy=!boss&&Math.random()<stage.heavy,time=s.devRun?s.elapsed:s.mapTime,hp=boss?1800:heavy?65+time*.3:28+time*.18;const e={x:p.x+Math.cos(a)*r,y:p.y+Math.sin(a)*r,hp,max:hp,r:boss?40:heavy?19:13,speed:boss?65:heavy?46+time*.07:65+time*.09,boss,heavy,progressive:!boss,minionId:s.enemySerial,threatStage:P.Difficulty.index(),design:boss?null:s.enemySerial++%stage.types,hit:0,attackT:2,castUntil:0};return P.Attributes.init(P.MinionEvolution.apply(e))}",
+  "spawn": "spawn(dt){P.Minibosses.tick(dt);const s=P.state;if(s.encounter||s.devRun)return;const policy=P.Minibosses.spawnPolicy();if(!policy.active)P.Loot.spawnKeepers();s.spawn-=dt;if(s.spawn<=0&&s.enemies.length<policy.cap){for(let i=0;i<8;i++){const candidate=P.Entities.enemy();if(P.Minibosses.spawnSafe(candidate)){s.enemies.push(candidate);break}}s.spawn=policy.interval}if(s.mapTime>=P.Data.arena.duration&&!s.bossSpawned){s.bossSpawned=true;s.portal.open=false;s.enemies.push(P.Entities.enemy(true))}}",
+  "spawnPolicy": "spawnPolicy(){const active=this.active(),cap=Math.min(P.Data.arena.enemyCap,P.Difficulty.current().cap);return {active,cap:active?Math.max(8,Math.floor(cap*.5)):cap,interval:P.Difficulty.current().interval*(active?2.5:1)}}"
+}
