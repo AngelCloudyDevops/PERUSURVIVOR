@@ -1,0 +1,8 @@
+const http=require('http'),fs=require('fs'),path=require('path'),root=path.resolve(__dirname,'../..'),base=require('../../server.cjs').createServer().listeners('request')[0];
+const qa=`<div style="position:fixed;bottom:0;left:0;z-index:100;background:#172536;color:white;padding:6px">QA LOCAL <button id="qa-vendor">Ambulante</button><button id="qa-mimic">Impostor</button><button id="qa-defeat">Vencer impostor</button></div><script>
+function reset(){P.UI.menu();P.Game.start();P.state.spawn=999;P.state.fire=999;P.state.player.inv=999;P.state.enemies=[]}
+function vendor(){reset();P.state.coins=200;P.state.player.hp-=10;P.state.mapTime=45;P.Market.tick();const m=P.Market.merchant;P.state.player.x=m.x;P.state.player.y=m.y+70;P.Terrain.cameraX=m.x;P.Terrain.cameraY=m.y;P.UI.hud()}
+function mimic(){reset();const p=P.state.player,c={id:'qa:impostor',x:p.x+110,y:p.y,rarity:'rare',impostor:true,opened:false};P.Loot.chests=[c];P.Market.wake(c);P.state.enemies[0].speed=0}
+document.querySelector('#qa-vendor').onclick=vendor;document.querySelector('#qa-mimic').onclick=mimic;document.querySelector('#qa-defeat').onclick=()=>{const e=P.state.enemies.find(e=>e.mimic);if(e)P.Entities.hurt(e,99999)};window.addEventListener('load',()=>new URLSearchParams(location.search).has('mimic')?mimic():vendor());
+</script>`;
+http.createServer((req,res)=>{if(req.url.startsWith('/__qa/market')){res.setHeader('Content-Type','text/html;charset=utf-8');return res.end(fs.readFileSync(path.join(root,'src/index.html'),'utf8').replace('<head>','<head><base href="/">').replace('</body>',qa+'</body>'))}base(req,res)}).listen(4188,'127.0.0.1',()=>console.log('http://127.0.0.1:4188/__qa/market'));

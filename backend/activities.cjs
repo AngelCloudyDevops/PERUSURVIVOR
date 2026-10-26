@@ -9,6 +9,7 @@ class Activities{
   if(action==='choose')return this.choose(slot,id,choice);
   if(this.pending||p.hp<=0||s.mode!=='play')return false;
   sim.use(p);
+  if(action==='market-buy')return P.Market.buy(id);
   if(action==='portal'){
    if(!P.Encounters.near())return false;
    if(this.votes.has(slot))this.votes.delete(slot);else this.votes.add(slot);
@@ -45,6 +46,7 @@ class Activities{
  }
  open(chest){
   const P=this.P;if(this.pending||chest.opened||P.state.encounter||!P.Loot.canOpen(chest))return false;
+  if(chest.impostor&&!chest.purified)return P.Market.wake(chest);
   const tier=P.Loot.keyType(chest);if(tier)P.state.keys[tier]--;
   chest.opened=true;chest.progress=1.8;chest.openAge=0;P.Loot.opened.add(chest.id);
   let item=null;if(!chest.gold){const ids=Object.keys(P.Loot.items).filter(id=>P.Loot.items[id].rarity===(chest.rarity||'common'));item=ids[Math.floor(P.Loot.roll(Math.floor(chest.x),Math.floor(chest.y),271)*ids.length)];chest.item=item}
@@ -75,7 +77,7 @@ class Activities{
   const sim=this.sim,P=this.P,s=P.state;this.messageTime=Math.max(0,this.messageTime-dt);P.Loot.messageTime=Math.max(0,P.Loot.messageTime-dt);
   if(this.returning)this.returnFromArena();
   P.Encounters.tick();this.tryPortal();if(s.encounter)return;
-  this.syncChests();P.Loot.animate(dt);sim.use(sim.players.find(p=>p.hp>0)||sim.players[0]);P.Loot.spawnKeepers();
+  this.syncChests();P.Loot.animate(dt);sim.use(sim.players.find(p=>p.hp>0)||sim.players[0]);P.Loot.spawnKeepers();P.Market.tick();
   const o=P.Exploration.station;
   if(o&&o.phase==='active'){
    const defender=sim.players.find(p=>p.hp>0&&Math.hypot(p.x-o.x,p.y-o.y)<=200)||sim.players.find(p=>p.hp>0)||sim.players[0];sim.use(defender);
@@ -84,10 +86,10 @@ class Activities{
     this.notice('¡Evento completado! +25 monedas de equipo y curación para ambos');
    }
   }
-  for(const chest of P.Loot.chests){if(chest.opened)continue;const opener=sim.players.find(p=>p.hp>0&&!p.moving&&Math.hypot(p.x-chest.x,p.y-chest.y)<75);
+  for(const chest of P.Loot.chests){if(chest.opened)continue;if(chest.impostor){const victim=sim.players.find(p=>p.hp>0&&Math.hypot(p.x-chest.x,p.y-chest.y)<100);if(victim){sim.use(victim);P.Market.wake(chest)}continue}const opener=sim.players.find(p=>p.hp>0&&!p.moving&&Math.hypot(p.x-chest.x,p.y-chest.y)<75);
    if(!opener){chest.progress=0;continue}sim.use(opener);if(!P.Loot.canOpen(chest)){P.Loot.locked(chest);continue}chest.progress+=dt;if(chest.progress>=1.8){this.open(chest);break}
   }
  }
- snapshot(){const P=this.P,s=P.state;return {portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles}:null,mapBossWon:!!s.mapBossWon,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
+ snapshot(){const P=this.P,s=P.state;return {portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
 }
 module.exports={Activities};

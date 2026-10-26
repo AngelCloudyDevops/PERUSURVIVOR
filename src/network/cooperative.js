@@ -37,7 +37,7 @@ receive(m){
  s.mode='play';s.player=m.players[this.session.slot];s.ultimate=s.player.ultimate;this.peers=m.players.filter(p=>p.slot!==this.session.slot);P.Maps.selected=m.map;
  for(const p of m.players)p.coopPlayer=true;
  const broken=new Set(m.broken);P.Chunks.broken=new Set(m.broken.filter(id=>typeof id==='string'));for(const prop of P.Terrain.props)if(prop.kind==='crate'&&broken.has(prop.id)){prop.solid=false;prop.hp=0;if(prop.generated)P.Chunks.broken.add(prop.id)}
- P.Loot.chests=m.chests||[];P.Loot.debris=m.debris||[];P.Loot.message=m.message||'';P.Loot.messageTime=m.message?1:0;P.Exploration.station=m.station;
+ P.Market.merchant=m.merchant||null;P.Loot.chests=m.chests||[];P.Loot.debris=m.debris||[];P.Loot.message=m.message||'';P.Loot.messageTime=m.message?1:0;P.Exploration.station=m.station;
  if(previousScene!==s.encounter?.scene?.id){P.Terrain.cameraX=s.player.x;P.Terrain.cameraY=s.player.y;P.Core.clear();P.Core.canvas.setAttribute('aria-label','Arena: '+(s.encounter?.scene?.name||P.Maps.current().name))}
  P.Chunks.sync();P.UI.hud();P.$('#coop-hud').textContent='SALA '+this.session.code+' · '+m.players.map(p=>p.name+': '+Math.ceil(p.hp)+' ♥'+(p.hp<=0?' · Reanimación '+Math.floor(p.revive||0)+'/4 s':'')).join(' / ');
  const votes=m.portal?.votes||[];if(m.portal?.open)P.$('#portal-status').textContent+=' · Listos '+votes.length+'/2 · Ambos cerca y E';P.$('#portal-enter').textContent=votes.includes(this.session.slot)?'Listo · E para cancelar':'Entrar juntos al portal · E';
@@ -47,7 +47,7 @@ receive(m){
 },
 showReward(pending){
  this.activityPending=!!pending;const key=pending?pending.id+':'+pending.phase+':'+pending.applied[this.session.slot]:'';if(key===this.activityKey)return;this.activityKey=key;
- if(pending){this.paused=false;P.Core.clear()}
+ if(pending){P.Market.close(false);this.paused=false;P.Core.clear()}
  if(!pending){if(!this.paused)P.$('#overlay').hidden=true;return}
  const leave={title:'Salir de la sala',action:()=>this.leave()};
  if(pending.phase==='opening'){P.UI.show('Abriendo cofre…','La sala está en pausa para los dos.',[leave]);return}

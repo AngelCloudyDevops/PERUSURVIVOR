@@ -46,7 +46,7 @@ class Simulation{
   s.danger=danger.filter(q=>q.life>0);
   for(const p of alive){this.use(p);P.Systems.collect(dt/ alive.length);this.save(p)}
   for(const p of this.players)if(p.hp<=0){const friend=this.players[1-p.slot];p.revive=friend.hp>0&&Math.hypot(p.x-friend.x,p.y-friend.y)<85?p.revive+dt:0;if(p.revive>=4){p.hp=Math.ceil(p.maxHp*.5);p.inv=2;p.revive=0}}
-  s.enemies=s.enemies.filter(e=>e.hp>0&&(e.miniboss||alive.some(p=>Math.hypot(p.x-e.x,p.y-e.y)<2400)));
+  s.enemies=s.enemies.filter(e=>e.hp>0&&(e.miniboss||e.mimic||alive.some(p=>Math.hypot(p.x-e.x,p.y-e.y)<2400)));
   s.gems=s.gems.filter(g=>alive.some(p=>Math.hypot(p.x-g.x,p.y-g.y)<2200));
   if(!this.players.some(p=>p.hp>0))this.result='lose';
   if(!this.result)this.activities.tick(dt);
