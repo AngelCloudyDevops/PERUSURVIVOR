@@ -17,7 +17,7 @@ init(){
  P.$('#bench-invincible').onchange=()=>{P.$('#lab-invincible').checked=P.$('#bench-invincible').checked};
  P.$('#bench-collapse').onclick=()=>{const options=P.$('#bench-options');options.hidden=!options.hidden;P.$('#bench-collapse').textContent=options.hidden?'Expandir':'Minimizar';P.$('#bench-collapse').setAttribute('aria-expanded',String(!options.hidden))};
  // Mantener los controles originales para compatibilidad, con una sola entrada visible.
- P.$('#dev-lab').hidden=true;P.$('#practice-start').hidden=true;P.$('#practice-fujimori').hidden=true;
+ P.$('#dev-lab').hidden=true;for(const entry of document.querySelectorAll('.practice-entry'))entry.hidden=true;
  const perf=document.createElement('details');perf.className='bench-performance';const summary=document.createElement('summary');summary.textContent='Rendimiento y FPS';perf.append(summary,P.$('.performance-settings'));settings.append(perf);
  this.controls();this.hud();
 },
@@ -34,8 +34,8 @@ run(){
 },
 exit(){this.active=false;P.UI.menu();P.Lobby?.show('settings');this.hud()},
 stop(){if(this.switching)return;this.active=false;if(this.panel){this.home.append(this.panel);this.panel.classList.remove('bench-live');document.body.classList.remove('test-bench-live')}this.hud()},
-tick(){if(!this.active||!P.state.devRun||P.state.mode!=='play')return;const s=P.state;if((!this.panel||P.$('#bench-auto').checked)&&s.ultimate&&!s.ultimate.left&&!s.ultimate.paper&&!s.court)s.ultimate.charge=100},
-hud(){if(!this.panel)return;const s=P.state,live=this.active&&s.devRun,supported=['kingteka','alberto'].includes(s.player?.id),busy=!!(s.ultimate?.left||s.ultimate?.paper||s.court);
+tick(){if(!this.active||!P.state.devRun||P.state.mode!=='play')return;const s=P.state;if((!this.panel||P.$('#bench-auto').checked)&&s.ultimate&&!s.ultimate.left&&!s.ultimate.paper&&!s.ultimate.animal?.finish&&!s.court)s.ultimate.charge=100},
+hud(){if(!this.panel)return;const s=P.state,live=this.active&&s.devRun,supported=(['kingteka','alberto'].includes(s.player?.id)||!!P.AnimalUltimate?.definition()),busy=!!(s.ultimate?.left||s.ultimate?.paper||s.ultimate?.animal?.finish||s.court);
  if(live){P.$('#lab-tools').hidden=true;P.$('#practice-tools').hidden=true}
  this.panel.hidden=live&&s.mode==='pause';P.$('#bench-collapse').hidden=!live;
  P.$('#bench-start').textContent=live?'↻ Repetir prueba':'Entrar a la prueba ↗';
