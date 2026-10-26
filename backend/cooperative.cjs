@@ -46,7 +46,7 @@ function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=(
    if(ws.room)throw Error('Ya estás en una sala');
    if(msg.protocol!==PROTOCOL)throw Error('Actualiza la página para jugar con esta versión');
    if(msg.guest===true&&!ws.room)ws.user=null;
-   if(msg.type==='resume'){const r=rooms.get(msg.code),m=r?.members.find(m=>m.token===msg.token);if(!m||(m.userId&&m.userId!==ws.user?.id)||now()-m.lastSeen>30000)throw Error('No se pudo recuperar la sala');const previous=m.ws;m.ws=ws;if(previous&&previous!==ws){previous.room=null;previous.close(1000,'Connection replaced')} ws.room=r;send(ws,{type:'joined',slot:r.members.indexOf(m),token:m.token,...lobby(r),type:'joined'});broadcast(r,lobby(r));if(r.sim)send(ws,{type:'state',...r.sim.snapshot()});return}
+   if(msg.type==='resume'){const r=rooms.get(msg.code),m=r?.members.find(m=>m.token===msg.token);if(!m||(m.userId&&m.userId!==ws.user?.id)||(!m.ws&&now()-m.lastSeen>30000))throw Error('No se pudo recuperar la sala');const previous=m.ws;m.ws=ws;if(previous&&previous!==ws){previous.room=null;previous.close(1000,'Connection replaced')} ws.room=r;send(ws,{type:'joined',slot:r.members.indexOf(m),token:m.token,...lobby(r),type:'joined'});broadcast(r,lobby(r));if(r.sim)send(ws,{type:'state',...r.sim.snapshot()});return}
    if(ws.user&&[...rooms.values()].some(r=>r.members.some(m=>m.userId===ws.user.id)))throw Error('Tu cuenta ya tiene una sala. Sal primero o recupera esa conexión.');
    if(!Number.isInteger(msg.character)||msg.character<0||msg.character>=characterCount)throw Error('Personaje inválido');
    if(ws.user&&!accounts.owns(ws.user,catalog[msg.character].id))throw Error('Ese causa no está desbloqueado');
