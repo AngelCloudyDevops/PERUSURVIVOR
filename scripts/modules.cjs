@@ -104,6 +104,9 @@ module.exports = [
     "output": "js/vulture-strike-art.js"
   },
   {
+    "source": "src/systems/vulture-impact.js", "output": "js/vulture-impact.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
   },
