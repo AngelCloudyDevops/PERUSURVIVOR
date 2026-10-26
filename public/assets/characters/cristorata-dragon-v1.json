@@ -7,7 +7,7 @@
   "rows": 3,
   "runtime": {
     "file": "cristorata-dragon-v1.webp",
-    "encoding": "WebP quality 88; original PNG retained",
-    "sha256": "1a51ed60c4b119d26d3d7e2d51b05c3108e6eeb7fd225db9fc37d97e029f6276"
+    "encoding": "WebP quality 40, alpha preserved; original PNG retained",
+    "sha256": "16ea5bd95d66383cc2d71d43cf60a00e39cad7b64168d01344d15dacc8a48f84"
   }
 }
