@@ -26,3 +26,9 @@ test('Plumas continuas: cuello y pies fijos, revelado gradual y movimiento reduc
 test('Electricidad: trazos pequeños y finos, sin siete columnas gruesas delante del jefe',()=>{
  const {F}=engine(),widths=[],points=[];let width=0;const c=new Proxy({globalAlpha:1,stroke(){widths.push(width)},lineTo(x,y){points.push([x,y])}},{get:(o,k)=>o[k]||(()=>{}),set(o,k,v){if(k==='lineWidth')width=v;o[k]=v;return true}});F.electricity(c,0,0,90,.4,.55,false);assert(widths.length>0&&widths.length<=8);assert(Math.max(...widths)<=3);assert(points.every(([x,y])=>Math.abs(x)<150&&Math.abs(y)<90));
 });
+
+test('Tormenta visible: la punta de cada pluma toca su marca justo al disparo, sin alterar daño',()=>{
+ const {P,e,F}=engine();e.chaosForm=true;P.Vulture.warn(e,'summon');const before=JSON.stringify(P.state.danger);
+ for(let i=0;i<e.chaosTargets.length;i++){const hit=1.1+i*.18;e.chaosTime=hit-.4;const high=F.strikePose(e,i);assert(high.height>300);e.chaosTime=hit-.15;const low=F.strikePose(e,i);assert(low.height<high.height);e.chaosTime=hit;const touch=F.strikePose(e,i);assert.equal(touch.height,0);assert.equal(touch.x,e.chaosTargets[i].x);assert.equal(touch.y,e.chaosTargets[i].y);e.chaosTime=hit+.7;assert.equal(F.strikePose(e,i),null)}
+ assert.equal(JSON.stringify(P.state.danger),before);e.chaosTime=1;assert.equal(F.strikePose(e,0,true).height,22);const state=JSON.stringify(e),noop=()=>{},c=new Proxy({globalAlpha:1},{get:(o,k)=>o[k]??noop});F.stormForeground(c,e);assert.equal(JSON.stringify(e),state);
+});

@@ -91,6 +91,16 @@ P.VultureRig={
     c.save();c.globalAlpha=a.pulse*.8;c.lineWidth=3;c.strokeStyle='#ead7ff';
     for(let i=0;i<3;i++){c.beginPath();c.arc(35,-120,85+i*15,-1.1+a.pulse*.6,.35+a.pulse*.4);c.stroke()}c.restore();
   },
+  featherLoad(e){
+    if(e?.phase!=='vulture-chaos-charge'||e.chaosAttack!=='rake')return 0;const t=e.chaosTime||0;
+    return Math.max(...[1.1,1.52].map(hit=>this.smooth((t-hit+.3)/.2)*(1-this.smooth((t-hit)/.07))));
+  },
+  loadedFeathers(c,e,reduced=false){
+    const load=this.featherLoad(e);if(!this.ready||load<=.01)return;const m=this.arenaMotion(e,reduced),h=260;
+    c.save();c.translate(h*.035,-h*.46);c.rotate(m.near);
+    for(let i=0;i<3;i++)this.part(c,6,-h*(.35+i*.055),h*(.09+i*.035),h*.24*(.75+load*.25),.97,.5,(i-1)*.14,1,1);
+    c.restore();
+  },
   draw(c,x,y,h,t,card=false,reduced=false,pose){
     if(!this.ready)return false;const m=pose||this.motion(t,card,reduced);this.paletteStep=Math.round(Math.max(0,Math.min(1,m.phase||0))*8);
     c.save();c.imageSmoothingEnabled=false;c.translate(x,y);
@@ -188,6 +198,7 @@ P.VultureRig={
     // Aura exterior acompaña la altura del plumaje morado.
     const g={x:-115,y:-210,w:230,h:215};P.VultureScene.ribbons?.(c,g,reduced?0:e.rigTime||0,reduced?.12:.24,false);
     const result=R.draw(c,0,0,260,0,false,reduced,R.arenaMotion(e,reduced));
+    R.loadedFeathers(c,e,reduced);
     R.attackFX(c,e,reduced);
     const energy=e.phase==='vulture-chaos-charge'?.4+.4*(R.attackPose(e,reduced)?.pulse||0):e.phase==='vulture-ultimate'&&e.wavePulse>0?.65:.35;
     F.electricity?.(c,0,-110,92,reduced?0:e.rigTime||0,reduced?.12:energy,reduced);c.restore();return result;
