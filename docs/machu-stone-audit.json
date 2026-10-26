@@ -1,0 +1,54 @@
+{
+  "source": "public/assets/environment/machu-stone-v1.png",
+  "runtime": "public/assets/environment/machu-stone-v1.webp",
+  "source_sha256": "5ebdeb92f26f1f987fb0d138c4fe8e564ba5b6c26cd35b5bc5c3317bf231a6f9",
+  "runtime_sha256": "8759e709be251c360d44ccb65989a13e1b0b631f4de33ab78052196c2fd7c957",
+  "bytes": 293350,
+  "width": 768,
+  "height": 512,
+  "cells": [
+    {
+      "id": "rock-rounded",
+      "x": 12,
+      "y": 44,
+      "w": 232,
+      "h": 204
+    },
+    {
+      "id": "rock-angular",
+      "x": 268,
+      "y": 50,
+      "w": 232,
+      "h": 198
+    },
+    {
+      "id": "rock-cluster",
+      "x": 524,
+      "y": 59,
+      "w": 232,
+      "h": 189
+    },
+    {
+      "id": "wall-horizontal",
+      "x": 12,
+      "y": 428,
+      "w": 232,
+      "h": 76
+    },
+    {
+      "id": "wall-vertical",
+      "x": 332,
+      "y": 272,
+      "w": 103,
+      "h": 232
+    },
+    {
+      "id": "terraces",
+      "x": 524,
+      "y": 399,
+      "w": 232,
+      "h": 105
+    }
+  ],
+  "method": "Built-in image_gen; mechanical isolated-object cropping and nearest-neighbor packing."
+}

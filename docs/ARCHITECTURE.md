@@ -317,6 +317,12 @@ CampoArt intercepta landmark/picnic en Terrain solo para Campo fuera de arenas. 
 
 El HUD conserva IDs y sistemas existentes. UI.hud actualiza nombre, nivel y la barra accesible de vida; XP expone valores ARIA. CSS posiciona las zonas del HUD de forma independiente, manteniendo el contenedor único para ocultar todo en menú y cinemáticas.
 
+
+MachuArt intercepta rock/wall/landmark en Terrain únicamente para Machu fuera de arenas. Un atlas de seis celdas, variante de roca por coordenadas y orientación del muro según w/h. Una llamada por obstáculo. Chunks.floor usa MachuArt.edge solo al construir el canvas del sector; la carga del atlas invalida esos canvas una vez si Machu sigue seleccionado. Ningún cambio de física, rutas o entidades. Auditoría y empaquetado: machu-stone-audit.json y pack-machu-stone.py.
+
+
+Los bordes de piedra se componen sobre el canvas final de 512 px del sector, después de ampliar la base de 128 px, para conservar el detalle del sprite sin bloques excesivos. La composición sigue ocurriendo solo al reconstruir el sector.
+
 ## Tienda del menú y mochila
 El monedero permanente compra unidades de Lonchera del causa (20: +25 vida máxima/inicial), Café de cabina (25: recarga ×0.88), Zapatillas de repuesto (25: velocidad ×1.10), Imán de bolsillo (20: recogida ×1.25), Llave rara (30) y Llave legendaria (70). Los cuatro bonos duran una partida; las llaves se suman al inventario temporal del mapa. Los objetos usan iconos pixel art propios y el estilo azul del vestíbulo.
 
@@ -339,3 +345,5 @@ Minibosses.drawDefeat dibuja secuencias deterministas a partir de life/maxLife d
 MinionEvolution centraliza coraza, attackFX y projectileFX. Los ataques hostiles serializan minionRank, independiente de evolution de armas aliadas. Adornos fuera de la caché del glifo, sin partículas persistentes ni entidades nuevas. Armadura bajo la misma transformación del cuerpo completo, también al morir; avisos originales conservados.
 
 VulturePhase2 carga un atlas propio y reemplaza únicamente VultureImpact.card, phaseAura y el dibujo del jefe transformado; no duplica la tarjeta ni modifica las ultis de Kingteka o Fujimori. La escena cambia físicamente de atlas en 2,65 s. Los estados vulture-chaos-charge, chaosAttack, chaosTime y chaosTargets viven en el actor; no hay temporizadores reales. Los impactos eléctricos reutilizan las amenazas stomp (cobertura por línea y daño único) con representación CHAOS_LIGHTNING; las plumas ondulantes reutilizan zigzag y la fragmentación de chaosFeather. El empaquetador Python conserva los ocho componentes completos del PNG original, con margen y pivote al pie en celdas 512, sin escalar ni cortar las alas; frames.json conserva su auditoría.
+Minibosses observa contadores serializados de ataque/recuperación y efectos de muerte desde el HUD, evitando audio duplicado por render o cliente cooperativo. Audio.mini sintetiza motivos originales con límites de voces existentes. World envía cámara real y zoom a indicator; edgePoint proyecta el sprite y recorta la flecha al margen seguro del viewport.
+MinionEvolution.accessoryPose deriva agarres del índice de los seis cuadros y de EnemyArt.attackPose, sin alterar walkPhase ni crear estado de simulación. gear dibuja vestuario específico, manos y herramientas en coordenadas del cuerpo, conservando un solo sprite base íntegro. Muerte conserva accesorios estáticos bajo su giro y opacidad; banderas conservan bandas verticales rojo-blanco-rojo.

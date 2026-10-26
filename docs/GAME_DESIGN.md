@@ -399,6 +399,9 @@ Campo de Marte: monumento de piedra con arco y relieves, más dos variantes de p
 
 HUD de combate distribuido en los bordes: XP de ancho completo arriba, personaje/nivel/vida a la izquierda, tiempo al centro y habilidad abajo. La información de botín y eventos permanece visible sin un panel central opaco.
 
+
+Machu Picchu: tres variantes de roca, dos orientaciones de muro y terrazas con escalera, piedra irregular y musgo sutil. Conserva rutas, cantidades y colisiones, sombras apoyadas y transparencia detrás. Los bordes de piedra del suelo mantienen su distribución y se integran en la caché del terreno. Referencia: MACHU_STONE.md.
+
 ## Tienda del menú y mochila
 El monedero permanente compra unidades de Lonchera del causa (20: +25 vida máxima/inicial), Café de cabina (25: recarga ×0.88), Zapatillas de repuesto (25: velocidad ×1.10), Imán de bolsillo (20: recogida ×1.25), Llave rara (30) y Llave legendaria (70). Los cuatro bonos duran una partida; las llaves se suman al inventario temporal del mapa. Los objetos usan iconos pixel art propios y el estilo azul del vestíbulo.
 
@@ -425,3 +428,5 @@ Veteranos: coraza bronce, hombreras remachadas y grebas. Élites: coraza violeta
 ### Gallinazo: fase II física y ataques propios
 La transformación cambia el cuerpo al atlas gallinazo-phase2-v1: cresta erizada, cuello y hombros reforzados, alas dentadas con puntas marfil y fisuras violetas. Se revela a los 2,65 s de la ulti entre rayos localizados y continúa en combate; no es una recoloración. La tarjeta anterior se sustituye por un único panel izquierdo con las proporciones de Kingteka/Fujimori.
 Tras la ulti, las plumas normales pasan a Plumas serpiente: dos abanicos de nueve proyectiles ondulantes, 14 de daño, separados 0,42 s tras 1,1 s de aviso. La invocación pasa a Tormenta de azotea: tres círculos de radio 46 fijados al preparar el ataque, 18 de daño por impacto, aviso mínimo 1,1 s y golpes escalonados 0,18 s. No se colocan sobre cobertura; se respetan los bordes y la visibilidad del aviso. Las picadas mantienen sus avisos y comportamiento. Máximo global: 70 amenazas. Los rayos localizados tienen menor intensidad y no oscilan en movimiento reducido.
+Cada minijefe tiene motivos sintetizados propios de entrada, aviso de ataque, agotamiento y derrota (silbato, arrullo tonal o cerámica grave). La flecha del borde indica nombre, dirección y distancia cuando su sprite está completamente fuera de vista; desaparece al volver, morir o entrar a una arena. Respeta silencio y pausa.
+Variantes creativas de veteranos y élites: Pablo ingeniero con casco blanco, chaleco y pala; Tyrone musculoso con camiseta y cinturón; Uniqua abanderada del Perú; Tasha guardaespaldas de terno negro; Austin mecánico con casco blanco y llave; PNP con escudo y vara. Los élites añaden acabados propios al oficio, sin armadura genérica. Los accesorios siguen seis claves de caminata y una pose de preparación/liberación, bajo la transformación del cuerpo completo. No cambian ataques ni colisiones.
