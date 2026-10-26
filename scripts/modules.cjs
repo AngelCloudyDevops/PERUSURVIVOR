@@ -331,6 +331,10 @@ module.exports = [
     "output": "js/makanaky-boxing.js"
   },
   {
+    "source": "src/rendering/companion-art.js",
+    "output": "js/companion-art.js"
+  },
+  {
     "source": "src/rendering/domain-art.js",
     "output": "js/domain-art.js"
   },
