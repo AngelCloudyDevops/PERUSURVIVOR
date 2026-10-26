@@ -1,0 +1,493 @@
+{
+  "method": "Segunda pasada frente a primera: mismos parámetros y blancos estáticos durante 20 s, sin ulti ni poderes de apoyo. close: 90/r30; mid: 250/r30; boss: 180/r40; line: ocho a 80+45i/r13. evolved aplica cuatro rangos y evolución al nivel 8. Daño agregado por segundo, no tasa de victoria ni supervivencia. Salud de minijefes registrada al aparecer; no depende del DPS del jugador.",
+  "characters": [
+    {
+      "id": "cristorata",
+      "evolved": false,
+      "close": {
+        "before": 32.8,
+        "after": 32.8
+      },
+      "mid": {
+        "before": 33.6,
+        "after": 33.6
+      },
+      "boss": {
+        "before": 33.6,
+        "after": 33.6
+      },
+      "line": {
+        "before": 166.4,
+        "after": 166.4
+      }
+    },
+    {
+      "id": "cuy",
+      "evolved": false,
+      "close": {
+        "before": 30.6,
+        "after": 30.6
+      },
+      "mid": {
+        "before": 0,
+        "after": 0
+      },
+      "boss": {
+        "before": 30.6,
+        "after": 30.6
+      },
+      "line": {
+        "before": 61.2,
+        "after": 61.2
+      }
+    },
+    {
+      "id": "paloma",
+      "evolved": false,
+      "close": {
+        "before": 102,
+        "after": 102
+      },
+      "mid": {
+        "before": 20.4,
+        "after": 20.4
+      },
+      "boss": {
+        "before": 61.2,
+        "after": 61.2
+      },
+      "line": {
+        "before": 61.2,
+        "after": 61.2
+      }
+    },
+    {
+      "id": "alan",
+      "evolved": false,
+      "close": {
+        "before": 37.2,
+        "after": 37.2
+      },
+      "mid": {
+        "before": 37.2,
+        "after": 37.2
+      },
+      "boss": {
+        "before": 37.2,
+        "after": 37.2
+      },
+      "line": {
+        "before": 148.8,
+        "after": 148.8
+      }
+    },
+    {
+      "id": "alberto",
+      "evolved": false,
+      "close": {
+        "before": 28.8,
+        "after": 28.8
+      },
+      "mid": {
+        "before": 0,
+        "after": 0
+      },
+      "boss": {
+        "before": 0,
+        "after": 0
+      },
+      "line": {
+        "before": 31.2,
+        "after": 31.2
+      }
+    },
+    {
+      "id": "keiko",
+      "evolved": false,
+      "close": {
+        "before": 43.7,
+        "after": 43.7
+      },
+      "mid": {
+        "before": 43.7,
+        "after": 43.7
+      },
+      "boss": {
+        "before": 43.7,
+        "after": 43.7
+      },
+      "line": {
+        "before": 217.4,
+        "after": 217.4
+      }
+    },
+    {
+      "id": "ollanta",
+      "evolved": false,
+      "close": {
+        "before": 33,
+        "after": 33
+      },
+      "mid": {
+        "before": 33,
+        "after": 33
+      },
+      "boss": {
+        "before": 33,
+        "after": 33
+      },
+      "line": {
+        "before": 165,
+        "after": 165
+      }
+    },
+    {
+      "id": "kingteka",
+      "evolved": false,
+      "close": {
+        "before": 105,
+        "after": 37.8
+      },
+      "mid": {
+        "before": 53.4,
+        "after": 26.7
+      },
+      "boss": {
+        "before": 105,
+        "after": 37.8
+      },
+      "line": {
+        "before": 105,
+        "after": 37.8
+      }
+    },
+    {
+      "id": "shaka",
+      "evolved": false,
+      "close": {
+        "before": 161,
+        "after": 161
+      },
+      "mid": {
+        "before": 161,
+        "after": 161
+      },
+      "boss": {
+        "before": 161,
+        "after": 161
+      },
+      "line": {
+        "before": 483,
+        "after": 483
+      }
+    },
+    {
+      "id": "najasor",
+      "evolved": false,
+      "close": {
+        "before": 72,
+        "after": 72
+      },
+      "mid": {
+        "before": 23,
+        "after": 23
+      },
+      "boss": {
+        "before": 69,
+        "after": 69
+      },
+      "line": {
+        "before": 69,
+        "after": 69
+      }
+    },
+    {
+      "id": "cirilo",
+      "evolved": false,
+      "close": {
+        "before": 45.1,
+        "after": 45.1
+      },
+      "mid": {
+        "before": 46.2,
+        "after": 46.2
+      },
+      "boss": {
+        "before": 46.2,
+        "after": 46.2
+      },
+      "line": {
+        "before": 228.8,
+        "after": 228.8
+      }
+    },
+    {
+      "id": "fuzo",
+      "evolved": false,
+      "close": {
+        "before": 62.4,
+        "after": 62.4
+      },
+      "mid": {
+        "before": 62.4,
+        "after": 62.4
+      },
+      "boss": {
+        "before": 62.4,
+        "after": 62.4
+      },
+      "line": {
+        "before": 187.2,
+        "after": 187.2
+      }
+    },
+    {
+      "id": "charles",
+      "evolved": false,
+      "close": {
+        "before": 68.1,
+        "after": 68.1
+      },
+      "mid": {
+        "before": 67.2,
+        "after": 67.2
+      },
+      "boss": {
+        "before": 67.7,
+        "after": 67.7
+      },
+      "line": {
+        "before": 108.1,
+        "after": 108.1
+      }
+    },
+    {
+      "id": "axelbenba",
+      "evolved": false,
+      "close": {
+        "before": 88.2,
+        "after": 88.2
+      },
+      "mid": {
+        "before": 28.4,
+        "after": 28.4
+      },
+      "boss": {
+        "before": 85.1,
+        "after": 85.1
+      },
+      "line": {
+        "before": 88.2,
+        "after": 88.2
+      }
+    },
+    {
+      "id": "cerdito",
+      "evolved": false,
+      "close": {
+        "before": 118.1,
+        "after": 35.4
+      },
+      "mid": {
+        "before": 36.7,
+        "after": 18.4
+      },
+      "boss": {
+        "before": 45.6,
+        "after": 22.8
+      },
+      "line": {
+        "before": 84.4,
+        "after": 30.4
+      }
+    },
+    {
+      "id": "sustento",
+      "evolved": false,
+      "close": {
+        "before": 60,
+        "after": 60
+      },
+      "mid": {
+        "before": 59.4,
+        "after": 59.4
+      },
+      "boss": {
+        "before": 60,
+        "after": 60
+      },
+      "line": {
+        "before": 60,
+        "after": 60
+      }
+    },
+    {
+      "id": "cevichero",
+      "evolved": false,
+      "close": {
+        "before": 76.8,
+        "after": 76.8
+      },
+      "mid": {
+        "before": 74.4,
+        "after": 74.4
+      },
+      "boss": {
+        "before": 76.8,
+        "after": 76.8
+      },
+      "line": {
+        "before": 76.8,
+        "after": 76.8
+      }
+    },
+    {
+      "id": "g5",
+      "evolved": false,
+      "close": {
+        "before": 67.2,
+        "after": 67.2
+      },
+      "mid": {
+        "before": 0,
+        "after": 0
+      },
+      "boss": {
+        "before": 0,
+        "after": 0
+      },
+      "line": {
+        "before": 134.4,
+        "after": 134.4
+      }
+    }
+  ],
+  "evolved": [
+    {
+      "id": "kingteka",
+      "evolved": true,
+      "close": {
+        "before": 445.6,
+        "after": 222.8
+      },
+      "mid": {
+        "before": 445.6,
+        "after": 222.8
+      },
+      "boss": {
+        "before": 445.6,
+        "after": 222.8
+      },
+      "line": {
+        "before": 594.1,
+        "after": 371.3
+      }
+    },
+    {
+      "id": "cerdito",
+      "evolved": true,
+      "close": {
+        "before": 270.5,
+        "after": 203.3
+      },
+      "mid": {
+        "before": 103.1,
+        "after": 103.1
+      },
+      "boss": {
+        "before": 103.4,
+        "after": 103.4
+      },
+      "line": {
+        "before": 167.1,
+        "after": 167.1
+      }
+    }
+  ],
+  "minibossHealth": [
+    {
+      "map": "campo",
+      "time": 75,
+      "previous": 460,
+      "solo": 644,
+      "duo": 1063
+    },
+    {
+      "map": "campo",
+      "time": 150,
+      "previous": 460,
+      "solo": 1104,
+      "duo": 1822
+    },
+    {
+      "map": "campo",
+      "time": 225,
+      "previous": 460,
+      "solo": 1564,
+      "duo": 2581
+    },
+    {
+      "map": "campo",
+      "time": 300,
+      "previous": 460,
+      "solo": 1656,
+      "duo": 2732
+    },
+    {
+      "map": "plaza",
+      "time": 75,
+      "previous": 420,
+      "solo": 588,
+      "duo": 970
+    },
+    {
+      "map": "plaza",
+      "time": 150,
+      "previous": 420,
+      "solo": 1008,
+      "duo": 1663
+    },
+    {
+      "map": "plaza",
+      "time": 225,
+      "previous": 420,
+      "solo": 1428,
+      "duo": 2356
+    },
+    {
+      "map": "plaza",
+      "time": 300,
+      "previous": 420,
+      "solo": 1512,
+      "duo": 2495
+    },
+    {
+      "map": "machu",
+      "time": 75,
+      "previous": 540,
+      "solo": 756,
+      "duo": 1247
+    },
+    {
+      "map": "machu",
+      "time": 150,
+      "previous": 540,
+      "solo": 1296,
+      "duo": 2138
+    },
+    {
+      "map": "machu",
+      "time": 225,
+      "previous": 540,
+      "solo": 1836,
+      "duo": 3029
+    },
+    {
+      "map": "machu",
+      "time": 300,
+      "previous": 540,
+      "solo": 1944,
+      "duo": 3208
+    }
+  ]
+}

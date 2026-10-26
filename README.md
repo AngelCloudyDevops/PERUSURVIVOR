@@ -235,3 +235,6 @@ La [primera pasada de equilibrio](docs/COMBAT_BALANCE.md) limita los objetivos a
 
 ## Monumento y picnic de Campo de Marte
 El [monumento y las mesas de picnic](docs/CAMPO_LANDMARKS.md) conservan el estilo cartoon con acabado pixel: piedra tallada, relieves, madera y metal, mantel o canasta/termo. Mantener sombras pegadas a la base y patas, escala coherente y transparencia detrás del monumento. Atlas compartido de unos 96 KB, una llamada de dibujo por objeto, sin cambiar cantidades ni colisiones.
+
+## Perdigones y resistencia de minijefes
+La [segunda pasada](docs/COMBAT_BALANCE_2.md) reduce los impactos adicionales de una descarga sobre el mismo enemigo (100/35/15/15… %), manteniendo daño independiente por rival y jugador. Los minijefes fijan su vida al aparecer según tiempo de mapa y grupo; no crece durante el combate. Los minions básicos conservan su salud. Medición de 18 personajes: docs/shotgun-miniboss-audit.json.

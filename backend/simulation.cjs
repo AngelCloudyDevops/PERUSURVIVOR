@@ -16,7 +16,7 @@ class Simulation{
  constructor(map,characters,root=path.resolve(__dirname,'..')){
   this.P=loadEngine(root);const P=this.P;P.Combat.server=true;P.Maps.selected=map;P.state.chosen=characters[0];P.Game.start();
   this.players=characters.map((id,i)=>{const p=P.Entities.player(P.Data.characters[id]);Object.assign(p,{x:P.state.player.x+i*45,y:P.state.player.y,slot:i,fire:0,shots:[],fields:[],revive:0});P.state.player=p;P.Ultimate.reset();p.ultimate=P.state.ultimate;return p});
-  P.state.player=this.players[0];P.Court.players=()=>this.players;this.result=null;
+  P.state.player=this.players[0];P.Minibosses.partySize=()=>this.players.length;P.Court.players=()=>this.players;this.result=null;
   P.Game.finish=win=>{if(win)this.result='win'};
   P.Systems.levelup=()=>{if(!this.activities.pending)this.activities.levelup()};
   this.activities=new Activities(this);
