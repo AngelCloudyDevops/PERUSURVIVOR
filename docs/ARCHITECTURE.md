@@ -579,6 +579,8 @@ DomainIntro.pose expone announce/anticipation/handoff a partir de domain.age; fe
 
 TestBench.dragon mantiene una preferencia local y temporal del selector existente del laboratorio. DragonUltimate.variantForRun valida contexto, rol, variante y ausencia de cooperativo/servidor antes de usarla al activar; cualquier otro caso llama pick(). No añade datos de variante al protocolo de red.
 
+DragonEpic.environmentPose deriva oro, sombra, polvo, piedras, viento y sacudida del reloj de cinemática; environment dibuja un número fijo de primitivas sin entidades, timers ni listas de partículas. surface mantiene dos superficies raster cacheadas (marco dorado y luz cálida del actor), reutiliza el atlas original y conserva alfa y contornos. La revelación normal reutiliza los efectos de caída con secret=false.
+
 DragonUltimate.introFor/sceneFor conservan la duración por variante tanto en la simulación como en la protección, pausa y HUD. DragonEpic deriva cabezas, ruptura y despegue únicamente de dragon.age y reutiliza el atlas existente sin decidir daño. Los límites temporales se ajustan con tolerancia numérica para devolver exactamente ocho segundos al salir de la cinemática.
 
 La variante 3 de DragonUltimate es el secreto; pick(roll) concentra la regla del 5 %. hitElement comparte las tres mecánicas sin duplicar fuentes ni listas: chaosPulses/elements/burstAt se serializan por jugador. DragonArt carga el atlas secreto bajo demanda, conserva figuras fuera de celdas nominales y aplica corte de alfa a 160 para eliminar halos y conservar contornos nítidos. secretFeedback identifica cada lanzamiento con cast y limita los tres rugidos a una vez por jugador.
@@ -597,3 +599,6 @@ Presupuesto del bus: boss-atlas-packed-v2.webp recodifica a calidad 100 el atlas
 # Arte y control de Sideral
 
 SideralArt carga un atlas WebP 4×2 de figuras completas: tres poses de locomoción y cinco cuadros continuos de ataque. Intercepta únicamente el dibujo del id `sideral`; los demás personajes conservan Sprites y PlayerAttackArt. Combat registra resistencia temporal por enemigo y usa la carga serializable existente para producir la huida, por lo que el comportamiento funciona también en la simulación cooperativa sin un estado paralelo.
+
+
+Cooperativo social: friends.cjs conserva amistades bilaterales e invitaciones de un uso en SQLite, con cookies y X-Account-Id del sistema existente, comprobación de origen, cupos y límites de frecuencia. Solo el destinatario autenticado consume una invitación de 60 s al entrar por WebSocket. La identidad y colección se obtienen de la sesión del servidor; el cliente no puede elegir un nombre de cuenta. El servidor local comparte la instancia de cuentas con el servidor de salas. Protocolo 2 incorpora revisión de sala, configure y ready; cambiar configuración/roster invalida ambas confirmaciones. Solo el anfitrión puede iniciar con dos conexiones listas. La UI precarga figuras antes de confirmar y rechaza cargas que terminen con una revisión antigua. La presencia usa sala conectada o consultas autenticadas recientes; se muestra solo a amigos aceptados. Las listas no se reconstruyen si los datos no cambiaron.

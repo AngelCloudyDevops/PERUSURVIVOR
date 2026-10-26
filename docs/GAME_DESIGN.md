@@ -678,6 +678,8 @@ La entrada UR anuncia «EXPANSIÓN DE DOMINIO» antes de «¡BÓTAME TU GAAAA!»
 
 Laboratorio de Cristorata: permite fijar la variante de la próxima ulti. Solo se admite en una prueba local activa de administrador (devRun y TestBench.active), nunca en simulación del servidor ni cooperativo. Aleatorio conserva el 5 % secreto. La selección no modifica una ulti en curso.
 
+Impacto de la máquina: sombra previa, polvo lateral durante 1,25 s desde el aterrizaje, piedritas balísticas durante 0,9 s y grietas decorativas. La revelación secreta transforma el marco rojo en oro con los golpes de 2,35/2,75/3,15 s; los dragones normales conservan máquina roja. No añade obstáculos ni daño. Movimiento reducido conserva el cambio de color y elimina sacudidas, polvo y piedras en movimiento.
+
 La cinemática secreta usa 6,4 s frente a 4,2 s de los dragones normales. La tarjeta anterior conserva 1,3 s. Avería 1,9–2,35 s; impactos 2,35/2,75/3,15; salida de cabezas 2,65/3,05/3,45; cuerpo y marco desde 3,85; plano protagonista 4,15–5,5; salto y despegue desde 5,05 y retorno entre 6–6,4. Ninguno de esos tiempos consume los ocho segundos de combate.
 
 Dragón secreto: probabilidad 5 %, resuelta en la simulación y compartida por snapshot. El resto se distribuye uniformemente entre Jade, Brasa y Trueno. Alterna un elemento por pulso de 0,25 s a escala ×1,35; cada octavo pulso usa los tres a escala ×0,45 cada uno. Contra jefes, minijefes y jefes de mapa aplica ×0,7 y limita cada impacto y tick de veneno al 1 % de vida máxima antes de defensas/atributos. No usa ejecución ni daño fijo. Los ocho segundos y la velocidad ×1,6 no cambian. La máquina no muestra su figura durante los rodillos: revela tres colores normales, falla y aparece el tricéfalo.
@@ -695,3 +697,6 @@ Sustituye visualmente a La Combi Final: minibús blanco y azul, cristales oscuro
 # Sideral · UR de control
 
 Sideral es un personaje UR de Ingenio cuyo ataque automático, **Mirada Sideral**, cubre un cono frontal de 270 unidades. Los minions normales huyen durante 0,9 s; los pesados resisten y retroceden menos, los minijefes solo sufren una interrupción breve y los jefes no abandonan su patrón. Cada objetivo obtiene 2,5 s de resistencia antes de poder ser asustado otra vez. Su evolución **Rostro prohibido** ensancha el cono y prolonga el miedo, sin convertir la rareza en daño bruto gratuito.
+
+
+Primera entrega social: buscar usuario exacto, solicitud de amistad aceptada por ambos, lista persistente con Conectado/En sala/Jugando/Desconectado, invitaciones dentro del juego, sala de espera para dos con retratos animados, selección individual y mapa del anfitrión. Ambos deben pulsar Estoy listo; el botón inicia solo cuando las dos conexiones están preparadas. Los códigos permanecen para invitados. Las invitaciones vencen al minuto, no permiten entrar a salas llenas/iniciadas y no revelan información a terceros. Límite 100 relaciones por usuario, 20 solicitudes entrantes y 30 acciones sociales por minuto. Cargar figuras falla de forma recuperable y no confirma un personaje distinto del elegido.
