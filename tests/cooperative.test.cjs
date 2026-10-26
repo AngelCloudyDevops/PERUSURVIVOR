@@ -86,3 +86,36 @@ test('Minijefes cooperativos: calendario del servidor, aviso compartido, ataques
   const sim=new Simulation(map,[0,6]),P=sim.P,s=P.state,M=P.Minibosses;P.Terrain.hit=()=>null;P.Loot.safe=()=>true;s.mapTime=s.miniNext;sim.tick(.04,[{},{}]);assert(sim.snapshot().miniWarning);assert.equal(sim.snapshot().miniWarning.map,map);for(let i=0;i<52;i++)sim.tick(.04,[{},{}]);const e=s.enemies.find(e=>e.miniboss);assert(e&&e.miniMap===map);assert.equal(sim.snapshot().enemies.filter(e=>e.miniboss).length,1);s.enemies=[e];s.gems=[];s.danger=[];s.fields=[];P.Terrain.resolve=()=>{};/* Aislar contacto del botín y proyectiles de la preparación. */for(const p of sim.players){p.x=e.x;p.y=e.y;p.inv=0;p.fire=100}const hp=sim.players.map(p=>p.hp);e.phase='mini-recover';e.recovery=1;sim.tick(.04,[{},{}]);assert.deepEqual(sim.players.map(p=>p.hp),hp);e.phase='approach';e.attackT=100;sim.tick(.04,[{},{}]);assert.deepEqual(sim.players.map(p=>p.hp),hp.map((n,i)=>n-P.Attributes.incoming(sim.players[i],12,e)));assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));M.warn(e,M.catalog[map].attacks[1]);M.move(e,1);if(e.phase==='mini-charge')M.move(e,1);const kills=s.kills;P.Entities.hurt(e,99999);P.Entities.hurt(e,99999);assert.equal(s.kills,kills+1);assert.equal(s.effects.filter(q=>q.kind==='miniboss-death').length,1);assert.equal(s.gems.filter(q=>q.kind==='coin'&&q.value===20).length,1);assert(!s.danger.some(q=>q.miniId===e.miniId));s.mapTime=300;s.miniWarning=null;sim.tick(.04,[{},{}]);assert(!s.miniWarning);assert(s.bossSpawned);
  }
 });
+
+test('Revancha: acuerdo bilateral, misma sala, reconexión y simulación nueva tras victoria y derrota',{timeout:15000},async()=>{
+ const app=createCoopServer({autoTick:false});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+app.server.address().port,clients=[];
+ async function connect(){const ws=new WebSocket(origin.replace('http:','ws:')+'/coop',{origin}),receive=mailbox(ws);clients.push(ws);await once(ws,'open');return {ws,receive,send:obj=>ws.send(JSON.stringify(obj))}}
+ async function roomUntil(client,predicate){for(let i=0;i<30;i++){const m=await client.receive('room');if(predicate(m))return m}assert.fail('No llegó la sala esperada')}
+ try{
+  const a=await connect(),b=await connect();a.send({type:'create',protocol:2,map:'campo',character:0});const aj=await a.receive('joined');b.send({type:'join',protocol:2,code:aj.code,character:6});const bj=await b.receive('joined'),room=app.rooms.get(aj.code);const tokens=room.members.map(m=>m.token);
+  let guest=b,previousRound=0;
+  for(const outcome of ['lose','win']){
+   const rev=room.revision;a.send({type:'ready',ready:true,revision:rev});guest.send({type:'ready',ready:true,revision:rev});await roomUntil(a,m=>m.players.every(p=>p.ready));a.send({type:'start'});await a.receive('state');await guest.receive('state');const sim=room.sim,round=room.round;assert(round>previousRound);
+   a.send({type:'return',round});assert.match((await a.receive('error')).message,/todavía no terminó/);assert.equal(room.sim,sim);
+   sim.result=outcome;sim.players[0].power=999;room.members[0].input={x:1,y:0,ultimate:true};
+   a.send({type:'return',round});const waiting=await roomUntil(a,m=>m.players[0].returning);assert(waiting.finished);assert.equal(room.sim,sim,'Una persona no arrastra a la otra al vestíbulo');
+   if(outcome==='lose'){
+    const closed=once(room.members[1].ws,'close');guest.ws.close();await closed;guest=await connect();guest.send({type:'resume',protocol:2,code:aj.code,token:bj.token});const resumed=await guest.receive('joined');assert.equal(resumed.round,round);assert(resumed.players[0].returning);await guest.receive('state');
+   }
+   guest.send({type:'return',round:round+1});assert.match((await guest.receive('error')).message,/resultado ya cambió/);assert.equal(room.sim,sim);
+   guest.send({type:'return',round});const returned=await roomUntil(a,m=>!m.started);assert.equal(returned.code,aj.code);assert.equal(room.sim,null);assert(returned.players.every(p=>!p.ready&&!p.returning));assert.deepEqual(room.members.map(m=>m.token),tokens);assert(room.members.every(m=>m.input.x===0&&!m.input.ultimate));
+   a.send({type:'start'});assert.match((await a.receive('error')).message,/Estoy listo/);
+   a.send({type:'configure',map:'machu',character:7});await roomUntil(a,m=>m.map==='machu'&&m.players[0].character===7);
+   previousRound=round;
+  }
+  const rev=room.revision;a.send({type:'ready',ready:true,revision:rev});guest.send({type:'ready',ready:true,revision:rev});await roomUntil(a,m=>m.players.every(p=>p.ready));a.send({type:'start'});const fresh=await a.receive('state');assert.equal(fresh.map,'machu');assert.equal(fresh.elapsed,0);assert.equal(fresh.kills,0);assert.equal(fresh.players[0].id,'kingteka');assert.notEqual(fresh.players[0].power,999);assert(!fresh.result);assert.equal(app.rooms.size,1);
+ }finally{for(const ws of clients)ws.terminate();await app.close()}
+});
+
+test('Revancha cliente: conserva sesión/socket, limpia el resultado y abre la sala sin recargar',{timeout:10000},()=>{
+ const {P}=new Simulation('campo',[0,6]);const session={code:'ABCD1234',slot:0},socket={readyState:1};let leaves=0,reloads=0,shown,decorated=0;
+ P.Coop.session=session;P.Coop.ws=socket;P.Coop.active=true;P.Coop.paused=true;P.Coop.resultShown=true;P.Coop.resultVisible=true;P.Coop.activityPending=true;P.Coop.peers=[{}];P.Coop.ultimate=true;P.Coop.room={round:3,players:[{returning:true},{returning:false}]};P.Coop.resultSummary={win:false,kills:12,elapsed:90};P.Coop.leave=()=>leaves++;P.UI.show=(title,description,buttons)=>{shown={title,description,buttons}};P.Meta.decorate=()=>decorated++;P.Updates={pending:true,reload:()=>reloads++};P.Lobby.ready=false;
+ P.Coop.showResult();assert.match(shown.description,/1\/2/);assert(shown.buttons[0].disabled);assert.match(shown.buttons[1].title,/Salir del grupo/);assert.equal(decorated,1);
+ P.Coop.backToRoom();assert.equal(P.Coop.session,session);assert.equal(P.Coop.ws,socket);assert.equal(leaves,0);assert.equal(reloads,0);assert.equal(P.state.mode,'menu');assert.equal(P.Lobby.route,'coop');assert(!P.Coop.active&&!P.Coop.paused&&!P.Coop.resultVisible&&!P.Coop.activityPending&&!P.Coop.ultimate);assert.equal(P.Coop.resultSummary,null);assert.equal(P.Coop.peers.length,0);
+ P.UI.menu();assert.equal(reloads,1,'Salir normalmente sigue aplicando las actualizaciones pendientes');
+});

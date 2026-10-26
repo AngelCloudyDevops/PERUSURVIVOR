@@ -445,3 +445,6 @@ Inicia sesión, abre Cooperativo y agrega a tu amigo por su nombre exacto de usu
 La revelación secreta encadena un falso resultado Jade, un último giro, vapor y un seguro que salta al dorarse la máquina. Los ojos preceden a cada cabeza con desplazamientos propios; Cristorata retrocede y extiende el brazo durante su frase. El dragón se inclina para la subida y el aleteo final levanta polvo. Todo deriva de la edad autoritativa de la ulti, conserva los 6,4 s y la pausa compartida; movimiento reducido omite sacudidas, vapor y ráfagas. No añade daño ni entidades.
 
 El gesto de Cristorata usa piezas pixel art rígidas de manga, antebrazo y mano con índice definido. El hombro queda fijo al torso; codo y muñeca conservan sus longitudes al extender y recoger el brazo. Las piezas y la limpieza del recorte se cachean por imagen, sin deformar el atlas ni modificar la duración de la ulti.
+
+### Revancha cooperativa
+Al terminar una partida, ambos pulsan **Volver juntos a la sala**. El grupo, código y anfitrión se conservan; pueden cambiar personajes y mapa y deben confirmar **Estoy listo** de nuevo. Una sola confirmación espera al compañero sin cerrar su resultado. **Salir del grupo** termina la sesión compartida. La actualización pendiente del juego se aplaza mientras regresan juntos.

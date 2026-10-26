@@ -25,7 +25,7 @@ open(message){
  ws.onmessage=e=>{if(this.ws!==ws)return;const m=JSON.parse(e.data);
   if(m.type==='error'){this.joinReject?.(Error(m.message));this.joinResolve=this.joinReject=null;this.status(m.message);if(this.active)P.$('#hint').textContent=m.message;if(!accepted){this.leave();this.status(m.message)}return}
   if(m.type==='joined'){if(this.reconnecting)this.paused=false;accepted=true;this.session={code:m.code,token:m.token,slot:m.slot,guest:!P.Account?.user};this.joinResolve?.(m);this.joinResolve=null;this.reconnecting=false}
-  if(m.type==='joined'||m.type==='room'){this.roomRender(m);if(this.active&&!m.players.every(p=>p.connected))P.$('#hint').textContent='Tu compañero se desconectó. Partida detenida durante 30 s.';}
+  if(m.type==='joined'||m.type==='room'){if(!m.started&&this.active)this.backToRoom();this.roomRender(m);if(m.finished&&this.resultVisible)this.showResult();if(this.active&&!m.players.every(p=>p.connected))P.$('#hint').textContent='Tu compañero se desconectó. Partida detenida durante 30 s.';}
 
   if(m.type==='state')this.receive(m);
   if(m.type==='closed'){this.leave();this.status(m.message)}
@@ -34,7 +34,7 @@ open(message){
  ws.onclose=()=>{if(this.ws!==ws)return;this.ws=null;if(this.session){this.reconnecting=true;this.paused=true;P.Core.clear();P.$('#hint').textContent='Conexión perdida. Intentando volver a la sala…';const session=this.session;setTimeout(()=>{if(this.session===session)this.open({type:'resume',protocol:2,...session})},1500)}else this.status('No se pudo conectar. Prueba de nuevo o juega individual.')};
 },
 receive(m){
- const first=!this.active;if(first)this.resultShown=false;this.active=true;this.reconnecting=false;
+ const first=!this.active;if(first){this.resultShown=false;this.resultVisible=false;this.resultSummary=null;}this.active=true;this.reconnecting=false;
  if(first){P.Maps.select(m.map);P.state.chosen=P.Data.characters.findIndex(c=>c.id===m.players[this.session.slot].id);this.initializing=true;P.Game.start();this.initializing=false;P.Loot.chests=[];P.Loot.debris=[];P.$('#pause').setAttribute('aria-label','Opciones cooperativas')}
  const s=P.state,previousScene=s.encounter?.scene?.id;for(const key of ['domain','domainAftermath','miniReport','court','courtBurst','miniWarning','keys','portal','encounter','mapBossWon','coins','elapsed','mapTime','kills','level','xp','need','bossSpawned','shots','fields','enemies','gems','danger','effects'])s[key]=m[key];
  s.mode='play';s.player=m.players[this.session.slot];s.ultimate=s.player.ultimate;this.peers=m.players.filter(p=>p.slot!==this.session.slot);P.Maps.selected=m.map;
@@ -46,8 +46,10 @@ receive(m){
  const votes=m.portal?.votes||[];if(m.portal?.open)P.$('#portal-status').textContent+=' · Listos '+votes.length+'/2 · Ambos cerca y E';P.$('#portal-enter').textContent=votes.includes(this.session.slot)?'Listo · E para cancelar':'Entrar juntos al portal · E';
  P.$('#hint').textContent=m.message||(s.player.hp<=0?'CAÍSTE · TU AMIGO PUEDE REANIMARTE ACERCÁNDOSE 4 S':'COOPERATIVO · EXPLORA COFRES, PORTALES Y EVENTOS CON TU AMIGO');
  this.showReward(m.pending);
- if(m.result&&!this.resultShown){this.resultShown=true;this.paused=true;const show=()=>{P.UI.show(m.result==='win'?'¡Ganaron, causas!':'Cayó el equipo.',m.kills+' rivales · '+P.Core.clock(m.elapsed),[{title:'Volver al menú',action:()=>{this.leave();P.UI.menu()}}]);P.Meta.decorate()};P.Meta.result(m.result==='win',m);if(m.result==='lose')P.PlayerFeedback.finish(show);else show()}
+ if(m.result&&!this.resultShown){this.resultShown=true;this.paused=true;this.resultSummary={win:m.result==='win',kills:m.kills,elapsed:m.elapsed};const round=this.room?.round,show=()=>{if(!this.active||!this.resultShown||this.room?.round!==round)return;this.resultVisible=true;this.showResult()};P.Meta.result(m.result==='win',m);if(m.result==='lose')P.PlayerFeedback.finish(show);else show()}
 },
+showResult(){const result=this.resultSummary;if(!result)return;const returning=this.room?.players[this.session?.slot]?.returning,count=this.room?.players.filter(p=>p.returning).length||0;P.UI.show(result.win?'¡Ganaron, causas!':'Cayó el equipo.',result.kills+' rivales · '+P.Core.clock(result.elapsed)+' · Volver a la sala '+count+'/2',[{title:returning?'Esperando a tu compañero…':'Volver juntos a la sala',disabled:!!returning,action:()=>this.send({type:'return',round:this.room.round})},{title:'Salir del grupo',action:()=>this.leave()}]);P.Meta.decorate()},
+backToRoom(){this.active=false;this.paused=false;this.resultShown=false;this.resultVisible=false;this.resultSummary=null;this.activityPending=false;this.activityKey='';this.peers=[];this.ultimate=false;this.weapon=0;this.lastSend=0;P.$('#coop-hud').textContent='';P.$('#pause').setAttribute('aria-label','Pausar partida');P.UI.menu({keepGroup:true});P.Lobby.show('coop')},
 showReward(pending){
  this.activityPending=!!pending;const key=pending?pending.id+':'+pending.phase+':'+pending.applied[this.session.slot]:'';if(key===this.activityKey)return;this.activityKey=key;
  if(pending){P.Evolutions.close();P.Market.close(false);this.paused=false;P.Core.clear()}
@@ -67,5 +69,5 @@ tick(dt){
  // El servidor es la única autoridad: no se ejecuta Game.update en este cliente.
 },
 pause(){if(this.reconnecting||this.activityPending)return;if(this.paused){this.paused=false;P.$('#overlay').hidden=true;return}this.paused=true;P.Core.clear();this.send({type:'input',x:0,y:0});P.UI.show('Cooperativo · Opciones','Tu amigo continúa jugando. Esta pantalla no pausa la sala.',[{title:'Seguir jugando',action:()=>this.pause()},{title:'Salir de la sala',action:()=>{this.leave();P.UI.menu()}}])},
-leave(menu=true){P.Evolutions.close();this.session=null;this.active=false;this.activityPending=false;this.activityKey="";P.$("#coop-hud").textContent="";this.peers=[];this.paused=false;this.reconnecting=false;if(this.ws){this.send({type:'leave'});const ws=this.ws;this.ws=null;ws.close()}this.room=null;P.$('#coop-panel .coop-actions').hidden=false;this.loadingReady=false;P.$('#coop-party').hidden=true;P.$('#coop-begin').hidden=true;P.$('#coop-leave').hidden=true;P.$('#coop-create').disabled=false;P.$('#coop-join').disabled=false;this.status('');P.$('#pause').setAttribute('aria-label','Pausar partida');if(menu)P.UI.menu()}
+leave(menu=true){P.Evolutions.close();this.session=null;this.resultVisible=false;this.resultSummary=null;this.active=false;this.activityPending=false;this.activityKey="";P.$("#coop-hud").textContent="";this.peers=[];this.paused=false;this.reconnecting=false;if(this.ws){this.send({type:'leave'});const ws=this.ws;this.ws=null;ws.close()}this.room=null;P.$('#coop-panel .coop-actions').hidden=false;this.loadingReady=false;P.$('#coop-party').hidden=true;P.$('#coop-begin').hidden=true;P.$('#coop-leave').hidden=true;P.$('#coop-create').disabled=false;P.$('#coop-join').disabled=false;this.status('');P.$('#pause').setAttribute('aria-label','Pausar partida');if(menu)P.UI.menu()}
 };
