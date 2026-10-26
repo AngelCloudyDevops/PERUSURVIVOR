@@ -68,11 +68,11 @@ async function run(map){return new Promise(resolve=>{
   }catch(error){finish(false,error.message)}
  }
  function connect(slot,code){const ws=new WebSocket(base.replace('https:','wss:')+'/coop',{origin:base});sockets[slot]=ws;
-  ws.on('open',()=>send(slot,{type:slot?'join':'create',protocol:1,character:7,map,code}));ws.on('error',e=>finish(false,e.message));
+  ws.on('open',()=>send(slot,{type:slot?'join':'create',protocol:2,character:7,map,code}));ws.on('error',e=>finish(false,e.message));
   ws.on('close',()=>{if(!ended)finish(false,'Conexión cerrada durante la prueba')});
   ws.on('message',raw=>{if(ended)return;const m=JSON.parse(raw);
    if(m.type==='joined'&&slot===0){evidence.room=m.code;note('sala',{code:m.code});connect(1,m.code)}
-   if(m.type==='room'&&slot===0&&m.players.length===2&&!started){started=true;send(0,{type:'start'})}
+   if(m.type==='room'&&m.players.length===2&&!started){if(!m.players[slot].ready)send(slot,{type:'ready',ready:true,revision:m.revision});if(slot===0&&m.players.every(p=>p.ready)){started=true;send(0,{type:'start'})}}
    if(m.type==='closed')return finish(false,m.message);
    if(m.type==='error'){note('respuesta_rechazada',{slot,message:m.message});return}
    if(m.type==='state'){
