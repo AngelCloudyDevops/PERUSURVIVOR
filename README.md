@@ -193,7 +193,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
 - fuzo: **Banca infinita** — Cinco tarjetas rápidas atraviesan ocho rivales y enlazan al grupo más cercano.
 - charles: **Lluvia de pañales** — Tres pañales dejan nubes y una nube adicional aparece junto al objetivo.
-- axelbenba: **Clip relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
+- axelbenba: **Tormenta relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
 - cerdito: **Fiesta del cerdito** — Doce balas salen en círculo; una onda corta despeja el puesto.
 - sustento: **Infestación veloz** — Tres cucarachas perforantes avanzan en zigzag; una zona de enjambre queda junto al objetivo.
 - cevichero: **Marea del enjambre** — Seis cucarachas salen en círculo y regresan como bumeranes.
@@ -205,3 +205,7 @@ Las palomas y la vegetación reactiva utilizan [sprites cartoon con acabado pixe
 
 
 Ulti de Fujimori: [Tribunal](docs/GAME_DESIGN.md), escena compartida de 3,4 s, aliado como abogado y remate de radio 340 u que excluye jefes. El menu incluye practica con recarga gratis y objetivos dentro/fuera del radio.
+## Inicio y demostraciones de ataques
+El inicio se organiza como un lobby: causa destacado, botón Jugar ahora y accesos a mapas, personajes, habilidades y cooperativo. Conserva el estilo peruano y todos los controles existentes; no añade funciones de cuenta ni tiendas inexistentes.
+
+El menú de habilidades compara ataque básico y evolución en dos canvas animados con los perfiles, glifos, poses y efectos del juego. Incluye pausa/reproducción y descripción de requisitos. Son demostraciones cosméticas sobre muñecos: no ejecutan combate, no alteran XP, monedas, salud, equipo ni estado de sala y no desbloquean poderes. La animación comparte el bucle de dibujo a un máximo de 30 Hz, usa dos superficies, se detiene al cerrar o esconder la pestaña y arranca estática con movimiento reducido. Los recursos faltantes usan el retrato existente y se reutiliza la carga de sprites.

@@ -243,7 +243,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
 - fuzo: **Banca infinita** — Cinco tarjetas rápidas atraviesan ocho rivales y enlazan al grupo más cercano.
 - charles: **Lluvia de pañales** — Tres pañales dejan nubes y una nube adicional aparece junto al objetivo.
-- axelbenba: **Clip relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
+- axelbenba: **Tormenta relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
 - cerdito: **Fiesta del cerdito** — Doce balas salen en círculo; una onda corta despeja el puesto.
 - sustento: **Infestación veloz** — Tres cucarachas perforantes avanzan en zigzag; una zona de enjambre queda junto al objetivo.
 - cevichero: **Marea del enjambre** — Seis cucarachas salen en círculo y regresan como bumeranes.
@@ -261,6 +261,7 @@ Las entradas se inician con Minibosses.beginEntry al aparecer en mapa/laboratori
 
 Remate DENUNCIADO: papel compacto de 72 x 48 unidades, caida acelerada con giro que se estabiliza al aterrizar, sello de 84 x 20 sin ampliacion gigante, impacto unico sincronizado con audio, rebote y onda breve. Se dibuja directamente a resolucion completa para conservar texto nitido. Se fija al lugar donde termina la ulti y respeta pausa y movimiento reducido. El panel tambien usa resolucion completa sin suavizado y reduce el gallinazo para evitar recortar las alas.
 
+La fase 2 de Minibosses usa enraged latched, mini-fury y mini-chain-gap con relojes dt serializables. beginFury se activa una vez al cruzar hp<=max*0.5 fuera de la entrada y retira solo los peligros de miniId. warn configura un único seguimiento del ataque primario; recover consume chainLeft y chainTick vuelve a avisar sin crear cadenas infinitas. El salto lateral resuelve colisiones. La notificación sonora se deduplica por miniId en cada cliente y se restablece al reiniciar.
 El manifiesto de módulos del paquete publicado conserva solo las rutas de salida; el servidor acepta también el formato anterior con objetos. Así evita duplicar rutas de desarrollo y mantiene el margen de tamaño sin alterar las imágenes ni el orden de carga.
 
 El build excluye los JSON de prompts de generación de arte (sin referencias desde el juego). Permanecen completos en Git como documentación de autoría; las pruebas comprueban su exclusión y mantienen la comparación exacta de todos los recursos de ejecución.
@@ -271,3 +272,7 @@ Los originales de image_gen se conservan como PNG, con prompts y auditoría en `
 
 
 Ulti de Alberto Fujimori: TRIBUNAL. Carga 20 bajas como Kingteka; Q inicia una escena de 3,4 s que congela combate y reloj de ambos jugadores. El publico muestra minions de espaldas, Fujimori sentado al centro, aliado vivo como abogado y un juez original. Tras SOY INOCENTE y el martillazo, el mapa retorna: elimina minions normales y pesados con centro a 340 unidades o menos del punto de activacion. Excluye jefes, subjefes y mimicos. No carga la propia ulti con esas bajas, mantiene recompensas normales y concede 1,2 s de proteccion al volver. La sala autoriza, sincroniza y resuelve una sola vez; nunca acepta objetivos del cliente. Practica publica de Fujimori con recarga y reposicion de objetivos, sin records. No usa voz real.
+## Inicio y demostraciones de ataques
+El inicio se organiza como un lobby: causa destacado, botón Jugar ahora y accesos a mapas, personajes, habilidades y cooperativo. Conserva el estilo peruano y todos los controles existentes; no añade funciones de cuenta ni tiendas inexistentes.
+
+El menú de habilidades compara ataque básico y evolución en dos canvas animados con los perfiles, glifos, poses y efectos del juego. Incluye pausa/reproducción y descripción de requisitos. Son demostraciones cosméticas sobre muñecos: no ejecutan combate, no alteran XP, monedas, salud, equipo ni estado de sala y no desbloquean poderes. La animación comparte el bucle de dibujo a un máximo de 30 Hz, usa dos superficies, se detiene al cerrar o esconder la pestaña y arranca estática con movimiento reducido. Los recursos faltantes usan el retrato existente y se reutiliza la carga de sprites.
