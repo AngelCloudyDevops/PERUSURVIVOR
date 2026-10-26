@@ -10,6 +10,7 @@ function setup(){
 test('Sideral: reemplaza el mapa por una habitación física y la serializa en cooperativo',()=>{
  const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);for(let i=0;i<142;i++)sim.tick(.04,[{},{}]);
  assert.equal(s.sideralDomain.arena,true);assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,4);
+ assert.equal(s.sideralDomain.waves,1);assert.equal(s.sideralDomain.pulse,0);
  assert(P.Terrain.active().some(o=>o.kind==='sideral-desk'));assert(P.Terrain.active().some(o=>o.kind==='sideral-library'));
  assert(!P.Terrain.active().some(o=>o.kind==='sideral-rug'));assert(!P.Terrain.hit(p.x,p.y,p.r));
  assert.equal(sim.snapshot().sideralDomain.arena,true);assert.equal(sim.snapshot().sideralDomain.roomProps,undefined);
@@ -26,7 +27,7 @@ test('Sideral: choque daña, rebota y al terminar restaura coordenadas',()=>{
 
 test('Sideral: el dominio entra directamente y cada pulso nace desde el personaje',()=>{
  const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);const d=s.sideralDomain;
- sim.tick(.4,[{},{}]);assert(d.age>0);assert.equal(d.card,undefined);
+ sim.tick(.4,[{},{}]);assert(d.age>0);assert.equal(d.card,undefined);assert(sim.players[1].inv>0);
  assert.equal(P.SideralDomain.pose(P.SideralDomain.entry*.7).hop,0);assert(P.SideralDomain.pose(P.SideralDomain.entry*.88).hop>0);assert(P.SideralDomain.pose(P.SideralDomain.entry*.98).laugh>0);
  p.x=333;p.y=222;P.SideralDomain.burst();assert.equal(d.waveX,333);assert.equal(d.waveY,222);
 });
