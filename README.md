@@ -159,6 +159,8 @@ Reglas implementadas: el portal opcional abre a los **3:00**. Permite elegir el 
 
 La cámara de Techos de Lima encuadra al jugador y la silueta completa del Gallinazo con reserva superior para el reloj y el HUD. La forma II usa un tamaño de arena 15 % menor y poses separadas de reposo, vuelo, carga y disparo. La tarjeta presenta **ECLIPSE CARROÑERO**, oculta la copia de la arena durante su entrada y hace cruzar plumas por el marco. Los avisos usan sectores estrechos con carriles legibles y rótulos apartados del panel derecho; las plumas rotan, dejan una estela morada acotada y explotan al tocar el piso. Partículas, estelas, escombros y polvo tienen cupos reducidos para evitar picos de render.
 
+Los cuatro jefes de portal mantienen una ruta corta alrededor de las coberturas, la recalculan si cambia la posición del jugador o quedan bloqueados y validan el ancho completo de su cuerpo. No inician un ataque con una cobertura entre ambos; primero buscan una línea de ataque libre.
+
 | Minijefe | Dos patrones normales |
 | --- | --- |
 | Fiscalizador | Embestida y conos. |
