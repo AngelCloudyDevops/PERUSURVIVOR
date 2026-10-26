@@ -1,0 +1,28 @@
+{
+  "generator": "image_gen",
+  "series": "Kingteka full-art upgrade cards",
+  "style": "Original 16-bit pixel-art arcade illustration; no borrowed trading-card frame or logos.",
+  "assets": [
+    {
+      "id": "shotgun",
+      "source": "public/assets/cards/kingteka-shotgun-fullart-v1.png",
+      "runtime": "public/assets/cards/kingteka-shotgun-fullart-v1.webp",
+      "pose": "Low forward shotgun stance, amber muzzle flash and a fan of pellets against a dusky Lima park.",
+      "prompt": "Full-bleed portrait game-card illustration in crisp 16-bit pixel art. Kingteka is a stocky young adult man with short black hair, black T-shirt, tattooed forearms, dark navy jeans and white sneakers. Dynamic three-quarter combat pose firing a short shotgun at tiny abstract pixel rivals; bright amber muzzle flash, distinct pellets, smoke pixels and motion streaks. Dusky Lima park with layered teal shadows and warm amber highlights. Strong readable silhouette, detailed pixel clusters, no card frame, lettering, logo or watermark."
+    },
+    {
+      "id": "gallinazo",
+      "source": "public/assets/cards/kingteka-gallinazo-fullart-v1.png",
+      "runtime": "public/assets/cards/kingteka-gallinazo-fullart-v1.webp",
+      "pose": "Airborne twisting lunge launching two guided ivory-and-teal feathers at rivals across a sunset Lima park.",
+      "prompt": "Full-bleed portrait 2:3 illustration in crisp hand-crafted 16-bit pixel art. Kingteka is a stocky young adult man with short black hair, black T-shirt, tattooed forearms, dark navy jeans and white sneakers. Dramatic airborne twisting pose, one arm launching two large ivory and teal pixel feathers curving toward tiny abstract rivals; clear homing trails and strong diagonal composition. Lima park at sunset, deep teal shadows, amber light and layered pixel scenery. Chunky pixel clusters, cartoon arcade proportions, no card frame, text, letters, logo or watermark."
+    },
+    {
+      "id": "golpe",
+      "source": "public/assets/cards/kingteka-golpe-fullart-v1.png",
+      "runtime": "public/assets/cards/kingteka-golpe-fullart-v1.webp",
+      "pose": "Low forward body strike with a golden-orange pixel impact burst, dust, sparks and recoiling rivals.",
+      "prompt": "Full-bleed portrait 2:3 illustration in crisp 16-bit pixel art for the same Kingteka series. Stocky young adult man with short black hair, black T-shirt, tattooed forearms, dark navy jeans and white sneakers. Distinct low lunging pose, torso twisted into a close-range shoulder-and-fist body strike, one sneaker skidding. Large golden-orange pixel impact burst, square shockwave rings, dust and sparks; tiny abstract rivals recoil, playful and non-graphic. Lima park at dusk, teal shadows, amber sunset, palm silhouettes and flowers. Chunky pixel clusters, dark clean outlines, no card frame, text, logo or watermark."
+    }
+  ]
+}

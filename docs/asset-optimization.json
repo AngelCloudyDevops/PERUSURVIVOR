@@ -1,5 +1,5 @@
 {
-  "format": "WebP lossless, exact RGBA comparison",
+  "format": "WebP lossless by default; selected assets may record lossy quality",
   "assets": [
     {
       "source": "assets/arena-cover/cover-atlas-v1.png",
@@ -99,6 +99,42 @@
       "sourceSha256": "7aa7bb806d0c1375c6011d8ce88332b494b12aa642c7654dc04127636e80ebe9",
       "outputSha256": "90b1ae8b0464ed20911ea64326f12b9d4577d2741d598be95b736d8753dcfdd5",
       "rgbaSha256": "cda9580092e6bcb0e01bf880e90c3145145bf6272ca0487244295a9ca43af99a"
+    },
+    {
+      "source": "assets/cards/kingteka-gallinazo-fullart-v1.png",
+      "output": "assets/cards/kingteka-gallinazo-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2283129,
+      "optimizedBytes": 363584,
+      "sourceSha256": "7f3b0c3400c23707eaf8020292b3e19e6c7be7857615ba5118a2a4aabacca621",
+      "outputSha256": "2c374cbaf2cce64f29fa451b7292d8afe564b1e9e452057f92d36c21888dfb7e",
+      "rgbaSha256": "7ed7587693ccdd9f3fecbc111849f3625eb6848366d25070bd666ef0a53d2d99",
+      "quality": 88
+    },
+    {
+      "source": "assets/cards/kingteka-golpe-fullart-v1.png",
+      "output": "assets/cards/kingteka-golpe-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2226632,
+      "optimizedBytes": 372298,
+      "sourceSha256": "85332502169ea6fa0d0bcc6b5452d2fb5a985552b093ef45c8889924819654fd",
+      "outputSha256": "5033cb9d99f931912df0685ee34fb6021e06eaca6c2c8eb49bb6782a70b122db",
+      "rgbaSha256": "99e59f2f62483dffd00fee7b06ba7f6b981aac230fb510c3de329a857ee463f2",
+      "quality": 88
+    },
+    {
+      "source": "assets/cards/kingteka-shotgun-fullart-v1.png",
+      "output": "assets/cards/kingteka-shotgun-fullart-v1.webp",
+      "width": 971,
+      "height": 1619,
+      "originalBytes": 2351638,
+      "optimizedBytes": 342208,
+      "sourceSha256": "a0a4038f58ea890e41b7b59063db3f3da3bbca41b6ca63f045e8ea6a41992940",
+      "outputSha256": "fd85db79aa470bdb86479044da38d97dc7f957a46e0b7cdfdc34a83acc5ddad5",
+      "rgbaSha256": "beb77f59b4e47ca4f3de9bcd21d514895ae46a6a8436422b136542c561197083",
+      "quality": 88
     },
     {
       "source": "assets/characters/causas-atlas-v1.png",
@@ -322,6 +358,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 60814239,
-  "optimizedBytes": 44126790
+  "originalBytes": 67675638,
+  "optimizedBytes": 45204880
 }

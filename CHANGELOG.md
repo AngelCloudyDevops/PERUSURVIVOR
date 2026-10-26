@@ -1,5 +1,10 @@
 # Cambios
 
+## Cartas full art de Kingteka — 2026-10-26
+- Reemplaza la franja pequeña por ilustraciones pixel art que llenan el frente, con poses distintas para escopeta, Gallinazo y golpe cuerpo a cuerpo.
+- Superpone rareza, nombre, efecto y comparación en una placa legible; conserva el giro y los destellos por rareza.
+- Añade PNG fuente, WebP lossless de runtime, prompts y manifiesto de optimización actualizado.
+
 ## Cartas ilustradas de Kingteka — 2026-10-26
 - Añade viñetas pixel art propias para escopeta, Gallinazo y golpe de cuerpo en las cartas de mejora.
 - Reutiliza el sprite cargado del personaje y canvas local; la viñeta solo anima mientras el panel está abierto y respeta movimiento reducido.
