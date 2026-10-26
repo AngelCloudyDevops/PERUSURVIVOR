@@ -496,3 +496,5 @@ Audio de oficios: avisos breves y sonidos originales de pala, puño y tela para 
 
 ## Prioridad y orden de colección
 La colección se ordena por rareza (SSR→SR→R→C), estrellas o copias disponibles en sentido descendente, siempre agrupando primero a quienes pueden ascender. Dentro de cada grupo se aplica el criterio elegido y se desempata por posición original en el catálogo. Bloqueados cuentan como cero estrellas/copias. El orden predeterminado es rareza y permanece en la sesión al limpiar filtros. Se recalcula después de ascensos y cambios de progreso; no selecciona ni consume nada automáticamente.
+
+Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.

@@ -410,3 +410,5 @@ MinionAudio observa minionId y contadores serializados audioWarn/audioImpact con
 
 ## Orden de colección y tarjetas con identidad estable
 collectionOrder vive en P.Gacha sin cambiar el esquema v4. compareCollection/sortedCollection aplican prioridad de ascenso, criterio descendente y desempate por catálogo. applyCollectionFilters mueve los mismos nodos del DOM, manteniendo orden visual, lector de pantalla y teclado coincidentes y restaurando foco si se mueve una tarjeta activa. Las tarjetas y sus lienzos llevan el índice original en dataset.type; selección, animación de retratos, filtros y refresh resuelven la identidad por ese dato y no por la posición actual. No se muta P.Data.characters ni se reconstruyen listeners. Esto sustituye la restricción anterior de no reordenar nodos.
+
+AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
