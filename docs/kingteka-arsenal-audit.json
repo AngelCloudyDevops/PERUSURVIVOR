@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "sourceSha": "5b4379d9219ad235b64985c2e2add1b4eded4eac",
+  "sourceSha": "c49c4c57010704c9a2345b1dd7f31ef56cb42ff4",
   "parameters": "Perfiles ajustados; checkout actual",
   "strategy": {
     "shotgun": "Keep Escopeta active throughout",
@@ -5860,5 +5860,6 @@
         }
       ]
     }
-  ]
+  ],
+  "comparisonBaseSha": "5b4379d9219ad235b64985c2e2add1b4eded4eac"
 }
