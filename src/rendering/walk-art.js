@@ -1,14 +1,14 @@
 'use strict';
 // Six authored, intact raster poses per actor. No body-part deformation.
 P.WalkArt={
-ids:['cristorata','cuy','paloma','alan','alberto','keiko','ollanta','kingteka','shaka','najasor','cirilo','fuzo','charles','axelbenba','cerdito','sustento','cevichero','g5','enemy-0','enemy-1','enemy-2','enemy-3','enemy-4','enemy-5','vulture','ulti-bird'],
+ids:['makanaky','cristorata','cuy','paloma','alan','alberto','keiko','ollanta','kingteka','shaka','najasor','cirilo','fuzo','charles','axelbenba','cerdito','sustento','cevichero','g5','enemy-0','enemy-1','enemy-2','enemy-3','enemy-4','enemy-5','vulture','ulti-bird'],
 integratedIds:Array.from({length:6},(_,i)=>'minion-'+i),
 directionalIds:["cristorata","paloma","alan","keiko","ollanta","kingteka","shaka","najasor","cirilo","fuzo","charles","axelbenba","cerdito","sustento","cevichero"],
 directionalColumns:{keiko:3},
 attackIds:P.Data.characters.map(c=>'attack-'+c.id),
 sheets:{},queue:[],active:0,clock:0,waitToken:0,
 frame(phase){return ((Math.floor((phase||0)*6/(Math.PI*3))%6)+6)%6},
-load(id,priority=false,retry=false){
+load(id,priority=false,retry=false){if(id==='makanaky'||id==='attack-makanaky')return P.MakanakyPlayerArt?.load(retry)||Promise.resolve(null);
  if(typeof Image==='undefined'||!this.ids.includes(id)&&!this.attackIds.includes(id)&&!this.integratedIds.includes(id))return Promise.resolve(null);
  let sheet=this.sheets[id];if(sheet&&!(retry&&sheet.failed)){sheet.used=++this.clock;return sheet.promise}
  sheet={id,directional:id.startsWith('attack-')&&this.directionalIds.includes(id.slice(7)),ready:false,failed:false,used:++this.clock};sheet.promise=new Promise(resolve=>sheet.resolve=resolve);this.sheets[id]=sheet;
@@ -18,7 +18,7 @@ pump(){while(this.active<2&&this.queue.length){const sheet=this.queue.shift();th
  const finish=ok=>{sheet.ready=ok;sheet.failed=!ok;sheet.resolve(ok?sheet:null);this.active--;this.trim();this.pump()};
  image.onload=()=>{try{this.measure(sheet);finish(true)}catch{finish(false)}};image.onerror=()=>finish(false);image.src=this.url(sheet.id);
 }},
-url(id){if(this.integratedIds.includes(id))return 'assets/minions/'+id+'-integrated-v1.webp';if(id.startsWith('attack-'))return this.directionalIds.includes(id.slice(7))?'assets/aim/'+id.slice(7)+'-aim-v1.webp':'assets/attacks/'+id.slice(7)+'-attack-v1.webp';return 'assets/walks/'+id+'-walk-'+(P.Data.characters.some(c=>c.id===id)?'v2':'v1')+'.webp'},
+url(id){if(id==='makanaky'||id==='attack-makanaky')return 'assets/minibosses/makanaky-v1.webp';if(this.integratedIds.includes(id))return 'assets/minions/'+id+'-integrated-v1.webp';if(id.startsWith('attack-'))return this.directionalIds.includes(id.slice(7))?'assets/aim/'+id.slice(7)+'-aim-v1.webp':'assets/attacks/'+id.slice(7)+'-attack-v1.webp';return 'assets/walks/'+id+'-walk-'+(P.Data.characters.some(c=>c.id===id)?'v2':'v1')+'.webp'},
 needed(){const id=P.Data.characters[P.state.chosen||0].id;return [id,'attack-'+id,...Array.from({length:6},(_,i)=>'enemy-'+i),...this.integratedIds]},
 init(){for(const id of this.needed())this.load(id)},
 readyForStart(){return typeof Image==='undefined'||this.needed().every(id=>this.sheets[id]?.ready)},

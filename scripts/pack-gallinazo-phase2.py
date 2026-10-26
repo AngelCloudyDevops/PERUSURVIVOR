@@ -21,6 +21,6 @@ for i,(n,(l,top,r,bottom),pixels) in enumerate(found):
  for p in pixels:
   y,x=divmod(p,w); dst[ox+x-l,oy+y-top]=src[x,y]
  metadata.append({'source_bounds':[l,top,r,bottom],'pixels':n,'packed_bounds':[ox,oy,ox+r-l,oy+bottom-top]})
-out.save('public/assets/bosses/gallinazo-phase2-v1.webp',quality=88,method=6)
+out.save('public/assets/bosses/gallinazo-phase2-v1.webp',quality=94,method=6)
 with open('public/assets/bosses/gallinazo-phase2-frames.json','w') as f: json.dump(metadata,f,indent=2)
 print('Packed eight complete connected bodies without resizing:',out.size)
