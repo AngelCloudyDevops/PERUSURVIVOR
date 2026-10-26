@@ -1,5 +1,5 @@
-# Entrada de ulti de Kingteka
+# Entrada lateral de Kingteka
 
-Franja de cómic de 0,8 segundos, aproximadamente media pantalla, Kingteka en su pose de ataque original y gallinazo con alas extendidas. Paleta amarilla, naranja y roja, rayos escalonados, plumas y texto MODO GALLINAZO. Todo se rasteriza a media resolución y escala sin suavizado. En móvil cambia tamaño y composición. Movimiento reducido elimina el desplazamiento de la franja.
+Panel pegado al borde izquierdo, ancho máximo un tercio de pantalla, borde derecho diagonal y altura 76 %. Dura 0,8 s mientras el combate, movimiento, proyectiles y los ocho segundos de ulti siguen avanzando. Invulnerabilidad solo durante la entrada individual; no borra teclas ni cambia estadísticas.
 
-P.UltimateComic extiende activación, actualización y dibujo después de los módulos existentes. Pausa la simulación individual durante la entrada, mantiene los ocho segundos completos de ulti y respeta la pausa manual. No congela partidas cooperativas. Reutiliza sprites y audio originales. Reiniciar limpia la entrada. El sello DENUNCIADO permanece al terminar.
+Kingteka anima cuadros completos de postura, preparación y disparo con retroceso; el gallinazo aletea detrás. Rayos cambian de trazado por cuadro, líneas corren y plumas se desplazan. Dibujo a media resolución sin suavizado, paleta corta y contornos cartoon según README. Movimiento reducido deja la composición fija. Reiniciar limpia el panel. No altera la autoridad de partidas cooperativas. DENUNCIADO conserva su remate.

@@ -1,0 +1,59 @@
+name: Public cooperative E2E
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/cooperative-e2e.yml
+      - tests/live/**
+permissions:
+  contents: read
+jobs:
+  public-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    concurrency:
+      group: perusurvivor-production
+      cancel-in-progress: false
+      queue: max
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci --ignore-scripts
+      - name: Identify published source
+        id: version
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          (async () => {
+            const r = await fetch('https://perusurvivor.michitech.tech/__release.json?t='+Date.now(), {cache:'no-store',signal:AbortSignal.timeout(15000)});
+            if (!r.ok) throw new Error('Release HTTP '+r.status);
+            const data = await r.json();
+            if (!/^[a-f0-9]{40}$/.test(data.git_sha)) throw new Error('Invalid release SHA');
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'release_sha='+data.git_sha+'\n');
+          })().catch(e => {console.error(e);process.exitCode=1});
+          NODE
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.version.outputs.release_sha }}
+          path: published-source
+          persist-credentials: false
+      - name: Play three private two-player rooms
+        env:
+          COOP_SOURCE_ROOT: ${{ github.workspace }}/published-source
+          COOP_EXPECTED_RELEASE: ${{ steps.version.outputs.release_sha }}
+          COOP_REPORT_PATH: ${{ github.workspace }}/cooperative-live-report.json
+        run: node tests/live/cooperative.cjs
+      - name: Preserve public test evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: cooperative-live-report
+          path: cooperative-live-report.json
+          if-no-files-found: warn
+          retention-days: 7
