@@ -1,7 +1,7 @@
 'use strict';
 // Actividades de sala. Solo acepta intenciones; posiciones, premios y consumo de llaves se validan aquí.
 class Activities{
- constructor(sim){this.sim=sim;this.votes=new Set();this.serial=0;this.pending=null;this.returning=false;this.message='';this.messageTime=0;sim.P.Encounters.win=()=>{this.returning=true}}
+ constructor(sim){this.sim=sim;this.votes=new Set();this.serial=0;this.pending=null;this.returning=false;this.message='';this.messageTime=0;this.duo=new (require('./duo-event.cjs').DuoEvent)(sim);sim.P.Encounters.win=()=>{this.returning=true}}
  get P(){return this.sim.P}
  notice(text){this.message=text;this.messageTime=4}
  action(slot,action,id,choice){
@@ -9,6 +9,7 @@ class Activities{
   if(action==='choose')return this.choose(slot,id,choice);
   if(this.pending||p.hp<=0||s.mode!=='play')return false;
   sim.use(p);
+  if(action==='duo-event')return this.duo.start(slot);
   if(action==='market-buy')return P.Market.buy(id);
   if(action==='portal'){
    if(!P.Encounters.near())return false;
@@ -54,7 +55,7 @@ class Activities{
   for(const p of this.sim.players)p.moving=false;
   return true;
  }
- levelup(){const P=this.P,s=P.state;if(this.pending||s.xp<s.need)return;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.3+2);this.pending={id:++this.serial,kind:'level',phase:'choice',applied:[false,false],options:this.sim.players.map(p=>P.Progression.options(p))};for(const p of this.sim.players)p.moving=false}
+ levelup(){const P=this.P,s=P.state;if(this.pending||s.xp<s.need)return;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.22+1);this.pending={id:++this.serial,kind:'level',phase:'choice',applied:[false,false],options:this.sim.players.map(p=>P.Progression.options(p))};for(const p of this.sim.players)p.moving=false}
  choose(slot,id,choice){
   const pending=this.pending;if(!pending||pending.id!==id||pending.phase!=='choice'||pending.applied[slot]||!Number.isInteger(choice))return false;
   const P=this.P,p=this.sim.players[slot];this.sim.use(p);
@@ -84,7 +85,7 @@ class Activities{
   if(this.pending)return;
   if(this.returning)this.returnFromArena();
   P.Encounters.tick();this.tryPortal();if(s.encounter)return;
-  this.syncChests();P.Loot.animate(dt);sim.use(sim.players.find(p=>p.hp>0)||sim.players[0]);P.Loot.spawnKeepers();P.Market.tick();
+  this.duo.tick(dt);this.syncChests();P.Loot.animate(dt);sim.use(sim.players.find(p=>p.hp>0)||sim.players[0]);P.Loot.spawnKeepers();P.Market.tick();
   const o=P.Exploration.station;
   if(o&&o.phase==='active'){
    const defender=sim.players.find(p=>p.hp>0&&Math.hypot(p.x-o.x,p.y-o.y)<=200)||sim.players.find(p=>p.hp>0)||sim.players[0];sim.use(defender);
@@ -97,6 +98,6 @@ class Activities{
    if(!opener){chest.progress=0;continue}sim.use(opener);if(!P.Loot.canOpen(chest)){P.Loot.locked(chest);continue}chest.progress+=dt;if(chest.progress>=1.8){this.open(chest);break}
   }
  }
- snapshot(){const P=this.P,s=P.state;return {portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles,defeat:s.encounter.defeat||null}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
+ snapshot(){const P=this.P,s=P.state;return {duoEvent:this.duo.snapshot(),portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles,defeat:s.encounter.defeat||null}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
 }
 module.exports={Activities};
