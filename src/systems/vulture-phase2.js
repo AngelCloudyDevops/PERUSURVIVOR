@@ -32,10 +32,10 @@ P.VulturePhase2 = {
     const m=this.transformation(t,reduced),art=P.VultureStrike,scale=g.scale,pose=0,baseY=g.baseY;
     // Ambos atlas usan el mismo pie y la misma escala de píxel: no se trasladan.
     const paint=(target)=>this.mesh(c,target,pose,g.baseX,baseY,scale,{spread:m.spread,ruffle:reduced?0:Math.sin(t*19)*.008*m.aura},art.frames[pose]);
-    const cut=baseY-art.height*scale*1.2+m.reveal*art.height*scale*1.45;
-    const mask=(top)=>{c.beginPath();c.moveTo(-10000,top?-10000:10000);c.lineTo(10000,top?-10000:10000);c.lineTo(10000,cut);for(let i=20;i>=0;i--)c.lineTo(g.baseX-g.w+i*g.w/10,cut+Math.sin(i*2.399)*g.h*.018);c.lineTo(-10000,cut);c.closePath();c.clip()};
-    if(m.reveal<1){c.save();mask(false);paint(art);c.restore()}
-    if(m.reveal>0){c.save();mask(true);paint(this);c.restore()}
+    // Mezclar figuras completas evita seccionar la nueva cresta/alas.
+    // El movimiento lo produce la malla, no un desplazamiento entre imágenes.
+    if(m.reveal<1){c.save();c.globalAlpha*=1-m.reveal;paint(art);c.restore()}
+    if(m.reveal>0){c.save();c.globalAlpha*=m.reveal;paint(this);c.restore()}
     this.electricity(c,g.baseX,baseY-g.h*.45,g.w*.3,t,m.bolts*(reduced?.25:.75),reduced);
   },
   ready:false, failed:false, frames:[],
