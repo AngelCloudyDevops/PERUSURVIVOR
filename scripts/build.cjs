@@ -19,7 +19,6 @@ function build(){
  fs.cpSync(path.join(root,'backend'),path.join(out,'backend'),{recursive:true});
  fs.writeFileSync(path.join(out,'backend/modules.json'),JSON.stringify(modules.map(m=>m.output)));
  for(const file of ['package.json','package-lock.json'])copy(path.join(root,file),path.join(out,'backend',file));
- copy(path.join(root,'ops/hostinger/install-coop.py'),path.join(out,'backend/install-vps.py'));
  copy(path.join(root,'ops/hostinger/backup-accounts.py'),path.join(out,'backend/backup-accounts.py'));
  // Identidad reproducible del contenido; cada recurso cambia de URL cuando cambia.
  const digest=crypto.createHash('sha256');function fingerprint(dir){for(const name of fs.readdirSync(dir).sort()){const file=path.join(dir,name);if(fs.statSync(file).isDirectory())fingerprint(file);else{digest.update(path.relative(out,file).split(path.sep).join('/'));digest.update(fs.readFileSync(file))}}}fingerprint(out);const version=digest.digest('hex').slice(0,20);

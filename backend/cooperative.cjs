@@ -2,7 +2,7 @@
 const http=require('node:http'),crypto=require('node:crypto'),{WebSocketServer}=require('ws'),{Simulation}=require('./simulation.cjs');
 const PROTOCOL=1;
 function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=()=>Date.now(),httpServer}={}){
- const rooms=new Map(),attempts=new Map();
+ const rooms=new Map(),attempts=new Map(),characterCount=new Simulation('campo',[0],root).P.Data.characters.length;
  const accounts=process.env.ACCOUNTS_DB?require('./accounts.cjs').createAccounts({filename:process.env.ACCOUNTS_DB,origins:allowedOrigins,secure:process.env.ACCOUNTS_INSECURE!=='true'}):null;
  const server=httpServer||http.createServer(async(req,res)=>{if(accounts&&await accounts.handle(req,res))return;res.setHeader('Content-Type','application/json');res.setHeader('Cache-Control','no-store');res.writeHead(req.url==='/coop/health'?200:404);res.end(JSON.stringify(req.url==='/coop/health'?{ok:true,protocol:PROTOCOL,rooms:rooms.size}:{error:'Not found'}))});
  const wss=new WebSocketServer({noServer:true,maxPayload:2048,perMessageDeflate:false});
@@ -34,7 +34,7 @@ function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=(
    if(ws.room)throw Error('Ya estás en una sala');
    if(msg.protocol!==PROTOCOL)throw Error('Actualiza la página para jugar con esta versión');
    if(msg.type==='resume'){const r=rooms.get(msg.code),m=r?.members.find(m=>m.token===msg.token);if(!m||m.ws||now()-m.lastSeen>30000)throw Error('No se pudo recuperar la sala');m.ws=ws;ws.room=r;send(ws,{type:'joined',slot:r.members.indexOf(m),token:m.token,...lobby(r),type:'joined'});broadcast(r,lobby(r));if(r.sim)send(ws,{type:'state',...r.sim.snapshot()});return}
-   if(!Number.isInteger(msg.character)||msg.character<0||msg.character>=18)throw Error('Personaje inválido');
+   if(!Number.isInteger(msg.character)||msg.character<0||msg.character>=characterCount)throw Error('Personaje inválido');
    let r;
    if(msg.type==='create'){if(!['campo','plaza','machu'].includes(msg.map))throw Error('Mapa inválido');if(rooms.size>=maxRooms)throw Error('Servidor ocupado. Inténtalo en unos minutos');let code;do{code=crypto.randomBytes(4).toString('hex').toUpperCase()}while(rooms.has(code));r={code,map:msg.map,members:[],created:now()};rooms.set(code,r)}
    else if(msg.type==='join'){r=rooms.get(String(msg.code).toUpperCase());if(!r)throw Error('Código de sala incorrecto');if(r.sim||r.members.length>=2)throw Error('La sala ya está completa o comenzó')}

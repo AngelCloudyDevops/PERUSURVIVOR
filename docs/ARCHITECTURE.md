@@ -426,11 +426,15 @@ collectionOrder vive en P.Gacha sin cambiar el esquema v4. compareCollection/sor
 Catálogo de minijefes separa clave visual de mapa mediante map opcional. miniKey en avisos permite alternar variantes conservando el mapa real en el estado cooperativo. miniPlazaTurn se incrementa sólo al aparecer y se reinicia por partida. El atlas Makanaky conserva el recorte de cuatro componentes y la ruta de carga existente.
 
 
+AnimalUltimate.swarmPose calcula trayectorias continuas y fases independientes por criatura. Cuy usa WalkArt con seis pasos; Paloma usa los seis cuadros íntegros de AnimalEntryPoses. Sin círculos de alcance ni recuadro de coraza: polvo/plumas deterministas y hasta 24 impactos serializados por jugador, creados solo al reducir HP. No altera radio, daño ni cadencia.
+
 AnimalEntryPoses carga dos hojas de seis figuras completas mediante WalkArt.measure; no corta alas ni añade piezas sobre la silueta. Paloma se ancla al ojo naranja para mantener la cabeza estable al cambiar de aleteo; Cuy conserva base y escala uniforme. Fuentes PNG, WebP optimizados con alfa completo y prompts versionados en docs/animal-entry-prompts.json.
 
 Las láminas judge-v1 y fujimori-objection-v1 del Tribunal se conservan en public como archivo de autoría, pero build las omite mientras CourtArt use joints-v2. Esto recupera 1,1 MB de margen de despliegue sin retirar las fuentes.
 
 AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
+
+MakanakyPlayerArt empaqueta el atlas existente una vez y proporciona adaptadores de seis pasos a WalkArt/PlayerAttackArt reutilizando las cuatro figuras completas. La carga participa en readyForStart y permite reintento. Sprites delega sólo su ID, manteniendo el conteo de tres atlas base de la pantalla de carga. Datos del jugador y del minijefe permanecen separados.
 
 
 # Configuración de apoyos de laboratorio
@@ -450,4 +454,4 @@ VultureRig.arenaMotion conserva motion(4) durante la gracia y dirige la misma je
 
 
 
-AnimalUltimate.swarmPose calcula trayectorias continuas y fases independientes por criatura. Cuy usa WalkArt con seis pasos; Paloma usa los seis cuadros íntegros de AnimalEntryPoses. Sin círculos de alcance ni recuadro de coraza: polvo/plumas deterministas y hasta 24 impactos serializados por jugador, creados solo al reducir HP. No altera radio, daño ni cadencia.
+La bienvenida de Lobby abre Account en login o registro sin desactivar el fondo ni habilitar el menú que permanece inert. Account distingue el origen de la entrada, vuelve al vestíbulo después de un login correcto y muestra el código antes de continuar tras registrarse. Un contador de intentos invalida respuestas tardías cuando se elige invitado; download comprueba la identidad capturada antes de aplicar la copia. El instalador administrativo queda en ops y fuera de dist; el script de backup necesario en producción se sigue distribuyendo.

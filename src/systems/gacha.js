@@ -1,6 +1,6 @@
 'use strict';
 P.Gacha={ready:false,cost:60,animation:null,ascension:null,lastFrame:0,view:'pull',collectionFilters:{tier:'all',stars:'all',ready:false},collectionOrder:'rarity',historyPage:0,historyTier:'all',historyKind:'all',
-tiers:{common:{name:'C · Común',code:'C',chance:60,color:'#c1d4de',refund:15,ids:['cristorata','cuy','paloma','cirilo','axelbenba','cevichero']},rare:{name:'R · Raro',code:'R',chance:27,color:'#82c8ff',refund:25,ids:['najasor','fuzo','charles','sustento','g5']},epic:{name:'SR · Súper raro',code:'SR',chance:10,color:'#d49aff',refund:40,ids:['kingteka','shaka','cerdito','ollanta','alan']},legendary:{name:'SSR · Ultra raro',code:'SSR',chance:3,color:'#ffe078',refund:60,ids:['alberto','keiko']}},
+tiers:{common:{name:'C · Común',code:'C',chance:60,color:'#c1d4de',refund:15,ids:['cristorata','cuy','paloma','cirilo','axelbenba','cevichero']},rare:{name:'R · Raro',code:'R',chance:27,color:'#82c8ff',refund:25,ids:['najasor','fuzo','charles','sustento','g5']},epic:{name:'SR · Súper raro',code:'SR',chance:10,color:'#d49aff',refund:40,ids:['kingteka','shaka','cerdito','ollanta','alan','makanaky']},legendary:{name:'SSR · Ultra raro',code:'SSR',chance:3,color:'#ffe078',refund:60,ids:['alberto','keiko']}},
 owns(id){return !!P.Meta.data?.unlocked?.includes(id)},
 star(id,data=P.Meta.data){return data?.gachaStars?.[id]||{rank:1,copies:0}},
 canPull(data){return data.unlocked.length<P.Data.characters.length||data.unlocked.some(id=>this.star(id,data).rank<5)},

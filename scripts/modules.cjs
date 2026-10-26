@@ -23,9 +23,13 @@ module.exports = [
     "source": "src/systems/audio.js",
     "output": "js/audio.js"
   },
-  {"source":"src/systems/minion-audio.js","output":"js/minion-audio.js"},
   {
-    "source": "src/systems/soundscape.js", "output": "js/soundscape.js"
+    "source": "src/systems/minion-audio.js",
+    "output": "js/minion-audio.js"
+  },
+  {
+    "source": "src/systems/soundscape.js",
+    "output": "js/soundscape.js"
   },
   {
     "source": "src/rendering/sprites.js",
@@ -112,6 +116,10 @@ module.exports = [
     "output": "js/minibosses.js"
   },
   {
+    "source": "src/rendering/makanaky-player-art.js",
+    "output": "js/makanaky-player-art.js"
+  },
+  {
     "source": "src/rendering/vulture-dark-scene.js",
     "output": "js/vulture-cinematic.js"
   },
@@ -136,7 +144,8 @@ module.exports = [
     "output": "js/encounters.js"
   },
   {
-    "source": "src/rendering/path-details.js", "output": "js/path-details.js"
+    "source": "src/rendering/path-details.js",
+    "output": "js/path-details.js"
   },
   {
     "source": "src/systems/chunks.js",
@@ -262,7 +271,10 @@ module.exports = [
     "source": "src/rendering/court-art.js",
     "output": "js/court-art.js"
   },
-  {"source":"src/systems/animal-ultimates.js","output":"js/animal-ultimates.js"},
+  {
+    "source": "src/systems/animal-ultimates.js",
+    "output": "js/animal-ultimates.js"
+  },
   {
     "source": "src/development/test-bench.js",
     "output": "js/test-bench.js"
