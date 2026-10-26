@@ -40,11 +40,11 @@ tick(dt,inputs){
   for(const b of d.bolts){b.z-=dt*6;if(b.z<=.7&&!b.hit){b.hit=true;if(Math.abs(b.lane-d.lane)<.4&&p.inv<=0){P.PlayerFeedback.hit(p,this.balance.enemyDamage,{...b,x:p.x+1,y:p.y});p.inv=.7}}}d.bolts=d.bolts.filter(b=>b.z>.3);if(p.hp<=0){d.pending=null;d.age=this.entry+this.combat}
  }
  if(d.age>=this.entry+this.combat&&!d.remate){d.remate=true;d.pending=null;d.punch=0;d.bolts=[]}
- if(d.remate&&!d.remateImpact&&d.age>=this.entry+this.combat+.26){d.remateImpact=true;if(p.hp>0)for(const t of d.targets){if(t.dead)continue;const e=s.enemies.find(e=>e.domainKey===t.key);if(!e||e.hp<=0)continue;this.damage(e,Math.min(180,p.power*(2+d.ga*.2)),d);t.hit=.36;if(e.hp<=0)t.dead=.28}}
+ if(d.remate&&!d.remateImpact&&d.age>=this.entry+this.combat+.26){d.remateImpact=true;if(p.hp>0)for(const t of d.targets){if(t.dead)continue;const e=s.enemies.find(e=>e.domainKey===t.key);if(!e||e.hp<=0)continue;this.damage(e,Math.min(180,p.power*(2+d.ga*.2)),d);t.hit=.36;t.finalBlast=true;if(e.hp<=0)t.dead=.28}}
 
  s.player=previous;s.ultimate=ultimate;if(d.age>=this.entry+this.combat+this.exit)this.end();
 },
-end(){const s=P.state,d=s.domain;if(!d)return;const mapBoss=d.mapWin?s.enemies.find(e=>e.domainKey===d.mapWin.key):null;s.enemies=s.enemies.filter(e=>e.hp>0);for(const e of s.enemies)delete e.domainKey;for(const p of this.players())if(p.hp>0)p.inv=Math.max(p.inv||0,1);s.domain=null;P.Core.canvas?.setAttribute('aria-label','Arena: '+P.Maps.current().name);this.down=this.queued=this.ga=false;this.strafe=0;P.Core.clear();if(d.mapWin){if(d.mapWin.kind==='vulture'&&mapBoss)P.Vulture.defeat(mapBoss);else P.Encounters.win()}else if(d.result!==undefined)P.Game.finish(d.result);else if(this.owner(d)?.hp<=0)P.Game.finish(false)},
+end(){const s=P.state,d=s.domain;if(!d)return;P.DomainAftermath?.apply(d);const mapBoss=d.mapWin?s.enemies.find(e=>e.domainKey===d.mapWin.key):null;s.enemies=s.enemies.filter(e=>e.hp>0);for(const e of s.enemies)delete e.domainKey;for(const p of this.players())if(p.hp>0)p.inv=Math.max(p.inv||0,1);s.domain=null;P.Core.canvas?.setAttribute('aria-label','Arena: '+P.Maps.current().name);this.down=this.queued=this.ga=false;this.strafe=0;P.Core.clear();if(d.mapWin){if(d.mapWin.kind==='vulture'&&mapBoss)P.Vulture.defeat(mapBoss);else P.Encounters.win()}else if(d.result!==undefined)P.Game.finish(d.result);else if(this.owner(d)?.hp<=0)P.Game.finish(false)},
 hud(){const b=P.$('#ultimate'),s=P.state;if(!this.eligible(s.player)||!b)return;b.hidden=s.mode!=='play';const loading=typeof Image!=='undefined'&&P.DomainIntro&&!P.DomainIntro.ready;b.disabled=!!s.domain||(s.ultimate?.charge||0)<100||(loading&&!P.DomainIntro.failed);P.UI.write(b,loading?(P.DomainIntro.failed?'ARTE PENDIENTE · REINTENTAR':'DOMINIO · CARGANDO ARTE'):s.domain?'DOMINIO · EN CURSO':'Q · EXPANSIÓN DE DOMINIO '+Math.floor(s.ultimate?.charge||0)+'%')}
 };
 {const activate=P.Ultimate.activate,gain=P.Ultimate.gain,hud=P.Ultimate.hud,update=P.Game.update,start=P.Game.start,hit=P.PlayerFeedback.hit;
@@ -52,7 +52,7 @@ P.Ultimate.activate=function(...args){if(P.Coop?.active)return activate.apply(th
 P.Ultimate.gain=function(...args){if(P.state.domain)return;if(P.Domain.eligible(P.state.player)){const u=P.state.ultimate;if(u)u.charge=Math.min(100,u.charge+100/P.Domain.balance.chargeKills);return}return gain.apply(this,args)};
 P.Ultimate.hud=function(){return P.Domain.eligible(P.state.player)?P.Domain.hud():hud.call(this)};
 P.Game.update=function(dt){if(P.state.domain&&!P.Coop?.active){if(P.state.mode==='play'){const input=P.Domain.input();P.Domain.tick(dt,[input]);P.Domain.queued=false;P.UI.hud()}return}return update.call(this,dt)};
-P.Game.start=function(...args){P.state.domain=null;P.Domain.down=P.Domain.queued=false;return start.apply(this,args)};
+P.Game.start=function(...args){P.state.domainAftermath=null;P.state.domain=null;P.Domain.down=P.Domain.queued=false;return start.apply(this,args)};
 P.PlayerFeedback.hit=function(p,...args){const d=P.state.domain;if(d&&((p.slot??0)!==d.slot||d.age<P.Domain.entry))return 0;return hit.call(this,p,...args)};
 }
 
