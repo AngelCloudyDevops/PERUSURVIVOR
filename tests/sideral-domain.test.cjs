@@ -38,3 +38,8 @@ test('Sideral: la cinemática compone una sola figura sobre una sola habitación
  D.introClean(c,1280,720,{age:D.entry*.72});
  assert.equal(calls.filter(x=>x==='room').length,1);assert.equal(calls.filter(x=>x==='figure').length,1);assert(calls.indexOf('manifest')<calls.indexOf('figure'));assert(calls.indexOf('figure')<calls.indexOf('companion'));
 });
+
+test('Sideral: el cierre dura 0,95 s y protege a ambos jugadores',()=>{
+ const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);const d=s.sideralDomain;d.age=P.SideralDomain.entry+P.SideralDomain.duration-.01;sim.tick(.04,[{},{}]);
+ assert.equal(d.exitTotal,.95);p.inv=0;sim.players[1].inv=0;sim.tick(.04,[{},{}]);assert(p.inv>0);assert(sim.players[1].inv>0);assert(d.exit>0);
+});
