@@ -1,7 +1,7 @@
 'use strict';
 P.FX={
 pixel(ctx,x,y,size,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x-size/2),Math.round(y-size/2),size,size)},
-trail(ctx,points,color){if(!points)return;for(let i=0;i<points.length;i++){ctx.globalAlpha=(i+1)/points.length*.45;this.pixel(ctx,points[i].x,points[i].y,3+i/3,color)}ctx.globalAlpha=1},
+trail(ctx,points,color){if(!points)return;ctx.fillStyle=color;for(let i=0;i<points.length;i++){const size=3+i/3;ctx.globalAlpha=(i+1)/points.length*.45;ctx.fillRect(Math.round(points[i].x-size/2),Math.round(points[i].y-size/2),size,size)}ctx.globalAlpha=1},
 // Rasterize the complete glow and geometry once; motion and trails stay live.
 glyphCache:new Map(),cachePixels:0,maxCachePixels:4194304,
 glyphBounds:{MIC:[-10,-13,20,32],FAN:[-21,-27,42,36],KEY:[-22,-11,44,22],PHONE:[-10,-15,20,30],PAD:[-21,-10,42,24],PLUMA:[-17,-7,34,14],FISH:[-17,-11,32,21],BULLET:[-40,-6,56,14],BANANA:[-15,-13,32,26],BCP:[-17,-11,34,23],DIAPER:[-18,-9,36,21],ICE:[-11,-9,25,18],ZIG:[-16,-10,32,20],PULSE:[-12,-6,27,12],ORB:[-8,-8,16,16],FEATHER:[-16,-7,34,14],ROACH:[-12,-11,32,22]},

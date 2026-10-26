@@ -169,3 +169,4 @@ VultureUltimate carga gallinazo-ultimate-v1.png por separado, precalcula seis re
 
 ### Secuencia de derrota del Gallinazo
 `encounter.defeat` conserva el actor muerto y su reloj de simulación. `P.Vulture.defeat` limpia amenazas, proyectiles, campos y minions; `Game.update` atiende solo `defeatTick` mientras siga en play, respetando pausa y sin recoger fama ni mover el mapa. World inserta el actor en el orden de profundidad y Vulture dibuja cuadros completos del atlas existente. Tras 2,8 s llama una sola vez a Encounters.win; el reinicio descarta el estado con el encuentro.
+El HUD conserva nodos fijos y escribe textos solo cuando cambian; la barra de experiencia y el icono de equipo también evitan trabajo idéntico. No se limita su frecuencia ni se retrasan actualizaciones de daño o temporizadores. Las estelas conservan todos sus puntos, tamaños y alfas, fijando el color una vez por estela.
