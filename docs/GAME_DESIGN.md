@@ -313,3 +313,27 @@ La embestida también avanza un ciclo de carrera por distancia: el Fiscalizador 
 ## Reacciones de los jugables y dirección de disparo
 Los 18 jugables reaccionan al daño durante 0,26 s con retroceso visual, una inclinación breve y señal de impacto. No cambia su posición, colisión ni ventana de invulnerabilidad. Al caer muestran el cuerpo completo inclinado y una señal de derrota; permanecen visibles. En individual y derrota de equipo, el resultado aparece tras 0,95 s mientras combate y relojes permanecen detenidos. En cooperativo los caídos conservan la reanimación de cuatro segundos y recuperan la caminata al levantarse. Movimiento reducido elimina la sacudida y reduce la inclinación.
 Las armas de fuego conservan la orientación del último disparo durante su recuperación (hasta 0,5 s), aunque se camine en sentido contrario. La pose sigue la fase real de los pies y la dirección registrada al crear los proyectiles; no cambia el alcance, daño ni trayectoria. Esto evita que Kingteka vuelva a mirar hacia su movimiento antes de terminar de disparar.
+
+## Evoluciones propias y menú de habilidades
+Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución exclusiva, disponible mediante elección con rango 5 y nivel 8. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.
+
+- cristorata: **Directo encadenado** — Dos micrófonos de retorno enlazan hasta tres rivales con sonido.
+- cuy: **Terremoto del cuy** — Una onda completa empuja y deja una zona de temblor a tus pies.
+- paloma: **Corona de plumas** — Doce plumas salen en todas direcciones y atraviesan dos rivales.
+- alan: **Eco de la plaza** — Un discurso amplio alcanza también a los rivales detrás de ti.
+- alberto: **Órbita presidencial** — Seis bandas giran alrededor y una onda golpea el centro.
+- keiko: **Abanico solar** — Cuatro abanicos salen en cruz, regresan y dejan un remolino junto al objetivo.
+- ollanta: **Marcha del comando** — Un cono largo y estrecho empuja; dos ondas laterales cubren los flancos.
+- kingteka: **Escopeta Contra** — Tres disparos concentrados de alta velocidad perforan ocho rivales.
+- shaka: **Tornado bananero** — Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.
+- najasor: **Marea CPEZ** — Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.
+- cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
+- fuzo: **Banca infinita** — Cinco tarjetas rápidas atraviesan ocho rivales y enlazan al grupo más cercano.
+- charles: **Lluvia de pañales** — Tres pañales dejan nubes y una nube adicional aparece junto al objetivo.
+- axelbenba: **Clip relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
+- cerdito: **Fiesta del cerdito** — Doce balas salen en círculo; una onda corta despeja el puesto.
+- sustento: **Infestación veloz** — Tres cucarachas perforantes avanzan en zigzag; una zona de enjambre queda junto al objetivo.
+- cevichero: **Marea del enjambre** — Seis cucarachas salen en círculo y regresan como bumeranes.
+- g5: **Huracán G5** — Tres barridos consecutivos cubren frente y flancos, con fuerte empuje.
+
+P.Evolutions define perfiles de ataque inmutables y efectos serializables por personaje; Combat conserva el ID de ataque original para mantener sus sprites. Las animaciones nuevas son geometría pixel art de raíles, ondas, abanicos, enjambres, plumas y barridos, además de trayectorias radiales, retorno, búsqueda y zonas persistentes según el perfil. El servidor usa el mismo módulo. Movimiento reducido estabiliza la animación decorativa sin alterar impactos. El menú es solo de consulta: no concede niveles ni poderes.
