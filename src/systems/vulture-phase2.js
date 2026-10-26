@@ -1,6 +1,43 @@
 'use strict';
 // Forma II: atlas propio; ataques y efectos dependen solo del reloj de simulación.
 P.VulturePhase2 = {
+  entryDuration:1.3,
+  entering(e){return !!e&&e.phase==='vulture-ultimate'&&(e.ultimateEntryTime??this.entryDuration)<this.entryDuration},
+  smooth(v){v=Math.max(0,Math.min(1,v));return v*v*(3-2*v)},
+  featherMotion(t,reduced=false){
+    if(reduced)return {spread:0,ruffle:0};
+    return {spread:this.smooth((t-.12)/.46)*(1-this.smooth((t-.85)/.4)),ruffle:Math.sin(t*17)*.012*this.smooth(t/.2)};
+  },
+  warp(x,y,m){
+    // La cabeza, las patas y el centro del pecho permanecen anclados.
+    const wing=this.smooth((.68-x)/.25)*(1-this.smooth((y-.64)/.25));
+    return {x:x-wing*m.spread*.065,y:y-wing*m.spread*.16+wing*m.ruffle*Math.sin(x*26+y*12)};
+  },
+  mesh(c,art,pose,x,y,scale,m,anchor){
+    const f=art.frames[pose],px=anchor?f.x+f.w/2-(anchor.x+anchor.w/2-anchor.pivotX):f.pivotX,py=anchor?f.y+f.h-(anchor.y+anchor.h-anchor.pivotY):f.pivotY;
+    const point=(u,v)=>{const p=this.warp(u,v,m);return {x:x+(f.x-px+p.x*f.w)*scale,y:y+(f.y-py+p.y*f.h)*scale,u:f.x+u*f.w,v:f.y+v*f.h}};
+    const triangle=(a,b,d)=>{
+      const den=(b.u-a.u)*(d.v-a.v)-(d.u-a.u)*(b.v-a.v),aa=((b.x-a.x)*(d.v-a.v)-(d.x-a.x)*(b.v-a.v))/den,bb=((b.y-a.y)*(d.v-a.v)-(d.y-a.y)*(b.v-a.v))/den,cc=((d.x-a.x)*(b.u-a.u)-(b.x-a.x)*(d.u-a.u))/den,dd=((d.y-a.y)*(b.u-a.u)-(b.y-a.y)*(d.u-a.u))/den;
+      c.save();c.beginPath();const mx=(a.x+b.x+d.x)/3,my=(a.y+b.y+d.y)/3;
+      for(const [i,p] of [a,b,d].entries()){const dx=p.x-mx,dy=p.y-my,len=Math.hypot(dx,dy)||1,xx=p.x+dx/len*.35,yy=p.y+dy/len*.35;if(i)c.lineTo(xx,yy);else c.moveTo(xx,yy)}
+      c.closePath();c.clip();c.transform(aa,bb,cc,dd,a.x-aa*a.u-cc*a.v,a.y-bb*a.u-dd*a.v);c.drawImage(art.surface,f.x,f.y,f.w,f.h,f.x,f.y,f.w,f.h);c.restore();
+    };
+    c.imageSmoothingEnabled=false;
+    for(let row=0;row<8;row++)for(let col=0;col<12;col++){const a=point(col/12,row/8),b=point((col+1)/12,row/8),d=point(col/12,(row+1)/8),e=point((col+1)/12,(row+1)/8);triangle(a,b,d);triangle(b,e,d)}
+  },
+  transformation(t,reduced=false){
+    return {reveal:this.smooth((t-1.95)/.92),spread:reduced?0:this.smooth((t-1.7)/.65)*.7,aura:this.smooth((t-1.75)/.8),bolts:this.smooth((t-2.15)/.65)};
+  },
+  transformBird(c,g,t,reduced){
+    const m=this.transformation(t,reduced),art=P.VultureStrike,scale=g.scale,pose=0,baseY=g.baseY;
+    // Ambos atlas usan el mismo pie y la misma escala de píxel: no se trasladan.
+    const paint=(target)=>this.mesh(c,target,pose,g.baseX,baseY,scale,{spread:m.spread,ruffle:reduced?0:Math.sin(t*19)*.008*m.aura},art.frames[pose]);
+    const cut=baseY-art.height*scale*1.2+m.reveal*art.height*scale*1.45;
+    const mask=(top)=>{c.beginPath();c.moveTo(-10000,top?-10000:10000);c.lineTo(10000,top?-10000:10000);c.lineTo(10000,cut);for(let i=20;i>=0;i--)c.lineTo(g.baseX-g.w+i*g.w/10,cut+Math.sin(i*2.399)*g.h*.018);c.lineTo(-10000,cut);c.closePath();c.clip()};
+    if(m.reveal<1){c.save();mask(false);paint(art);c.restore()}
+    if(m.reveal>0){c.save();mask(true);paint(this);c.restore()}
+    this.electricity(c,g.baseX,baseY-g.h*.45,g.w*.3,t,m.bolts*(reduced?.25:.75),reduced);
+  },
   ready:false, failed:false, frames:[],
   init(){
     if(this.started||typeof Image==='undefined')return;
@@ -88,18 +125,17 @@ P.VulturePhase2 = {
     c.strokeStyle='#e9d0ff';c.lineWidth=3;c.beginPath();c.ellipse(s.x,s.y,46,16,0,0,Math.PI*2);c.stroke();c.restore();return true;
   },
   card(c,w,h,t,reduced){
-    if(t<0||t>1.22)return;
+    if(t<0||t>=this.entryDuration)return;
     const box=P.UltimateComic?.layout(w,h)||{w:w*.4,h:h*.82,y:h*.08},pw=box.w,ph=box.h;
-    const slide=reduced?0:t<.16?-pw*(1-P.VultureImpact.smooth(t/.16)):t>.96?-pw*P.VultureImpact.smooth((t-.96)/.26):0;
+    const slide=reduced?0:t<.16?-pw*(1-this.smooth(t/.16)):t>1.02?-pw*this.smooth((t-1.02)/.28):0;
     c.save();c.translate(slide,box.y);c.beginPath();c.moveTo(0,0);c.lineTo(pw,0);c.lineTo(pw*.72,ph);c.lineTo(0,ph);c.closePath();c.clip();
     c.fillStyle='#100b1c';c.fillRect(0,0,pw,ph);
     for(let i=0;i<24;i++){const y=(i*31+(reduced?0:t*180))%ph;c.fillStyle=i%2?'#372345':'#5a386c';c.fillRect(0,y,pw,2)}
-    this.electricity(c,pw*.43,ph*.44,pw*.31,t,reduced?.25:.65,reduced);
-    this.paint(c,pw*.43,ph*.64,ph*.61,t<.4?0:t<.7?2:4,false,reduced?0:-.035);
+    const art=P.VultureStrike;if(art.ready){const f=art.frames[2],scale=Math.min(pw*.78/f.w,ph*.55/f.h);this.mesh(c,art,2,pw*.4,ph*.65,scale,this.featherMotion(t,reduced))}
     c.strokeStyle='#c99ae5';c.lineWidth=6;c.beginPath();c.moveTo(pw-3,0);c.lineTo(pw*.72-3,ph);c.stroke();
     c.textAlign='center';c.strokeStyle='#12091d';c.fillStyle='#f1d8ff';c.lineWidth=5;c.font='900 '+Math.max(17,Math.min(34,pw*.075))+'px monospace';
     for(const [word,y] of [['¡BAJO MIS',.76],['ALAS!',.84]]){c.strokeText(word,pw*.4,ph*y);c.fillText(word,pw*.4,ph*y)}
-    c.font='bold '+Math.max(10,Math.min(14,pw*.03))+'px monospace';c.fillStyle='#b88ed5';c.fillText('FASE II · GALLINAZO',pw*.39,ph*.94);c.restore();
+    c.font='bold '+Math.max(10,Math.min(14,pw*.03))+'px monospace';c.fillStyle='#b88ed5';c.fillText('GALLINAZO DEL CAOS',pw*.39,ph*.94);c.restore();
   }
 };
 {
@@ -107,13 +143,14 @@ P.VulturePhase2 = {
   scene.init=function(){F.init();return init.call(this)};
   scene.pending=()=>pending()||typeof Image!=='undefined'&&!F.ready&&!F.failed;
   // Reemplaza la tarjeta anterior, sin superponer dos paneles.
-  I.card=(...args)=>F.card(...args);
+  I.card=()=>{};
   I.phaseAura=(c,e)=>F.aura(c,e);
   scene.bird=function(c,g,m,t,reduced){
-    if(t<2.65||!F.ready)return bird.call(this,c,g,m,t,reduced);
-    const root=P.VultureStrike.root(t,reduced),height=g.h/g.f.h*P.VultureStrike.height;
-    F.paint(c,g.baseX+root.x*g.w,g.baseY+root.y*g.h,height,P.VultureStrike.pose(t,reduced),false,root.angle);
-    F.electricity(c,g.baseX,g.baseY-g.h*.45,g.w*.3,t,Math.min(1,(t-2.65)/.2),reduced);
+    if(t<1.7||!F.ready)return bird.call(this,c,g,m,t,reduced);
+    if(t<2.96)return F.transformBird(c,g,t,reduced);
+    const root=P.VultureStrike.root(t,reduced),height=g.scale*F.height;
+    F.paint(c,g.baseX,g.baseY+root.y*g.h,height,P.VultureStrike.pose(t,reduced),false,root.angle);
+    F.electricity(c,g.baseX,g.baseY-g.h*.45,g.w*.3,t,reduced?.25:.75,reduced);
   };
   P.Vulture.warn=function(e,attack,delay){if(e.chaosForm&&(attack==='feathers'||attack==='summon'))return F.plan(e,attack==='summon'?'storm':'rake');return warn.call(this,e,attack,delay)};
   P.Vulture.move=function(e,dt){if(e.phase==='vulture-chaos-charge')return F.step(e,dt);return move.call(this,e,dt)};
@@ -126,4 +163,10 @@ P.VulturePhase2 = {
   };
   P.Vulture.ground=function(c){ground.call(this,c);const e=P.VultureUltimate.boss();if(e)F.ground(c,e)};
   P.FX.projectile=function(c,s){if(!F.lightning(c,s))return projectile.call(this,c,s)};
+}
+{
+  const F=P.VulturePhase2,u=P.VultureUltimate,start=u.start,tick=u.introTick,overlay=u.overlay;
+  u.start=function(e,...args){const ok=start.call(this,e,...args);if(ok)e.ultimateEntryTime=0;return ok};
+  u.introTick=function(dt){const e=this.boss();if(F.entering(e)){if(P.state.mode!=='play')return false;e.ultimateEntryTime=Math.min(F.entryDuration,e.ultimateEntryTime+dt);return true}return tick.call(this,dt)};
+  u.overlay=function(){const e=this.boss();if(F.entering(e)){document.body.classList.remove('vulture-cinematic');F.card(P.Core.ctx,P.Core.width,P.Core.height,e.ultimateEntryTime,P.Vulture.reduced());return}return overlay.call(this)};
 }
