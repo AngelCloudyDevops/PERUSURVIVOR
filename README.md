@@ -1,5 +1,8 @@
 # PERUSURVIVOR — Causas del Caos
 
+## Prototipo: dominio de Makanaky
+El UR usa Expansión de dominio con Q (35 bajas). Entra al callejón en primera persona: A/D o flechas para esquivar, ratón para apuntar, clic/Espacio para golpear. En cooperativo el compañero se refugia detrás y puede pulsar ¡GA!. En el laboratorio de administrador, elige Makanaky y activa recarga automática; conserva los permisos existentes. Daño a jefes y arte del callejón son provisionales.
+
 ## Preferencias de colección persistentes
 Rareza, estrellas, Solo listos para ascender y orden se guardan automáticamente en este navegador al cambiar un control y se restauran al recargar o volver a abrir el juego. Limpiar filtros guarda los filtros iniciales y conserva el orden elegido. Las pestañas del mismo sitio se sincronizan. Si el navegador impide guardar, los controles siguen funcionando durante la sesión y aparece un aviso con reintento; el progreso del personaje se conserva.
 
@@ -328,6 +331,14 @@ Las ultis de Kingteka, Alberto, Cuy y Paloma requieren tres cartas automáticas:
 
 **Mi perfil** muestra usuario, monedas, colección y estadísticas. Invitados nuevos comienzan con cuatro causas; el resto se desbloquea jugando. El rol administrador se concede únicamente desde el VPS a una cuenta existente, nunca durante el registro ni desde el navegador.
 
+
+
 **Panel admin:** exclusivamente la cuenta `reysuperior` con rol admin puede consultar usuarios, entregar 1–100.000 monedas por operación y desbloquear personajes. Incluye búsqueda, paginación, confirmación e historial. No permite cambiar roles ni ver contraseñas.
 
 Las entregas administrativas se reciben en vivo durante la sesión: monedas y personajes se suman al guardado local sin reemplazar la partida. Un aviso confirma la recepción. Al reconectar se recuperan entregas pendientes sin duplicarlas.
+
+## Música de fondo opcional
+
+En la cabecera, abre **Música ♫** y elige **Original del juego**, **Tema 1**, **Tema 2** o **Sin música**. Las dos pistas aportadas por el usuario se reproducen en bucle; el volumen y la selección se guardan en este navegador. El botón general de sonido también las silencia. Pausa, menú, pestaña oculta y pérdida de foco detienen su reproducción y conservan la posición para continuar.
+
+Las pistas WebM/Opus se solicitan únicamente al reproducir la opción elegida: no forman parte de la descarga inicial. Un solo reproductor sustituye a la melodía sintetizada, conservando efectos y ambiente. Si falla la carga, se recupera la música original.

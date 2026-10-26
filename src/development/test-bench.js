@@ -86,8 +86,8 @@ applyAttack(){
 },
 exit(){this.active=false;P.UI.menu();P.Lobby?.show('settings');this.hud()},
 stop(){if(this.switching)return;this.active=false;if(this.panel){this.home.append(this.panel);this.panel.classList.remove('bench-live');document.body.classList.remove('test-bench-live')}this.hud()},
-tick(){if(!this.active||!P.state.devRun||P.state.mode!=='play')return;this.applyAttack();const s=P.state;if((!this.panel||P.$('#bench-auto').checked)&&s.ultimate&&!s.ultimate.left&&!s.ultimate.paper&&!s.ultimate.animal?.finish&&!s.court)s.ultimate.charge=100},
-hud(){if(!this.panel)return;const s=P.state,live=this.active&&s.devRun,supported=(['kingteka','alberto'].includes(s.player?.id)||!!P.AnimalUltimate?.definition()),busy=!!(s.ultimate?.left||s.ultimate?.paper||s.ultimate?.animal?.finish||s.court);
+tick(){if(!this.active||!P.state.devRun||P.state.mode!=='play')return;this.applyAttack();const s=P.state;if((!this.panel||P.$('#bench-auto').checked)&&s.ultimate&&!s.ultimate.left&&!s.ultimate.paper&&!s.ultimate.animal?.finish&&!s.court&&!s.domain)s.ultimate.charge=100},
+hud(){if(!this.panel)return;const s=P.state,live=this.active&&s.devRun,supported=(['kingteka','alberto'].includes(s.player?.id)||!!P.AnimalUltimate?.definition()||!!P.Domain?.eligible(s.player)),busy=!!(s.ultimate?.left||s.ultimate?.paper||s.ultimate?.animal?.finish||s.court||s.domain);
  if(live){P.$('#lab-tools').hidden=true;P.$('#practice-tools').hidden=true}
  this.panel.hidden=live&&s.mode==='pause';P.$('#bench-collapse').hidden=!live;
  P.$('#bench-start').textContent=live?'↻ Repetir prueba':'Entrar a la prueba ↗';
