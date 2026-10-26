@@ -43,7 +43,7 @@ receive(m){
  const votes=m.portal?.votes||[];if(m.portal?.open)P.$('#portal-status').textContent+=' · Listos '+votes.length+'/2 · Ambos cerca y E';P.$('#portal-enter').textContent=votes.includes(this.session.slot)?'Listo · E para cancelar':'Entrar juntos al portal · E';
  P.$('#hint').textContent=m.message||(s.player.hp<=0?'CAÍSTE · TU AMIGO PUEDE REANIMARTE ACERCÁNDOSE 4 S':'COOPERATIVO · EXPLORA COFRES, PORTALES Y EVENTOS CON TU AMIGO');
  this.showReward(m.pending);
- if(m.result&&!this.resultShown){this.resultShown=true;this.paused=true;const show=()=>{P.UI.show(m.result==='win'?'¡Ganaron, causas!':'Cayó el equipo.',m.kills+' rivales · '+P.Core.clock(m.elapsed),[{title:'Volver al menú',action:()=>{this.leave();P.UI.menu()}}]);P.Meta.decorate()};P.Meta.result(m.result==='win',m);if(m.result==='lose')P.PlayerFeedback.finish(show);else show()}
+ if(m.result&&!this.resultShown){this.resultShown=true;this.paused=true;const show=()=>{P.UI.show(m.result==='win'?'¡Ganaron, causas!':'Cayó el equipo.',m.kills+' rivales · '+P.Core.clock(m.elapsed),[{title:'Volver al menú',action:()=>{this.leave();P.UI.menu()}}],P.DamageStats.report(s.player));P.Meta.decorate()};P.Meta.result(m.result==='win',m);if(m.result==='lose')P.PlayerFeedback.finish(show);else show()}
 },
 showReward(pending){
  this.activityPending=!!pending;const key=pending?pending.id+':'+pending.phase+':'+pending.applied[this.session.slot]:'';if(key===this.activityKey)return;this.activityKey=key;
