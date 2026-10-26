@@ -723,6 +723,11 @@ La revelación secreta encadena un falso resultado Jade, un último giro, vapor 
 Revancha en grupo: victoria y derrota ofrecen volver juntos a la sala (confirmación 0/2, 1/2). Ninguno puede sacar unilateralmente al otro del resultado. Ambos conectados y de acuerdo regresan al mismo grupo con selección conservada y confirmaciones de preparación canceladas. Se permite cambiar causa y escenario antes de iniciar una partida limpia, sin bonificaciones, bajas ni cofres heredados.
 El marco eléctrico de resultado se sustituye por vapor morado pixel art translúcido con chispas en los cuatro bordes. Dura exactamente los mismos 2 s; aumenta volumen, densidad y chispas desde combo máximo ×16. Ocupa como máximo 34 px de profundidad normal y 42 px intenso, reducidos proporcionalmente en móvil. No cruza el centro ni intercepta controles. Movimiento reducido conserva nubes estáticas sin chispas y solo funde la opacidad. El cartel, coronas, INTOCABLE y sus sonidos no cambian.
 
+### Contrato visual de ataques de jefes
+Los avisos de Gabinete, Guardián, Fujimori, Gallinazo y ElZeein se derivan del mismo plan que crea sus proyectiles: cantidad, ángulos, velocidad y vida. Cada trayectoria visible termina donde terminaría el proyectil por alcance, borde de arena o primera cobertura. El Guardián muestra sus doce direcciones radiales; el Gabinete y Fujimori muestran cada calle del abanico; las plumas base, de fase II y del Eclipse Carroñero muestran el recorrido de cada ráfaga. Los círculos del sello, archivos y tormenta conservan exactamente el radio de impacto.
+
+ElZeein fija la dirección del jugador durante un aviso de 0,7 s, permanece quieto mientras carga y después dispara cinco proyectiles. Moverse durante el aviso permite esquivar; el disparo no vuelve a apuntar en el instante final. Las coberturas cortan tanto el aviso como el proyectil.
+
 ### Chosicano: ¡Al fondo hay sitio!
 Tercer ataque tras carga y bocinazo: aviso de 1.2 s con puerta y cobrador, cinco boletos de trayectoria fija (220 unidades/s, 11 de daño), hueco central y bloqueo por coberturas. Recupera 1.1 s; la puerta cierra en 0.3 s. Sin persecución ni nuevos enemigos.
 
