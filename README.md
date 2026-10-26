@@ -383,3 +383,5 @@ Las apariciones se sitúan fuera de la cámara, con margen de 90 u y separación
 Para evitar que la densidad regale niveles, los minions de oleada dan 0,75 de fama, los corredores 0,5 y los pesados 2,25; las cantidades son cuartos exactos. Minijefes, cofres y recompensas especiales mantienen sus reglas. Vida y velocidad base siguen definidas por personaje y rol; la rareza afecta solo cuánto crecen mediante estrellas y mejoras permanentes en individual.
 
 Comparación y límites de las pruebas en [WAVE_PRESSURE.md](docs/WAVE_PRESSURE.md).
+
+Las criaturas de las ultis de Cuy y Paloma tienen una retirada visual de 1,6 segundos: los cuyes siguen corriendo y las palomas ascienden y planean, con desvanecimiento al final. La retirada no prolonga el daño ni la coraza; conserva posiciones del mundo en cooperativo y no se corta al recargar la ulti.
