@@ -68,7 +68,7 @@ hud(){if(!this.panel)return;const s=P.state,live=this.active&&s.devRun,supported
  const training=live&&s.practice&&s.player?.id==='alberto';P.$('#bench-training-boss').hidden=!training;P.$('#bench-training-boss').disabled=s.mode!=='play'||!!s.court;P.$('#bench-training-status').hidden=!training;if(training)P.UI.write(P.$('#bench-training-status'),P.$('#practice-boss-status').textContent);
  P.$('#bench-heal').hidden=!live||!!s.practice;P.$('#bench-heal').disabled=s.mode!=='play';
  P.$('#bench-boss-ulti').hidden=!live||!P.VultureUltimate.boss();P.$('#bench-boss-ulti').disabled=s.mode!=='play'||P.$('#lab-ultimate').disabled;
- P.UI.write(P.$('#bench-status'),!live?'18 causas · Objetivos y jefes · Sin récords':s.mode==='end'?'Prueba terminada. Repite o cambia cualquier selector.':busy?'Ulti en curso · Puedes repetir o cambiar de prueba.':supported?'Ulti lista al recargarse · Q o Lanzar ulti · WASD para moverte':'Ataque automático · Cambia de causa o rival sin volver al menú.');
+ P.UI.write(P.$('#bench-status'),!live?P.Data.characters.length+' causas · Objetivos y jefes · Sin récords':s.mode==='end'?'Prueba terminada. Repite o cambia cualquier selector.':busy?'Ulti en curso · Puedes repetir o cambiar de prueba.':supported?'Ulti lista al recargarse · Q o Lanzar ulti · WASD para moverte':'Ataque automático · Cambia de causa o rival sin volver al menú.');
 }
 };
 {const hud=P.UI.hud,menu=P.UI.menu,update=P.Game.update,start=P.Game.start,finish=P.Lab.finish;

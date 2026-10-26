@@ -421,3 +421,5 @@ Catálogo de minijefes separa clave visual de mapa mediante map opcional. miniKe
 
 
 AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
+
+MakanakyPlayerArt empaqueta el atlas existente una vez y proporciona adaptadores de seis pasos a WalkArt/PlayerAttackArt reutilizando las cuatro figuras completas. La carga participa en readyForStart y permite reintento. Sprites delega sólo su ID, manteniendo el conteo de tres atlas base de la pantalla de carga. Datos del jugador y del minijefe permanecen separados.

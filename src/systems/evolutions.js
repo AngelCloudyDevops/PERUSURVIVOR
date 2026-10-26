@@ -2,6 +2,7 @@
 // Serializable attack profiles: keep the character's original attack ID for sprite identity.
 P.Evolutions={
 profiles:{
+makanaky:{name:'GAA de la realeza',description:'Cinco ondas amplían el abanico y atraviesan dos rivales.',kind:'spread',count:5,pierce:2,powerScale:.75,range:620,spread:.23,shape:'royal-echo',color:'#f8a9df'},
 cristorata:{name:'Directo encadenado',description:'Dos micrófonos de retorno enlazan hasta tres rivales con sonido.',kind:'boomerang',count:2,extra:'chain',shape:'links',color:'#6ffff0'},
 cuy:{name:'Terremoto del cuy',description:'Una onda completa empuja y deja una zona de temblor a tus pies.',kind:'nova',range:210,push:50,extra:'ground',shape:'fault',color:'#e6b477'},
 paloma:{name:'Corona de plumas',description:'Doce plumas salen en todas direcciones y atraviesan dos rivales.',kind:'spread',count:12,radial:true,pierce:2,shape:'wings',color:'#d8f6ff'},

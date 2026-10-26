@@ -61,9 +61,9 @@ test('Salas reales: código privado, máximo dos, autoridad, reconexión, limpie
  async function connect(){const ws=new WebSocket(url,{origin});const receive=mailbox(ws);clients.push(ws);await once(ws,'open');return {ws,receive,send:obj=>ws.send(JSON.stringify(obj))}}
  try{
   const a=await connect();a.send({type:'create',protocol:1,map:'plaza',character:0});const joined=await a.receive('joined');assert.match(joined.code,/^[A-F0-9]{8}$/);
-  const b=await connect();b.send({type:'join',protocol:1,code:joined.code,character:4});const bj=await b.receive('joined');assert.equal(bj.slot,1);
+  const b=await connect();b.send({type:'join',protocol:1,code:joined.code,character:18});const bj=await b.receive('joined');assert.equal(bj.slot,1);
   const third=await connect();third.send({type:'join',protocol:1,code:joined.code,character:1});assert.match((await third.receive('error')).message,/completa/);
-  b.send({type:'start'});assert.equal((await b.receive('error')).type,'error');a.send({type:'start'});const stateA=await a.receive('state'),stateB=await b.receive('state');assert.deepEqual(stateA.players,stateB.players);
+  b.send({type:'start'});assert.equal((await b.receive('error')).type,'error');a.send({type:'start'});const stateA=await a.receive('state'),stateB=await b.receive('state');assert.deepEqual(stateA.players,stateB.players);assert.equal(stateA.players[1].id,'makanaky');
   const sim=app.rooms.get(joined.code).sim;
   async function stateUntil(client,predicate){for(let i=0;i<40;i++){const m=await client.receive('state');if(predicate(m))return m}assert.fail('No llegó el estado de actividad esperado')}
   const chest={id:'wire:chest',x:250,y:250,progress:0,opened:false,gold:false,rarity:'common'};sim.P.Loot.chests.push(chest);sim.activities.open(chest);for(let i=0;i<18;i++)app.tick();
