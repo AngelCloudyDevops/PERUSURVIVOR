@@ -48,6 +48,10 @@ module.exports = [
     "output": "js/enemy-art.js"
   },
   {
+    "source": "src/systems/minion-evolution.js",
+    "output": "js/minion-evolution.js"
+  },
+  {
     "source": "src/rendering/power-effects.js",
     "output": "js/power-fx.js"
   },
@@ -58,6 +62,10 @@ module.exports = [
   {
     "source": "src/systems/meta-progress.js",
     "output": "js/meta-progress.js"
+  },
+  {
+    "source": "src/systems/supplies.js",
+    "output": "js/supplies.js"
   },
   {
     "source": "src/entities/actors.js",
@@ -104,6 +112,10 @@ module.exports = [
     "output": "js/vulture-strike-art.js"
   },
   {
+    "source": "src/systems/vulture-impact.js",
+    "output": "js/vulture-impact.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
   },
@@ -135,13 +147,16 @@ module.exports = [
     "source": "src/rendering/machu-art.js", "output": "js/machu-art.js"
   },
   {
-    "source": "src/rendering/campo-art.js", "output": "js/campo-art.js"
+    "source": "src/rendering/campo-art.js",
+    "output": "js/campo-art.js"
   },
   {
-    "source": "src/rendering/garden-art.js", "output": "js/garden-art.js"
+    "source": "src/rendering/garden-art.js",
+    "output": "js/garden-art.js"
   },
   {
-    "source": "src/rendering/street-art.js", "output": "js/street-art.js"
+    "source": "src/rendering/street-art.js",
+    "output": "js/street-art.js"
   },
   {
     "source": "src/rendering/plaza-art.js",
@@ -219,6 +234,12 @@ module.exports = [
     "source": "src/rendering/ultimate-comic.js",
     "output": "js/ultimate-comic.js"
   },
-  {"source":"src/systems/court-ultimate.js","output":"js/court-ultimate.js"},
-  {"source":"src/rendering/court-art.js","output":"js/court-art.js"}
+  {
+    "source": "src/systems/court-ultimate.js",
+    "output": "js/court-ultimate.js"
+  },
+  {
+    "source": "src/rendering/court-art.js",
+    "output": "js/court-art.js"
+  }
 ];

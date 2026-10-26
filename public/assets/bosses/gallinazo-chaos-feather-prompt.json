@@ -1,0 +1,6 @@
+{
+  "tool": "built-in image_gen",
+  "output": "gallinazo-chaos-feather-v1.png",
+  "delivery": "gallinazo-chaos-feather-v1.webp",
+  "prompt": "Use case: stylized-concept. A single production game projectile sprite: one cursed black vulture feather, horizontal, sharp tip pointing RIGHT and short quill pointing LEFT. Detailed crisp pixel art for a dark Peruvian rooftop boss ultimate. Long asymmetrical serrated barbs clearly visible, layered charcoal and blue-black pixel clusters, strong central graphite quill, tiny violet veins and a thin luminous violet edge along the sharp tip and a few barbs. Menacing natural feather silhouette, NOT a sword, not a leaf, not a solid diamond. No smoky trail painted into it: trail is animated separately in game. Transparent background, isolated centered full feather, generous transparent margin, no text, no panels, no symbols, no scene, no soft blur, no extra feathers. Readable at 40 pixels wide, intricate enough for cinematic close-up; firm dark silhouette with restrained violet accents."
+}

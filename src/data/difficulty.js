@@ -13,7 +13,7 @@ stages:[
 ],
 index(time=P.state.mapTime){let i=0;while(i+1<this.stages.length&&time>=this.stages[i+1].at)i++;return i},
 current(){return this.stages[P.state.devRun||P.state.encounter?7:this.index()]},
-attack(e){const base=P.Systems.minionAttacks[e.design];if(!base||!e.progressive||P.state.devRun||P.state.encounter)return base;const stage=this.stages[e.threatStage];if(!stage||!stage.casts)return null;return {...base,windup:base.windup*stage.windup,cooldown:base.cooldown*stage.cooldown,fanCount:stage.tier?3:1,burstCount:stage.tier>=3?3:2}},
+attack(e){const base=P.Systems.minionAttacks[e.design];if(!base||!e.progressive||P.state.devRun||P.state.encounter)return P.MinionEvolution.attack(e,base);const stage=this.stages[e.threatStage];if(!stage||!stage.casts)return null;return P.MinionEvolution.attack(e,{...base,windup:base.windup*stage.windup,cooldown:base.cooldown*stage.cooldown,fanCount:stage.tier?3:1,burstCount:stage.tier>=3?3:2})},
 limits(e){return e.progressive&&!P.state.devRun&&!P.state.encounter?this.current():{danger:40,casts:8}},
 hud(){const el=P.$('#difficulty-status');if(!el)return;const s=P.state;el.hidden=!!(s.devRun||s.encounter||s.bossSpawned);if(!el.hidden){const i=this.index(),stage=this.stages[i],names=['Pablo','Tyrone','Uniqua','Tasha','Austin','PNP'];P.UI.text('#difficulty-status','ETAPA '+(i+1)+' · '+stage.name+' · '+names.slice(0,stage.types).join(', '))}}
 };

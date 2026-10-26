@@ -53,14 +53,14 @@ showReward(pending){
  if(pending.phase==='opening'){P.UI.show('Abriendo cofre…','La sala está en pausa para los dos.',[leave]);return}
  if(pending.applied[this.session.slot]){P.UI.show('Recompensa elegida','Esperando la elección de tu compañero…',[leave]);return}
  const choose=choice=>this.send({type:'activity',action:'choose',id:pending.id,choice});let buttons,title,description;
- if(pending.kind==='level'){title='¡SUBIERON DE NIVEL!';description='NIVEL '+P.state.level+' · Cada jugador elige 1 de 3 poderes. La sala está en pausa.';buttons=pending.options[this.session.slot].map((o,i)=>({title:o.title,description:o.description,action:()=>choose(i)}))}
+ if(pending.kind==='level'){title='¡SUBIERON DE NIVEL!';description='NIVEL '+P.state.level+' · Cada jugador elige 1 de 3 poderes. La sala está en pausa.';buttons=pending.options[this.session.slot].map((o,i)=>({title:o.title,description:o.description,card:P.UI.upgradeCard(o),action:()=>choose(i)}))}
  else if(pending.kind==='portal-reward'){title='¡Vencieron al jefe del portal!';description='Cada uno elige una mejora. El juego continúa cuando ambos terminen.';buttons=[{title:'Poder del portal · +30% de daño',action:()=>choose(0)},{title:'Corazón de la arena · +40 vida máxima y curación',action:()=>choose(1)},{title:'Ritmo del campeón · Ataques 25% más frecuentes',action:()=>choose(2)}]}
  else if(pending.kind==='mini-reward'){const item=P.Loot.items[pending.item];title='Recompensa exclusiva · '+item.name;description=item.description+' · Reemplaza tu accesorio. Cada jugador elige; las monedas van al equipo.';buttons=[{title:(P.state.player.equipment===pending.item?'Ya equipado: ':'Equipar ')+item.name,disabled:P.state.player.equipment===pending.item,action:()=>choose(0)},{title:'Cobrar '+P.Relics.coins+' monedas',action:()=>choose(1)}]}
  else {const item=P.Loot.items[pending.item];title=P.Loot.rarity(pending.rarity).name+' · '+item.name;description=item.description+' · Cada jugador recibe su propia recompensa.';buttons=[{title:(item.consumable?'Beber ':'Equipar ')+item.name,action:()=>choose(0)},{title:'Conservar mi equipo',action:()=>choose(1)}]}
  P.UI.show(title,description,[...buttons,leave]);if(pending.item)P.LootArt.reveal(pending.item);
 },
 tick(dt){
- if(!this.active)return;this.lastSend+=dt;if(this.lastSend>=.05){this.lastSend=0;const input=this.paused||this.reconnecting||this.activityPending?{x:0,y:0}:P.Core.direction();this.send({type:'input',x:input.x,y:input.y,ultimate:!!this.ultimate});this.ultimate=false}
+ if(!this.active)return;this.lastSend+=dt;if(this.lastSend>=.05){this.lastSend=0;const input=this.paused||this.reconnecting||this.activityPending?{x:0,y:0}:P.Core.direction();this.send({type:'input',x:input.x,y:input.y,ultimate:!!this.ultimate,view:P.Combat.sanitizeView(P.Combat.view(P.state.player))});this.ultimate=false}
  // El servidor es la única autoridad: no se ejecuta Game.update en este cliente.
 },
 pause(){if(this.reconnecting||this.activityPending)return;if(this.paused){this.paused=false;P.$('#overlay').hidden=true;return}this.paused=true;P.Core.clear();this.send({type:'input',x:0,y:0});P.UI.show('Cooperativo · Opciones','Tu amigo continúa jugando. Esta pantalla no pausa la sala.',[{title:'Seguir jugando',action:()=>this.pause()},{title:'Salir de la sala',action:()=>{this.leave();P.UI.menu()}}])},
