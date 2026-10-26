@@ -34,3 +34,22 @@ test('Plumaje fase dos: paleta morada conserva alfa, luces y pico dorado',()=>{
  const {R}=engine(),p=new Uint8ClampedArray([60,60,65,255,180,110,20,255,240,240,240,255,0,0,0,0]);const original=[...p];R.tintPlumage(p,1);assert(p[2]>p[0]&&p[0]>p[1]);assert.equal(p[3],255);assert.deepEqual([...p.slice(4)],original.slice(4));
  const base=new Uint8ClampedArray(original);R.tintPlumage(base,0);assert.deepEqual([...base],original);
 });
+
+test('Vuelo fase dos: despega al desplazarse, recoge patas y aterriza suavemente al parar',()=>{
+ const {P,R}=engine(),e={x:100,y:100,phase:'approach',chaosForm:true};P.Vulture.tickVisuals(e,.1);
+ for(let i=0;i<8;i++){e.x+=6;P.Vulture.tickVisuals(e,.05)}assert.equal(e.rigFlight,1);
+ const a=R.flightPose(e);assert(a.lift>25);assert(a.tuck>.8);const near=R.arenaMotion(e).near;e.rigTime+=.25;assert(Math.abs(R.arenaMotion(e).near-near)>.2);
+ const quiet=R.flightPose(e,true);assert.equal(quiet.near,0);assert.equal(quiet.bank,0);assert.equal(quiet.lift,32);
+ P.Vulture.tickVisuals(e,.05);assert(e.rigFlight>0&&e.rigFlight<1);
+ for(let i=0;i<10;i++)P.Vulture.tickVisuals(e,.05);assert.equal(e.rigFlight,0);assert.equal(R.flightPose(e).lift,0);
+ const before=JSON.stringify(e);R.flightPose(e);assert.equal(JSON.stringify(e),before);
+});
+
+test('Ataques fase dos: cada ráfaga coincide con un aletazo y la picada recoge las alas antes de salir',()=>{
+ const {R}=engine(),e={phase:'vulture-chaos-charge',chaosAttack:'rake',x:100,y:200};
+ const charge=R.attackPose({...e,chaosTime:.85});for(const t of [1.1,1.52]){const hit=R.attackPose({...e,chaosTime:t});assert(hit.pulse>.99);assert(charge.near-hit.near>1.9);assert(hit.jaw>.3)}
+ assert.equal(R.attackPose({...e,chaosTime:1.385}).pulse,0);assert.equal(R.attackPose({...e,chaosTime:1.1},true).pulse,0);
+ const prep={phase:'vulture-warning',attack:'dive',warningTime:1.05},early=R.attackPose({...prep,windup:.8}),spread=R.attackPose({...prep,windup:.4}),ready=R.attackPose({...prep,windup:0});assert(spread.near>early.near);assert(ready.near<spread.near);assert(ready.lift>=35);assert(ready.tuck>.9);assert.equal(R.attackPose({phase:'vulture-dive'}).tuck,1);
+ const before=JSON.stringify(e);R.attackPose(e);R.flightPose(e);assert.equal(JSON.stringify(e),before);
+ for(let t=.001;t<2.2;t+=.002){const a=R.attackPose({...e,chaosTime:t}),b=R.attackPose({...e,chaosTime:t+.001});assert(Math.abs(a.near-b.near)<.06)}
+});

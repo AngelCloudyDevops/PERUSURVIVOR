@@ -1,5 +1,8 @@
 # Arquitectura
 
+## Dominio de Makanaky: combos y cámaras
+Domain serializa combo, comboTimer, step, strike, punchLength, move, impact y freeze; autoridad idéntica en cliente individual y servidor cooperativo. Domain.camera permanece local y no se transmite. Microparada de 45 ms solo detiene desplazamiento visual de objetivos/suelo, no el reloj ni la red. DomainArt mantiene el mapa original bajo la tarjeta y cambia al callejón después; rayos y poses se dibujan en el lienzo pixel sin suavizado. El enlace practice=makanaky reutiliza TestBench con comprobación del rol administrador existente.
+
 ## Dominio UR de Makanaky (prototipo)
 Domain mantiene un único encuentro autoritativo en state.domain. Cada objetivo referencia domainKey del enemigo real; los HP y callbacks de botín siguen usando Entities.hurt y la victoria se difiere hasta cerrar la escena. Simulation congela el combate y el reloj base, recibe punch/domainAim/ga validados y serializa el encuentro para ambos clientes. El propietario usa primera persona; el compañero ve a Makanaky desde atrás y queda protegido. No se cambian las coordenadas originales de jugadores o enemigos. DomainArt renderiza el callejón con perspectiva a 640×360 sin suavizado y controles táctiles.
 
@@ -80,6 +83,8 @@ Prueba visual: npm run build y node tests/manual/serve-powers.cjs; abrir /__qa/p
 ## Arte modular del entorno
 src/rendering/map-art.js carga tres atlas de objetos (3 columnas por 2 filas) y un atlas opaco de suelos/caminos. Los PNG y prompts están en public/assets/environment/. El cargador recorta por alfa y ancla cada sprite a su base; el render usa nearest-neighbor. Los sectores invalidan sus lienzos cuando termina de cargar el atlas de suelo. P.Terrain mantiene la geometría física independiente del dibujo; P.World ordena los objetos y los personajes por la coordenada de sus pies. Se conserva el renderer procedural como respaldo durante la carga.
 ## Laboratorio de desarrollo
+
+TestBench conserva `minionMode` únicamente durante las pruebas de desarrollo. Entities limita el golpe final de minions comunes cuando el modo es inmortal y notifica sus derrotas para programar una reaparición a los 0,8 s. La cola se limpia al repetir, salir o cambiar de modo; reutiliza la entidad con su diseño y atributos, restablece vida y estados de ataque, y la coloca de nuevo alrededor del jugador. Las comprobaciones excluyen jefes, minijefes, imitadores y objetivos especiales.
 src/development/lab.js se carga después de la UI y antes del arranque. El estado devRun separa las pruebas de la progresión: spawn omite las oleadas y los finales y victorias de arena delegan en Lab.finish, evitando el guardado del récord. La herramienta reutiliza el combate, el personaje y las escenas reales del juego.
 
 ## Ultimates
@@ -481,11 +486,19 @@ Entregas en vivo v4: `/api/events?account=UUID` usa SSE con cookie HttpOnly, cue
 
 VultureRig.cardLayout y cardEnvelope separan geometría adaptable y tiempos cosméticos. card reutiliza un canvas de retrato, sin descargas ni timers; proyecta su sombra y compone trama/rayos, arcos del grito, plumas y marco en el canvas principal. No altera la jerarquía articulada ni el estado de combate. VultureMoon.overlay sincroniza body.vulture-card en todas las fases para ocultar el laboratorio durante la entrada y restituirlo al despegar. La prueba cubre límites de composición en escritorio/móvil, título escalonado, movimiento reducido y ausencia de mutaciones de simulación.
 
+
 VultureRig usa rigTime, avanzado por tickVisuals, para movimiento continuo de segunda fase. El render no avanza el reloj; pausa y movimiento reducido conservan una pose estable. No aplica filtros de color al atlas.
 La paleta de plumas se precalcula en ocho pasos al cargar el rig, sin fundido de imágenes ni filtros por fotograma. La selección depende del progreso de transformación; conserva la luminancia de los detalles.
 BackgroundMusic.alternate prepara la siguiente pista a 12 s del final y mezcla durante 3 s mediante curvas coseno/seno de potencia constante. Usa el currentTime de la pista entrante como reloj: pausa y silencio detienen ambos elementos sin timers ni progreso en segundo plano. La siguiente pista solo entra con readyState >= 3; la actual conserva loop como respaldo de red. Al concluir, se intercambian los roles y se libera la URL anterior. Error de precarga o autoplay conserva la pista actual y limita reintentos hasta otro gesto. Un cambio de opción pausa y libera la precarga y protege contra promesas tardías.
 
 BackgroundMusic.choice inicia en alternate; el selector HTML declara la misma opción selected. init restaura únicamente valores válidos de perusurvivor-music y conserva las preferencias existentes. Las pruebas de alternancia parten de almacenamiento vacío y la prueba individual comprueba la prioridad de una preferencia guardada.
+
+
+Audio.musicLive distingue continuidad musical (play/upgrade/loot-opening/item) de actividad del combate: BackgroundMusic y melodía sintetizada usan musicLive, mientras Soundscape y MinionAudio reciben solo play. Los controles music-control y enemy-audio-control se fijan al viewport en partida para evitar el desplazamiento y recorte causado por header de altura cero; sus anclajes cambian para móvil.
+
+VultureRig.tickFlight calcula desplazamiento real entre ticks y mezcla rigFlight para despegar/aterrizar sin saltos. flightPose deriva altura, aleteo, recogida de patas e inclinación desde el reloj de simulación. Solo desplaza el render: conserva coordenadas físicas, sombra de suelo y cinemática lunar.
+
+VultureRig.attackPose deriva carga, descarga y recuperación de chaosTime y de windup/warningTime, sin timers ni modificación de coordenadas. Sustituye la oscilación de reposo durante ataques y conserva el reloj y los disparos originales. attackFX representa arcos de aire locales en cada descarga y respeta movimiento reducido.
 
 ## Fichas de combate y resolución de atributos
 

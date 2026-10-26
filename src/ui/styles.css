@@ -137,3 +137,10 @@ body[data-account-admin="false"] #test-bench,body[data-account-admin="false"] #d
 .music-control{position:relative;flex:0 0 auto;pointer-events:auto;font-size:12px}.music-control summary{cursor:pointer;padding:10px;border:1px solid #5a6b76;border-radius:8px;background:#22303d;list-style:none}.music-control summary::-webkit-details-marker{display:none}.music-settings{position:absolute;top:44px;right:0;z-index:30;width:230px;max-width:80vw;display:flex;flex-direction:column;gap:12px;padding:16px;background:#172332;border:1px solid #8e9fae;border-radius:8px;box-shadow:0 8px 24px #0006}.music-settings label{display:flex;align-items:center;gap:10px;color:#f5efe4}.music-settings select{width:100%;padding:9px;background:#25384a;color:#fff;border:1px solid #7890a3;border-radius:5px}.music-settings input{width:125px;accent-color:#ffb15f}.music-settings small:empty{display:none}.music-settings small{color:#ffdb86}
 
 body.vulture-card #test-bench{visibility:hidden}
+/* La cabecera de partida mide 0 px: anclar estos controles al viewport. */
+body:not(.menu) header .music-control{position:fixed;top:22px;right:176px}
+body:not(.menu) header .enemy-audio-control{position:fixed;top:22px;right:278px;pointer-events:auto}
+.music-settings{max-height:calc(100dvh - 100px);overflow:auto}
+@media(max-width:600px){body:not(.menu) header .music-control{top:19px;right:54px}body:not(.menu) header .enemy-audio-control{top:19px;right:156px}.music-settings{width:min(230px,calc(100vw - 70px))}}
+body:not(.menu) header .enemy-audio-control label{right:auto;left:50%;transform:translateX(-50%)}
+body:not(.menu) header:has(.music-control[open],.enemy-audio-control[open]){z-index:13}

@@ -1,5 +1,8 @@
 # Documento de diseño — PERUSURVIVOR
 
+## Dominio de Makanaky: combos y cámaras
+Makanaky: golpes encadenados jab/jab/cruzado/uppercut. Conectar suma racha GA; fallar o esperar 1,1 s la corta, sin perder energía acumulada. Uppercut añade 0,65 de alcance. Enemigos en fila de profundidad con leve variación lateral. Tarjeta protegida de 1,3 s antes de mostrar el callejón y habilitar golpes; cámaras V equivalentes en daño y alcance. Práctica administrativa con recarga explícita gratuita.
+
 ## Expansión de dominio · ¡BÓTAME TU GA!
 Exclusiva del UR Makanaky. Carga con 35 bajas. Entrada de 1,3 s, combate de 7 s y salida de 0,4 s: callejón recto en primera persona, avance automático, desplazamiento lateral con A/D/flechas, puntería con ratón y puñetazo con clic/Espacio o botón táctil. Hasta 24 enemigos reales a 650 u entran; minions caen de un golpe conectado y jefes/minijefes reciben daño provisional finito (poder×4, máximo base 140). Las zonas de invulnerabilidad de jefe se respetan. Los ataques se anuncian y se esquivan lateralmente. GA de bajas (máximo 10) potencia el remate; no recarga el dominio. El reloj del mapa queda detenido, pero el encuentro avanza. El compañero se refugia protegido detrás de Makanaky, no ataca y puede animarlo con ¡GA!; otro dominio no consume su carga mientras hay uno activo. Al volver se mantienen bajas, botín y HP, sin duplicar recompensas. Los ataques de jefes dentro del dominio son genéricos en este prototipo; el daño se ajustará después de probarlo.
 
@@ -499,6 +502,8 @@ Práctica de Fujimori: incluye ElZeein de entrenamiento, inmóvil y sin ataques,
 # Laboratorio de combate
 En Ajustes, un único laboratorio permite elegir cualquiera de los 18 causas y probar ataques contra objetivos invencibles o contra un jefe/minijefe. La barra permanece en la arena: cambiar un selector reinicia directamente la prueba, sin regresar al vestíbulo. Ofrece repetir, lanzar las ultis disponibles (Kingteka, Fujimori, Cuy Supremo y Paloma del Centro), recarga automática al terminar la animación, reponer objetivos, curar y activar la ulti del Gallinazo. Se puede minimizar y volver a Ajustes. Las pruebas no gastan mochila ni monedas, no requieren desbloquear el personaje y no guardan récords. La invencibilidad es fija con objetivos y opcional con jefes; el rendimiento conserva su sección independiente.
 
+El selector «Minions al morir» ofrece tres reglas exclusivas del laboratorio: normal, reaparecer e inmortales. En reaparecer, cada minion común derrotado vuelve con toda su vida cerca del jugador después de 0,8 s. En inmortales, recibe daño y efectos normalmente, pero conserva al menos 1 PV. Los jefes, minijefes, imitadores y objetivos especiales quedan fuera de ambas reglas para conservar sus fases y resultados.
+
 
 ## Filtros y presentación de rareza
 C/R/SR/SSR son etiquetas visuales para common/rare/epic/legendary existentes (60/27/10/3%). La colección combina rareza, estrellas exactas y disponibilidad de ascenso; este último exige propiedad, rango menor de cinco y copias suficientes para el siguiente coste. Un borde e indicador verde identifica los listos. Las tarjetas bloqueadas solo aparecen con Todas las estrellas y sin Solo listos. Se conserva la selección aunque los filtros la oculten, con aviso explícito. Sin coincidencias muestra mensaje y botón para limpiar. No se gasta ni asciende por filtrar.
@@ -568,11 +573,19 @@ Selector persistente en cabecera: original, Tema 1, Tema 2, Alternar ambas y sin
 La tarjeta organiza identidad arriba, retrato central y nombre del ataque abajo dentro de la cuña. El retrato conserva la forma base y su animación articulada. Luz radial, rayos de composición y trama convergen detrás del pecho; sombra proyectada y plano bajo las garras separan al personaje del fondo. Durante el grito se expanden tres arcos desde el pico; cuatro plumas pasan por delante y un brillo recorre el marco. «¡BAJO MIS» y «ALAS!» entran con retrasos distintos y golpean junto al aletazo. Efectos acotados al panel, sin flashes de pantalla.
 En móvil aumenta el ancho útil y limita altura a 1,55 veces el ancho, para que el personaje y el título no queden diminutos en una franja alta. El laboratorio se oculta solo durante la tarjeta para no tapar su pie; el combate sigue activo. Movimiento reducido elimina golpe tipográfico, brillo y plumas móviles y conserva la composición estática.
 
+
 La segunda fase del Gallinazo mantiene movimiento articulado de alas, cabeza, corona y collar durante el combate. Las patas y el torso permanecen anclados; el aura y los rayos rodean el plumaje sin tapar su textura.
 La transformación también cambia gradualmente el plumaje a morado oscuro. Conserva pico, patas, luces y transparencias; la tarjeta sigue mostrando la forma base.
 Alternar ambas mantiene el orden Tema 1 → Tema 2 → Tema 1 con transición suave de tres segundos, sin solapar música sintetizada. Volumen, silencio y pausa afectan a las dos pistas; la transición continúa desde su punto al reanudar. Se prepara la próxima pista solo cerca del final y se mantiene la actual si no está disponible.
 
 La música predeterminada para navegadores sin preferencia guardada es Alternar ambas. Las preferencias existentes y el silencio general se respetan; cargar el juego no reproduce ni descarga música automáticamente.
+
+
+Cofres (loot-opening/item) y mejoras (upgrade) conservan la música y su fundido; no cuentan como pausa musical. Pausa explícita, menú, portal, fin de partida, silencio y pérdida de visibilidad/foco detienen la música. Ambiente y voces de combate siguen ligados exclusivamente a play.
+
+Gallinazo fase dos: al desplazarse despega suavemente, recoge las patas y bate las alas con un ciclo completo. La sombra permanece en el piso y el aura acompaña el cuerpo elevado; al detenerse baja progresivamente. No cambia la colisión ni el daño. Movimiento reducido mantiene altura estable sin oscilación.
+
+Fase dos: cada ráfaga de plumas tiene su propio aletazo, sincronizado a 1,10 y 1,52 segundos. Abre y carga las alas, descarga con cuello/pico y arcos de aire y recupera entre ráfagas. Antes de la picada eleva el cuerpo, abre las alas y las recoge; después adopta una silueta de vuelo inclinado. La carga conserva su posición física.
 
 ## Atributos físicos y especiales
 
