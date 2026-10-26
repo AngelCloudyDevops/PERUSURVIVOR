@@ -1,0 +1,185 @@
+{
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "id": "cristorata",
+      "atlas": "base",
+      "row": 1,
+      "action": "Extend the microphone hand forward to launch a returning microphone; free arm counterbalances, focused face. Keep both hands present.",
+      "walk": "public/assets/walks/cristorata-walk-v1.png",
+      "reference": "public/assets/characters/causas-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 2 for character/prop identity. Action: Extend the microphone hand forward to launch a returning microphone; free arm counterbalances, focused face. Keep both hands present. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/cristorata-attack-v1.png"
+    },
+    {
+      "id": "cuy",
+      "atlas": "base",
+      "row": 2,
+      "action": "The guinea pig opens its mouth and puffs its chest for a radial shout, scarf flares slightly; keep all four walking paws and cute identity.",
+      "walk": "public/assets/walks/cuy-walk-v1.png",
+      "reference": "public/assets/characters/causas-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 3 for character/prop identity. Action: The guinea pig opens its mouth and puffs its chest for a radial shout, scarf flares slightly; keep all four walking paws and cute identity. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/cuy-attack-v1.png"
+    },
+    {
+      "id": "paloma",
+      "atlas": "base",
+      "row": 3,
+      "action": "The pigeon thrusts and flaps its wings forward to cast feathers, feet keep their walking contacts; no detached feathers, the game draws projectiles.",
+      "walk": "public/assets/walks/paloma-walk-v1.png",
+      "reference": "public/assets/characters/causas-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 4 for character/prop identity. Action: The pigeon thrusts and flaps its wings forward to cast feathers, feet keep their walking contacts; no detached feathers, the game draws projectiles. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/paloma-attack-v1.png"
+    },
+    {
+      "id": "alan",
+      "atlas": "base",
+      "row": 4,
+      "action": "The suited man raises and thrusts a pointing hand as he delivers a forceful speech, determined face, other arm balances; retain presidential sash.",
+      "walk": "public/assets/walks/alan-walk-v1.png",
+      "reference": "public/assets/characters/causas-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 5 for character/prop identity. Action: The suited man raises and thrusts a pointing hand as he delivers a forceful speech, determined face, other arm balances; retain presidential sash. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/alan-attack-v1.png"
+    },
+    {
+      "id": "alberto",
+      "atlas": "base",
+      "row": 5,
+      "action": "The suited man with glasses sweeps the red-white ribbon forward to energize orbiting bands; keep ribbon gripped, glasses, sash and both hands.",
+      "walk": "public/assets/walks/alberto-walk-v1.png",
+      "reference": "public/assets/characters/causas-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 6 for character/prop identity. Action: The suited man with glasses sweeps the red-white ribbon forward to energize orbiting bands; keep ribbon gripped, glasses, sash and both hands. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/alberto-attack-v1.png"
+    },
+    {
+      "id": "keiko",
+      "atlas": "base",
+      "row": 6,
+      "action": "The woman opens and thrusts the orange fan forward with her arm, confident face; keep orange jacket, both hands, head and walking legs.",
+      "walk": "public/assets/walks/keiko-walk-v1.png",
+      "reference": "public/assets/characters/causas-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 7 for character/prop identity. Action: The woman opens and thrusts the orange fan forward with her arm, confident face; keep orange jacket, both hands, head and walking legs. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/keiko-attack-v1.png"
+    },
+    {
+      "id": "ollanta",
+      "atlas": "base",
+      "row": 7,
+      "action": "The olive-jacket man holds the white/red megaphone firmly at his mouth and calls forward; keep both arms connected and legs walking.",
+      "walk": "public/assets/walks/ollanta-walk-v1.png",
+      "reference": "public/assets/characters/causas-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 8 for character/prop identity. Action: The olive-jacket man holds the white/red megaphone firmly at his mouth and calls forward; keep both arms connected and legs walking. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/ollanta-attack-v1.png"
+    },
+    {
+      "id": "kingteka",
+      "atlas": "powers",
+      "row": 0,
+      "action": "Raise the toy shotgun into an aimed firing stance, both hands firmly gripping it, visible elbow bend and small recoil across the six walking contacts; no projectiles or muzzle flash.",
+      "walk": "public/assets/walks/kingteka-walk-v1.png",
+      "reference": "public/assets/characters/powers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 1 for character/prop identity. Action: Raise the toy shotgun into an aimed firing stance, both hands firmly gripping it, visible elbow bend and small recoil across the six walking contacts; no projectiles or muzzle flash. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/kingteka-attack-v1.png"
+    },
+    {
+      "id": "shaka",
+      "atlas": "powers",
+      "row": 5,
+      "action": "The gorilla swings his banana-bearing arm forward to throw a returning banana, other hand balances. Keep banana in hand in all frames, show follow-through, keep tracksuit and cap.",
+      "walk": "public/assets/walks/shaka-walk-v1.png",
+      "reference": "public/assets/characters/powers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 6 for character/prop identity. Action: The gorilla swings his banana-bearing arm forward to throw a returning banana, other hand balances. Keep banana in hand in all frames, show follow-through, keep tracksuit and cap. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/shaka-attack-v1.png"
+    },
+    {
+      "id": "najasor",
+      "atlas": "powers",
+      "row": 2,
+      "action": "Aim the fish-shaped toy shotgun forward with both hands, animated bent elbows and firing posture, cheerful green face; keep fish shape, no projectiles or muzzle flash.",
+      "walk": "public/assets/walks/najasor-walk-v1.png",
+      "reference": "public/assets/characters/powers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 3 for character/prop identity. Action: Aim the fish-shaped toy shotgun forward with both hands, animated bent elbows and firing posture, cheerful green face; keep fish shape, no projectiles or muzzle flash. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/najasor-attack-v1.png"
+    },
+    {
+      "id": "cirilo",
+      "atlas": "streamers",
+      "row": 3,
+      "action": "The stocky sunglass-wearing man thrusts the microphone forward to launch it, free arm balances, retain black cap and teal shirt.",
+      "walk": "public/assets/walks/cirilo-walk-v1.png",
+      "reference": "public/assets/characters/streamers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 4 for character/prop identity. Action: The stocky sunglass-wearing man thrusts the microphone forward to launch it, free arm balances, retain black cap and teal shirt. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/cirilo-attack-v1.png"
+    },
+    {
+      "id": "fuzo",
+      "atlas": "powers",
+      "row": 6,
+      "action": "The dolphin-costume man makes a forceful forward card-flick with the blue card in hand, free arm counterbalances, keep full dolphin head and walking legs.",
+      "walk": "public/assets/walks/fuzo-walk-v1.png",
+      "reference": "public/assets/characters/powers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 7 for character/prop identity. Action: The dolphin-costume man makes a forceful forward card-flick with the blue card in hand, free arm counterbalances, keep full dolphin head and walking legs. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/fuzo-attack-v1.png"
+    },
+    {
+      "id": "charles",
+      "atlas": "powers",
+      "row": 4,
+      "action": "The bearded blue-cap man extends the toy baby forward with BOTH supporting arms, then slightly recoils; keep toy baby safely held, smiling, retain blue clothing.",
+      "walk": "public/assets/walks/charles-walk-v1.png",
+      "reference": "public/assets/characters/powers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 5 for character/prop identity. Action: The bearded blue-cap man extends the toy baby forward with BOTH supporting arms, then slightly recoils; keep toy baby safely held, smiling, retain blue clothing. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/charles-attack-v1.png"
+    },
+    {
+      "id": "axelbenba",
+      "atlas": "streamers",
+      "row": 6,
+      "action": "The young red-shirt man thrusts his microphone forward to launch a clip attack, focused face, headset stays fixed, free hand counterbalances.",
+      "walk": "public/assets/walks/axelbenba-walk-v1.png",
+      "reference": "public/assets/characters/streamers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 7 for character/prop identity. Action: The young red-shirt man thrusts his microphone forward to launch a clip attack, focused face, headset stays fixed, free hand counterbalances. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/axelbenba-attack-v1.png"
+    },
+    {
+      "id": "cerdito",
+      "atlas": "powers",
+      "row": 1,
+      "action": "The pig-headed tattooed person aims the toy shotgun with both hands, bent elbows and small firing recoil; preserve pig ears, head, outfit and walking legs; no projectiles or muzzle flash.",
+      "walk": "public/assets/walks/cerdito-walk-v1.png",
+      "reference": "public/assets/characters/powers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 2 for character/prop identity. Action: The pig-headed tattooed person aims the toy shotgun with both hands, bent elbows and small firing recoil; preserve pig ears, head, outfit and walking legs; no projectiles or muzzle flash. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/cerdito-attack-v1.png"
+    },
+    {
+      "id": "sustento",
+      "atlas": "powers",
+      "row": 3,
+      "action": "The blue-hoodie headset man aims the toy cockroach rifle forward, both hands gripping firmly, slight firing recoil; retain weapon design, no projectiles or muzzle flash.",
+      "walk": "public/assets/walks/sustento-walk-v1.png",
+      "reference": "public/assets/characters/powers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 4 for character/prop identity. Action: The blue-hoodie headset man aims the toy cockroach rifle forward, both hands gripping firmly, slight firing recoil; retain weapon design, no projectiles or muzzle flash. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/sustento-attack-v1.png"
+    },
+    {
+      "id": "cevichero",
+      "atlas": "powers",
+      "row": 7,
+      "action": "The blue insect-costume man thrusts his hand with the brown cockroach toy forward to cast it, other arm balances; keep all antennae, connected limbs and white shoes.",
+      "walk": "public/assets/walks/cevichero-walk-v1.png",
+      "reference": "public/assets/characters/powers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 8 for character/prop identity. Action: The blue insect-costume man thrusts his hand with the brown cockroach toy forward to cast it, other arm balances; keep all antennae, connected limbs and white shoes. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/cevichero-attack-v1.png"
+    },
+    {
+      "id": "g5",
+      "atlas": "powers",
+      "row": 8,
+      "action": "SPECIAL MELEE EXCEPTION: create a full six-phase high-kick action, not a walking loop: 1 fighting guard and weight shift, 2 front knee chambered high, 3 leg extending forward, 4 fully extended high kick, 5 leg retracts bent, 6 foot plants and guard recovers. Keep whole connected body, head, boots, skirt, gloves and identity; balance arms, do not add extra legs.",
+      "walk": "public/assets/walks/g5-walk-v1.png",
+      "reference": "public/assets/characters/powers-atlas-v1.webp",
+      "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 9 for character/prop identity. Action: SPECIAL MELEE EXCEPTION: create a full six-phase high-kick action, not a walking loop: 1 fighting guard and weight shift, 2 front knee chambered high, 3 leg extending forward, 4 fully extended high kick, 5 leg retracts bent, 6 foot plants and guard recovers. Keep whole connected body, head, boots, skirt, gloves and identity; balance arms, do not add extra legs. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
+      "source": "public/assets/attacks/g5-attack-v1.png"
+    }
+  ]
+}
