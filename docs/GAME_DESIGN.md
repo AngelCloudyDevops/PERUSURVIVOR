@@ -131,6 +131,8 @@ Los objetos aparecen como opciones entre las tres cartas reveladas al subir de n
 
 Familias iniciales: Boots of Speed → Phase Boots, Power Treads, Tranquil Boots, Arcane Boots o Boots of Travel; Magic Stick → Magic Wand; Blink Dagger → Swift Blink, Arcane Blink u Overwhelming Blink. Las ramas son excluyentes dentro de cada familia. Efectos adaptados: botas mejoran velocidad, cadencia, curación fuera de combate o alcance de recogida; Magic Stick/Wand acumula cargas al recibir daño y las convierte automáticamente en curación al bajar de vida; Blink y sus evoluciones realizan un escape automático al sufrir un golpe fuerte con poca vida, con recarga. Son adaptaciones propias, no una reproducción exacta de las estadísticas de Dota 2. El inventario individual se muestra en el HUD; el cooperativo aún no incorpora estos objetos.
 
+El catálogo se consulta desde **Habilidades → Objetos de Dota**. Muestra cada objeto base, sus ramas disponibles, efectos adaptados, rareza y nivel mínimo de aparición; no es necesario iniciar una partida para revisar las evoluciones.
+
 
 ## Poderes de personajes · primera versión
 Se añaden Cerdito VTuber, Sustento, Cevichero y La G5 (18 personajes en total), y se actualizan los poderes de Kingteka, Ñajasor, Charles, Shakadoto y Fuzo.
