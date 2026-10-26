@@ -282,3 +282,13 @@ Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Braz
 
 ### Ataques animados de minijefes
 Fiscalizador: anticipación hacia atrás, cuerpo inclinado y estela de figuras completas durante la embestida; polvo al frenar o chocar. Paloma: elevación, alas cerradas/abiertas en preparación y aleteo de ejecución, plumas sueltas y arcos de viento. Huaco: levanta el cuerpo con los puños, se comprime al golpear y produce polvo, grietas y onda decorativa. Los avisos, daño, velocidades, alcance y cadencias anteriores no cambian. Movimiento reducido omite las transformaciones y partículas.
+
+El clima episódico se extiende a Plaza de Armas (garúa y reflejos sutiles) y Machu Picchu (bancos de niebla de baja opacidad). Mantiene episodios de 25 s y pausas despejadas de 65 s, sin efectos físicos. Machu deja de dibujar su niebla permanente para evitar sumarla a la episódica.
+
+El ambulante tiene un sprite pixel art de 48×52 con dos cuadros de animación: capucha, toldo morado/dorado y carrito con mercancía. Su icono de tienda aparece en el minimapa mientras la visita esté activa, fijándose al borde si queda fuera del alcance. Encima del minimapa se muestra «TIENDA · N s», con aviso naranja durante los últimos 10 segundos. Usa el reloj del mapa y el estado compartido del servidor: respeta la pausa individual, las arenas y la expiración cooperativa. Los cuadros se dibujan en una caché de canvas sin suavizado.
+
+## Dificultad por etapas y poses de ataque
+El reloj de mapa controla ocho etapas; pausa, mejoras y arenas de jefes no adelantan la progresión. A 0:00 aparece Pablo con contacto; a 0:20 lanza un cristal; a 0:45 entra Tyrone y sus embestidas; a 1:25 Uniqua y abanicos de tres cristales; a 2:05 Tasha y sus pisotones; a 2:50 Austin y el zigzag; a 3:35 la PNP con dos disparos; a 4:15 llegan ráfagas de tres. El jefe obligatorio sigue en 5:00 y los portadores de llaves conservan sus horarios. Las criaturas anteriores conservan el patrón de su etapa de nacimiento.
+Los límites de población suben de 16 a 80, los proyectiles de 0 a 40 y los ataques simultáneos de 0 a 8. Los pesados aparecen gradualmente (0–25 %) y conservan su resistencia parcial al cargar. El laboratorio y la prueba de rendimiento muestran el repertorio completo.
+Los 18 jugables disponen de seis cuerpos completos de ataque: armas apuntadas, lanzamientos, abanico, megáfono, alas, grito y patada. Los ataques en marcha siguen la fase de los pies; en reposo muestran preparación, ejecución y recuperación. La G5 ejecuta seis fases de patada. La dirección de la pose sigue la puntería. No cambian daño, alcance ni proyectiles jugables.
+

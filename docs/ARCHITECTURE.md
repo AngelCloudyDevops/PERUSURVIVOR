@@ -198,3 +198,13 @@ Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Braz
 
 ### Poses y efectos de ataque de minijefes
 Minibosses.frame/pose derivan el dibujo de warning, charge y recovery. attackPulse y miniFx avanzan solo desde move con dt; miniFx tiene máximo 32 elementos por jefe y contiene datos serializables para cooperativo. Las estelas dibujan el sprite completo; la animación nunca modifica colisiones. Movimiento reducido elimina partículas y usa transformaciones neutras. Se reutilizan los cuatro cuadros del atlas sin imágenes adicionales.
+
+Weather despacha draw por mapa: gotas compartidas, reflections con hasta 36 marcas en Plaza y fog con cuatro bancos rasterizados en Machu. DayNight consulta Weather.label. Ambient deja de invocar la niebla fija de Machu.
+
+El ambulante tiene un sprite pixel art de 48×52 con dos cuadros de animación: capucha, toldo morado/dorado y carrito con mercancía. Su icono de tienda aparece en el minimapa mientras la visita esté activa, fijándose al borde si queda fuera del alcance. Encima del minimapa se muestra «TIENDA · N s», con aviso naranja durante los últimos 10 segundos. Usa el reloj del mapa y el estado compartido del servidor: respeta la pausa individual, las arenas y la expiración cooperativa. Los cuadros se dibujan en una caché de canvas sin suavizado.
+
+## Etapas de dificultad y ataques dibujados
+`data/difficulty.js` declara ocho perfiles por `mapTime`; Entities guarda `progressive` y `threatStage` al nacer. Systems conserva `attackProfile` al comenzar la carga y EnemyArt reutiliza ese mismo tiempo de preparación. Las cuotas de población, amenazas y cargas se aplican al mapa; el mismo motor las ejecuta en cooperativo.
+`rendering/player-attack-art.js` se carga después de WalkArt. Combat registra `castStarted` y `castPoseDuration` tras validar el objetivo; el render selecciona la fase de caminar para ataques en movimiento o seis fases temporales para reposo y patada. Son campos serializables de jugador. WalkArt carga y empaqueta las 18 láminas adicionales bajo IDs `attack-<personaje>` con anclajes de cabeza y suelo, normaliza escala por resolución de origen y conserva en caché el par caminar/atacar del jugador y aliados. El inicio sigue siendo síncrono y la interfaz espera los recursos elegidos.
+Los originales PNG de image_gen se conservan en `public/assets/attacks/`; el juego usa WebP sin pérdida a 288 px, reducido mecánicamente con vecino más cercano. Prompts y hashes: `docs/attack-art-prompts.json` y `docs/attack-art-audit.json`. El build omite PNG duplicados. No se distribuyen vistas ni utilidades locales de QA.
+
