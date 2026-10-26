@@ -31,3 +31,10 @@ test('Sideral: el dominio entra directamente y cada pulso nace desde el personaj
  assert.equal(P.SideralDomain.pose(P.SideralDomain.entry*.7).hop,0);assert(P.SideralDomain.pose(P.SideralDomain.entry*.88).hop>0);assert(P.SideralDomain.pose(P.SideralDomain.entry*.98).laugh>0);
  p.x=333;p.y=222;P.SideralDomain.burst();assert.equal(d.waveX,333);assert.equal(d.waveY,222);
 });
+
+test('Sideral: la cinemática compone una sola figura sobre una sola habitación',()=>{
+ const {P}=setup(),D=P.SideralDomain,calls=[];D.room=()=>calls.push('room');D.lizardSeal=()=>calls.push('seal');D.manifest=()=>calls.push('manifest');D.figure=()=>calls.push('figure');D.companion=()=>calls.push('companion');
+ const c={save(){},restore(){},fillRect(){},strokeRect(){},strokeText(){},fillText(){},beginPath(){},ellipse(){},stroke(){},translate(){},rotate(){},lineTo(){},moveTo(){},closePath(){}};
+ D.introClean(c,1280,720,{age:D.entry*.72});
+ assert.equal(calls.filter(x=>x==='room').length,1);assert.equal(calls.filter(x=>x==='figure').length,1);assert(calls.indexOf('manifest')<calls.indexOf('figure'));assert(calls.indexOf('figure')<calls.indexOf('companion'));
+});
