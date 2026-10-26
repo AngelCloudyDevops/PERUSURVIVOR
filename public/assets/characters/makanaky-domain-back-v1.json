@@ -1,0 +1,57 @@
+{
+  "image": "makanaky-domain-back-v1.webp",
+  "width": 1536,
+  "height": 1024,
+  "frames": [
+    {
+      "sx": 94,
+      "sy": 37,
+      "w": 326,
+      "h": 437,
+      "anchorX": 162.0
+    },
+    {
+      "sx": 589,
+      "sy": 41,
+      "w": 377,
+      "h": 435,
+      "anchorX": 179.0
+    },
+    {
+      "sx": 1088,
+      "sy": 38,
+      "w": 388,
+      "h": 435,
+      "anchorX": 192.0
+    },
+    {
+      "sx": 95,
+      "sy": 534,
+      "w": 415,
+      "h": 441,
+      "anchorX": 161.0
+    },
+    {
+      "sx": 634,
+      "sy": 531,
+      "w": 345,
+      "h": 443,
+      "anchorX": 134.0
+    },
+    {
+      "sx": 1114,
+      "sy": 538,
+      "w": 320,
+      "h": 437,
+      "anchorX": 166.0
+    }
+  ],
+  "heightMax": 443,
+  "widthMax": 415,
+  "sha256": "c5eeca47a05d952c4e1220c7ba37c3eab6436c9c559ce3983978a9719491e0e4",
+  "tool": "image_gen built-in",
+  "reference": "makanaky-motion-v2.png",
+  "style": "Cartoon pixel art, dark outlines, clustered colors, organic anatomy",
+  "prompt": "Six full-body rear-view boxing poses, guard, left jab, right jab, cross, uppercut, recover; preserve Makanaky identity and outfit; transparent 3x2 atlas.",
+  "runtimeEncoding": "WebP quality 95; full-resolution PNG master retained"
+}
