@@ -243,7 +243,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
 - fuzo: **Banca infinita** — Cinco tarjetas rápidas atraviesan ocho rivales y enlazan al grupo más cercano.
 - charles: **Lluvia de pañales** — Tres pañales dejan nubes y una nube adicional aparece junto al objetivo.
-- axelbenba: **Clip relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
+- axelbenba: **Tormenta relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
 - cerdito: **Fiesta del cerdito** — Doce balas salen en círculo; una onda corta despeja el puesto.
 - sustento: **Infestación veloz** — Tres cucarachas perforantes avanzan en zigzag; una zona de enjambre queda junto al objetivo.
 - cevichero: **Marea del enjambre** — Seis cucarachas salen en círculo y regresan como bumeranes.
@@ -269,3 +269,8 @@ El build excluye los JSON de prompts de generación de arte (sin referencias des
 ## Láminas de puntería y copias de caminata
 WalkArt carga las láminas `public/assets/aim/*-aim-v1.webp` bajo sus IDs existentes `attack-<personaje>`. Cada lámina contiene 30 figuras conectadas: cinco direcciones por seis pasos. El empaquetador generaliza las filas y columnas y mantiene el recorte por figura entera, una escala común basada en la fila horizontal y el anclaje al suelo. Keiko usa tres columnas y diez filas para disponer de más espacio entre abanicos; las demás usan seis columnas y cinco filas. No se cortan extremidades. PlayerAttackArt calcula el octante desde `attackAim`, refleja cuando corresponde y selecciona el mismo paso de distancia; reutiliza la precarga, límite de descargas, reintento y caché de WalkArt.
 Los originales de image_gen se conservan como PNG, con prompts y auditoría en `docs/directional-aim-prompts.json` y `docs/directional-aim-audit.json`. Las copias de runtime se reducen mecánicamente con vecino más cercano y se codifican WebP sin pérdida. Para conservar margen de despliegue, los 18 jugables usan copias `walk-v2.webp` de 900 px de ancho, sin cambiar los seis cuadros originales; los originales v1 permanecen en el repositorio y el build omite solo esas copias antiguas cuando existe v2. Minions y aleteos conservan sus archivos. `docs/walk-runtime-audit.json` registra archivos, resoluciones, hashes y ahorro. El cooperativo comparte la misma dirección serializada y no necesita imágenes en el servidor.
+
+## Inicio y demostraciones de ataques
+El inicio se organiza como un lobby: causa destacado, botón Jugar ahora y accesos a mapas, personajes, habilidades y cooperativo. Conserva el estilo peruano y todos los controles existentes; no añade funciones de cuenta ni tiendas inexistentes.
+
+El menú de habilidades compara ataque básico y evolución en dos canvas animados con los perfiles, glifos, poses y efectos del juego. Incluye pausa/reproducción y descripción de requisitos. Son demostraciones cosméticas sobre muñecos: no ejecutan combate, no alteran XP, monedas, salud, equipo ni estado de sala y no desbloquean poderes. La animación comparte el bucle de dibujo a un máximo de 30 Hz, usa dos superficies, se detiene al cerrar o esconder la pestaña y arranca estática con movimiento reducido. Los recursos faltantes usan el retrato existente y se reutiliza la carga de sprites.
