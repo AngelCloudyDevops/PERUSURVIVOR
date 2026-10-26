@@ -22,3 +22,7 @@ test('Plumas continuas: cuello y pies fijos, revelado gradual y movimiento reduc
  for(let t=0;t<4;t+=.003){const m=F.transformation(t);assert(m.reveal>=last);assert(m.reveal-last<.006);last=m.reveal;const motion=F.featherMotion(t),next=F.featherMotion(t+.001);for(const [x,y] of [[.85,.4],[.4,1]]){const q=F.warp(x,y,motion);assert.equal(q.x,x);assert.equal(q.y,y)}const p=F.warp(.2,.3,motion),q=F.warp(.2,.3,next);assert(Math.hypot(p.x-q.x,p.y-q.y)<.002)}
  assert.equal(F.transformation(1.8).reveal,0);assert.equal(F.transformation(3).reveal,1);assert.equal(JSON.stringify(F.featherMotion(0,true)),JSON.stringify(F.featherMotion(1,true)));
 });
+
+test('Electricidad: trazos pequeños y finos, sin siete columnas gruesas delante del jefe',()=>{
+ const {F}=engine(),widths=[],points=[];let width=0;const c=new Proxy({globalAlpha:1,stroke(){widths.push(width)},lineTo(x,y){points.push([x,y])}},{get:(o,k)=>o[k]||(()=>{}),set(o,k,v){if(k==='lineWidth')width=v;o[k]=v;return true}});F.electricity(c,0,0,90,.4,.55,false);assert(widths.length>0&&widths.length<=8);assert(Math.max(...widths)<=3);assert(points.every(([x,y])=>Math.abs(x)<150&&Math.abs(y)<90));
+});

@@ -482,6 +482,8 @@ Una compra de diez requiere 600 monedas de saldo inicial. Cada tirada actualiza 
 ### Consulta de personajes
 Las fichas de Causas muestran valores base de rango 1 sin mochila ni mejoras permanentes, rol descriptivo y evolución. El daño por impacto incluye powerScale; no se presenta como DPS. La rareza no cambia estas fichas base: aumenta las ganancias posteriores de estrellas y mejoras. Véase CHARACTER_PROFILES.md.
 
+La ficha de Mejoras muestra el estado permanente efectivo y una comparación actual → siguiente rango antes de confirmar la compra. Su índice de poder pondera vida 30%, daño 35%, frecuencia 20%, velocidad 10% e imán 5%, siempre relativo a la base del mismo personaje (=100); no compara directamente geometrías de ataque distintas. Incluye proyecciones a 1★, 3★ y 5★ con los rangos actuales. Reiniciar devuelve `floor(invertido × 70 / 100)` y borra solo los rangos permanentes del personaje; conserva estrellas, desbloqueo, copias, récords y estadísticas históricas.
+
 
 ## Historial y ascensos por copias
 Desde el perfil v4 se conservan las últimas 200 tiradas. Cada recibo nuevo registra fecha/hora del dispositivo, nuevo/repetido y copias concedidas. Historial en orden inverso, filtros de rareza y resultado, 20 filas por página. Los recibos anteriores no reciben fechas inventadas.
@@ -526,6 +528,8 @@ El selector «Arma principal» permite probar base (rango 1), rangos 2–5 y la 
 La colección se ordena por rareza (SSR→SR→R→C), estrellas o copias disponibles en sentido descendente, siempre agrupando primero a quienes pueden ascender. Dentro de cada grupo se aplica el criterio elegido y se desempata por posición original en el catálogo. Bloqueados cuentan como cero estrellas/copias. El orden predeterminado es rareza y permanece en la sesión al limpiar filtros. Se recalcula después de ascensos y cambios de progreso; no selecciona ni consume nada automáticamente.
 Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Paloma en Plaza de Armas (uno activo). Abanico de tres ondas bloqueables y pulso cercano de 110 unidades, ambos avisados; al 50 % encadena dos abanicos. Conserva navegación, agotamiento, bonus, resumen, cobertura y derrota sin daño. Cofre: Silbato del caos o 50 monedas. Disponible directamente en Probar jefes. Arte nuevo de cuatro poses, sin sustituir personajes existentes.
 
+
+Contacto de ultis animales: los cuyes rebotan ligeramente al golpear y dejan polvo breve; las palomas inclinan el cuerpo, despliegan alas y sueltan pocas plumas al recuperar altura. Los rivales normales reaccionan según el lado del grupo atacante. Pisadas por grupo, sin sonidos superpuestos en cada criatura. Daño, empuje real, alcance y duración sin cambios.
 
 Trayectorias de ultis: cuyes en cuatro grupos de tres, con entradas por lados diferentes y cruce hacia enemigos cercanos. Las palomas planean, pican hacia objetivos del alcance y recuperan altura; sin objetivos solo planean. Se conserva el daño por pulsos, radio, duración y protección. No reaparecen círculos de alcance.
 
@@ -629,3 +633,8 @@ Picada lunar: apunta a la posición del jugador al comenzar el descenso y conser
 
 Continuidad nocturna del Gallinazo: panorama extendido de Lima cubre el encuadre completo al subir/abrir el plano. La arena conserva su geometría y textura, con iluminación azul violeta que progresa durante tarjeta/despegue y permanece durante cielo, caída y segunda fase. El horizonte cálido se desvanece en el nuevo cielo; no reaparece de día al impactar.
 Fujimori jefe tiene atlas propio de 16 poses: reposo y pasos, preparación/lanzamiento de expedientes, preparación/golpe de sello y cuatro etapas de derrota. La derrota dura 2,8 s, despeja los ataques y congela el combate antes de entregar una sola recompensa. Pausa detiene la secuencia; movimiento reducido mantiene la pose final y un fundido. Los avisos, daño y ventanas de contraataque no cambian.
+
+Pulido de fase dos: alas abiertas en reposo y vuelo, aleteo más lento con menor oscilación vertical, recuperación de ráfagas hacia la misma postura y orientación según desplazamiento real. Una sola aura acompaña al rig; descargas violetas cortas e intermitentes sustituyen los rayos gruesos que tapaban el cuerpo. Los menús automáticos de mejora se aplazan hasta terminar la llegada y recuperación de la ulti, sin gastar ni perder XP; pausa manual permanece disponible.
+Sello de Fujimori: conserva 1,1 s de aviso y la posición fijada al iniciarlo. En los últimos 0,42 s cae desde el cielo sobre una sombra creciente. El contacto visual con el suelo coincide con la creación del único golpe de área; el sello queda 0,6 s antes de desaparecer, con polvo, papeles y una sacudida de 0,18 s. Pausa congela todo; movimiento reducido muestra una anticipación estática y elimina sacudida y partículas. Daño, radio y ventana de contraataque se conservan.
+
+Mezcla clara: las pistas grabadas se calibran a 0,18 del volumen elegido para equilibrarlas con efectos Web Audio; la música sintetizada usa 0,85. Golpes y avisos reducen temporalmente la música al 25–45 % durante 0,14–0,35 s, con recuperación de 0,4 s. Los minions ganan presencia ×1,6 conservando distancia, prioridad, cupos y su volumen independiente. Silencio de efectos no activa reducción de música; las preferencias guardadas no cambian.

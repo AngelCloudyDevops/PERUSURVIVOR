@@ -23,7 +23,7 @@ play(player){
  const denied=()=>{player.musicPending=false;if(generation!==this.generation||player!==this.player&&player!==this.nextPlayer)return;if(player===this.nextPlayer){this.nextBlocked=true;this.cancelNext();this.applyVolumes()}else this.blocked=true;this.status('Pulsa la pantalla para permitir la música.')};
  try{Promise.resolve(player.play()).then(()=>{player.musicPending=false;if(!this.wanted||player!==this.player&&(!this.fading||player!==this.nextPlayer))player.pause()}).catch(denied)}catch{denied()}
 },
-applyVolumes(){let progress=0;if(this.fading&&this.nextPlayer)progress=Math.max(0,Math.min(1,this.nextPlayer.currentTime/this.fadeSeconds));const from=this.volume*(this.fading?Math.cos(progress*Math.PI/2):1),to=this.volume*Math.sin(progress*Math.PI/2);if(this.player&&this.player.volume!==from)this.player.volume=from;if(this.nextPlayer&&this.nextPlayer.volume!==to)this.nextPlayer.volume=to},
+applyVolumes(){let progress=0;if(this.fading&&this.nextPlayer)progress=Math.max(0,Math.min(1,this.nextPlayer.currentTime/this.fadeSeconds));const mix=P.Audio.musicMix?.(true)??1,from=this.volume*mix*(this.fading?Math.cos(progress*Math.PI/2):1),to=this.volume*mix*Math.sin(progress*Math.PI/2);if(this.player&&this.player.volume!==from)this.player.volume=from;if(this.nextPlayer&&this.nextPlayer.volume!==to)this.nextPlayer.volume=to},
 alternate(){
  const player=this.player;if(!Number.isFinite(player.duration)||player.duration<=0||this.nextBlocked)return;
  const remaining=player.duration-player.currentTime;
