@@ -8,6 +8,10 @@ module.exports = [
     "output": "js/powers.js"
   },
   {
+    "source": "src/data/muzzle-anchors.js",
+    "output": "js/muzzle-anchors.js"
+  },
+  {
     "source": "src/data/difficulty.js",
     "output": "js/difficulty.js"
   },
@@ -30,6 +34,10 @@ module.exports = [
   {
     "source": "src/rendering/player-attack-art.js",
     "output": "js/player-attack-art.js"
+  },
+  {
+    "source": "src/systems/muzzle.js",
+    "output": "js/muzzle.js"
   },
   {
     "source": "src/rendering/player-feedback.js",
@@ -119,6 +127,9 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
+    "source": "src/rendering/street-art.js", "output": "js/street-art.js"
+  },
+  {
     "source": "src/rendering/plaza-art.js", "output": "js/plaza-art.js"
   },
   {
@@ -150,6 +161,10 @@ module.exports = [
     "output": "js/skill-preview.js"
   },
   {
+    "source": "src/ui/lobby.js",
+    "output": "js/lobby.js"
+  },
+  {
     "source": "src/ui/screens.js",
     "output": "js/ui.js"
   },
@@ -172,6 +187,10 @@ module.exports = [
   {
     "source": "src/development/performance.js",
     "output": "js/performance.js"
+  },
+  {
+    "source": "src/systems/miniboss-relics.js",
+    "output": "js/miniboss-relics.js"
   },
   {
     "source": "src/scenes/game.js",
