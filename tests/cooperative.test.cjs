@@ -60,10 +60,10 @@ test('Salas reales: código privado, máximo dos, autoridad, reconexión, limpie
  let now=0;const app=createCoopServer({autoTick:false,now:()=>now});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const port=app.server.address().port,origin='http://127.0.0.1:'+port,url='ws://127.0.0.1:'+port+'/coop',clients=[];
  async function connect(){const ws=new WebSocket(url,{origin});const receive=mailbox(ws);clients.push(ws);await once(ws,'open');return {ws,receive,send:obj=>ws.send(JSON.stringify(obj))}}
  try{
-  const a=await connect();a.send({type:'create',protocol:1,map:'plaza',character:0});const joined=await a.receive('joined');assert.match(joined.code,/^[A-F0-9]{8}$/);
-  const b=await connect();b.send({type:'join',protocol:1,code:joined.code,character:18});const bj=await b.receive('joined');assert.equal(bj.slot,1);
-  const third=await connect();third.send({type:'join',protocol:1,code:joined.code,character:1});assert.match((await third.receive('error')).message,/completa/);
-  b.send({type:'start'});assert.equal((await b.receive('error')).type,'error');a.send({type:'start'});const stateA=await a.receive('state'),stateB=await b.receive('state');assert.deepEqual(stateA.players,stateB.players);assert.equal(stateA.players[1].id,'makanaky');
+  const a=await connect();a.send({type:'create',protocol:2,map:'plaza',character:0});const joined=await a.receive('joined');assert.match(joined.code,/^[A-F0-9]{8}$/);
+  const b=await connect();b.send({type:'join',protocol:2,code:joined.code,character:18});const bj=await b.receive('joined');assert.equal(bj.slot,1);
+  const third=await connect();third.send({type:'join',protocol:2,code:joined.code,character:1});assert.match((await third.receive('error')).message,/completa/);
+  a.send({type:'ready',ready:true,revision:2});b.send({type:'ready',ready:true,revision:2});await new Promise(r=>setTimeout(r,20));b.send({type:'start'});assert.equal((await b.receive('error')).type,'error');a.send({type:'start'});const stateA=await a.receive('state'),stateB=await b.receive('state');assert.deepEqual(stateA.players,stateB.players);assert.equal(stateA.players[1].id,'makanaky');
   const sim=app.rooms.get(joined.code).sim;
   async function stateUntil(client,predicate){for(let i=0;i<40;i++){const m=await client.receive('state');if(predicate(m))return m}assert.fail('No llegó el estado de actividad esperado')}
   const chest={id:'wire:chest',x:250,y:250,progress:0,opened:false,gold:false,rarity:'common'};sim.P.Loot.chests.push(chest);sim.activities.open(chest);for(let i=0;i<18;i++)app.tick();
@@ -74,8 +74,8 @@ test('Salas reales: código privado, máximo dos, autoridad, reconexión, limpie
   a.send({type:'activity',action:'choose',id:rewardA.pending.id,choice:0});assert.equal((await a.receive('error')).type,'error');
   a.send({type:'input',x:999,y:0});assert.match((await a.receive('error')).message,/Movimiento/);const before=sim.players[0].x;a.send({type:'input',x:1,y:0,hp:9999});await new Promise(r=>setImmediate(r));app.tick();assert(sim.players[0].x<=before+9);assert.equal(sim.players[0].hp,95);
   const disconnected=once(app.rooms.get(joined.code).members[1].ws,'close');b.ws.close();await disconnected;const time=sim.P.state.elapsed;app.tick();assert.equal(sim.P.state.elapsed,time,'Pausar sala con compañero desconectado');
-  const resumed=await connect();resumed.send({type:'resume',protocol:1,code:joined.code,token:bj.token});assert.equal((await resumed.receive('joined')).slot,1);app.tick();assert(sim.P.state.elapsed>time);
-  const intruder=await connect();intruder.send({type:'resume',protocol:1,code:joined.code,token:'bad'});assert.equal((await intruder.receive('error')).type,'error');
+  const resumed=await connect();resumed.send({type:'resume',protocol:2,code:joined.code,token:bj.token});assert.equal((await resumed.receive('joined')).slot,1);app.tick();assert(sim.P.state.elapsed>time);
+  const intruder=await connect();intruder.send({type:'resume',protocol:2,code:joined.code,token:'bad'});assert.equal((await intruder.receive('error')).type,'error');
   const disconnectedAgain=once(app.rooms.get(joined.code).members[1].ws,'close');resumed.ws.close();await disconnectedAgain;now=31000;app.tick();assert.equal(app.rooms.size,0);
   const bad=new WebSocket(url,{origin:'https://untrusted.example'});bad.on('error',()=>{});await new Promise(r=>bad.once('close',r));assert.notEqual(bad.readyState,1);
  }finally{for(const ws of clients)ws.terminate();await app.close()}
