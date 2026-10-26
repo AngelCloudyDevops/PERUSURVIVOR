@@ -281,5 +281,6 @@ module.exports = [
   },
   {"source":"src/rendering/animal-entry.js","output":"js/animal-entry.js"},
   {"source":"src/rendering/animal-entry-poses.js","output":"js/animal-entry-poses.js"},
-  {"source":"src/network/account.js","output":"js/account.js"}
+  {"source":"src/network/account.js","output":"js/account.js"},
+  {"source":"src/ui/profile.js","output":"js/profile.js"}
 ];

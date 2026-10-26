@@ -455,3 +455,5 @@ VultureRig.arenaMotion conserva motion(4) durante la gracia y dirige la misma je
 
 
 La bienvenida de Lobby abre Account en login o registro sin desactivar el fondo ni habilitar el menú que permanece inert. Account distingue el origen de la entrada, vuelve al vestíbulo después de un login correcto y muestra el código antes de continuar tras registrarse. Un contador de intentos invalida respuestas tardías cuando se elige invitado; download comprueba la identidad capturada antes de aplicar la copia. El instalador administrativo queda en ops y fuera de dist; el script de backup necesario en producción se sigue distribuyendo.
+
+Perfil: `src/ui/profile.js` agrega un diálogo con colección y agregados de estadísticas existentes. Proyecta las ventajas de la cuenta admin al leer su propio namespace; invitados y jugadores conservan sus guardados separados. SQLite v2 añade `user_roles` con FK, sin alterar cuentas ni progreso. Login y sesión devuelven el rol consultado por el servidor. `ops/hostinger/set-account-role.cjs` concede/revoca solo a usuarios ya registrados, invalida sus sesiones y queda fuera de dist. No existe endpoint para cambiar roles.

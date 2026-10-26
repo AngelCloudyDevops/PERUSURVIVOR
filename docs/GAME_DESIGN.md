@@ -536,5 +536,7 @@ La sección «Poderes de apoyo» ofrece dos espacios distintos con Onda causa, T
 
 Al entrar se elige iniciar sesión, crear cuenta o jugar como invitado. Invitado conserva el progreso de este navegador y no sobrescribe el de una cuenta; no exige conexión al servicio de cuentas. Iniciar sesión lleva al vestíbulo con el progreso recuperado. Registro pide confirmar la contraseña y muestra el código privado antes de continuar. Recuperación aparece solo al elegir «Olvidé mi contraseña».
 
+Perfil de jugador: monedas, colección con bloqueos, partidas, victorias, bajas, mejor nivel, mejor tiempo y mejor racha. Invitado nuevo conserva cuatro causas iniciales (Cristorata, Cuy, Paloma y Makanaky); las ganancias anteriores no se borran. Admin es una cuenta de pruebas: todos los personajes a 5★, mejoras a rango 5, objetos disponibles y saldo mínimo de 1.000.000. No se inventan victorias ni partidas. Laboratorio y prácticas completas se ocultan a invitados/jugadores. Estas ventajas no añaden permisos para ver o modificar cuentas ajenas.
+
 ### Rareza UR de Makanaky
 Makanaky pasa a UR · Supremo, por encima de SSR, sin cambiar sus estadísticas ni su desbloqueo gratuito. La colección permite filtrar UR y la coloca primero al ordenar por rareza (después de los listos para ascender). Probabilidades base: C 60 %, R 27 %, SR 9 %, SSR 3 %, UR 1 %. UR reinicia ambas garantías; la garantía de 30 asegura SSR o superior y nunca rebaja un UR natural. Los recibos antiguos conservan su rareza histórica.

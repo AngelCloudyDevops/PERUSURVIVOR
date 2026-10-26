@@ -57,3 +57,9 @@ Restauración: detener solo `perusurvivor-coop`, conservar la BD actual y sus WA
 ## Repositorio público
 
 Solo se versionan código, esquema y documentación. `.gitignore` excluye `.env*` (salvo ejemplo), SQLite/WAL/SHM, datos, claves privadas y logs. No añadir volcados, cuentas reales, tokens, IPs de jugadores, códigos de recuperación ni credenciales a README, screenshots o pruebas. `private:true` de package.json evita publicar el paquete npm; no vuelve privado GitHub. Las claves SSH públicas y el host key público pueden aparecer en configuración; las privadas permanecen en secretos de CI. Si alguna credencial fue publicada previamente, quitarla del último commit no basta: revocarla y auditar el historial.
+
+## Perfil y rol administrador (SQLite v2)
+
+`user_roles(user_id PK/FK, role CHECK admin)` es independiente del guardado JSON. Registrar un campo `role` no concede permisos. La promoción se realiza en el VPS con `node ops/hostinger/set-account-role.cjs /ruta/accounts.sqlite USUARIO grant`; `revoke` retira el rol. Requiere cuenta existente y acceso privado al fichero. Revoca sesiones para exigir nuevo login. Nunca crear una contraseña compartida, asignar al primer registro, ni poner una lista de nombres administradores en el frontend. Hacer backup antes de promover. No exponer este script en la web.
+
+La proyección admin afecta solo a su cuenta; cerrar sesión vuelve al invitado intacto. No se reinician estadísticas ni se borran desbloqueos legítimos de invitados. Una revocación retira el rol y las herramientas, pero no elimina progreso que la cuenta ya haya guardado. Los datos individuales siguen siendo copias del cliente, sin autoridad competitiva.
