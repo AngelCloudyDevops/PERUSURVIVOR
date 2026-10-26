@@ -132,8 +132,10 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
-    "source": "src/rendering/street-art.js",
-    "output": "js/street-art.js"
+    "source": "src/rendering/garden-art.js", "output": "js/garden-art.js"
+  },
+  {
+    "source": "src/rendering/street-art.js", "output": "js/street-art.js"
   },
   {
     "source": "src/rendering/plaza-art.js",
@@ -211,8 +213,6 @@ module.exports = [
     "source": "src/rendering/ultimate-comic.js",
     "output": "js/ultimate-comic.js"
   },
-  {
-    "source": "src/systems/court-ultimate.js",
-    "output": "js/court-ultimate.js"
-  }
+  {"source":"src/systems/court-ultimate.js","output":"js/court-ultimate.js"},
+  {"source":"src/rendering/court-art.js","output":"js/court-art.js"}
 ];
