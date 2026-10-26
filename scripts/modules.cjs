@@ -100,6 +100,10 @@ module.exports = [
     "output": "js/exploration.js"
   },
   {
+    "source": "src/rendering/weather.js",
+    "output": "js/weather.js"
+  },
+  {
     "source": "src/rendering/day-night.js",
     "output": "js/day-night.js"
   },
