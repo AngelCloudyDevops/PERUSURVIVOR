@@ -278,3 +278,6 @@ Los repetidos mantienen su devolución de monedas y añaden una copia del mismo 
 ### Balance de los 18 causas
 Comparación reproducible de ataques base y evolucionados contra blancos cercanos, medios, jefe móvil, filas y enemigos alrededor. Se moderan bumeranes, ráfagas y nubes dominantes y se refuerzan Cristorata, Cuy, Alberto y Cerdito. Consulta [los valores y motivos](docs/ROSTER_BALANCE.md). La rareza de colección no multiplica estadísticas; cada rol conserva ventajas y límites. Las fichas muestran el catálogo actualizado.
 
+
+## Celebración de ascensos y colección
+Tras guardar un ascenso se abre una celebración con el retrato, la estrella recién obtenida, el rango anterior/nuevo, las copias consumidas/restantes y el cambio de bonificación. Se puede cerrar con Continuar o Escape, o saltar directamente a la colección. Movimiento reducido elimina la animación. Las tarjetas y la ficha de colección muestran estrellas y porcentajes actuales de vida/daño; la ficha añade copias y siguiente coste, indicando que se aplican solo en individual. Los atributos base de la ficha siguen identificados como base.
