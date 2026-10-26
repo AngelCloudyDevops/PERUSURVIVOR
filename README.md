@@ -356,3 +356,5 @@ Las pistas WebM/Opus se solicitan únicamente al reproducir la opción elegida: 
 **Alternar ambas:** reproduce Tema 1 → Tema 2 → Tema 1 con un fundido cruzado de tres segundos. La siguiente pista se prepara en los últimos doce segundos; ambas se pausan y reanudan juntas, conservando el avance de la transición. Si falla la siguiente pista, continúa la actual. La elección se guarda en este navegador.
 
 La música continúa durante la apertura de cofres, las recompensas y la elección de mejoras al subir de nivel. La pausa manual, el menú, el silencio general y ocultar o desenfocar la ventana sí la detienen. El selector y el volumen de enemigos permanecen anclados dentro de la pantalla durante la partida, también en móvil.
+
+En Música ♫ puedes ajustar Música y Efectos por separado. Efectos controla ataques, impactos, avisos y voces de enemigos (que conservan su ajuste adicional propio); no cambia la música. Su nivel inicial es 70 %, se guarda en este navegador y el silencio general mantiene prioridad. El panel se adapta a pantallas estrechas y permite desplazamiento vertical al usarlo en horizontal con poca altura.

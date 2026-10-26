@@ -584,3 +584,5 @@ La música predeterminada para navegadores sin preferencia guardada es Alternar 
 Cofres (loot-opening/item) y mejoras (upgrade) conservan la música y su fundido; no cuentan como pausa musical. Pausa explícita, menú, portal, fin de partida, silencio y pérdida de visibilidad/foco detienen la música. Ambiente y voces de combate siguen ligados exclusivamente a play.
 
 Gallinazo fase dos: al desplazarse despega suavemente, recoge las patas y bate las alas con un ciclo completo. La sombra permanece en el piso y el aura acompaña el cuerpo elevado; al detenerse baja progresivamente. No cambia la colisión ni el daño. Movimiento reducido mantiene altura estable sin oscilación.
+
+Volumen de efectos independiente de música, inicial 70 % y persistente. Afecta ataques, impactos, avisos y enemigos; el volumen específico de enemigos es un ajuste adicional. Silencio general sigue por encima de todos. Panel móvil con controles táctiles, ancho acotado y desplazamiento vertical cuando falta altura.
