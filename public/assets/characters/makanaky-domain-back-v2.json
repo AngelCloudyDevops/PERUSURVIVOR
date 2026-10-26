@@ -1,0 +1,21 @@
+{
+  "image": "makanaky-domain-back-v2.webp",
+  "width": 1536,
+  "height": 1024,
+  "frames": [
+    { "sx": 30, "sy": 15, "w": 425, "h": 475, "anchorX": 213 },
+    { "sx": 535, "sy": 15, "w": 465, "h": 497, "anchorX": 232 },
+    { "sx": 1040, "sy": 15, "w": 460, "h": 497, "anchorX": 230 },
+    { "sx": 0, "sy": 512, "w": 510, "h": 488, "anchorX": 255 },
+    { "sx": 530, "sy": 512, "w": 485, "h": 488, "anchorX": 242 },
+    { "sx": 1070, "sy": 512, "w": 440, "h": 488, "anchorX": 220 }
+  ],
+  "heightMax": 497,
+  "widthMax": 510,
+  "sha256": "cacf9503504ab871e8758d9211d57fd213c6c1b65ae422ce9b570a6aa5a15d87",
+  "tool": "image_gen built-in",
+  "reference": "makanaky-domain-back-v1.webp",
+  "style": "Pixel art, dark outlines, connected boxing anatomy",
+  "prompt": "Six full-body rear-view boxing poses with shoulders, elbows, forearms and fists visibly connected; arms project in front of the torso toward the rival; transparent 3x2 atlas.",
+  "runtimeEncoding": "WebP quality 88"
+}

@@ -24,6 +24,8 @@ Prompts: preservar identidad, proporciones chibi, pelo verde, gafas negras, cami
 
 MakanakyBoxing anima los dos brazos mediante hombro, codo y puño, con preparación, extensión, contacto, retroceso y guardia. El ciclo es jab izquierdo, jab derecho, cruzado izquierdo y uppercut derecho. Los tiempos son 0,34 / 0,34 / 0,46 / 0,60 s; mantener clic o Espacio encadena los cuatro. El daño se resuelve al 40 % del golpe, con una microparada de 45 ms también en los brazos.
 
+La cámara cercana usa `makanaky-domain-back-v2.webp`: seis figuras completas vistas desde atrás. Hombros, codos y puños permanecen unidos y los antebrazos se dibujan por delante de la silueta, apuntando al rival. No separar brazos del cuerpo ni ocultar su nacimiento bajo la cabeza.
+
 Los rivales mantienen una coordenada fija de ruta; profundidad = ruta − avance del jugador. Pasos, polvo y suelo siguen el mismo avance, mientras los rivales dejan de reproducir una caminata de aproximación. La cámara acompaña al jugador, con desplazamiento y zancada visibles. Los tiempos globales, posiciones de retorno y autoridad cooperativa se conservan.
 
 Asset actual: public/assets/characters/makanaky-boxing-rig-v1.png / .webp; origen y prompt en makanaky-boxing-rig-v1.json. Creado con image_gen integrado a partir del atlas de espalda. El atlas anterior de seis poses permanece en Git como referencia y no se publica.
