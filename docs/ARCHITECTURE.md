@@ -196,6 +196,8 @@ Weather.sample deriva la intensidad de mapTime, sin temporizadores ni acumulaci�
 
 Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
 
+### Poses y efectos de ataque de minijefes
+Minibosses.frame/pose derivan el dibujo de warning, charge y recovery. attackPulse y miniFx avanzan solo desde move con dt; miniFx tiene máximo 32 elementos por jefe y contiene datos serializables para cooperativo. Las estelas dibujan el sprite completo; la animación nunca modifica colisiones. Movimiento reducido elimina partículas y usa transformaciones neutras. Se reutilizan los cuatro cuadros del atlas sin imágenes adicionales.
 
 Weather despacha draw por mapa: gotas compartidas, reflections con hasta 36 marcas en Plaza y fog con cuatro bancos rasterizados en Machu. DayNight consulta Weather.label. Ambient deja de invocar la niebla fija de Machu.
 
