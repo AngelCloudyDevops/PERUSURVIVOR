@@ -638,6 +638,16 @@ Continuidad nocturna del Gallinazo: panorama extendido de Lima cubre el encuadre
 El panorama nocturno usa parallax leve respecto de la cámara, mientras la azotea permanece fija en el mundo. Durante la tarjeta, el exterior diurno desaparece antes del despegue y la zona jugable se mezcla por separado con su versión nocturna; así no se superponen dos horizontes ni se percibe la arena como un rectángulo pegado sobre Lima.
 
 La apertura de cámara comienza antes y acelera gradualmente. El panorama absorbe solo una fracción del cambio de zoom, mientras una capa atmosférica del cielo deriva con el reloj de la secuencia. La azotea conserva la escala física completa: el resultado debe leerse como una cámara elevándose sobre Lima, no como una imagen estática ampliada.
+
+La composición utiliza únicamente el cielo y la ciudad lejana del panorama nocturno. Las azoteas cercanas de la ilustración quedan recortadas porque entrarían detrás y debajo del piso jugable, creando una perspectiva imposible durante el ascenso.
+
+El panorama termina físicamente en la línea del parapeto superior. Nunca se dibujan edificios en los laterales inferiores ni debajo de la plataforma; esa zona pertenece exclusivamente a la estructura de la arena.
+
+La versión de producción utiliza una lámina nocturna completa de la misma azotea y perspectiva, no un panorama frontal superpuesto. Día y noche comparten el mismo plano físico. La cámara conserva como zoom mínimo la cobertura de esa lámina, por lo que nunca descubre un segundo paisaje debajo del suelo.
+
+Cuando el seguimiento asciende por encima del borde superior de la lámina, la extensión contiene únicamente el cielo lunar de la cinemática. No repite ciudad ni arquitectura y enlaza visualmente con el siguiente plano.
+
+Una máscara vertical corta funde exclusivamente el borde superior de las láminas diurna y nocturna con ese cielo. Los costados y la parte inferior permanecen opacos para conservar la estructura física de la azotea.
 Fujimori jefe tiene atlas propio de 16 poses: reposo y pasos, preparación/lanzamiento de expedientes, preparación/golpe de sello y cuatro etapas de derrota. La derrota dura 2,8 s, despeja los ataques y congela el combate antes de entregar una sola recompensa. Pausa detiene la secuencia; movimiento reducido mantiene la pose final y un fundido. Los avisos, daño y ventanas de contraataque no cambian.
 
 Pulido de fase dos: alas abiertas en reposo y vuelo, aleteo más lento con menor oscilación vertical, recuperación de ráfagas hacia la misma postura y orientación según desplazamiento real. Una sola aura acompaña al rig; descargas violetas cortas e intermitentes sustituyen los rayos gruesos que tapaban el cuerpo. Los menús automáticos de mejora se aplazan hasta terminar la llegada y recuperación de la ulti, sin gastar ni perder XP; pausa manual permanece disponible.

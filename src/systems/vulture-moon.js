@@ -1,23 +1,26 @@
 'use strict';
 P.VultureMoon={
-  takeoffDuration:1.25,landingDuration:1.2,radius:110,ready:false,failed:false,
-  init(){if(this.started||typeof Image==='undefined')return;this.started=true;const image=new Image();image.onload=()=>{this.sky=image;this.ready=true};image.onerror=()=>{this.failed=true};image.src='assets/arenas/gallinazo-moon-sky-v1.webp';const panorama=new Image();panorama.onload=()=>{this.panorama=panorama;this.panoramaReady=true};panorama.src='assets/arenas/gallinazo-lima-night-v2.webp'},
+  takeoffDuration:1.25,landingDuration:1.2,radius:110,panoramaCrop:.68,panoramaHorizon:-380,ready:false,failed:false,
+  init(){if(this.started||typeof Image==='undefined')return;this.started=true;const image=new Image();image.onload=()=>{this.sky=image;this.ready=true};image.onerror=()=>{this.failed=true};image.src='assets/arenas/gallinazo-moon-sky-v1.webp';const nightRoof=new Image();nightRoof.onload=()=>{this.nightRoof=nightRoof;this.nightRoofReady=true};nightRoof.onerror=()=>{this.nightRoofFailed=true};nightRoof.src='assets/arenas/rooftops-night-v2.webp'},
   smooth(v){v=Math.max(0,Math.min(1,v));return v*v*(3-2*v)},
   backdropProgress(e){if(!e?.moonSequence)return 0;if(e.phase==='vulture-activation')return .42*this.smooth((e.ultimateEntryTime||0)/1.3);if(e.phase==='vulture-takeoff')return .42+.58*this.smooth((e.moonStageTime||0)/this.takeoffDuration);return 1},
   blocksUpgrade(){const e=P.VultureUltimate.boss();return !!e?.moonSequence&&(['vulture-activation','vulture-takeoff','vulture-moon','vulture-landing'].includes(e.phase)||e.phase==='vulture-ultimate'&&e.ultimateGrace>0)},
   nightStrength(e){if(!e?.moonSequence)return 0;if(e.phase==='vulture-activation')return this.smooth((e.ultimateEntryTime||0)/1.3)*.75;if(e.phase==='vulture-takeoff')return .75+.25*this.smooth((e.moonStageTime||0)/.65);return 1},
   backdropMix(q){return {panorama:this.smooth(q/.72),exterior:1-this.smooth(q/.55),day:1-q,night:q}},
   panoramaFrame(cx,cy,w,h,image,e){
-    const cover=Math.max(w/image.width,h/image.height),reference=e?.moonBackdropZoom||P.Terrain.zoom||1,current=P.Terrain.zoom||reference,depth=1+(current/reference-1)*.24,k=Math.max(cover*1.18,cover*1.3*depth),dw=image.width*k,dh=image.height*k,spareX=Math.max(0,(dw-w)/2),spareY=Math.max(0,dh-h);
+    const sourceHeight=image.height*this.panoramaCrop,cover=Math.max(w/image.width,h/sourceHeight),reference=e?.moonBackdropZoom||P.Terrain.zoom||1,current=P.Terrain.zoom||reference,depth=1+(current/reference-1)*.24,k=Math.max(cover*1.18,cover*1.3*depth),dw=image.width*k,dh=sourceHeight*k,spareX=Math.max(0,(dw-w)/2),spareY=Math.max(0,dh-h);
     const parallaxX=Math.max(-spareX,Math.min(spareX,-cx*.08)),parallaxY=Math.max(0,Math.min(spareY,-cy*.06));
     return {x:cx-dw/2+parallaxX,y:cy+h/2-dh+parallaxY,w:dw,h:dh};
   },
+  drawPanorama(c,image,f){const h=Math.max(0,Math.min(f.h,this.panoramaHorizon-f.y));if(!h)return;c.save();c.beginPath();c.rect(f.x,f.y,f.w,h);c.clip();c.drawImage(image,0,0,image.width,image.height*this.panoramaCrop,f.x,f.y,f.w,f.h);c.restore()},
+  drawSky(c,cx,cy,w,h){if(!this.ready)return;const k=Math.max(w/this.sky.width,h/this.sky.height)*1.06,dw=this.sky.width*k,dh=this.sky.height*k;c.drawImage(this.sky,cx-dw/2,cy-dh/2,dw,dh)},
   atmosphere(c,image,f,e){
-    const p=this.backdropProgress(e),q=this.nightStrength(e);if(!p||!q||P.Vulture.reduced?.())return;const drift=f.w*.018*p,w=f.w*1.04,h=f.h*.47;
-    c.save();c.beginPath();c.rect(f.x,f.y,f.w,f.h*.54);c.clip();c.globalAlpha=.05+.08*q;c.drawImage(image,0,0,image.width,image.height*.47,f.x-drift-f.w*.02,f.y,w,h);c.restore();
+    const p=this.backdropProgress(e),q=this.nightStrength(e);if(!p||!q||P.Vulture.reduced?.())return;const drift=f.w*.018*p,w=f.w*1.04,h=f.h*(.47/this.panoramaCrop);
+    const visible=Math.max(0,Math.min(h*1.08,this.panoramaHorizon-f.y));if(!visible)return;c.save();c.beginPath();c.rect(f.x,f.y,f.w,visible);c.clip();c.globalAlpha=.05+.08*q;c.drawImage(image,0,0,image.width,image.height*.47,f.x-drift-f.w*.02,f.y,w,h);c.restore();
   },
   roofLayers(){
-    const roof=P.Vulture.roof;if(!roof||!P.Vulture.ready||typeof document==='undefined')return false;if(this.roofSource===roof)return true;this.roofSource=roof;
+    const roof=P.Vulture.roof,coherent=this.nightRoofReady?this.nightRoof:null;if(!roof||!P.Vulture.ready||typeof document==='undefined')return false;if(this.roofSource===roof&&this.nightRoofSource===coherent)return true;this.roofSource=roof;this.nightRoofSource=coherent;
+    if(coherent){const make=source=>{const cv=document.createElement('canvas');cv.width=roof.width;cv.height=roof.height;const c=cv.getContext('2d');c.drawImage(source,0,0,cv.width,cv.height);c.globalCompositeOperation='destination-in';const g=c.createLinearGradient(0,0,0,cv.height*.085);g.addColorStop(0,'#0000');g.addColorStop(1,'#000');c.fillStyle=g;c.fillRect(0,0,cv.width,cv.height);return cv};this.roofDay=make(roof);this.roofNight=make(coherent);this.roofArenaDay=null;return true}
     const layer=(night,arenaOnly)=>{const cv=document.createElement('canvas');cv.width=roof.width;cv.height=roof.height;const c=cv.getContext('2d');c.drawImage(roof,0,0);
       if(night){c.globalCompositeOperation='multiply';c.fillStyle='#59678f';c.fillRect(0,0,cv.width,cv.height);c.globalCompositeOperation='source-atop';c.fillStyle='#201a492b';c.fillRect(0,0,cv.width,cv.height)}
       c.globalCompositeOperation='destination-in';const edge=arenaOnly?.075:.045,top0=arenaOnly?.15:0,top1=arenaOnly?.31:.045;
@@ -26,7 +29,8 @@ P.VultureMoon={
   },
   background(c,cx,cy,w,h){
     const e=P.VultureUltimate.boss(),image=this.panoramaReady?this.panorama:this.ready?this.sky:null,q=this.nightStrength(e),mix=this.backdropMix(q);c.save();c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';c.fillStyle='#10172e';c.fillRect(cx-w,cy-h,w*2,h*2);
-    if(image&&mix.panorama>0){const f=this.panoramaFrame(cx,cy,w,h,image,e);c.globalAlpha=mix.panorama;c.drawImage(image,f.x,f.y,f.w,f.h);this.atmosphere(c,image,f,e)}
+    if(this.nightRoofReady&&this.roofLayers()){if(mix.panorama>0){c.globalAlpha=mix.panorama;this.drawSky(c,cx,cy,w,h)}c.imageSmoothingEnabled=false;c.globalAlpha=1;c.drawImage(this.roofDay,-960,-640,1920,1280);if(q>0){c.globalAlpha=q;c.drawImage(this.roofNight,-960,-640,1920,1280)}c.restore();return}
+    if(image&&mix.panorama>0){const f=this.panoramaFrame(cx,cy,w,h,image,e);c.globalAlpha=mix.panorama;this.drawPanorama(c,image,f);this.atmosphere(c,image,f,e)}
     c.imageSmoothingEnabled=false;if(this.roofLayers()){if(mix.exterior>0){c.globalAlpha=mix.exterior;c.drawImage(this.roofDay,-960,-640,1920,1280)}c.globalAlpha=1;c.drawImage(this.roofArenaDay,-960,-640,1920,1280);if(mix.night>0){c.globalAlpha=mix.night;c.drawImage(this.roofNight,-960,-640,1920,1280)}}c.restore();
   },
   moonlight(c,w,h,e){const q=this.nightStrength(e);if(!q)return;c.save();c.globalAlpha=q*.14;c.fillStyle='#241645';c.fillRect(0,0,w,h);c.restore()},
@@ -35,7 +39,7 @@ P.VultureMoon={
     const reduced=P.Vulture.reduced(),takeoff=e.phase==='vulture-takeoff',landing=e.phase==='vulture-landing',t=e.moonStageTime||0,focus=reduced?0:post?1-this.smooth(age/.95):takeoff||landing?1:this.smooth(((e.ultimateEntryTime||0)-.35)/.95);
     const normal=P.BossArt.camera(P.VultureImpact.cameraTarget(p),w/base,h/base);if(!focus)return {...normal,zoom:base};
     const pose=landing?this.landingPose(t,false):{x:0,y:0},birdX=e.x+pose.x,root=e.y+(e.r||62)*.5+pose.y-(takeoff?this.cameraLift(t):0),left=Math.min(p.x-36,birdX-180),right=Math.max(p.x+36,birdX+180),top=Math.min(p.y-48,root-330),bottom=Math.max(p.y+48,root+15);
-    const nativeBase=post?base/(P.VultureUltimate.cameraScale?.()||1):base,fit=Math.min(nativeBase*1.12,(w-96)/(right-left),(h-160)/(bottom-top)),zoom=base+(Math.max(.18,fit)-base)*focus;
+    const nativeBase=post?base/(P.VultureUltimate.cameraScale?.()||1):base,fit=Math.min(nativeBase*1.12,(w-96)/(right-left),(h-160)/(bottom-top)),sceneCover=this.nightRoofReady?Math.max(w/1920,h/1280):.18,zoom=base+(Math.max(sceneCover,fit)-base)*focus;
     let x=normal.x+((left+right)/2-normal.x)*focus,y=normal.y+((top+bottom)/2-normal.y)*focus;
     // La prioridad es mantener al jugador dentro del margen, incluso si cruza la arena.
     const hx=Math.max(0,(w/2-48)/zoom),hy=Math.max(0,(h/2-80)/zoom);x=Math.max(p.x-hx,Math.min(p.x+hx,x));y=Math.max(p.y-hy,Math.min(p.y+hy,y));
@@ -154,7 +158,7 @@ P.VultureMoon={
 {
   const M=P.VultureMoon,u=P.VultureUltimate,F=P.VulturePhase2,I=P.VultureImpact,R=P.VultureRig,scene=P.VultureScene,init=scene.init,pending=scene.pending,start=u.start,tick=u.introTick,overlay=u.overlay,sound=u.introSounds,move=P.Vulture.move,draw=P.Vulture.draw,ground=P.Vulture.ground,effects=P.Vulture.effects,age=I.impactAge,hurt=P.Entities.hurt,inArc=P.Combat.inArc,segment=P.Combat.segmentHit,onScreen=P.Combat.onScreen,arena=R.arenaMotion,camera=I.cameraTarget;
   const background=P.Vulture.background,vultureInit=P.Vulture.init;P.Vulture.init=function(...args){M.init();return vultureInit.apply(this,args)};P.Vulture.background=function(c,cx,cy,w,h){if(M.roofLayers()){M.background(c,cx,cy,w,h);return}return background.call(this,c,cx,cy,w,h)};
-  scene.init=function(){M.init();return init.call(this)};scene.pending=()=>pending()||typeof Image!=='undefined'&&!M.ready&&!M.failed;
+  scene.init=function(){M.init();return init.call(this)};scene.pending=()=>pending()||typeof Image!=='undefined'&&(!M.ready&&!M.failed||!M.nightRoofReady&&!M.nightRoofFailed);
   // La entrada ya no utiliza el antiguo cómic de tres paneles.
   u.initComic=function(){scene.init();this.comicStarted=true;this.comicReady=true};
   u.start=function(e,...args){const ok=start.call(this,e,...args);if(ok){M.departureReady=false;M.arrivalReady=false;e.moonSequence=true;e.moonLanded=false;e.moonAirborne=false;e.moonStageTime=0;e.moonRoar=false;e.moonDiveSound=false;e.moonBackdropZoom=P.Terrain.zoom||1}return ok};
