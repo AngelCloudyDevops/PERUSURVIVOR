@@ -394,3 +394,5 @@ Los minions no muestran nombres, incluidos los pesados y la PNP. Los portadores 
 Campo de Marte: monumento de piedra con arco y relieves, más dos variantes de picnic con madera, metal y accesorios. Interpretación estilizada de parque, sin reconstrucción histórica. Mantiene sombra al pie, transparencia detrás del monumento, posiciones y colisiones. Referencia: CAMPO_LANDMARKS.md.
 
 HUD de combate distribuido en los bordes: XP de ancho completo arriba, personaje/nivel/vida a la izquierda, tiempo al centro y habilidad abajo. La información de botín y eventos permanece visible sin un panel central opaco.
+
+Subida de nivel: tres tarjetas con icono, categoría (nuevo poder, rango, mejora o evolución), nombre y efecto. Paleta azul noche, crema y coral. Se elige una sola opción y la partida continúa; no cambia el sorteo ni el balance. Cooperativo conserva la espera por ambos jugadores.

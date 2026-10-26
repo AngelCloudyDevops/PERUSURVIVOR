@@ -312,3 +312,5 @@ EnemyArt.labelTop calcula el borde superior de la pose dibujada, a partir del cu
 CampoArt intercepta landmark/picnic en Terrain solo para Campo fuera de arenas. Carga un atlas de tres celdas y selecciona el picnic de forma determinista por coordenadas. Una llamada de imagen y una sombra pequeña por objeto; reutiliza descarte/orden de World sin nuevas entidades, temporizadores ni estado por sector. Auditoría y empaquetado: campo-landmarks-audit.json y pack-campo-landmarks.py.
 
 El HUD conserva IDs y sistemas existentes. UI.hud actualiza nombre, nivel y la barra accesible de vida; XP expone valores ARIA. CSS posiciona las zonas del HUD de forma independiente, manteniendo el contenedor único para ocultar todo en menú y cinemáticas.
+
+UI.show admite metadatos card opcionales y crea nodos accesibles para tarjetas de nivel. UI.upgradeCard deriva icono y categoría del ID de la opción. Progression y el cliente cooperativo comparten el renderizador; otros diálogos restablecen el estilo habitual.
