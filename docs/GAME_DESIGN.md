@@ -511,6 +511,8 @@ La colección se ordena por rareza (SSR→SR→R→C), estrellas o copias dispon
 Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Paloma en Plaza de Armas (uno activo). Abanico de tres ondas bloqueables y pulso cercano de 110 unidades, ambos avisados; al 50 % encadena dos abanicos. Conserva navegación, agotamiento, bonus, resumen, cobertura y derrota sin daño. Cofre: Silbato del caos o 50 monedas. Disponible directamente en Probar jefes. Arte nuevo de cuatro poses, sin sustituir personajes existentes.
 
 
+Las ultis animales sustituyen las líneas de alcance y el recuadro amarillo por polvo, plumas y pequeños impactos. Los cuyes corren con seis pasos y las palomas aletean con poses de vuelo, fases desfasadas y trayectorias sin reinicios bruscos. La coraza mantiene su etiqueta; sus reglas y el daño permanecen iguales.
+
 Entradas animales v2: Paloma prepara el vuelo, eleva alas, empuja hacia abajo y recoge las patas antes de elevarse. Cuy usa anticipación, impulso, patas recogidas, extensión para aterrizar, compresión y recuperación. Se elimina el ala artificial superpuesta. Duración, protección y daño permanecen iguales.
 
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
@@ -530,5 +532,6 @@ El juego permite invitado o usuario registrado. La cuenta conserva colección, e
 # Apoyos y combinaciones en el laboratorio
 La sección «Poderes de apoyo» ofrece dos espacios distintos con Onda causa, Tarjetas del caos y Escudo de bandas. Cada espacio permite rango 1–5 o evolución inmediata, sin nivel ni recursos. Se pueden combinar con cualquiera de las 18 armas y sus evoluciones, en objetivos o jefes. No se puede repetir el mismo apoyo. Cambiar la configuración reinicia la prueba y elimina ataques anteriores; quitar un apoyo también retira su evolución y temporizadores. La configuración se conserva al cambiar de causa y al repetir, pero no se transfiere a partidas normales.
 «Activar combos compatibles» está desactivado inicialmente para permitir comparar: Onda habilita Directo viral con el arma principal; Tarjetas + Escudo habilitan Prensa blindada. Sólo se aplican los combos cuyos apoyos están equipados. La interfaz describe sus efectos y el estado activo/disponible. Son las mismas reglas y efectos del combate normal, sin desbloqueos permanentes.
+
 
 Al entrar se elige iniciar sesión, crear cuenta o jugar como invitado. Invitado conserva el progreso de este navegador y no sobrescribe el de una cuenta; no exige conexión al servicio de cuentas. Iniciar sesión lleva al vestíbulo con el progreso recuperado. Registro pide confirmar la contraseña y muestra el código privado antes de continuar. Recuperación aparece solo al elegir «Olvidé mi contraseña».
