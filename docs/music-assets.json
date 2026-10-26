@@ -1,0 +1,22 @@
+{
+  "container": "WebM",
+  "bitrate": 32000,
+  "codec": "Opus",
+  "note": "Copias web de los dos audios aportados por el usuario; originales conservados fuera del repositorio.",
+  "tracks": [
+    {
+      "id": "tema1",
+      "durationSeconds": 227.281,
+      "runtime": "public/assets/music/tema-1-v1.webm",
+      "bytes": 979253,
+      "sha256": "4bed20dac74ba0ca6594fadf03c56b8d1b90f44ef49166e7d7c26da030c90c2c"
+    },
+    {
+      "id": "tema2",
+      "durationSeconds": 173.205,
+      "runtime": "public/assets/music/tema-2-v1.webm",
+      "bytes": 746443,
+      "sha256": "273060f663014ceacd03213b380838bd02c13b72af91a3e6f40d57965c6ddcf1"
+    }
+  ]
+}

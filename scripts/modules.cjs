@@ -28,6 +28,10 @@ module.exports = [
     "output": "js/minion-audio.js"
   },
   {
+    "source": "src/systems/background-music.js",
+    "output": "js/background-music.js"
+  },
+  {
     "source": "src/systems/soundscape.js",
     "output": "js/soundscape.js"
   },

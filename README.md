@@ -329,3 +329,8 @@ Las ultis de Kingteka, Alberto, Cuy y Paloma requieren tres cartas automáticas:
 **Mi perfil** muestra usuario, monedas, colección y estadísticas. Invitados nuevos comienzan con cuatro causas; el resto se desbloquea jugando. El rol administrador se concede únicamente desde el VPS a una cuenta existente, nunca durante el registro ni desde el navegador.
 
 **Panel admin:** exclusivamente la cuenta `reysuperior` con rol admin puede consultar usuarios, entregar 1–100.000 monedas por operación y desbloquear personajes. Incluye búsqueda, paginación, confirmación e historial. No permite cambiar roles ni ver contraseñas.
+## Música de fondo opcional
+
+En la cabecera, abre **Música ♫** y elige **Original del juego**, **Tema 1**, **Tema 2** o **Sin música**. Las dos pistas aportadas por el usuario se reproducen en bucle; el volumen y la selección se guardan en este navegador. El botón general de sonido también las silencia. Pausa, menú, pestaña oculta y pérdida de foco detienen su reproducción y conservan la posición para continuar.
+
+Las pistas WebM/Opus se solicitan únicamente al reproducir la opción elegida: no forman parte de la descarga inicial. Un solo reproductor sustituye a la melodía sintetizada, conservando efectos y ambiente. Si falla la carga, se recupera la música original.
