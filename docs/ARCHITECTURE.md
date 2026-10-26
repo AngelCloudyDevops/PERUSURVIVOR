@@ -535,7 +535,7 @@ FujimoriBoss extiende el movimiento y dibujo de Encounters solo para kind fujimo
 
 VultureMoon.cameraFrame incluye landing y el primer tramo posterior al impacto; compensa cameraScale para conservar el zoom al cambiar de fase y converge al objetivo normal antes de liberar la cámara. arrivalOverlay reutiliza una captura del último cielo. landedAge usa elapsed y la marca de impacto, por lo que pausa detiene cámara, onda y sacudida. World suma impactShake en unidades compensadas por zoom. Los renderizadores existentes de polvo/escombros amplían solo el impacto lunar.
 
-VultureMoon precarga gallinazo-lima-night-v2.webp al iniciar el jefe. Background combina panorama exterior y dos capas de la azotea original, cacheadas una vez por imagen, con máscara de borde/horizonte. nightStrength usa relojes existentes, sin tiempos reales ni cambios al mapa/colisión. moonlight integra actores/obstáculos con la luz de fondo. Fuente PNG original y prompt conservados junto al WebP.
+VultureMoon precarga la lámina lunar y rooftops-night-v2.webp al iniciar el jefe. Background combina la azotea diurna y nocturna, cacheadas una vez por imagen, con máscara solo en el borde superior. nightStrength usa relojes existentes, sin tiempos reales ni cambios al mapa/colisión. moonlight integra actores/obstáculos con la luz de fondo. La fuente PNG original y el panorama experimental permanecen archivados en Git.
 FujimoriBossArt carga bajo demanda fujimori-boss-v1.webp; fuente PNG y prompt permanecen en Git. Sus 16 figuras completas comparten escala y centro de celda con anclaje al suelo. Encounters espera la carga antes de entrar, permite reintento y cancela la entrada si se abandona el diálogo. Game.update despacha la derrota por tipo de jefe; Entities inicia la secuencia de Fujimori después de contabilizar una sola baja.
 
 El build omite los antiguos atlas de ataque de personajes con atlas direccional activo: WalkArt.url ya pide exclusivamente assets/aim para esos personajes. PNG y WebP históricos siguen en public y se auditan; esto deja margen de despliegue para el nuevo atlas del jefe sin reducir su resolución ni cambiar imágenes activas.
@@ -549,6 +549,16 @@ VultureMoon.background dibuja el panorama una sola vez con cover, alineación in
 La composición nocturna separa el exterior diurno de la superficie jugable. `backdropMix` extingue el horizonte diurno antes del despegue; la base de la azotea permanece opaca mientras su iluminación nocturna se superpone progresivamente, evitando que la ciudad se transparente a través del suelo. `panoramaFrame` añade un parallax acotado que siempre conserva cobertura. La máscara amplia del recorte nocturno evita bordes cuadrados y duplicación de edificios al abrir o mover la cámara.
 
 `moonBackdropZoom` fija el zoom inicial de la ulti y `panoramaFrame` aplica solo el 24 % de su variación al panorama, con sobreescala suficiente para no descubrir bordes. `backdropProgress` y `atmosphere` derivan el desplazamiento tenue de nubes exclusivamente del reloj de simulación. `cameraLift` amortigua el encuadre del ascenso sin cambiar la posición visual ni física del jefe.
+
+`panoramaCrop` limita el muestreo vertical al 68 % superior de la lámina nocturna. `drawPanorama` escala ese recorte como cielo y horizonte distante; el primer plano de casas queda fuera para que nunca aparezca por debajo de la superficie física de la arena.
+
+`panoramaHorizon` recorta tanto el panorama como su capa atmosférica en la coordenada mundial del parapeto superior. El fondo no participa en ninguna región inferior de la arena, incluso cuando la cámara abre el encuadre.
+
+`rooftops-night-v2.webp` es la ruta de producción: comparte dimensiones, geometría y perspectiva elevada con `rooftops-v1.webp`. `roofLayers` reconstruye sus cachés cuando termina de cargar y `background` mezcla ambas láminas en coordenadas mundiales. Si falla, el cielo lunar y la azotea original forman el fallback sin descargar otro panorama; `cameraFrame` impone la cobertura mínima de 1920 × 1280 para no revelar el exterior del arte. `gallinazo-lima-night-v2.webp` se conserva como fuente experimental, pero el build ya no lo distribuye ni el cliente lo solicita.
+
+`drawSky` coloca la misma lámina lunar de la cinemática detrás de la azotea coherente. Solo queda visible si el seguimiento supera el borde superior; por construcción no puede introducir edificios debajo del suelo.
+
+La caché coherente de `roofLayers` aplica `destination-in` únicamente al 8,5 % superior para borrar la costura del horizonte. No enmascara laterales ni base.
 
 Audio.musicMix calibra la salida HTMLAudioElement y la síntesis por separado; BackgroundMusic.applyVolumes aplica el mismo factor a ambas pistas del fundido sin reiniciar reproducción. duckMusic mantiene un único estado temporal con reloj AudioContext y envolvente acotada, sin timers, colas ni osciladores extra. Los disparadores ocurren una vez tras sus limitadores existentes. sync recupera gradualmente la mezcla sin modificar preferencias de volumen.
 
