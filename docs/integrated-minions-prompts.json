@@ -1,0 +1,62 @@
+{
+  "tool": "built-in image_gen",
+  "layout": {
+    "columns": 3,
+    "rows": 3,
+    "walk": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "windup": 6,
+    "impact": 7,
+    "defeat": 8
+  },
+  "assets": [
+    {
+      "id": "minion-0",
+      "reference": "public/assets/walks/enemy-0-walk-v1.webp",
+      "source": "public/assets/minions/minion-0-integrated-v1.png",
+      "runtime": "public/assets/minions/minion-0-integrated-v1.webp",
+      "prompt": "Use case: identity-preserve. Asset: production transparent 3x3 sprite sheet for a 2D arcade game. Edit target: supplied six-frame blue penguin walk sheet. Redraw as the SAME recognizable blue penguin, same large face, yellow beak and yellow feet, now a skilled Peruvian park engineer: well-fitted orange reflective work vest with folds and seams, white rounded construction hard hat replacing propeller hat, brown work gloves, a realistic small steel spade with wooden handle firmly gripped in both wings. Clothing, body and shovel must be ONE cohesive hand-drawn pixel-art figure per frame, not separate stickers. Detailed polished 32-bit arcade pixel art, dark colored outline, consistent lighting and proportions. Exactly NINE separate complete full-body figures on a uniform 3-column by 3-row grid, transparent background, no shadows outside figure, no text or borders. Row1: walking contact right leg forward, walking down passing, walking left leg forward. Row2: walking opposite contact, passing opposite, walking right forward again, completing a coherent six-frame walk cycle. Row3: windup raising spade, attack slamming spade blade into ground in front right with knees bent, defeated sitting with X eyes holding spade beside body. All face right in 3/4 view. Every cell same body scale and ground baseline, figure and tool fully inside its cell with generous margins. Preserve original color identity and friendly caricature face. No floating accessories, duplicated hands, cut limbs, gradients in background, checkerboard or labels."
+    },
+    {
+      "id": "minion-1",
+      "reference": "public/assets/walks/enemy-1-walk-v1.webp",
+      "source": "public/assets/minions/minion-1-integrated-v1.png",
+      "runtime": "public/assets/minions/minion-1-integrated-v1.webp",
+      "prompt": "Use case: identity-preserve. Asset: production 3x3 transparent sprite sheet for a 2D arcade game. Edit target: supplied six-frame character walk sheet. Redraw as SAME recognizable character and face, with outfit and anatomy integrated into ONE cohesive full-body drawing, NEVER separate stickers. Polished detailed 32-bit arcade pixel art, clean dark colored contours, controlled shading, consistent proportions and lighting. Exactly NINE separate complete figures in a uniform 3-column by 3-row grid on a genuinely transparent background. NO labels, NO text, NO grid lines, NO shadows outside the figure. Row1 three walking steps: right contact, passing, left contact. Row2 opposite three steps, forming six-frame alternating arm/leg walk. Row3 windup, full attack, defeated sitting with X eyes. Facing RIGHT 3/4 view in EVERY cell. Same body scale and ground baseline; keep tools fully INSIDE generous cell margins, no cropped limbs or disconnected parts. Identity and expressive original face remain recognizable. Orange moose Tyrone with broad brown antlers: strongman with genuinely muscular orange shoulders, rounded deltoids, biceps and forearms smoothly JOINED to torso and hands; black fitted sleeveless gym tank, red lifting belt, taped fists, dark shorts and brown shoes. Friendly stylized caricature strength, NOT human skin pasted onto animal. Walk hands in relaxed boxing guard with opposite arm swing. Windup: pull right fist back and plant feet. Attack: extend a powerful right punch with torso twist and opposite hand guarding face, full body balanced. Defeat: sitting exhausted with fists lowered."
+    },
+    {
+      "id": "minion-2",
+      "reference": "public/assets/walks/enemy-2-walk-v1.webp",
+      "source": "public/assets/minions/minion-2-integrated-v1.png",
+      "runtime": "public/assets/minions/minion-2-integrated-v1.webp",
+      "prompt": "Use case: identity-preserve. Asset: production 3x3 transparent sprite sheet for a 2D arcade game. Edit target: supplied six-frame character walk sheet. Redraw as SAME recognizable character and face, with outfit and anatomy integrated into ONE cohesive full-body drawing, NEVER separate stickers. Polished detailed 32-bit arcade pixel art, clean dark colored contours, controlled shading, consistent proportions and lighting. Exactly NINE separate complete figures in a uniform 3-column by 3-row grid on a genuinely transparent background. NO labels, NO text, NO grid lines, NO shadows outside the figure. Row1 three walking steps: right contact, passing, left contact. Row2 opposite three steps, forming six-frame alternating arm/leg walk. Row3 windup, full attack, defeated sitting with X eyes. Facing RIGHT 3/4 view in EVERY cell. Same body scale and ground baseline; keep tools fully INSIDE generous cell margins, no cropped limbs or disconnected parts. Identity and expressive original face remain recognizable. Pink spotted Uniqua with curly antennae: Peruvian standard bearer in a tailored white marching tunic with red sash, gold buttons, red skirt/shorts and red boots, fabrics shaded and folded to fit her body; both hands visibly gripping a wooden flagpole carrying the Peruvian flag, exactly THREE VERTICAL BANDS RED-WHITE-RED without emblem or lettering. Flag wave drawn anew in each pose, anchored firmly to pole. Windup: hold flag raised behind right shoulder. Attack: low sweeping pole strike across front to right, cloth follows arc; no magical streaks baked into sprite. Defeat: seated with lowered flag still complete."
+    },
+    {
+      "id": "minion-3",
+      "reference": "public/assets/walks/enemy-3-walk-v1.webp",
+      "source": "public/assets/minions/minion-3-integrated-v1.png",
+      "runtime": "public/assets/minions/minion-3-integrated-v1.webp",
+      "prompt": "Use case: identity-preserve. Asset: production 3x3 transparent sprite sheet for a 2D arcade game. Edit target: supplied six-frame character walk sheet. Redraw as SAME recognizable character and face, with outfit and anatomy integrated into ONE cohesive full-body drawing, NEVER separate stickers. Polished detailed 32-bit arcade pixel art, clean dark colored contours, controlled shading, consistent proportions and lighting. Exactly NINE separate complete figures in a uniform 3-column by 3-row grid on a genuinely transparent background. NO labels, NO text, NO grid lines, NO shadows outside the figure. Row1 three walking steps: right contact, passing, left contact. Row2 opposite three steps, forming six-frame alternating arm/leg walk. Row3 windup, full attack, defeated sitting with X eyes. Facing RIGHT 3/4 view in EVERY cell. Same body scale and ground baseline; keep tools fully INSIDE generous cell margins, no cropped limbs or disconnected parts. Identity and expressive original face remain recognizable. Yellow hippopotamus Tasha: stocky imposing bodyguard wearing well-tailored BLACK SUIT with shaded jacket lapels, white shirt, black tie, fitted black trousers, black polished shoes and sunglasses matching face perspective. Rounded hippo head, muzzle and ears remain fully recognizable and uncovered. No blocklike overlays. Arms and suit sleeves articulate naturally. Windup: bend knees and lift one foot. Attack: heavy ground stomp with bent elbows and jacket movement. Defeat: seated slumped with crooked sunglasses, X eyes visible."
+    },
+    {
+      "id": "minion-4",
+      "reference": "public/assets/walks/enemy-4-walk-v1.webp",
+      "source": "public/assets/minions/minion-4-integrated-v1.png",
+      "runtime": "public/assets/minions/minion-4-integrated-v1.webp",
+      "prompt": "Use case: identity-preserve. Asset: production 3x3 transparent sprite sheet for a 2D arcade game. Edit target: supplied six-frame character walk sheet. Redraw as SAME recognizable character and face, with outfit and anatomy integrated into ONE cohesive full-body drawing, NEVER separate stickers. Polished detailed 32-bit arcade pixel art, clean dark colored contours, controlled shading, consistent proportions and lighting. Exactly NINE separate complete figures in a uniform 3-column by 3-row grid on a genuinely transparent background. NO labels, NO text, NO grid lines, NO shadows outside the figure. Row1 three walking steps: right contact, passing, left contact. Row2 opposite three steps, forming six-frame alternating arm/leg walk. Row3 windup, full attack, defeated sitting with X eyes. Facing RIGHT 3/4 view in EVERY cell. Same body scale and ground baseline; keep tools fully INSIDE generous cell margins, no cropped limbs or disconnected parts. Identity and expressive original face remain recognizable. Purple kangaroo Austin with long ears and tail: agile mechanic wearing fitted dark teal overalls with stitched pockets and straps, yellow work shirt, WHITE construction hard hat naturally fitting head between long ears, brown gloves and work boots; grip a silver open-end wrench in right hand, attached to the fingers with correct perspective. Tail remains complete. Windup: cock wrench behind shoulder. Attack: throw wrench forward with extended arm while a second small wrench remains at belt; no detached projectile in the cell. Defeat: sitting with wrench laid beside feet."
+    },
+    {
+      "id": "minion-5",
+      "reference": "public/assets/walks/enemy-5-walk-v1.webp",
+      "source": "public/assets/minions/minion-5-integrated-v1.png",
+      "runtime": "public/assets/minions/minion-5-integrated-v1.webp",
+      "prompt": "Use case: identity-preserve. Asset: production 3x3 transparent sprite sheet for a 2D arcade game. Edit target: supplied six-frame character walk sheet. Redraw as SAME recognizable character and face, with outfit and anatomy integrated into ONE cohesive full-body drawing, NEVER separate stickers. Polished detailed 32-bit arcade pixel art, clean dark colored contours, controlled shading, consistent proportions and lighting. Exactly NINE separate complete figures in a uniform 3-column by 3-row grid on a genuinely transparent background. NO labels, NO text, NO grid lines, NO shadows outside the figure. Row1 three walking steps: right contact, passing, left contact. Row2 opposite three steps, forming six-frame alternating arm/leg walk. Row3 windup, full attack, defeated sitting with X eyes. Facing RIGHT 3/4 view in EVERY cell. Same body scale and ground baseline; keep tools fully INSIDE generous cell margins, no cropped limbs or disconnected parts. Identity and expressive original face remain recognizable. Same friendly cartoon Peruvian police minion: olive-green uniform with fabric folds, dark fitted protective vest, olive cap or light riot helmet with raised transparent visor, black boots and gloves, complete large blue-gray riot shield gripped by left forearm, black baton gripped in right hand. No words, numbers or logos. Shield naturally occludes arm and torso, coherent perspective rather than floating rectangle. Windup: brace shield, pull baton arm back. Attack: extend baton in a thrust while shield stays raised. Defeat: seated with lowered shield and baton, X eyes."
+    }
+  ]
+}
