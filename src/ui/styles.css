@@ -42,4 +42,5 @@ footer{position:static;grid-column:1/-1;margin-top:12px}#menu{align-content:star
 
 #time-of-day{display:block;text-align:center;color:#d9cfab;font-size:8px;letter-spacing:.8px;margin:2px 0}#hud.boss-hud #time-of-day{display:none}
 
+#miniboss-status{position:fixed;bottom:64px;left:50%;transform:translateX(-50%);max-width:92vw;padding:9px 15px;border:1px solid #e7b56b;border-radius:8px;background:#172434ed;color:#ffe3a6;font:700 12px monospace;text-align:center;pointer-events:none;z-index:8}#miniboss-status[hidden]{display:none}
 body.vulture-cinematic header,body.vulture-cinematic #hud,body.vulture-cinematic #lab-tools,body.vulture-cinematic #hint,body.vulture-cinematic #performance-panel,body.vulture-cinematic #stick{visibility:hidden}

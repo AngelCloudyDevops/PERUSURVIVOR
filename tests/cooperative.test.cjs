@@ -80,3 +80,9 @@ test('Salas reales: código privado, máximo dos, autoridad, reconexión, limpie
   const bad=new WebSocket(url,{origin:'https://untrusted.example'});bad.on('error',()=>{});await new Promise(r=>bad.once('close',r));assert.notEqual(bad.readyState,1);
  }finally{for(const ws of clients)ws.terminate();await app.close()}
 });
+
+test('Minijefes cooperativos: calendario del servidor, aviso compartido, ataques y botín únicos',()=>{
+ for(const map of ['campo','plaza','machu']){
+  const sim=new Simulation(map,[0,6]),P=sim.P,s=P.state,M=P.Minibosses;P.Terrain.hit=()=>null;P.Loot.safe=()=>true;s.mapTime=s.miniNext;sim.tick(.04,[{},{}]);assert(sim.snapshot().miniWarning);assert.equal(sim.snapshot().miniWarning.map,map);for(let i=0;i<52;i++)sim.tick(.04,[{},{}]);const e=s.enemies.find(e=>e.miniboss);assert(e&&e.miniMap===map);assert.equal(sim.snapshot().enemies.filter(e=>e.miniboss).length,1);s.enemies=[e];for(const p of sim.players){p.x=e.x;p.y=e.y;p.inv=0;p.fire=100}const hp=sim.players.map(p=>p.hp);e.phase='mini-recover';e.recovery=1;sim.tick(.04,[{},{}]);assert.deepEqual(sim.players.map(p=>p.hp),hp.map(n=>n-12));assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));M.warn(e,M.catalog[map].attacks[1]);M.move(e,1);if(e.phase==='mini-charge')M.move(e,1);const kills=s.kills;P.Entities.hurt(e,99999);P.Entities.hurt(e,99999);assert.equal(s.kills,kills+1);assert.equal(s.effects.filter(q=>q.kind==='miniboss-death').length,1);assert.equal(s.gems.filter(q=>q.kind==='coin'&&q.value===20).length,1);assert(!s.danger.some(q=>q.miniId===e.miniId));s.mapTime=300;s.miniWarning=null;sim.tick(.04,[{},{}]);assert(!s.miniWarning);assert(s.bossSpawned);
+ }
+});

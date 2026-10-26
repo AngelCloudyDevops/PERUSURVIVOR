@@ -46,6 +46,17 @@
       "rgbaSha256": "a3b3d5cb0c58dc1278fc7fb489239f1b2d190cd916d1320884be83e9a7e55c40"
     },
     {
+      "source": "assets/arenas/rooftops-v1.png",
+      "output": "assets/arenas/rooftops-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 2909335,
+      "optimizedBytes": 1997972,
+      "sourceSha256": "3555a88c8a958ae8f9ec8c9ce5bceab6a08ecfad96e0a93aa81a0c2a13d406c5",
+      "outputSha256": "486efa4e1f9356f273ec33d4ddcec77751733e5457962442024a0d5bffd5a77f",
+      "rgbaSha256": "e4e864c0ab67e8ab41b7132bbb62a07cc9cb2b096dc68b5a5f576264ddbc2ac9"
+    },
+    {
       "source": "assets/bosses/boss-atlas-v1.png",
       "output": "assets/bosses/boss-atlas-v1.webp",
       "width": 1774,
@@ -57,6 +68,39 @@
       "rgbaSha256": "611ed239256890e407cbd5aaa92edeea149a54d4d62f796fa4f1d89398d4bc05"
     },
     {
+      "source": "assets/bosses/gallinazo-atlas-v1.png",
+      "output": "assets/bosses/gallinazo-atlas-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 2226213,
+      "optimizedBytes": 1519686,
+      "sourceSha256": "6062e6975a38b4b5b3b735212bd33e4eee78b147ecd8cc75ffc4e03303f69f35",
+      "outputSha256": "8772b12d15c9bac7b7639bf1be19e0abb972a2eef312a8cc7cfb4b6f98521edf",
+      "rgbaSha256": "1d79e81da15132e37b940c6e544b702e586a106356bc1e2bd9d15e5c3943dcc0"
+    },
+    {
+      "source": "assets/bosses/gallinazo-comic-v1.png",
+      "output": "assets/bosses/gallinazo-comic-v1.webp",
+      "width": 1774,
+      "height": 887,
+      "originalBytes": 1677729,
+      "optimizedBytes": 1263488,
+      "sourceSha256": "3c6acb5d9db76e23afef990425979216ad3b8c5768035f1452f50c4f76266d2a",
+      "outputSha256": "c35c647f6c74ef106e9704fe5dfbd480d5bc67d7fe693ea6ffc20afd70b52995",
+      "rgbaSha256": "bb0f632dbccd0fc2c204453a1df008a378c2e2f097671c299e6ea3e0fac33066"
+    },
+    {
+      "source": "assets/bosses/gallinazo-ultimate-v1.png",
+      "output": "assets/bosses/gallinazo-ultimate-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 2359965,
+      "optimizedBytes": 1678634,
+      "sourceSha256": "7aa7bb806d0c1375c6011d8ce88332b494b12aa642c7654dc04127636e80ebe9",
+      "outputSha256": "90b1ae8b0464ed20911ea64326f12b9d4577d2741d598be95b736d8753dcfdd5",
+      "rgbaSha256": "cda9580092e6bcb0e01bf880e90c3145145bf6272ca0487244295a9ca43af99a"
+    },
+    {
       "source": "assets/characters/causas-atlas-v1.png",
       "output": "assets/characters/causas-atlas-v1.webp",
       "width": 887,
@@ -66,6 +110,17 @@
       "sourceSha256": "50ea80a0d8449f540e24bc4e7f2e07e195350c2379802e7655cbfaa19df54d32",
       "outputSha256": "82b7baafc853a8c95099cb4581edecc8296c4e3c1447881c29ce11b6b1d237df",
       "rgbaSha256": "0db3967fc1fceb730dbcf82d68a38040483175c1aa51e49ae2b7b2f181800bbe"
+    },
+    {
+      "source": "assets/characters/kingteka-ultimate-portrait-v1.png",
+      "output": "assets/characters/kingteka-ultimate-portrait-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 1773088,
+      "optimizedBytes": 1245400,
+      "sourceSha256": "2f1958e0285b099e345e4203199a4a05418786a9b66a1a89329f9cbafb287f4e",
+      "outputSha256": "99ec631a329360270fe44856d621dcc88c29746165799583633a8fa278b83e9b",
+      "rgbaSha256": "fb6beb889a49b4981da511da0d5636b39938011faebc855b4fe2185c85cba75a"
     },
     {
       "source": "assets/characters/powers-atlas-v1.png",
@@ -209,6 +264,39 @@
       "sourceSha256": "328b1fb1bedf835ad6a2aff4880aa9d1c5576ef75b2e046369b28ca0997d6802",
       "outputSha256": "2262aeeeaf30b3a9b22025231da5994320d615db60bac323ebf5a08c2a5f2d21",
       "rgbaSha256": "d2e90d6067cd80c14ac79e3f4526f048738ce29a48febb1c59de1f51c74cf029"
+    },
+    {
+      "source": "assets/minibosses/fiscalizador-v1.png",
+      "output": "assets/minibosses/fiscalizador-v1.webp",
+      "width": 2172,
+      "height": 724,
+      "originalBytes": 1237781,
+      "optimizedBytes": 971248,
+      "sourceSha256": "8dcba68f14ced4e21a827daa26e541676ad5ad2820a72f08b84e33fcdb066820",
+      "outputSha256": "d7390beb77365117a6080d287df33dbaad50cb9d09ef75c4e5275341c773a856",
+      "rgbaSha256": "71b94a9e3fd04e910fa46b3397f76226a00f303df5d756a4753420ef2cda3809"
+    },
+    {
+      "source": "assets/minibosses/huaco-v1.png",
+      "output": "assets/minibosses/huaco-v1.webp",
+      "width": 2172,
+      "height": 724,
+      "originalBytes": 1547563,
+      "optimizedBytes": 1207930,
+      "sourceSha256": "6ff82079b3ee2cdc537fde428f5ba48b4d7c68755d24f1361176bbb1939770c7",
+      "outputSha256": "4f9bd7ac5773d0e6ae5a601329c8b46a1d26ef3cb6b567bf60c099780bae63a5",
+      "rgbaSha256": "136a7ac42dcd6c660ed8bc4f767f5b1cbdb50b2b5b734a6e967c46823a7f0d7e"
+    },
+    {
+      "source": "assets/minibosses/paloma-v1.png",
+      "output": "assets/minibosses/paloma-v1.webp",
+      "width": 2172,
+      "height": 724,
+      "originalBytes": 1412064,
+      "optimizedBytes": 1016756,
+      "sourceSha256": "c8041f9e84791d61de747820cfe29b5be188a3fab2a4d3528f9966c018fb2858",
+      "outputSha256": "f9036d9db80ff2e1a4b93c367683df0c02eafcf970c8f583937a90c57e129192",
+      "rgbaSha256": "b4055e5f8dbe9b3c4bdf1abd09eb5ba03add597b3a306e7c556793b316ff34c2"
     }
   ],
   "previews": [
@@ -234,6 +322,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 45670501,
-  "optimizedBytes": 33225676
+  "originalBytes": 60814239,
+  "optimizedBytes": 44126790
 }
