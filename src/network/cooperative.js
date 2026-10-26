@@ -47,7 +47,7 @@ receive(m){
 },
 showReward(pending){
  this.activityPending=!!pending;const key=pending?pending.id+':'+pending.phase+':'+pending.applied[this.session.slot]:'';if(key===this.activityKey)return;this.activityKey=key;
- if(pending){P.Market.close(false);this.paused=false;P.Core.clear()}
+ if(pending){P.Evolutions.close();P.Market.close(false);this.paused=false;P.Core.clear()}
  if(!pending){if(!this.paused)P.$('#overlay').hidden=true;return}
  const leave={title:'Salir de la sala',action:()=>this.leave()};
  if(pending.phase==='opening'){P.UI.show('Abriendo cofre…','La sala está en pausa para los dos.',[leave]);return}
@@ -63,5 +63,5 @@ tick(dt){
  // El servidor es la única autoridad: no se ejecuta Game.update en este cliente.
 },
 pause(){if(this.reconnecting||this.activityPending)return;if(this.paused){this.paused=false;P.$('#overlay').hidden=true;return}this.paused=true;P.Core.clear();this.send({type:'input',x:0,y:0});P.UI.show('Cooperativo · Opciones','Tu amigo continúa jugando. Esta pantalla no pausa la sala.',[{title:'Seguir jugando',action:()=>this.pause()},{title:'Salir de la sala',action:()=>{this.leave();P.UI.menu()}}])},
-leave(menu=true){this.session=null;this.active=false;this.activityPending=false;this.activityKey="";P.$("#coop-hud").textContent="";this.peers=[];this.paused=false;this.reconnecting=false;if(this.ws){this.send({type:'leave'});const ws=this.ws;this.ws=null;ws.close()}P.$('#coop-begin').hidden=true;P.$('#coop-leave').hidden=true;P.$('#coop-create').disabled=false;P.$('#coop-join').disabled=false;this.status('');P.$('#pause').setAttribute('aria-label','Pausar partida');if(menu)P.UI.menu()}
+leave(menu=true){P.Evolutions.close();this.session=null;this.active=false;this.activityPending=false;this.activityKey="";P.$("#coop-hud").textContent="";this.peers=[];this.paused=false;this.reconnecting=false;if(this.ws){this.send({type:'leave'});const ws=this.ws;this.ws=null;ws.close()}P.$('#coop-begin').hidden=true;P.$('#coop-leave').hidden=true;P.$('#coop-create').disabled=false;P.$('#coop-join').disabled=false;this.status('');P.$('#pause').setAttribute('aria-label','Pausar partida');if(menu)P.UI.menu()}
 };

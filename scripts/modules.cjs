@@ -56,6 +56,10 @@ module.exports = [
     "output": "js/combat.js"
   },
   {
+    "source": "src/systems/evolutions.js",
+    "output": "js/evolutions.js"
+  },
+  {
     "source": "src/systems/progression.js",
     "output": "js/systems.js"
   },
