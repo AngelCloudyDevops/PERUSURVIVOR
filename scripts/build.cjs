@@ -2,9 +2,10 @@ const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypt
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist'),modules=require('./modules.cjs');
 // Estos atlas se conservan como fuentes; simpleStyle no los solicita en ejecución.
 const archivedMapArt=new Set(['campo-props-v1','plaza-props-v1','machu-props-v1','ground-tiles-v1'].map(id=>'assets/environment/'+id+'.webp'));
+const archivedCinematics=new Set(['assets/bosses/gallinazo-comic-v1.webp']);
 // Prompts y metadatos de autoría: permanecen en Git; el runtime no los solicita.
 const sourceMetadata=new Set(['assets/characters/atlas.json','assets/characters/powers-atlas.json','assets/characters/streamers-atlas.json','assets/enemies/gallinazos-atlas.json','assets/enemies/rivales-atlas.json','assets/characters/kingteka-ultimate-portrait.json','assets/bosses/gallinazo-phase2-frames.json','assets/bosses/gallinazo-rig-frames.json']);
-function archivedAsset(rel){const normalized=rel.split(path.sep).join('/');if(sourceMetadata.has(normalized)||normalized.endsWith('.prompt.txt'))return true;return archivedMapArt.has(normalized)&&/simpleStyle\s*:\s*true/.test(fs.readFileSync(path.join(root,'src/rendering/map-art.js'),'utf8'))}
+function archivedAsset(rel){const normalized=rel.split(path.sep).join('/');if(sourceMetadata.has(normalized)||archivedCinematics.has(normalized)||normalized.endsWith('.prompt.txt'))return true;return archivedMapArt.has(normalized)&&/simpleStyle\s*:\s*true/.test(fs.readFileSync(path.join(root,'src/rendering/map-art.js'),'utf8'))}
 function copy(from,to){fs.mkdirSync(path.dirname(to),{recursive:true});fs.copyFileSync(from,to)}
 function build(){
  // dist es una salida reconstruible; comprobar el destino antes de limpiarlo.
