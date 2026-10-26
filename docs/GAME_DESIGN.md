@@ -426,7 +426,13 @@ Derrotas de minijefes (2,2 s): el Fiscalizador se desploma y pierde cinco conos;
 Veteranos: coraza bronce, hombreras remachadas y grebas. Élites: coraza violeta con cristal y hombreras puntiagudas. No cubren las caras. Al atacar: chispas bronce o runas violetas; proyectiles, pisotones y embestidas incorporan adornos del rango. Esta mejora visual no cambia daño, alcance ni colisiones.
 
 
+
 Segunda pasada de equilibrio: cada descarga de escopeta aplica 100 %, 35 % y 15 % por impactos posteriores contra el mismo enemigo; reinicia por enemigo, disparo y jugador. Minijefes usan vida base × (1 + clamp((mapTime-45)/75,0,2.6)) × 1,65 para dos jugadores. Salud fijada al nacer; laboratorio conserva base, sin ajuste por daño/nivel del jugador. Minions y jefes finales/arenas conservan salud. Ver COMBAT_BALANCE_2.md.
+
+
+### Gallinazo: fase II física y ataques propios
+La transformación cambia el cuerpo al atlas gallinazo-phase2-v1: cresta erizada, cuello y hombros reforzados, alas dentadas con puntas marfil y fisuras violetas. Se revela a los 2,65 s de la ulti entre rayos localizados y continúa en combate; no es una recoloración. La tarjeta anterior se sustituye por un único panel izquierdo con las proporciones de Kingteka/Fujimori.
+Tras la ulti, las plumas normales pasan a Plumas serpiente: dos abanicos de nueve proyectiles ondulantes, 14 de daño, separados 0,42 s tras 1,1 s de aviso. La invocación pasa a Tormenta de azotea: tres círculos de radio 46 fijados al preparar el ataque, 18 de daño por impacto, aviso mínimo 1,1 s y golpes escalonados 0,18 s. No se colocan sobre cobertura; se respetan los bordes y la visibilidad del aviso. Las picadas mantienen sus avisos y comportamiento. Máximo global: 70 amenazas. Los rayos localizados tienen menor intensidad y no oscilan en movimiento reducido.
 
 Cada minijefe tiene motivos sintetizados propios de entrada, aviso de ataque, agotamiento y derrota (silbato, arrullo tonal o cerámica grave). La flecha del borde indica nombre, dirección y distancia cuando su sprite está completamente fuera de vista; desaparece al volver, morir o entrar a una arena. Respeta silencio y pausa.
 Variantes creativas de veteranos y élites: Pablo ingeniero con casco blanco, chaleco y pala; Tyrone musculoso con camiseta y cinturón; Uniqua abanderada del Perú; Tasha guardaespaldas de terno negro; Austin mecánico con casco blanco y llave; PNP con escudo y vara. Los élites añaden acabados propios al oficio, sin armadura genérica. Los accesorios siguen seis claves de caminata y una pose de preparación/liberación, bajo la transformación del cuerpo completo. No cambian ataques ni colisiones.
