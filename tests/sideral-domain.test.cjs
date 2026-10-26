@@ -27,5 +27,6 @@ test('Sideral: choque daña, rebota y al terminar restaura coordenadas',()=>{
 test('Sideral: el dominio entra directamente y cada pulso nace desde el personaje',()=>{
  const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);const d=s.sideralDomain;
  sim.tick(.4,[{},{}]);assert(d.age>0);assert.equal(d.card,undefined);
+ assert.equal(P.SideralDomain.pose(P.SideralDomain.entry*.6).hop,0);assert(P.SideralDomain.pose(P.SideralDomain.entry*.76).hop>0);assert(P.SideralDomain.pose(P.SideralDomain.entry*.92).laugh>0);
  p.x=333;p.y=222;P.SideralDomain.burst();assert.equal(d.waveX,333);assert.equal(d.waveY,222);
 });
