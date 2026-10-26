@@ -8,8 +8,8 @@ function loadEngine(root){
  const context={console,Math,innerWidth:1280,innerHeight:720,devicePixelRatio:1,requestAnimationFrame(){},addEventListener(){},localStorage:{getItem(){},setItem(){}},document:{body:element(),querySelector(s){if(!elements.has(s))elements.set(s,element());return elements.get(s)},querySelectorAll(){return []},createElement:element}};
  context.window=context;vm.createContext(context);
  const built=fs.existsSync(path.join(root,'js/data.js'));
- const modules=built?require(path.join(root,'backend/modules.json')):require('../scripts/modules.cjs');
- for(const m of modules)vm.runInContext(fs.readFileSync(path.join(root,built?m.output:m.source),'utf8'),context,{filename:m.source,timeout:1000});
+ const modules=built?require(path.join(root,'backend/modules.json')).map(m=>typeof m==='string'?{output:m}:m):require('../scripts/modules.cjs');
+ for(const m of modules)vm.runInContext(fs.readFileSync(path.join(root,built?m.output:m.source),'utf8'),context,{filename:m.source||m.output,timeout:1000});
  return context.P;
 }
 class Simulation{

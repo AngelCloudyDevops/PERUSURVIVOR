@@ -227,6 +227,30 @@ Minibosses.gait deriva cuadro, apoyo y elevación de walkPhase (distancia real t
 `rendering/player-feedback.js` comparte la entrada de daño de contacto, proyectiles y minijefes entre navegador y servidor. Registra `hurtAt`, vector del golpe y `deadAt` como datos serializables; reutiliza `Loot.damage` y los límites de invulnerabilidad existentes. La presentación transforma el cuerpo completo del atlas, sin recortes de extremidades ni nuevas descargas. La caída no borra al jugador y no modifica recompensas ni reanimación.
 El resultado terminal mantiene `mode=end`, congela el combate y usa un reloj visual de 0,95 s antes de mostrar los botones. `Game.start` y el menú cancelan cualquier resultado pendiente. El cooperativo procesa el resultado una sola vez y comparte el avance visual entre ambos cuerpos. `PlayerAttackArt` usa `attackAim` y `aimUntil`, registrados junto con los proyectiles, también para la orientación de respaldo. World evita el parpadeo durante las reacciones y oculta los adornos de equipo de jugadores caídos.
 
+## Evoluciones propias y menú de habilidades
+Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución exclusiva, disponible mediante elección con rango 5 y nivel 8. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.
+
+- cristorata: **Directo encadenado** — Dos micrófonos de retorno enlazan hasta tres rivales con sonido.
+- cuy: **Terremoto del cuy** — Una onda completa empuja y deja una zona de temblor a tus pies.
+- paloma: **Corona de plumas** — Doce plumas salen en todas direcciones y atraviesan dos rivales.
+- alan: **Eco de la plaza** — Un discurso amplio alcanza también a los rivales detrás de ti.
+- alberto: **Órbita presidencial** — Seis bandas giran alrededor y una onda golpea el centro.
+- keiko: **Abanico solar** — Cuatro abanicos salen en cruz, regresan y dejan un remolino junto al objetivo.
+- ollanta: **Marcha del comando** — Un cono largo y estrecho empuja; dos ondas laterales cubren los flancos.
+- kingteka: **Escopeta Contra** — Tres disparos concentrados de alta velocidad perforan ocho rivales.
+- shaka: **Tornado bananero** — Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.
+- najasor: **Marea CPEZ** — Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.
+- cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
+- fuzo: **Banca infinita** — Cinco tarjetas rápidas atraviesan ocho rivales y enlazan al grupo más cercano.
+- charles: **Lluvia de pañales** — Tres pañales dejan nubes y una nube adicional aparece junto al objetivo.
+- axelbenba: **Clip relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
+- cerdito: **Fiesta del cerdito** — Doce balas salen en círculo; una onda corta despeja el puesto.
+- sustento: **Infestación veloz** — Tres cucarachas perforantes avanzan en zigzag; una zona de enjambre queda junto al objetivo.
+- cevichero: **Marea del enjambre** — Seis cucarachas salen en círculo y regresan como bumeranes.
+- g5: **Huracán G5** — Tres barridos consecutivos cubren frente y flancos, con fuerte empuje.
+
+P.Evolutions define perfiles de ataque inmutables y efectos serializables por personaje; Combat conserva el ID de ataque original para mantener sus sprites. Las animaciones nuevas son geometría pixel art de raíles, ondas, abanicos, enjambres, plumas y barridos, además de trayectorias radiales, retorno, búsqueda y zonas persistentes según el perfil. El servidor usa el mismo módulo. Movimiento reducido estabiliza la animación decorativa sin alterar impactos. El menú es solo de consulta: no concede niveles ni poderes.
+Vulture-dark-scene sustituye el render anterior manteniendo js/vulture-cinematic.js. Su cámara usa el ojo del mismo sprite como punto inicial y retrocede continuamente. La deformación solo afecta a y<0,4 (plumas altas), preservando cabeza, cuello, torso y pies. Aura en dos pasadas con 22 motas y proyección de 28 plumas; datos derivados del reloj, sin entidades ni temporizadores. La escena previa queda fuera del manifiesto de módulos.
 
 Ambient.art carga una sola imagen nature-atlas-v2.webp bajo demanda y dibuja celdas fijas de 128 px sin suavizado. Cuatro poses de paloma y cuatro plantas, una llamada drawImage por sprite. Si falla la carga conserva el dibujo anterior. Original PNG archivado; empaquetado por vecino más cercano y hashes en nature-art-audit.json. El build omite el PNG duplicado.
 
@@ -238,3 +262,10 @@ Las entradas se inician con Minibosses.beginEntry al aparecer en mapa/laboratori
 Remate DENUNCIADO: papel compacto de 72 x 48 unidades, caida acelerada con giro que se estabiliza al aterrizar, sello de 84 x 20 sin ampliacion gigante, impacto unico sincronizado con audio, rebote y onda breve. Se dibuja directamente a resolucion completa para conservar texto nitido. Se fija al lugar donde termina la ulti y respeta pausa y movimiento reducido. El panel tambien usa resolucion completa sin suavizado y reduce el gallinazo para evitar recortar las alas.
 
 La fase 2 de Minibosses usa enraged latched, mini-fury y mini-chain-gap con relojes dt serializables. beginFury se activa una vez al cruzar hp<=max*0.5 fuera de la entrada y retira solo los peligros de miniId. warn configura un único seguimiento del ataque primario; recover consume chainLeft y chainTick vuelve a avisar sin crear cadenas infinitas. El salto lateral resuelve colisiones. La notificación sonora se deduplica por miniId en cada cliente y se restablece al reiniciar.
+El manifiesto de módulos del paquete publicado conserva solo las rutas de salida; el servidor acepta también el formato anterior con objetos. Así evita duplicar rutas de desarrollo y mantiene el margen de tamaño sin alterar las imágenes ni el orden de carga.
+
+El build excluye los JSON de prompts de generación de arte (sin referencias desde el juego). Permanecen completos en Git como documentación de autoría; las pruebas comprueban su exclusión y mantienen la comparación exacta de todos los recursos de ejecución.
+
+## Láminas de puntería y copias de caminata
+WalkArt carga las láminas `public/assets/aim/*-aim-v1.webp` bajo sus IDs existentes `attack-<personaje>`. Cada lámina contiene 30 figuras conectadas: cinco direcciones por seis pasos. El empaquetador generaliza las filas y columnas y mantiene el recorte por figura entera, una escala común basada en la fila horizontal y el anclaje al suelo. Keiko usa tres columnas y diez filas para disponer de más espacio entre abanicos; las demás usan seis columnas y cinco filas. No se cortan extremidades. PlayerAttackArt calcula el octante desde `attackAim`, refleja cuando corresponde y selecciona el mismo paso de distancia; reutiliza la precarga, límite de descargas, reintento y caché de WalkArt.
+Los originales de image_gen se conservan como PNG, con prompts y auditoría en `docs/directional-aim-prompts.json` y `docs/directional-aim-audit.json`. Las copias de runtime se reducen mecánicamente con vecino más cercano y se codifican WebP sin pérdida. Para conservar margen de despliegue, los 18 jugables usan copias `walk-v2.webp` de 900 px de ancho, sin cambiar los seis cuadros originales; los originales v1 permanecen en el repositorio y el build omite solo esas copias antiguas cuando existe v2. Minions y aleteos conservan sus archivos. `docs/walk-runtime-audit.json` registra archivos, resoluciones, hashes y ahorro. El cooperativo comparte la misma dirección serializada y no necesita imágenes en el servidor.

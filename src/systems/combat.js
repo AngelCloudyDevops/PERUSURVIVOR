@@ -1,14 +1,14 @@
 'use strict';
 P.Combat={
-orbitPoints(p,time){return Array.from({length:3},(_,i)=>{const a=time*2.8+i*Math.PI*2/3;return {x:p.x+Math.cos(a)*100*p.reach,y:p.y+Math.sin(a)*100*p.reach}})},
+orbitPoints(p,time){const count=p.id==='alberto'&&p.evolved?.primary?6:3;return Array.from({length:count},(_,i)=>{const a=time*2.8+i*Math.PI*2/count;return {x:p.x+Math.cos(a)*100*p.reach,y:p.y+Math.sin(a)*100*p.reach}})},
 inArc(p,e,range,arc){const dx=e.x-p.x,dy=e.y-p.y;if(Math.hypot(dx,dy)>range+(e.r||0))return false;const angle=Math.atan2(dy,dx)-p.aim;return Math.abs(Math.atan2(Math.sin(angle),Math.cos(angle)))<=arc/2+1e-9},
-cast(){const s=P.state,p=s.player,a=P.Data.attacks[p.attack],targets=s.enemies.filter(e=>e.hp>0),props=P.Terrain.active().filter(o=>o.solid&&Number.isFinite(o.hp)&&o.hp>0),candidates=[...targets,...props];if(!candidates.length)return false;const target=candidates.reduce((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)<Math.hypot(b.x-p.x,b.y-p.y)?a:b);
+cast(){const s=P.state,p=s.player,a=P.Evolutions?.attack(p)||P.Data.attacks[p.attack],targets=s.enemies.filter(e=>e.hp>0),props=P.Terrain.active().filter(o=>o.solid&&Number.isFinite(o.hp)&&o.hp>0),candidates=[...targets,...props];if(!candidates.length)return false;const target=candidates.reduce((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)<Math.hypot(b.x-p.x,b.y-p.y)?a:b);
 const r=a.range*p.reach;if(a.kind==='melee'&&Math.hypot(target.x-p.x,target.y-p.y)>r+(target.r||0))return false;
-P.Audio.fx('attack');p.aim=Math.atan2(target.y-p.y,target.x-p.x);p.facing=Math.cos(p.aim)<0?-1:1;p.castUntil=s.elapsed+.28;p.castStarted=s.elapsed;p.attackAim=p.aim;p.aimUntil=s.elapsed+Math.min(.5,Math.max(.28,p.rate||.28));p.castPoseDuration=P.PlayerAttackArt?.duration(p)||.28;s.effects.push({kind:'cast',x:p.x,y:p.y-15,life:.25,maxLife:.25,color:p.color});
+P.Audio.fx('attack');p.aim=Math.atan2(target.y-p.y,target.x-p.x);p.facing=Math.cos(p.aim)<0?-1:1;p.castUntil=s.elapsed+.28;p.castStarted=s.elapsed;p.attackAim=p.aim;p.attackFacing=p.facing;p.aimUntil=s.elapsed+Math.min(.5,Math.max(.28,p.rate||.28));p.castPoseDuration=P.PlayerAttackArt?.duration(p)||.28;s.effects.push({kind:'cast',x:p.x,y:p.y-15,life:.25,maxLife:.25,color:p.color});
 if(a.shout)s.effects.push({kind:'shout',text:a.shout,x:p.x,y:p.y-60,life:.55,maxLife:.55,color:p.color});
 if(a.kind==='spread'||a.kind==='boomerang'){
- P.Ultimate.shot();const count=(a.count||(p.attack==='feathers'?5:a.kind==='spread'?3:1))+(p.projectileBonus||0),speed=a.speed||470;
- for(let i=0;i<count;i++){const angle=p.aim+(i-(count-1)/2)*(a.spread===undefined?.18:a.spread);s.shots.push({x:p.x,y:p.y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,angle,life:a.kind==='boomerang'?1.3*p.reach:r/speed,turnAt:.55*p.reach,age:0,history:[],kind:a.kind,glyph:a.glyph,color:p.color,power:p.power*(a.powerScale||1),hits:new Set(),remaining:a.kind==='boomerang'?Infinity:(a.pierce||1)+(p.primaryPierce||0),ultimate:P.Ultimate.active(),motion:a.motion,amplitude:a.amplitude||0,frequency:a.frequency||0,cloud:!!a.cloud,returning:false})}
+ P.Ultimate.shot();const count=(a.count||(p.attack==='feathers'?5:a.kind==='spread'?3:1))+Math.max(0,(p.projectileBonus||0)-(p.evolved?.primary?p.evolutionBaseBonus||0:0)),speed=a.speed||470;
+ for(let i=0;i<count;i++){const angle=a.radial?p.aim+i*Math.PI*2/count:p.aim+(i-(count-1)/2)*(a.spread===undefined?.18:a.spread);s.shots.push({x:p.x,y:p.y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,angle,life:a.kind==='boomerang'?1.3*p.reach:r/speed,turnAt:.55*p.reach,age:0,history:[],kind:a.kind,glyph:a.glyph,color:a.color||p.color,power:p.power*(a.powerScale||1),hits:new Set(),remaining:a.kind==='boomerang'?Infinity:(a.pierce||1)+(p.primaryPierce||0),ultimate:P.Ultimate.active(),motion:a.motion,amplitude:a.amplitude||0,frequency:a.frequency||0,cloud:!!a.cloud,returning:false,homing:!!a.homing,evolution:p.evolved?.primary?p.id:null})}
  if(['BULLET','FISH','ROACH','DIAPER'].includes(a.glyph))s.effects.push({kind:'muzzle',x:p.x+Math.cos(p.aim)*24,y:p.y+Math.sin(p.aim)*24,angle:p.aim,ultimate:P.Ultimate.active(),life:.12,maxLife:.12,color:a.glyph==='BULLET'?'#ffd48c':p.color});
 }
 if(['nova','cone','melee'].includes(a.kind)){
@@ -18,6 +18,7 @@ if(['nova','cone','melee'].includes(a.kind)){
  for(const e of targets){if(this.inArc(p,e,r,arc))P.Entities.hurt(e,p.power,a.push||(a.kind==='nova'?28:10));if(s.mode!=='play')return true}
 }
 if(a.kind==='orbit')for(const point of this.orbitPoints(p,s.elapsed)){const obstacle=P.Terrain.hit(point.x,point.y,15);if(obstacle)P.Terrain.damage(obstacle,p.power);for(const e of targets){if(Math.hypot(point.x-e.x,point.y-e.y)<e.r+24)P.Entities.hurt(e,p.power);if(s.mode!=='play')return true}}
+if(s.mode==='play')P.Evolutions?.afterCast(p,a,target);
 return true
 },
 impact(shot){if(!shot.cloud)return;P.state.fields.push({x:shot.x,y:shot.y,r:85,power:shot.power*.25,life:2.5,tick:0,color:'#a6bb78'});shot.cloud=false},
@@ -27,6 +28,7 @@ nearSegment(index,x,y,tx,ty){const r=index.radius+7,found=[];for(let cy=Math.flo
 tick(dt){const s=P.state,p=s.player;P.Progression?.tick(dt);if(s.mode!=='play')return;s.fire-=dt;if(s.fire<=0)s.fire=this.cast()?p.rate/(P.Ultimate.active()?2:1):.05;if(s.mode!=='play')return;const enemyIndex=s.shots.length>=8&&s.enemies.length>=24?this.indexEnemies(s.enemies):null;
 for(const shot of s.shots){const oldX=shot.x,oldY=shot.y,oldAge=shot.age;shot.history.push({x:shot.x,y:shot.y});if(shot.history.length>8)shot.history.shift();shot.age+=dt;shot.life-=dt;
  if(shot.kind==='boomerang'&&shot.age>shot.turnAt){if(!shot.returning){shot.returning=true;shot.hits.clear()}const dx=p.x-shot.x,dy=p.y-shot.y,d=Math.hypot(dx,dy)||1;shot.vx=dx/d*530;shot.vy=dy/d*530;if(d<18)shot.life=0}
+ if(shot.homing){const target=s.enemies.filter(e=>e.hp>0).reduce((a,b)=>!a||Math.hypot(b.x-shot.x,b.y-shot.y)<Math.hypot(a.x-shot.x,a.y-shot.y)?b:a,null);if(target){const angle=Math.atan2(target.y-shot.y,target.x-shot.x),speed=Math.hypot(shot.vx,shot.vy);shot.vx=Math.cos(angle)*speed;shot.vy=Math.sin(angle)*speed}}
  shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;
  if(shot.motion==='zigzag'){const wobble=(Math.sin(shot.age*shot.frequency)-Math.sin(oldAge*shot.frequency))*shot.amplitude;shot.x-=Math.sin(shot.angle)*wobble;shot.y+=Math.cos(shot.angle)*wobble}
  const obstacle=P.Terrain.hit(shot.x,shot.y,5);if(obstacle){P.Terrain.damage(obstacle,shot.power);this.impact(shot);shot.life=0;continue}
