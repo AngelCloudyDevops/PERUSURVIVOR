@@ -1,9 +1,9 @@
 # Contrato visual de entradas de ulti
 
-Regla obligatoria para nuevas tarjetas, incluidas las expansiones UR: usar la composición de Kingteka y conservar el cartoon pixel art del README.
+Regla obligatoria para nuevas tarjetas, con excepción expresa del dominio de Makanaky: usar la composición de Kingteka y conservar el cartoon pixel art del README.
 
 - Ancho: 40 % del viewport; alto: 82 %; inicio vertical: 8 %. Borde izquierdo en x = 0, sin margen de centrado del escenario. Geometría compartida: P.UltimateComic.layout. La diagonal termina al 64 % del ancho en la base.
-- Duración: 1,3 s. En Makanaky la tarjeta completa aparece sobre el mapa original antes del callejón; no se habilitan golpes durante esa entrada.
+- Duración: 1,3 s. Makanaky usa la excepción de cinemática descrita abajo; no se habilitan golpes durante su entrada.
 - Marco oscuro visible, borde interior de color y filo claro. Tipografía de cómic con contorno oscuro. El color depende del personaje; la silueta y jerarquía se conservan.
 - Retrato dedicado de cintura arriba, con cabeza, hombros y puños completos. Animación propia; no ampliar un sprite de cuerpo entero ni cortar brazos en límites de celda.
 - Dibujar el panel y los retratos directamente a resolución de pantalla con imageSmoothingEnabled=false. No pasarlos por el lienzo de 640 × 360 del dominio ni añadir sus márgenes.
@@ -37,3 +37,6 @@ Mantener el botón recorre el ciclo completo también al golpear al aire. Fallar
 Primera persona usa los segmentos raster del mismo atlas, con codo compartido y cuatro trayectorias continuas; se dibuja directamente a resolución de pantalla y se recorta al área del callejón. La perspectiva lateral afecta a paredes, suelo, rivales y proyectiles por igual. Una inclinación leve y el balanceo de brazos refuerzan el paso; movimiento reducido estabiliza esos adornos.
 
 En tercera persona el lateral de la cámara queda fijo: se mueve Makanaky por la pantalla, con inclinación del cuerpo y zancada, y su compañero lo sigue cuando observa desde el refugio. La mira se desplaza con la posición del actor; no simular el paso moviendo únicamente los minions.
+
+## Excepción solicitada: expansión de Makanaky
+Entrada a pantalla completa de 3 s, render nativo sin panel diagonal. Ocho poses completas de cintura arriba muestran subida de manos, unión de palmas, sello y apertura de brazos con grito de cómic «¡BÓTAME TU GAAAA!». Grietas, polvo, postes, rejas y fachadas se construyen por fases desde el suelo; después se presenta EL CALLEJÓN DE LA REALEZA y empieza el combate existente. Movimiento reducido fija el gesto y elimina sacudidas y partículas móviles. Asset: makanaky-domain-activation-v1.png/.webp; metadata y prompt en su JSON y docs/makanaky-domain-cinematic-prompts.json. Generado mediante image_gen integrado.

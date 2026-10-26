@@ -1,0 +1,70 @@
+{
+  "image": "makanaky-domain-activation-v1.webp",
+  "width": 1774,
+  "height": 887,
+  "frames": [
+    {
+      "sx": 73,
+      "sy": 41,
+      "w": 360,
+      "h": 399,
+      "anchorX": 163.9
+    },
+    {
+      "sx": 486,
+      "sy": 41,
+      "w": 333,
+      "h": 399,
+      "anchorX": 155.0
+    },
+    {
+      "sx": 928,
+      "sy": 41,
+      "w": 315,
+      "h": 399,
+      "anchorX": 152.9
+    },
+    {
+      "sx": 1375,
+      "sy": 41,
+      "w": 301,
+      "h": 399,
+      "anchorX": 149.8
+    },
+    {
+      "sx": 77,
+      "sy": 466,
+      "w": 320,
+      "h": 384,
+      "anchorX": 140.5
+    },
+    {
+      "sx": 468,
+      "sy": 466,
+      "w": 384,
+      "h": 384,
+      "anchorX": 156.6
+    },
+    {
+      "sx": 858,
+      "sy": 465,
+      "w": 450,
+      "h": 385,
+      "anchorX": 221.4
+    },
+    {
+      "sx": 1302,
+      "sy": 457,
+      "w": 461,
+      "h": 393,
+      "anchorX": 257.3
+    }
+  ],
+  "heightMax": 399,
+  "sha256": "69f86f067cbfa1b4f435ed6b244ae90b70f2be15839b43f04cadf2112445b58e",
+  "tool": "image_gen built-in",
+  "reference": "makanaky-domain-portrait-v1.png",
+  "style": "Cartoon pixel art with dark outlines, grouped shading and transparent background",
+  "prompt": "Eight connected waist-up poses: hands low, hands rising, palms approaching, palms together, raised hand seal, opening palms and shouting, spreading arms, triumphant shout. Preserve green hair, sunglasses, pink shirt, gold jewelry. Transparent 4x2 atlas, complete hands and shoulders; no effects or text.",
+  "runtimeEncoding": "WebP quality 92; full-resolution PNG master retained"
+}

@@ -333,6 +333,7 @@ module.exports = [
     "source": "src/rendering/domain-art.js",
     "output": "js/domain-art.js"
   },
+  {"source":"src/rendering/domain-intro.js","output":"js/domain-intro.js"},
   {"source":"src/network/live-gifts.js","output":"js/live-gifts.js"}
 , {source:"src/systems/dragon-ultimate.js",output:"js/dragon-ultimate.js"}
 , {source:"src/rendering/dragon-art.js",output:"js/dragon-art.js"}
