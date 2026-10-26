@@ -697,3 +697,5 @@ Sustituye visualmente a La Combi Final: minibús blanco y azul, cristales oscuro
 # Sideral · UR de control
 
 Sideral es un personaje UR de Ingenio cuyo ataque automático, **Mirada Sideral**, cubre un cono frontal de 270 unidades. Los minions normales huyen durante 0,9 s; los pesados resisten y retroceden menos, los minijefes solo sufren una interrupción breve y los jefes no abandonan su patrón. Cada objetivo obtiene 2,5 s de resistencia antes de poder ser asustado otra vez. Su evolución **Rostro prohibido** ensancha el cono y prolonga el miedo, sin convertir la rareza en daño bruto gratuito.
+
+El resultado de Makanaky muestra dos coronas pixel art desde combo máximo ×8; desde ×16 se iluminan con destellos pequeños. INTOCABLE exige propietario vivo y cero vida perdida durante toda la activación: golpes bloqueados o entrada protegida no cuentan, curarse después no borra el daño registrado. Es una distinción visual, sin premios ni cambios de balance. La coronación sintetizada se reproduce una vez al mostrar una distinción, con cuatro notas en ×16 y tres en el resto. Se mantienen los dos segundos del resultado y movimiento reducido.

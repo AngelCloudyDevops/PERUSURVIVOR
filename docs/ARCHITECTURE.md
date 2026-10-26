@@ -599,3 +599,5 @@ Presupuesto del bus: boss-atlas-packed-v2.webp recodifica a calidad 100 el atlas
 # Arte y control de Sideral
 
 SideralArt carga un atlas WebP 4×2 de figuras completas: tres poses de locomoción y cinco cuadros continuos de ataque. Intercepta únicamente el dibujo del id `sideral`; los demás personajes conservan Sprites y PlayerAttackArt. Combat registra resistencia temporal por enemigo y usa la carga serializable existente para producir la huida, por lo que el comportamiento funciona también en la simulación cooperativa sin un estado paralelo.
+
+Domain.damageTaken acumula únicamente pérdida efectiva de HP después de PlayerFeedback.hit del propietario; queda en el snapshot autoritativo del dominio. DomainFinale copia untouchable al resultado y deriva crownTier del peakCombo real (8/16). Las coronas reutilizan primitivas pixel art a escala entera; feedback deduplica coronation por activación y no emite durante pausa ni con propietario caído.
