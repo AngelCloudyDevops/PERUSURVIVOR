@@ -511,6 +511,8 @@ La colección se ordena por rareza (SSR→SR→R→C), estrellas o copias dispon
 Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Paloma en Plaza de Armas (uno activo). Abanico de tres ondas bloqueables y pulso cercano de 110 unidades, ambos avisados; al 50 % encadena dos abanicos. Conserva navegación, agotamiento, bonus, resumen, cobertura y derrota sin daño. Cofre: Silbato del caos o 50 monedas. Disponible directamente en Probar jefes. Arte nuevo de cuatro poses, sin sustituir personajes existentes.
 
 
+Trayectorias de ultis: cuyes en cuatro grupos de tres, con entradas por lados diferentes y cruce hacia enemigos cercanos. Las palomas planean, pican hacia objetivos del alcance y recuperan altura; sin objetivos solo planean. Se conserva el daño por pulsos, radio, duración y protección. No reaparecen círculos de alcance.
+
 Las ultis animales sustituyen las líneas de alcance y el recuadro amarillo por polvo, plumas y pequeños impactos. Los cuyes corren con seis pasos y las palomas aletean con poses de vuelo, fases desfasadas y trayectorias sin reinicios bruscos. La coraza mantiene su etiqueta; sus reglas y el daño permanecen iguales.
 
 Entradas animales v2: Paloma prepara el vuelo, eleva alas, empuja hacia abajo y recoge las patas antes de elevarse. Cuy usa anticipación, impulso, patas recogidas, extensión para aterrizar, compresión y recuperación. Se elimina el ala artificial superpuesta. Duración, protección y daño permanecen iguales.
@@ -546,5 +548,8 @@ Perfil de jugador: monedas, colección con bloqueos, partidas, victorias, bajas,
 
 ### Rareza UR de Makanaky
 Makanaky pasa a UR · Supremo, por encima de SSR, sin cambiar sus estadísticas ni su desbloqueo gratuito. La colección permite filtrar UR y la coloca primero al ordenar por rareza (después de los listos para ascender). Probabilidades base: C 60 %, R 27 %, SR 9 %, SSR 3 %, UR 1 %. UR reinicia ambas garantías; la garantía de 30 asegura SSR o superior y nunca rebaja un UR natural. Los recibos antiguos conservan su rareza histórica.
+
+### Makanaky cuerpo a cuerpo
+UR gratuito conservado. Puño de la realeza: 100 unidades, arco 120°, recarga 0,56 s y empuje 24. Base: 125 PV, velocidad 200 y daño 32. Evolución Combo de la realeza: alcance 135, arco 150°, daño ×1,35 y empuje 42; no dispara ondas. Seis poses de caminata ligadas a distancia recorrida y seis cuadros de golpe ligados al reloj de ataque. El minijefe conserva su arte y sus ataques.
 
 Panel exclusivo de ReySuperior: consultar hasta 20 usuarios por página, buscar nombres, entregar monedas enteras positivas (máximo 100.000 por operación, saldo máximo 10.000.000) o desbloquear un personaje existente. Nunca consume tiradas ni copias, no altera estrellas, victorias o estadísticas y no elimina contenido. Cada entrega requiere revisar destinatario y contenido, luego confirmar. El destinatario con una sesión antigua recibirá conflicto al guardar; debe descargar la copia de su cuenta o volver a iniciar sesión para recoger el cambio.

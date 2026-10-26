@@ -18,7 +18,7 @@ pump(){while(this.active<2&&this.queue.length){const sheet=this.queue.shift();th
  const finish=ok=>{sheet.ready=ok;sheet.failed=!ok;sheet.resolve(ok?sheet:null);this.active--;this.trim();this.pump()};
  image.onload=()=>{try{this.measure(sheet);finish(true)}catch{finish(false)}};image.onerror=()=>finish(false);image.src=this.url(sheet.id);
 }},
-url(id){if(id==='makanaky'||id==='attack-makanaky')return 'assets/minibosses/makanaky-v1.webp';if(this.integratedIds.includes(id))return 'assets/minions/'+id+'-integrated-v1.webp';if(id.startsWith('attack-'))return this.directionalIds.includes(id.slice(7))?'assets/aim/'+id.slice(7)+'-aim-v1.webp':'assets/attacks/'+id.slice(7)+'-attack-v1.webp';return 'assets/walks/'+id+'-walk-'+(P.Data.characters.some(c=>c.id===id)?'v2':'v1')+'.webp'},
+url(id){if(id==='makanaky'||id==='attack-makanaky')return 'assets/characters/makanaky-motion-v2.webp';if(this.integratedIds.includes(id))return 'assets/minions/'+id+'-integrated-v1.webp';if(id.startsWith('attack-'))return this.directionalIds.includes(id.slice(7))?'assets/aim/'+id.slice(7)+'-aim-v1.webp':'assets/attacks/'+id.slice(7)+'-attack-v1.webp';return 'assets/walks/'+id+'-walk-'+(P.Data.characters.some(c=>c.id===id)?'v2':'v1')+'.webp'},
 needed(){const id=P.Data.characters[P.state.chosen||0].id;return [id,'attack-'+id,...Array.from({length:6},(_,i)=>'enemy-'+i),...this.integratedIds]},
 init(){for(const id of this.needed())this.load(id)},
 readyForStart(){return typeof Image==='undefined'||this.needed().every(id=>this.sheets[id]?.ready)},
