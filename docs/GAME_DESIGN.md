@@ -324,7 +324,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - alberto: **Órbita presidencial** — Seis bandas giran alrededor y una onda golpea el centro.
 - keiko: **Abanico solar** — Cuatro abanicos salen en cruz, regresan y dejan un remolino junto al objetivo.
 - ollanta: **Marcha del comando** — Un cono largo y estrecho empuja; dos ondas laterales cubren los flancos.
-- kingteka: **Escopeta Contra** — Tres disparos concentrados de alta velocidad perforan ocho rivales.
+- kingteka: **Escopeta Contra** — Tres disparos concentrados, tres penetraciones base y pérdida de fuerza a distancia.
 - shaka: **Tornado bananero** — Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.
 - najasor: **Marea CPEZ** — Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
@@ -381,3 +381,5 @@ Los minijefes muestran nombre y vida en el HUD superior: una barra con divisor a
 
 ## Etiquetas de minions
 Los minions no muestran nombres, incluidos los pesados y la PNP. Los portadores conservan únicamente su barra de vida y la indicación de llave sobre la cabeza, ajustadas a la pose visible al caminar, atacar o recibir daño.
+
+Primera pasada de equilibrio: objetivos visibles dentro del alcance, prioridad a enemigos sobre cajas; proyectiles y áreas activas pueden continuar fuera de pantalla. Minions no inician avisos fuera de vista. Kingteka: 480 de alcance, intervalo 0,78 s, escala 0,6 y caída desde 180 al 35 % máximo; evolución con tres penetraciones base. Cerdito: 400, caída desde 140, daño cercano intacto. Sin aumento global de salud ni cambios de patrones de jefes. Comparación y límites: COMBAT_BALANCE.md.
