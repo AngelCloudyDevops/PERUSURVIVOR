@@ -36,6 +36,12 @@ test('Objetivo seguro: dentro de límites y fuera de obstáculos; descenso y rec
  const {P,e,M}=engine();P.state.player={x:999,y:999};const q=M.target(e);assert(q.x<=475&&q.y<=275);P.Terrain.hit=()=>true;assert.equal(JSON.stringify(M.target(e)),JSON.stringify({x:e.x,y:e.y}));assert.equal(M.lift(0),0);assert.equal(M.lift(M.takeoffDuration),700);const end=M.landingPose(M.landingDuration);assert(Math.abs(end.x)+Math.abs(end.y)+Math.abs(end.angle)<1e-8);for(let t=.59;t<1.2;t+=.01)assert(M.landingPose(t+.001).y>=M.landingPose(t).y);assert.equal(M.landingPose(1,true).angle,0);
 });
 
+test('Arena: cámara reserva HUD y encuadra jugador y Gallinazo reducido sin recortar alas',()=>{
+ const {P,e,M}=engine();P.state.encounter.definition={kind:'vulture'};P.VultureRig.arenaHeight=221;P.Vulture.reduced=()=>false;M.nightRoofReady=true;e.phase='approach';e.chaosForm=true;e.x=420;e.y=-250;
+ for(const [w,h,base] of [[1280,720,1.5],[844,390,1.5],[390,844,1.05]]){const f=M.cameraFrame(P.state.player,w,h,base),z=f.zoom,root=e.y+e.r*.5,top=(root-221*1.08-f.y)*z+h/2,left=(e.x-221*1.08-f.x)*z+w/2,right=(e.x+221*1.08-f.x)*z+w/2,px=(P.state.player.x-f.x)*z+w/2,py=(P.state.player.y-f.y)*z+h/2;assert(top>=-6);assert(left>=-6);assert(right<=w+6);assert(px>=-1&&px<=w+1);assert(py>=70&&py<=h-45)}
+ e.moonSequence=true;e.phase='vulture-activation';assert.equal(P.Vulture.draw({},e),true,'La arena no dibuja una segunda copia detrás de la tarjeta');
+});
+
 test('Cámara del despegue: encuadre conjunto, jugador seguro y continuidad entre tarjeta y subida',()=>{
  const {P,e,M,u}=engine();P.Vulture.reduced=()=>false;P.BossArt={camera:p=>({x:p.x*.9,y:p.y-70})};u.start(e);
  for(const [w,h,base] of [[1280,720,1.5],[390,844,1.05],[844,390,1.5]]){
