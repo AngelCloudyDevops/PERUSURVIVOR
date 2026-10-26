@@ -540,3 +540,5 @@ Perfil de jugador: monedas, colección con bloqueos, partidas, victorias, bajas,
 
 ### Rareza UR de Makanaky
 Makanaky pasa a UR · Supremo, por encima de SSR, sin cambiar sus estadísticas ni su desbloqueo gratuito. La colección permite filtrar UR y la coloca primero al ordenar por rareza (después de los listos para ascender). Probabilidades base: C 60 %, R 27 %, SR 9 %, SSR 3 %, UR 1 %. UR reinicia ambas garantías; la garantía de 30 asegura SSR o superior y nunca rebaja un UR natural. Los recibos antiguos conservan su rareza histórica.
+
+Panel exclusivo de ReySuperior: consultar hasta 20 usuarios por página, buscar nombres, entregar monedas enteras positivas (máximo 100.000 por operación, saldo máximo 10.000.000) o desbloquear un personaje existente. Nunca consume tiradas ni copias, no altera estrellas, victorias o estadísticas y no elimina contenido. Cada entrega requiere revisar destinatario y contenido, luego confirmar. El destinatario con una sesión antigua recibirá conflicto al guardar; debe descargar la copia de su cuenta o volver a iniciar sesión para recoger el cambio.
