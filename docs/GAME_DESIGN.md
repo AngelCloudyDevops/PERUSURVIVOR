@@ -472,6 +472,9 @@ Cada repetido entrega la devolución existente y una copia de su propio personaj
 La rareza afecta a la obtención, sin bonus automático de combate. La tercera pasada compara los 18 personajes con progresión idéntica y ajusta ataques base y evolucionados. Véase ROSTER_BALANCE.md para parámetros, resultados y límites del ensayo.
 
 Navegación de minijefes: rutas locales rodean coberturas con su radio completo, sin teletransporte ni atravesar esquinas. Recalculan ante bloqueo, cambios de terreno o desplazamiento del jugador; no inician ataques desde lejos o a través de paredes. Embestidas mantienen dirección fijada y castigo por choque. Tras el impacto, el Fiscalizador baja la guardia inclinado, la Paloma baja alas/cuerpo y el Huaco se asienta encorvado; respiración sutil desactivada con movimiento reducido. Ventana y +35 % permanecen iguales.
+
+### Árbol de combinaciones y reporte de partida
+El panel de Habilidades muestra las recetas de combos, su estado durante la partida y el efecto que desbloquean. Combi Express requiere Tarjetas del caos y al menos un rango de Velocidad: sus tarjetas rebotan hasta dos veces hacia rivales distintos y dejan una estela dorada. Al terminar se presenta el daño real —limitado a la vida restante del objetivo— por poder, el combo más efectivo y las mejoras elegidas. El reporte es individual también en cooperativo.
 Los seis oficios evolucionados usan sprites raster completos con vestuario y accesorios integrados en cada dibujo: seis pasos, preparación, impacto y derrota con ojos X. Se elimina la ropa geométrica superpuesta. Los normales conservan sus láminas y los rangos siguen diferenciándose por aros y efectos. Se mantienen los ataques, daños, avisos, fases y geometría de colisión existentes.
 
 ### Verificación del balance en partidas

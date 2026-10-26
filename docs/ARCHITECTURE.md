@@ -420,3 +420,5 @@ Catálogo de minijefes separa clave visual de mapa mediante map opcional. miniKe
 
 
 AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
+
+Progression.combos es el catálogo único de recetas para ofertas y para el árbol visible. DamageStats usa objetos planos serializables y registra daño efectivo desde Entities.hurt; Combat adjunta source y combo a proyectiles y campos. El servidor conserva así el reporte por jugador sin mensajes adicionales. UI.show acepta opcionalmente el reporte final. Combat.bounce excluye objetivos ya impactados y reutiliza el historial del proyectil como estela de Combi Express.
