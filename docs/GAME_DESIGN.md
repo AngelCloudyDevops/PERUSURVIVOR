@@ -709,6 +709,10 @@ Revancha en grupo: victoria y derrota ofrecen volver juntos a la sala (confirmac
 
 Fluidez de red: actores con movimiento visual entre snapshots de 40 ms; input inmediato al girar o soltar la dirección. Posición, colisión real, daño y recompensas permanecen bajo autoridad del servidor. Las escenas y teletransportes no se interpolan. FPS y latencia de red se muestran por separado en el diagnóstico de rendimiento.
 
+Evento opcional cooperativo «Dos puestos, una causa»: disponible desde 45 s de mapa en Campo de Marte, Plaza de Armas y Machu Picchu. Activación F/botón a 110 unidades de cualquiera de los puestos. Defender ambos, con ocupantes vivos distintos a 65 unidades de su puesto, durante 15 s acumulados dentro de 45 s de mundo. No retrocede el progreso al salir, pero sigue el límite de tiempo. Reintento tras 20 s al fallar. Recompensa única: +35 monedas de equipo y 20% de curación a ambos; se reinicia en revancha.
+
+Salir entre partidas transfiere el anfitrión al compañero y conserva código, escenario y selección. El superviviente puede invitar a otro jugador; las confirmaciones Estoy listo se reinician. Una desconexión en vestíbulo reserva 30 s antes de reasignar; una salida durante combate conserva el cierre compartido.
+
 Cooperativo: rescates muestran flecha al caído, progreso de permanencia real (4 s) y advertencia si un enemigo vivo está a menos de 140 unidades del caído o del rescatador cercano. Es informativo; no cambia daño ni requisitos. Reconexión conserva 30 s y muestra nombre/tiempo. Amigos aceptados pueden entrar a una sala libre desde la lista sin copiar código.
 Remate de equipo inicial: 20 alternancias de daño efectivo (+5% por alternancia, ventana 3 s, cadencia mínima 0,45 s por jugador). Ambos vivos, a 420 unidades como máximo, confirman en 3 s con R/botón; daño de 120 en radio 450 con cobertura; jefes reciben como máximo 4% de vida máxima y 120, sin multiplicar durante recuperación. Cooldown 20 s sin carga. No añade aturdimiento ni invulnerabilidad y se reinicia en revancha.
 
