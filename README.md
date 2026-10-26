@@ -134,6 +134,31 @@ Los cofres se distribuyen por sectores de 768 unidades con posiciones y una semi
 
 ## Gallinazo del Caos
 Nuevo jefe opcional de pixel art detallado en los Techos de Lima. Portal desde las 3:00 o acceso directo en Desarrollo → Probar jefes. Picadas señalizadas, plumas bloqueables, bandadas y furia con doble picada bajo el 50 % de vida.
+
+### Estructura actual de jefes y minijefes
+
+Reglas implementadas: el portal opcional abre a los **3:00**. Permite elegir el jefe del mapa, Gallinazo o Fujimori; dentro se pausa el reloj del mapa. ElZeein aparece obligatoriamente a los **5:00** del mapa. Aviso → ataque → recuperación constituye el ciclo habitual.
+
+| Jefe | Patrones de ataque | Fases y ulti |
+| --- | --- | --- |
+| Combi Final · Campo de Marte | 1: trayectoria avisada y embestida | Sin segunda fase ni ulti propia. |
+| Gabinete Infinito · Plaza de Armas | 1: abanico de 9 proyectiles | Ataca más seguido bajo el 50%; sin ulti. |
+| Guardián de la Niebla · Machu Picchu | 1: anillo de 12 proyectiles con orientación alterna | Ataca más seguido bajo el 50%; sin ulti. |
+| Fujimori · El Expediente Final | 2: abanico de expedientes y sello sobre marca fija | Al 50% aumenta de 5 a 7 expedientes y amplía el sello. No tiene ulti de jefe; la ulti del Alberto jugable es independiente. |
+| Gallinazo del Caos · Techos de Lima | 3 en fase 1 y 3 en fase 2 | Furia bajo el 50%; ulti única al 30% y transformación permanente. |
+| ElZeein · final obligatorio | 1: persecución y abanico de 5 proyectiles cada 2,7 s | Sin segunda fase ni ulti propia diferenciada. |
+
+**Gallinazo:** fase 1 alterna picada, abanico de plumas e invocación de pequeños gallinazos. En furia encadena dos picadas y aumenta plumas/invocaciones. Al 30% activa una vez: tarjeta base → despegue → transformación lunar → caída sobre la posición fijada del jugador → impacto → dos ráfagas rápidas y una pesada. En fase 2 conserva la picada y sustituye los otros ataques por dos abanicos de plumas serpiente y tormenta de tres impactos marcados. El ala carga plumas visibles antes de las ráfagas; la tormenta muestra plumas grandes cargadas que caen, se clavan y levantan polvo. Sus objetos visuales no añaden daño ni alteran los avisos.
+
+| Minijefe | Dos patrones normales |
+| --- | --- |
+| Fiscalizador | Embestida y conos. |
+| Paloma Brava | Plumas y acometida de picotazo. |
+| Huaco Renegado | Golpe de suelo y fragmentos radiales. |
+| Makanaky · La Realeza | Gritos/pulsos y explosión cercana. |
+
+Los minijefes aparecen en superficie a intervalos de 60–90 s, entran en furia al 50%, encadenan su ataque principal y ofrecen ventanas de recuperación para contraatacar. No tienen ulti cinematográfica. El Gallinazo es actualmente el único jefe con ulti cinematográfica completa.
+
 ## Cámara y visibilidad
 En exploración la cámara debe mostrar caminos, obstáculos y enemigos con anticipación, conservando los personajes legibles. Se reduce el zoom del mundo de 1,7 a 1,3 en una pantalla de 1280 px (aprox. 24% menos acercamiento); el mínimo móvil es 0,95. Las arenas de jefe conservan su cámara propia. El HUD de exploración es compacto y evita repetir la habilidad: mantiene vida, tiempo, bajas, nivel, botín y objetivos. No volver a acercar la cámara global ni ampliar el panel sin comparar una partida en escritorio y móvil. La fórmula está en World.zoomFor y tiene regresión en tests/gameplay.test.cjs. Todo ajuste se guarda en una rama y commit de Git antes de publicarse.
 

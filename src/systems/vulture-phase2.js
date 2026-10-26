@@ -117,7 +117,27 @@ P.VulturePhase2 = {
     }
     else if(t<1.52){c.translate(e.x,e.y);c.rotate(e.aim);c.fillStyle='#9760c822';c.strokeStyle='#ddb3ff';c.beginPath();c.moveTo(0,0);c.arc(0,0,320,-.92,.92);c.closePath();c.fill();c.stroke()}
     c.restore();
-    c.save();c.textAlign='center';c.fillStyle='#f0d5ff';c.font='bold 12px monospace';c.fillText(e.chaosAttack==='storm'?'¡TORMENTA DE AZOTEA! · SAL DE LOS CÍRCULOS':'¡PLUMAS SERPIENTE! · BUSCA COBERTURA',e.x,e.y+80);c.restore();
+    c.save();c.textAlign='center';c.fillStyle='#f0d5ff';c.font='bold 12px monospace';c.fillText(e.chaosAttack==='storm'?'¡TORMENTA DE PLUMAS! · SAL DE LOS CÍRCULOS':'¡PLUMAS SERPIENTE! · BUSCA COBERTURA',e.x,e.y+80);c.restore();
+  },
+  strikePose(e,index,reduced=false){
+    if(e?.phase!=='vulture-chaos-charge'||e.chaosAttack!=='storm')return null;const q=e.chaosTargets?.[index];if(!q)return null;
+    const age=(e.chaosTime||0)-(1.1+index*.18);if(age<-.42||age>.6)return null;
+    const progress=this.smooth((age+.42)/.42);return {x:q.x,y:q.y,age,progress,height:age<0?(reduced?22:330*(1-progress*progress)):0,length:112,alpha:age<.35?1:1-this.smooth((age-.35)/.25)};
+  },
+  fallingFeather(c,x,y,length,angle){
+    if(P.VultureImpact.feather?.(c,x,y,length,angle))return;
+    const R=P.VultureRig;if(!R?.ready)return;c.save();c.translate(x,y);c.rotate(angle);R.part(c,6,0,0,length,.5,.5);c.restore();
+  },
+  stormForeground(c,e,reduced=false){
+    if(e?.phase!=='vulture-chaos-charge'||e.chaosAttack!=='storm')return;
+    for(let i=0;i<(e.chaosTargets?.length||0);i++){const p=this.strikePose(e,i,reduced);if(!p)continue;
+      c.save();c.globalAlpha=p.alpha;c.fillStyle='#090d22';c.beginPath();c.ellipse(p.x,p.y,8+p.progress*24,4+p.progress*9,0,0,Math.PI*2);c.fill();
+      if(!reduced&&p.age<0){c.globalAlpha=p.alpha*.45;c.strokeStyle='#c5a9ed';c.lineWidth=2;for(const side of [-1,1]){c.beginPath();c.moveTo(p.x+side*8,p.y-p.height-125);c.lineTo(p.x+side*4,p.y-p.height-45);c.stroke()}}
+      c.globalAlpha=p.alpha;this.fallingFeather(c,p.x,p.y-p.height-p.length*.5,p.length,Math.PI/2);
+      if(p.age>=0){const q=Math.min(1,p.age/.6);c.strokeStyle='#ac92c5';c.lineWidth=2;c.globalAlpha=p.alpha*(1-q);c.beginPath();c.ellipse(p.x,p.y,24+q*62,8+q*21,0,0,Math.PI*2);c.stroke();
+        if(!reduced)for(let j=0;j<9;j++){const a=j*2.399,r=(15+j%3*8)*q*2,lift=Math.max(0,(80+j%3*15)*p.age-180*p.age*p.age),x=p.x+Math.cos(a)*r,y=p.y+Math.sin(a)*r*.35-lift;c.fillStyle=j%2?'#b4a1bc':'#645c78';c.fillRect(Math.round(x),Math.round(y),4+j%3,3+j%2);c.globalAlpha=p.alpha*(1-q)*.2;c.fillStyle='#b9a4c3';c.fillRect(x-8,y+lift-5,18+q*12,8);c.globalAlpha=p.alpha*(1-q)}
+      }c.restore();
+    }
   },
   lightning(c,s){
     if(s.glyph!=='CHAOS_LIGHTNING')return false;
@@ -139,7 +159,8 @@ P.VulturePhase2 = {
   }
 };
 {
-  const F=P.VulturePhase2,I=P.VultureImpact,scene=P.VultureScene,init=scene.init,pending=scene.pending,bird=scene.bird,move=P.Vulture.move,warn=P.Vulture.warn,draw=P.Vulture.draw,ground=P.Vulture.ground,projectile=P.FX.projectile;
+  const F=P.VulturePhase2,I=P.VultureImpact,scene=P.VultureScene,init=scene.init,pending=scene.pending,bird=scene.bird,move=P.Vulture.move,warn=P.Vulture.warn,draw=P.Vulture.draw,ground=P.Vulture.ground,projectile=P.FX.projectile,effects=P.Vulture.effects;
+  P.Vulture.effects=function(c){effects?.call(this,c);F.stormForeground(c,P.VultureUltimate.boss(),P.Vulture.reduced())};
   scene.init=function(){F.init();return init.call(this)};
   scene.pending=()=>pending()||typeof Image!=='undefined'&&!F.ready&&!F.failed;
   // Reemplaza la tarjeta anterior, sin superponer dos paneles.
@@ -162,7 +183,7 @@ P.VulturePhase2 = {
     return F.paint(c,e.x,e.y+e.r*.5,235,pose,e.dx<0);
   };
   P.Vulture.ground=function(c){ground.call(this,c);const e=P.VultureUltimate.boss();if(e)F.ground(c,e)};
-  P.FX.projectile=function(c,s){if(!F.lightning(c,s))return projectile.call(this,c,s)};
+  P.FX.projectile=function(c,s){if(F.lightning(c,s))return;if(s.glyph==='FEATHER'&&!s.chaosFeather&&I.feather?.(c,s.x,s.y,32,Math.atan2(s.vy,s.vx)))return;return projectile.call(this,c,s)};
 }
 {
   const F=P.VulturePhase2,u=P.VultureUltimate,start=u.start,tick=u.introTick,overlay=u.overlay;

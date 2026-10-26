@@ -58,3 +58,7 @@ test('Fase dos: postura abierta durante todo el vuelo y recuperación al reposo 
  const {R}=engine();for(let t=0;t<5;t+=.01){const m=R.arenaMotion({phase:'approach',rigTime:t,rigFlight:1});assert(m.near>-.6);assert(m.far>.15)}
  const final=R.attackPose({phase:'vulture-chaos-charge',chaosAttack:'rake',chaosTime:2.27}),idle=R.arenaMotion({phase:'approach',rigTime:0},true);assert.equal(final.near,idle.near);assert.equal(final.far,idle.far);
 });
+
+test('Carga de plumas: visible antes de ambas ráfagas, se libera al disparar y no modifica el combate',()=>{
+ const {R}=engine(),e={phase:'vulture-chaos-charge',chaosAttack:'rake'};assert.equal(R.featherLoad({...e,chaosTime:.4}),0);for(const hit of [1.1,1.52]){assert(R.featherLoad({...e,chaosTime:hit-.08})>.9);assert.equal(R.featherLoad({...e,chaosTime:hit+.08}),0)}assert.equal(R.featherLoad({...e,chaosAttack:'storm',chaosTime:1}),0);
+});
