@@ -1,0 +1,13 @@
+'use strict';
+// Cosmetic full-body reactions. No limb slicing, collision changes or delayed damage.
+P.PlayerFeedback={
+ hitDuration:.26,deathDuration:.95,endAge:0,pending:null,
+ reset(){this.pending=null;this.endAge=0},
+ hit(p,amount,source){if(p.hp<=0||p.inv>0||!(amount>0))return 0;const damage=P.Loot.damage(p,amount);if(!(damage>0))return 0;p.hp=Math.max(0,p.hp-damage);p.hurtAt=P.state.elapsed;p.hurtDX=(p.x-(source?.x??p.x-1));p.hurtDY=(p.y-(source?.y??p.y));const length=Math.hypot(p.hurtDX,p.hurtDY)||1;p.hurtDX/=length;p.hurtDY/=length;p.inv=.7;if(p.hp<=0){p.deadAt=P.state.elapsed;p.deathFacing=p.facing||1;p.moving=false;p.castUntil=0;p.aimUntil=0}return damage},
+ finish(action){if(this.pending)return;this.endAge=0;this.pending=action;P.$('#overlay').hidden=true},
+ tick(dt){if(!this.pending||P.state.mode==='pause'||P.state.mode==='menu')return;this.endAge=Math.min(this.deathDuration,this.endAge+dt);if(this.endAge>=this.deathDuration){const done=this.pending;this.pending=null;done()}},
+ pose(p){if(p.hp<=0){const age=Math.max(0,P.state.elapsed-(p.deadAt??P.state.elapsed),p===P.state.player||P.Coop?.resultShown?this.endAge:0),t=Math.min(1,age/this.deathDuration),reduced=P.Ambient.reduced?.matches;return {dead:true,t,x:0,y:reduced?8:Math.sin(t*Math.PI)*-7+10*t,angle:(p.deathFacing||p.facing||1)*(reduced?.25:Math.min(1,t/.65)*1.25),alpha:1}}const age=P.state.elapsed-(p.hurtAt??-100);if(age<0||age>this.hitDuration)return null;const t=age/this.hitDuration,k=P.Ambient.reduced?.matches?0:Math.sin(Math.PI*t)*(1-t);return {dead:false,t,x:(p.hurtDX||1)*k*7,y:(p.hurtDY||0)*k*4,angle:-k*.12*(p.hurtDX||1),alpha:1-.25*Math.sin(Math.PI*t)}},
+ draw(ctx,p){const pose=this.pose(p);if(!pose)return false;ctx.save();ctx.translate(p.x+pose.x,p.y+21.6+pose.y);ctx.rotate(pose.angle);ctx.globalAlpha*=pose.alpha;const actor={...p,x:0,y:-21.6,moving:false,castUntil:0,aimUntil:0};let painted=P.Sprites.draw(ctx,0,-21.6,27,actor,0,(pose.dead?p.deathFacing:p.facing)<0);if(!painted)P.Entities.portrait(ctx,0,-21.6,24,actor);
+ // Symbols sit above the whole sprite; they never erase or replace face pixels.
+ ctx.globalAlpha=1;ctx.strokeStyle=pose.dead?'#d1e8ff':'#fff0bc';ctx.lineWidth=2;ctx.beginPath();if(pose.dead){for(const x of [-5,5]){ctx.moveTo(x-2,-60);ctx.lineTo(x+2,-56);ctx.moveTo(x+2,-60);ctx.lineTo(x-2,-56)}}else{ctx.moveTo(-23,-52);ctx.lineTo(-18,-58);ctx.lineTo(-15,-52);ctx.lineTo(-9,-59)}ctx.stroke();if(pose.dead){ctx.fillStyle='#d1e8ff';ctx.font='bold 11px monospace';ctx.textAlign='center';ctx.fillText('× ×',0,-76)}ctx.restore();return true}
+};

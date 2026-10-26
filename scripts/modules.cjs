@@ -32,6 +32,10 @@ module.exports = [
     "output": "js/player-attack-art.js"
   },
   {
+    "source": "src/rendering/player-feedback.js",
+    "output": "js/player-feedback.js"
+  },
+  {
     "source": "src/rendering/enemy-art.js",
     "output": "js/enemy-art.js"
   },
@@ -111,7 +115,8 @@ module.exports = [
     "output": "js/ambient.js"
   },
   {
-    "source": "src/systems/market.js", "output":"js/market.js"
+    "source": "src/systems/market.js",
+    "output": "js/market.js"
   },
   {
     "source": "src/systems/exploration.js",
