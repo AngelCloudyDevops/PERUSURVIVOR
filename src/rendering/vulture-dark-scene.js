@@ -19,6 +19,6 @@ this.aura(c,g,t,m.aura,false,reduced);c.fillStyle='#00000077';c.beginPath();c.el
 c.save();const recoil=reduced?0:m.windup*.045-m.throw*.055;c.translate(g.x+g.w*.52,g.y+g.h*.9);c.rotate(recoil);c.translate(-g.x-g.w*.52,-g.y-g.h*.9);this.bird(c,g,m,t,reduced);c.restore();this.aura(c,g,t,m.aura,true,reduced);c.restore();
 // La oscuridad se abre sobre el ojo del mismo sprite; la cámara se aleja sin cortes.
 if(!reduced&&t<.85){const reveal=this.smooth((t-.12)/.73),cx=w*.5,cy=h*.46,rw=7+reveal*w*.55,rh=2+reveal*h*.55;c.fillStyle='#020309';c.fillRect(0,0,w,Math.max(0,cy-rh));c.fillRect(0,cy+rh,w,h);c.fillRect(0,cy-rh,Math.max(0,cx-rw),rh*2);c.fillRect(cx+rw,cy-rh,w,rh*2)}
-if(!reduced){this.plumes(c,w,h,t);const veil=this.smooth((t-3.65)/.35);if(veil>0){c.fillStyle='rgba(2,3,8,'+veil+')';c.fillRect(0,0,w,h)}}ctx.save();ctx.imageSmoothingEnabled=false;ctx.drawImage(cv,0,0,width,height);ctx.restore()}
+if(!reduced){this.plumes(c,w,h,t);}ctx.save();ctx.imageSmoothingEnabled=false;ctx.drawImage(cv,0,0,width,height);ctx.restore()}
 };
 {const init=P.VultureUltimate.initComic;P.VultureUltimate.initComic=function(){P.VultureScene.init();return init.call(this)};P.VultureUltimate.fullscreen=function(ctx,w,h,e){P.VultureScene.draw(ctx,w,h,e)}}
