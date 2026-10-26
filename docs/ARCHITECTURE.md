@@ -375,3 +375,8 @@ P.Gacha.pull acepta únicamente 1 o 10 y procesa cargo, diez resoluciones secuen
 ### Perfiles de consulta
 P.CharacterProfiles en powers.js deriva los valores de P.Data.characters y P.Data.attacks al consultar. Lobby.details los presenta solo al seleccionar, sin trabajo por fotograma ni alterar el combate.
 
+
+## Perfil v4: historial y estrellas
+P.Meta.normalize admite v1–v4 y produce v4; los clientes anteriores rechazan la versión nueva para evitar sobrescribir copias con un formato antiguo. gachaHistory aumenta a 200; recibos llevan at (milisegundos o null en históricos) y copies (0/1). gachaBatch permanece limitado a diez. gachaStars relaciona IDs desbloqueados con rank 1–5 y copias no negativas acotadas. Una migración v3 convierte solo repetidos del historial conservado en copias y se sella en v4 al guardar; sucesivas normalizaciones no vuelven a concederlas.
+
+P.Gacha.ascend usa la misma transacción y bloqueo de perfil para validar propiedad, rango y coste antes de consumir copias. El lote concede copias secuencialmente junto con monedas y garantías antes del revelado. Las estrellas se aplican una vez mediante P.Meta.applyRun, solo a individual, tras las mejoras permanentes; no se transmiten como autoridad al servidor cooperativo. El historial es paginado, filtrado y de texto seguro; la fecha procede del reloj local, no de un servidor. No se añaden entidades ni carga al bucle de combate.

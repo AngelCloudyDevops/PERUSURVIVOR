@@ -459,3 +459,8 @@ Una compra de diez requiere 600 monedas de saldo inicial. Cada tirada actualiza 
 ### Consulta de personajes
 Las fichas de Causas muestran valores base de rango 1 sin mochila ni mejoras permanentes, rol descriptivo y evolución. El daño por impacto incluye powerScale; no se presenta como DPS. La rareza de colección no aumenta atributos. Véase CHARACTER_PROFILES.md.
 
+
+## Historial y ascensos por copias
+Desde el perfil v4 se conservan las últimas 200 tiradas. Cada recibo nuevo registra fecha/hora del dispositivo, nuevo/repetido y copias concedidas. Historial en orden inverso, filtros de rareza y resultado, 20 filas por página. Los recibos anteriores no reciben fechas inventadas.
+
+Cada repetido entrega la devolución existente y una copia de su propio personaje mientras esté por debajo de 5★. Ascensos manuales de 1★ a 5★ con costes marginales de 2/3/4/5 copias (14 en total). Cada estrella adicional aporta 3% aditivo de vida y daño, hasta 12%, sobre el personaje con sus mejoras permanentes al empezar individual; cooperativo, prácticas y desarrollo conservan sus reglas. El ascenso no cobra monedas. Colección completa permite tiradas para copias; todos los personajes desbloqueados y a 5★ bloquea compras. Un repetido a 5★ conserva solo el reembolso. Esta regla sustituye el bloqueo anterior al completar la colección. En migración se reconocen exclusivamente los repetidos del historial v3 disponible; no se reconstruyen tiradas descartadas por el límite anterior de diez.

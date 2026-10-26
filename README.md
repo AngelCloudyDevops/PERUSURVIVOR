@@ -265,3 +265,8 @@ Los [caminos](docs/PATH_FINISH.md) conservan sus rutas y texturas aprobadas, con
 
 ## Invocación ×10
 El menú Gacha permite una tirada por 60 monedas o diez por 600. Se requiere el saldo completo antes de comenzar, sin descuento adicional. Las diez se resuelven en orden con las mismas probabilidades, garantías y devoluciones por repetidos. Si la colección se completa dentro del lote, se terminan las diez tiradas; una colección ya completa impide iniciar otra compra. El resumen muestra cada causa, rareza, nuevo/repetido, devolución total y coste neto. La animación se puede saltar y respeta movimiento reducido. El último lote se recupera al recargar sin volver a cobrar.
+
+## Historial, copias y estrellas
+Gacha incorpora pestañas Invocar, Historial y Estrellas. El historial guarda las últimas 200 tiradas con personaje, rareza, nuevo/repetido y fecha/hora local; incluye filtros y páginas de 20. Las tiradas antiguas disponibles se conservan como «Fecha no registrada» y no se recuperan registros que el límite anterior ya había descartado.
+
+Los repetidos mantienen su devolución de monedas y añaden una copia del mismo personaje hasta 5★. Todos empiezan a 1★; ascender manualmente a 2★/3★/4★/5★ consume 2/3/4/5 copias respectivamente, sin monedas adicionales. Cada ascenso añade +3% de vida y daño en individual (máximo +12%); no altera partidas cooperativas ni prácticas. Puedes seguir invocando con la colección completa para obtener copias, hasta tener todos a 5★. A 5★, los repetidos solo devuelven monedas. El perfil v4 migra los repetidos del historial v3 conservado a copias una sola vez y conserva saldo, colección, mochila y mejoras.
