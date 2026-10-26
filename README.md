@@ -278,3 +278,9 @@ Los repetidos mantienen su devolución de monedas y añaden una copia del mismo 
 ### Balance de los 18 causas
 Comparación reproducible de ataques base y evolucionados contra blancos cercanos, medios, jefe móvil, filas y enemigos alrededor. Se moderan bumeranes, ráfagas y nubes dominantes y se refuerzan Cristorata, Cuy, Alberto y Cerdito. Consulta [los valores y motivos](docs/ROSTER_BALANCE.md). La rareza de colección no multiplica estadísticas; cada rol conserva ventajas y límites. Las fichas muestran el catálogo actualizado.
 
+
+### Validación con partidas completas
+El [informe de partidas automatizadas](docs/FULL_RUN_BALANCE.md) compara los 18 causas en los tres mapas, con tres semillas por mapa. Usa el motor individual normal, enemigos móviles, daño recibido, colisiones, experiencia y mejoras obtenidas jugando. Conserva trazas, victorias, derrotas, límites de tiempo y minijefes no abatidos. Es evidencia de simulación local, no una tasa de victoria humana ni una prueba de FPS.
+
+Resultado de la muestra: 160/162 sobreviven a 300 s, 143 victorias finales, 9 derrotas y 10 límites con vida; 526/529 minijefes abatidos. Sustento y Charles siguen destacando por rapidez contra minijefes. Se conserva el balance actual hasta contrastar estos datos con otras estrategias o jugadores; no se equipara esta muestra con una tasa de victoria humana.
+

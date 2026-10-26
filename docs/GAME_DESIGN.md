@@ -473,3 +473,7 @@ La rareza afecta a la obtención, sin bonus automático de combate. La tercera p
 
 Navegación de minijefes: rutas locales rodean coberturas con su radio completo, sin teletransporte ni atravesar esquinas. Recalculan ante bloqueo, cambios de terreno o desplazamiento del jugador; no inician ataques desde lejos o a través de paredes. Embestidas mantienen dirección fijada y castigo por choque. Tras el impacto, el Fiscalizador baja la guardia inclinado, la Paloma baja alas/cuerpo y el Huaco se asienta encorvado; respiración sutil desactivada con movimiento reducido. Ventana y +35 % permanecen iguales.
 Los seis oficios evolucionados usan sprites raster completos con vestuario y accesorios integrados en cada dibujo: seis pasos, preparación, impacto y derrota con ojos X. Se elimina la ropa geométrica superpuesta. Los normales conservan sus láminas y los rangos siguen diferenciándose por aros y efectos. Se mantienen los ataques, daños, avisos, fases y geometría de colisión existentes.
+
+### Verificación del balance en partidas
+La comparación estática se complementa con nueve partidas automatizadas por personaje (tres mapas por tres semillas), progresión desde rango 1, sin progreso permanente ni mochila. Las decisiones usan solo las opciones ofrecidas; no se conceden evoluciones ni curación fuera de las reglas. Se evalúan por separado supervivencia a 300 s, victoria final, bajas, progresión y minijefes abatidos. Véase FULL_RUN_BALANCE.md para resultados y límites del bot; no se cambian estadísticas por una única derrota aislada.
+
