@@ -1,5 +1,6 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),modules=require('../scripts/modules.cjs');
+test('El HTML incluye los controles que el mercado necesita al iniciar',()=>{const html=fs.readFileSync(path.join(root,'src/index.html'),'utf8');for(const id of ['market-open','market-status'])assert(html.includes('id="'+id+'"'),id)});
 const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 test('El HTML carga todos los módulos en el orden declarado',()=>{
  const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');
