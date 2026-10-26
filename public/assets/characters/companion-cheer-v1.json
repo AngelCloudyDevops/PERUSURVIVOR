@@ -1,0 +1,67 @@
+{
+  "origin": "image_gen built-in",
+  "width": 1448,
+  "height": 1086,
+  "rows": [
+    0,
+    414,
+    730,
+    1086
+  ],
+  "columns": [
+    [
+      0,
+      212,
+      407,
+      601,
+      830,
+      1041,
+      1243,
+      1448
+    ],
+    [
+      0,
+      208,
+      418,
+      609,
+      823,
+      1031,
+      1245,
+      1448
+    ],
+    [
+      0,
+      207,
+      421,
+      619,
+      826,
+      1018,
+      1233,
+      1448
+    ]
+  ],
+  "ids": [
+    "zein",
+    "cristorata",
+    "cuy",
+    "paloma",
+    "alan",
+    "alberto",
+    "keiko",
+    "ollanta",
+    "kingteka",
+    "shaka",
+    "najasor",
+    "cirilo",
+    "fuzo",
+    "charles",
+    "axelbenba",
+    "cerdito",
+    "sustento",
+    "cevichero",
+    "g5",
+    "makanaky",
+    "sideral"
+  ],
+  "prompt": "Production 21-character celebration sprite atlas matching five original roster references, detailed cartoon pixel art, complete connected silhouettes, both arms raised and happy face, feet planted, same head/body proportions, no handheld weapons, no background or text. Cuy raises natural forepaws, pigeon raises wings. Exact ordered roster as ids. Preserve identity, clothing and anatomy."
+}

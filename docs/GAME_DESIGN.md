@@ -1,5 +1,7 @@
 # Documento de diseño — PERUSURVIVOR
 
+Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posición validada por servidor, 5 s de duración, una por jugador y recarga de 2 s. Ayuda funciona al estar caído. La escolta de la combi se desbloquea a los 90 s: acérquense y pulsen Iniciar escolta. Ambos vivos a 200 unidades; dos paradas de 6 s despejadas de enemigos. Vida 150, límite 100 s, reintento 20 s; premio único +50 monedas compartidas y 25% de vida a cada superviviente. Se suspende durante arenas, escenas, mejoras y desconexiones; no coincide con la defensa doble. Backend Escort/Signals serializados en activities; CoopExtras dibuja vehículo, avisos y controles sin autoridad sobre premios.
+
 Mover A/D o flechas desplaza al propio Makanaky en tercera persona; la fila y el escenario conservan su lateral. La cámara cercana muestra el paso con perspectiva del callejón completo y a Makanaky grande desde atrás, interpuesto entre cámara y rival. Jab izquierdo, derecho, cruzado y uppercut usan poses de espalda dedicadas, embestida corporal, retroceso y estela pixel art. Conserva alcance, daño, secuencia, tarjeta y retorno al mapa.
 
 Mantener el combo recorre siempre los cuatro golpes, aunque fallen o no queden rivales. Fallar corta la racha GA, sin reiniciar la secuencia visual. El botón de combo apunta al frente; ratón/canvas conservan la puntería manual.
@@ -727,6 +729,11 @@ El marco eléctrico de resultado se sustituye por vapor morado pixel art transl�
 Los avisos de Gabinete, Guardián, Fujimori, Gallinazo y ElZeein se derivan del mismo plan que crea sus proyectiles: cantidad, ángulos, velocidad y vida. Cada trayectoria visible termina donde terminaría el proyectil por alcance, borde de arena o primera cobertura. El Guardián muestra sus doce direcciones radiales; el Gabinete y Fujimori muestran cada calle del abanico; las plumas base, de fase II y del Eclipse Carroñero muestran el recorrido de cada ráfaga. Los círculos del sello, archivos y tormenta conservan exactamente el radio de impacto.
 
 ElZeein fija la dirección del jugador durante un aviso de 0,7 s, permanece quieto mientras carga y después dispara cinco proyectiles. Moverse durante el aviso permite esquivar; el disparo no vuelve a apuntar en el instante final. Las coberturas cortan tanto el aviso como el proyectil.
+
+### IA táctica y diagnóstico de jefes
+Los jefes y minijefes calculan rutas con el radio real de su cuerpo. Si no avanzan durante 0,42 s invalidan la ruta; si el bloqueo persiste alternan un flanqueo lateral durante 1,6 s. Una embestida fija dirección, distancia, punto final y cobertura al comenzar el aviso. Si choca, consume la carga pendiente, cancela cadenas incompatibles y entra en recuperación. La cobertura que detendrá una carga se resalta como COBERTURA SEGURA.
+
+Al cruzar 50 % de vida, cada jefe salvo el Gallinazo ofrece una única esquiva perfecta opcional de 1,15 s. E o el botón táctil conceden 0,85 s de invulnerabilidad sin pausar la pelea; fallar no bloquea la progresión. El Gallinazo conserva su transformación cinematográfica propia. Los impactos de área se consumen una sola vez aunque un escudo absorba el daño. En Probar jefes, Diagnóstico muestra hitbox, ruta, destino, estado, flanqueo y recálculos.
 
 ### Chosicano: ¡Al fondo hay sitio!
 Tercer ataque tras carga y bocinazo: aviso de 1.2 s con puerta y cobrador, cinco boletos de trayectoria fija (220 unidades/s, 11 de daño), hueco central y bloqueo por coberturas. Recupera 1.1 s; la puerta cierra en 0.3 s. Sin persecución ni nuevos enemigos.

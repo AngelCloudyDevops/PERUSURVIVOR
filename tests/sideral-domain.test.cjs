@@ -11,13 +11,15 @@ test('Sideral: reemplaza el mapa por una habitación física y la serializa en c
  const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);for(let i=0;i<112;i++)sim.tick(.04,[{},{}]);
  assert.equal(s.sideralDomain.arena,true);assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,4);
  assert(P.Terrain.active().some(o=>o.kind==='sideral-desk'));assert(P.Terrain.active().some(o=>o.kind==='sideral-library'));
+ assert(!P.Terrain.active().some(o=>o.kind==='sideral-rug'));assert(!P.Terrain.hit(p.x,p.y,p.r));
  assert.equal(sim.snapshot().sideralDomain.arena,true);assert.equal(sim.snapshot().sideralDomain.roomProps,undefined);
- const d=s.sideralDomain,b=P.SideralDomain.bounds(d);assert(P.Terrain.hit(d.x-P.SideralDomain.roomWidth/2,b.top+100,12));
+ const d=s.sideralDomain,b=P.SideralDomain.bounds(d),portal=P.Encounters.definition().portal;assert(P.Terrain.hit(d.x-P.SideralDomain.roomWidth/2,b.top+100,12));
+ assert(portal.x>b.left&&portal.x<b.right&&portal.y>b.top&&portal.y<b.bottom);assert.equal(P.Combat.cast(),false);assert.equal(p.castUntil,0);
 });
 
 test('Sideral: choque daña, rebota y al terminar restaura coordenadas',()=>{
  const {sim,P,s,p}=setup(),e={x:640,y:90,hp:100,max:100,r:14,speed:0,boss:false,hit:0,attackT:9};P.Attributes.init(e);s.enemies=[e];p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);for(let i=0;i<112;i++)sim.tick(.04,[{},{}]);
- const d=s.sideralDomain,b=P.SideralDomain.bounds(d);e.x=b.right-e.r-20;e.sideralFear=.9;P.SideralDomain.boundary(e,d,.04);
+ const d=s.sideralDomain,b=P.SideralDomain.bounds(d);e.x=b.right-e.r-20;e.sideralFear=.9;e.sideralWallHit={side:'right'};P.SideralDomain.boundary(e,d,.04);
  assert.equal(e.hp,92);assert.equal(e.domainEdgeHits,1);assert(e.charge.x<0);assert.equal(e._sideralReturnX,640);
  P.SideralDomain.end();assert.equal(s.sideralDomain,null);assert.equal(e.x,640);assert.equal(e._sideralReturnX,undefined);assert.equal(p.x,120);assert.equal(p.y,90);
 });
