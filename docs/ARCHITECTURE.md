@@ -619,13 +619,11 @@ DomainFinale.vaporParticles genera bloques pixel art deterministas a partir de e
 
 ### Boletos del Chosicano
 ChosicanoCombat comparte ticketAngles entre aviso y disparo; busTicket usa el procesamiento de proyectiles y el barrido de coberturas existente. ChosicanoArt pinta puerta, cobrador y boletos sin alterar el atlas. Todo el tiempo procede de la simulación; giro desactivado con movimiento reducido.
-El gesto de Cristorata usa piezas pixel art rígidas de manga, antebrazo y mano con índice definido. El hombro queda fijo al torso; codo y muñeca conservan sus longitudes al extender y recoger el brazo. Las piezas y la limpieza del recorte se cachean por imagen, sin deformar el atlas ni modificar la duración de la ulti.
 
 Revancha cooperativa: cada resultado mantiene su simulación hasta recibir `return` de ambos miembros conectados. El comando valida `round`, que aumenta por partida, para rechazar mensajes antiguos. Los votos viajan en la sala y sobreviven a la reconexión de 30 s. El acuerdo libera la simulación, borra entradas y votos, incrementa revisión y reinicia ready, conservando miembros/tokens/código. Cada start construye una Simulation nueva. El cliente cierra overlays con UI.menu({keepGroup:true}) sin cerrar WebSocket ni recargar actualizaciones pendientes, y abre la ruta coop; el guardado del resultado se ejecuta solo una vez por partida.
 
 DomainFinale.smokeTexture cachea hasta doce texturas procedurales de 128×128 con lóbulos de gradiente radial y borde transparente. vaporParticles usa posiciones y escalas flotantes y mezclas continuas entre texturas, sin redondeo a cuadrícula ni blur de pantalla completa. rim habilita suavizado únicamente dentro de save/restore; las chispas son puntos de luz y el renderer no modifica combate, cronómetros ni entradas.
 
-La subida de Cristorata al Tricéfalo mantiene al personaje opaco durante el recorrido: extiende ambas manos, eleva la pierna, aproxima las caderas a la silla y flexiona las piernas al asentarse. El agarre y el asiento preceden al despegue; torso y piernas reutilizan píxeles del atlas y las manos cerradas son piezas cacheadas. Conserva la escena de 6,4 s y los ocho segundos completos de montura.
 
 DomainFinale.flowTexture crea una textura periódica 512×96 con densidad continua y tres vórtices analíticos. flowStrip repite esa textura en una sola cinta cacheada; smokePlan recorre un perímetro cerrado con fase compartida entre lados. rim advecta 36 filas por capa y lado usando offsets flotantes y dos velocidades: 288 recortes de textura por fotograma, sin generar imágenes ni densidad por frame. Las pruebas verifican cobertura de toda la banda, continuidad circular de offsets, centro libre, caché y expiración.
 El despegue del Tricéfalo tiene carga de peso, aletazo descendente y recuperación con poses completas del atlas. La montura se inclina alrededor de la silla con Cristorata agarrado; la elevación espera al impulso y el polvo permanece en el suelo. No recorta ni estira alas o manos, respeta movimiento reducido y mantiene la duración y el combate.
@@ -637,3 +635,5 @@ DomainFinale conserva el reporte durante 3 segundos y calcula su edad con ese in
 
 ### Derrota del Chosicano
 ChosicanoCombat administra defeat/defeatTick y una pose pura por tiempo de simulación. Usa encounter.defeat como Fujimori y Gallinazo: actor separado de enemigos, actualización exclusiva y retorno único mediante Encounters.win. ChosicanoArt conserva el cuadro entero del frenazo y añade humo pixelado y cartel; sin partículas persistentes ni atlas nuevos.
+
+Corrección visual de Cristorata: las poses completas del atlas cristorata-reaction-v2 sustituyen los recortes de brazos y piernas. El dibujo conserva sus proporciones al señalar y subir; el Tricéfalo aparece completo sin cortes horizontales. Véase docs/CRISTORATA_REACTION_ART.md para origen y prompt.
