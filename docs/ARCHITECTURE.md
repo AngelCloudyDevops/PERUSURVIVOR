@@ -416,3 +416,6 @@ MinionAudio observa minionId y contadores serializados audioWarn/audioImpact con
 
 
 AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
+
+
+AnimalEntryPoses carga dos hojas de seis figuras completas mediante WalkArt.measure; no corta alas ni añade piezas sobre la silueta. Paloma se ancla al ojo naranja para mantener la cabeza estable al cambiar de aleteo; Cuy conserva base y escala uniforme. Fuentes PNG, WebP optimizados con alfa completo y prompts versionados en docs/animal-entry-prompts.json.

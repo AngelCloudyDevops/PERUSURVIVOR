@@ -502,3 +502,6 @@ El selector «Arma principal» permite probar base (rango 1), rangos 2–5 y la 
 
 
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
+
+
+Entradas animales v2: Paloma prepara el vuelo, eleva alas, empuja hacia abajo y recoge las patas antes de elevarse. Cuy usa anticipación, impulso, patas recogidas, extensión para aterrizar, compresión y recuperación. Se elimina el ala artificial superpuesta. Duración, protección y daño permanecen iguales.

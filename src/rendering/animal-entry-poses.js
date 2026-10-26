@@ -1,0 +1,7 @@
+'use strict';
+P.AnimalEntryPoses={sheets:{},
+init(){if(typeof Image==='undefined')return;for(const id of ['cuy','paloma']){const s=this.sheets[id]={id:'entry-'+id,ready:false},image=new Image();image.onload=()=>{s.image=image;P.WalkArt.measure(s);if(id==='paloma'){const cv=document.createElement('canvas');cv.width=s.image.width;cv.height=s.image.height;const c=cv.getContext('2d');c.drawImage(s.image,0,0);const data=c.getImageData(0,0,cv.width,cv.height).data;for(const f of s.frames){let top=Infinity,sx=0,sy=0,n=0;for(let y=0;y<f.h;y++)for(let x=0;x<f.w;x++){const at=((f.sy+y)*cv.width+f.sx+x)*4;if(data[at]>145&&data[at+1]>65&&data[at+1]<200&&data[at+2]<100&&data[at+3]>160){if(y<top){top=y;sx=sy=n=0}if(y<=top+5){sx+=x;sy+=y;n++}}}f.eyeX=n?sx/n:f.w*.68;f.eyeY=n?sy/n:f.h*.35}}s.ready=true};image.src='assets/entries/'+id+'-natural-v2.webp'}},
+frame(id,t,reduced=false){if(reduced)return 0;if(id==='cuy')return t<.17?0:t<.3?1:t<.47?2:t<.65?3:t<.8?4:5;return t<.17?0:t<.3?1:t<.42?2:t<.55?3:t<.66?4:t<.78?5:t<.9?2:4},
+draw(c,id,t,hero,reduced){const s=this.sheets[id];if(!s?.ready)return false;const f=s.frames[this.frame(id,t,reduced)],scale=hero*(id==='paloma'?2.3:2)/s.height;let x,y;if(id==='paloma'){x=-f.eyeX*scale+hero*.45;y=-f.eyeY*scale-hero*.95}else{x=-f.w*scale/2;y=-f.h*scale+hero*.35}c.imageSmoothingEnabled=false;c.drawImage(s.image,f.sx,f.sy,f.w,f.h,Math.round(x),Math.round(y),Math.round(f.w*scale),Math.round(f.h*scale));return true}
+};
+P.AnimalEntryPoses.init();
