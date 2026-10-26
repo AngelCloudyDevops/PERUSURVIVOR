@@ -156,6 +156,7 @@ module.exports = [
     "source": "src/systems/fujimori-boss.js",
     "output": "js/fujimori-boss.js"
   },
+  {"source":"src/rendering/fujimori-boss-art.js","output":"js/fujimori-boss-art.js"},
   {
     "source": "src/rendering/path-details.js",
     "output": "js/path-details.js"
