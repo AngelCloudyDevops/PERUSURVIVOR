@@ -264,6 +264,11 @@ El menú espera las caminatas necesarias antes de iniciar una partida individual
 
 La patada cuerpo a cuerpo de La G5 conserva su pose de ataque incluso en movimiento; los disparos mantienen la caminata y sus efectos de arma.
 
+## Mercado y cofres impostores
+El vendedor aparece en los tres mapas desde el segundo 45, cada 90 segundos, durante 45 segundos de reloj del mapa. Se sitúa en un punto seguro cercano. El HUD indica su dirección, distancia y tiempo restante, y permite hablar a 110 unidades. No aparece en arenas, laboratorio ni durante el jefe final. Cada visita renueva ocho ofertas de una unidad: emoliente (20), imán/chaleco/batería comunes (35), imán/batería raros (70), llave rara (40) y legendaria (100). No se cobra con saldo insuficiente, fuera de rango, después de expirar, por stock agotado, equipo idéntico o curación con vida completa. Cerrar no compra nada. En individual el menú pausa el combate; en cooperativo el compañero y el servidor continúan, las monedas/stock son compartidos y el objeto equipa al comprador.
+
+El 12% de cofres no iniciales se determina como impostor mediante la semilla de la partida. Se despierta al acercarse a menos de 100 unidades, sin necesidad de llave, siempre dentro del límite de enemigos. Usa movimiento, daño y colisiones del combate y se conserva al alejarse. Al morir deja un cofre purificado de la misma rareza, con apertura gratuita y premio único; se conserva al salir de su sector. Los comunes iniciales y los cofres de jefe no son impostores. En cooperativo se despierta una sola vez para ambos y su premio permite la elección individual existente.
+
 ## Día, atardecer y noche
 Ciclo visual por mapTime: día hasta 90 s, atardecer hasta 180 s, anochecer hasta 270 s y noche desde 270 s. Faroles se encienden gradualmente entre 165 y 225 s. La noche oscurece solo el fondo un máximo de 30%; los personajes y peligros se dibujan después. Pausa y arenas no avanzan el ciclo; la práctica queda de día. No incorpora clima ni efectos de dificultad.
 Entrada cómic del Gallinazo: ojo 0–0,55 s, grito 0,55–1,15 s, alas fuera del panel 1,15–1,8 s y ruptura en plumas 1,8–2 s. Viñeta diagonal con azoteas, texto propio y dibujos IA exclusivos. Movimiento reducido usa una viñeta estática de alas. El combate, vulnerabilidad y duración no cambian.
