@@ -1,5 +1,7 @@
 # PERUSURVIVOR — Causas del Caos
 
+Supervivencia peruana con dieciocho personajes, tres mapas, encuentros opcionales y objetos de Dota 2 adaptados como cartas de equipo evolutivo durante cada partida.
+
 Estabilidad cooperativa: paquetes WebSocket de más de 1 KiB usan compresión rápida negociada, sin retener contexto, con dos tareas concurrentes como máximo; el límite de entrada de 2 KiB sigue aplicándose tras descomprimir. una excepción se limita a su sala y queda registrada; salud muestra errores y coste de tick/serialización agregados. Reconectar con el token válido sustituye la conexión anterior sin perder el grupo. El cliente procesa el último estado por fotograma, conserva el resultado final y evita recargarse automáticamente mientras tiene sala. Scripts VM compilados se reutilizan, manteniendo una VM independiente por sala. Las publicaciones solicitan reinicio al quedar el servidor sin salas: las partidas existentes no se cierran por cambiar de release (un reinicio forzado del contenedor sigue interrumpiéndolas). El backend puede permanecer temporalmente en la release anterior hasta quedar libre.
 
 Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posición validada por servidor, 5 s de duración, una por jugador y recarga de 2 s. Ayuda funciona al estar caído. La escolta de la combi se desbloquea a los 90 s: acérquense y pulsen Iniciar escolta. Ambos vivos a 200 unidades; dos paradas de 6 s despejadas de enemigos. Vida 150, límite 100 s, reintento 20 s; premio único +50 monedas compartidas y 25% de vida a cada superviviente. Se suspende durante arenas, escenas, mejoras y desconexiones; no coincide con la defensa doble. Backend Escort/Signals serializados en activities; CoopExtras dibuja vehículo, avisos y controles sin autoridad sobre premios.
@@ -68,6 +70,8 @@ Abre http://127.0.0.1:4173. El comando de inicio genera primero dist/. Para ver 
 WASD o flechas para moverse, ataque automático, Esc para pausar y E para entrar a un portal cercano. En móvil se arrastra el dedo y se usa el botón del portal.
 
 Al subir de nivel aparecen tres cartas boca abajo. Revela las tres con un clic para comparar poderes, rangos, rareza y cambios de atributos; recién entonces puedes escoger una. La rareza cambia la probabilidad de que una mejora salga y su marco visual, pero no multiplica su efecto: el poder depende de la mejora descrita y del rango. Los pactos también ocupan uno de los tres espacios. En teclado, 1–3 revela la carta correspondiente; después de revelar las tres, 1–3 selecciona.
+
+En **Habilidades → Objetos de Dota** puedes consultar el catálogo de objetos, sus ilustraciones pixel art originales, efectos y ramas evolutivas antes de entrar a una partida. Cada objeto y evolución tiene un sprite propio; las evoluciones sustituyen el objeto base en su espacio de equipo.
 
 ## Estructura
 

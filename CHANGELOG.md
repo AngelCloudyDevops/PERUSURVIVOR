@@ -1,5 +1,17 @@
 # Cambios
 
+## Catálogo de objetos en el menú — 2026-10-26
+- Añade el acceso «Objetos de Dota» al menú Habilidades.
+- Presenta objetos y evoluciones con sprites pixel art propios, efectos adaptados, rarezas y niveles de aparición.
+- Permite volver a la ficha del personaje o cerrar el menú; no altera la partida ni el inventario.
+- Conserva los combos ya desbloqueados entre las tres opciones aunque se mezclen cartas de objetos.
+
+## Objetos de Dota 2 como cartas de equipo — 2026-10-26
+- Añade Boots of Speed con cinco evoluciones, Magic Stick → Magic Wand y Blink Dagger con tres ramas.
+- Cada partida dispone de cuatro espacios separados del equipo de cofres; las evoluciones sustituyen el objeto base y sus efectos.
+- Integra los objetos en las tres cartas reveladas al subir de nivel y muestra el inventario en el HUD.
+- Los efectos son adaptaciones propias; no se incorporan al cooperativo en esta primera versión.
+
 ## Destellos de rareza al revelar cartas — 2026-10-26
 - Rareza rara revela un barrido turquesa, épica uno violeta y legendaria un destello dorado de izquierda a derecha con pulso de marco.
 - Los brillos son breves, cosméticos y compatibles con movimiento reducido; no cambian el poder de la mejora.

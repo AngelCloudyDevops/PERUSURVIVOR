@@ -189,6 +189,10 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
+    "source": "src/systems/dota-items.js",
+    "output": "js/dota-items.js"
+  },
+  {
     "source": "src/rendering/machu-art.js",
     "output": "js/machu-art.js"
   },
