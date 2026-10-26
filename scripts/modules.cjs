@@ -8,6 +8,10 @@ module.exports = [
     "output": "js/powers.js"
   },
   {
+    "source": "src/data/muzzle-anchors.js",
+    "output": "js/muzzle-anchors.js"
+  },
+  {
     "source": "src/data/difficulty.js",
     "output": "js/difficulty.js"
   },
@@ -32,6 +36,10 @@ module.exports = [
     "output": "js/player-attack-art.js"
   },
   {
+    "source": "src/systems/muzzle.js",
+    "output": "js/muzzle.js"
+  },
+  {
     "source": "src/rendering/player-feedback.js",
     "output": "js/player-feedback.js"
   },
@@ -46,6 +54,10 @@ module.exports = [
   {
     "source": "src/rendering/effects.js",
     "output": "js/fx.js"
+  },
+  {
+    "source": "src/systems/meta-progress.js",
+    "output": "js/meta-progress.js"
   },
   {
     "source": "src/entities/actors.js",
@@ -88,7 +100,8 @@ module.exports = [
     "output": "js/vulture-cinematic.js"
   },
   {
-    "source": "src/rendering/vulture-strike-art.js", "output": "js/vulture-strike-art.js"
+    "source": "src/rendering/vulture-strike-art.js",
+    "output": "js/vulture-strike-art.js"
   },
   {
     "source": "src/systems/vulture-impact.js", "output": "js/vulture-impact.js"
@@ -122,10 +135,14 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
+    "source": "src/rendering/garden-art.js", "output": "js/garden-art.js"
+  },
+  {
     "source": "src/rendering/street-art.js", "output": "js/street-art.js"
   },
   {
-    "source": "src/rendering/plaza-art.js", "output": "js/plaza-art.js"
+    "source": "src/rendering/plaza-art.js",
+    "output": "js/plaza-art.js"
   },
   {
     "source": "src/rendering/ambient.js",
@@ -199,5 +216,6 @@ module.exports = [
     "source": "src/rendering/ultimate-comic.js",
     "output": "js/ultimate-comic.js"
   },
-  {"source":"src/systems/court-ultimate.js","output":"js/court-ultimate.js"}
+  {"source":"src/systems/court-ultimate.js","output":"js/court-ultimate.js"},
+  {"source":"src/rendering/court-art.js","output":"js/court-art.js"}
 ];
