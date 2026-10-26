@@ -371,3 +371,5 @@ MinionEvolution.themed compone perfiles de pala, puño y bandera para rangos con
 ### Perfiles de consulta
 P.CharacterProfiles en powers.js deriva los valores de P.Data.characters y P.Data.attacks al consultar. Lobby.details los presenta solo al seleccionar, sin trabajo por fotograma ni alterar el combate.
 
+
+Minibosses.planRoute implementa A* local de 37×37 celdas de 40 unidades, con límite de 900 expansiones, caché de 1,2 s y validación de segmentos usando e.r+3. Sólo approach usa navigate; choque y avisos mantienen sus máquinas actuales. Rutas y relojes son serializables y compartidos con cooperativo. exhaustedPose usa el reloj de simulación existente, con poses estáticas en movimiento reducido y cuerpo íntegro.

@@ -455,3 +455,5 @@ Los minions con oficio de rangos veterano/élite atacan según su accesorio: Pab
 ### Consulta de personajes
 Las fichas de Causas muestran valores base de rango 1 sin mochila ni mejoras permanentes, rol descriptivo y evolución. El daño por impacto incluye powerScale; no se presenta como DPS. La rareza de colección no aumenta atributos. Véase CHARACTER_PROFILES.md.
 
+
+Navegación de minijefes: rutas locales rodean coberturas con su radio completo, sin teletransporte ni atravesar esquinas. Recalculan ante bloqueo, cambios de terreno o desplazamiento del jugador; no inician ataques desde lejos o a través de paredes. Embestidas mantienen dirección fijada y castigo por choque. Tras el impacto, el Fiscalizador baja la guardia inclinado, la Paloma baja alas/cuerpo y el Huaco se asienta encorvado; respiración sutil desactivada con movimiento reducido. Ventana y +35 % permanecen iguales.

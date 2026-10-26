@@ -1,7 +1,7 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),{Simulation}=require('../backend/simulation.cjs');
 for(const map of ['campo','plaza','machu'])test('Segunda fase: '+map+' · umbral, aviso y dos ejecuciones',()=>{
- const sim=new Simulation(map,[0,6]),P=sim.P,s=P.state,M=P.Minibosses,e=M.create(map,{x:0,y:0});s.enemies=[e];s.player.x=200;s.player.y=0;e.attackT=100;P.Terrain.resolve=()=>{};
+ const sim=new Simulation(map,[0,6]),P=sim.P,s=P.state,M=P.Minibosses,e=M.create(map,{x:0,y:0});s.enemies=[e];s.player.x=200;s.player.y=0;e.attackT=100;P.Terrain.resolve=()=>{};P.Terrain.clear=()=>true;
  e.hp=e.max*.5+1;M.move(e,0);assert(!e.enraged);e.hp=e.max*.5;s.danger=[{miniId:e.miniId},{miniId:999}];M.move(e,0);assert(e.enraged);assert.equal(e.phase,'mini-fury');assert.equal(s.danger.length,1);assert.equal(s.danger[0].miniId,999);assert.equal(M.beginFury(e),false);
  const hp=s.player.hp;s.player.x=e.x;s.player.y=e.y;s.player.inv=0;M.contact(e,[s.player]);assert.equal(s.player.hp,hp);const frozen=JSON.stringify(e);s.mode='pause';P.Game.update(.3);assert.equal(JSON.stringify(e),frozen);s.mode='play';s.player.x=200;s.danger=[];
  const fx=P.Audio.fx,calls=[];P.Audio.fx=name=>calls.push(name);M.furyAudio(e);M.furyAudio(e);assert.deepEqual(calls,['mini-fury-'+map]);P.Audio.fx=fx;
@@ -83,4 +83,21 @@ test('Visitas: tres niveles, igual cantidad de proyectiles y variación suprimid
 });
 test('Tarjeta lateral: entrada, resumen, pausa y snapshot cooperativo',()=>{
  const sim=new Simulation('machu',[0,6]),P=sim.P,M=P.Minibosses,s=P.state,e=M.create('machu',{x:0,y:0});s.enemies=[e];M.hud();assert(M.card.textContent.includes('No debiste despertarlo'));M.hurt(e,99999,0);s.enemies=[];M.encounterCard();assert(M.card.textContent.includes('Daño recibido'));assert(sim.snapshot().miniReport);s.mode='pause';M.encounterCard();assert.equal(M.card.hidden,false);s.elapsed+=9;M.encounterCard();assert(M.card.hidden);M.reset();assert.equal(s.miniReport,null);
+});
+
+test('Navegación: los tres rodean muros, salen de U y evitan fuentes sin atravesar geometría',()=>{
+ for(const map of ['campo','plaza','machu'])for(const layout of ['wall','u','fountain']){
+  const {P}=new Simulation(map,[0,6]),M=P.Minibosses,s=P.state,e=M.create(map,{x:layout==='u'?-110:-270,y:0});s.enemies=[e];s.player.x=270;s.player.y=0;e.attackT=10000;
+  const rectangles=layout==='u'?[{x:0,y:0,w:70,h:360},{x:-140,y:-180,w:280,h:50},{x:-140,y:180,w:280,h:50}]:[{x:0,y:0,w:120,h:360}];
+  P.Terrain.hit=(x,y,r)=>layout==='fountain'?Math.hypot(x/(140+r),y/(95+r))<1?{}:null:rectangles.find(o=>x>o.x-o.w/2-r&&x<o.x+o.w/2+r&&y>o.y-o.h/2-r&&y<o.y+o.h/2+r);
+  P.Terrain.resolve=(q,old,r)=>{if(P.Terrain.hit(q.x,q.y,r)){q.x=old.x;q.y=old.y}};
+  for(let i=0;i<1000&&Math.hypot(e.x-s.player.x,e.y-s.player.y)>125;i++){M.move(e,.04);assert(!P.Terrain.hit(e.x,e.y,e.r),'Sin penetrar cobertura');assert((e.navExpanded||0)<=900)}
+  assert(Math.hypot(e.x-s.player.x,e.y-s.player.y)<=125,map+' '+layout+' llega rodeando el obstáculo');assert.doesNotThrow(()=>JSON.stringify(e));
+ }
+});
+test('Ruta: bloqueo cercano, objetivo móvil y terreno modificado',()=>{
+ const {P}=new Simulation('campo',[0,6]),M=P.Minibosses,s=P.state,e=M.create('campo',{x:-50,y:0});s.player.x=50;s.player.y=0;e.attackT=10000;let solid=true;P.Terrain.hit=(x,y,r)=>solid&&Math.abs(x)<10+r&&Math.abs(y)<90+r?{}:null;P.Terrain.resolve=(q,old,r)=>{if(P.Terrain.hit(q.x,q.y,r)){q.x=old.x;q.y=old.y}};M.move(e,.04);assert(e.navPath?.length>0);assert.notEqual(e.y,0);s.player.y=300;M.navigate(e,s.player,.04);assert.equal(e.navGoal.y,300);solid=false;const dir=M.navigate(e,s.player,.04);assert.equal(e.navPath.length,0);assert(dir.y>0);
+});
+test('Agotamiento: poses distintas, cuerpo completo, pausa y movimiento reducido',()=>{
+ const {P}=new Simulation('campo',[0,6]),M=P.Minibosses,poses=[];for(const map of ['campo','plaza','machu']){const e=M.create(map,{x:0,y:0});e.phase='mini-recover';e.recoveryTotal=1.5;e.recovery=1;e.ambientTime=1;poses.push(JSON.stringify(M.pose(e)));assert.equal(M.frame(e),map==='plaza'?1:0);const first=JSON.stringify(M.pose(e));assert.equal(JSON.stringify(M.pose(e)),first);P.Ambient.reduced={matches:true};const still=JSON.stringify(M.pose(e));e.ambientTime=7;assert.equal(JSON.stringify(M.pose(e)),still);P.Ambient.reduced={matches:false};}assert.equal(new Set(poses).size,3);
 });
