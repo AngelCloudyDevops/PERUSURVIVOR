@@ -1,0 +1,13 @@
+{
+  "origin": "image_gen built-in",
+  "reference": "cristorata-attack-v1.png",
+  "prompt": "4x3 transparent cartoon pixel art atlas: dedicated waist portraits, full back views, pachinko machine, original jade dragon and four mounted flight frames. Preserve black shirt, jeans and short black hair.",
+  "sha256": "c00089d29c89d9a9e8ec50e459ac6c8b2774e0c4700df36358150dd9460bed97",
+  "columns": 4,
+  "rows": 3,
+  "runtime": {
+    "file": "cristorata-dragon-v1.webp",
+    "encoding": "WebP quality 40, alpha preserved; original PNG retained",
+    "sha256": "16ea5bd95d66383cc2d71d43cf60a00e39cad7b64168d01344d15dacc8a48f84"
+  }
+}
