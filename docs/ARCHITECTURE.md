@@ -599,3 +599,5 @@ Presupuesto del bus: boss-atlas-packed-v2.webp recodifica a calidad 100 el atlas
 # Arte y control de Sideral
 
 SideralArt carga un atlas WebP 4×2 de figuras completas: tres poses de locomoción y cinco cuadros continuos de ataque. Intercepta únicamente el dibujo del id `sideral`; los demás personajes conservan Sprites y PlayerAttackArt. Combat registra resistencia temporal por enemigo y usa la carga serializable existente para producir la huida, por lo que el comportamiento funciona también en la simulación cooperativa sin un estado paralelo.
+
+ChosicanoCombat gobierna exclusivamente kind combi. La embestida resuelve colisión en subpasos de hasta 12 unidades; brake conserva posición y registra marcas acotadas. El bocinazo usa un stomp hornWave con waveFrom actualizado antes de avanzar age; MinionEvolution.hits prueba la banda barrida y su ángulo, y Combat aplica la cobertura y spent habituales. ChosicanoArt dibuja el mismo radio/frente y los mismos relojes; los efectos no causan daño. Audio.fx añade señales sintetizadas de aviso, bocina y neumáticos, sin nuevos assets.

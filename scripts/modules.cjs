@@ -109,6 +109,7 @@ module.exports = [
     "output": "js/boss-art.js"
   },
   {"source":"src/rendering/chosicano-art.js","output":"js/chosicano-art.js"},
+  {"source":"src/systems/chosicano-combat.js","output":"js/chosicano-combat.js"},
   {
     "source": "src/systems/vulture-boss.js",
     "output": "js/vulture-boss.js"
