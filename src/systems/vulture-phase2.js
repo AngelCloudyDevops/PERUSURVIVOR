@@ -29,16 +29,9 @@ P.VulturePhase2 = {
     return {reveal:this.smooth((t-1.95)/.92),spread:reduced?0:this.smooth((t-1.7)/.65)*.7,aura:this.smooth((t-1.75)/.8),bolts:this.smooth((t-2.15)/.65)};
   },
   transformBird(c,g,t,reduced){
-    const m=this.transformation(t,reduced),art=P.VultureStrike,scale=g.scale,pose=0,baseY=g.baseY;
-    // Ambos atlas usan el mismo pie y la misma escala de píxel: no se trasladan.
-    const old=art.frames[pose],f=this.frames[pose],px=f.x+f.w/2-(old.x+old.w/2-old.pivotX),py=f.y+f.h-(old.y+old.h-old.pivotY),eye=this.eye||{x:f.x+f.w*.88,y:f.y+f.h*.4};
-    const headX=art.eye.x-old.pivotX-(eye.x-px),headY=art.eye.y-old.pivotY-(eye.y-py);
-    const paint=(target)=>this.mesh(c,target,pose,g.baseX,baseY,scale,{spread:m.spread,ruffle:reduced?0:Math.sin(t*19)*.008*m.aura,headX:target===this?headX:0,headY:target===this?headY:0},old);
-    // Mezclar figuras completas evita seccionar la nueva cresta/alas.
-    // El movimiento lo produce la malla, no un desplazamiento entre imágenes.
-    if(m.reveal<1){c.save();c.globalAlpha*=1-m.reveal;paint(art);c.restore()}
-    if(m.reveal>0){c.save();c.globalAlpha*=m.reveal;paint(this);c.restore()}
-    this.electricity(c,g.baseX,baseY-g.h*.45,g.w*.3,t,m.bolts*(reduced?.25:.75),reduced);
+    if(P.VultureRig?.ready)return P.VultureRig.draw(c,g.baseX,g.baseY,g.rigHeight||g.h,t,false,reduced);
+    // Fallback de una sola figura: tampoco funde dos atlas si falla el rig.
+    this.mesh(c,P.VultureStrike,0,g.baseX,g.baseY,g.scale,this.featherMotion(t,reduced));
   },
   ready:false, failed:false, frames:[],
   init(){
