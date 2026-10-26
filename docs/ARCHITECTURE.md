@@ -181,3 +181,8 @@ WalkArt.frame depende de walkPhase, no del reloj de render; el aleteo sí usa el
 
 DayNight.sample es una función de mapTime sin temporizadores independientes ni estado acumulado. World aplica el tinte tras el ambiente de suelo y antes del combate, y dibuja luz rasterizada bajo los faroles visibles. UI muestra la fase. Terrain consulta la misma función para el color de las lámparas.
 VultureUltimate.comic reutiliza el reloj de la ulti, atlas de alas y gallinazo-comic-v1.png para ojo y grito. Las alas se pintan fuera del clip del panel; doce fragmentos decorativos simulan la ruptura. La imagen de primeros planos se precarga sin bloquear la arena y admite fallback al atlas de alas si falla.
+
+## Minijefes de mapa
+`P.Minibosses` contiene catálogo, temporizador, aparición segura, seis patrones, recompensas y atlas transparentes. `miniNext`, `miniWarning` y los enemigos son serializables por sala. Systems.spawn avanza el aviso con dt; Systems.move y Simulation usan la misma máquina y contacto. El cliente cooperativo recibe el aviso del servidor y no decide daño ni aparición. Las cuatro figuras conectadas principales de cada atlas se aíslan por alfa antes de dibujar, evitando recortar alas o incluir vecinos. Las derrotas son efectos con vida de simulación, respetan pausa y se limpian al reiniciar. Los mapas conservan los minijefes vivos al descargar sectores.
+
+Los recursos de minijefes y los cinco atlas/fondos recientes del Gallinazo/Kingteka se sirven como WebP sin pérdida; los PNG originales permanecen en public como fuentes. El informe asset-optimization.json registra hashes RGBA y tamaños para conservar el margen de publicación.
