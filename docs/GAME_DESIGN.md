@@ -577,3 +577,5 @@ La transformación también cambia gradualmente el plumaje a morado oscuro. Cons
 Alternar ambas mantiene el orden Tema 1 → Tema 2 → Tema 1 con transición suave de tres segundos, sin solapar música sintetizada. Volumen, silencio y pausa afectan a las dos pistas; la transición continúa desde su punto al reanudar. Se prepara la próxima pista solo cerca del final y se mantiene la actual si no está disponible.
 
 La música predeterminada para navegadores sin preferencia guardada es Alternar ambas. Las preferencias existentes y el silencio general se respetan; cargar el juego no reproduce ni descarga música automáticamente.
+
+Gallinazo fase dos: al desplazarse despega suavemente, recoge las patas y bate las alas con un ciclo completo. La sombra permanece en el piso y el aura acompaña el cuerpo elevado; al detenerse baja progresivamente. No cambia la colisión ni el daño. Movimiento reducido mantiene altura estable sin oscilación.
