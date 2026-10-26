@@ -1,5 +1,10 @@
 # Cambios
 
+## Cartas ilustradas de Kingteka — 2026-10-26
+- Añade viñetas pixel art propias para escopeta, Gallinazo y golpe de cuerpo en las cartas de mejora.
+- Reutiliza el sprite cargado del personaje y canvas local; la viñeta solo anima mientras el panel está abierto y respeta movimiento reducido.
+- Conserva rareza, efecto y comparación; documentado en README y guía de diseño.
+
 ## Catálogo de objetos en el menú — 2026-10-26
 - Añade el acceso «Objetos de Dota» al menú Habilidades.
 - Presenta objetos y evoluciones con sprites pixel art propios, efectos adaptados, rarezas y niveles de aparición.
