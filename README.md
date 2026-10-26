@@ -14,6 +14,9 @@ Las Expansiones de Dominio UR —Makanaky y Sideral— son un sistema distinto d
 ## Revelado de mejoras
 Al subir de nivel se revelan las tres cartas antes de elegir una. El giro muestra un destello breve de izquierda a derecha según la rareza: turquesa para rara, violeta para épica y dorado para legendaria; común conserva un giro limpio. El efecto es cosmético y de una sola ejecución, respeta `prefers-reduced-motion` y no modifica el poder: la rareza solo influye en la probabilidad de aparición.
 
+## Objetos de Dota durante la partida
+Los objetos equipados aparecen en una fila de hasta cuatro espacios en la esquina inferior derecha. Cada espacio muestra el icono oficial de Dota 2, el nombre y un estado corto; al pasar el cursor o enfocarlo se lee la descripción completa. Si el CDN oficial no responde, se usa el icono pixel art local. En esta versión no hay tecla de activación: botas y regeneración son pasivas, Magic Stick/Wand consume sus cargas automáticamente al cumplir su umbral de vida y Blink se dispara automáticamente ante un golpe fuerte cuando la vida está baja, respetando su recarga.
+
 ## Dominio de Sideral: «¿QUÉ, EN SERIO?»
 Como Expansión de Dominio UR, Sideral no usa tarjeta lateral: al activarla comienza directamente su cinemática propia a pantalla completa, igual que Makanaky. Cada onda morada nace desde la posición actual de Sideral al gritar, incluso si se ha movido desde el centro de la habitación.
 
