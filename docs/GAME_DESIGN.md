@@ -279,3 +279,5 @@ La entrada del Gallinazo ocupa toda la pantalla durante 2 s. Se congela toda la 
 Garúa solo en Campo de Marte: 1:00–1:25, 2:30–2:55 y 4:00–4:25, con transiciones de tres segundos. Es visual, tenue y por debajo del combate. Los demás mapas no cambian; movimiento reducido la desactiva.
 
 Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
+
+Cinemática de Lima: 3 s con azotea dedicada y visible, cámara lenta, cuerpo articulado continuo (sin cambiar de pose), primer plano del ojo que se retira, grito que levanta una bandada y aleteo que desplaza polvo/plumas y sacude antenas. Grietas solo desde las puntas de las alas al final; se eliminan los rayos radiales. Conserva pausa total y 0,7 s de aviso al regresar. Movimiento reducido conserva fondo y ave estáticos.

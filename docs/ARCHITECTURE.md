@@ -195,3 +195,5 @@ Game.update comprueba VultureUltimate.introTick antes de avanzar combate y tempo
 Weather.sample deriva la intensidad de mapTime, sin temporizadores ni acumulación de partículas. World dibuja hasta 80 gotas por ventana antes de los actores. DayNight añade GARÚA a la fase cuando corresponde.
 
 Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
+
+VultureScene renderiza a media resolución con 160 triángulos de malla articulada sobre un único sprite, con deformación continua y pies anclados. Efectos deterministas derivados del reloj: 36 gotas, 10 aves de fondo, 24 motas y 16 plumas; no crean entidades ni temporizadores. Fondo dedicado gallinazo-lima-cinematic-v1.png, fallback a azotea anterior si falla. VultureUltimate mantiene la lógica de combate y la duración de 3 s.
