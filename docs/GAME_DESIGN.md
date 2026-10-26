@@ -306,3 +306,7 @@ Los arbustos de Campo de Marte y las matas de Machu Picchu se sacuden brevemente
 
 Aleteo fluido: alas articuladas sobre la pose abierta del atlas existente, con subida y bajada continuas a 2,8 ciclos por segundo, ligera flexion de plumas, balanceo del cuerpo y sombra acompasada. Cada gallinazo tiene una fase propia estable, sin sincronizar toda la bandada. El panel de Kingteka comparte el mismo dibujo. Movimiento reducido mantiene alas y cuerpo fijos. No cambia dano, velocidad ni colisiones.
 
+
+## Reacciones de los jugables y dirección de disparo
+Los 18 jugables reaccionan al daño durante 0,26 s con retroceso visual, una inclinación breve y señal de impacto. No cambia su posición, colisión ni ventana de invulnerabilidad. Al caer muestran el cuerpo completo inclinado y una señal de derrota; permanecen visibles. En individual y derrota de equipo, el resultado aparece tras 0,95 s mientras combate y relojes permanecen detenidos. En cooperativo los caídos conservan la reanimación de cuatro segundos y recuperan la caminata al levantarse. Movimiento reducido elimina la sacudida y reduce la inclinación.
+Las armas de fuego conservan la orientación del último disparo durante su recuperación (hasta 0,5 s), aunque se camine en sentido contrario. La pose sigue la fase real de los pies y la dirección registrada al crear los proyectiles; no cambia el alcance, daño ni trayectoria. Esto evita que Kingteka vuelva a mirar hacia su movimiento antes de terminar de disparar.
