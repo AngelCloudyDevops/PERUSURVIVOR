@@ -127,6 +127,10 @@ module.exports = [
     "output": "js/vulture-phase2.js"
   },
   {
+    "source": "src/rendering/vulture-rig.js",
+    "output": "js/vulture-rig.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
   },
