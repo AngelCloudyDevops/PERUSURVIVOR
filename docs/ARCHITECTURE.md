@@ -664,3 +664,5 @@ roadDomain mantiene física por slot (altura, velocidad, deslizamiento, tropiezo
 
 Sideral: al cargar su atlas se conserva la figura conectada principal de cada cuadro y se eliminan fragmentos aislados de cuadros vecinos, incluida la onda roja que invadía la recuperación. La limpieza se hace una sola vez, mantiene la cuadrícula, tamaño y anclaje originales y conserva la lata roja unida a la mano.
 El botón lab-ultimate despacha la prueba del Chosicano o la del Gallinazo. tryStart(force) solo omite el umbral y el uso previo si devRun es verdadero y Coop está inactivo; mantiene todos los bloqueos de escenas. No cambia PV ni habilita atajos en partidas normales o del servidor.
+
+SideralArt normaliza cada figura con los límites alfa de su componente principal y un anclaje corporal por cuadro. La secuencia visual usa siete poses con desplazamiento suave durante un máximo de .42 s, acotado por la cadencia; no interpola ni deforma extremidades y no altera la simulación.
