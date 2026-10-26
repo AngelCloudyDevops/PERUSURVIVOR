@@ -28,7 +28,7 @@ class Simulation{
   if(!alive.length){this.result='lose';return}
   if(this.activities.pending){this.activities.advance(dt);return}
   if(s.domain){P.Domain.tick(dt,inputs);return}
-  if(s.court){this.use(this.players[s.court.slot]);P.Court.tick(dt);return}P.Court.burstTick(dt);
+  if(s.court){this.use(this.players[s.court.slot]);P.Court.tick(dt);return}if(P.DragonUltimate?.advanceScene(dt,this.players))return;P.Court.burstTick(dt);
   s.mode='play';s.elapsed+=dt;if(!s.encounter)s.mapTime+=dt;this.use(alive[0]);P.Chunks.sync();P.Encounters.tick();P.Systems.spawn(dt);
   for(const p of alive){this.use(p);const input=inputs[p.slot]||{},x=Number(input.x)||0,y=Number(input.y)||0,n=Math.max(1,Math.hypot(x,y)),old={x:p.x,y:p.y};p.inv=Math.max(0,p.inv-dt);p.moving=Math.hypot(x,y)>.05;if(x)p.facing=Math.sign(x);p.x+=x/n*p.speed*(P.DragonUltimate?.speed(p)??1)*dt;p.y+=y/n*p.speed*(P.DragonUltimate?.speed(p)??1)*dt;P.World.collide(p,old);
    p.aimView=P.Combat.sanitizeView(input.view)||p.aimView||null;const other=this.players[1-p.slot],distance=Math.hypot(p.x-other.x,p.y-other.y);if(distance>720&&other.hp>0){p.x=old.x;p.y=old.y}
