@@ -23,6 +23,7 @@ module.exports = [
     "source": "src/systems/audio.js",
     "output": "js/audio.js"
   },
+  {"source":"src/systems/minion-audio.js","output":"js/minion-audio.js"},
   {
     "source": "src/systems/soundscape.js", "output": "js/soundscape.js"
   },
