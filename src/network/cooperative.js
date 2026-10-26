@@ -60,7 +60,7 @@ showReward(pending){
  P.UI.show(title,description,[...buttons,leave]);if(pending.item)P.LootArt.reveal(pending.item);
 },
 tick(dt){
- if(!this.active)return;this.lastSend+=dt;if(this.lastSend>=.05){this.lastSend=0;const input=this.paused||this.reconnecting||this.activityPending?{x:0,y:0}:P.Core.direction();this.send({type:'input',x:input.x,y:input.y,ultimate:!!this.ultimate});this.ultimate=false}
+ if(!this.active)return;this.lastSend+=dt;if(this.lastSend>=.05){this.lastSend=0;const input=this.paused||this.reconnecting||this.activityPending?{x:0,y:0}:P.Core.direction();this.send({type:'input',x:input.x,y:input.y,ultimate:!!this.ultimate,view:P.Combat.sanitizeView(P.Combat.view(P.state.player))});this.ultimate=false}
  // El servidor es la única autoridad: no se ejecuta Game.update en este cliente.
 },
 pause(){if(this.reconnecting||this.activityPending)return;if(this.paused){this.paused=false;P.$('#overlay').hidden=true;return}this.paused=true;P.Core.clear();this.send({type:'input',x:0,y:0});P.UI.show('Cooperativo · Opciones','Tu amigo continúa jugando. Esta pantalla no pausa la sala.',[{title:'Seguir jugando',action:()=>this.pause()},{title:'Salir de la sala',action:()=>{this.leave();P.UI.menu()}}])},

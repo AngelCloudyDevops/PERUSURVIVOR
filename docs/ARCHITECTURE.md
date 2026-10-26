@@ -237,7 +237,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - alberto: **Órbita presidencial** — Seis bandas giran alrededor y una onda golpea el centro.
 - keiko: **Abanico solar** — Cuatro abanicos salen en cruz, regresan y dejan un remolino junto al objetivo.
 - ollanta: **Marcha del comando** — Un cono largo y estrecho empuja; dos ondas laterales cubren los flancos.
-- kingteka: **Escopeta Contra** — Tres disparos concentrados de alta velocidad perforan ocho rivales.
+- kingteka: **Escopeta Contra** — Tres disparos concentrados, tres penetraciones base y pérdida de fuerza a distancia.
 - shaka: **Tornado bananero** — Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.
 - najasor: **Marea CPEZ** — Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
@@ -308,6 +308,9 @@ Minibosses.hud crea una sola vez el panel de vida dentro de #hud y actualiza sus
 
 ## Posición de etiquetas de rivales
 EnemyArt.labelTop calcula el borde superior de la pose dibujada, a partir del cuadro de caminata o del atlas y sus transformaciones de elevación, giro y escala. World no dibuja nombres de minions; Loot usa ese límite únicamente para apilar los datos del portador. La geometría de colisión y los ataques no cambian.
+
+
+Combat.view/onScreen/target separa visibilidad de puntería del margen de renderizado; Game.start invalida la vista anterior. Cooperativo transporta una vista relativa acotada en input, validada en recepción y simulación, y conserva la última válida. Combat.server usa aimView por jugador en vez de World.view. Cada proyectil de escopeta serializa origen y curva de daño; shotDamage se aplica al barrido inicial y a impactos durante el vuelo. Minions, cartas y búsqueda reutilizan la selección visible. La auditoría aislada de 18 ataques no modifica partidas ni se publica como herramienta de QA.
 
 
 CampoArt intercepta landmark/picnic en Terrain solo para Campo fuera de arenas. Carga un atlas de tres celdas y selecciona el picnic de forma determinista por coordenadas. Una llamada de imagen y una sombra pequeña por objeto; reutiliza descarte/orden de World sin nuevas entidades, temporizadores ni estado por sector. Auditoría y empaquetado: campo-landmarks-audit.json y pack-campo-landmarks.py.

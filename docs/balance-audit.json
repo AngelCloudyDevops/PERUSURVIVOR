@@ -1,0 +1,210 @@
+{
+  "method": "20 s, rango inicial sin mejoras ni ulti en characters; kingtekaEvolved usa cuatro rangos y evolución al nivel 8. Blancos inmóviles: radio 30 individual, 40 jefe a 180 unidades y 13 en fila de ocho. Daño por segundo agregado, no dificultad ni tasa de victoria.",
+  "baseline": "69ac663; parámetros anteriores de escopetas y selección sin límite de pantalla",
+  "kingtekaEvolved": {
+    "bossBefore": 599.3,
+    "bossAfter": 445.6,
+    "lineBefore": 812.1,
+    "lineAfter": 594.1
+  },
+  "characters": [
+    {
+      "id": "cristorata",
+      "closeBefore": 32.8,
+      "closeAfter": 32.8,
+      "midBefore": 33.6,
+      "midAfter": 33.6,
+      "lineBefore": 166.4,
+      "lineAfter": 166.4,
+      "bossBefore": 33.6,
+      "bossAfter": 33.6
+    },
+    {
+      "id": "cuy",
+      "closeBefore": 30.6,
+      "closeAfter": 30.6,
+      "midBefore": 0,
+      "midAfter": 0,
+      "lineBefore": 61.2,
+      "lineAfter": 61.2,
+      "bossBefore": 30.6,
+      "bossAfter": 30.6
+    },
+    {
+      "id": "paloma",
+      "closeBefore": 102,
+      "closeAfter": 102,
+      "midBefore": 20.4,
+      "midAfter": 20.4,
+      "lineBefore": 61.2,
+      "lineAfter": 61.2,
+      "bossBefore": 61.2,
+      "bossAfter": 61.2
+    },
+    {
+      "id": "alan",
+      "closeBefore": 37.2,
+      "closeAfter": 37.2,
+      "midBefore": 37.2,
+      "midAfter": 37.2,
+      "lineBefore": 148.8,
+      "lineAfter": 148.8,
+      "bossBefore": 37.2,
+      "bossAfter": 37.2
+    },
+    {
+      "id": "alberto",
+      "closeBefore": 28.8,
+      "closeAfter": 28.8,
+      "midBefore": 0,
+      "midAfter": 0,
+      "lineBefore": 31.2,
+      "lineAfter": 31.2,
+      "bossBefore": 0,
+      "bossAfter": 0
+    },
+    {
+      "id": "keiko",
+      "closeBefore": 43.7,
+      "closeAfter": 43.7,
+      "midBefore": 43.7,
+      "midAfter": 43.7,
+      "lineBefore": 217.4,
+      "lineAfter": 217.4,
+      "bossBefore": 43.7,
+      "bossAfter": 43.7
+    },
+    {
+      "id": "ollanta",
+      "closeBefore": 33,
+      "closeAfter": 33,
+      "midBefore": 33,
+      "midAfter": 33,
+      "lineBefore": 165,
+      "lineAfter": 165,
+      "bossBefore": 33,
+      "bossAfter": 33
+    },
+    {
+      "id": "kingteka",
+      "closeBefore": 136.5,
+      "closeAfter": 105,
+      "midBefore": 81.9,
+      "midAfter": 53.4,
+      "lineBefore": 136.5,
+      "lineAfter": 105,
+      "bossBefore": 136.5,
+      "bossAfter": 105
+    },
+    {
+      "id": "shaka",
+      "closeBefore": 161,
+      "closeAfter": 161,
+      "midBefore": 161,
+      "midAfter": 161,
+      "lineBefore": 483,
+      "lineAfter": 483,
+      "bossBefore": 161,
+      "bossAfter": 161
+    },
+    {
+      "id": "najasor",
+      "closeBefore": 72,
+      "closeAfter": 72,
+      "midBefore": 23,
+      "midAfter": 23,
+      "lineBefore": 69,
+      "lineAfter": 69,
+      "bossBefore": 69,
+      "bossAfter": 69
+    },
+    {
+      "id": "cirilo",
+      "closeBefore": 45.1,
+      "closeAfter": 45.1,
+      "midBefore": 46.2,
+      "midAfter": 46.2,
+      "lineBefore": 228.8,
+      "lineAfter": 228.8,
+      "bossBefore": 46.2,
+      "bossAfter": 46.2
+    },
+    {
+      "id": "fuzo",
+      "closeBefore": 62.4,
+      "closeAfter": 62.4,
+      "midBefore": 62.4,
+      "midAfter": 62.4,
+      "lineBefore": 187.2,
+      "lineAfter": 187.2,
+      "bossBefore": 62.4,
+      "bossAfter": 62.4
+    },
+    {
+      "id": "charles",
+      "closeBefore": 68.1,
+      "closeAfter": 68.1,
+      "midBefore": 67.2,
+      "midAfter": 67.2,
+      "lineBefore": 108.1,
+      "lineAfter": 108.1,
+      "bossBefore": 67.7,
+      "bossAfter": 67.7
+    },
+    {
+      "id": "axelbenba",
+      "closeBefore": 88.2,
+      "closeAfter": 88.2,
+      "midBefore": 28.4,
+      "midAfter": 28.4,
+      "lineBefore": 88.2,
+      "lineAfter": 88.2,
+      "bossBefore": 85.1,
+      "bossAfter": 85.1
+    },
+    {
+      "id": "cerdito",
+      "closeBefore": 118.1,
+      "closeAfter": 118.1,
+      "midBefore": 50.6,
+      "midAfter": 36.7,
+      "lineBefore": 84.4,
+      "lineAfter": 84.4,
+      "bossBefore": 50.6,
+      "bossAfter": 45.6
+    },
+    {
+      "id": "sustento",
+      "closeBefore": 60,
+      "closeAfter": 60,
+      "midBefore": 59.4,
+      "midAfter": 59.4,
+      "lineBefore": 60,
+      "lineAfter": 60,
+      "bossBefore": 60,
+      "bossAfter": 60
+    },
+    {
+      "id": "cevichero",
+      "closeBefore": 76.8,
+      "closeAfter": 76.8,
+      "midBefore": 74.4,
+      "midAfter": 74.4,
+      "lineBefore": 76.8,
+      "lineAfter": 76.8,
+      "bossBefore": 76.8,
+      "bossAfter": 76.8
+    },
+    {
+      "id": "g5",
+      "closeBefore": 67.2,
+      "closeAfter": 67.2,
+      "midBefore": 0,
+      "midAfter": 0,
+      "lineBefore": 134.4,
+      "lineAfter": 134.4,
+      "bossBefore": 0,
+      "bossAfter": 0
+    }
+  ]
+}
