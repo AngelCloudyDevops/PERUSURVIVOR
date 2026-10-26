@@ -40,11 +40,12 @@ P.VultureRig={
     const idle=this.idleMotion(e,reduced);
     if(e.phase==='vulture-ultimate'){
       const m=this.motion(Math.min(4,e.ultimateTime||0),false,reduced);
+      if(e.ultimateTime>=4){m.near=.05;m.far=.65}
       if(e.ultimateTime>=4&&e.ultimateGrace<=0){m.near-=(e.wavePulse||0)*2.4;m.far-=(e.wavePulse||0)*1.8}
       if(e.ultimateTime>=4&&e.ultimateGrace<=0)for(const k of ['near','far','head','ruffle'])m[k]+=idle[k];
       return m;
     }
-    const m={near:-.6,far:-.25,jaw:0,head:0,phase:1,ruffle:0};
+    const m={near:.05,far:.65,jaw:0,head:0,phase:1,ruffle:0};
     if(e.phase==='vulture-dive'){m.near=-.9;m.far=-.55}
     for(const k of ['near','far','head','ruffle'])m[k]+=idle[k];
     const flight=this.flightPose(e,reduced);m.near+=flight.near;m.far+=flight.far;m.tuck=flight.tuck;
@@ -60,23 +61,24 @@ P.VultureRig={
         brace+=this.smooth((t-(hit-.32))/.16)*(1-this.smooth((t-(hit-.13))/.13));
       }
       const release= Math.min(1,stroke),power=reduced?0:release;
-      return {near:-.6+load*1.45-power*2.05,far:-.25+load*1.65-power*2.3,head:reduced?0:-load*.1+power*.17,jaw:reduced?0:power*.32,ruffle:reduced?0:(brace*.025+power*.07),tuck:0,bank:reduced?0:-load*.075+power*.18,lift:0,pulse:power};
+      return {near:.05+load*1.15-power*1.85,far:.65+load*1.25-power*2.05,head:reduced?0:-load*.1+power*.17,jaw:reduced?0:power*.32,ruffle:reduced?0:(brace*.025+power*.07),tuck:0,bank:reduced?0:-load*.075+power*.18,lift:0,pulse:power};
     }
     if(e.phase==='vulture-warning'&&e.attack==='dive'){
       const p=Math.max(0,Math.min(1,1-e.windup/(e.warningTime||1.05))),open=this.smooth(p/.65),fold=this.smooth((p-.65)/.35);
-      return {near:-.6+open*1.6-fold*1.9,far:-.25+open*1.9-fold*2.1,head:reduced?0:p*.12,jaw:0,ruffle:reduced?0:Math.sin(p*18)*.025*p,tuck:p*.95,bank:reduced?0:-p*.12,lift:36*this.smooth(p),pulse:0};
+      return {near:.05+open*1.2-fold*2.1,far:.65+open*1.1-fold*2.2,head:reduced?0:p*.12,jaw:0,ruffle:reduced?0:Math.sin(p*18)*.025*p,tuck:p*.95,bank:reduced?0:-p*.12,lift:36*this.smooth(p),pulse:0};
     }
     if(e.phase==='vulture-dive')return {near:-1.05,far:-.8,head:.13,jaw:0,ruffle:0,tuck:1,bank:reduced?0:.28,lift:40,pulse:0};
     return null;
   },
   flightPose(e,reduced=false){
-    const dive=e.phase==='vulture-dive',q=Math.max(0,Math.min(1,e.rigFlight||0)),t=e.rigTime||0,beat=Math.sin(t*8),weight=reduced?0:q;
+    const dive=e.phase==='vulture-dive',q=Math.max(0,Math.min(1,e.rigFlight||0)),t=e.rigTime||0,beat=Math.sin(t*6.4),weight=reduced?0:q;
     const attack=this.attackPose(e,reduced);if(attack)return {lift:attack.lift+(e.phase==='vulture-dive'?0:q*32*(1-(attack.tuck||0))),tuck:attack.tuck,near:0,far:0,bank:attack.bank};
-    return {lift:q*(reduced?32:36+Math.cos(t*8-.7)*7),tuck:q*.85,near:dive?0:weight*(.42+beat*.85),far:dive?0:weight*(.5+Math.sin(t*8-.18)*.95),bank:reduced?0:dive?.16:weight*Math.sin(t*8-.8)*.035};
+    return {lift:q*(reduced?32:36+Math.cos(t*6.4-.7)*5),tuck:q*.85,near:dive||reduced?0:weight*(.15+beat*.55),far:dive||reduced?0:weight*(.35+Math.sin(t*6.4-.18)*.62),bank:reduced?0:dive?.16:weight*Math.sin(t*6.4-.8)*.025};
   },
   tickFlight(e,dt){
     if(!(dt>0)||!Number.isFinite(e.x)||!Number.isFinite(e.y))return;
     const moved=Number.isFinite(e.rigLastX)?Math.hypot(e.x-e.rigLastX,e.y-e.rigLastY)/dt:0;
+    if(Number.isFinite(e.rigLastX)&&Math.abs(e.x-e.rigLastX)>dt*12)e.rigFacing=Math.sign(e.x-e.rigLastX);
     const target=e.chaosForm&&(e.phase==='vulture-dive'||e.phase==='approach'&&moved>8)?1:0;
     const q=e.rigFlight||0,step=dt*(target?4:2.8);e.rigFlight=q+Math.max(-step,Math.min(step,target-q));e.rigLastX=e.x;e.rigLastY=e.y;
   },
@@ -151,6 +153,7 @@ P.VultureRig={
 };
 {
   const R=P.VultureRig,F=P.VulturePhase2,u=P.VultureUltimate,scene=P.VultureScene,init=scene.init,pending=scene.pending,geometry=scene.geometry,eye=scene.eye,bird=scene.bird,start=u.start,tick=u.introTick,overlay=u.overlay,move=P.Vulture.move,draw=P.Vulture.draw,visuals=P.Vulture.tickVisuals;
+  const aura=F.aura;F.aura=function(c,e){if(R.ready&&e?.chaosForm)return;return aura?.call(this,c,e)};
   P.Vulture.tickVisuals=function(e,dt){e.rigTime=(e.rigTime||0)+dt;R.tickFlight(e,dt);return visuals.call(this,e,dt)};
   scene.init=function(){R.init();return init.call(this)};
   scene.pending=()=>pending()||typeof Image!=='undefined'&&!R.ready&&!R.failed;
@@ -180,11 +183,13 @@ P.VultureRig={
     if(!R.ready||!e.chaosForm||F.entering(e)||e.phase==='vulture-defeat')return draw.call(this,c,e);
     if(e.phase==='vulture-ultimate')P.VultureImpact.telegraph(c,e);
     const reduced=P.Vulture.reduced(),flight=R.flightPose(e,reduced);
-    c.save();c.translate(e.x,e.y+e.r*.5-flight.lift);if(e.dx<0&&!(e.moonSequence&&e.ultimateGrace>0))c.scale(-1,1);c.rotate(flight.bank);
+    const facing=e.phase==='approach'?(e.rigFacing||(P.state.player?.x<e.x?-1:1)):(e.dx<0?-1:1);
+    c.save();c.translate(e.x,e.y+e.r*.5-flight.lift);if(facing<0&&!(e.moonSequence&&e.ultimateGrace>0))c.scale(-1,1);c.rotate(flight.bank);
     // Aura exterior acompaña la altura del plumaje morado.
-    const g={x:-115,y:-210,w:230,h:215};P.VultureScene.ribbons?.(c,g,reduced?0:e.rigTime||0,reduced?.22:.5,false);
+    const g={x:-115,y:-210,w:230,h:215};P.VultureScene.ribbons?.(c,g,reduced?0:e.rigTime||0,reduced?.12:.24,false);
     const result=R.draw(c,0,0,260,0,false,reduced,R.arenaMotion(e,reduced));
     R.attackFX(c,e,reduced);
-    F.electricity?.(c,0,-110,92,reduced?0:e.rigTime||0,reduced?.2:.55,reduced);c.restore();return result;
+    const energy=e.phase==='vulture-chaos-charge'?.4+.4*(R.attackPose(e,reduced)?.pulse||0):e.phase==='vulture-ultimate'&&e.wavePulse>0?.65:.35;
+    F.electricity?.(c,0,-110,92,reduced?0:e.rigTime||0,reduced?.12:energy,reduced);c.restore();return result;
   };
 }

@@ -440,6 +440,8 @@ collectionOrder vive en P.Gacha sin cambiar el esquema v4. compareCollection/sor
 Catálogo de minijefes separa clave visual de mapa mediante map opcional. miniKey en avisos permite alternar variantes conservando el mapa real en el estado cooperativo. miniPlazaTurn se incrementa sólo al aparecer y se reinicia por partida. El atlas Makanaky conserva el recorte de cuatro componentes y la ruta de carga existente.
 
 
+AnimalUltimate.contactPose añade un rebote cosmético de 0,22 s al contacto. birdFrame separa descenso y recuperación de alas. animalImpact conserva vector y reloj de impacto en snapshots; EnemyArt.hitPose aplica reacción visual sin modificar colisiones. feedbackState evita repetir pisadas o aleteos por fotograma o snapshot.
+
 AnimalUltimate.swarmPose dirige cuatro grupos con fase de contacto sincronizada al intervalo de daño existente. Selecciona objetivos vivos dentro del radio desde el estado autoritativo, sin mutar enemigos al renderizar. Cuy cruza desde cuatro lados; Paloma usa planeo, descenso y recuperación de altura. El cambio de ciclo queda oculto con opacidad cero; la preferencia reducida mantiene poses fijas.
 
 AnimalUltimate.swarmPose calcula trayectorias continuas y fases independientes por criatura. Cuy usa WalkArt con seis pasos; Paloma usa los seis cuadros íntegros de AnimalEntryPoses. Sin círculos de alcance ni recuadro de coraza: polvo/plumas deterministas y hasta 24 impactos serializados por jugador, creados solo al reducir HP. No altera radio, daño ni cadencia.
@@ -536,6 +538,10 @@ FujimoriBossArt carga bajo demanda fujimori-boss-v1.webp; fuente PNG y prompt pe
 
 El build omite los antiguos atlas de ataque de personajes con atlas direccional activo: WalkArt.url ya pide exclusivamente assets/aim para esos personajes. PNG y WebP históricos siguen en public y se auditan; esto deja margen de despliegue para el nuevo atlas del jefe sin reducir su resolución ni cambiar imágenes activas.
 
+VultureRig mantiene una base angular abierta común entre approach, ráfagas y recuperación de ulti; tickFlight conserva rigFacing desde desplazamiento real. Omite el aura heredada de Phase2 si el rig está listo para evitar doble dibujo; conserva fallback. Electricity usa hasta cuatro trazos cortos de 3/1 px con envolvente temporal continua. VultureMoon.blocksUpgrade protege la secuencia desde Progression.levelup, dejando XP y nivel intactos hasta liberarla.
 FujimoriBoss.stampPose proyecta el aviso mediante windup y el impacto mediante elapsed/attackStarted. FujimoriBossArt separa sombra de suelo y sello/partículas en primer plano; World incorpora su sacudida breve. El sello es un prop de pixel art dibujado con primitivas canvas, sin descargar otra textura. Las funciones visuales no añaden daño ni consumen azar.
 
+
 VultureMoon.background dibuja el panorama una sola vez con cover, alineación inferior para conservar el horizonte urbano y 10 % de margen de escala, a partir del WebP 1536 × 1024 sin reducir. Se elimina la segunda copia de 6400 × 3600 unidades. El filtrado se activa solo para el panorama y se restituye antes de la azotea; save/restore lo aísla del render de actores. El empaquetado omite el WebP v1 sustituido, conservado en Git. Procedencia, dimensiones y hash en docs/vulture-panorama-audit.json.
+
+Audio.musicMix calibra la salida HTMLAudioElement y la síntesis por separado; BackgroundMusic.applyVolumes aplica el mismo factor a ambas pistas del fundido sin reiniciar reproducción. duckMusic mantiene un único estado temporal con reloj AudioContext y envolvente acotada, sin timers, colas ni osciladores extra. Los disparadores ocurren una vez tras sus limitadores existentes. sync recupera gradualmente la mezcla sin modificar preferencias de volumen.

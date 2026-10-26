@@ -47,3 +47,11 @@ test('Impacto: sacudida acotada, pausa estable, movimiento reducido y regreso co
 test('Noche lunar: oscurece durante tarjeta/despegue y conserva la misma luz al regresar',()=>{
  const {e,M}=engine();assert.equal(M.nightStrength(e),0);e.moonSequence=true;e.phase='vulture-activation';e.ultimateEntryTime=0;assert.equal(M.nightStrength(e),0);e.ultimateEntryTime=1.3;assert.equal(M.nightStrength(e),.75);e.phase='vulture-takeoff';e.moonStageTime=0;assert.equal(M.nightStrength(e),.75);e.moonStageTime=.65;assert.equal(M.nightStrength(e),1);for(const phase of ['vulture-moon','vulture-landing','vulture-ultimate','approach']){e.phase=phase;assert.equal(M.nightStrength(e),1)}
 });
+
+test('Flujo lunar: conserva XP y aplaza la mejora automática hasta acabar el aterrizaje',()=>{
+ const {e,M}=engine();e.moonSequence=true;for(const phase of ['vulture-activation','vulture-takeoff','vulture-moon','vulture-landing']){e.phase=phase;assert(M.blocksUpgrade())}e.phase='vulture-ultimate';e.ultimateGrace=.4;assert(M.blocksUpgrade());e.ultimateGrace=0;assert.equal(M.blocksUpgrade(),false);e.phase='approach';assert.equal(M.blocksUpgrade(),false);
+});
+
+test('Mejora automática: XP intacta durante secuencia lunar y disponible al terminar',()=>{
+ const {P}=new (require('../backend/simulation.cjs').Simulation)('campo',[0,1]),s=P.state;s.mode='play';s.xp=s.need+3;const xp=s.xp,level=s.level;P.VultureMoon.blocksUpgrade=()=>true;P.Progression.levelup();assert.equal(s.mode,'play');assert.equal(s.xp,xp);assert.equal(s.level,level);P.VultureMoon.blocksUpgrade=()=>false;P.Progression.levelup();assert.equal(s.mode,'upgrade');assert.equal(s.level,level+1);assert.equal(s.xp,3);
+});
