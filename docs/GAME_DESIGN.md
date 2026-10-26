@@ -330,7 +330,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
 - fuzo: **Banca infinita** — Cinco tarjetas rápidas atraviesan ocho rivales y enlazan al grupo más cercano.
 - charles: **Lluvia de pañales** — Tres pañales dejan nubes y una nube adicional aparece junto al objetivo.
-- axelbenba: **Clip relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
+- axelbenba: **Tormenta relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
 - cerdito: **Fiesta del cerdito** — Doce balas salen en círculo; una onda corta despeja el puesto.
 - sustento: **Infestación veloz** — Tres cucarachas perforantes avanzan en zigzag; una zona de enjambre queda junto al objetivo.
 - cevichero: **Marea del enjambre** — Seis cucarachas salen en círculo y regresan como bumeranes.
@@ -352,4 +352,10 @@ Al llegar a la mitad de vida, cada minijefe anuncia una única segunda fase dura
 ## Puntería en ocho direcciones
 Los quince jugables con ataques de proyectil o cono usan cinco orientaciones dibujadas (arriba, diagonal superior, horizontal, diagonal inferior y abajo), reflejadas para cubrir ocho sentidos. Cada orientación contiene seis cuerpos completos con pasos; al cambiar de objetivo se conserva `walkPhase`. Los pies siguen el recorrido real, la mirada y el arma siguen el último ataque; no se gira ni deforma el cuerpo entero para apuntar. Se mantienen daño, alcance, colisiones, dispersión y trayectorias continuas: la orientación dibujada corresponde al octante más cercano. Las ondas radiales, órbitas y patada conservan su presentación específica.
 
+
 La Plaza reemplaza la pileta y fachada geométricas por sprites cartoon detallados. Mantiene la física y escala del lugar, sombras al pie y ocho reflejos pequeños de agua. El jugador se mantiene visible detrás con opacidad reducida del objeto; pausa congela el agua y movimiento reducido la desactiva. Referencia: PLAZA_LANDMARKS.md.
+
+## Inicio y demostraciones de ataques
+El inicio se organiza como un lobby: causa destacado, botón Jugar ahora y accesos a mapas, personajes, habilidades y cooperativo. Conserva el estilo peruano y todos los controles existentes; no añade funciones de cuenta ni tiendas inexistentes.
+
+El menú de habilidades compara ataque básico y evolución en dos canvas animados con los perfiles, glifos, poses y efectos del juego. Incluye pausa/reproducción y descripción de requisitos. Son demostraciones cosméticas sobre muñecos: no ejecutan combate, no alteran XP, monedas, salud, equipo ni estado de sala y no desbloquean poderes. La animación comparte el bucle de dibujo a un máximo de 30 Hz, usa dos superficies, se detiene al cerrar o esconder la pestaña y arranca estática con movimiento reducido. Los recursos faltantes usan el retrato existente y se reutiliza la carga de sprites.
