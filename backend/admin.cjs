@@ -1,6 +1,6 @@
 'use strict';
 const crypto=require('node:crypto');
-function createAdmin({db,reply,body,now}){
+function createAdmin({db,reply,body,now,notify=()=>{}}){
  let engine;
  function rules(){return engine||(engine=new(require('./simulation.cjs').Simulation)('campo',[0,1]).P)}
  function read(row){const P=rules();if(!row)return {version:4,progress:P.Meta.blank(),best:0};const data=JSON.parse(row.payload);data.progress=P.Meta.normalize(data.progress);if(!Number.isSafeInteger(data.best)||data.best<0)throw Error('Guardado no válido');return data}
@@ -32,7 +32,7 @@ function createAdmin({db,reply,body,now}){
    else{if(data.progress.unlocked.includes(b.characterId)){db.exec('ROLLBACK');reply(res,409,{error:'El personaje ya está desbloqueado'});return}data.progress.unlocked.push(b.characterId)}
    const at=now(),result={target:target.username,revision:revision+1,coins:data.progress.wallet,unlocked:data.progress.unlocked};
    db.prepare('INSERT INTO saves VALUES(?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET revision=excluded.revision,payload=excluded.payload,updated_at=excluded.updated_at').run(target.id,revision+1,JSON.stringify(data),at);
-   const inserted=db.prepare('INSERT INTO admin_actions(actor_id,target_id,request_id,fingerprint,result,kind,amount,character_id,created_at) VALUES(?,?,?,?,?,?,?,?,?)').run(user.id,target.id,b.requestId,fingerprint,JSON.stringify(result),b.kind,b.kind==='coins'?b.amount:null,b.kind==='character'?b.characterId:null,at);db.exec('COMMIT');reply(res,200,receipt(db.prepare('SELECT * FROM admin_actions WHERE id=?').get(inserted.lastInsertRowid)));
+   const inserted=db.prepare('INSERT INTO admin_actions(actor_id,target_id,request_id,fingerprint,result,kind,amount,character_id,created_at) VALUES(?,?,?,?,?,?,?,?,?)').run(user.id,target.id,b.requestId,fingerprint,JSON.stringify(result),b.kind,b.kind==='coins'?b.amount:null,b.kind==='character'?b.characterId:null,at);data.progress.adminCursor=Number(inserted.lastInsertRowid);db.prepare('UPDATE saves SET payload=? WHERE user_id=?').run(JSON.stringify(data),target.id);db.exec('COMMIT');notify(target.id);reply(res,200,receipt(db.prepare('SELECT * FROM admin_actions WHERE id=?').get(inserted.lastInsertRowid)));
   }catch(e){db.exec('ROLLBACK');throw e}
  }
  return {handle};

@@ -1,0 +1,19 @@
+'use strict';
+function createGifts({db,session,reply}){
+ const streams=new Set();
+ function after(id,cursor,limit){return db.prepare('SELECT id,kind,amount,character_id AS characterId FROM admin_actions WHERE target_id=? AND id>? ORDER BY id LIMIT ?').all(id,cursor,limit)}
+ function latest(id){return db.prepare('SELECT COALESCE(MAX(id),0) AS n FROM admin_actions WHERE target_id=?').get(id).n}
+ function onlyGrants(id,from,to){if(from===to)return true;if(from>to)return false;const n=db.prepare("SELECT COUNT(*) AS n FROM admin_actions WHERE target_id=? AND json_extract(result,'$.revision')>? AND json_extract(result,'$.revision')<=?").get(id,from,to).n;return n===to-from}
+ function apply(progress,rows){for(const r of rows){if(r.id<=(progress.adminCursor||0))continue;if(r.kind==='coins')progress.wallet=Math.min(10000000,progress.wallet+r.amount);else if(!progress.unlocked.includes(r.characterId))progress.unlocked.push(r.characterId);progress.adminCursor=r.id}return progress}
+ function sync(req,res,user,url){const cursor=Number(url.searchParams.get('after')||0),revision=Number(url.searchParams.get('revision')||0);if(!Number.isSafeInteger(cursor)||cursor<0||!Number.isSafeInteger(revision)||revision<0){reply(res,400,{error:'Cursor inválido'});return}const baselineCursor=url.searchParams.get('legacy')==='1'?db.prepare("SELECT COALESCE(MAX(id),0) AS n FROM admin_actions WHERE target_id=? AND json_extract(result,'$.revision')<=?").get(user.id,revision).n:0;const rows=after(user.id,Math.max(cursor,baselineCursor),201),current=db.prepare('SELECT revision FROM saves WHERE user_id=?').get(user.id)?.revision||0;reply(res,200,{grants:rows.slice(0,200),baselineCursor,more:rows.length>200,revision:current,grantsOnly:onlyGrants(user.id,revision,current)})}
+ function open(req,res,user,url){if(url.searchParams.get('account')!==user.id){reply(res,409,{error:'La cuenta cambió'});return}const count=[...streams].filter(s=>s.id===user.id).length;if(count>=8||streams.size>=200){reply(res,429,{error:'Demasiadas conexiones'});return}
+  res.writeHead(200,{'Content-Type':'text/event-stream','Cache-Control':'no-store','Connection':'keep-alive','X-Accel-Buffering':'no'});res.flushHeaders();const stream={id:user.id,req,res};streams.add(stream);res.write('event: gifts\ndata: {}\n\n');const heartbeat=setInterval(()=>{const current=session(req);if(!current||current.id!==stream.id)return res.end();res.write(': keepalive\n\n')},10000);heartbeat.unref();res.on('close',()=>{clearInterval(heartbeat);streams.delete(stream)})
+ }
+ function notify(id){for(const s of streams)if(s.id===id){if(session(s.req)?.id!==id||s.res.writableLength>65536)s.res.end();else s.res.write('event: gifts\ndata: {}\n\n')}}
+ function merge(user,b,previous){const revision=previous?.revision||0,modern=b.giftSync===1;if(b.revision!==revision&&(!modern||!onlyGrants(user.id,b.revision,revision)))return null;
+  const data=JSON.parse(JSON.stringify(b.data)),cursor=Number(data.progress.adminCursor||0),max=latest(user.id);if(!modern){if(max)data.progress.adminCursor=previous?JSON.parse(previous.payload).progress.adminCursor||max:max;return {data,grants:[]}}
+  if(!Number.isSafeInteger(cursor)||cursor<0||cursor>max||!Number.isSafeInteger(data.progress.wallet)||data.progress.wallet<0||!Array.isArray(data.progress.unlocked))throw Object.assign(Error('Guardado no válido'),{status:400});const baseline=db.prepare("SELECT COALESCE(MAX(id),0) AS n FROM admin_actions WHERE target_id=? AND json_extract(result,'$.revision')<=?").get(user.id,b.revision).n;data.progress.adminCursor=Math.max(cursor,baseline);const grants=after(user.id,data.progress.adminCursor,1000000);apply(data.progress,grants);return {data,grants}
+ }
+ return {sync,open,notify,merge,closeStreams(){for(const s of streams)s.res.end();streams.clear()}};
+}
+module.exports={createGifts};

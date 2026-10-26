@@ -288,5 +288,6 @@ module.exports = [
   {"source":"src/network/account.js","output":"js/account.js"},
   {"source":"src/ui/profile.js","output":"js/profile.js"},
   {"source":"src/ui/admin.js","output":"js/admin.js"},
-  {"source":"src/systems/causa-combo.js","output":"js/causa-combo.js"}
+  {"source":"src/systems/causa-combo.js","output":"js/causa-combo.js"},
+  {"source":"src/network/live-gifts.js","output":"js/live-gifts.js"}
 ];
