@@ -1,0 +1,23 @@
+{
+  "origin": "image_gen built-in",
+  "width": 1536,
+  "height": 1024,
+  "columns": 4,
+  "rows": 3,
+  "poses": [
+    "rest",
+    "release",
+    "lower-elbow",
+    "reach",
+    "extend",
+    "point",
+    "turn",
+    "grasp",
+    "lift-knee",
+    "climb",
+    "swing-leg",
+    "sit"
+  ],
+  "reference": "cristorata-reaction-v2.webp",
+  "prompt": "Production 4x3 transparent full-body animation sheet matching the exact reference identity and detailed cartoon pixel art. Twelve complete sequential poses: both hands on head; release right hand; lower elbow; reach bent forearm; extend index; point; lower pointing arm and turn right; reach both hands; begin lifting right knee; climb with high bent knee; swing hips over saddle; sit holding reins. Identical head size, torso scale, limb lengths and clothing, crisp pixel contours, connected shoulders, no dragon, no background, no text, no overlapping silhouettes."
+}
