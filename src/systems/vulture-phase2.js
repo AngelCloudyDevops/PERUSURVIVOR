@@ -15,7 +15,7 @@ P.VulturePhase2 = {
   },
   mesh(c,art,pose,x,y,scale,m,anchor){
     const f=art.frames[pose],px=anchor?f.x+f.w/2-(anchor.x+anchor.w/2-anchor.pivotX):f.pivotX,py=anchor?f.y+f.h-(anchor.y+anchor.h-anchor.pivotY):f.pivotY;
-    const point=(u,v)=>{const p=this.warp(u,v,m);return {x:x+(f.x-px+p.x*f.w)*scale,y:y+(f.y-py+p.y*f.h)*scale,u:f.x+u*f.w,v:f.y+v*f.h}};
+    const point=(u,v)=>{const p=this.warp(u,v,m),head=this.smooth((u-.55)/.23)*(1-this.smooth((v-.5)/.35));return {x:x+(f.x-px+p.x*f.w+(m.headX||0)*head)*scale,y:y+(f.y-py+p.y*f.h+(m.headY||0)*head)*scale,u:f.x+u*f.w,v:f.y+v*f.h}};
     const triangle=(a,b,d)=>{
       const den=(b.u-a.u)*(d.v-a.v)-(d.u-a.u)*(b.v-a.v),aa=((b.x-a.x)*(d.v-a.v)-(d.x-a.x)*(b.v-a.v))/den,bb=((b.y-a.y)*(d.v-a.v)-(d.y-a.y)*(b.v-a.v))/den,cc=((d.x-a.x)*(b.u-a.u)-(b.x-a.x)*(d.u-a.u))/den,dd=((d.y-a.y)*(b.u-a.u)-(b.y-a.y)*(d.u-a.u))/den;
       c.save();c.beginPath();const mx=(a.x+b.x+d.x)/3,my=(a.y+b.y+d.y)/3;
@@ -31,7 +31,9 @@ P.VulturePhase2 = {
   transformBird(c,g,t,reduced){
     const m=this.transformation(t,reduced),art=P.VultureStrike,scale=g.scale,pose=0,baseY=g.baseY;
     // Ambos atlas usan el mismo pie y la misma escala de píxel: no se trasladan.
-    const paint=(target)=>this.mesh(c,target,pose,g.baseX,baseY,scale,{spread:m.spread,ruffle:reduced?0:Math.sin(t*19)*.008*m.aura},art.frames[pose]);
+    const old=art.frames[pose],f=this.frames[pose],px=f.x+f.w/2-(old.x+old.w/2-old.pivotX),py=f.y+f.h-(old.y+old.h-old.pivotY),eye=this.eye||{x:f.x+f.w*.88,y:f.y+f.h*.4};
+    const headX=art.eye.x-old.pivotX-(eye.x-px),headY=art.eye.y-old.pivotY-(eye.y-py);
+    const paint=(target)=>this.mesh(c,target,pose,g.baseX,baseY,scale,{spread:m.spread,ruffle:reduced?0:Math.sin(t*19)*.008*m.aura,headX:target===this?headX:0,headY:target===this?headY:0},old);
     // Mezclar figuras completas evita seccionar la nueva cresta/alas.
     // El movimiento lo produce la malla, no un desplazamiento entre imágenes.
     if(m.reveal<1){c.save();c.globalAlpha*=1-m.reveal;paint(art);c.restore()}
@@ -51,6 +53,9 @@ P.VulturePhase2 = {
         const x0=Math.round(col*cv.width/4),x1=Math.round((col+1)*cv.width/4),y0=Math.round(row*cv.height/2),y1=Math.round((row+1)*cv.height/2);
         this.frames.push({...P.BossArt.mainBounds(raster.data,cv.width,x0,y0,x1,y1),pivotX:(x0+x1)/2,pivotY:y0+this.height*.94});
       }
+      const f=this.frames[0];let sx=0,sy=0,n=0;
+      for(let y=f.y;y<f.y+f.h*.5;y++)for(let x=Math.round(f.x+f.w*.65);x<f.x+f.w*.92;x++){const i=(y*cv.width+x)*4;if(raster.data[i]>190&&raster.data[i+1]>160&&raster.data[i+2]<65&&raster.data[i+3]>150){sx+=x;sy+=y;n++}}
+      if(n)this.eye={x:sx/n,y:sy/n};
       this.ready=true;
     }catch{this.failed=true}};
     image.onerror=()=>{this.failed=true};image.src='assets/bosses/gallinazo-phase2-v1.webp';
