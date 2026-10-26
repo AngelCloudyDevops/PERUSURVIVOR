@@ -5,6 +5,8 @@ const archivedMapArt=new Set(['campo-props-v1','plaza-props-v1','machu-props-v1'
 // Prompts y metadatos de autoría: permanecen en Git; el runtime no los solicita.
 const archivedCinematics=new Set(['assets/arenas/gallinazo-lima-night-v1.webp','assets/arenas/gallinazo-lima-night-v2.webp','assets/bosses/gallinazo-comic-v1.webp','assets/characters/makanaky-domain-back-v1.webp','assets/characters/makanaky-domain-portrait-v1.webp','assets/minibosses/makanaky-v1.webp']);
 const sourceMetadata=new Set(['assets/characters/atlas.json','assets/characters/powers-atlas.json','assets/characters/streamers-atlas.json','assets/enemies/gallinazos-atlas.json','assets/enemies/rivales-atlas.json','assets/characters/kingteka-ultimate-portrait.json','assets/bosses/gallinazo-phase2-frames.json','assets/bosses/gallinazo-rig-frames.json']);
+// Authoring manifests are preserved in Git; frame data is already inline in the renderer.
+for(const name of ['cristorata-dragon-v1','cristorata-secret-v1','makanaky-boxing-rig-v1','makanaky-domain-activation-v1','makanaky-domain-back-v1','makanaky-domain-back-v2','makanaky-domain-portrait-v1'])sourceMetadata.add('assets/characters/'+name+'.json');
 // Superseded attack sheets remain in Git; runtime loads directional aim atlases.
 const directionalAttackIds=new Set(JSON.parse(fs.readFileSync(path.join(root,'src/rendering/walk-art.js'),'utf8').match(/directionalIds:(\[[^\]]*\])/)[1]));
 const legacyCourtArt=new Set(['judge-v1','fujimori-objection-v1'].map(id=>'assets/court/'+id+'.webp'));
