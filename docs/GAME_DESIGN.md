@@ -432,6 +432,9 @@ Perfiles nuevos reciben Cristorata, Cuy Supremo y Paloma del Centro. El esquema 
 
 P.Gacha resuelve cargo, devolución, desbloqueo, garantías e historial en una sola P.Meta.transaction. El resultado se guarda antes de la animación y se puede consultar de nuevo sin pagar; cerrar o recargar no vuelve a tirar. La animación comparte el bucle de dibujo, se detiene al salir/ocultar pestaña y se revela inmediatamente con movimiento reducido. La rareza de colección no cambia las estadísticas de combate.
 
+Caminos: integrar bordes con el césped, mantener el centro legible y añadir detalles propios del mapa sin manchas grandes ni ruido excesivo. La red transitable, áreas especiales, obstáculos y colisiones se conservan. Campo tiene grano y pasto lateral; Plaza juntas de pavimento; Machu desgaste y piedra existente. Referencia: PATH_FINISH.md.
+
+
 
 Segunda pasada de equilibrio: cada descarga de escopeta aplica 100 %, 35 % y 15 % por impactos posteriores contra el mismo enemigo; reinicia por enemigo, disparo y jugador. Minijefes usan vida base × (1 + clamp((mapTime-45)/75,0,2.6)) × 1,65 para dos jugadores. Salud fijada al nacer; laboratorio conserva base, sin ajuste por daño/nivel del jugador. Minions y jefes finales/arenas conservan salud. Ver COMBAT_BALANCE_2.md.
 

@@ -128,6 +128,9 @@ module.exports = [
     "output": "js/encounters.js"
   },
   {
+    "source": "src/rendering/path-details.js", "output": "js/path-details.js"
+  },
+  {
     "source": "src/systems/chunks.js",
     "output": "js/chunks.js"
   },

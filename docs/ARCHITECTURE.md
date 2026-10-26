@@ -351,6 +351,9 @@ Perfiles nuevos reciben Cristorata, Cuy Supremo y Paloma del Centro. El esquema 
 
 P.Gacha resuelve cargo, devolución, desbloqueo, garantías e historial en una sola P.Meta.transaction. El resultado se guarda antes de la animación y se puede consultar de nuevo sin pagar; cerrar o recargar no vuelve a tirar. La animación comparte el bucle de dibujo, se detiene al salir/ocultar pestaña y se revela inmediatamente con movimiento reducido. La rareza de colección no cambia las estadísticas de combate.
 
+PathDetails sustituye la composición de caminos en la base de 128 px por una superficie temporal de 256 px, integrada una sola vez en Chunks.floor. Reutiliza edges/zone sin modificar la física. Las marcas se recortan mediante source-atop y el pasto se valida con ground fuera del corredor, hasta 96 grupos por sector. El canvas final sigue siendo el de 512 px ya cacheado; MachuArt.edge se compone después. Sin estado adicional por sector ni trabajo de acabado por fotograma.
+
+
 
 Combat.hitDamage añade descuento de perdigones a los dos caminos de impacto contra entidades. pelletVolley identifica slot/personaje/castSerial; WeakMap por enemigo con hasta 16 descargas, sin serializar la memoria ni recorrer la horda. Minibosses.healthProfile fija spawnMapTime, healthScale y partyScale en create; Simulation provee el tamaño del grupo. El máximo se serializa en las instantáneas existentes y se reutiliza en barra/fases; no se recalcula al recibir daño. Auditoría de la segunda pasada aislada en scripts/shotgun-miniboss-audit.cjs.
 
