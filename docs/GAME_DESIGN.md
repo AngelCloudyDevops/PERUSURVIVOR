@@ -720,3 +720,5 @@ Tercer ataque tras carga y bocinazo: aviso de 1.2 s con puerta y cobrador, cinco
 Por petición explícita del usuario, el humo del resultado deja de ser pixel art: usa vapor suave, volumétrico y translúcido, con remolinos continuos y puntos de luz. Ocupa hasta 72 px normal y 90 px en ×16, proporcionalmente menos en móvil; el centro y controles permanecen libres. Dura 2 s y conserva reducción de movimiento. Esta excepción visual solo afecta al humo; no cambia sprites, coronas ni cartel.
 
 El humo del resultado forma ahora una corriente cerrada por los cuatro bordes, en lugar de nubes sueltas. Una base continua de densidad mantiene la unión del vapor; dos capas de remolinos se desplazan y retuercen a distintas velocidades. Conserva los 2 s, la intensidad ×16 y el ancho periférico anterior, sin ocupar el centro ni interceptar controles. Movimiento reducido fija el flujo y omite las chispas.
+
+El HUD de resultado de Makanaky permanece 3 segundos después de regresar al mapa; el humo del borde conserva su límite independiente de 2 segundos.
