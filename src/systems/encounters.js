@@ -3,7 +3,24 @@
 P.Encounters={
 unlock:180,range:105,
 cover(kind){const type=kind==='fujimori'?'planter':kind==='combi'||kind==='vulture'?'barrier':kind==='cabinet'?'planter':'wall';return [[-360,-180,150,48],[320,-160,150,48],[-330,160,110,48],[340,170,110,48]].map(([x,y,w,h],i)=>({kind:type,x,y,w,h,id:'arena:'+i,solid:true,hp:Infinity}))},
-steer(e,p){const dx=p.x-e.x,dy=p.y-e.y,d=Math.hypot(dx,dy)||1;if(P.Terrain.clear(e.x,e.y,p.x,p.y,e.r))return {x:dx/d,y:dy/d};const angle=Math.atan2(dy,dx);for(const turn of [.65,-.65,1.2,-1.2,1.65,-1.65,2.2,-2.2,Math.PI]){const x=Math.cos(angle+turn),y=Math.sin(angle+turn);if(P.Terrain.clear(e.x,e.y,e.x+x*120,e.y+y*120,e.r))return {x,y}}return {x:0,y:0}},
+inside(x,y,r){const b=P.state.encounter?.scene?.bounds;return !b||x>=b.left+r&&x<=b.right-r&&y>=b.top+r&&y<=b.bottom-r},
+// Ruta local persistente: evita que un jefe cambie de lado cada fotograma al tocar una cobertura.
+planRoute(e,p){
+ const cell=40,half=18,cols=half*2+1,start=half*cols+half,r=e.r+3,point=id=>({x:e.x+(id%cols-half)*cell,y:e.y+(Math.floor(id/cols)-half)*cell}),heuristic=q=>Math.hypot(q.x-p.x,q.y-p.y),open=[start],cost=new Map([[start,0]]),parent=new Map(),closed=new Set(),free=new Map();let best=start,bestDistance=heuristic(e),expanded=0;
+ while(open.length&&expanded<900){let pick=0;for(let i=1;i<open.length;i++)if(cost.get(open[i])+heuristic(point(open[i]))<cost.get(open[pick])+heuristic(point(open[pick])))pick=i;const id=open.splice(pick,1)[0];if(closed.has(id))continue;closed.add(id);expanded++;const q=point(id),distance=heuristic(q);if(distance<125&&P.Terrain.clear(q.x,q.y,p.x,p.y,r)){best=id;bestDistance=distance;break}if(distance<bestDistance){best=id;bestDistance=distance}
+  const x=id%cols,y=Math.floor(id/cols);for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]]){const nx=x+dx,ny=y+dy,n=ny*cols+nx;if(nx<0||ny<0||nx>=cols||ny>=cols||closed.has(n))continue;const next=point(n);if(!free.has(n))free.set(n,this.inside(next.x,next.y,r)&&!P.Terrain.hit(next.x,next.y,r));if(!free.get(n)||!P.Terrain.clear(q.x,q.y,next.x,next.y,r))continue;const g=cost.get(id)+cell*Math.hypot(dx,dy);if(g>=(cost.get(n)??Infinity))continue;cost.set(n,g);parent.set(n,id);open.push(n)}
+ }
+ const route=[];for(let id=best;id!==start&&parent.has(id)&&route.length<80;id=parent.get(id))route.push(point(id));route.reverse();e.navExpanded=expanded;return route
+},
+navigate(e,p,dt=.04){
+ const r=e.r+3,dx=p.x-e.x,dy=p.y-e.y,d=Math.hypot(dx,dy)||1;if(P.Terrain.clear(e.x,e.y,p.x,p.y,r)){e.navPath=[];e.navClock=0;e.navBlocked=0;return {x:dx/d,y:dy/d}}
+ e.navClock=Math.max(0,(e.navClock||0)-dt);let path=e.navPath||[];
+ if(!path.length||!e.navGoal||Math.hypot(p.x-e.navGoal.x,p.y-e.navGoal.y)>80||(path[0]&&!P.Terrain.clear(e.x,e.y,path[0].x,path[0].y,r))){path=e.navPath=this.planRoute(e,p);e.navClock=.9;e.navGoal={x:p.x,y:p.y}}
+ while(path.length&&Math.hypot(path[0].x-e.x,path[0].y-e.y)<14)path.shift();
+ for(let i=Math.min(path.length-1,8);i>0;i--)if(P.Terrain.clear(e.x,e.y,path[i].x,path[i].y,r)){path.splice(0,i);break}
+ if(!path.length)return {x:0,y:0};const q=path[0],length=Math.hypot(q.x-e.x,q.y-e.y)||1;return {x:(q.x-e.x)/length,y:(q.y-e.y)/length}
+},
+steer(e,p,dt){return this.navigate(e,p,dt)},
 
 catalog:{
 campo:{name:'El Chosicano · Última Parada',kind:'combi',color:'#7db8f6',hp:1250,r:74,speed:48,portal:{x:440,y:180}},
@@ -26,7 +43,7 @@ bossMove(e,dt){if(e.kind==='combi'){P.ChosicanoCombat.move(e,dt);return}if(e.kin
 if(e.phase==='recover'){e.recovery-=dt;if(e.recovery<=0)e.phase='approach';return}
 if(e.phase==='charge'){const b=P.state.encounter.scene.bounds,old={x:e.x,y:e.y};e.x+=e.dx*530*dt;e.y+=e.dy*530*dt;e.windup-=dt;const blocked=P.Terrain.hit(e.x,e.y,e.r);if(blocked)P.Terrain.resolve(e,old,e.r);if(blocked||e.windup<=0||e.x<b.left+e.r||e.x>b.right-e.r||e.y<b.top+e.r||e.y>b.bottom-e.r){e.phase='recover';e.recovery=.55;e.attackT=1.8;e.x=Math.max(b.left+e.r,Math.min(b.right-e.r,e.x));e.y=Math.max(b.top+e.r,Math.min(b.bottom-e.r,e.y))}if(e.kind==='combi')P.ChosicanoArt.step(e,old);return}
 if(e.phase==='warning'){e.windup-=dt;if(e.windup<=0){if(e.kind==='combi'){e.phase='charge';e.windup=1}else{this.fire(e,e.kind==='cabinet'?9:12);e.phase='recover';e.attackUntil=s.elapsed+.25;e.recovery=.6;e.attackT=e.hp<e.max*.5?1.9:2.8}}return}
-const dx=p.x-e.x,dy=p.y-e.y,d=Math.hypot(dx,dy)||1;if(d>150){const direction=this.steer(e,p),old={x:e.x,y:e.y};e.x+=direction.x*e.speed*dt;e.y+=direction.y*e.speed*dt;P.Terrain.resolve(e,old,e.r);if(e.kind==='combi')P.ChosicanoArt.step(e,old)}e.attackT-=dt;if(e.attackT<=0){e.phase='warning';e.windup=e.kind==='combi'?1.15:.95;e.dx=dx/d;e.dy=dy/d;e.aim=Math.atan2(dy,dx);e.attackIndex++}
+const dx=p.x-e.x,dy=p.y-e.y,d=Math.hypot(dx,dy)||1,clear=P.Terrain.clear(e.x,e.y,p.x,p.y,8);if(d>150||!clear){const direction=this.navigate(e,p,dt),old={x:e.x,y:e.y};e.x+=direction.x*e.speed*dt;e.y+=direction.y*e.speed*dt;P.Terrain.resolve(e,old,e.r);const travelled=Math.hypot(e.x-old.x,e.y-old.y);e.navBlocked=travelled<e.speed*dt*.2?(e.navBlocked||0)+dt:0;if(e.navBlocked>.35){e.navPath=[];e.navBlocked=0}if(e.kind==='combi')P.ChosicanoArt.step(e,old)}e.attackT-=dt;if(e.attackT<=0&&clear){e.phase='warning';e.windup=e.kind==='combi'?1.15:.95;e.dx=dx/d;e.dy=dy/d;e.aim=Math.atan2(dy,dx);e.attackIndex++}
 },
 fire(e,count){const s=P.state,spread=e.kind==='cabinet';for(let i=0;i<count;i++){const a=spread?e.aim+(i-(count-1)/2)*.16:i*Math.PI*2/count+(e.attackIndex%2)*.25;s.danger.push({...P.Attributes.source(e,'special'),x:e.x,y:e.y,vx:Math.cos(a)*(spread?190:145),vy:Math.sin(a)*(spread?190:145),age:0,life:6,kind:'spread',glyph:spread?'KEY':':(',color:e.color,history:[]})}},
 draw(ctx,time){const s=P.state;if(s.encounter)return;
