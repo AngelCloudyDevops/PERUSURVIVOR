@@ -9,6 +9,10 @@ El dominio de Makanaky encadena jab izquierdo, jab derecho, cruzado y uppercut c
 ## Prototipo: dominio de Makanaky
 El UR usa Expansión de dominio con Q (35 bajas). Entra al callejón en primera persona: A/D o flechas para esquivar, ratón para apuntar, clic/Espacio para golpear. En cooperativo el compañero se refugia detrás y puede pulsar ¡GA!. En el laboratorio de administrador, elige Makanaky y activa recarga automática; conserva los permisos existentes. Daño a jefes y arte del callejón son provisionales.
 
+### Compañero cooperativo del dominio
+
+Los 18 personajes que pueden acompañar a Makanaky tienen un atlas exclusivo de cuatro reacciones cartoon pixel art: carrera agachada hacia el refugio, cobertura con miedo, temblor/asomo y celebración. En tercera persona siguen al luchador desde atrás; en cámara cercana aparecen parcialmente en una esquina. Los avisos señalan el lado del peligro y el compañero reacciona si Makanaky recibe daño. Su botón «¡GA!» no ataca: si se pulsa dentro de la ventana del cuarto impacto, amplía el impulso de la oleada de 0,8 a 1,25 s y muestra «¡GA PERFECTO!». El compañero permanece protegido y no genera bajas, daño ni recompensas.
+
 ## Preferencias de colección persistentes
 Rareza, estrellas, Solo listos para ascender y orden se guardan automáticamente en este navegador al cambiar un control y se restauran al recargar o volver a abrir el juego. Limpiar filtros guarda los filtros iniciales y conserva el orden elegido. Las pestañas del mismo sitio se sincronizan. Si el navegador impide guardar, los controles siguen funcionando durante la sesión y aparece un aviso con reintento; el progreso del personaje se conserva.
 
@@ -427,5 +431,13 @@ Tarjeta diagonal izquierda de 40 % × 82 % durante 1,3 s, con retrato propio. De
 
 En el laboratorio de administrador, el selector Dragón de Cristorata permite Aleatorio, Jade, Brasa, Trueno o Tricéfalo secreto. La elección se aplica a la próxima ulti: Recargar dragón → Lanzar ulti. Está deshabilitada durante una ulti y no altera el sorteo de partidas normales/cooperativas.
 
+La máquina conserva su color rojo al caer. Solo con el secreto, los tres golpes convierten el marco en oro por franjas ascendentes, manteniendo pantalla, metal y contornos. La caída añade sombra creciente, sacudida breve, polvo lateral, piedritas y grietas visuales; el dorado aporta luz cálida al piso y a Cristorata y el despliegue de alas aparta otra nube de polvo.
+
+La revelación secreta dura 6,4 s después de la tarjeta: avería y silencio breve, tres impactos, cabezas que salen una por una, ruptura con fragmentos, plano grande y despegue hacia la cámara. El combate permanece pausado y los ocho segundos de montura empiezan al terminar.
+
 El Tricéfalo del Caos tiene un 5 % de probabilidad (el 95 % restante se reparte entre los tres dragones normales). Sprite original de tres cabezas, rodillos verde/rojo/azul, grieta, chispas y tres rugidos sintetizados; Cristorata reacciona con ambas manos en la cabeza y el globo ¡¿QUÉ DRAGÓN ES ESEEE?!. Alterna veneno, fuego y rayos y los combina cada ocho pulsos de ataque (dos segundos), conservando ocho segundos de montura.
 
+
+
+## Cooperativo con amigos
+Inicia sesión, abre Cooperativo y agrega a tu amigo por su nombre exacto de usuario. Debe aceptar la solicitud. Invitar crea una sala si hace falta; el destinatario acepta desde Invitaciones para jugar o el aviso del vestíbulo. Cada uno elige un causa desbloqueado, el anfitrión elige mapa y ambos pulsan Estoy listo. Al cargar sus sprites, el anfitrión puede comenzar. Cambiar mapa/personaje o desconectarse borra los listos. Invitaciones válidas durante un minuto. Como invitado se mantiene la entrada por código; no se necesita compartir un enlace.

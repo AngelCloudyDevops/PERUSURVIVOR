@@ -8,5 +8,5 @@ function createServer(){const accounts=process.env.ACCOUNTS_DB?require('./backen
  res.setHeader('Cache-Control','no-cache');
  res.setHeader('Content-Type',file.endsWith('.webm')?'audio/webm':file.endsWith('.png')?'image/png':file.endsWith('.webp')?'image/webp':file.endsWith('.js')?'text/javascript; charset=utf-8':file.endsWith('.css')?'text/css; charset=utf-8':file.endsWith('.json')?'application/json; charset=utf-8':'text/html; charset=utf-8');
  fs.createReadStream(file).pipe(res)
-});server.on('close',()=>accounts?.close());return server}
+});server.accounts=accounts;server.on('close',()=>accounts?.close());return server}
 module.exports={createServer};if(require.main===module){const local=createServer();require('./backend/cooperative.cjs').createCoopServer({httpServer:local});local.listen(Number(process.env.PORT)||4173,'127.0.0.1',()=>console.log('http://127.0.0.1:4173'))}

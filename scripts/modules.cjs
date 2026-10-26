@@ -108,6 +108,7 @@ module.exports = [
     "source": "src/rendering/boss-art.js",
     "output": "js/boss-art.js"
   },
+  {"source":"src/rendering/chosicano-art.js","output":"js/chosicano-art.js"},
   {
     "source": "src/systems/vulture-boss.js",
     "output": "js/vulture-boss.js"
@@ -290,6 +291,7 @@ module.exports = [
     "source": "src/rendering/court-art.js",
     "output": "js/court-art.js"
   },
+  {"source":"src/rendering/sideral-art.js","output":"js/sideral-art.js"},
   {
     "source": "src/systems/kingteka-arsenal.js",
     "output": "js/kingteka-arsenal.js"
@@ -335,6 +337,10 @@ module.exports = [
     "output": "js/makanaky-boxing.js"
   },
   {
+    "source": "src/rendering/companion-art.js",
+    "output": "js/companion-art.js"
+  },
+  {
     "source": "src/rendering/domain-art.js",
     "output": "js/domain-art.js"
   },
@@ -344,4 +350,5 @@ module.exports = [
   {"source":"src/network/live-gifts.js","output":"js/live-gifts.js"}
 , {source:"src/systems/dragon-ultimate.js",output:"js/dragon-ultimate.js"}
 , {source:"src/rendering/dragon-art.js",output:"js/dragon-art.js"}
+, {source:"src/rendering/dragon-epic.js",output:"js/dragon-epic.js"}, {source:"src/network/friends.js",output:"js/friends.js"}
 ];

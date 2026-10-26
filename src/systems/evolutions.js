@@ -3,6 +3,7 @@
 P.Evolutions={
 profiles:{
 makanaky:{name:'Combo de la realeza',description:'Un puñetazo amplio de 150° con más alcance, daño y empuje.',kind:'melee',range:135,arc:150*Math.PI/180,damageScale:1.35,push:42,shape:'royal-fist',color:'#f8a9df'},
+sideral:{name:'Rostro prohibido',description:'El cono se expande y el susto dura más contra minions normales.',kind:'cone',range:340,arc:2.05,damageScale:.55,fearDuration:1.25,shape:'sideral-face',color:'#ff465f'},
 cristorata:{name:'Directo encadenado',description:'Dos micrófonos de retorno enlazan hasta tres rivales con sonido.',kind:'boomerang',count:2,extra:'chain',shape:'links',color:'#6ffff0'},
 cuy:{name:'Terremoto del cuy',description:'Una onda completa empuja y deja una zona de temblor a tus pies.',kind:'nova',range:210,push:50,extra:'ground',shape:'fault',color:'#e6b477'},
 paloma:{name:'Corona de plumas',description:'Doce plumas salen en todas direcciones y atraviesan dos rivales.',kind:'spread',count:12,radial:true,pierce:2,shape:'wings',color:'#d8f6ff'},
