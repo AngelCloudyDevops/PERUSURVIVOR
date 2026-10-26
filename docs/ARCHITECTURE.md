@@ -498,4 +498,15 @@ Audio.musicLive distingue continuidad musical (play/upgrade/loot-opening/item) d
 
 VultureRig.tickFlight calcula desplazamiento real entre ticks y mezcla rigFlight para despegar/aterrizar sin saltos. flightPose deriva altura, aleteo, recogida de patas e inclinación desde el reloj de simulación. Solo desplaza el render: conserva coordenadas físicas, sombra de suelo y cinemática lunar.
 
+
 Audio.effects es un GainNode compartido previo a master. Audio.tone no musical, Audio.voice y MinionAudio.note se conectan a ese bus; la música sintetizada conserva su bus y HTMLAudio usa su volumen propio. effectsVolume se guarda en perusurvivor-effects-volume, se limita a 0–1 y se suaviza con setTargetAtTime; no se crean nodos por cada ajuste. El ambiente continuo conserva su mezcla actual.
+
+VultureRig.attackPose deriva carga, descarga y recuperación de chaosTime y de windup/warningTime, sin timers ni modificación de coordenadas. Sustituye la oscilación de reposo durante ataques y conserva el reloj y los disparos originales. attackFX representa arcos de aire locales en cada descarga y respeta movimiento reducido.
+
+## Fichas de combate y resolución de atributos
+
+`src/data/attributes.js` se carga después de powers y antes de core. `P.Attributes` centraliza el catálogo explícito de personajes, perfiles deterministas enemigos, ciclo y fórmula; `combatStats` es un objeto plano serializable, clonado por actor. Ataques y campos guardan una copia del dueño y `damageType`. No se consulta la rareza.
+
+`Entities.hurt` resuelve enemigos ordinarios y jefes; delega minijefes antes de calcular, para que `Minibosses.hurt` aplique la fórmula exactamente una vez. `PlayerFeedback.hit` resuelve defensa antes de `Loot.damage`. Los snapshots cooperativos transmiten fichas y metadatos de daño; el servidor calcula usando su actor actual, nunca estadísticas del input del cliente. `fixedDamage` queda reservado a sentencias porcentuales/ejecuciones del motor. Las insignias se dibujan sobre actores visibles sin partículas, timers ni búsquedas cuadráticas.
+
+Auditoría reproducible local: `node scripts/attributes-audit.cjs` y `node scripts/summarize-attributes.cjs`. Dataset separado de auditorías históricas. El bot no mide FPS ni equivale a una prueba manual de navegador.

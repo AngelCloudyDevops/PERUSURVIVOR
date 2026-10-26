@@ -45,17 +45,33 @@ P.VultureRig={
       return m;
     }
     const m={near:-.6,far:-.25,jaw:0,head:0,phase:1,ruffle:0};
-    if(!reduced&&e.phase==='vulture-chaos-charge'){
-      const open=this.smooth((e.chaosTime||0)/1.1),strike=this.smooth(((e.chaosTime||0)-1.1)/.28);
-      m.near+=open*1.3-strike*.85;m.far+=open*1.7-strike*.8;m.jaw=(1-strike)*open*.3;
-    }
     if(e.phase==='vulture-dive'){m.near=-.9;m.far=-.55}
     for(const k of ['near','far','head','ruffle'])m[k]+=idle[k];
     const flight=this.flightPose(e,reduced);m.near+=flight.near;m.far+=flight.far;m.tuck=flight.tuck;
+    const attack=this.attackPose(e,reduced);if(attack)for(const k of ['near','far','head','jaw','ruffle','tuck'])m[k]=attack[k];
     return m;
+  },
+  attackPose(e,reduced=false){
+    if(e.phase==='vulture-chaos-charge'){
+      const t=e.chaosTime||0,storm=e.chaosAttack==='storm',load=this.smooth(t/.85)*(1-this.smooth((t-(storm?1.46:1.52)-.28)/.45));
+      let stroke=0,brace=0;
+      for(const hit of storm?[1.1,1.28,1.46]:[1.1,1.52]){
+        stroke+=this.smooth((t-(hit-.13))/.13)*(1-this.smooth((t-hit)/.28));
+        brace+=this.smooth((t-(hit-.32))/.16)*(1-this.smooth((t-(hit-.13))/.13));
+      }
+      const release= Math.min(1,stroke),power=reduced?0:release;
+      return {near:-.6+load*1.45-power*2.05,far:-.25+load*1.65-power*2.3,head:reduced?0:-load*.1+power*.17,jaw:reduced?0:power*.32,ruffle:reduced?0:(brace*.025+power*.07),tuck:0,bank:reduced?0:-load*.075+power*.18,lift:0,pulse:power};
+    }
+    if(e.phase==='vulture-warning'&&e.attack==='dive'){
+      const p=Math.max(0,Math.min(1,1-e.windup/(e.warningTime||1.05))),open=this.smooth(p/.65),fold=this.smooth((p-.65)/.35);
+      return {near:-.6+open*1.6-fold*1.9,far:-.25+open*1.9-fold*2.1,head:reduced?0:p*.12,jaw:0,ruffle:reduced?0:Math.sin(p*18)*.025*p,tuck:p*.95,bank:reduced?0:-p*.12,lift:36*this.smooth(p),pulse:0};
+    }
+    if(e.phase==='vulture-dive')return {near:-1.05,far:-.8,head:.13,jaw:0,ruffle:0,tuck:1,bank:reduced?0:.28,lift:40,pulse:0};
+    return null;
   },
   flightPose(e,reduced=false){
     const dive=e.phase==='vulture-dive',q=Math.max(0,Math.min(1,e.rigFlight||0)),t=e.rigTime||0,beat=Math.sin(t*8),weight=reduced?0:q;
+    const attack=this.attackPose(e,reduced);if(attack)return {lift:attack.lift+(e.phase==='vulture-dive'?0:q*32*(1-(attack.tuck||0))),tuck:attack.tuck,near:0,far:0,bank:attack.bank};
     return {lift:q*(reduced?32:36+Math.cos(t*8-.7)*7),tuck:q*.85,near:dive?0:weight*(.42+beat*.85),far:dive?0:weight*(.5+Math.sin(t*8-.18)*.95),bank:reduced?0:dive?.16:weight*Math.sin(t*8-.8)*.035};
   },
   tickFlight(e,dt){
@@ -67,6 +83,11 @@ P.VultureRig={
   idleMotion(e,reduced=false){
     const t=reduced?0:(e.rigTime||0),active=!reduced;
     return {near:active?Math.sin(t*3.4)*.13:0,far:active?Math.sin(t*3.4-.6)*.16:0,head:active?Math.sin(t*2.3)*.045:0,ruffle:active?Math.sin(t*7.2)*.055:0};
+  },
+  attackFX(c,e,reduced=false){
+    if(reduced||e.phase!=='vulture-chaos-charge')return;const a=this.attackPose(e);if(!a||a.pulse<.05)return;
+    c.save();c.globalAlpha=a.pulse*.8;c.lineWidth=3;c.strokeStyle='#ead7ff';
+    for(let i=0;i<3;i++){c.beginPath();c.arc(35,-120,85+i*15,-1.1+a.pulse*.6,.35+a.pulse*.4);c.stroke()}c.restore();
   },
   draw(c,x,y,h,t,card=false,reduced=false,pose){
     if(!this.ready)return false;const m=pose||this.motion(t,card,reduced);this.paletteStep=Math.round(Math.max(0,Math.min(1,m.phase||0))*8);
@@ -163,6 +184,7 @@ P.VultureRig={
     // Aura exterior acompaña la altura del plumaje morado.
     const g={x:-115,y:-210,w:230,h:215};P.VultureScene.ribbons?.(c,g,reduced?0:e.rigTime||0,reduced?.22:.5,false);
     const result=R.draw(c,0,0,260,0,false,reduced,R.arenaMotion(e,reduced));
+    R.attackFX(c,e,reduced);
     F.electricity?.(c,0,-110,92,reduced?0:e.rigTime||0,reduced?.2:.55,reduced);c.restore();return result;
   };
 }

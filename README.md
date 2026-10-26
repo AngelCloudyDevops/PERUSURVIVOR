@@ -357,4 +357,13 @@ Las pistas WebM/Opus se solicitan únicamente al reproducir la opción elegida: 
 
 La música continúa durante la apertura de cofres, las recompensas y la elección de mejoras al subir de nivel. La pausa manual, el menú, el silencio general y ocultar o desenfocar la ventana sí la detienen. El selector y el volumen de enemigos permanecen anclados dentro de la pantalla durante la partida, también en móvil.
 
+
 En Música ♫ puedes ajustar Música y Efectos por separado. Efectos controla ataques, impactos, avisos y voces de enemigos (que conservan su ajuste adicional propio); no cambia la música. Su nivel inicial es 70 %, se guarda en este navegador y el silencio general mantiene prioridad. El panel se adapta a pantallas estrechas y permite desplazamiento vertical al usarlo en horizontal con poca altura.
+
+### Atributos y defensas de combate
+
+Fuerza → Técnica → Ingenio → Fuerza: ventaja +15% de daño, desventaja −10%; mismo atributo es neutral. Personajes, minions, minijefes y jefes tienen ficha de combate. La selección muestra el atributo, el tipo principal y los índices de ataque y defensa física/especial. Los actores llevan una insignia F/T/I y los minijefes muestran el atributo junto a su nombre.
+
+El daño existente de cada habilidad se multiplica por `2 × ataque / (ataque + defensa)` y por la ventaja de atributo. 100 contra 100 conserva el daño neutral; 100 contra 200 deja el 66,7%. El índice principal de cada personaje es 100 y el secundario 85; las mejoras de poder siguen aumentando el presupuesto de daño de ambos canales. Rareza no multiplica estadísticas.
+
+Los proyectiles conservan dueño y tipo al crearse, también en cooperativo. Contactos y golpes son físicos; ondas, nubes y tarjetas de apoyo son especiales. Cuy y Paloma usan daño físico en sus estampidas aunque su ataque principal pueda ser especial. Las ejecuciones y la sentencia porcentual conservan su daño fijo y sus límites. Véase [auditoría de atributos](docs/ATTRIBUTES_BALANCE.md).

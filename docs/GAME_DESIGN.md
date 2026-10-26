@@ -585,4 +585,17 @@ Cofres (loot-opening/item) y mejoras (upgrade) conservan la música y su fundido
 
 Gallinazo fase dos: al desplazarse despega suavemente, recoge las patas y bate las alas con un ciclo completo. La sombra permanece en el piso y el aura acompaña el cuerpo elevado; al detenerse baja progresivamente. No cambia la colisión ni el daño. Movimiento reducido mantiene altura estable sin oscilación.
 
+
 Volumen de efectos independiente de música, inicial 70 % y persistente. Afecta ataques, impactos, avisos y enemigos; el volumen específico de enemigos es un ajuste adicional. Silencio general sigue por encima de todos. Panel móvil con controles táctiles, ancho acotado y desplazamiento vertical cuando falta altura.
+
+Fase dos: cada ráfaga de plumas tiene su propio aletazo, sincronizado a 1,10 y 1,52 segundos. Abre y carga las alas, descarga con cuello/pico y arcos de aire y recupera entre ráfagas. Antes de la picada eleva el cuerpo, abre las alas y las recoge; después adopta una silueta de vuelo inclinado. La carga conserva su posición física.
+
+## Atributos físicos y especiales
+
+Ciclo Fuerza > Técnica > Ingenio > Fuerza. Ventaja 1,15; desventaja 0,90; neutral 1. Un solo atributo por actor; el canal pertenece al ataque, no a la rareza ni al botón de ulti. F/T/I evita depender exclusivamente del color.
+
+`daño = daño_base_de_habilidad × 2A/(A+D) × ventaja`. Ataques y defensas son índices positivos acotados 1–1000; entradas no finitas vuelven a 100. No hay inmunidad por defensa. Poder, rangos, caída de escopeta, armadura de carga, equipo y ventanas de contraataque conservan sus reglas. La defensa se calcula una vez en la ruta del blanco, antes de equipo/feedback. El daño fijo de ejecuciones de Tribunal/Dominio y la sentencia porcentual mantiene los topes originales, sin ventaja elemental.
+
+Especialidad del personaje: índice principal 100, secundario 85. Defensas 90–110 según papel. No aumentar todos los índices por rareza. Escopetas, micrófonos, bumeranes y golpes: físicos según ficha; discursos, emotes, nubes, ondas y tarjetas de apoyo: especiales. Extras persistentes de evolución conservan el tipo especial; otros extras usan el tipo principal. Contacto enemigo físico; proyectiles normales especiales y golpes de oficio físicos; las plumas/conos de minijefe son físicos, quake/flash especiales.
+
+Minions 0/3 Fuerza, 1/4 Técnica, 2/5 Ingenio; pesados defensa física 110/especial 90. Minijefes: Fiscalizador y Makanaky Fuerza, Paloma Brava Técnica, Huaco Ingenio. Jefes finales Fuerza; Gallinazo Ingenio. Invocaciones de Gallinazo Ingenio. No modificar atributos durante el combate. Los proyectiles copian las estadísticas del dueño al nacer.

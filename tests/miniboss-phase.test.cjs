@@ -31,7 +31,7 @@ test('HUD superior de minijefes: vida continua, fases y visibilidad',()=>{
 test('Contraataque: fin de combo, choque y daño extra sin contacto',()=>{
  for(const map of ['campo','plaza','machu']){
   const {P}=new Simulation(map,[0,6]),M=P.Minibosses,e=M.create(map,{x:0,y:0});P.state.enemies=[e];e.attack=M.primary(e);e.phase='mini-charge';e.chainLeft=1;M.recover(e);assert.equal(e.phase,'mini-chain-gap');
-  e.phase='mini-charge';M.recover(e);assert.equal(e.phase,'mini-recover');assert.equal(e.recovery,1.5);const hp=e.hp;M.hurt(e,20,0);assert.equal(e.hp,hp-27);const p=P.state.player;p.x=0;p.y=0;p.inv=0;const health=p.hp;M.contact(e,[p]);assert.equal(p.hp,health);M.move(e,1);assert.equal(e.phase,'mini-recover');M.move(e,.5);assert.equal(e.phase,'approach');
+  e.phase='mini-charge';M.recover(e);assert.equal(e.phase,'mini-recover');assert.equal(e.recovery,1.5);const hp=e.hp;M.hurt(e,20,0);assert.equal(e.hp,hp-P.Attributes.outgoing(e,20)*1.35);const p=P.state.player;p.x=0;p.y=0;p.inv=0;const health=p.hp;M.contact(e,[p]);assert.equal(p.hp,health);M.move(e,1);assert.equal(e.phase,'mini-recover');M.move(e,.5);assert.equal(e.phase,'approach');
   e.phase='mini-charge';e.chainLeft=1;M.recover(e,true);assert.equal(e.phase,'mini-recover');assert.equal(e.chainLeft,0);assert.equal(e.recovery,2);
  }
 });

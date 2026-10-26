@@ -7,6 +7,7 @@ module.exports = [
     "source": "src/data/powers.js",
     "output": "js/powers.js"
   },
+  {"source":"src/data/attributes.js","output":"js/attributes.js"},
   {
     "source": "src/data/muzzle-anchors.js",
     "output": "js/muzzle-anchors.js"
