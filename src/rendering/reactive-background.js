@@ -3,7 +3,7 @@
 P.ReactiveBackground={
 clamp(v){return Math.max(0,Math.min(1,v))},
 smooth(v){v=this.clamp(v);return v*v*(3-2*v)},
-active(){const s=P.state;return P.Maps.selected==='campo'&&s.mode!=='menu'&&!s.encounter&&!s.devRun},
+active(){const s=P.state;return P.Maps.selected==='campo'&&s.mode!=='menu'&&!s.encounter&&(!s.devRun||s.balanceTest)},
 reduced(){return !!P.Ambient?.reduced?.matches},
 reset(map=P.Maps.selected,time=P.state.mapTime??0){this.map=map;this.lastTime=time;this.sampleKey='';this.ultimateWas=false;this.threatActor=null;this.burst=null;this.burstSerial=0;this.value={pressure:0,danger:0,progress:0,pulse:0,breeze:.18,burst:null}},
 ultimate(){const s=P.state;return !!(s.ultimate?.left>0||s.court||s.domain||s.player?.ultimate?.left>0)},

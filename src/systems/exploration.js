@@ -2,7 +2,7 @@
 P.Exploration={
 station:null,
 reset(){this.station=null;if(P.Maps.selected!=='campo')return;for(const [x,y] of [[850,400],[850,250],[1000,400],[850,550]])if(!P.Terrain.hit(x,y,55)){this.station={x,y,phase:'idle',progress:0,wave:0};break}},
-available(){return this.station&&P.Maps.selected==='campo'&&!P.state.encounter&&!P.state.devRun&&P.state.mode!=='menu'},
+available(){return this.station&&P.Maps.selected==='campo'&&!P.state.encounter&&(!P.state.devRun||P.state.balanceTest)&&P.state.mode!=='menu'},
 near(){return this.available()&&Math.hypot(P.state.player.x-this.station.x,P.state.player.y-this.station.y)<150},
 start(){if(P.state.mode!=='play'||!this.near()||this.station.phase!=='idle'||P.state.bossSpawned)return;this.station.phase='active';P.Loot.notify('Defiende el emoliente: permanece dentro del círculo 20 s')},
 tick(dt){const o=this.station,s=P.state;if(!this.available()||s.mode!=='play')return;if(o.phase!=='active')return;if(s.bossSpawned){o.phase='idle';o.progress=0;P.Loot.notify('El jefe interrumpió el evento');return}if(Math.hypot(s.player.x-o.x,s.player.y-o.y)>200){if(o.progress>0)P.Loot.notify('Fuera del puesto: la defensa vuelve a empezar');o.progress=0;return}o.progress=Math.min(20,o.progress+dt);o.wave+=dt;if(o.progress>=20){o.phase='done';s.player.hp=Math.min(s.player.maxHp,s.player.hp+s.player.maxHp*.35);s.coins+=25;P.Audio.fx('upgrade');P.Loot.notify('¡Emoliente servido! +25 monedas y +35% de vida máxima');return}if(o.wave>=4&&s.enemies.length<P.Data.arena.enemyCap){o.wave=0;const e=P.Entities.enemy(),a=o.progress*2.4;e.x=o.x+Math.cos(a)*290;e.y=o.y+Math.sin(a)*290;const old={x:e.x,y:e.y};P.Terrain.resolve(e,old,e.r);s.enemies.push(e)}},

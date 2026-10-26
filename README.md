@@ -382,6 +382,8 @@ Las ultis de Kingteka, Alberto, Cuy y Paloma requieren tres cartas automáticas:
 
 En el laboratorio, «Minions al morir» permite dejarlos normales, hacer que reaparezcan a los 0,8 s o volverlos inmortales con un mínimo de 1 PV. Estas reglas solo afectan minions comunes de la prueba; los jefes y objetivos especiales mantienen su funcionamiento.
 
+El laboratorio de administrador incluye «Supervivencia · oleadas reales» para jugar con un personaje nivel 1 y su arma base, sin estrellas ni mejoras permanentes. El ascenso de nivel dentro de esa partida sigue habilitado. Un perfil local permite volver a Base o configurar multiplicadores de vida, daño, velocidad, cadencia, imán, alcance y atributos físicos/especiales (×0,5 a ×10), con un botón de buff global ×2. El perfil se guarda en el navegador, separado del progreso de cuenta; esas partidas no dan monedas de cuenta, premios permanentes ni récords.
+
 **Mi perfil** muestra usuario, monedas, colección y estadísticas. Invitados nuevos comienzan con cuatro causas; el resto se desbloquea jugando. El rol administrador se concede únicamente desde el VPS a una cuenta existente, nunca durante el registro ni desde el navegador.
 
 
