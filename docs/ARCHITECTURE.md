@@ -480,3 +480,6 @@ Entregas en vivo v4: `/api/events?account=UUID` usa SSE con cookie HttpOnly, cue
 
 
 VultureRig.cardLayout y cardEnvelope separan geometría adaptable y tiempos cosméticos. card reutiliza un canvas de retrato, sin descargas ni timers; proyecta su sombra y compone trama/rayos, arcos del grito, plumas y marco en el canvas principal. No altera la jerarquía articulada ni el estado de combate. VultureMoon.overlay sincroniza body.vulture-card en todas las fases para ocultar el laboratorio durante la entrada y restituirlo al despegar. La prueba cubre límites de composición en escritorio/móvil, título escalonado, movimiento reducido y ausencia de mutaciones de simulación.
+
+VultureRig usa rigTime, avanzado por tickVisuals, para movimiento continuo de segunda fase. El render no avanza el reloj; pausa y movimiento reducido conservan una pose estable. No aplica filtros de color al atlas.
+La paleta de plumas se precalcula en ocho pasos al cargar el rig, sin fundido de imágenes ni filtros por fotograma. La selección depende del progreso de transformación; conserva la luminancia de los detalles.
