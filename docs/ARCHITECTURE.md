@@ -486,3 +486,11 @@ La paleta de plumas se precalcula en ocho pasos al cargar el rig, sin fundido de
 BackgroundMusic.alternate prepara la siguiente pista a 12 s del final y mezcla durante 3 s mediante curvas coseno/seno de potencia constante. Usa el currentTime de la pista entrante como reloj: pausa y silencio detienen ambos elementos sin timers ni progreso en segundo plano. La siguiente pista solo entra con readyState >= 3; la actual conserva loop como respaldo de red. Al concluir, se intercambian los roles y se libera la URL anterior. Error de precarga o autoplay conserva la pista actual y limita reintentos hasta otro gesto. Un cambio de opción pausa y libera la precarga y protege contra promesas tardías.
 
 BackgroundMusic.choice inicia en alternate; el selector HTML declara la misma opción selected. init restaura únicamente valores válidos de perusurvivor-music y conserva las preferencias existentes. Las pruebas de alternancia parten de almacenamiento vacío y la prueba individual comprueba la prioridad de una preferencia guardada.
+
+## Fichas de combate y resolución de atributos
+
+`src/data/attributes.js` se carga después de powers y antes de core. `P.Attributes` centraliza el catálogo explícito de personajes, perfiles deterministas enemigos, ciclo y fórmula; `combatStats` es un objeto plano serializable, clonado por actor. Ataques y campos guardan una copia del dueño y `damageType`. No se consulta la rareza.
+
+`Entities.hurt` resuelve enemigos ordinarios y jefes; delega minijefes antes de calcular, para que `Minibosses.hurt` aplique la fórmula exactamente una vez. `PlayerFeedback.hit` resuelve defensa antes de `Loot.damage`. Los snapshots cooperativos transmiten fichas y metadatos de daño; el servidor calcula usando su actor actual, nunca estadísticas del input del cliente. `fixedDamage` queda reservado a sentencias porcentuales/ejecuciones del motor. Las insignias se dibujan sobre actores visibles sin partículas, timers ni búsquedas cuadráticas.
+
+Auditoría reproducible local: `node scripts/attributes-audit.cjs` y `node scripts/summarize-attributes.cjs`. Dataset separado de auditorías históricas. El bot no mide FPS ni equivale a una prueba manual de navegador.

@@ -573,3 +573,13 @@ La transformación también cambia gradualmente el plumaje a morado oscuro. Cons
 Alternar ambas mantiene el orden Tema 1 → Tema 2 → Tema 1 con transición suave de tres segundos, sin solapar música sintetizada. Volumen, silencio y pausa afectan a las dos pistas; la transición continúa desde su punto al reanudar. Se prepara la próxima pista solo cerca del final y se mantiene la actual si no está disponible.
 
 La música predeterminada para navegadores sin preferencia guardada es Alternar ambas. Las preferencias existentes y el silencio general se respetan; cargar el juego no reproduce ni descarga música automáticamente.
+
+## Atributos físicos y especiales
+
+Ciclo Fuerza > Técnica > Ingenio > Fuerza. Ventaja 1,15; desventaja 0,90; neutral 1. Un solo atributo por actor; el canal pertenece al ataque, no a la rareza ni al botón de ulti. F/T/I evita depender exclusivamente del color.
+
+`daño = daño_base_de_habilidad × 2A/(A+D) × ventaja`. Ataques y defensas son índices positivos acotados 1–1000; entradas no finitas vuelven a 100. No hay inmunidad por defensa. Poder, rangos, caída de escopeta, armadura de carga, equipo y ventanas de contraataque conservan sus reglas. La defensa se calcula una vez en la ruta del blanco, antes de equipo/feedback. El daño fijo de ejecuciones de Tribunal/Dominio y la sentencia porcentual mantiene los topes originales, sin ventaja elemental.
+
+Especialidad del personaje: índice principal 100, secundario 85. Defensas 90–110 según papel. No aumentar todos los índices por rareza. Escopetas, micrófonos, bumeranes y golpes: físicos según ficha; discursos, emotes, nubes, ondas y tarjetas de apoyo: especiales. Extras persistentes de evolución conservan el tipo especial; otros extras usan el tipo principal. Contacto enemigo físico; proyectiles normales especiales y golpes de oficio físicos; las plumas/conos de minijefe son físicos, quake/flash especiales.
+
+Minions 0/3 Fuerza, 1/4 Técnica, 2/5 Ingenio; pesados defensa física 110/especial 90. Minijefes: Fiscalizador y Makanaky Fuerza, Paloma Brava Técnica, Huaco Ingenio. Jefes finales Fuerza; Gallinazo Ingenio. Invocaciones de Gallinazo Ingenio. No modificar atributos durante el combate. Los proyectiles copian las estadísticas del dueño al nacer.

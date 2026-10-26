@@ -16,7 +16,7 @@ P.VultureMoon={
     if(e.moonLanded)return;e.moonLanded=true;e.moonAirborne=false;e.phase='vulture-ultimate';e.ultimateTime=P.VultureUltimate.duration;e.ultimateGrace=.7;e.ultimateWave=0;e.handoffTime=0;e.moonJustLanded=true;
     const p=P.state.player;e.aim=Math.atan2(p.y-e.y,p.x-e.x);e.dx=Math.cos(e.aim);e.dy=Math.sin(e.aim);
     P.VultureImpact.mark(e);const scar=P.state.encounter?.gallinazoScar;if(scar)scar.moon=true;
-    if(P.state.danger.length<70)P.state.danger.push({x:e.x,y:e.y,vx:0,vy:0,history:[],age:0,life:.25,kind:'stomp',glyph:'MOON_IMPACT',radius:this.radius,damage:20,color:'#c6a0ef'});
+    if(P.state.danger.length<70)P.state.danger.push({...P.Attributes?.source(e,'special'),x:e.x,y:e.y,vx:0,vy:0,history:[],age:0,life:.25,kind:'stomp',glyph:'MOON_IMPACT',radius:this.radius,damage:20,color:'#c6a0ef'});
   },
   tick(e,dt){
     if(P.state.mode!=='play')return false;

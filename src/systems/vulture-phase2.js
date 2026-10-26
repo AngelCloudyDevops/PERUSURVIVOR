@@ -88,11 +88,11 @@ P.VulturePhase2 = {
   fire(e,index){
     const s=P.state;
     if(e.chaosAttack==='storm'){
-      const q=e.chaosTargets[index];if(q&&s.danger.length<70)s.danger.push({...q,vx:0,vy:0,age:0,history:[],life:.22,kind:'stomp',glyph:'CHAOS_LIGHTNING',radius:46,damage:18,color:'#bc8df1'});
+      const q=e.chaosTargets[index];if(q&&s.danger.length<70)s.danger.push({...P.Attributes?.source(e,'special'),...q,vx:0,vy:0,age:0,history:[],life:.22,kind:'stomp',glyph:'CHAOS_LIGHTNING',radius:46,damage:18,color:'#bc8df1'});
     }else{
       for(let i=0;i<9&&s.danger.length<70;i++){
         const a=e.aim+(i-4)*.18+(index? .12:-.12),speed=210;
-        s.danger.push({x:e.x,y:e.y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,age:0,life:3,history:[],kind:'zigzag',glyph:'FEATHER',chaosFeather:true,heavyFeather:false,damage:14,color:'#bc8df1'});
+        s.danger.push({...P.Attributes?.source(e,'special'),x:e.x,y:e.y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,age:0,life:3,history:[],kind:'zigzag',glyph:'FEATHER',chaosFeather:true,heavyFeather:false,damage:14,color:'#bc8df1'});
       }
     }
     P.Audio.play(index?'flap':'stamp');
