@@ -610,4 +610,6 @@ Cooperativo social: friends.cjs conserva amistades bilaterales e invitaciones de
 
 La revelación secreta encadena un falso resultado Jade, un último giro, vapor y un seguro que salta al dorarse la máquina. Los ojos preceden a cada cabeza con desplazamientos propios; Cristorata retrocede y extiende el brazo durante su frase. El dragón se inclina para la subida y el aleteo final levanta polvo. Todo deriva de la edad autoritativa de la ulti, conserva los 6,4 s y la pausa compartida; movimiento reducido omite sacudidas, vapor y ráfagas. No añade daño ni entidades.
 
+### Boletos del Chosicano
+ChosicanoCombat comparte ticketAngles entre aviso y disparo; busTicket usa el procesamiento de proyectiles y el barrido de coberturas existente. ChosicanoArt pinta puerta, cobrador y boletos sin alterar el atlas. Todo el tiempo procede de la simulación; giro desactivado con movimiento reducido.
 El gesto de Cristorata usa piezas pixel art rígidas de manga, antebrazo y mano con índice definido. El hombro queda fijo al torso; codo y muñeca conservan sus longitudes al extender y recoger el brazo. Las piezas y la limpieza del recorte se cachean por imagen, sin deformar el atlas ni modificar la duración de la ulti.
