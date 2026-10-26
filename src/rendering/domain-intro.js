@@ -1,0 +1,34 @@
+'use strict';
+// Full-screen construction of the domain. Rendering never advances combat state.
+P.DomainIntro={
+frames:[{"sx":73,"sy":41,"w":360,"h":399,"anchorX":163.9},{"sx":486,"sy":41,"w":333,"h":399,"anchorX":155},{"sx":928,"sy":41,"w":315,"h":399,"anchorX":152.9},{"sx":1375,"sy":41,"w":301,"h":399,"anchorX":149.8},{"sx":77,"sy":466,"w":320,"h":384,"anchorX":140.5},{"sx":468,"sy":466,"w":384,"h":384,"anchorX":156.6},{"sx":858,"sy":465,"w":450,"h":385,"anchorX":221.4},{"sx":1302,"sy":457,"w":461,"h":393,"anchorX":257.3}],height:399,ready:false,
+smooth(v){v=Math.max(0,Math.min(1,v));return v*v*(3-2*v)},
+pose(age,reduced=false){const t=Math.max(0,Math.min(3,age)),smooth=v=>this.smooth(v);return {
+ t,frame:reduced?4:Math.min(7,[.15,.30,.48,.65,.90,1.15,1.40].filter(v=>t>=v).length),
+ dark:smooth(t/.45),crack:smooth((t-1.1)/.65),
+ posts:reduced?(t>=1.5?1:0):smooth((t-1.45)/.5),
+ walls:reduced?(t>=1.6?1:0):smooth((t-1.55)/1.05),
+ pull:reduced?0:smooth((t-1.65)/1.05),
+ shout:smooth((t-1.14)/.12)*(1-smooth((t-2.05)/.22)),
+ title:smooth((t-2.4)/.25),fade:1-smooth((t-2.7)/.3),
+ shake:reduced?0:Math.sin(t*67)*Math.exp(-Math.max(0,t-1.35)*8)*(t>=1.35?3:0)
+}},
+load(){if(this.started||typeof Image==='undefined')return;this.started=true;this.failed=false;this.image=new Image();this.image.onload=()=>{this.ready=true};this.image.onerror=()=>{this.started=false;this.failed=true};this.image.src='assets/characters/makanaky-domain-activation-v1.webp'},
+fighter(c,p,w,h){if(!this.ready)return;const f=this.frames[p.frame],height=Math.min(h*.70,w*.70)*(1-p.pull*.60),k=height/this.height,x=w*.5,y=h*(.85-p.pull*.12);c.save();c.globalAlpha=p.fade;c.imageSmoothingEnabled=false;c.drawImage(this.image,f.sx,f.sy,f.w,f.h,Math.round(x-f.anchorX*k),Math.round(y-f.h*k),Math.round(f.w*k),Math.round(f.h*k));c.restore()},
+wall(c,side,rise,w,h){if(rise<=0)return;c.save();if(side>0){c.translate(w,0);c.scale(-1,1)}const near=-w*.04,far=w*.40,bn=h, bf=h*.59,tn=bn-h*.97*rise,tf=bf-h*.26*rise;c.beginPath();c.moveTo(near,bn);c.lineTo(far,bf);c.lineTo(far,tf);c.lineTo(near,tn);c.closePath();c.fillStyle=side<0?'#6b535e':'#51404f';c.fill();c.strokeStyle='#211f32';c.lineWidth=Math.max(3,w/220);c.stroke();c.clip();
+for(let row=1;row<15;row++){const q=row/15;c.strokeStyle=row%3?'#795b6c':'#302b3d';c.lineWidth=Math.max(1,w/700);c.beginPath();c.moveTo(near,tn+(bn-tn)*q);c.lineTo(far,tf+(bf-tf)*q);c.stroke();for(let j=0;j<5;j++){const a=(j+(row%2)*.5)/5,x=near+(far-near)*a,top=tn+(tf-tn)*a,base=bn+(bf-bn)*a;c.fillStyle='#3c3043';c.fillRect(Math.round(x),Math.round(top+(base-top)*q),Math.max(1,w/750),(base-top)/15)}}
+for(let i=0;i<5;i++){const q=.10+i*.17,x=near+(far-near)*q,k=1-q*.85,base=bn+(bf-bn)*q,ww=w*.075*k,hh=h*.18*k*rise,y=base-h*.39*k*rise;c.fillStyle='#202633';c.fillRect(Math.round(x),Math.round(y),ww,hh);c.fillStyle='#8a7881';for(let j=1;j<5;j++)c.fillRect(Math.round(x+ww*j/5),Math.round(y),Math.max(1,w/640),hh);c.fillStyle='#bf91bd';c.fillRect(Math.round(x-ww*.1),Math.round(y-h*.015*k*rise),ww*1.2,Math.max(2,h*.012*k*rise))}
+c.restore()},
+environment(c,p,w,h,reduced){const rect=(x,y,ww,hh,color)=>{c.fillStyle=color;c.fillRect(Math.round(x),Math.round(y),Math.round(ww),Math.round(hh))};c.save();c.globalAlpha=this.smooth((p.t-.8)/.8);rect(0,0,w,h,'#171727');rect(0,h*.44,w,h*.56,'#3b3444');for(let i=0;i<10;i++){const q=i/10,y=h*(.44+q*q*.56);rect(0,y,w,Math.max(1,h/360),'#594454')}for(let i=-4;i<=4;i++){c.strokeStyle='#5b435c';c.lineWidth=Math.max(1,w/700);c.beginPath();c.moveTo(w*.5,h*.44);c.lineTo(w*(.5+i*.28),h);c.stroke()}c.restore();
+if(p.crack>0){c.save();c.strokeStyle='#d49cf0';c.lineWidth=Math.max(2,w/400);for(let i=-3;i<=3;i++){c.beginPath();c.moveTo(w*.5,h*.78);for(let j=1;j<=Math.ceil(p.crack*6);j++)c.lineTo(w*(.5+i*j*.023+(j%2?.008:-.008)),h*(.78+j*.042));c.stroke()}c.restore()}
+this.wall(c,-1,p.walls,w,h);this.wall(c,1,p.walls,w,h);
+for(const side of [-1,1])for(let i=0;i<5;i++){const k=1-i*.15,x=w*(.5+side*(.43-i*.065)),base=h*(.97-i*.074),height=h*.52*k*p.posts;rect(x,base-height,w*.008*k,height,'#201f2d');rect(x-w*.015*k,base-height,w*.038*k,h*.016*k,'#936889');for(let j=1;j<4;j++)rect(x,base-height*j/4,w*.07*k,h*.009,'#353143')}
+if(!reduced&&p.t>=1.5&&p.t<2.85)for(let i=0;i<28;i++){const a=p.t-1.5-(i%4)*.06;if(a<0)continue;const life=Math.min(1,a/1.3),side=i%2?1:-1,x=w*(.5+side*(.16+(i%7)*.055)),y=h*(.88-(i%5)*.045-Math.sin(life*Math.PI)*.075),size=Math.max(2,w/230)*(1-life*.6);c.save();c.globalAlpha=(1-life)*.8;rect(x,y,size*2,size,i%3?'#aa8b9c':'#ddbad0');c.restore()}
+},
+feedback(d){if(this.soundId!==d.id){this.soundId=d.id;this.sounds=new Set()}if(P.state.mode!=='play')return;for(const [n,time]of [[0,.55],[1,1.18],[2,1.55],[3,2.55]])if(d.age>=time&&!this.sounds.has(n)){this.sounds.add(n);if(d.age-time>.22)continue;if(n===0){P.Audio.tone?.(130,.3,.1,'triangle',0,360);P.Audio.tone?.(260,.22,.06,'sine',.08,520)}else if(n===1){P.Audio.play?.('stamp');P.Audio.tone?.(95,.32,.16,'sawtooth',0,40)}else if(n===2){for(let i=0;i<3;i++)P.Audio.tone?.(60+i*12,.2,.09,'triangle',i*.12,35)}else P.Audio.tone?.(180,.2,.09,'triangle',0,80)}},
+draw(d){this.load();this.feedback(d);const {ctx:c,width:w,height:h}=P.Core,reduced=!!globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches,p=this.pose(d.age,reduced);c.save();c.imageSmoothingEnabled=false;c.fillStyle='rgba(12,10,22,'+(.45+.5*p.dark)+')';c.fillRect(0,0,w,h);c.translate(Math.round(p.shake),Math.round(p.shake*.5));this.environment(c,p,w,h,reduced);if(p.t>.55&&p.t<2.6){c.save();c.globalAlpha=.6;for(const side of [-1,1])P.DomainArt.lightning(c,w*(.5+side*.19),h*.52,reduced?0:p.t,Math.min(w/500,h/340));c.restore()}this.fighter(c,p,w,h);
+const text=(word,y,size,color)=>{c.font='900 '+Math.round(size)+'px monospace';c.textAlign='center';c.strokeStyle='#171323';c.lineWidth=Math.max(3,size*.13);c.strokeText(word,w*.5,y);c.fillStyle=color;c.fillText(word,w*.5,y)},size=Math.max(18,Math.min(42,w/24));
+if(p.shout>0){c.save();c.globalAlpha=p.shout;const bw=Math.min(w*.9,620),bh=Math.min(116,h*.19),x=(w-bw)/2,y=h*.08;c.fillStyle='#21182d';c.fillRect(x-5,y-5,bw+10,bh+10);c.fillStyle='#fff0cc';c.beginPath();c.moveTo(x,y);c.lineTo(x+bw,y);c.lineTo(x+bw-14,y+bh);c.lineTo(w*.54,y+bh);c.lineTo(w*.5,y+bh+18);c.lineTo(w*.46,y+bh);c.lineTo(x,y+bh);c.closePath();c.fill();text('¡BÓTAME TU',y+bh*.43,size,'#b24784');text('GAAAA!',y+bh*.88,size*1.22,'#e3ae58');c.restore()}
+if(p.title>0){c.save();c.globalAlpha=p.title;c.fillStyle='#171323df';c.fillRect(0,h*.12,w,h*.20);text('EXPANSIÓN DE DOMINIO',h*.20,Math.min(size,w/28),'#f0c0ff');text('EL CALLEJÓN DE LA REALEZA',h*.27,Math.min(size*.68,w/33),'#ffe3a4');c.restore()}c.restore();P.Core.canvas?.setAttribute('aria-label',p.t<1.15?'Makanaky · Sello de manos':p.t<1.6?'Makanaky · ¡BÓTAME TU GAAAA!':'Makanaky · El callejón se levanta')}
+};
+P.DomainIntro.load();
