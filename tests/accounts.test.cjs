@@ -9,7 +9,7 @@ test('Cliente: invitado separado, cola de revisiones y copia pendiente ante conf
 });
 test('Cuentas: registro, aislamiento, cookies, recuperación y conflictos de guardado',async t=>{
  const origin='https://perusurvivor.michitech.tech',app=createAccounts({filename:':memory:',origins:[origin]}),server=http.createServer((q,s)=>app.handle(q,s));await new Promise(r=>server.listen(0,'127.0.0.1',r));t.after(async()=>{await new Promise(r=>server.close(r));app.close()});const base='http://127.0.0.1:'+server.address().port;
- async function call(route,method='GET',data,cookie,requestOrigin=origin){const res=await fetch(base+'/api/'+route,{method,headers:{Origin:requestOrigin,'Content-Type':'application/json',...(cookie?{Cookie:cookie}:{})},body:data?JSON.stringify(data):undefined});return {status:res.status,data:await res.json(),cookie:res.headers.get('set-cookie')}}
+ const identities=new Map();async function call(route,method='GET',data,cookie,requestOrigin=origin){const res=await fetch(base+'/api/'+route,{method,headers:{Origin:requestOrigin,'Content-Type':'application/json',...(cookie?{Cookie:cookie,'X-Account-Id':identities.get(cookie)||'unknown'}:{})},body:data?JSON.stringify(data):undefined});const received=await res.json(),sessionCookie=res.headers.get('set-cookie');if(sessionCookie&&received.user)identities.set(sessionCookie.split(';')[0],received.user.id);return {status:res.status,data:received,cookie:sessionCookie}}
  const cred={username:'causa_test',password:'una-clave-larga-y-unica'};
  assert.equal((await call('register','POST',cred,null,'https://evil.example')).status,403);
  assert.equal((await call('register','POST',{...cred,password:'short'})).status,400);
@@ -18,6 +18,7 @@ test('Cuentas: registro, aislamiento, cookies, recuperación y conflictos de gua
  assert.equal((await call('account','GET',null,cookie)).data.user.username,'causa_test');assert.equal((await call('save')).status,401);
  const payload={version:4,progress:{version:4,wallet:20},best:4};assert.equal((await call('save','PUT',{revision:0,data:payload},cookie)).data.revision,1);assert.equal((await call('save','PUT',{revision:0,data:payload},cookie)).status,409);assert.deepEqual((await call('save','GET',null,cookie)).data.data,payload);
  const second=await call('register','POST',{...cred,username:'otro_causa'}),cookie2=second.cookie.split(';')[0];assert.equal((await call('save','GET',null,cookie2)).data.data,null);
+ assert.equal((await fetch(base+'/api/save',{headers:{Cookie:cookie2,'X-Account-Id':first.data.user.id}})).status,409);
  const recovered=await call('recover','POST',{...cred,password:'otra-clave-segura-nueva',recovery:first.data.recovery});assert.equal(recovered.status,200);assert.notEqual(recovered.data.recovery,first.data.recovery);assert.equal((await call('account','GET',null,cookie)).data.user,null);assert.equal((await call('recover','POST',{...cred,recovery:first.data.recovery})).status,401);assert.equal((await call('login','POST',cred)).status,401);
  const login=await call('login','POST',{...cred,password:'otra-clave-segura-nueva'}),newCookie=login.cookie.split(';')[0];assert.equal(login.status,200);assert.equal((await call('save','GET',null,newCookie)).data.revision,1);assert.equal((await call('logout','POST',{},newCookie)).status,200);assert.equal((await call('save','GET',null,newCookie)).status,401);
 });

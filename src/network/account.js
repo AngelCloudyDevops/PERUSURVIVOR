@@ -1,7 +1,7 @@
 'use strict';
 // La cookie HttpOnly pertenece al servidor. Nunca se guardan contraseñas ni tokens aquí.
 P.Account={user:null,revision:0,ready:false,conflict:false,tail:Promise.resolve(),
-async api(route,method='GET',body){const res=await fetch('/api/'+route,{method,credentials:'same-origin',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined,cache:'no-store'});let data;try{data=await res.json()}catch{throw Error('El servicio de cuentas todavía no está disponible. Puedes jugar como invitado.')}if(!res.ok)throw Object.assign(Error(data.error||'Error de conexión'),{status:res.status});return data},
+async api(route,method='GET',body){const res=await fetch('/api/'+route,{method,credentials:'same-origin',headers:{...(body?{'Content-Type':'application/json'}:{}),...(this.user?{'X-Account-Id':this.user.id}:{})},body:body?JSON.stringify(body):undefined,cache:'no-store'});let data;try{data=await res.json()}catch{throw Error('El servicio de cuentas todavía no está disponible. Puedes jugar como invitado.')}if(!res.ok)throw Object.assign(Error(data.error||'Error de conexión'),{status:res.status});return data},
 snapshot(){return {version:4,progress:P.Meta.normalize(P.Meta.data),best:P.Save.best}},
 status(text){if(this.message)this.message.textContent=text},
 refresh(){P.Meta.load();P.Meta.hud();P.Meta.render();P.Supply?.render();P.Gacha?.refresh();P.UI.select(P.state.chosen)},

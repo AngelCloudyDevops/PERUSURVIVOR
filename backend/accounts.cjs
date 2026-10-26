@@ -41,6 +41,7 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
    }finally{running--}
   }
   if(!user){reply(res,401,{error:'Inicia sesión'});return true}
+  if(req.headers['x-account-id']!==user.id){reply(res,409,{error:'La sesión cambió en otra pestaña. Recarga la página antes de guardar.'});return true}
   if(route==='/api/logout'&&req.method==='POST'){db.prepare('DELETE FROM sessions WHERE user_id=?').run(user.id);cookie(res,'',0);reply(res,200,{ok:true});return true}
   if(route==='/api/save'&&req.method==='GET'){const row=db.prepare('SELECT * FROM saves WHERE user_id=?').get(user.id);reply(res,200,row?{revision:row.revision,data:JSON.parse(row.payload),updatedAt:row.updated_at}:{revision:0,data:null});return true}
   if(route==='/api/save'&&req.method==='PUT'){

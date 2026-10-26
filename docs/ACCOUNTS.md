@@ -26,7 +26,7 @@ La base se crea automáticamente con `PRAGMA user_version=1`, claves foráneas y
 - Iniciar sesión descarga el guardado de la cuenta; una cuenta nueva ofrece importar al invitado explícitamente, una sola vez. El original invitado no se borra.
 - Las transacciones locales de `P.Meta` encolan copias al servidor sin peticiones dentro del bucle de renderizado. Un PUT solo actualiza si coincide la revisión actual (transacción SQLite). Un 409 conserva la copia local y exige elegir una copia.
 - Fallos de red dejan una marca local pendiente persistente. Un siguiente login no reemplaza esa copia automáticamente. Reintentar usa su revisión original; no fuerza el reemplazo remoto. Descargar y reemplazar es una acción explícita.
-- Cerrar sesión vuelve al invitado. Una copia local de la cuenta queda en ese dispositivo: evita usar equipos compartidos si deseas conservarla en privado. No se guarda contraseña ni token en localStorage.
+- Cerrar sesión vuelve al invitado. Una copia local de la cuenta queda en ese dispositivo: evita usar equipos compartidos si deseas conservarla en privado. No se guarda contraseña ni token en localStorage. Cada petición de guardado incluye el UUID esperado, contrastado con la sesión por el servidor: cambiar de cuenta en otra pestaña devuelve 409 y no mezcla progresos.
 
 ## Desarrollo local
 
@@ -50,7 +50,7 @@ Antes de instalar, revisar `docker ps`, compose y nginx existentes. Después de 
 
 ## Copias de seguridad y restauración
 
-`python3 /opt/perusurvivor/live/current/backend/backup-accounts.py` crea una copia consistente mediante SQLite backup API, comprueba integridad y conserva 14 copias privadas en `/opt/perusurvivor/backups/accounts`. El instalador puede usarse junto con una tarea diaria administrada en el VPS; no poner copias en Git, artifacts públicos, `dist/` o la web. Una copia local no protege de perder el VPS: configurar un destino externo privado antes de confiarle datos importantes.
+`python3 /opt/perusurvivor/live/current/backend/backup-accounts.py` crea una copia consistente mediante SQLite backup API, comprueba integridad y conserva 14 copias privadas en `/opt/perusurvivor/backups/accounts`. El instalador configura una tarea diaria a las 04:17 (hora del sistema del VPS) y crea una primera copia; no poner copias en Git, artifacts públicos, `dist/` o la web. Una copia local no protege de perder el VPS: configurar un destino externo privado antes de confiarle datos importantes.
 
 Restauración: detener solo `perusurvivor-coop`, conservar la BD actual y sus WAL/SHM, verificar integridad del backup, reemplazar el conjunto de la BD con la copia, devolver UID/GID 1000 y permisos privados, arrancar el servicio y verificar login/guardado. No restaurar el disco completo del VPS ni tocar otros servicios para recuperar esta BD. Probar restauración sobre un directorio temporal antes de aplicarla.
 
