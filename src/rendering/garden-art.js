@@ -1,0 +1,10 @@
+'use strict';
+// Árboles y jardineras comparten atlas; ninguna modificación del terreno físico.
+P.GardenArt={
+ready:false,
+cells:[{x:30,y:16,w:196,h:232},{x:268,y:32,w:232,h:216},{x:12,y:422,w:232,h:82},{x:333,y:272,w:101,h:232}],
+load(){if(this.image||typeof Image==='undefined')return;const image=new Image();this.image=image;image.onload=()=>{this.ready=true};image.onerror=()=>{this.ready=false};image.src='assets/environment/trees-planters-v1.webp'},
+draw(ctx,o){if(P.state.encounter||(P.Maps.selected!=='campo'&&P.Maps.selected!=='plaza')||(o.kind!=='tree'&&o.kind!=='planter'))return false;this.load();if(!this.ready)return false;return o.kind==='tree'?this.tree(ctx,o):this.planter(ctx,o)},
+tree(ctx,o){const variant=Math.abs(Math.round(o.x/37+o.y/53))%2,c=this.cells[variant],height=Math.min(180,164*c.h/c.w),scale=height/c.h,width=c.w*scale,base=o.y+7,top=base-height,cut=Math.round(c.h*.84),p=P.state.player,behind=p&&p.y<base+5&&p.y>top-18&&Math.abs(p.x-o.x)<width*.52,angle=P.Ambient.active()&&!P.Ambient.reduced?.matches?Math.sin(P.Ambient.clock()*1.25+o.x*.013+o.y*.009)*.012:0;ctx.save();ctx.imageSmoothingEnabled=false;P.Ambient.leafMass(ctx,o.x+1,base-1,23,6,'#203b3038');if(behind)ctx.globalAlpha=.52;ctx.drawImage(this.image,c.x,c.y+cut,c.w,c.h-cut,Math.round(o.x-width/2),Math.round(top+cut*scale),Math.round(width),Math.ceil((c.h-cut)*scale));ctx.translate(Math.round(o.x),Math.round(top+cut*scale));ctx.rotate(angle);ctx.drawImage(this.image,c.x,c.y,c.w,cut,Math.round(-width/2),-Math.round(cut*scale),Math.round(width),Math.round(cut*scale));ctx.restore();return true},
+planter(ctx,o){const vertical=o.h>o.w,c=this.cells[vertical?3:2],width=o.w+8,height=vertical?o.h+35:Math.min(o.h+42,width*c.h/c.w),base=o.y+o.h/2+6;ctx.save();ctx.imageSmoothingEnabled=false;P.Ambient.leafMass(ctx,o.x+1,base-2,width*.43,6,'#203b3038');ctx.drawImage(this.image,c.x,c.y,c.w,c.h,Math.round(o.x-width/2),Math.round(base-height),Math.round(width),Math.round(height));ctx.restore();return true}
+};

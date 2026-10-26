@@ -368,8 +368,14 @@ El menú de habilidades compara ataque básico y evolución en dos canvas animad
 La portada muestra «Pulsa para empezar» sobre el escenario con nueve personajes decorativos en movimiento. Al entrar, el causa elegido ocupa el centro y una navegación lateral abre secciones independientes: Jugar (mapas y comienzo), Causas (colección y ficha con atributos), Habilidades (rama y comparación animada), Cooperativo (salas existentes) y Ajustes (sonido, controles y prácticas). En móvil la navegación se sitúa abajo. No introduce cuentas, monedas persistentes ni un gacha ficticio. El fondo y los retratos son cosméticos: no avanzan la partida, no crean enemigos ni consumen recursos. Se reutilizan los atlas cargados y se respeta movimiento reducido. El mejor récord mostrado sigue siendo local.
 Bancas y faroles: variantes de parque y colonial con contornos cartoon y acabado pixel. Mantienen posiciones, tamaños de colisión y cantidades. Las sombras tocan patas/base; los faroles encienden gradualmente con DayNight y respetan pausa. Reglas y fuentes: STREET_FURNITURE.md.
 
+
+Árboles y jardineras: copas irregulares, hojas agrupadas, troncos con carácter y piedra con flores variadas. El pie y sombra se anclan; la parte alta tiene oscilación mínima. Se conserva transparencia detrás, pausa, movimiento reducido, densidad y colisiones. Referencia: TREES_PLANTERS.md.
+
 ## Salida desde la punta del arma
 Las seis armas que producen fogonazo (Kingteka, Cerdito, Najasor, Sustento, Charles y Cevichero) usan 180 anclajes revisados: cinco direcciones dibujadas por seis pasos, reflejados para cubrir ocho sentidos. Balas y destello nacen en el mismo punto del cuadro actual. El fogonazo sigue la punta durante su breve vida; las balas ya lanzadas continúan su trayectoria. Quieto se usa la postura con los pies apoyados.
 Se apunta al objetivo desde la boca del arma y se conserva el radio máximo de alcance. Un barrido inicial impide que el nuevo origen atraviese una cobertura o salte enemigos cercanos; el vuelo de estas balas también comprueba el segmento frente a paredes finas. Daño, cadencia, cantidad de proyectiles, dispersión y evoluciones permanecen. El anclaje incorpora el retroceso y la reacción al daño sin cortar el cuerpo. Individual y cooperativo comparten los cálculos.
 
 Los minijefes muestran nombre y vida en el HUD superior: una barra con divisor al 50 %, valores reales y distintivo de fase. La segunda fase cambia el color a coral sin rellenar vida ni añadir otra reserva. El aviso previo ocupa el mismo panel sin barra.
+
+## Etiquetas de minions
+Los nombres visibles de minions se sitúan por encima del sprite completo, incluyendo los desplazamientos de caminar, atacar, recibir daño y el brillo de los pesados. El texto usa contorno oscuro y relleno claro. Los portadores apilan nombre, barra de vida y etiqueta de llave sobre la cabeza; no se colocan según el radio de colisión.

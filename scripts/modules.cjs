@@ -127,6 +127,9 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
+    "source": "src/rendering/garden-art.js", "output": "js/garden-art.js"
+  },
+  {
     "source": "src/rendering/street-art.js", "output": "js/street-art.js"
   },
   {
