@@ -426,6 +426,8 @@ collectionOrder vive en P.Gacha sin cambiar el esquema v4. compareCollection/sor
 Catálogo de minijefes separa clave visual de mapa mediante map opcional. miniKey en avisos permite alternar variantes conservando el mapa real en el estado cooperativo. miniPlazaTurn se incrementa sólo al aparecer y se reinicia por partida. El atlas Makanaky conserva el recorte de cuatro componentes y la ruta de carga existente.
 
 
+AnimalUltimate.swarmPose dirige cuatro grupos con fase de contacto sincronizada al intervalo de daño existente. Selecciona objetivos vivos dentro del radio desde el estado autoritativo, sin mutar enemigos al renderizar. Cuy cruza desde cuatro lados; Paloma usa planeo, descenso y recuperación de altura. El cambio de ciclo queda oculto con opacidad cero; la preferencia reducida mantiene poses fijas.
+
 AnimalUltimate.swarmPose calcula trayectorias continuas y fases independientes por criatura. Cuy usa WalkArt con seis pasos; Paloma usa los seis cuadros íntegros de AnimalEntryPoses. Sin círculos de alcance ni recuadro de coraza: polvo/plumas deterministas y hasta 24 impactos serializados por jugador, creados solo al reducir HP. No altera radio, daño ni cadencia.
 
 AnimalEntryPoses carga dos hojas de seis figuras completas mediante WalkArt.measure; no corta alas ni añade piezas sobre la silueta. Paloma se ancla al ojo naranja para mantener la cabeza estable al cambiar de aleteo; Cuy conserva base y escala uniforme. Fuentes PNG, WebP optimizados con alfa completo y prompts versionados en docs/animal-entry-prompts.json.
