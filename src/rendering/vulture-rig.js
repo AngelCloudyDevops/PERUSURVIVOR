@@ -49,7 +49,8 @@ P.VultureRig={
     this.wing(c,4,h*.12,-h*.5,h*.59,m.far,m,true);
     // La lámina del torso incluía un ala plegada: limitarla al pecho evita
     // que parezca una tercera ala al levantar las dos piezas articuladas.
-    c.save();c.beginPath();c.moveTo(h*.32,-h*.55);c.lineTo(-h*.16,-h*.46);for(const [xx,yy] of [[-.2,-.4],[-.16,-.36],[-.2,-.3],[-.15,-.25],[-.19,-.19],[-.14,-.13],[-.18,-.09],[-.15,-.05],[-.16,.04]])c.lineTo(h*xx,h*yy);c.lineTo(h*.32,h*.04);c.closePath();c.clip();this.part(c,0,0,0,h*.62,.58,1);c.restore();
+    const torso=()=>{c.save();c.beginPath();c.moveTo(h*.32,-h*.55);c.lineTo(-h*.16,-h*.46);for(const [xx,yy] of [[-.2,-.4],[-.16,-.36],[-.2,-.3],[-.15,-.25],[-.19,-.19],[-.14,-.13],[-.18,-.09],[-.15,-.05],[-.16,.04]])c.lineTo(h*xx,h*yy);c.lineTo(h*.32,h*.04);c.closePath();c.clip();this.part(c,0,0,0,h*.62,.58,1);c.restore();};
+    if(m.tuck>0){c.save();c.beginPath();c.rect(-h,-h,h*2,h*.84);c.clip();torso();c.restore();c.save();c.translate(0,-h*.08*m.tuck);c.beginPath();c.rect(-h,-h*.16,h*2,h*.2);c.clip();torso();c.restore()}else torso();
     this.part(c,7,h*.23,-h*.34,h*(.21+m.phase*.03),.55,.7,-.07*m.phase,1,.65+m.phase*.35);
     if(m.phase>0)this.part(c,5,h*.23,-h*.48,h*.18,.5,1,-1.1*(1-m.phase),1,.15+m.phase*.85);
     this.wing(c,3,h*.035,-h*.46,h*.72,m.near,m);
@@ -110,7 +111,7 @@ P.VultureRig={
   P.Vulture.draw=function(c,e){
     if(!R.ready||!e.chaosForm||F.entering(e)||e.phase==='vulture-defeat')return draw.call(this,c,e);
     if(e.phase==='vulture-ultimate')P.VultureImpact.telegraph(c,e);
-    c.save();c.translate(e.x,e.y+e.r*.5);if(e.dx<0)c.scale(-1,1);
+    c.save();c.translate(e.x,e.y+e.r*.5);if(e.dx<0&&!(e.moonSequence&&e.ultimateGrace>0))c.scale(-1,1);
     const result=R.draw(c,0,0,260,0,false,P.Vulture.reduced(),R.arenaMotion(e,P.Vulture.reduced()));c.restore();return result;
   };
 }

@@ -11,7 +11,7 @@ function createAdmin({db,reply,body,now}){
   if(url.pathname==='/api/admin/users'&&req.method==='GET'){
    const q=(url.searchParams.get('q')||'').toLowerCase(),after=url.searchParams.get('after')||'';if(q.length>24||after.length>24){reply(res,400,{error:'Filtro inválido'});return}
    const rows=db.prepare("SELECT u.id,u.username,u.created_at,COALESCE(r.role,'player') AS role,s.payload,s.revision FROM users u LEFT JOIN user_roles r ON r.user_id=u.id LEFT JOIN saves s ON s.user_id=u.id WHERE instr(u.username,?)>0 AND u.username>? ORDER BY u.username LIMIT 21").all(q,after);
-   const users=rows.slice(0,20).map(row=>{let data;try{data=row.payload?JSON.parse(row.payload):null}catch{}return {id:row.id,username:row.username,role:row.role,createdAt:row.created_at,revision:row.revision||0,coins:data?.progress?.wallet||0,unlocked:Array.isArray(data?.progress?.unlocked)?data.progress.unlocked:rules().Meta.blank().unlocked}});
+   const users=rows.slice(0,20).map(row=>{let data;try{data=row.payload?JSON.parse(row.payload):null}catch{}return {id:row.id,username:row.username,role:row.role,createdAt:row.created_at,revision:row.revision||0,coins:Number.isSafeInteger(data?.progress?.wallet)&&data.progress.wallet>=0&&data.progress.wallet<=10000000?data.progress.wallet:0,unlocked:Array.isArray(data?.progress?.unlocked)?rules().Data.characters.filter(c=>data.progress.unlocked.includes(c.id)).map(c=>c.id):rules().Meta.blank().unlocked}});
    reply(res,200,{users,next:rows.length>20?users.at(-1).username:null,characters:rules().Data.characters.map(c=>({id:c.id,name:c.name}))});return;
   }
   if(url.pathname==='/api/admin/history'&&req.method==='GET'){
