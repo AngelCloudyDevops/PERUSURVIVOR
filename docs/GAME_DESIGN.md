@@ -330,7 +330,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
 - fuzo: **Banca infinita** — Cinco tarjetas rápidas atraviesan ocho rivales y enlazan al grupo más cercano.
 - charles: **Lluvia de pañales** — Tres pañales dejan nubes y una nube adicional aparece junto al objetivo.
-- axelbenba: **Clip relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
+- axelbenba: **Tormenta relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
 - cerdito: **Fiesta del cerdito** — Doce balas salen en círculo; una onda corta despeja el puesto.
 - sustento: **Infestación veloz** — Tres cucarachas perforantes avanzan en zigzag; una zona de enjambre queda junto al objetivo.
 - cevichero: **Marea del enjambre** — Seis cucarachas salen en círculo y regresan como bumeranes.
@@ -354,3 +354,11 @@ Los quince jugables con ataques de proyectil o cono usan cinco orientaciones dib
 
 ### Recompensas exclusivas de minijefes
 Además de su botín habitual, cada minijefe deja un cofre legendario sin llave que permanece al alejarse. Se elige su accesorio exclusivo o 50 monedas. Ocupa el espacio de accesorio existente: reemplaza el equipo anterior. Silbato del caos: cada 6 s empuja 55 unidades a rivales comunes en radio 150 con línea de visión; no mueve jefes. Pluma brava: cada ataque acertadamente iniciado añade dos plumas con 35 % de daño, hasta tres impactos cada una. Corazón de barro: absorbe un golpe completo y recarga en 10 s de combate. Pausa, menús y elecciones detienen recargas. En cooperativo cada jugador elige una vez y las monedas van al fondo compartido. El laboratorio permite continuar tras vencer para abrir el cofre.
+
+Ulti de Alberto Fujimori: TRIBUNAL. Carga 20 bajas como Kingteka; Q inicia una escena de 3,4 s que congela combate y reloj de ambos jugadores. El publico muestra minions de espaldas, Fujimori sentado al centro, aliado vivo como abogado y un juez original. Tras SOY INOCENTE y el martillazo, el mapa retorna: elimina minions normales y pesados con centro a 340 unidades o menos del punto de activacion. Excluye jefes, subjefes y mimicos. No carga la propia ulti con esas bajas, mantiene recompensas normales y concede 1,2 s de proteccion al volver. La sala autoriza, sincroniza y resuelve una sola vez; nunca acepta objetivos del cliente. Practica publica de Fujimori con recarga y reposicion de objetivos, sin records. No usa voz real.
+La Plaza reemplaza la pileta y fachada geométricas por sprites cartoon detallados. Mantiene la física y escala del lugar, sombras al pie y ocho reflejos pequeños de agua. El jugador se mantiene visible detrás con opacidad reducida del objeto; pausa congela el agua y movimiento reducido la desactiva. Referencia: PLAZA_LANDMARKS.md.
+
+## Inicio y demostraciones de ataques
+El inicio se organiza como un lobby: causa destacado, botón Jugar ahora y accesos a mapas, personajes, habilidades y cooperativo. Conserva el estilo peruano y todos los controles existentes; no añade funciones de cuenta ni tiendas inexistentes.
+
+El menú de habilidades compara ataque básico y evolución en dos canvas animados con los perfiles, glifos, poses y efectos del juego. Incluye pausa/reproducción y descripción de requisitos. Son demostraciones cosméticas sobre muñecos: no ejecutan combate, no alteran XP, monedas, salud, equipo ni estado de sala y no desbloquean poderes. La animación comparte el bucle de dibujo a un máximo de 30 Hz, usa dos superficies, se detiene al cerrar o esconder la pestaña y arranca estática con movimiento reducido. Los recursos faltantes usan el retrato existente y se reutiliza la carga de sprites.
