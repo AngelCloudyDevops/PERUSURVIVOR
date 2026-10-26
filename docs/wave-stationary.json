@@ -1,0 +1,790 @@
+{
+  "method": "Six characters x paired baseline/new pressure. Same normal engine, seed920, Campo, 60 s, zero movement, actual offered upgrade choice bot. No stat changes. Staying still is intentionally a poor strategy.",
+  "results": [
+    {
+      "baseline": true,
+      "id": "cristorata",
+      "map": "campo",
+      "seed": 920,
+      "result": "death",
+      "seconds": 44,
+      "kills": 29,
+      "level": 2,
+      "hp": 0,
+      "maxHp": 95,
+      "damage": {
+        "taken": 95.00000000000001,
+        "hits": 11
+      },
+      "minis": [],
+      "upgrades": [
+        {
+          "time": 42,
+          "title": "Clip de ida y vuelta · Rango 2/5"
+        }
+      ],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 95,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 95,
+          "level": 1,
+          "kills": 4,
+          "minions": 9,
+          "minis": 0
+        },
+        {
+          "time": 30,
+          "hp": 95,
+          "level": 1,
+          "kills": 17,
+          "minions": 11,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 207,
+        "visibleSum": 873,
+        "nearSum": 143,
+        "nearSamples": 76,
+        "damage": 95.00000000000001,
+        "firstVisible": 6.8,
+        "maxEnemies": 14,
+        "maxDanger": 3
+      }
+    },
+    {
+      "baseline": false,
+      "id": "cristorata",
+      "map": "campo",
+      "seed": 920,
+      "result": "death",
+      "seconds": 26.3,
+      "kills": 31,
+      "level": 2,
+      "hp": 0,
+      "maxHp": 95,
+      "damage": {
+        "taken": 95,
+        "hits": 11
+      },
+      "minis": [],
+      "upgrades": [
+        {
+          "time": 24,
+          "title": "Clip de ida y vuelta · Rango 2/5"
+        }
+      ],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 95,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 43,
+          "level": 1,
+          "kills": 14,
+          "minions": 8,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 127,
+        "visibleSum": 674,
+        "nearSum": 168,
+        "nearSamples": 71,
+        "damage": 95,
+        "firstVisible": 1.1,
+        "maxEnemies": 12,
+        "maxDanger": 2
+      }
+    },
+    {
+      "baseline": true,
+      "id": "cuy",
+      "map": "campo",
+      "seed": 920,
+      "result": "timeout",
+      "seconds": 60,
+      "kills": 47,
+      "level": 1,
+      "hp": 81,
+      "maxHp": 150,
+      "damage": {
+        "taken": 69,
+        "hits": 13
+      },
+      "minis": [],
+      "upgrades": [],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 150,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 150,
+          "level": 1,
+          "kills": 5,
+          "minions": 8,
+          "minis": 0
+        },
+        {
+          "time": 30,
+          "hp": 150,
+          "level": 1,
+          "kills": 18,
+          "minions": 10,
+          "minis": 0
+        },
+        {
+          "time": 45,
+          "hp": 102,
+          "level": 1,
+          "kills": 31,
+          "minions": 11,
+          "minis": 0
+        },
+        {
+          "time": 60,
+          "hp": 81,
+          "level": 1,
+          "kills": 47,
+          "minions": 10,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 276,
+        "visibleSum": 1338,
+        "nearSum": 167,
+        "nearSamples": 124,
+        "damage": 69,
+        "firstVisible": 7.03,
+        "maxEnemies": 13,
+        "maxDanger": 3
+      }
+    },
+    {
+      "baseline": false,
+      "id": "cuy",
+      "map": "campo",
+      "seed": 920,
+      "result": "timeout",
+      "seconds": 60,
+      "kills": 82,
+      "level": 2,
+      "hp": 22,
+      "maxHp": 150,
+      "damage": {
+        "taken": 127.80714285714286,
+        "hits": 19
+      },
+      "minis": [],
+      "upgrades": [
+        {
+          "time": 40,
+          "title": "¡Habla, causa! · Rango 2/5"
+        }
+      ],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 150,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 144,
+          "level": 1,
+          "kills": 12,
+          "minions": 10,
+          "minis": 0
+        },
+        {
+          "time": 30,
+          "hp": 102,
+          "level": 1,
+          "kills": 36,
+          "minions": 7,
+          "minis": 0
+        },
+        {
+          "time": 45,
+          "hp": 65,
+          "level": 2,
+          "kills": 56,
+          "minions": 11,
+          "minis": 0
+        },
+        {
+          "time": 60,
+          "hp": 22,
+          "level": 2,
+          "kills": 82,
+          "minions": 7,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 276,
+        "visibleSum": 1556,
+        "nearSum": 292,
+        "nearSamples": 162,
+        "damage": 127.80714285714286,
+        "firstVisible": 1.1,
+        "maxEnemies": 13,
+        "maxDanger": 6
+      }
+    },
+    {
+      "baseline": true,
+      "id": "paloma",
+      "map": "campo",
+      "seed": 920,
+      "result": "death",
+      "seconds": 51.5,
+      "kills": 37,
+      "level": 2,
+      "hp": 0,
+      "maxHp": 85,
+      "damage": {
+        "taken": 85,
+        "hits": 13
+      },
+      "minis": [],
+      "upgrades": [
+        {
+          "time": 32,
+          "title": "Ráfaga de la plaza · Rango 2/5"
+        }
+      ],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 85,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 85,
+          "level": 1,
+          "kills": 5,
+          "minions": 8,
+          "minis": 0
+        },
+        {
+          "time": 30,
+          "hp": 85,
+          "level": 1,
+          "kills": 16,
+          "minions": 12,
+          "minis": 0
+        },
+        {
+          "time": 45,
+          "hp": 23,
+          "level": 2,
+          "kills": 32,
+          "minions": 10,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 239,
+        "visibleSum": 1021,
+        "nearSum": 152,
+        "nearSamples": 103,
+        "damage": 85,
+        "firstVisible": 6.8,
+        "maxEnemies": 12,
+        "maxDanger": 4
+      }
+    },
+    {
+      "baseline": false,
+      "id": "paloma",
+      "map": "campo",
+      "seed": 920,
+      "result": "death",
+      "seconds": 28.5,
+      "kills": 34,
+      "level": 2,
+      "hp": 0,
+      "maxHp": 85,
+      "damage": {
+        "taken": 85,
+        "hits": 10
+      },
+      "minis": [],
+      "upgrades": [
+        {
+          "time": 18,
+          "title": "Ráfaga de la plaza · Rango 2/5"
+        }
+      ],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 85,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 49,
+          "level": 1,
+          "kills": 12,
+          "minions": 10,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 138,
+        "visibleSum": 708,
+        "nearSum": 227,
+        "nearSamples": 87,
+        "damage": 85,
+        "firstVisible": 1.1,
+        "maxEnemies": 12,
+        "maxDanger": 3
+      }
+    },
+    {
+      "baseline": true,
+      "id": "kingteka",
+      "map": "campo",
+      "seed": 920,
+      "result": "timeout",
+      "seconds": 60,
+      "kills": 47,
+      "level": 3,
+      "hp": 41,
+      "maxHp": 125,
+      "damage": {
+        "taken": 83.60225140712953,
+        "hits": 13
+      },
+      "minis": [],
+      "upgrades": [
+        {
+          "time": 23,
+          "title": "Escopeta arcade · Rango 2/5"
+        },
+        {
+          "time": 49,
+          "title": "Escopeta arcade · Rango 3/5"
+        }
+      ],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 125,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 125,
+          "level": 1,
+          "kills": 4,
+          "minions": 9,
+          "minis": 0
+        },
+        {
+          "time": 30,
+          "hp": 125,
+          "level": 2,
+          "kills": 17,
+          "minions": 11,
+          "minis": 0
+        },
+        {
+          "time": 45,
+          "hp": 82,
+          "level": 2,
+          "kills": 29,
+          "minions": 13,
+          "minis": 0
+        },
+        {
+          "time": 60,
+          "hp": 41,
+          "level": 3,
+          "kills": 47,
+          "minions": 10,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 276,
+        "visibleSum": 1236,
+        "nearSum": 169,
+        "nearSamples": 119,
+        "damage": 83.60225140712953,
+        "firstVisible": 4.23,
+        "maxEnemies": 13,
+        "maxDanger": 4
+      }
+    },
+    {
+      "baseline": false,
+      "id": "kingteka",
+      "map": "campo",
+      "seed": 920,
+      "result": "death",
+      "seconds": 21,
+      "kills": 19,
+      "level": 2,
+      "hp": 0,
+      "maxHp": 125,
+      "damage": {
+        "taken": 124.99999999999999,
+        "hits": 13
+      },
+      "minis": [],
+      "upgrades": [
+        {
+          "time": 18,
+          "title": "Escopeta arcade · Rango 2/5"
+        }
+      ],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 125,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 53,
+          "level": 1,
+          "kills": 10,
+          "minions": 12,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 101,
+        "visibleSum": 630,
+        "nearSum": 216,
+        "nearSamples": 71,
+        "damage": 124.99999999999999,
+        "firstVisible": 1.1,
+        "maxEnemies": 15,
+        "maxDanger": 3
+      }
+    },
+    {
+      "baseline": true,
+      "id": "g5",
+      "map": "campo",
+      "seed": 920,
+      "result": "timeout",
+      "seconds": 60,
+      "kills": 47,
+      "level": 1,
+      "hp": 53,
+      "maxHp": 135,
+      "damage": {
+        "taken": 82.10526315789471,
+        "hits": 13
+      },
+      "minis": [],
+      "upgrades": [],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 135,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 135,
+          "level": 1,
+          "kills": 4,
+          "minions": 9,
+          "minis": 0
+        },
+        {
+          "time": 30,
+          "hp": 135,
+          "level": 1,
+          "kills": 18,
+          "minions": 10,
+          "minis": 0
+        },
+        {
+          "time": 45,
+          "hp": 84,
+          "level": 1,
+          "kills": 31,
+          "minions": 11,
+          "minis": 0
+        },
+        {
+          "time": 60,
+          "hp": 53,
+          "level": 1,
+          "kills": 47,
+          "minions": 10,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 276,
+        "visibleSum": 1371,
+        "nearSum": 203,
+        "nearSamples": 153,
+        "damage": 82.10526315789471,
+        "firstVisible": 7.03,
+        "maxEnemies": 13,
+        "maxDanger": 3
+      }
+    },
+    {
+      "baseline": false,
+      "id": "g5",
+      "map": "campo",
+      "seed": 920,
+      "result": "death",
+      "seconds": 44.8,
+      "kills": 53,
+      "level": 2,
+      "hp": 0,
+      "maxHp": 135,
+      "damage": {
+        "taken": 135,
+        "hits": 17
+      },
+      "minis": [],
+      "upgrades": [
+        {
+          "time": 42,
+          "title": "Patada G5 · 145° · Rango 2/5"
+        }
+      ],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 135,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 129,
+          "level": 1,
+          "kills": 11,
+          "minions": 11,
+          "minis": 0
+        },
+        {
+          "time": 30,
+          "hp": 86,
+          "level": 1,
+          "kills": 36,
+          "minions": 7,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 210,
+        "visibleSum": 1177,
+        "nearSum": 270,
+        "nearSamples": 141,
+        "damage": 135,
+        "firstVisible": 1.1,
+        "maxEnemies": 13,
+        "maxDanger": 4
+      }
+    },
+    {
+      "baseline": true,
+      "id": "fuzo",
+      "map": "campo",
+      "seed": 920,
+      "result": "timeout",
+      "seconds": 60,
+      "kills": 45,
+      "level": 1,
+      "hp": 61,
+      "maxHp": 115,
+      "damage": {
+        "taken": 53.94121325828641,
+        "hits": 9
+      },
+      "minis": [],
+      "upgrades": [],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 115,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 115,
+          "level": 1,
+          "kills": 7,
+          "minions": 6,
+          "minis": 0
+        },
+        {
+          "time": 30,
+          "hp": 115,
+          "level": 1,
+          "kills": 17,
+          "minions": 11,
+          "minis": 0
+        },
+        {
+          "time": 45,
+          "hp": 78,
+          "level": 1,
+          "kills": 32,
+          "minions": 10,
+          "minis": 0
+        },
+        {
+          "time": 60,
+          "hp": 61,
+          "level": 1,
+          "kills": 45,
+          "minions": 12,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 276,
+        "visibleSum": 1053,
+        "nearSum": 46,
+        "nearSamples": 31,
+        "damage": 53.94121325828641,
+        "firstVisible": 4.23,
+        "maxEnemies": 12,
+        "maxDanger": 3
+      }
+    },
+    {
+      "baseline": false,
+      "id": "fuzo",
+      "map": "campo",
+      "seed": 920,
+      "result": "death",
+      "seconds": 55,
+      "kills": 74,
+      "level": 3,
+      "hp": 0,
+      "maxHp": 115,
+      "damage": {
+        "taken": 115.00000000000001,
+        "hits": 17
+      },
+      "minis": [],
+      "upgrades": [
+        {
+          "time": 24,
+          "title": "Tarjetazo BCP · Rango 2/5"
+        },
+        {
+          "time": 42,
+          "title": "Tarjetazo BCP · Rango 3/5"
+        }
+      ],
+      "trace": [
+        {
+          "time": 0,
+          "hp": 115,
+          "level": 1,
+          "kills": 0,
+          "minions": 1,
+          "minis": 0
+        },
+        {
+          "time": 15,
+          "hp": 115,
+          "level": 1,
+          "kills": 11,
+          "minions": 11,
+          "minis": 0
+        },
+        {
+          "time": 30,
+          "hp": 79,
+          "level": 2,
+          "kills": 37,
+          "minions": 6,
+          "minis": 0
+        },
+        {
+          "time": 45,
+          "hp": 25,
+          "level": 3,
+          "kills": 57,
+          "minions": 10,
+          "minis": 0
+        }
+      ],
+      "evolved": false,
+      "pressure": {
+        "samples": 254,
+        "visibleSum": 1448,
+        "nearSum": 279,
+        "nearSamples": 153,
+        "damage": 115.00000000000001,
+        "firstVisible": 1.1,
+        "maxEnemies": 13,
+        "maxDanger": 5
+      }
+    }
+  ]
+}

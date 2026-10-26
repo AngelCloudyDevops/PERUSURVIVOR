@@ -119,7 +119,7 @@ ground(ctx){const s=P.state;if(!s.encounter){for(const e of s.enemies)if(e.minib
 weakSymbol(ctx,e){if(e.phase!=='mini-recover')return;ctx.save();ctx.translate(e.x,e.y-(this.catalog[e.miniMap]?.height||110)*.6);ctx.strokeStyle='#b4ffe0';ctx.lineWidth=3;ctx.fillStyle='#14203299';ctx.beginPath();ctx.arc(0,0,16,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(-23,0);ctx.lineTo(23,0);ctx.moveTo(0,-23);ctx.lineTo(0,23);ctx.stroke();ctx.restore()},
 crowded(){return P.state.enemies.filter(e=>e.hp>0&&!e.miniboss).length>=35||P.state.danger.length>=24},
 active(){return P.state.enemies.find(e=>e.miniboss&&e.hp>0)},
-spawnPolicy(){const active=this.active(),cap=Math.min(P.Data.arena.enemyCap,P.Difficulty.current().cap);return {active,cap:active?Math.max(8,Math.floor(cap*.5)):cap,interval:P.Difficulty.current().interval*(active?2.5:1)}},
+spawnPolicy(){const active=this.active(),cap=Math.min(P.Data.arena.enemyCap,P.Difficulty.current().cap);return {active,cap:active?Math.max(8,Math.floor(cap*.7)):cap,interval:P.Difficulty.current().interval*(active?1.6:P.Difficulty.phase().factor)}},
 spawnSafe(e){const mini=this.active();return !mini||Math.hypot(e.x-mini.x,e.y-mini.y)>=260+e.r},
 recordDamage(amount){for(const e of P.state.enemies)if(e.miniboss&&e.hp>0)e.damageTaken=(e.damageTaken||0)+amount},
 report(e){const s=P.state,practice=!!s.devRun,bonus=practice?0:Math.min(3,e.counterWindows||0)*5+((e.damageTaken||0)===0?10:0);if(!practice)s.coins+=bonus;s.miniReport={id:e.miniId,name:e.name,time:Math.max(0,s.elapsed-(e.combatStart??s.elapsed)),damage:Math.round(e.damageTaken||0),windows:e.counterWindows||0,bonus,coins:practice?0:20+(e.tier||0)*5,practice,at:s.elapsed}},

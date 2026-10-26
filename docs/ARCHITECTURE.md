@@ -515,6 +515,16 @@ VultureRig.attackPose deriva carga, descarga y recuperación de chaosTime y de w
 
 Auditoría reproducible local: `node scripts/attributes-audit.cjs` y `node scripts/summarize-attributes.cjs`. Dataset separado de auditorías históricas. El bot no mide FPS ni equivale a una prueba manual de navegador.
 
+## Director de oleadas y presupuesto de presión
+
+Difficulty conserva las ocho etapas y añade phase(mapTime), pace(enemy,time), spawnPoint y fame. phase es una función pura de reloj de mapa, sin timers. pace modifica solo la unidad recién creada y precede a MinionEvolution; waveRole queda serializado. spawnPoint usa Combat.view y, en servidor cooperativo, Court.players para la unión de vistas. Systems.spawn conserva el límite de un enemigo/tick y ocho intentos; descarta terreno sólido antes de spawnSafe. Minibosses.spawnPolicy aplica su política específica sin multiplicar de nuevo el empuje.
+
+Entities.hurt deposita fama normalizada solo para waveRole; cuartos exactos evitan errores de acumulación fraccionaria. Puntos de fama, minijefes y botín especial conservan sus rutas existentes. No hay IA nueva por frame, tareas asíncronas, partículas ni aumento de caps. La geometría de spawn se calcula al nacer, no cada frame.
+
+Auditoría local: wave-audit.cjs restaura el perfil anterior en una VM mediante wave-baseline-profile.json para comparar igual semilla con atributos activos en ambos grupos. full-run-audit registra métricas opcionales de presión del primer minuto y permite un control estacionario. Estas opciones pertenecen a scripts locales; no se envían en el runtime del cliente. Los datasets conservados son el control anterior, el resultado final con fama normalizada y el ensayo estacionario. Los máximos observados y caps son un control de coste, no una medición de FPS de un móvil. Resultados y límites: WAVE_PRESSURE.md.
+
 VultureMoon.cameraFrame ofrece centro y zoom opcionales a World.render solo durante activación/despegue. Calcula el rectángulo de ambos actores y limita el centro a márgenes del jugador, usando los relojes de etapa existentes, sin alterar coordenadas ni daño. captureDeparture reutiliza un canvas local para enlazar el último render de arena con los primeros 0,35 s de escena lunar; se reinicia en cada ulti y no se captura con movimiento reducido.
+
+FujimoriBoss extiende el movimiento y dibujo de Encounters solo para kind fujimori. Reutiliza el sprite de Alberto y el fondo cabinet, sin modificar la ulti Court ni el personaje jugable.
 
 VultureMoon.cameraFrame incluye landing y el primer tramo posterior al impacto; compensa cameraScale para conservar el zoom al cambiar de fase y converge al objetivo normal antes de liberar la cámara. arrivalOverlay reutiliza una captura del último cielo. landedAge usa elapsed y la marca de impacto, por lo que pausa detiene cámara, onda y sacudida. World suma impactShake en unidades compensadas por zoom. Los renderizadores existentes de polvo/escombros amplían solo el impacto lunar.
