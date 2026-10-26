@@ -172,3 +172,6 @@ VultureUltimate carga gallinazo-ultimate-v1.png por separado, precalcula seis re
 El HUD conserva nodos fijos y escribe textos solo cuando cambian; la barra de experiencia y el icono de equipo también evitan trabajo idéntico. No se limita su frecuencia ni se retrasan actualizaciones de daño o temporizadores. Las estelas conservan todos sus puntos, tamaños y alfas, fijando el color una vez por estela.
 
 VultureUltimate.spectacle dibuja 14 plumas y tres ondas sin crear entidades; cameraScale deriva del reloj de simulación y vuelve a 1 fuera de la ulti. El retrato reutiliza los seis recortes del atlas, sin descargas nuevas.
+
+
+UltimateComic carga un atlas 2 × 2 de retratos de cintura arriba, calcula recorte común por alfa y selecciona preparación, apuntado, disparo y retroceso sin detener Game.update. Véase KINGTEKA_COMIC.md.
