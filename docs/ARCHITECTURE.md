@@ -596,3 +596,6 @@ DomainFinale.resultPose/rimPoint son funciones deterministas de tiempo de simula
 ChosicanoArt usa chosicano-v1.webp y seis figuras completas recortadas por alfa en 3 × 2. PNG y prompt se conservan como fuente. step integra wheelPhase a partir del desplazamiento resuelto, sin avance al quedar bloqueado. El kind combi y el ID de la arena siguen estables para guardados y lógica existente; la carga se espera al entrar con reintento y cancelación al abandonar el diálogo. El atlas original de los tres jefes permanece intacto para Gabinete y Guardián.
 
 Presupuesto del bus: boss-atlas-packed-v2.webp recodifica a calidad 100 el atlas histórico sin cambiar dimensiones ni alfa, mientras el PNG y WebP originales siguen guardados. El build distribuye solo la versión activa. Se conserva el diseño del Gabinete y el Guardián; la fila antigua de combi ya no se renderiza.
+# Arte y control de Sideral
+
+SideralArt carga un atlas WebP 4×2 de figuras completas: tres poses de locomoción y cinco cuadros continuos de ataque. Intercepta únicamente el dibujo del id `sideral`; los demás personajes conservan Sprites y PlayerAttackArt. Combat registra resistencia temporal por enemigo y usa la carga serializable existente para producir la huida, por lo que el comportamiento funciona también en la simulación cooperativa sin un estado paralelo.
