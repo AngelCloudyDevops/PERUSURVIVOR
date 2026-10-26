@@ -59,12 +59,14 @@ P.VulturePhase2 = {
     c.drawImage(this.surface,f.x,f.y,f.w,f.h,(f.x-f.pivotX)*scale,(f.y-f.pivotY)*scale,f.w*scale,f.h*scale);c.restore();return true;
   },
   electricity(c,x,y,r,t,strength=1,reduced=false){
-    c.save();c.translate(x,y);c.globalAlpha*=strength;
-    for(let i=0;i<7;i++){
-      const a=i*2.399+(reduced?0:t*.65),px=Math.cos(a)*r*.8,py=Math.sin(a)*r*.42;
-      c.strokeStyle='#21102f';c.lineWidth=9;c.beginPath();c.moveTo(px,py);
-      for(let j=1;j<6;j++)c.lineTo(px+Math.cos(a)*r*j*.12+Math.sin(j*3+i+(reduced?0:Math.floor(t*12)))*r*.09,py-j*r*.12);
-      c.stroke();c.strokeStyle='#8254b9';c.lineWidth=4;c.stroke();c.strokeStyle='#dfc4ff';c.lineWidth=1;c.stroke();
+    if(strength<=0)return;c.save();c.translate(x,y);const alpha=c.globalAlpha;
+    for(let i=0;i<4;i++){
+      const phase=reduced?.45:(t*.9+i*.27)%1,pulse=reduced?.18:Math.sin(phase*Math.PI)**4;if(pulse<.14)continue;
+      const side=i%2?-1:1,px=side*r*(.82+i*.06),py=r*(-.48+Math.floor(i/2)*.8),length=r*(.19+pulse*.13);
+      c.globalAlpha=alpha*strength*pulse*.75;c.beginPath();c.moveTo(px,py);
+      for(let j=1;j<=5;j++)c.lineTo(px+side*(j*length/5+(j%2?length*.13:-length*.09)),py-j*length*.65/5);
+      c.strokeStyle='#624585';c.lineWidth=3;c.stroke();c.strokeStyle='#d9b9f5';c.lineWidth=1;c.stroke();
+      if(!reduced){c.fillStyle='#eadbfa';c.fillRect(px-1,py-1,2,2)}
     }
     c.restore();
   },

@@ -3,6 +3,7 @@ P.VultureMoon={
   takeoffDuration:1.25,landingDuration:1.2,radius:110,ready:false,failed:false,
   init(){if(this.started||typeof Image==='undefined')return;this.started=true;const image=new Image();image.onload=()=>{this.sky=image;this.ready=true};image.onerror=()=>{this.failed=true};image.src='assets/arenas/gallinazo-moon-sky-v1.webp';const panorama=new Image();panorama.onload=()=>{this.panorama=panorama;this.panoramaReady=true};panorama.src='assets/arenas/gallinazo-lima-night-v1.webp'},
   smooth(v){v=Math.max(0,Math.min(1,v));return v*v*(3-2*v)},
+  blocksUpgrade(){const e=P.VultureUltimate.boss();return !!e?.moonSequence&&(['vulture-activation','vulture-takeoff','vulture-moon','vulture-landing'].includes(e.phase)||e.phase==='vulture-ultimate'&&e.ultimateGrace>0)},
   nightStrength(e){if(!e?.moonSequence)return 0;if(e.phase==='vulture-activation')return this.smooth((e.ultimateEntryTime||0)/1.3)*.75;if(e.phase==='vulture-takeoff')return .75+.25*this.smooth((e.moonStageTime||0)/.65);return 1},
   roofLayers(){
     const roof=P.Vulture.roof;if(!roof||!P.Vulture.ready||typeof document==='undefined')return false;if(this.roofSource===roof)return true;this.roofSource=roof;
