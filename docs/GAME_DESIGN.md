@@ -502,5 +502,7 @@ El selector «Arma principal» permite probar base (rango 1), rangos 2–5 y la 
 
 ## Prioridad y orden de colección
 La colección se ordena por rareza (SSR→SR→R→C), estrellas o copias disponibles en sentido descendente, siempre agrupando primero a quienes pueden ascender. Dentro de cada grupo se aplica el criterio elegido y se desempata por posición original en el catálogo. Bloqueados cuentan como cero estrellas/copias. El orden predeterminado es rareza y permanece en la sesión al limpiar filtros. Se recalcula después de ascensos y cambios de progreso; no selecciona ni consume nada automáticamente.
+Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Paloma en Plaza de Armas (uno activo). Abanico de tres ondas bloqueables y pulso cercano de 110 unidades, ambos avisados; al 50 % encadena dos abanicos. Conserva navegación, agotamiento, bonus, resumen, cobertura y derrota sin daño. Cofre: Silbato del caos o 50 monedas. Disponible directamente en Probar jefes. Arte nuevo de cuatro poses, sin sustituir personajes existentes.
+
 
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
