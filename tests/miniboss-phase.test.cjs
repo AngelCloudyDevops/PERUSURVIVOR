@@ -66,3 +66,21 @@ test('Motivos sintetizados distintos y silencio respetado',()=>{
  for(const map of ['campo','plaza','machu'])for(const event of ['entry','attack','recover','defeat']){a.ctx.currentTime=time++;const before=notes.length;a.mini(map,event);assert(notes.length>before)}
  assert(new Set(notes.map(n=>n[0])).size>8);const count=notes.length;a.muted=true;a.mini('campo','entry');assert.equal(notes.length,count);a.muted=false;P.state.mode='pause';a.mini('plaza','defeat');assert.equal(notes.length,count);
 });
+
+test('Legibilidad: spawn reducido, exclusión, conservación y retorno normal',()=>{
+ const {P}=new Simulation('campo',[0,6]),M=P.Minibosses,s=P.state;const normal=M.spawnPolicy(),e=M.create('campo',{x:0,y:0});s.enemies=[e];const reduced=M.spawnPolicy();assert.equal(reduced.interval,normal.interval*2.5);assert(reduced.cap<normal.cap);assert(!M.spawnSafe({x:100,y:0,r:13}));assert(M.spawnSafe({x:500,y:0,r:13}));
+ s.devRun=false;s.spawn=0;s.enemies.push(...Array.from({length:normal.cap},()=>({hp:100,x:10,y:10})));const count=s.enemies.length;M.tick=()=>{};P.Systems.spawn(.04);assert.equal(s.enemies.length,count);e.hp=0;assert.equal(M.spawnPolicy().interval,normal.interval);
+});
+test('Premio y resumen: una vez por ventana, mitigación real y sin premio de práctica',()=>{
+ const {P}=new Simulation('campo',[0,6]),M=P.Minibosses,s=P.state,e=M.create('campo',{x:0,y:0});s.enemies=[e];s.elapsed=12;e.combatStart=2;e.hp=10000;e.max=10000;
+ e.phase='mini-recover';e.soundRecover=1;M.hurt(e,1,0);M.hurt(e,1,0);assert.equal(e.counterWindows,1);e.soundRecover=2;M.hurt(e,1,0);assert.equal(e.counterWindows,2);
+ s.player.inv=0;s.player.equipmentReduction=.5;P.PlayerFeedback.hit(s.player,20);assert.equal(e.damageTaken,10);const coins=s.coins;M.hurt(e,99999,0);assert.equal(s.coins,coins+10);assert.equal(s.miniReport.time,10);assert.equal(s.miniReport.damage,10);assert.equal(s.miniReport.windows,2);M.hurt(e,99999,0);assert.equal(s.coins,coins+10);assert.doesNotThrow(()=>JSON.stringify(s.miniReport));
+ s.devRun=true;const practice=M.create('campo',{x:0,y:0});s.enemies=[practice];M.hurt(practice,99999,0);assert.equal(s.coins,coins+10);assert(s.miniReport.practice);
+});
+test('Visitas: tres niveles, igual cantidad de proyectiles y variación suprimida con multitud',()=>{
+ const {P}=new Simulation('plaza',[0,6]),M=P.Minibosses,s=P.state;M.partySize=()=>1;const visits=Array.from({length:5},()=>M.create('plaza',{x:0,y:0}));assert.equal(visits.map(e=>e.tier).join(','),'0,1,2,2,2');assert.equal(visits[4].speed,M.catalog.plaza.speed*1.1);
+ const e=visits[4];s.enemies=[e];M.warn(e,'feathers');assert.equal(e.variation,2);s.danger=[];M.fire(e);assert.equal(s.danger.length,5);s.enemies.push(...Array.from({length:35},()=>({hp:1})));M.warn(e,'feathers');assert.equal(e.variation,0);s.danger=[];M.fire(e);assert.equal(s.danger.length,5);
+});
+test('Tarjeta lateral: entrada, resumen, pausa y snapshot cooperativo',()=>{
+ const sim=new Simulation('machu',[0,6]),P=sim.P,M=P.Minibosses,s=P.state,e=M.create('machu',{x:0,y:0});s.enemies=[e];M.hud();assert(M.card.textContent.includes('No debiste despertarlo'));M.hurt(e,99999,0);s.enemies=[];M.encounterCard();assert(M.card.textContent.includes('Daño recibido'));assert(sim.snapshot().miniReport);s.mode='pause';M.encounterCard();assert.equal(M.card.hidden,false);s.elapsed+=9;M.encounterCard();assert(M.card.hidden);M.reset();assert.equal(s.miniReport,null);
+});

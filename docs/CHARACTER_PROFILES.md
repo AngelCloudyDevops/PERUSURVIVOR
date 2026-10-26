@@ -1,6 +1,6 @@
 # Perfiles de personajes
 
-Valores base de rango 1, sin mochila ni mejoras permanentes. Derivados de catalog.js y powers.js. No son DPS: área, retorno, nubes, perforación y dispersión cambian los resultados. Los roles son descriptivos; no añaden bonificaciones. No hay rareza de personajes implementada.
+Valores base de rango 1, sin mochila ni mejoras permanentes. Derivados de catalog.js y powers.js. No son DPS: área, retorno, nubes, perforación y dispersión cambian los resultados. Los roles son descriptivos; no añaden bonificaciones. La rareza de colección se consulta en P.Gacha.tiers y no aumenta los atributos.
 
 | Causa | Rol | Vida | Velocidad u/s | Daño por impacto | Recarga s | Alcance nominal u | Proyectiles/bandas | Objetivos por proyectil |
 |---|---|---:|---:|---:|---:|---:|---:|---|

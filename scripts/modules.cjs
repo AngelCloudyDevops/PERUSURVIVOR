@@ -68,6 +68,10 @@ module.exports = [
     "output": "js/supplies.js"
   },
   {
+    "source": "src/systems/gacha.js",
+    "output": "js/gacha.js"
+  },
+  {
     "source": "src/entities/actors.js",
     "output": "js/entities.js"
   },
@@ -124,6 +128,9 @@ module.exports = [
     "output": "js/encounters.js"
   },
   {
+    "source": "src/rendering/path-details.js", "output": "js/path-details.js"
+  },
+  {
     "source": "src/systems/chunks.js",
     "output": "js/chunks.js"
   },
@@ -148,7 +155,8 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
-    "source": "src/rendering/machu-art.js", "output": "js/machu-art.js"
+    "source": "src/rendering/machu-art.js",
+    "output": "js/machu-art.js"
   },
   {
     "source": "src/rendering/campo-art.js",
