@@ -115,10 +115,11 @@ P.VulturePhase2 = {
       if(until>0){c.beginPath();c.arc(q.x,q.y,46*Math.max(0,until/1.46),0,Math.PI*2);c.stroke()}
       c.fillStyle='#f4d9ff';c.fillRect(q.x-2,q.y-10,4,20);c.fillRect(q.x-10,q.y-2,20,4);
     }
-    else if(t<1.52){c.translate(e.x,e.y);c.rotate(e.aim);c.fillStyle='#9760c822';c.strokeStyle='#ddb3ff';c.beginPath();c.moveTo(0,0);c.arc(0,0,320,-.92,.92);c.closePath();c.fill();c.stroke()}
+    else if(t<1.52){c.translate(e.x,e.y);c.rotate(e.aim);const radius=285,half=.66;c.fillStyle='#9760c816';c.strokeStyle='#ddb3ff';c.beginPath();c.moveTo(0,0);c.arc(0,0,radius,-half,half);c.closePath();c.fill();c.stroke();c.globalAlpha=.48;for(const a of [-half,-half*.5,0,half*.5,half]){c.beginPath();c.moveTo(Math.cos(a)*72,Math.sin(a)*72);c.lineTo(Math.cos(a)*radius,Math.sin(a)*radius);c.stroke()}c.globalAlpha=1}
     c.restore();
-    c.save();c.textAlign='center';c.fillStyle='#f0d5ff';c.font='bold 12px monospace';c.fillText(e.chaosAttack==='storm'?'¡TORMENTA DE PLUMAS! · SAL DE LOS CÍRCULOS':'¡PLUMAS SERPIENTE! · BUSCA COBERTURA',e.x,e.y+80);c.restore();
+    this.warningLabel(c,e,e.chaosAttack==='storm'?'¡TORMENTA DE PLUMAS! · SAL DE LOS CÍRCULOS':'¡PLUMAS SERPIENTE! · BUSCA COBERTURA');
   },
+  warningLabel(c,e,text){const view=P.World?.view,z=P.Terrain.zoom||1,reserve=(P.Core?.width||0)>=900?285/z:0,x=view?Math.max(view.left+100/z,Math.min(view.right-reserve-100/z,e.x)):e.x,y=view?Math.max(view.top+112/z,Math.min(view.bottom-82/z,e.y+78)):e.y+78;c.save();c.textAlign='center';c.font='bold 12px monospace';const width=Math.min(360,c.measureText?.(text)?.width+22||280);c.fillStyle='#120d20cc';c.fillRect(x-width/2,y-17,width,25);c.strokeStyle='#9f73c5';c.lineWidth=1;c.strokeRect(x-width/2,y-17,width,25);c.fillStyle='#f0d5ff';c.fillText(text,x,y);c.restore()},
   strikePose(e,index,reduced=false){
     if(e?.phase!=='vulture-chaos-charge'||e.chaosAttack!=='storm')return null;const q=e.chaosTargets?.[index];if(!q)return null;
     const age=(e.chaosTime||0)-(1.1+index*.18);if(age<-.42||age>.6)return null;
@@ -135,7 +136,7 @@ P.VulturePhase2 = {
       if(!reduced&&p.age<0){c.globalAlpha=p.alpha*.45;c.strokeStyle='#c5a9ed';c.lineWidth=2;for(const side of [-1,1]){c.beginPath();c.moveTo(p.x+side*8,p.y-p.height-125);c.lineTo(p.x+side*4,p.y-p.height-45);c.stroke()}}
       c.globalAlpha=p.alpha;this.fallingFeather(c,p.x,p.y-p.height-p.length*.5,p.length,Math.PI/2);
       if(p.age>=0){const q=Math.min(1,p.age/.6);c.strokeStyle='#ac92c5';c.lineWidth=2;c.globalAlpha=p.alpha*(1-q);c.beginPath();c.ellipse(p.x,p.y,24+q*62,8+q*21,0,0,Math.PI*2);c.stroke();
-        if(!reduced)for(let j=0;j<9;j++){const a=j*2.399,r=(15+j%3*8)*q*2,lift=Math.max(0,(80+j%3*15)*p.age-180*p.age*p.age),x=p.x+Math.cos(a)*r,y=p.y+Math.sin(a)*r*.35-lift;c.fillStyle=j%2?'#b4a1bc':'#645c78';c.fillRect(Math.round(x),Math.round(y),4+j%3,3+j%2);c.globalAlpha=p.alpha*(1-q)*.2;c.fillStyle='#b9a4c3';c.fillRect(x-8,y+lift-5,18+q*12,8);c.globalAlpha=p.alpha*(1-q)}
+        if(!reduced)for(let j=0;j<6;j++){const a=j*2.399,r=(15+j%3*8)*q*2,lift=Math.max(0,(80+j%3*15)*p.age-180*p.age*p.age),x=p.x+Math.cos(a)*r,y=p.y+Math.sin(a)*r*.35-lift;c.fillStyle=j%2?'#b4a1bc':'#645c78';c.fillRect(Math.round(x),Math.round(y),4+j%3,3+j%2);c.globalAlpha=p.alpha*(1-q)*.2;c.fillStyle='#b9a4c3';c.fillRect(x-7,y+lift-4,14+q*10,6);c.globalAlpha=p.alpha*(1-q)}
       }c.restore();
     }
   },
@@ -154,8 +155,8 @@ P.VulturePhase2 = {
     const art=P.VultureStrike;if(art.ready){const f=art.frames[2],scale=Math.min(pw*.78/f.w,ph*.55/f.h);this.mesh(c,art,2,pw*.4,ph*.65,scale,this.featherMotion(t,reduced))}
     c.strokeStyle='#c99ae5';c.lineWidth=6;c.beginPath();c.moveTo(pw-3,0);c.lineTo(pw*.72-3,ph);c.stroke();
     c.textAlign='center';c.strokeStyle='#12091d';c.fillStyle='#f1d8ff';c.lineWidth=5;c.font='900 '+Math.max(17,Math.min(34,pw*.075))+'px monospace';
-    for(const [word,y] of [['¡BAJO MIS',.76],['ALAS!',.84]]){c.strokeText(word,pw*.4,ph*y);c.fillText(word,pw*.4,ph*y)}
-    c.font='bold '+Math.max(10,Math.min(14,pw*.03))+'px monospace';c.fillStyle='#b88ed5';c.fillText('GALLINAZO DEL CAOS',pw*.39,ph*.94);c.restore();
+    for(const [word,y] of [['ECLIPSE',.76],['CARROÑERO',.84]]){c.strokeText(word,pw*.4,ph*y);c.fillText(word,pw*.4,ph*y)}
+    c.font='bold '+Math.max(10,Math.min(14,pw*.03))+'px monospace';c.fillStyle='#b88ed5';c.fillText('SEÑOR DE LAS AZOTEAS · ¡BAJO MIS ALAS!',pw*.39,ph*.94);c.restore();
   }
 };
 {
@@ -180,7 +181,7 @@ P.VulturePhase2 = {
     if(e.phase==='vulture-ultimate')I.telegraph(c,e);
     let pose=e.phase==='vulture-chaos-charge'?(e.chaosTime<1.1?4:6):e.phase==='vulture-dive'?6:e.phase==='vulture-warning'?3:e.phase==='vulture-recover'?7:0;
     if(e.phase==='vulture-ultimate')pose=e.ultimateGrace>0?7:e.wavePulse>0?6:0;
-    return F.paint(c,e.x,e.y+e.r*.5,235,pose,e.dx<0);
+    return F.paint(c,e.x,e.y+e.r*.5,200,pose,e.dx<0);
   };
   P.Vulture.ground=function(c){ground.call(this,c);const e=P.VultureUltimate.boss();if(e)F.ground(c,e)};
   P.FX.projectile=function(c,s){if(F.lightning(c,s))return;if(s.glyph==='FEATHER'&&!s.chaosFeather&&I.feather?.(c,s.x,s.y,32,Math.atan2(s.vy,s.vx)))return;return projectile.call(this,c,s)};

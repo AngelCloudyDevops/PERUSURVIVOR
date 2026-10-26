@@ -34,8 +34,18 @@ P.VultureMoon={
     c.imageSmoothingEnabled=false;if(this.roofLayers()){if(mix.exterior>0){c.globalAlpha=mix.exterior;c.drawImage(this.roofDay,-960,-640,1920,1280)}c.globalAlpha=1;c.drawImage(this.roofArenaDay,-960,-640,1920,1280);if(mix.night>0){c.globalAlpha=mix.night;c.drawImage(this.roofNight,-960,-640,1920,1280)}}c.restore();
   },
   moonlight(c,w,h,e){const q=this.nightStrength(e);if(!q)return;c.save();c.globalAlpha=q*.14;c.fillStyle='#241645';c.fillRect(0,0,w,h);c.restore()},
+  arenaFrame(p,w,h,base,e){
+    if(!e||P.state.encounter?.definition?.kind!=='vulture'||e.hp<=0)return null;
+    const phase2=!!e.chaosForm,birdH=phase2?(P.VultureRig?.arenaHeight||221):215,halfW=birdH*(phase2?1.08:.94),root=e.y+(e.r||62)*.5;
+    const reserve=w>=900?Math.min(285,w*.19):0,topMargin=w>=700?132:96,bottomMargin=72;
+    const left=Math.min(p.x-42,e.x-halfW),right=Math.max(p.x+42,e.x+halfW),top=Math.min(p.y-52,root-birdH*1.08),bottom=Math.max(p.y+52,root+20);
+    const fit=Math.min(base,(w-reserve-96)/(right-left),(h-topMargin-bottomMargin)/(bottom-top)),sceneCover=this.nightRoofReady?Math.max(w/1920,h/1280):.18,zoom=Math.max(sceneCover,fit);
+    let x=(left+right)/2+reserve/(2*zoom),y=(top+bottom)/2-(topMargin-bottomMargin)/(2*zoom);
+    const hx=w/(2*zoom),hy=h/(2*zoom);x=Math.max(-960+hx,Math.min(960-hx,x));y=Math.max(-640+hy,Math.min(640-hy,y));
+    return {x,y,zoom};
+  },
   cameraFrame(p,w,h,base){
-    const e=P.VultureUltimate.boss(),age=this.landedAge(e),post=age>=0&&age<.95;if(!e?.moonSequence||!['vulture-activation','vulture-takeoff','vulture-landing'].includes(e.phase)&&!post)return null;
+    const e=P.VultureUltimate.boss(),age=this.landedAge(e),post=age>=0&&age<.95;if(!e?.moonSequence)return this.arenaFrame(p,w,h,base,e);if(!['vulture-activation','vulture-takeoff','vulture-landing'].includes(e.phase)&&!post)return this.arenaFrame(p,w,h,base,e);
     const reduced=P.Vulture.reduced(),takeoff=e.phase==='vulture-takeoff',landing=e.phase==='vulture-landing',t=e.moonStageTime||0,focus=reduced?0:post?1-this.smooth(age/.95):takeoff||landing?1:this.smooth(((e.ultimateEntryTime||0)-.35)/.95);
     const normal=P.BossArt.camera(P.VultureImpact.cameraTarget(p),w/base,h/base);if(!focus)return {...normal,zoom:base};
     const pose=landing?this.landingPose(t,false):{x:0,y:0},birdX=e.x+pose.x,root=e.y+(e.r||62)*.5+pose.y-(takeoff?this.cameraLift(t):0),left=Math.min(p.x-36,birdX-180),right=Math.max(p.x+36,birdX+180),top=Math.min(p.y-48,root-330),bottom=Math.max(p.y+48,root+15);
@@ -126,7 +136,7 @@ P.VultureMoon={
       if(e.moonStageTime<.58)return true;
       const pose=this.landingPose(e.moonStageTime,reduced);x+=pose.x;y+=pose.y;angle=pose.angle;m={near:-.9,far:-.55,jaw:0,head:0,phase:1,ruffle:0,tuck:1-this.smooth((e.moonStageTime-1)/.18)};
     }else return false;
-    c.save();c.translate(x,y-78);c.rotate(angle);R.draw(c,0,78,260,0,false,reduced,m);c.restore();return true;
+    const height=260-(m.phase||0)*(260-(R.arenaHeight||221));c.save();c.translate(x,y-78);c.rotate(angle);R.draw(c,0,78,height,0,false,reduced,m);c.restore();return true;
   },
   clouds(c,w,h,t,reduced){
     if(reduced||!this.ready)return;const image=this.sky;
@@ -166,7 +176,7 @@ P.VultureMoon={
   u.introSounds=function(e){if(!e.moonSequence)return sound.call(this,e)};
   u.overlay=function(){const e=this.boss();document.body.classList.toggle('vulture-card',e?.phase==='vulture-activation');if(e?.moonSequence&&e.phase==='vulture-moon'){document.body.classList.add('vulture-cinematic');M.scene(P.Core.ctx,P.Core.width,P.Core.height,e);return}if(e?.moonSequence&&['vulture-takeoff','vulture-landing'].includes(e.phase)){document.body.classList.remove('vulture-cinematic');M.moonlight(P.Core.ctx,P.Core.width,P.Core.height,e);if(e.phase==='vulture-landing')M.arrivalOverlay(P.Core.ctx,P.Core.width,P.Core.height,e);return}M.moonlight(P.Core.ctx,P.Core.width,P.Core.height,e);return overlay.call(this)};
   P.Vulture.move=function(e,dt){if(e.moonSequence&&(e.phase==='vulture-takeoff'||e.phase==='vulture-landing'||e.moonJustLanded)){e.moonJustLanded=false;e.hit=Math.max(0,(e.hit||0)-dt);P.Vulture.tickVisuals(e,dt);return}return move.call(this,e,dt)};
-  P.Vulture.draw=function(c,e){if(e.moonSequence&&['vulture-activation','vulture-takeoff','vulture-landing'].includes(e.phase)&&M.drawArena(c,e))return true;return draw.call(this,c,e)};
+  P.Vulture.draw=function(c,e){if(e.moonSequence&&e.phase==='vulture-activation')return true;if(e.moonSequence&&['vulture-takeoff','vulture-landing'].includes(e.phase)&&M.drawArena(c,e))return true;return draw.call(this,c,e)};
   P.Vulture.ground=function(c){const e=u.boss();if(e?.moonSequence&&['vulture-takeoff','vulture-landing'].includes(e.phase)){M.ground(c,e);return}ground.call(this,c);if(e?.moonSequence)M.impactRing(c,e)};
   P.Vulture.effects=function(c){if(u.boss()?.moonAirborne)return;return effects.call(this,c)};
   I.impactAge=function(e){const scar=P.state.encounter?.gallinazoScar;return scar?.moon?Math.max(0,P.state.elapsed-scar.time):age.call(this,e)};
