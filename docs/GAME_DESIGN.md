@@ -1,6 +1,6 @@
 # Documento de diseño — PERUSURVIVOR
 
-Mover A/D o flechas desplaza al propio Makanaky en tercera persona; la fila y el escenario conservan su lateral. Primera persona muestra el paso con perspectiva del callejón completo, leve inclinación y balanceo de brazos. El jab izquierdo, derecho, cruzado y uppercut usan brazos pixel art detallados también en primera persona. Conserva alcance, daño, secuencia, tarjeta y retorno al mapa.
+Mover A/D o flechas desplaza al propio Makanaky en tercera persona; la fila y el escenario conservan su lateral. La cámara cercana muestra el paso con perspectiva del callejón completo y a Makanaky grande desde atrás, interpuesto entre cámara y rival. Jab izquierdo, derecho, cruzado y uppercut usan poses de espalda dedicadas, embestida corporal, retroceso y estela pixel art. Conserva alcance, daño, secuencia, tarjeta y retorno al mapa.
 
 Mantener el combo recorre siempre los cuatro golpes, aunque fallen o no queden rivales. Fallar corta la racha GA, sin reiniciar la secuencia visual. El botón de combo apunta al frente; ratón/canvas conservan la puntería manual.
 
