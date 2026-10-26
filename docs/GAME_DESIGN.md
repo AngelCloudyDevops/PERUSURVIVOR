@@ -1,5 +1,10 @@
 # Documento de diseño — PERUSURVIVOR
 
+## Persistencia de la vista de colección
+Filtros y orden se recuerdan entre visitas en el mismo navegador. Se restauran antes de presentar la colección; la prioridad de listos para ascender se recalcula con el progreso actual. Limpiar filtros también queda guardado y mantiene el criterio de orden. La sincronización entre pestañas no escribe otra vez ni consume recursos del juego. Si no hay acceso al almacenamiento, se informa que la vista solo se aplica a la sesión.
+
+
+
 ## Identidad y objetivo
 Título visible: Causas del Caos. Supervivencia de acción en vista superior con humor y referencias peruanas. El jugador controla el movimiento y esquiva rivales mientras su personaje ataca automáticamente. La meta es crecer durante la partida y derrotar al jefe final ElZeein.
 
@@ -486,7 +491,7 @@ Revisión de combate de minijefes: ataques directos, áreas, bandas, nubes y ext
 ## Presentación de estrellas
 El ascenso confirmado celebra la nueva estrella sin retrasar el guardado ni aplicar otra recompensa. La animación de estrella dura 1,8 s y puede omitirse cerrando el diálogo; con movimiento reducido se muestra el resultado estático. El diálogo presenta antes/después, copias gastadas/restantes y bonificación; Ver en colección selecciona el personaje ascendido. La colección muestra estrellas, vida/daño porcentual solo individual, copias y coste del próximo ascenso; personajes bloqueados no muestran estrellas ganadas ni bonificaciones.
 Tribunal legendario: al regresar, el radio de 340 unidades elimina minions y muestra expedientes CASO ARCHIVADO (máximo 48). Jefes reciben 8 % de salud máxima, tope 200, sin golpe letal; respeta entrada invulnerable de minijefes y ulti del Gallinazo. Sentenciado añade 20 % de daño recibido durante 5 s, sin acumular; escudo Expediente bloquea daño durante 3 s para ambos jugadores vivos. Ambos vencen por elapsed autoritativo y viajan como propiedades serializadas; pausa y Tribunal congelan el reloj. Grietas y onda doradas son cosméticas, sin daño duplicado.
-La vulnerabilidad del Tribunal muestra aura dorada de contornos nítidos, destellos y anillo al pie, más cartel sobre el jefe con segundos decimales, +20 % de daño recibido y barra temporal. Usa courtVerdictUntil y elapsed compartidos; desaparece exactamente al vencer o morir. Movimiento reducido mantiene el aura estática; no agrega daño ni cambia duración.
+La vulnerabilidad del Tribunal muestra resplandor dorado pegado a la silueta, partículas pixel art y flechas descendentes de vulnerabilidad, sin aros, más cartel sobre el jefe con segundos decimales, +20 % de daño recibido y barra temporal. Usa courtVerdictUntil y elapsed compartidos; desaparece exactamente al vencer o morir. El brillo se aplica sólo al dibujar el sprite, sin duplicarlo ni afectar barras o nombres. Las flechas señalan el debuff y no representan aturdimiento. Movimiento reducido mantiene las partículas y flechas estáticas; no agrega daño ni cambia duración.
 Práctica de Fujimori: incluye ElZeein de entrenamiento, inmóvil y sin ataques, con 1800 PV persistentes. El panel muestra vida, último daño efectivo, daño de la ulti y vulnerabilidad restante. Volver a invocar jefe reemplaza únicamente ese actor, restaura su vida y limpia disparos pendientes; no recarga la ulti. Reponer objetivos conserva el jefe y su vida. Ambos controles se bloquean durante el Tribunal. Su derrota no termina la práctica ni concede bajas, botín o recarga. Se usa el combate y la sentencia reales, sin estado de QA externo.
 # Laboratorio de combate
 En Ajustes, un único laboratorio permite elegir cualquiera de los 18 causas y probar ataques contra objetivos invencibles o contra un jefe/minijefe. La barra permanece en la arena: cambiar un selector reinicia directamente la prueba, sin regresar al vestíbulo. Ofrece repetir, lanzar las ultis disponibles (Kingteka, Fujimori, Cuy Supremo y Paloma del Centro), recarga automática al terminar la animación, reponer objetivos, curar y activar la ulti del Gallinazo. Se puede minimizar y volver a Ajustes. Las pruebas no gastan mochila ni monedas, no requieren desbloquear el personaje y no guardan récords. La invencibilidad es fija con objetivos y opcional con jefes; el rendimiento conserva su sección independiente.
@@ -506,7 +511,10 @@ La colección se ordena por rareza (SSR→SR→R→C), estrellas o copias dispon
 Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Paloma en Plaza de Armas (uno activo). Abanico de tres ondas bloqueables y pulso cercano de 110 unidades, ambos avisados; al 50 % encadena dos abanicos. Conserva navegación, agotamiento, bonus, resumen, cobertura y derrota sin daño. Cofre: Silbato del caos o 50 monedas. Disponible directamente en Probar jefes. Arte nuevo de cuatro poses, sin sustituir personajes existentes.
 
 
+Entradas animales v2: Paloma prepara el vuelo, eleva alas, empuja hacia abajo y recoge las patas antes de elevarse. Cuy usa anticipación, impulso, patas recogidas, extensión para aterrizar, compresión y recuperación. Se elimina el ala artificial superpuesta. Duración, protección y daño permanecen iguales.
+
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
+
 
 ### Ajuste fino del trío
 Se modera la cadencia de G5 y el daño evolucionado de G5/Fuzo, conservando sus geometrías. Cerdito recibe más daño cercano y una pequeña mejora evolucionada; conserva caída por distancia, descuento de impactos sobre un mismo enemigo, alcance, vida y velocidad. No se añade resistencia específica por enemigo ni ventaja de rareza. Parámetros y partidas en TRIO_BALANCE.md.
