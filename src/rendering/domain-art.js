@@ -32,6 +32,7 @@ rect(0,0,640,360,'#171727');c.save();if(!this.third(d)&&!reduced){c.translate(32
 for(const q of d.targets.slice().sort((a,b)=>b.depth-a.depth)){
  if(q.dead<=.001&&q.dead>0)continue;const e=s.enemies.find(e=>e.domainKey===q.key);if(!e)continue;
  const p=this.project(q.lane,q.depth+(P.Domain.camera===3?1:0),d),size=Math.min(2.4,2.7*p.scale),hitT=q.hit>0?Math.max(0,1-q.hit/.36):1,recoil=q.hit>0?Math.sin(hitT*Math.PI)*(q.hitSide||1)*18:0,kick=q.hit>0?Math.sin(hitT*Math.PI)*9:0;
+ if(d.pending?.key===q.key){c.save();c.strokeStyle='#dd8cff';c.lineWidth=2;c.globalAlpha=.65+.25*Math.sin(d.age*18);c.beginPath();c.ellipse(p.x,p.y-25*size,22*size,31*size,0,0,Math.PI*2);c.stroke();c.restore()}
  if(q.decap&&q.dead)this.deathEnemy(c,e,p.x,p.y,size,q,reduced);else{c.save();if(q.dead)c.globalAlpha=Math.min(1,q.dead/.42);this.enemy(c,e,p.x+recoil,p.y-kick,size);c.restore()}
  if(q.hit>0){const burst=hitT;this.lightning(c,p.x+recoil,p.y-35*size,d.age,1+burst);for(let n=0;n<10;n++){const a=n*Math.PI/5;rect(p.x+recoil+Math.cos(a)*(12+burst*31),p.y-35*size+Math.sin(a)*(12+burst*31),4+(n%3),4+(n%2),n%2?'#f4d7ff':'#9e4ce0')}}
  if(q.warning>0){rect(p.x-12,p.y-78*p.scale,24,10,'#c14768');text('¡OJO!',p.x,p.y-70*p.scale,8,'#fff1c3')}
@@ -45,7 +46,7 @@ if(d.cheer>0)text('¡GA, CAUSA!',490,260,19,'#ffd5f4');
 rect(0,0,640,29,'#1b1728');text('EXPANSIÓN DE DOMINIO · ¡BÓTAME TU GA!',320,18,13,'#ffb7ee');text('ENERGÍA '+d.ga+'/10',555,47,10,'#ffdba7');text('AVANZAS '+((d.move||0)*3).toFixed(1)+' m',320,46,9,'#c7a5db');
 for(let i=0;i<4;i++){const x=185+i*68,on=d.punch>0&&d.strike===i;rect(x,96,65,13,on?'#744094':'#272135');text(['1 JAB IZQ','2 JAB DER','3 CRUZADO','4 UPPERCUT'][i],x+32,105,7,on?'#ffe8ff':'#a897b4')}
 this.comboBadge(c,d,reduced,rect,text);
-if(d.combo>0)text(['JAB IZQUIERDO','JAB DERECHO','CRUZADO','¡GAAAA! · UPPERCUT'][d.lastStrike??d.strike??0],320,75,11,'#fff0d5');else if(d.punch>0)text(['JAB IZQUIERDO','JAB DERECHO','CRUZADO','UPPERCUT'][d.strike||0],320,77,14,'#edb5ff');
+if(d.combo>0)text(['JAB IZQUIERDO','JAB DERECHO','CRUZADO','¡GAAAA! · UPPERCUT'][d.lastStrike??d.strike??0],320,75,11,'#fff0d5');else if(d.miss>0)text('FUERA',320,77,16,'#ff8fba');else if(d.punch>0)text(['JAB IZQUIERDO','JAB DERECHO','CRUZADO','UPPERCUT'][d.strike||0],320,77,14,'#edb5ff');
 if(d.impact>0){const flash=Math.min(.22,d.impact);c.save();c.globalAlpha=flash;c.fillStyle='#f5e8ff';c.fillRect(0,29,640,282);c.restore();if(!reduced){c.strokeStyle='#d69aff';c.lineWidth=3;c.strokeRect(2,30,636,280)}rect(306,167,28,3,'#ffffff')}
 rect(16,38,95,6,'#252030');rect(17,39,93*Math.max(0,(owner?.hp||0)/(owner?.maxHp||1)),4,'#d680b8');text('VIDA '+Math.max(0,Math.ceil(owner?.hp||0)),65,57,8,'#eed8d8');text(Math.max(0,Math.ceil(P.Domain.entry+P.Domain.combat-d.age))+' s',70,47,12);
 if(d.remate){rect(155,115,330,51,'#4b2a51');text('¡BÓTAME TU GA!',320,148,25,'#ffe5a8')}
@@ -62,7 +63,7 @@ P.DomainArt.init();P.DomainArt.loadArt();
 // Direct entry reuses the existing administrator laboratory; no public state/QA endpoint.
 if(typeof Image!=='undefined'){
  const launch=document.createElement('button');launch.id='domain-practice-start';launch.textContent='Probar dominio de Makanaky ↗';P.$('#lobby-settings').prepend(launch);
- const open=()=>{if(!P.Profile.admin()||P.state.mode!=='menu')return;P.TestBench.character='makanaky';P.TestBench.kind='targets';P.$('#bench-character').value='makanaky';P.$('#bench-kind').value='targets';P.TestBench.controls();P.TestBench.run()};launch.onclick=open;
+ const open=()=>{if(!P.Profile.admin()||P.state.mode!=='menu')return;P.TestBench.character='makanaky';P.TestBench.kind='targets';P.TestBench.minionMode='respawn';P.$('#bench-character').value='makanaky';P.$('#bench-kind').value='targets';P.$('#bench-minion-mode').value='respawn';P.TestBench.controls();P.TestBench.run()};launch.onclick=open;
  const style=document.createElement('style');style.textContent='body:not([data-account-admin="true"]) #domain-practice-start{display:none}';document.body.append(style);
  const enter=P.Lobby.enter;P.Lobby.enter=function(...args){const result=enter.apply(this,args);if(new URLSearchParams(location.search).get('practice')==='makanaky')open();return result};
 }
