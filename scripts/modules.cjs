@@ -23,6 +23,7 @@ module.exports = [
     "source": "src/systems/audio.js",
     "output": "js/audio.js"
   },
+  {"source":"src/systems/minion-audio.js","output":"js/minion-audio.js"},
   {
     "source": "src/systems/soundscape.js", "output": "js/soundscape.js"
   },
@@ -260,5 +261,10 @@ module.exports = [
   {
     "source": "src/rendering/court-art.js",
     "output": "js/court-art.js"
+  },
+  {"source":"src/systems/animal-ultimates.js","output":"js/animal-ultimates.js"},
+  {
+    "source": "src/development/test-bench.js",
+    "output": "js/test-bench.js"
   }
 ];
