@@ -1,0 +1,40 @@
+{
+  "source": "public/assets/environment/trees-planters-v1.png",
+  "runtime": "public/assets/environment/trees-planters-v1.webp",
+  "source_sha256": "4b0e0de3291a084576b544fd5ed87dc7b8af8cb37f436deec83b08c60fc58464",
+  "runtime_sha256": "d8d3bf6fd9051587f664b8f0888da9557f72f0ca7d09d1c09d011791837635a0",
+  "bytes": 227330,
+  "width": 512,
+  "height": 512,
+  "cells": [
+    {
+      "id": "tree-olive",
+      "x": 30,
+      "y": 16,
+      "w": 196,
+      "h": 232
+    },
+    {
+      "id": "tree-emerald",
+      "x": 268,
+      "y": 32,
+      "w": 232,
+      "h": 216
+    },
+    {
+      "id": "planter-horizontal",
+      "x": 12,
+      "y": 422,
+      "w": 232,
+      "h": 82
+    },
+    {
+      "id": "planter-vertical",
+      "x": 333,
+      "y": 272,
+      "w": 101,
+      "h": 232
+    }
+  ],
+  "method": "Built-in image_gen; mechanical isolated-object cropping and nearest-neighbor packing."
+}
