@@ -4,7 +4,7 @@ Fuerza → Técnica → Ingenio → Fuerza. Ventaja +15%, desventaja −10%, mis
 
 ## Validación reproducible
 
-57 partidas con atributos y 57 controles emparejados sin el multiplicador de atributos/defensas: 19 personajes × tres mapas, semilla 819. Motor normal a 30 Hz, bot de movimiento y selección entre mejoras ofrecidas, ultis disponibles y límite de 360 s. La fase de control desactiva solamente `P.Attributes.multiplier`; no restaura un motor antiguo ni cambia HP, XP o IA. Las estrellas/mejoras permanentes no intervienen. El bot no visita portales opcionales; estos jefes se comprueban por pruebas de integración, no por este muestreo.
+57 partidas con atributos y 57 controles emparejados sin el multiplicador de atributos/defensas: 19 personajes × tres mapas, semilla 819. Motor normal a 30 Hz, bot de movimiento y selección entre mejoras ofrecidas, activación automática de las cuatro ultis del Combo del Causa y límite de 360 s. Dominio se cubre con pruebas de integración. La fase de control desactiva solamente `P.Attributes.multiplier`; no restaura un motor antiguo ni cambia HP, XP o IA. Las estrellas/mejoras permanentes no intervienen. El bot no visita portales opcionales; estos jefes se comprueban por pruebas de integración, no por este muestreo.
 
 Base de motor: `2105f248af8020ead56964f3b299172d97a693eb`; scripts y nuevas reglas incluidos en este cambio. Los datos anteriores de otras auditorías permanecen intactos. Un timeout es estar vivo al límite de observación, no una derrota. Una semilla por escenario detecta regresiones grandes; no demuestra igualdad entre personajes ni sustituye partidas humanas. No mide FPS renderizados.
 
