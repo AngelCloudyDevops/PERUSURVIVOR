@@ -759,3 +759,6 @@ Una vez al 50 % de vida, transporta visualmente a los participantes a una carret
 
 ### Dominio del Chosicano: persecución lateral
 Sustituye los carriles por carrera automática hacia la derecha. Intro de 4.8 s: el chofer ficticio dice «Expansión de dominio. La familia es primero», levanta una cerveza, bebe, sube y conduce. Voz sintética genérica en español con subtítulos y controles de silencio. Tres acelerones de 5 s con seis obstáculos: cono y barrera se saltan; cartel bajo requiere deslizamiento. Espacio/W/↑ salta; S/↓ desliza; dos botones táctiles. Un salto por pulsación, sin doble salto; deslizamiento de .85 s con recarga. Los fallos hacen 18 de daño y un tropiezo de .65 s solo al afectado, con 1 s de protección. En dúo, ambos ven la misma carretera pero esquivan individualmente. Tras 1.2 s de salida, retorno intacto y 2 s de agotamiento.
+
+### Probar dominio del Chosicano
+En Desarrollo → Probar jefes, el Chosicano muestra «Probar dominio». Inicia la intro y la persecución con la vida actual, sin esperar el 50 %. Se bloquea durante la secuencia y permite repetir al regresar. La casilla de invencibilidad también se respeta dentro de la persecución. Solo funciona en laboratorio individual.
