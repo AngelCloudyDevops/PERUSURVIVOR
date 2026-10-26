@@ -579,8 +579,11 @@ DomainIntro.pose expone announce/anticipation/handoff a partir de domain.age; fe
 
 TestBench.dragon mantiene una preferencia local y temporal del selector existente del laboratorio. DragonUltimate.variantForRun valida contexto, rol, variante y ausencia de cooperativo/servidor antes de usarla al activar; cualquier otro caso llama pick(). No añade datos de variante al protocolo de red.
 
+DragonUltimate.introFor/sceneFor conservan la duración por variante tanto en la simulación como en la protección, pausa y HUD. DragonEpic deriva cabezas, ruptura y despegue únicamente de dragon.age y reutiliza el atlas existente sin decidir daño. Los límites temporales se ajustan con tolerancia numérica para devolver exactamente ocho segundos al salir de la cinemática.
+
 La variante 3 de DragonUltimate es el secreto; pick(roll) concentra la regla del 5 %. hitElement comparte las tres mecánicas sin duplicar fuentes ni listas: chaosPulses/elements/burstAt se serializan por jugador. DragonArt carga el atlas secreto bajo demanda, conserva figuras fuera de celdas nominales y aplica corte de alfa a 160 para eliminar halos y conservar contornos nítidos. secretFeedback identifica cada lanzamiento con cast y limita los tres rugidos a una vez por jugador.
 Domain acumula defeated/peakCombo y remateImpact en la instantánea autoritativa. DomainFinale deriva la pose del cierre de domain.age, reutiliza el actor existente y fragmenta una captura del callejón sobre el render original del mapa; no ejecuta daño ni modifica el tiempo de la simulación. El informe visual local usa mapTime, por lo que se congela al pausar, y se descarta al volver al menú.
+
 
 FujimoriArchives conserva marcas y horarios en encounter.archives. Al aterrizar registra el mismo objeto como obstáculo sólido con hp Infinity y crea un stomp de un solo impacto; el terreno compartido aporta colisión y bloqueo de proyectiles. La revisión del terreno cambia al añadir/retirar coberturas. El dibujo de archivadores se hace con primitivas canvas, ordenado por profundidad en Terrain.draw; marcas y caídas usan las capas de FujimoriBossArt.
 
