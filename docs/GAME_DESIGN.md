@@ -561,7 +561,7 @@ Panel exclusivo de ReySuperior: consultar hasta 20 usuarios por página, buscar 
 Regalos en vivo: el jugador conectado recibe monedas permanentes y personajes sin salir ni reiniciar. Un personaje nuevo se añade a la colección; no sustituye al causa de la partida actual. Las monedas del mapa, vida, experiencia y ataques no cambian. La notificación es no bloqueante. Una desconexión conserva la partida y recupera los regalos pendientes al volver. No se aplican dos veces recibos repetidos.
 ### Música opcional aportada por el usuario
 
-Selector persistente en cabecera: original, Tema 1, Tema 2 y sin música. Volumen musical independiente; silencio general conserva prioridad. Las pistas elegidas reemplazan la melodía sintetizada y se repiten, conservando efectos y ambiente. Pausa, menú, pestaña oculta o pérdida de foco suspenden la pista sin volver al principio. No hay reproducción automática al cargar la página.
+Selector persistente en cabecera: original, Tema 1, Tema 2, Alternar ambas y sin música. Volumen musical independiente; silencio general conserva prioridad. Las pistas elegidas reemplazan la melodía sintetizada y se repiten, conservando efectos y ambiente. Pausa, menú, pestaña oculta o pérdida de foco suspenden la pista sin volver al principio. No hay reproducción automática al cargar la página.
 
 
 ### Composición de la tarjeta del Gallinazo
@@ -570,3 +570,4 @@ En móvil aumenta el ancho útil y limita altura a 1,55 veces el ancho, para que
 
 
 Makanaky: golpes encadenados jab/jab/cruzado/uppercut. Conectar suma racha GA; fallar o esperar 1,1 s la corta, sin perder energía acumulada. Uppercut añade 0,65 de alcance. Enemigos en fila de profundidad con leve variación lateral. Tarjeta protegida de 1,3 s antes de mostrar el callejón y habilitar golpes; cámaras V equivalentes en daño y alcance. Práctica administrativa con recarga explícita gratuita.
+Alternar ambas mantiene el orden Tema 1 → Tema 2 → Tema 1 con transición suave de tres segundos, sin solapar música sintetizada. Volumen, silencio y pausa afectan a las dos pistas; la transición continúa desde su punto al reanudar. Se prepara la próxima pista solo cerca del final y se mantiene la actual si no está disponible.
