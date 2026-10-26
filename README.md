@@ -282,7 +282,7 @@ Comparación reproducible de ataques base y evolucionados contra blancos cercano
 ### Validación con partidas completas
 El [informe de partidas automatizadas](docs/FULL_RUN_BALANCE.md) compara los 18 causas en los tres mapas, con tres semillas por mapa. Usa el motor individual normal, enemigos móviles, daño recibido, colisiones, experiencia y mejoras obtenidas jugando. Conserva trazas, victorias, derrotas, límites de tiempo y minijefes no abatidos. Es evidencia de simulación local, no una tasa de victoria humana ni una prueba de FPS.
 
-Resultado de la muestra: 160/162 sobreviven a 300 s, 143 victorias finales, 9 derrotas y 10 límites con vida; 526/529 minijefes abatidos. Sustento y Charles siguen destacando por rapidez contra minijefes. Se conserva el balance actual hasta contrastar estos datos con otras estrategias o jugadores; no se equipara esta muestra con una tasa de victoria humana.
+Resultado de la muestra inicial: 160/162 sobreviven a 300 s, 143 victorias finales, 9 derrotas y 10 límites con vida; 526/529 minijefes abatidos. Sustento y Charles siguen destacando por rapidez contra minijefes. Se conserva el balance actual hasta contrastar estos datos con otras estrategias o jugadores; no se equipara esta muestra con una tasa de victoria humana.
 
 ## Celebración de ascensos y colección
 Tras guardar un ascenso se abre una celebración con el retrato, la estrella recién obtenida, el rango anterior/nuevo, las copias consumidas/restantes y el cambio de bonificación. Se puede cerrar con Continuar o Escape, o saltar directamente a la colección. Movimiento reducido elimina la animación. Las tarjetas y la ficha de colección muestran estrellas y porcentajes actuales de vida/daño; la ficha añade copias y siguiente coste, indicando que se aplican solo en individual. Los atributos base de la ficha siguen identificados como base.
@@ -292,3 +292,5 @@ La sentencia conserva 340 u y añade grietas y onda doradas, expedientes «CASO 
 
 ## Ultis del Cuy y la Paloma
 Cuy Supremo: Estampida Suprema (5 s, daño de área y coraza del 50 %). Paloma del Centro: Bandada del Centro (6 s, espiral de palomas y remate de área). Carga con 20 bajas; pulsa Q o el botón. En Ajustes están las dos prácticas gratuitas, con recarga y cambio directo de personaje. Conservan los sprites cartoon pixel art actuales.
+Validación integrada adicional: 54 partidas sobre b10eef1 (18 causas × 3 mapas, semilla 404), con coberturas revisadas y nuevas ultis de Cuy/Paloma. Sobreviven 54/54 a 300 s: 47 victorias, 4 derrotas y 3 límites; 169/169 minijefes abatidos. Las dos muestras quedan separadas por versión y política de habilidades; sus tasas no se mezclan. G5 y Fuzo fueron los más rápidos en esta validación, sin que eso pruebe superioridad universal.
+
