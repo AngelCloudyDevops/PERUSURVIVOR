@@ -140,6 +140,10 @@ module.exports = [
     "output": "js/vulture-rig.js"
   },
   {
+    "source": "src/systems/vulture-moon.js",
+    "output": "js/vulture-moon.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
   },
@@ -282,5 +286,7 @@ module.exports = [
   {"source":"src/rendering/animal-entry.js","output":"js/animal-entry.js"},
   {"source":"src/rendering/animal-entry-poses.js","output":"js/animal-entry-poses.js"},
   {"source":"src/network/account.js","output":"js/account.js"},
+  {"source":"src/ui/profile.js","output":"js/profile.js"},
+  {"source":"src/ui/admin.js","output":"js/admin.js"},
   {"source":"src/systems/causa-combo.js","output":"js/causa-combo.js"}
 ];

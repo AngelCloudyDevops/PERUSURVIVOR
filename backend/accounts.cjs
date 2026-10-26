@@ -9,15 +9,19 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
  CREATE TABLE IF NOT EXISTS users(id TEXT PRIMARY KEY, username TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, salt TEXT NOT NULL, recovery_hash TEXT NOT NULL, created_at INTEGER NOT NULL);
  CREATE TABLE IF NOT EXISTS sessions(token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, expires_at INTEGER NOT NULL);
  CREATE TABLE IF NOT EXISTS saves(user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, revision INTEGER NOT NULL DEFAULT 0, payload TEXT NOT NULL, updated_at INTEGER NOT NULL);
- PRAGMA user_version=1;`);
+ CREATE TABLE IF NOT EXISTS user_roles(user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, role TEXT NOT NULL CHECK(role='admin'));
+ CREATE TABLE IF NOT EXISTS admin_actions(id INTEGER PRIMARY KEY AUTOINCREMENT,actor_id TEXT NOT NULL REFERENCES users(id),target_id TEXT NOT NULL REFERENCES users(id),request_id TEXT NOT NULL,fingerprint TEXT NOT NULL,result TEXT NOT NULL,kind TEXT NOT NULL,amount INTEGER,character_id TEXT,created_at INTEGER NOT NULL,UNIQUE(actor_id,request_id));
+ PRAGMA user_version=3;`);
  const attempts=new Map();let running=0;
  function reply(res,status,data){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data))}
  function cookie(res,token,age=TTL/1000){res.setHeader('Set-Cookie',`${COOKIE}=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${age}${secure?'; Secure':''}`)}
- function session(req){const token=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith(COOKIE+'='))?.slice(COOKIE.length+1);if(!token||!/^[a-f0-9]{64}$/.test(token))return null;return db.prepare('SELECT u.id,u.username FROM sessions s JOIN users u ON u.id=s.user_id WHERE token_hash=? AND expires_at>?').get(hash(token),now())}
+ function session(req){const token=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith(COOKIE+'='))?.slice(COOKIE.length+1);if(!token||!/^[a-f0-9]{64}$/.test(token))return null;return db.prepare("SELECT u.id,u.username,COALESCE((SELECT role FROM user_roles WHERE user_id=u.id),'player') AS role FROM sessions s JOIN users u ON u.id=s.user_id WHERE token_hash=? AND expires_at>?").get(hash(token),now())}
+ function publicUser(id,username){const role=db.prepare('SELECT role FROM user_roles WHERE user_id=?').get(id)?.role||'player';return {id,username,role}}
  function issue(res,id){db.prepare('DELETE FROM sessions WHERE expires_at<=?').run(now());const token=crypto.randomBytes(32).toString('hex');db.prepare('INSERT INTO sessions VALUES(?,?,?)').run(hash(token),id,now()+TTL);cookie(res,token)}
  async function body(req){let text='',size=0;if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))throw Object.assign(Error('Se requiere JSON'),{status:415});for await(const chunk of req){size+=Buffer.byteLength(chunk);if(size>131072)throw Object.assign(Error('Guardado demasiado grande'),{status:413});text+=chunk}try{return JSON.parse(text)}catch{throw Object.assign(Error('JSON inválido'),{status:400})}}
  function limit(req){const key=req.socket.remoteAddress||'local',time=now();for(const [ip,a]of attempts)if(time-a.at>900000)attempts.delete(ip);if(attempts.size>10000&&!attempts.has(key))return false;const a=attempts.get(key)||{at:time,count:0};attempts.set(key,a);return ++a.count<=30}
  function credentials(b){if(typeof b.username!=='string'||!/^[a-zA-Z0-9_]{3,24}$/.test(b.username)||typeof b.password!=='string'||b.password.length<12||b.password.length>128)throw Object.assign(Error('Usuario: 3–24 letras, números o _. Contraseña: 12–128 caracteres.'),{status:400});return b.username.toLowerCase()}
+ const admin=require('./admin.cjs').createAdmin({db,reply,body,now});
  async function handle(req,res){try{
   const url=new URL(req.url,'http://localhost');if(!url.pathname.startsWith('/api/'))return false;
   if(req.method!=='GET'&&!origins.includes(req.headers.origin)){reply(res,403,{error:'Origen no permitido'});return true}
@@ -30,18 +34,19 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
      const salt=crypto.randomBytes(16).toString('hex'),password=await scrypt(b.password,salt,64),recovery=crypto.randomBytes(24).toString('hex'),id=crypto.randomUUID();
      if(row){reply(res,409,{error:'Ese usuario no está disponible'});return true}
      try{db.prepare('INSERT INTO users VALUES(?,?,?,?,?,?)').run(id,username,password.toString('hex'),salt,hash(recovery),now())}catch(e){if(String(e.code).includes('CONSTRAINT')){reply(res,409,{error:'Ese usuario no está disponible'});return true}throw e}
-     issue(res,id);reply(res,201,{user:{id,username},recovery});return true;
+     issue(res,id);reply(res,201,{user:publicUser(id,username),recovery});return true;
     }
     if(route==='/api/recover'){
      const recovery=typeof b.recovery==='string'?b.recovery:'';if(!row||!crypto.timingSafeEqual(Buffer.from(hash(recovery),'hex'),Buffer.from(row.recovery_hash,'hex'))){reply(res,401,{error:'Datos de recuperación incorrectos'});return true}
-     const salt=crypto.randomBytes(16).toString('hex'),password=await scrypt(b.password,salt,64),next=crypto.randomBytes(24).toString('hex');db.exec('BEGIN IMMEDIATE');try{const changed=db.prepare('UPDATE users SET password_hash=?,salt=?,recovery_hash=? WHERE id=? AND recovery_hash=?').run(password.toString('hex'),salt,hash(next),row.id,row.recovery_hash);if(changed.changes!==1){db.exec('ROLLBACK');reply(res,401,{error:'Código de recuperación ya utilizado'});return true}db.prepare('DELETE FROM sessions WHERE user_id=?').run(row.id);db.exec('COMMIT')}catch(e){db.exec('ROLLBACK');throw e}issue(res,row.id);reply(res,200,{user:{id:row.id,username},recovery:next});return true;
+     const salt=crypto.randomBytes(16).toString('hex'),password=await scrypt(b.password,salt,64),next=crypto.randomBytes(24).toString('hex');db.exec('BEGIN IMMEDIATE');try{const changed=db.prepare('UPDATE users SET password_hash=?,salt=?,recovery_hash=? WHERE id=? AND recovery_hash=?').run(password.toString('hex'),salt,hash(next),row.id,row.recovery_hash);if(changed.changes!==1){db.exec('ROLLBACK');reply(res,401,{error:'Código de recuperación ya utilizado'});return true}db.prepare('DELETE FROM sessions WHERE user_id=?').run(row.id);db.exec('COMMIT')}catch(e){db.exec('ROLLBACK');throw e}issue(res,row.id);reply(res,200,{user:publicUser(row.id,username),recovery:next});return true;
     }
     const digest=await scrypt(b.password,row?.salt||'unavailable-account-salt',64);if(!row||!crypto.timingSafeEqual(digest,Buffer.from(row.password_hash,'hex'))){reply(res,401,{error:'Usuario o contraseña incorrectos'});return true}
-    issue(res,row.id);reply(res,200,{user:{id:row.id,username}});return true;
+    issue(res,row.id);reply(res,200,{user:publicUser(row.id,username)});return true;
    }finally{running--}
   }
   if(!user){reply(res,401,{error:'Inicia sesión'});return true}
   if(req.headers['x-account-id']!==user.id){reply(res,409,{error:'La sesión cambió en otra pestaña. Recarga la página antes de guardar.'});return true}
+  if(route.startsWith('/api/admin/')){await admin.handle(req,res,user,url,()=>session(req));return true}
   if(route==='/api/logout'&&req.method==='POST'){db.prepare('DELETE FROM sessions WHERE user_id=?').run(user.id);cookie(res,'',0);reply(res,200,{ok:true});return true}
   if(route==='/api/save'&&req.method==='GET'){const row=db.prepare('SELECT * FROM saves WHERE user_id=?').get(user.id);reply(res,200,row?{revision:row.revision,data:JSON.parse(row.payload),updatedAt:row.updated_at}:{revision:0,data:null});return true}
   if(route==='/api/save'&&req.method==='PUT'){
