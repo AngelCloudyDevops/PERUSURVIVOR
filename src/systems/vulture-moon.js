@@ -1,7 +1,7 @@
 'use strict';
 P.VultureMoon={
   takeoffDuration:1.25,landingDuration:1.2,radius:110,ready:false,failed:false,
-  init(){if(this.started||typeof Image==='undefined')return;this.started=true;const image=new Image();image.onload=()=>{this.sky=image;this.ready=true};image.onerror=()=>{this.failed=true};image.src='assets/arenas/gallinazo-moon-sky-v1.webp';const panorama=new Image();panorama.onload=()=>{this.panorama=panorama;this.panoramaReady=true};panorama.src='assets/arenas/gallinazo-lima-night-v1.webp'},
+  init(){if(this.started||typeof Image==='undefined')return;this.started=true;const image=new Image();image.onload=()=>{this.sky=image;this.ready=true};image.onerror=()=>{this.failed=true};image.src='assets/arenas/gallinazo-moon-sky-v1.webp';const panorama=new Image();panorama.onload=()=>{this.panorama=panorama;this.panoramaReady=true};panorama.src='assets/arenas/gallinazo-lima-night-v2.webp'},
   smooth(v){v=Math.max(0,Math.min(1,v));return v*v*(3-2*v)},
   nightStrength(e){if(!e?.moonSequence)return 0;if(e.phase==='vulture-activation')return this.smooth((e.ultimateEntryTime||0)/1.3)*.75;if(e.phase==='vulture-takeoff')return .75+.25*this.smooth((e.moonStageTime||0)/.65);return 1},
   roofLayers(){
@@ -12,9 +12,9 @@ P.VultureMoon={
     }return true;
   },
   background(c,cx,cy,w,h){
-    const image=this.panoramaReady?this.panorama:this.ready?this.sky:null;c.save();c.imageSmoothingEnabled=false;c.fillStyle='#10172e';c.fillRect(cx-w,cy-h,w*2,h*2);
-    if(image){const k=Math.max(w/image.width,h/image.height)*1.1;c.drawImage(image,cx-image.width*k/2,cy-image.height*k/2,image.width*k,image.height*k);if(this.panoramaReady)c.drawImage(image,-3200,-2600,6400,3600)}
-    if(this.roofLayers()){const q=this.nightStrength(P.VultureUltimate.boss());if(q<1){c.globalAlpha=1-q;c.drawImage(this.roofDay,-960,-640,1920,1280)}if(q>0){c.globalAlpha=q;c.drawImage(this.roofNight,-960,-640,1920,1280)}}c.restore();
+    const image=this.panoramaReady?this.panorama:this.ready?this.sky:null;c.save();c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';c.fillStyle='#10172e';c.fillRect(cx-w,cy-h,w*2,h*2);
+    if(image){const k=Math.max(w/image.width,h/image.height)*1.1;c.drawImage(image,cx-image.width*k/2,cy+h/2-image.height*k,image.width*k,image.height*k)}
+    c.imageSmoothingEnabled=false;if(this.roofLayers()){const q=this.nightStrength(P.VultureUltimate.boss());if(q<1){c.globalAlpha=1-q;c.drawImage(this.roofDay,-960,-640,1920,1280)}if(q>0){c.globalAlpha=q;c.drawImage(this.roofNight,-960,-640,1920,1280)}}c.restore();
   },
   moonlight(c,w,h,e){const q=this.nightStrength(e);if(!q)return;c.save();c.globalAlpha=q*.14;c.fillStyle='#241645';c.fillRect(0,0,w,h);c.restore()},
   cameraFrame(p,w,h,base){

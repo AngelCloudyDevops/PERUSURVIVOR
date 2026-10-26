@@ -3,7 +3,7 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'dist'),modules=requi
 // Estos atlas se conservan como fuentes; simpleStyle no los solicita en ejecución.
 const archivedMapArt=new Set(['campo-props-v1','plaza-props-v1','machu-props-v1','ground-tiles-v1'].map(id=>'assets/environment/'+id+'.webp'));
 // Prompts y metadatos de autoría: permanecen en Git; el runtime no los solicita.
-const archivedCinematics=new Set(['assets/bosses/gallinazo-comic-v1.webp','assets/characters/makanaky-domain-back-v1.webp']);
+const archivedCinematics=new Set(['assets/arenas/gallinazo-lima-night-v1.webp','assets/bosses/gallinazo-comic-v1.webp','assets/characters/makanaky-domain-back-v1.webp']);
 const sourceMetadata=new Set(['assets/characters/atlas.json','assets/characters/powers-atlas.json','assets/characters/streamers-atlas.json','assets/enemies/gallinazos-atlas.json','assets/enemies/rivales-atlas.json','assets/characters/kingteka-ultimate-portrait.json','assets/bosses/gallinazo-phase2-frames.json','assets/bosses/gallinazo-rig-frames.json']);
 // Superseded attack sheets remain in Git; runtime loads directional aim atlases.
 const directionalAttackIds=new Set(JSON.parse(fs.readFileSync(path.join(root,'src/rendering/walk-art.js'),'utf8').match(/directionalIds:(\[[^\]]*\])/)[1]));

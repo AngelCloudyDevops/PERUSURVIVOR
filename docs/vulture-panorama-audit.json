@@ -1,0 +1,10 @@
+{
+  "runtimeSha256": "63ae3b3c215f8fed3a063aef4e77b7f656a2b021edb3d5c2712aaeb05c257c4a",
+  "width": 1536,
+  "sourceSha256": "1505ad11b832a2b484b9da5a10341419743ff6e2d145f9e92efa9431d5ddae65",
+  "bytes": 382116,
+  "height": 1024,
+  "source": "public/assets/arenas/gallinazo-lima-night-v1.png",
+  "runtime": "public/assets/arenas/gallinazo-lima-night-v2.webp",
+  "encoding": "Pillow WebP quality 88, method 6; sin redimensionar ni modificar el dibujo"
+}
