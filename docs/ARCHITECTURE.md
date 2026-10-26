@@ -345,6 +345,9 @@ Minibosses.drawDefeat dibuja secuencias deterministas a partir de life/maxLife d
 MinionEvolution centraliza coraza, attackFX y projectileFX. Los ataques hostiles serializan minionRank, independiente de evolution de armas aliadas. Adornos fuera de la caché del glifo, sin partículas persistentes ni entidades nuevas. Armadura bajo la misma transformación del cuerpo completo, también al morir; avisos originales conservados.
 
 
+PathDetails sustituye la composición de caminos en la base de 128 px por una superficie temporal de 256 px, integrada una sola vez en Chunks.floor. Reutiliza edges/zone sin modificar la física. Las marcas se recortan mediante source-atop y el pasto se valida con ground fuera del corredor, hasta 96 grupos por sector. El canvas final sigue siendo el de 512 px ya cacheado; MachuArt.edge se compone después. Sin estado adicional por sector ni trabajo de acabado por fotograma.
+
+
 
 Combat.hitDamage añade descuento de perdigones a los dos caminos de impacto contra entidades. pelletVolley identifica slot/personaje/castSerial; WeakMap por enemigo con hasta 16 descargas, sin serializar la memoria ni recorrer la horda. Minibosses.healthProfile fija spawnMapTime, healthScale y partyScale en create; Simulation provee el tamaño del grupo. El máximo se serializa en las instantáneas existentes y se reutiliza en barra/fases; no se recalcula al recibir daño. Auditoría de la segunda pasada aislada en scripts/shotgun-miniboss-audit.cjs.
 
@@ -355,3 +358,5 @@ Minibosses observa contadores serializados de ataque/recuperación y efectos de 
 MinionEvolution.accessoryPose deriva agarres del índice de los seis cuadros y de EnemyArt.attackPose, sin alterar walkPhase ni crear estado de simulación. gear dibuja vestuario específico, manos y herramientas en coordenadas del cuerpo, conservando un solo sprite base íntegro. Muerte conserva accesorios estáticos bajo su giro y opacidad; banderas conservan bandas verticales rojo-blanco-rojo.
 
 Minibosses centraliza política de spawn, visitas, métricas y reporte serializable. PlayerFeedback registra daño efectivo después de mitigación; hurt cuenta una sola vez cada ventana y liquida bonus antes del efecto de muerte. miniReport viaja en snapshot cooperativo; la tarjeta usa elapsed, sin timers ni modal. Progresión aplica la misma política compartida en servidor e individual.
+
+MinionEvolution.themed compone perfiles de pala, puño y bandera para rangos con oficio. melee crea una amenaza estacionaria con theme/angle/arc/radius serializados. hits comparte intersección sectorial entre Combat y Simulation; continúa respetando la cobertura y el cupo global. themedCue y drawMelee usan la misma geometría, con tierra agrietada, impacto de puño y barrido rojo-blanco-rojo. No se corta ni deforma el sprite base.
