@@ -692,3 +692,6 @@ El resultado de Makanaky entra como sello con borde neón violeta y cifras revel
 
 ### El Chosicano · Última Parada
 Sustituye visualmente a La Combi Final: minibús blanco y azul, cristales oscuros y letrero amarillo CHOSICA. Seis poses completas: reposo, dos de marcha, aceleración, embestida y frenado. Ruedas y marcha siguen la distancia realmente recorrida; la orientación se fija durante aviso/embestida/frenado. Permanece como jefe del portal de Campo de Marte y en Probar jefes. Conserva 1250 PV, radio 74, velocidad 48, aviso de 1,15 s y embestida de 530; mismas coberturas y recompensas.
+# Sideral · UR de control
+
+Sideral es un personaje UR de Ingenio cuyo ataque automático, **Mirada Sideral**, cubre un cono frontal de 270 unidades. Los minions normales huyen durante 0,9 s; los pesados resisten y retroceden menos, los minijefes solo sufren una interrupción breve y los jefes no abandonan su patrón. Cada objetivo obtiene 2,5 s de resistencia antes de poder ser asustado otra vez. Su evolución **Rostro prohibido** ensancha el cono y prolonga el miedo, sin convertir la rareza en daño bruto gratuito.
