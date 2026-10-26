@@ -664,3 +664,6 @@ roadDomain mantiene física por slot (altura, velocidad, deslizamiento, tropiezo
 
 Sideral: al cargar su atlas se conserva la figura conectada principal de cada cuadro y se eliminan fragmentos aislados de cuadros vecinos, incluida la onda roja que invadía la recuperación. La limpieza se hace una sola vez, mantiene la cuadrícula, tamaño y anclaje originales y conserva la lata roja unida a la mano.
 El botón lab-ultimate despacha la prueba del Chosicano o la del Gallinazo. tryStart(force) solo omite el umbral y el uso previo si devRun es verdadero y Coop está inactivo; mantiene todos los bloqueos de escenas. No cambia PV ni habilita atajos en partidas normales o del servidor.
+
+### Chofer integrado a la cabina
+El renderer del bus compone el chofer dentro del mismo transform de carrocería, suspensión, orientación y escala. Se recorta el torso al polígono del parabrisas de cada pose; tablero y volante ocluyen la parte baja y una capa tenue de cristal integra el color. Se eliminan los sprites de cuerpo entero dibujados por encima del vehículo.
