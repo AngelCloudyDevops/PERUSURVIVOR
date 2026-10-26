@@ -11,7 +11,7 @@ function build(){
  for(const m of modules)copy(path.join(root,m.source),path.join(out,m.output));
  fs.cpSync(path.join(root,'public'),out,{recursive:true,filter:source=>!source.endsWith('.png')||!fs.existsSync(source.slice(0,-4)+'.webp')});
  fs.cpSync(path.join(root,'backend'),path.join(out,'backend'),{recursive:true});
- fs.writeFileSync(path.join(out,'backend/modules.json'),JSON.stringify(modules));
+ fs.writeFileSync(path.join(out,'backend/modules.json'),JSON.stringify(modules.map(m=>m.output)));
  for(const file of ['package.json','package-lock.json'])copy(path.join(root,file),path.join(out,'backend',file));
  copy(path.join(root,'ops/hostinger/install-coop.py'),path.join(out,'backend/install-vps.py'));
  // Identidad reproducible del contenido; cada recurso cambia de URL cuando cambia.
