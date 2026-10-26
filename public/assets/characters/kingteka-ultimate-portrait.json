@@ -1,0 +1,11 @@
+{
+  "tool": "image_gen",
+  "layout": "2x2",
+  "frames": [
+    "preparación",
+    "apuntado",
+    "disparo",
+    "retroceso"
+  ],
+  "prompt": "Use case stylized-concept. Create a production TRANSPARENT pixel-art animation sprite sheet, exactly TWO equal columns and TWO equal rows, four cells, square canvas. Reference image role: identity and costume guide ONLY the FIRST ROW Kingteka character (short spiky black hair, tan skin, tattooed muscular forearms, black t-shirt, chunky dark gray arcade shotgun with orange chamber). Ignore all other reference characters. Make FOUR NEW dedicated expressive WAIST-UP action portraits of this same adult cartoon man for an ultimate-attack comic cut-in, not copies of his small full-body idle sprite. Strict crisp cartoon 16-bit pixel art with visible square pixel clusters, dark outlines, 3-4 tone shading, limited palette, NO smooth illustration, NO airbrush, NO realistic rendering or 3D. Same three-quarter angle facing RIGHT, same face/costume/weapon in all four frames, whole head, shoulders, forearms, weapon and waist visible within each cell; centered at same body anchor and same scale, 15% transparent margins, no clipping or crossing cell edges. Frame order reading left to right top to bottom: 1 dramatic wind-up, shoulders twisted back, determined narrowed eyes, shotgun held diagonally upward near chest, left hand gripping pump. 2 forceful pump action, left elbow pulled back and shoulders lean forward, fierce confident grin, shotgun lowered toward aiming direction. 3 explosive attack pose, both arms extend shotgun toward the RIGHT, aggressive open-mouth shout and torso lunges forward; NO drawn muzzle flash because game animates it separately. 4 clear recoil recovery pose, shoulders jerk backward, shotgun barrel kicks upward, hair tuft displaced, clenched teeth and forearms flexed. Distinct readable silhouette changes in every frame, as sequential animation keyframes, preserving consistent anatomy. NO background, no labels, no text, no lightning, no vulture, no external effects, no border, no grid. Genuine transparent alpha."
+}
