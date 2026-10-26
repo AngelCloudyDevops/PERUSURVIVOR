@@ -8,6 +8,10 @@ module.exports = [
     "output": "js/powers.js"
   },
   {
+    "source": "src/data/difficulty.js",
+    "output": "js/difficulty.js"
+  },
+  {
     "source": "src/core/runtime.js",
     "output": "js/core.js"
   },
@@ -22,6 +26,10 @@ module.exports = [
   {
     "source": "src/rendering/walk-art.js",
     "output": "js/walk-art.js"
+  },
+  {
+    "source": "src/rendering/player-attack-art.js",
+    "output": "js/player-attack-art.js"
   },
   {
     "source": "src/rendering/enemy-art.js",
@@ -62,6 +70,10 @@ module.exports = [
   {
     "source": "src/systems/vulture-ultimate.js",
     "output": "js/vulture-ultimate.js"
+  },
+  {
+    "source": "src/systems/minibosses.js",
+    "output": "js/minibosses.js"
   },
   {
     "source": "src/systems/encounters.js",

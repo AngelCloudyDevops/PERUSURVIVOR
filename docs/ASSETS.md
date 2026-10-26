@@ -44,3 +44,6 @@ Gallinazo del Caos: public/assets/bosses/gallinazo-atlas-v1.png, seis poses en t
 
 ## Caminatas completas v1
 `public/assets/walks/` contiene 26 láminas originales PNG y sus WebP sin pérdida; seis poses completas por lámina (156 cuadros). Generadas mediante la herramienta integrada image_gen con fondo transparente y los atlas existentes como referencia de identidad. Las especificaciones y prompts completos por ID están en `docs/walk-art-prompts.json`. `docs/walk-art-audit.json` registra tamaño, SHA-256 y verificación de igualdad exacta RGBA tras codificar WebP. El build omite los PNG duplicados y sirve los WebP. Son imágenes nuevas; los atlas de reposo, ataque y muerte originales se conservan. El runtime aísla figuras completas para evitar que una celda corte manos, pies o plumas.
+
+## Minijefes de superficie
+`public/assets/minibosses/{fiscalizador,paloma,huaco}-v1.png`: cuatro poses transparentes por personaje, generadas con la herramienta integrada image_gen. Prompts completos y procedencia en `public/assets/minibosses/prompts.json`. El motor aísla cada figura por alfa; conserva el sprite entero para reposo, marcha, ataque y derrota.
