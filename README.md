@@ -459,6 +459,11 @@ La revelación secreta encadena un falso resultado Jade, un último giro, vapor 
 ### Fluidez y diagnóstico cooperativo
 El servidor envía posiciones cada 40 ms (25 Hz). El cliente interpola aliados y enemigos y anticipa visualmente su movimiento con reconciliación y colisión local; daño y posición real siguen siendo del servidor. Los cambios de dirección se envían al siguiente frame. El panel de rendimiento distingue FPS, ping RED, coste de tick del servidor y frecuencia de snapshots. El ping depende de la conexión y distancia al VPS.
 
+### Evento para dos y relevo de anfitrión
+**Dos puestos, una causa** se desbloquea a los 45 s de mapa en los tres escenarios. Los indicadores A/B del borde guían a los puestos fuera de cámara. Acérquense a los puestos A/B y pulsen **F** o el botón para empezar. Cada jugador ocupa uno distinto: acumulen 15 s de defensa simultánea antes de que pasen 45 s. Salir del radio detiene el progreso; fallar permite reintentar tras 20 s. Completar da **35 monedas de equipo y 20% de curación a ambos**, una sola vez por partida. Arenas, elecciones y desconexiones no consumen el reloj del evento.
+
+Entre partidas, si el anfitrión sale, el compañero conserva **la misma sala, código, mapa y personaje**, pasa a ser anfitrión y puede invitar a otro amigo. Ambos deben volver a marcar Estoy listo. También se conserva la sala si el anfitrión desconectado no vuelve durante los 30 s de espera en el vestíbulo. Durante una partida en curso, salir mantiene el cierre de grupo existente.
+
 ### Rescate, amigos y remate compartido
 **Jugar con amigos** está disponible desde las pantallas del menú y el perfil. La lista muestra conectados y permite **Unirme a su sala** solo cuando un amigo aceptado tiene una plaza libre. Se conservan invitaciones y códigos.
 En combate, la flecha señala al compañero caído, el círculo muestra la reanimación real de cuatro segundos y se avisa si hay enemigos cerca. Una desconexión muestra nombre y segundos restantes del plazo existente de 30 s.
