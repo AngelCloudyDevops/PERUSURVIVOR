@@ -8,6 +8,10 @@ module.exports = [
     "output": "js/powers.js"
   },
   {
+    "source": "src/data/muzzle-anchors.js",
+    "output": "js/muzzle-anchors.js"
+  },
+  {
     "source": "src/data/difficulty.js",
     "output": "js/difficulty.js"
   },
@@ -30,6 +34,10 @@ module.exports = [
   {
     "source": "src/rendering/player-attack-art.js",
     "output": "js/player-attack-art.js"
+  },
+  {
+    "source": "src/systems/muzzle.js",
+    "output": "js/muzzle.js"
   },
   {
     "source": "src/rendering/player-feedback.js",
