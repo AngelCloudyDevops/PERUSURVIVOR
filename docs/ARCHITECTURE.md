@@ -1,5 +1,7 @@
 # Arquitectura
 
+DomainArt comparte UltimateComic.layout y panelFrame. La tarjeta evita el letterbox del dominio y se compone en resolución nativa; el actor de tercera persona también se dibuja al final en el contexto nativo. Dos atlas WebP con seis poses de espalda y cuatro retratos, límites alfa compartidos y fallback al sprite actual mientras cargan.
+
 ## Dominio de Makanaky: combos y cámaras
 Domain serializa combo, comboTimer, step, strike, punchLength, move, impact y freeze; autoridad idéntica en cliente individual y servidor cooperativo. Domain.camera permanece local y no se transmite. Microparada de 45 ms solo detiene desplazamiento visual de objetivos/suelo, no el reloj ni la red. DomainArt mantiene el mapa original bajo la tarjeta y cambia al callejón después; rayos y poses se dibujan en el lienzo pixel sin suavizado. El enlace practice=makanaky reutiliza TestBench con comprobación del rol administrador existente.
 
@@ -498,6 +500,9 @@ Audio.musicLive distingue continuidad musical (play/upgrade/loot-opening/item) d
 
 VultureRig.tickFlight calcula desplazamiento real entre ticks y mezcla rigFlight para despegar/aterrizar sin saltos. flightPose deriva altura, aleteo, recogida de patas e inclinación desde el reloj de simulación. Solo desplaza el render: conserva coordenadas físicas, sombra de suelo y cinemática lunar.
 
+
+Audio.effects es un GainNode compartido previo a master. Audio.tone no musical, Audio.voice y MinionAudio.note se conectan a ese bus; la música sintetizada conserva su bus y HTMLAudio usa su volumen propio. effectsVolume se guarda en perusurvivor-effects-volume, se limita a 0–1 y se suaviza con setTargetAtTime; no se crean nodos por cada ajuste. El ambiente continuo conserva su mezcla actual.
+
 VultureRig.attackPose deriva carga, descarga y recuperación de chaosTime y de windup/warningTime, sin timers ni modificación de coordenadas. Sustituye la oscilación de reposo durante ataques y conserva el reloj y los disparos originales. attackFX representa arcos de aire locales en cada descarga y respeta movimiento reducido.
 
 ## Fichas de combate y resolución de atributos
@@ -515,3 +520,9 @@ Difficulty conserva las ocho etapas y añade phase(mapTime), pace(enemy,time), s
 Entities.hurt deposita fama normalizada solo para waveRole; cuartos exactos evitan errores de acumulación fraccionaria. Puntos de fama, minijefes y botín especial conservan sus rutas existentes. No hay IA nueva por frame, tareas asíncronas, partículas ni aumento de caps. La geometría de spawn se calcula al nacer, no cada frame.
 
 Auditoría local: wave-audit.cjs restaura el perfil anterior en una VM mediante wave-baseline-profile.json para comparar igual semilla con atributos activos en ambos grupos. full-run-audit registra métricas opcionales de presión del primer minuto y permite un control estacionario. Estas opciones pertenecen a scripts locales; no se envían en el runtime del cliente. Los datasets conservados son el control anterior, el resultado final con fama normalizada y el ensayo estacionario. Los máximos observados y caps son un control de coste, no una medición de FPS de un móvil. Resultados y límites: WAVE_PRESSURE.md.
+
+VultureMoon.cameraFrame ofrece centro y zoom opcionales a World.render solo durante activación/despegue. Calcula el rectángulo de ambos actores y limita el centro a márgenes del jugador, usando los relojes de etapa existentes, sin alterar coordenadas ni daño. captureDeparture reutiliza un canvas local para enlazar el último render de arena con los primeros 0,35 s de escena lunar; se reinicia en cada ulti y no se captura con movimiento reducido.
+
+FujimoriBoss extiende el movimiento y dibujo de Encounters solo para kind fujimori. Reutiliza el sprite de Alberto y el fondo cabinet, sin modificar la ulti Court ni el personaje jugable.
+
+VultureMoon.cameraFrame incluye landing y el primer tramo posterior al impacto; compensa cameraScale para conservar el zoom al cambiar de fase y converge al objetivo normal antes de liberar la cámara. arrivalOverlay reutiliza una captura del último cielo. landedAge usa elapsed y la marca de impacto, por lo que pausa detiene cámara, onda y sacudida. World suma impactShake en unidades compensadas por zoom. Los renderizadores existentes de polvo/escombros amplían solo el impacto lunar.

@@ -1,5 +1,7 @@
 # Documento de diseño — PERUSURVIVOR
 
+Las tarjetas de ulti siguen el contrato visual de docs/ULTIMATE_ART.md: 40 % × 82 %, borde izquierdo x=0, entrada 1,3 s y retrato dedicado. Makanaky muestra la tarjeta antes del dominio y usa seis poses cartoon pixel art de espalda para tercera persona; las reglas de combate y carga no cambian.
+
 ## Dominio de Makanaky: combos y cámaras
 Makanaky: golpes encadenados jab/jab/cruzado/uppercut. Conectar suma racha GA; fallar o esperar 1,1 s la corta, sin perder energía acumulada. Uppercut añade 0,65 de alcance. Enemigos en fila de profundidad con leve variación lateral. Tarjeta protegida de 1,3 s antes de mostrar el callejón y habilitar golpes; cámaras V equivalentes en daño y alcance. Práctica administrativa con recarga explícita gratuita.
 
@@ -585,6 +587,9 @@ Cofres (loot-opening/item) y mejoras (upgrade) conservan la música y su fundido
 
 Gallinazo fase dos: al desplazarse despega suavemente, recoge las patas y bate las alas con un ciclo completo. La sombra permanece en el piso y el aura acompaña el cuerpo elevado; al detenerse baja progresivamente. No cambia la colisión ni el daño. Movimiento reducido mantiene altura estable sin oscilación.
 
+
+Volumen de efectos independiente de música, inicial 70 % y persistente. Afecta ataques, impactos, avisos y enemigos; el volumen específico de enemigos es un ajuste adicional. Silencio general sigue por encima de todos. Panel móvil con controles táctiles, ancho acotado y desplazamiento vertical cuando falta altura.
+
 Fase dos: cada ráfaga de plumas tiene su propio aletazo, sincronizado a 1,10 y 1,52 segundos. Abre y carga las alas, descarga con cuello/pico y arcos de aire y recupera entre ráfagas. Antes de la picada eleva el cuerpo, abre las alas y las recoge; después adopta una silueta de vuelo inclinado. La carga conserva su posición física.
 
 ## Atributos físicos y especiales
@@ -608,3 +613,10 @@ Perfil fijado al nacer: infantería 90 + tiempo×0,06 (máximo 110); corredor, u
 Los puntos de aparición quedan fuera del rectángulo visible ampliado 90 u, y al menos a 230 u de todos los jugadores vivos. En cooperativo se usa la unión de sus cámaras autoritativas, incluso si difieren. Los obstáculos sólidos impiden el spawn; no se teletransporta un enemigo dentro del campo visible al fallar un intento. Durante minijefe no se acumula el EMPUJE: cap ×0,7 (mínimo ocho), intervalo base ×1,6, exclusión a 260 u del minijefe.
 
 Vida y velocidad son stats de rol, no premios automáticos por rareza. Esta pasada no modifica las fichas de personajes, atributos ni canales físico/especial.
+
+Antes del despegue lunar, la cámara encuadra al Gallinazo junto al jugador durante el final de la tarjeta. Acompaña la altura visual del jefe y abre el plano para conservar al jugador dentro de márgenes seguros, también en móvil. El combate continúa durante tarjeta y despegue. Una transición de 0,35 s enlaza el último fotograma de la arena con el cielo; movimiento reducido conserva la cámara habitual.
+
+### Fujimori: El Expediente Final
+Jefe opcional alternativo del portal del minuto 3, además de su versión jugable. Arena Archivo del Expediente Final, reutiliza el salón y sus coberturas. 1600 PV. Alterna abanico de expedientes bloqueables y sello de área fijado a la posición al avisar (1,1 s para salir). Al 50 % aumenta el abanico de 5 a 7 y el radio del sello de 85 a 105. Recuperación visible de 1,1 s tras atacar. Disponible en Probar jefes, con reinicio y curación habituales.
+
+Picada lunar: apunta a la posición del jugador al comenzar el descenso y conserva la marca fija para permitir esquivar. La cámara sigue la altura visual del jefe manteniendo al jugador visible, enlaza el cielo con la arena en 0,32 s y regresa durante 0,95 s tras el impacto. El choque añade sacudida de 0,42 s, onda de presión, sonido y mayor dispersión de escombros/polvo. Movimiento reducido omite la sacudida. Daño y radio no cambian.
