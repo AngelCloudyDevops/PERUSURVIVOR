@@ -514,3 +514,5 @@ VultureRig.attackPose deriva carga, descarga y recuperación de chaosTime y de w
 Auditoría reproducible local: `node scripts/attributes-audit.cjs` y `node scripts/summarize-attributes.cjs`. Dataset separado de auditorías históricas. El bot no mide FPS ni equivale a una prueba manual de navegador.
 
 VultureMoon.cameraFrame ofrece centro y zoom opcionales a World.render solo durante activación/despegue. Calcula el rectángulo de ambos actores y limita el centro a márgenes del jugador, usando los relojes de etapa existentes, sin alterar coordenadas ni daño. captureDeparture reutiliza un canvas local para enlazar el último render de arena con los primeros 0,35 s de escena lunar; se reinicia en cada ulti y no se captura con movimiento reducido.
+
+FujimoriBoss extiende el movimiento y dibujo de Encounters solo para kind fujimori. Reutiliza el sprite de Alberto y el fondo cabinet, sin modificar la ulti Court ni el personaje jugable.
