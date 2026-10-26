@@ -96,6 +96,9 @@ module.exports = [
     "output": "js/ambient.js"
   },
   {
+    "source": "src/systems/market.js", "output":"js/market.js"
+  },
+  {
     "source": "src/systems/exploration.js",
     "output": "js/exploration.js"
   },

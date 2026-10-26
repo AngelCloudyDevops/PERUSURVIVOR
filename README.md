@@ -147,6 +147,13 @@ Entrada visual de Kingteka: [cómic pixel art y pausa breve de la ulti](docs/KIN
 
 Las sombras de árboles deben tocar la base del tronco: pequeñas y discretas, ancladas al pie visible del dibujo, no al centro o borde de su colisión. Evitar óvalos separados que hagan flotar árboles y mobiliario.
 
+## Ambulante misterioso y cofre impostor
+El ambulante aparece desde 0:45, permanece 45 s y vuelve cada 90 s cerca del jugador. Tiene una unidad por producto y visita: emoliente 20, accesorios comunes 35, imán/batería raros 70, llave rara 40 y legendaria 100 monedas. Acércate y pulsa Hablar con el ambulante. Las compras validan distancia, saldo, stock y expiración; los accesorios reemplazan al actual y la curación no se vende con vida completa. En individual la tienda pausa el mundo; en cooperativo sigue activo y el servidor valida el gasto compartido.
+
+Un 12% de los cofres generados fuera del sector inicial son impostores. Despiertan a menos de 100 unidades, persiguen y atacan. No gastan llaves. Vencerlos deja un cofre de la misma rareza, gratis y con un único objeto. El impostor y su premio no se regeneran al regresar al sector.
+
+Código guardado en rama propia, commits y PR de GitHub; main se publica en Hostinger mediante CI. Las utilidades de QA no se distribuyen.
+
 ## Ciclo de luz
 El reloj del mapa controla día (0–1:30), atardecer (1:30–3:00), anochecer (3:00–4:30) y noche (desde 4:30). Transiciones graduales y faroles que se encienden al oscurecer. El tinte afecta al suelo antes de dibujar actores, botín y avisos, manteniendo visible el combate. Pausa y arenas detienen el reloj del mapa; arenas y prácticas conservan su luz propia. No cambia dificultad, colisiones ni recompensas.
 
