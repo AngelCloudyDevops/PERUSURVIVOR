@@ -661,3 +661,5 @@ El compañero celebra el dragón secreto con una silueta completa de brazos leva
 
 ### Carrera lateral y chofer
 roadDomain mantiene física por slot (altura, velocidad, deslizamiento, tropiezo y obstáculos ya cruzados). El servidor valida roadJump/roadSlide y calcula cruces por tiempo y posición virtual de cada jugador. El render comparte la misma función obstacleX, conserva sprites enteros y gira el cuerpo para deslizar. La voz WAV española es una síntesis local genérica; carga bajo demanda, se reproduce desde la edad autoritativa de intro y se detiene con pausa, silencio o salida. Atlas del chofer 3×2 con seis poses. Combi-packed-v2 conserva dimensiones de la arena y reduce descarga manteniendo fuente PNG y WebP anterior archivados.
+
+El botón lab-ultimate despacha la prueba del Chosicano o la del Gallinazo. tryStart(force) solo omite el umbral y el uso previo si devRun es verdadero y Coop está inactivo; mantiene todos los bloqueos de escenas. No cambia PV ni habilita atajos en partidas normales o del servidor.
