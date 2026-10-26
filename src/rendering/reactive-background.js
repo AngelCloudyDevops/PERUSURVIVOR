@@ -22,7 +22,7 @@ sample(){
  this.threatActor=actor;
  const age=this.burst?t-this.burst.start:99,pulse=this.reduced()||age<0||age>1.2?0:this.smooth(1-age/1.2)*this.burst.power;
  const pressure=this.clamp(threat/8),life=this.clamp((p.maxHp*.45-p.hp)/(p.maxHp*.35||1)),progress=this.clamp(t/Math.max(1,P.Data?.arena?.duration||300));
- this.value={pressure,danger:life,progress,pulse,breeze:.18+progress*.2+pressure*.38+pulse*.72,burst:pulse>0?this.burst:null};return this.value
+ this.value={pressure,danger:life,progress,pulse,breeze:.18+progress*.2+pressure*.38+life*.16+pulse*.72,burst:pulse>0?this.burst:null};return this.value
 },
 sway(x,y){if(this.reduced())return 0;const m=this.sample(),t=P.state.mapTime||0,base=Math.sin(t*1.9+x*.011+y*.007)*(1.5+m.breeze*2.5);if(!m.burst)return Math.round(base);const d=Math.hypot(x-m.burst.x,y-m.burst.y),wave=Math.max(0,1-d/210)*m.pulse*7;return Math.round(base+Math.sin(t*24+d*.045)*wave)},
 react(o){const m=this.sample();if(!m.burst||this.reduced())return null;const d=Math.hypot(o.x-m.burst.x,o.y-m.burst.y);return d<190?m.burst:null},
