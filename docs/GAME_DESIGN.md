@@ -500,6 +500,8 @@ Audio de oficios: avisos breves y sonidos originales de pala, puño y tela para 
 El selector «Arma principal» permite probar base (rango 1), rangos 2–5 y la evolución exclusiva de cualquiera de los 18 causas, tanto con objetivos como con jefes. Usa las mejoras reales del arma sin exigir nivel 8 ni subir el nivel del jugador. Muestra el nombre, descripción y estadísticas de la configuración; conserva la selección al cambiar de causa o repetir. Cambiarla reinicia la prueba y limpia los proyectiles, campos y animaciones anteriores. Volver a base reconstruye el arma sin acumular multiplicadores. La selección es exclusiva del laboratorio: no desbloquea evoluciones permanentes, consume recursos ni cambia los requisitos de las partidas normales o cooperativas.
 
 
+## Prioridad y orden de colección
+La colección se ordena por rareza (SSR→SR→R→C), estrellas o copias disponibles en sentido descendente, siempre agrupando primero a quienes pueden ascender. Dentro de cada grupo se aplica el criterio elegido y se desempata por posición original en el catálogo. Bloqueados cuentan como cero estrellas/copias. El orden predeterminado es rareza y permanece en la sesión al limpiar filtros. Se recalcula después de ascensos y cambios de progreso; no selecciona ni consume nada automáticamente.
 Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Paloma en Plaza de Armas (uno activo). Abanico de tres ondas bloqueables y pulso cercano de 110 unidades, ambos avisados; al 50 % encadena dos abanicos. Conserva navegación, agotamiento, bonus, resumen, cobertura y derrota sin daño. Cofre: Silbato del caos o 50 monedas. Disponible directamente en Probar jefes. Arte nuevo de cuatro poses, sin sustituir personajes existentes.
 
 
