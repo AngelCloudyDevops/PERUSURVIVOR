@@ -19,7 +19,7 @@ class Simulation{
   P.state.player=this.players[0];P.Minibosses.partySize=()=>this.players.length;P.Court.players=()=>this.players;this.result=null;
   P.Game.finish=win=>{if(win)this.result='win'};
   P.Systems.levelup=()=>{if(!this.activities.pending)this.activities.levelup()};
-  this.activities=new Activities(this);
+  this.activities=new Activities(this);this.team=new (require('./team-combo.cjs').TeamCombo)(this);
  }
  use(p){const s=this.P.state;s.player=p;s.fire=p.fire;s.shots=p.shots;s.fields=p.fields;s.ultimate=p.ultimate}
  save(p){const s=this.P.state;p.fire=s.fire;p.shots=s.shots;p.fields=s.fields;p.ultimate=s.ultimate}
@@ -52,6 +52,6 @@ class Simulation{
   if(!this.players.some(p=>p.hp>0))this.result='lose';
   if(!this.result)this.activities.tick(dt);
  }
- snapshot(){const P=this.P,s=P.state;return {...this.activities.snapshot(),domain:s.domain||null,domainAftermath:s.domainAftermath||null,court:s.court||null,courtBurst:s.courtBurst||null,map:P.Maps.selected,result:this.result,elapsed:s.elapsed,mapTime:s.mapTime,miniWarning:s.miniWarning,miniReport:s.miniReport,kills:s.kills,level:s.level,xp:s.xp,need:s.need,bossSpawned:s.bossSpawned,players:this.players.map(({shots,fields,ultimate,...p})=>({...p,ultimate:{...ultimate,seen:undefined,trails:ultimate.trails.map(({shots,fields,ultimate,...trail})=>trail)}})),shots:this.players.flatMap(p=>p.shots.map(({hits,...q})=>q)),fields:this.players.flatMap(p=>p.fields),enemies:s.enemies,gems:s.gems,danger:s.danger,effects:s.effects,coins:s.coins,broken:[...P.Chunks.broken,...P.Terrain.originProps.filter(p=>p.kind==='crate'&&!p.solid).map(p=>p.id)]}}
+ snapshot(){const P=this.P,s=P.state;return {...this.activities.snapshot(),team:this.team.snapshot(),domain:s.domain||null,domainAftermath:s.domainAftermath||null,court:s.court||null,courtBurst:s.courtBurst||null,map:P.Maps.selected,result:this.result,elapsed:s.elapsed,mapTime:s.mapTime,miniWarning:s.miniWarning,miniReport:s.miniReport,kills:s.kills,level:s.level,xp:s.xp,need:s.need,bossSpawned:s.bossSpawned,players:this.players.map(({shots,fields,ultimate,...p})=>({...p,ultimate:{...ultimate,seen:undefined,trails:ultimate.trails.map(({shots,fields,ultimate,...trail})=>trail)}})),shots:this.players.flatMap(p=>p.shots.map(({hits,...q})=>q)),fields:this.players.flatMap(p=>p.fields),enemies:s.enemies,gems:s.gems,danger:s.danger,effects:s.effects,coins:s.coins,broken:[...P.Chunks.broken,...P.Terrain.originProps.filter(p=>p.kind==='crate'&&!p.solid).map(p=>p.id)]}}
 }
 module.exports={Simulation};

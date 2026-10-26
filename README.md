@@ -451,11 +451,17 @@ La revelación secreta encadena un falso resultado Jade, un último giro, vapor 
 ### Fluidez y diagnóstico cooperativo
 El servidor envía posiciones cada 40 ms (25 Hz). El cliente interpola aliados y enemigos y anticipa visualmente su movimiento con reconciliación y colisión local; daño y posición real siguen siendo del servidor. Los cambios de dirección se envían al siguiente frame. El panel de rendimiento distingue FPS, ping RED, coste de tick del servidor y frecuencia de snapshots. El ping depende de la conexión y distancia al VPS.
 
+### Rescate, amigos y remate compartido
+**Jugar con amigos** está disponible desde las pantallas del menú y el perfil. La lista muestra conectados y permite **Unirme a su sala** solo cuando un amigo aceptado tiene una plaza libre. Se conservan invitaciones y códigos.
+En combate, la flecha señala al compañero caído, el círculo muestra la reanimación real de cuatro segundos y se avisa si hay enemigos cerca. Una desconexión muestra nombre y segundos restantes del plazo existente de 30 s.
+El **combo del equipo** gana 5% al alternar impactos efectivos entre ambos dentro de 3 s (máximo un impacto válido por jugador cada 0,45 s). Al 100%, ambos vivos y separados como máximo 420 unidades confirman con **R** o el botón en un plazo de 3 s: onda de radio 450, 120 de daño ordinario, contra jefes como máximo 4% de vida máxima y 120 de daño. Respeta coberturas. Recarga de 20 s sin generar carga; la revancha reinicia la barra. Es una primera versión para equilibrar con partidas reales.
+
 ### Revancha cooperativa
 Al terminar una partida, ambos pulsan **Volver juntos a la sala**. El grupo, código y anfitrión se conservan; pueden cambiar personajes y mapa y deben confirmar **Estoy listo** de nuevo. Una sola confirmación espera al compañero sin cerrar su resultado. **Salir del grupo** termina la sesión compartida. La actualización pendiente del juego se aplaza mientras regresan juntos.
 
 
 El despegue del Tricéfalo tiene carga de peso, aletazo descendente y recuperación con poses completas del atlas. La montura se inclina alrededor de la silla con Cristorata agarrado; la elevación espera al impulso y el polvo permanece en el suelo. No recorta ni estira alas o manos, respeta movimiento reducido y mantiene la duración y el combate.
+
 
 El vuelo del Tricéfalo usa 16 pasos de aleteo y 12 pasos de despegue cacheados, derivados del atlas con muestreo sin suavizado. Una malla continua mantiene la raíz del ala y el agarre, repliega las patas hacia el vientre y transmite un movimiento leve al jinete. El ciclo comparte fase entre cinemática y combate; hasta 28 superficies por atlas, sin recalcular la malla cada cuadro. Movimiento reducido conserva una pose quieta y no cambia el combate.
 
