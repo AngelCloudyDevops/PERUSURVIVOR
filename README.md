@@ -263,6 +263,11 @@ P.Gacha resuelve cargo, devolución, desbloqueo, garantías e historial en una s
 ## Acabado de caminos
 Los [caminos](docs/PATH_FINISH.md) conservan sus rutas y texturas aprobadas, con bordes de pasto en Campo, juntas de pavimento en Plaza y desgaste sutil en Machu. Acabado de dos unidades por píxel, detalles deterministas y composición cacheada por sector. Sin imágenes adicionales ni cambios de colisiones; hasta 96 grupos de pasto en los bordes, fuera del corredor.
 
+
+## Ambiente sonoro de los mapas
+Campo tiene hojas y aves discretas; Plaza, agua que aumenta al acercarse a la pileta; Machu, viento grave y suave. Síntesis original con dos fuentes de ruido compartidas, sin descargas de audio, y ajustes a 10 Hz. Respeta el botón de sonido, pausa, menú y pestaña oculta; se retira durante jefes, arenas y pruebas. Los trinos son espaciados y ceden prioridad a los efectos del combate.
+
+
 ## Invocación ×10
 El menú Gacha permite una tirada por 60 monedas o diez por 600. Se requiere el saldo completo antes de comenzar, sin descuento adicional. Las diez se resuelven en orden con las mismas probabilidades, garantías y devoluciones por repetidos. Si la colección se completa dentro del lote, se terminan las diez tiradas; una colección ya completa impide iniciar otra compra. El resumen muestra cada causa, rareza, nuevo/repetido, devolución total y coste neto. La animación se puede saltar y respeta movimiento reducido. El último lote se recupera al recargar sin volver a cobrar.
 

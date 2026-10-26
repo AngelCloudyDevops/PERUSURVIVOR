@@ -24,6 +24,9 @@ module.exports = [
     "output": "js/audio.js"
   },
   {
+    "source": "src/systems/soundscape.js", "output": "js/soundscape.js"
+  },
+  {
     "source": "src/rendering/sprites.js",
     "output": "js/sprites.js"
   },
