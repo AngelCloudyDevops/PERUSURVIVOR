@@ -40,3 +40,14 @@ test('Cobertura: plumas no atraviesan muros finos y onda del huaco es radial',()
  assert(M.coverBlocked({x:100,y:0,vx:200,vy:0,minion:true,kind:'spread'},.5));assert(!M.coverBlocked({x:100,y:20,vx:200,vy:0,minion:true,kind:'stomp'},.5));
  e.attack='quake';M.fire(e);assert.equal(P.state.danger.at(-1).groundWave,true);
 });
+
+test('Derrotas propias: cuerpo, fragmentos, pausa y resultado diferido',()=>{
+ for(const map of ['campo','plaza','machu']){
+  const {P}=new Simulation(map,[0,6]),M=P.Minibosses,s=P.state,e=M.create(map,{x:200,y:0});s.enemies=[e];s.miniLab=map;const kills=s.kills;M.hurt(e,99999,0);M.hurt(e,99999,0);assert.equal(s.kills,kills+1);
+  const fx=s.effects.find(q=>q.kind==='miniboss-death');assert.equal(fx.maxLife,2.2);assert.equal(s.miniLabFinish,2.2);const frozen=fx.life;s.mode='pause';P.Game.update(.4);assert.equal(fx.life,frozen);
+  M.sheets[map]={ready:true,height:100,cells:Array.from({length:4},()=>({image:{},x:0,y:0,w:80,h:100}))};const calls=[],ctx=new Proxy({drawImage(...args){calls.push(args)}},{get:(o,k)=>o[k]||(()=>{})});M.drawDefeat(ctx,fx,.5);assert.equal(calls.length,map==='machu'?16:1);assert(calls.every(args=>args.slice(1).every(Number.isFinite)));assert.equal(M.defeatPose(map,1).alpha,0);
+  if(map==='plaza')assert(M.defeatPose(map,.6).angle>1);if(map==='machu')assert(M.defeatPose(map,.6).spread>0);
+  P.Ambient.reduced={matches:true};calls.length=0;M.drawDefeat(ctx,fx,.5);assert.equal(calls.length,1);assert.equal(M.defeatPose(map,.6).angle,0);assert.equal(M.defeatPose(map,.6).spread,0);
+  let finished=0;P.Lab.finish=()=>finished++;s.mode='play';M.tick(1.5);assert.equal(finished,0);M.tick(.8);assert.equal(finished,1);M.tick(.1);assert.equal(finished,1);
+ }
+});
