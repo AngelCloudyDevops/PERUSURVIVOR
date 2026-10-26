@@ -27,6 +27,7 @@ class Simulation{
   const P=this.P,s=P.state,alive=this.players.filter(p=>p.hp>0);if(this.result)return;
   if(!alive.length){this.result='lose';return}
   if(this.activities.pending){this.activities.advance(dt);return}
+  if(s.encounter?.defeat){s.mode='play';this.use(alive[0]);const kind=s.encounter.definition.kind;if(kind==='combi')P.ChosicanoCombat.defeatTick(dt);else if(kind==='fujimori')P.FujimoriBoss.defeatTick(dt);else P.Vulture.defeatTick(dt);if(s.encounter?.defeat?.finished)this.activities.tick(0);return}
   if(s.domain){P.Domain.tick(dt,inputs);return}
   if(s.court){this.use(this.players[s.court.slot]);P.Court.tick(dt);return}if(P.DragonUltimate?.advanceScene(dt,this.players))return;P.Court.burstTick(dt);
   s.mode='play';s.elapsed+=dt;if(!s.encounter)s.mapTime+=dt;this.use(alive[0]);P.Chunks.sync();P.Encounters.tick();P.Systems.spawn(dt);
@@ -41,7 +42,7 @@ class Simulation{
   }
   // Avanza cada conjunto de proyectiles exactamente una vez, manteniendo al dueño del bumerán.
   const danger=s.danger;s.danger=[];
-  for(const p of this.players){this.use(p);if(p.hp>0)P.Combat.tick(dt);else {p.shots=[];p.fields=[];s.shots=[];s.fields=[]}this.save(p)}
+  for(const p of this.players){this.use(p);if(p.hp>0)P.Combat.tick(dt);else {p.shots=[];p.fields=[];s.shots=[];s.fields=[]}this.save(p);if(s.encounter?.defeat){for(const q of this.players){q.shots=[];q.fields=[]}return}}
   s.danger=danger;
   for(const shot of danger){if(shot.miniId&&!s.enemies.some(e=>e.hp>0&&e.miniId===shot.miniId)){shot.life=0;continue}shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;if(shot.kind==='zigzag'){const wave=(Math.sin((shot.age+dt)*9)-Math.sin(shot.age*9))*14,speed=Math.hypot(shot.vx,shot.vy)||1;shot.x-=shot.vy/speed*wave;shot.y+=shot.vx/speed*wave}shot.age+=dt;shot.life-=dt;if((shot.minion||s.encounter)&&shot.kind!=='stomp'&&(P.Terrain.hit(shot.x,shot.y,7)||P.Minibosses.coverBlocked(shot,dt))){shot.life=0;continue}shot.history.push({x:shot.x,y:shot.y});if(shot.history.length>8)shot.history.shift();for(const p of alive)if(p.hp>0&&p.inv<=0&&shot.life>0&&!shot.spent&&P.MinionEvolution.hits(shot,p)&&(shot.kind!=='stomp'||shot.groundWave||P.Terrain.clear(shot.x,shot.y,p.x,p.y))){P.PlayerFeedback.hit(p,shot.damage||14,shot);p.inv=.7;if(shot.kind==='stomp')shot.spent=true;else shot.life=0;break}}
   s.danger=danger.filter(q=>q.life>0);

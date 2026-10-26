@@ -58,7 +58,7 @@ for(const map of P.Maps.catalog){
  const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
  if(map.id==='campo')assert.equal(localBoss.phase,'charge');else assert(s.danger.length>0);
  s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=s.encounter.scene.bounds.right&&s.player.y>=s.encounter.scene.bounds.top);
- P.World.render(500);P.Entities.hurt(localBoss,99999);assert.equal(s.mode,'play');P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Loot.advance(.7);assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
+ P.World.render(500);P.Entities.hurt(localBoss,99999);if(map.id==='campo'){assert(s.encounter.defeat);P.Game.update(3)}assert.equal(s.mode,'play');P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Loot.advance(.7);assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
  const power=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.mode,'play');assert.equal(s.player.power,power*1.3);P.Encounters.reward(()=>s.player.power=0);assert(s.player.power>0,'No repetir recompensa');
  P.Game.update(.04);assert(s.mapTime>clock);assert(!s.portal.open);
  s.mapTime=300;P.Game.update(.01);assert(s.bossSpawned);assert.equal(s.enemies.filter(e=>e.boss).length,1);P.Game.update(.01);assert.equal(s.enemies.filter(e=>e.boss).length,1);assert(!s.portal.open);
@@ -98,7 +98,7 @@ for(const map of P.Maps.catalog){
  const local=s.enemies[0];local.phase='warning';assert.equal(P.BossArt.frame(local),3);local.phase='charge';assert.equal(P.BossArt.frame(local),4);local.phase='recover';local.attackUntil=0;assert.equal(P.BossArt.frame(local),5);
  local.phase='warning';local.windup=.01;P.Encounters.bossMove(local,.02);if(local.kind!=='combi'){assert.equal(local.phase,'recover');assert.equal(P.BossArt.frame(local),4);s.elapsed+=.3;assert.equal(P.BossArt.frame(local),5)}
  const png=fs.readFileSync(path.join(root,'public/assets/arenas/'+s.encounter.scene.asset+'-v1.png'));assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
- P.Entities.hurt(local,99999);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Loot.advance(.7);P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
+ P.Entities.hurt(local,99999);if(local.kind==='combi')P.Game.update(3);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Loot.advance(.7);P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
 }
 const bossPng=fs.readFileSync(path.join(root,'public/assets/bosses/boss-atlas-v1.png'));assert.equal(bossPng.toString('hex',0,8),'89504e470d0a1a0a');
 P.Game.start();s.mapTime=180;P.Encounters.tick();const uiPoint=P.Encounters.definition().portal;s.player.x=uiPoint.x;s.player.y=uiPoint.y;elements.get('#portal-enter').hidden=true;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,false,'El HUD debe mostrar el botón cercano');s.player.x=-900;P.UI.hud();assert.equal(elements.get('#portal-enter').hidden,true,'El HUD oculta el botón lejano');console.log('OK: botón de portal conectado al HUD');
@@ -156,7 +156,7 @@ for(const bossId of ['campo','plaza','machu','final']){
  P.$('#lab-boss').value=bossId;P.$('#lab-invincible').checked=true;P.Lab.run();assert(s.devRun);assert.equal(s.enemies.length,1);assert(!elements.get('#lab-tools').hidden);
  if(bossId==='final'){assert(s.bossSpawned);assert(s.enemies[0].boss)}else{assert(s.encounter);assert(s.enemies[0].mapBoss);assert.equal(s.encounter.definition,P.Encounters.catalog[bossId])}
  const hp=s.player.hp;const boss=s.enemies[0];boss.x=s.player.x;boss.y=s.player.y;for(let i=0;i<10;i++)P.Game.update(.04);assert.equal(s.player.hp,hp,'Invencible durante prueba');assert.equal(s.enemies.length,1,'No añadir oleadas en laboratorio');
- P.Entities.hurt(boss,999999);assert.equal(s.mode,'end');assert.equal(P.Save.best,recordBeforeLab,'No guardar récords de desarrollo');P.Lab.run();assert(s.devRun);assert.equal(s.player.hp,s.player.maxHp);P.UI.menu();assert(!s.devRun);assert(elements.get('#lab-tools').hidden);
+ P.Entities.hurt(boss,999999);if(bossId==='campo')P.Game.update(3);assert.equal(s.mode,'end');assert.equal(P.Save.best,recordBeforeLab,'No guardar récords de desarrollo');P.Lab.run();assert(s.devRun);assert.equal(s.player.hp,s.player.maxHp);P.UI.menu();assert(!s.devRun);assert(elements.get('#lab-tools').hidden);
  console.log('OK laboratorio: '+bossId)
 }
 P.$('#lab-boss').value='campo';P.$('#lab-invincible').checked=false;P.Lab.run();s.player.inv=0;s.enemies[0].x=s.player.x;s.enemies[0].y=s.player.y;const vulnerableHp=s.player.hp;P.Game.update(.04);assert(s.player.hp<vulnerableHp);P.UI.menu();P.Game.start();assert(!s.devRun);assert(!s.encounter);assert.equal(s.mapTime,0);console.log('OK: invencibilidad opcional y retorno al modo normal');

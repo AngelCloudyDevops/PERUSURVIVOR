@@ -28,7 +28,7 @@ test('Actividades cooperativas: portales de tres mapas, retorno de ambos y premi
   assert(a.action(0,'portal'));assert(a.action(1,'portal'));assert(s.encounter);const clock=s.mapTime;
   sim.tick(.04,[{},{}]);assert.equal(s.mapTime,clock,'El reloj del mapa no avanza en arena');assert.equal(s.enemies.filter(e=>e.mapBoss).length,1);
   const boss=s.enemies[0];boss.attackT=0;sim.tick(.04,[{},{}]);assert.equal(boss.phase,'warning');assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));
-  P.Entities.hurt(boss,999999);sim.tick(.04,[{},{}]);assert(!s.encounter);assert(s.portal.cleared);assert.equal(s.enemies[0],worldEnemy);
+  P.Entities.hurt(boss,999999);if(map==='campo'){assert(s.encounter.defeat);assert.equal(sim.snapshot().encounter.defeat.actor.phase,'chosicano-defeat');assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));for(let i=0;i<76;i++)sim.tick(.04,[{},{}])}else sim.tick(.04,[{},{}]);assert(!s.encounter);assert(s.portal.cleared);assert.equal(s.enemies[0],worldEnemy);
   for(let i=0;i<2;i++){assert.equal(sim.players[i].x,positions[i].x);assert.equal(sim.players[i].y,positions[i].y)}
   const gold=P.Loot.chests.find(c=>c.gold);assert(gold);assert(a.open(gold));for(let i=0;i<17;i++)sim.tick(.04,[{},{}]);const id=a.pending.id,power=sim.players[0].power,max=sim.players[1].maxHp;
   assert(a.action(0,'choose',id,0));assert.equal(sim.players[0].power,power*1.3);assert(!a.action(0,'choose',id,0),'No duplicar recompensa');assert(a.pending);
