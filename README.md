@@ -153,3 +153,8 @@ El ambulante aparece desde 0:45, permanece 45 s y vuelve cada 90 s cerca del jug
 Un 12% de los cofres generados fuera del sector inicial son impostores. Despiertan a menos de 100 unidades, persiguen y atacan. No gastan llaves. Vencerlos deja un cofre de la misma rareza, gratis y con un único objeto. El impostor y su premio no se regeneran al regresar al sector.
 
 Código guardado en rama propia, commits y PR de GitHub; main se publica en Hostinger mediante CI. Las utilidades de QA no se distribuyen.
+
+## Ciclo de luz
+El reloj del mapa controla día (0–1:30), atardecer (1:30–3:00), anochecer (3:00–4:30) y noche (desde 4:30). Transiciones graduales y faroles que se encienden al oscurecer. El tinte afecta al suelo antes de dibujar actores, botín y avisos, manteniendo visible el combate. Pausa y arenas detienen el reloj del mapa; arenas y prácticas conservan su luz propia. No cambia dificultad, colisiones ni recompensas.
+
+Entrada de ulti de Kingteka: panel diagonal al 40 %, retrato animado de cintura arriba y 1,3 s sin pausa, con invulnerabilidad. Detalles en [KINGTEKA_COMIC](docs/KINGTEKA_COMIC.md).

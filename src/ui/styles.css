@@ -39,3 +39,5 @@ footer{position:static;grid-column:1/-1;margin-top:12px}#menu{align-content:star
 
 #market-status{font-size:10px;text-align:center;color:#e4cc99;margin:4px}#market-open{position:fixed;right:18px;bottom:72px;z-index:7;padding:12px 16px;border:1px solid #dcbd7a;border-radius:8px;background:#302b42;color:#f4e0af}#overlay button:disabled{opacity:.48;cursor:not-allowed}
 @media(max-width:600px){#market-open{bottom:124px;max-width:90vw}}
+
+#time-of-day{display:block;text-align:center;color:#d9cfab;font-size:8px;letter-spacing:.8px;margin:2px 0}#hud.boss-hud #time-of-day{display:none}

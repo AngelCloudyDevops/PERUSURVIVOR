@@ -60,7 +60,8 @@ module.exports = [
     "output": "js/vulture-boss.js"
   },
   {
-    "source": "src/systems/vulture-ultimate.js", "output": "js/vulture-ultimate.js"
+    "source": "src/systems/vulture-ultimate.js",
+    "output": "js/vulture-ultimate.js"
   },
   {
     "source": "src/systems/encounters.js",
@@ -100,6 +101,10 @@ module.exports = [
   {
     "source": "src/systems/exploration.js",
     "output": "js/exploration.js"
+  },
+  {
+    "source": "src/rendering/day-night.js",
+    "output": "js/day-night.js"
   },
   {
     "source": "src/rendering/world.js",
