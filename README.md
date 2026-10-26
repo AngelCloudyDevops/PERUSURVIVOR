@@ -9,6 +9,9 @@ Las entradas de ulti, salvo la cinemática de dominio de Makanaky, usan 40 % de 
 
 Las Expansiones de Dominio UR —Makanaky y Sideral— son un sistema distinto de las ultis: comienzan directamente con su cinemática propia a pantalla completa y nunca usan tarjeta lateral.
 
+## Revelado de mejoras
+Al subir de nivel se revelan las tres cartas antes de elegir una. El giro muestra un destello breve de izquierda a derecha según la rareza: turquesa para rara, violeta para épica y dorado para legendaria; común conserva un giro limpio. El efecto es cosmético y de una sola ejecución, respeta `prefers-reduced-motion` y no modifica el poder: la rareza solo influye en la probabilidad de aparición.
+
 ## Dominio de Sideral: «¿QUÉ, EN SERIO?»
 Como Expansión de Dominio UR, Sideral no usa tarjeta lateral: al activarla comienza directamente su cinemática propia a pantalla completa, igual que Makanaky. Cada onda morada nace desde la posición actual de Sideral al gritar, incluso si se ha movido desde el centro de la habitación.
 
