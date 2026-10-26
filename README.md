@@ -259,3 +259,7 @@ Perfiles nuevos reciben Cristorata, Cuy Supremo y Paloma del Centro. El esquema 
 P.Gacha resuelve cargo, devolución, desbloqueo, garantías e historial en una sola P.Meta.transaction. El resultado se guarda antes de la animación y se puede consultar de nuevo sin pagar; cerrar o recargar no vuelve a tirar. La animación comparte el bucle de dibujo, se detiene al salir/ocultar pestaña y se revela inmediatamente con movimiento reducido. La rareza de colección no cambia las estadísticas de combate.
 ## Acabado de caminos
 Los [caminos](docs/PATH_FINISH.md) conservan sus rutas y texturas aprobadas, con bordes de pasto en Campo, juntas de pavimento en Plaza y desgaste sutil en Machu. Acabado de dos unidades por píxel, detalles deterministas y composición cacheada por sector. Sin imágenes adicionales ni cambios de colisiones; hasta 96 grupos de pasto en los bordes, fuera del corredor.
+
+## Ambiente sonoro de los mapas
+Campo tiene hojas y aves discretas; Plaza, agua que aumenta al acercarse a la pileta; Machu, viento grave y suave. Síntesis original con dos fuentes de ruido compartidas, sin descargas de audio, y ajustes a 10 Hz. Respeta el botón de sonido, pausa, menú y pestaña oculta; se retira durante jefes, arenas y pruebas. Los trinos son espaciados y ceden prioridad a los efectos del combate.
+
