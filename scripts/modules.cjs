@@ -56,6 +56,9 @@ module.exports = [
     "output": "js/vulture-boss.js"
   },
   {
+    "source": "src/systems/vulture-ultimate.js", "output": "js/vulture-ultimate.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
   },

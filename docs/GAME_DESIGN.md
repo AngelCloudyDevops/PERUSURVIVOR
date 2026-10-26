@@ -248,3 +248,5 @@ La prueba de rendimiento permite marcar «Probar el dibujo anterior para compara
 
 ## Corrección de césped y apoyo al suelo
 Se recupera la textura anterior aprobada y se eliminan las manchas grandes planas. Caminos curvos, cámara y personajes se conservan. Las sombras se anclan al pie dibujado de cada objeto; árboles con sombra pequeña bajo el tronco para evitar apariencia de flotación.
+### Ulti del Gallinazo: El cielo es mío
+Una vez por encuentro, al entrar en aproximación con 30 % de vida o menos, abre las alas durante 2 segundos con seis fotogramas nuevos creados con IA. El jugador conserva el movimiento; no aparecen plumas nuevas durante el aviso. Después dispara tres abanicos separados por 0,9 s y prepara una picada avisada. Las coberturas bloquean las plumas. Desarrollo ofrece Probar ulti, repetible y sin récords. Movimiento reducido muestra la pose final sin sacudidas ni partículas.
