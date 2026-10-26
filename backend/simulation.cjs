@@ -14,7 +14,7 @@ function loadEngine(root){
 }
 class Simulation{
  constructor(map,characters,root=path.resolve(__dirname,'..')){
-  this.P=loadEngine(root);const P=this.P;P.Maps.selected=map;P.state.chosen=characters[0];P.Game.start();
+  this.P=loadEngine(root);const P=this.P;P.Combat.server=true;P.Maps.selected=map;P.state.chosen=characters[0];P.Game.start();
   this.players=characters.map((id,i)=>{const p=P.Entities.player(P.Data.characters[id]);Object.assign(p,{x:P.state.player.x+i*45,y:P.state.player.y,slot:i,fire:0,shots:[],fields:[],revive:0});P.state.player=p;P.Ultimate.reset();p.ultimate=P.state.ultimate;return p});
   P.state.player=this.players[0];P.Court.players=()=>this.players;this.result=null;
   P.Game.finish=win=>{if(win)this.result='win'};
@@ -30,7 +30,7 @@ class Simulation{
   if(s.court){this.use(this.players[s.court.slot]);P.Court.tick(dt);return}P.Court.burstTick(dt);
   s.mode='play';s.elapsed+=dt;if(!s.encounter)s.mapTime+=dt;this.use(alive[0]);P.Chunks.sync();P.Encounters.tick();P.Systems.spawn(dt);
   for(const p of alive){this.use(p);const input=inputs[p.slot]||{},x=Number(input.x)||0,y=Number(input.y)||0,n=Math.max(1,Math.hypot(x,y)),old={x:p.x,y:p.y};p.inv=Math.max(0,p.inv-dt);p.moving=Math.hypot(x,y)>.05;if(x)p.facing=Math.sign(x);p.x+=x/n*p.speed*dt;p.y+=y/n*p.speed*dt;P.World.collide(p,old);
-   const other=this.players[1-p.slot],distance=Math.hypot(p.x-other.x,p.y-other.y);if(distance>720&&other.hp>0){p.x=old.x;p.y=old.y}
+   p.aimView=P.Combat.sanitizeView(input.view)||p.aimView||null;const other=this.players[1-p.slot],distance=Math.hypot(p.x-other.x,p.y-other.y);if(distance>720&&other.hp>0){p.x=old.x;p.y=old.y}
    const travelled=Math.hypot(p.x-old.x,p.y-old.y);p.moving=travelled>.01;p.walkPhase=(p.walkPhase||0)+travelled/10;if(input.ultimate)P.Ultimate.activate();if(s.court){this.save(p);return}const ultimate=p.ultimate;delete p.ultimate;P.Ultimate.tick(dt);p.ultimate=ultimate;
   }
   // Cada enemigo persigue al jugador vivo más cercano; ambos reciben colisiones reales.

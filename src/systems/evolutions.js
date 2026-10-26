@@ -9,7 +9,7 @@ alan:{name:'Eco de la plaza',description:'Un discurso amplio alcanza también a 
 alberto:{name:'Órbita presidencial',description:'Seis bandas giran alrededor y una onda golpea el centro.',kind:'orbit',extra:'center',shape:'seal',color:'#ffc378'},
 keiko:{name:'Abanico solar',description:'Cuatro abanicos salen en cruz, regresan y dejan un remolino junto al objetivo.',kind:'boomerang',count:4,radial:true,extra:'vortex',shape:'fans',color:'#ffab43'},
 ollanta:{name:'Marcha del comando',description:'Un cono largo y estrecho empuja; dos ondas laterales cubren los flancos.',kind:'cone',arc:.85,range:360,push:65,extra:'flanks',shape:'chevrons',color:'#b7e87c'},
-kingteka:{name:'Escopeta Contra',description:'Tres disparos concentrados de alta velocidad perforan ocho rivales.',kind:'spread',count:3,spread:.055,speed:1150,pierce:8,powerScale:1,shape:'rails',color:'#ffe57d'},
+kingteka:{name:'Escopeta Contra',description:'Tres disparos concentrados perforan tres rivales; pierden fuerza a distancia.',kind:'spread',count:3,spread:.09,speed:900,pierce:3,powerScale:.9,shape:'rails',color:'#ffe57d'},
 shaka:{name:'Tornado bananero',description:'Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.',kind:'boomerang',count:5,radial:true,extra:'center',shape:'spiral',color:'#ffe96c'},
 najasor:{name:'Marea CPEZ',description:'Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.',kind:'spread',count:7,spread:.15,motion:'zigzag',amplitude:28,frequency:12,extra:'splash',shape:'wave',color:'#7df2df'},
 cirilo:{name:'Concierto orbital',description:'Tres micros van y vuelven en abanico; una onda corta protege al artista.',kind:'boomerang',count:3,spread:.5,extra:'center',shape:'equalizer',color:'#7cddff'},
