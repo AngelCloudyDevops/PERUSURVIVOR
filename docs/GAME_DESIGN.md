@@ -571,3 +571,5 @@ En móvil aumenta el ancho útil y limita altura a 1,55 veces el ancho, para que
 La segunda fase del Gallinazo mantiene movimiento articulado de alas, cabeza, corona y collar durante el combate. Las patas y el torso permanecen anclados; el aura y los rayos rodean el plumaje sin tapar su textura.
 La transformación también cambia gradualmente el plumaje a morado oscuro. Conserva pico, patas, luces y transparencias; la tarjeta sigue mostrando la forma base.
 Alternar ambas mantiene el orden Tema 1 → Tema 2 → Tema 1 con transición suave de tres segundos, sin solapar música sintetizada. Volumen, silencio y pausa afectan a las dos pistas; la transición continúa desde su punto al reanudar. Se prepara la próxima pista solo cerca del final y se mantiene la actual si no está disponible.
+
+La música predeterminada para navegadores sin preferencia guardada es Alternar ambas. Las preferencias existentes y el silencio general se respetan; cargar el juego no reproduce ni descarga música automáticamente.

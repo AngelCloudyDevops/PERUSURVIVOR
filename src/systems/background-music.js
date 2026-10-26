@@ -1,7 +1,7 @@
 'use strict';
 // Un reproductor por pista individual; dos reutilizados solo al alternar.
 P.BackgroundMusic={
-choice:'original',volume:.35,player:null,wanted:false,failed:null,generation:0,fadeSeconds:3,prepareSeconds:12,
+choice:'alternate',volume:.35,player:null,wanted:false,failed:null,generation:0,fadeSeconds:3,prepareSeconds:12,
 tracks:{tema1:'assets/music/tema-1-v1.webm',tema2:'assets/music/tema-2-v1.webm'},
 gesture(){this.blocked=false;this.nextBlocked=false},
 init(){

@@ -343,4 +343,6 @@ En la cabecera, abre **Música ♫** y elige **Original del juego**, **Tema 1**,
 
 Las pistas WebM/Opus se solicitan únicamente al reproducir la opción elegida: no forman parte de la descarga inicial. Un reproductor en modo individual y hasta dos al alternar sustituyen a la melodía sintetizada, conservando efectos y ambiente. Si falla la carga, se recupera la música original.
 
+**Alternar ambas es la opción predeterminada** cuando no existe una preferencia musical guardada. Se conserva cualquier elección anterior (incluida Sin música) y el silencio general. La música comienza al entrar en la partida tras un gesto del usuario, sin autoplay al cargar la página.
+
 **Alternar ambas:** reproduce Tema 1 → Tema 2 → Tema 1 con un fundido cruzado de tres segundos. La siguiente pista se prepara en los últimos doce segundos; ambas se pausan y reanudan juntas, conservando el avance de la transición. Si falla la siguiente pista, continúa la actual. La elección se guarda en este navegador.
