@@ -295,3 +295,7 @@ Los 18 jugables disponen de seis cuerpos completos de ataque: armas apuntadas, l
 
 
 Aleteo fluido: alas articuladas sobre la pose abierta del atlas existente, con subida y bajada continuas a 2,8 ciclos por segundo, ligera flexion de plumas, balanceo del cuerpo y sombra acompasada. Cada gallinazo tiene una fase propia estable, sin sincronizar toda la bandada. El panel de Kingteka comparte el mismo dibujo. Movimiento reducido mantiene alas y cuerpo fijos. No cambia dano, velocidad ni colisiones.
+
+### Marcha de minijefes sin deslizamiento
+Los tres alternan apoyo y paso según la distancia recorrida: el Fiscalizador camina, la Paloma hace pequeños saltos y el Huaco da pasos cortos y pesados. El apoyo fija visualmente el pie durante el 40 % de cada ciclo; el traslado ocurre al levantar la pierna. La sombra acompaña el apoyo. Al detenerse o bloquearse dejan de dar pasos. Se conservan la velocidad real, colisiones y animaciones de ataque.
+La embestida también avanza un ciclo de carrera por distancia: el Fiscalizador intercala apoyo y pierna elevada con rebote corto; la picada de la Paloma alterna alas durante el impulso.

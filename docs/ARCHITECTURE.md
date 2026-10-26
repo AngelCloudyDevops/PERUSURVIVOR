@@ -211,3 +211,5 @@ Los originales PNG de image_gen se conservan en `public/assets/attacks/`; el jue
 
 
 Aleteo fluido: alas articuladas sobre la pose abierta del atlas existente, con subida y bajada continuas a 2,8 ciclos por segundo, ligera flexion de plumas, balanceo del cuerpo y sombra acompasada. Cada gallinazo tiene una fase propia estable, sin sincronizar toda la bandada. El panel de Kingteka comparte el mismo dibujo. Movimiento reducido mantiene alas y cuerpo fijos. No cambia dano, velocidad ni colisiones.
+
+Minibosses.gait deriva cuadro, apoyo y elevación de walkPhase (distancia real tras resolver colisiones) y walkDirX/Y. La compensación visual mantiene el apoyo fijo al principio/final de cada paso y se recupera suavemente durante el traslado. No modifica coordenadas de combate ni corta los sprites en bandas; usa los cuadros completos de apoyo y marcha existentes. El reloj de marcha no avanza en pausa ni contra paredes.
