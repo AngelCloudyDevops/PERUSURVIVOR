@@ -269,3 +269,5 @@ Ciclo visual por mapTime: día hasta 90 s, atardecer hasta 180 s, anochecer hast
 Entrada cómic del Gallinazo: ojo 0–0,55 s, grito 0,55–1,15 s, alas fuera del panel 1,15–1,8 s y ruptura en plumas 1,8–2 s. Viñeta diagonal con azoteas, texto propio y dibujos IA exclusivos. Movimiento reducido usa una viñeta estática de alas. El combate, vulnerabilidad y duración no cambian.
 
 Garúa solo en Campo de Marte: 1:00–1:25, 2:30–2:55 y 4:00–4:25, con transiciones de tres segundos. Es visual, tenue y por debajo del combate. Los demás mapas no cambian; movimiento reducido la desactiva.
+
+Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
