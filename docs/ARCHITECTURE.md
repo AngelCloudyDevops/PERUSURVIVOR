@@ -651,3 +651,5 @@ El cierre del asiento converge al anclaje y ancho de cabeza del jinete de la mon
 ### Atlas Chosicano v2
 chosicano-v2 conserva la cuadrícula 3×2 y la medición por alfa del renderer. PNG fuente y prompt permanecen en Git; solo WebP v2 va al runtime, con v1 archivado para evitar duplicar la descarga. No cambian colisiones, balance ni tiempos.
 La revelación del dragón incorpora un reflector cenital sobre la máquina. El aletazo mueve pliegues de cortinas y lámparas colgantes con amortiguación y desplaza una ráfaga de polvo por el suelo. En cooperativo aparece el personaje real del compañero, con pequeños saltos y celebración al revelar el dragón (más marcada con el secreto). Todo es visual, deriva de la edad de la ulti y no mueve ni modifica jugadores. Movimiento reducido conserva iluminación y texto, sin saltos o sacudidas.
+
+El compañero celebra el dragón secreto con una silueta completa de brazos levantados y cara alegre; cuy y paloma usan patitas o alas. El atlas cubre los 21 personajes y conserva escala corporal y anclaje de pies, sin estirar miembros. El salto se reduce para destacar el gesto. Arte y prompt: docs/COMPANION_CHEER_ART.md.
