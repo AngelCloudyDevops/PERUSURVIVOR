@@ -637,3 +637,5 @@ DomainFinale conserva el reporte durante 3 segundos y calcula su edad con ese in
 ChosicanoCombat administra defeat/defeatTick y una pose pura por tiempo de simulación. Usa encounter.defeat como Fujimori y Gallinazo: actor separado de enemigos, actualización exclusiva y retorno único mediante Encounters.win. ChosicanoArt conserva el cuadro entero del frenazo y añade humo pixelado y cartel; sin partículas persistentes ni atlas nuevos.
 
 Corrección visual de Cristorata: las poses completas del atlas cristorata-reaction-v2 sustituyen los recortes de brazos y piernas. El dibujo conserva sus proporciones al señalar y subir; el Tricéfalo aparece completo sin cortes horizontales. Véase docs/CRISTORATA_REACTION_ART.md para origen y prompt.
+
+Cristorata usa doce poses completas del atlas reaction-v3 para señalar, girar, elevar la rodilla y sentarse. La escala común y el anclaje de cabeza evitan saltos de tamaño y posición. Reacción y subida comparten la misma selección de cuadro y una inclinación continua; sin fundidos o siluetas dobles. Documentación de arte: docs/CRISTORATA_REACTION_ART.md.
