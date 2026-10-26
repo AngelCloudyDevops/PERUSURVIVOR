@@ -278,3 +278,6 @@ Los repetidos mantienen su devolución de monedas y añaden una copia del mismo 
 ### Balance de los 18 causas
 Comparación reproducible de ataques base y evolucionados contra blancos cercanos, medios, jefe móvil, filas y enemigos alrededor. Se moderan bumeranes, ráfagas y nubes dominantes y se refuerzan Cristorata, Cuy, Alberto y Cerdito. Consulta [los valores y motivos](docs/ROSTER_BALANCE.md). La rareza de colección no multiplica estadísticas; cada rol conserva ventajas y límites. Las fichas muestran el catálogo actualizado.
 
+
+## Tribunal legendario de Fujimori
+La sentencia conserva 340 u y añade grietas y onda doradas, expedientes «CASO ARCHIVADO» sobre los minions eliminados y escudo Expediente de 3 s para los jugadores vivos. Jefes alcanzados reciben 8 % de vida máxima (tope 200, no letal) y +20 % de daño recibido durante 5 s. Respeta fases invulnerables de entrada y la ulti del Gallinazo. No acumula vulnerabilidad ni recarga por sus propias bajas. Prueba: Ajustes → Probar ulti de Fujimori → Q; Recargar ulti y Reponer objetivos permiten repetir.
