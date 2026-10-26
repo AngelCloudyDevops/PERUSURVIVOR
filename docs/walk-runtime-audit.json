@@ -1,0 +1,185 @@
+{
+  "encoding": "nearest-neighbor 900px width, lossless WebP",
+  "assets": [
+    {
+      "id": "alan",
+      "source": "alan-walk-v1.webp",
+      "runtime": "alan-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "c17e113d282a0247679f815889db187c5d9223b6f3f187feab8f3a6a9743d34c",
+      "sha256": "4a7c1f8d90e27e2450a5fb0bc2810c0699e04bf47b4f7b9ffb2955cd4171c8d4",
+      "savedBytes": 355916
+    },
+    {
+      "id": "alberto",
+      "source": "alberto-walk-v1.webp",
+      "runtime": "alberto-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "2e3488b801a6f8720157dbfefaef1583dea6ce440bd9737680379e36a202988c",
+      "sha256": "af40c577649ff18ac68336831e182abd93dcc4fbd29dc0caef15af0f0d54d2ac",
+      "savedBytes": 412772
+    },
+    {
+      "id": "axelbenba",
+      "source": "axelbenba-walk-v1.webp",
+      "runtime": "axelbenba-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "8c0ea6df8f2ff6586be9b09ba3250b53f3a3e8fa97187c4722c614f55d55920e",
+      "sha256": "eed157f0b6a33038a5e24dc6a86d02f256faffb17eec234c4979dda25e617063",
+      "savedBytes": 305386
+    },
+    {
+      "id": "cerdito",
+      "source": "cerdito-walk-v1.webp",
+      "runtime": "cerdito-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "04adf61c923360d40e8f42b754c36d903354f64c230f7df9463bfbd1b2130642",
+      "sha256": "596882650770dae431f4445ac5eb5ae14e3781b55b625a8bf5ea369d0325551e",
+      "savedBytes": 328158
+    },
+    {
+      "id": "cevichero",
+      "source": "cevichero-walk-v1.webp",
+      "runtime": "cevichero-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "5f03750de924fbc956e59ef5c37217f9fe619cd665409263448f92f180f1ee39",
+      "sha256": "4d993a96ba4ce75c8044d3a0818500fbb198b4e0b2725944701eb3a95fe657bc",
+      "savedBytes": 390266
+    },
+    {
+      "id": "charles",
+      "source": "charles-walk-v1.webp",
+      "runtime": "charles-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "e6d2bb4d2f9f234ad54064978a8f2f8d56ee72d27e2c63237cfac947fb0dd154",
+      "sha256": "116ad72c93a00a2632594b2b34e4fe472b8591127002833f60d72d52c01c6cfc",
+      "savedBytes": 426452
+    },
+    {
+      "id": "cirilo",
+      "source": "cirilo-walk-v1.webp",
+      "runtime": "cirilo-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "d4ef6053185f207b9749cfd93800247c70025f70153556ac21db9f85d86b1d61",
+      "sha256": "9f090f47df81669745e1a82fea67c776fbea853423cb014c661405d19f17271f",
+      "savedBytes": 315062
+    },
+    {
+      "id": "cristorata",
+      "source": "cristorata-walk-v1.webp",
+      "runtime": "cristorata-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "7f4072deb450face6537f7af7169dcd4dc368f111532e9f8aecc80a61831031a",
+      "sha256": "ba5d4d17e8b73dcfeea49288cf812cf471d1da5b2c65f66d0a4423a0beeb8b43",
+      "savedBytes": 393160
+    },
+    {
+      "id": "cuy",
+      "source": "cuy-walk-v1.webp",
+      "runtime": "cuy-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "a1fd65b5eb70942638019d76e63a5423ce3bca8ca5069b32652bac124606854b",
+      "sha256": "b62663e55ba9ea82b890650377d101e6562c46e472f67820bd9ec42a11110c19",
+      "savedBytes": 281772
+    },
+    {
+      "id": "fuzo",
+      "source": "fuzo-walk-v1.webp",
+      "runtime": "fuzo-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "d3bf43231f721244aa22614c848c6780105b15cdd9cb3f0eda492ddfbbf02cfd",
+      "sha256": "99173f544eced8ff6fb3d05be667516a234db5e4e24d4d4bdcc2ee33ea37907e",
+      "savedBytes": 307448
+    },
+    {
+      "id": "g5",
+      "source": "g5-walk-v1.webp",
+      "runtime": "g5-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "3aa816b00a2577b02c89f722e6e4cac418f6da0967b82c7e964c8ef7e0499a9e",
+      "sha256": "2dd67bc83c6272df7ddc480cc0371e429e651c98f8f645cbfe85a44e1ae64617",
+      "savedBytes": 351624
+    },
+    {
+      "id": "keiko",
+      "source": "keiko-walk-v1.webp",
+      "runtime": "keiko-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "7fb7eb0f20bda70ddd330f46186c3dcf7c5d7dd94f53658403aca5bee30fd02e",
+      "sha256": "7c5bd1c6154da35f740b7d6d486d2b8c32a07d472055c3a15c6a2be886e578b5",
+      "savedBytes": 325534
+    },
+    {
+      "id": "kingteka",
+      "source": "kingteka-walk-v1.webp",
+      "runtime": "kingteka-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "15584f046d9118c811f15dc1944de1ada0ed9fc2ecc582c64c76b1959d0cfabf",
+      "sha256": "35bbd10c9d95a600f0e4837ed4c62e92eaffc510d5a4f88e2679b4cb895460c0",
+      "savedBytes": 341116
+    },
+    {
+      "id": "najasor",
+      "source": "najasor-walk-v1.webp",
+      "runtime": "najasor-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "1ff27f1dca0ad3673c2335b3060ae16afb1cf3804490c30faa64d802a2a16466",
+      "sha256": "958868d58361cd16a0638e3316e43393e827918ced26600ae16a259d1e1e8db9",
+      "savedBytes": 375226
+    },
+    {
+      "id": "ollanta",
+      "source": "ollanta-walk-v1.webp",
+      "runtime": "ollanta-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "92f399d1f15cefc99d81c4c76b7b214d9519d5cfb70bb7bdc0ffbb75a1b39239",
+      "sha256": "89ee6c93a13bba9f07686373fc86e85ac8424034f3fad2bf672353c0a3c9f9ab",
+      "savedBytes": 329506
+    },
+    {
+      "id": "paloma",
+      "source": "paloma-walk-v1.webp",
+      "runtime": "paloma-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "311fb1e9b222b7aa532d3691267974907f604502ee2e1e28c61ba4dd45ab51c2",
+      "sha256": "f0d21c69b283436d1486bc9cf9ce574ced91d733ed0d7124180a4f85357d099a",
+      "savedBytes": 251152
+    },
+    {
+      "id": "shaka",
+      "source": "shaka-walk-v1.webp",
+      "runtime": "shaka-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "bc9a4b7b160c5db126a5dcea04a2c39b1888f99271e5d379c15e9497224c5c2d",
+      "sha256": "6a5453bc9a6d302b34a52b6ff4efb26ef9b2346f1938880eaa1603768e3d40fd",
+      "savedBytes": 357784
+    },
+    {
+      "id": "sustento",
+      "source": "sustento-walk-v1.webp",
+      "runtime": "sustento-walk-v2.webp",
+      "width": 900,
+      "height": 900,
+      "sourceSha256": "abe028903f88dfc23e6152c11dea8b52450643eee7c77d55c0f63206fbdfec6c",
+      "sha256": "a31d7a7e63acf4281822fcf9e91f756cf164620a47d0c870470dd2ecbb933f69",
+      "savedBytes": 319668
+    }
+  ]
+}
