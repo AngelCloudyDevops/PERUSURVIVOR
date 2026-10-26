@@ -4,6 +4,11 @@
 
 # Cambios
 
+## Iconos de objetos como arte de carta — 2026-10-26
+- Las cartas de Blink Dagger, Magic Stick y demás objetos muestran su logo centrado como imagen principal, sin repetir el sprite del personaje.
+- Las cartas de poderes y armas conservan sus escenas ilustradas.
+
+
 ## Cartas full art de Kingteka — 2026-10-26
 - Reemplaza la franja pequeña por ilustraciones pixel art que llenan el frente, con poses distintas para escopeta, Gallinazo y golpe cuerpo a cuerpo.
 - Superpone rareza, nombre, efecto y comparación en una placa legible; conserva el giro y los destellos por rareza.
