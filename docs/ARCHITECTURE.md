@@ -1,5 +1,8 @@
 # Arquitectura
 
+## Dominio de Makanaky: combos y cámaras
+Domain serializa combo, comboTimer, step, strike, punchLength, move, impact y freeze; autoridad idéntica en cliente individual y servidor cooperativo. Domain.camera permanece local y no se transmite. Microparada de 45 ms solo detiene desplazamiento visual de objetivos/suelo, no el reloj ni la red. DomainArt mantiene el mapa original bajo la tarjeta y cambia al callejón después; rayos y poses se dibujan en el lienzo pixel sin suavizado. El enlace practice=makanaky reutiliza TestBench con comprobación del rol administrador existente.
+
 ## Dominio UR de Makanaky (prototipo)
 Domain mantiene un único encuentro autoritativo en state.domain. Cada objetivo referencia domainKey del enemigo real; los HP y callbacks de botín siguen usando Entities.hurt y la victoria se difiere hasta cerrar la escena. Simulation congela el combate y el reloj base, recibe punch/domainAim/ga validados y serializa el encuentro para ambos clientes. El propietario usa primera persona; el compañero ve a Makanaky desde atrás y queda protegido. No se cambian las coordenadas originales de jugadores o enemigos. DomainArt renderiza el callejón con perspectiva a 640×360 sin suavizado y controles táctiles.
 
@@ -480,6 +483,7 @@ Entregas en vivo v4: `/api/events?account=UUID` usa SSE con cookie HttpOnly, cue
 
 
 VultureRig.cardLayout y cardEnvelope separan geometría adaptable y tiempos cosméticos. card reutiliza un canvas de retrato, sin descargas ni timers; proyecta su sombra y compone trama/rayos, arcos del grito, plumas y marco en el canvas principal. No altera la jerarquía articulada ni el estado de combate. VultureMoon.overlay sincroniza body.vulture-card en todas las fases para ocultar el laboratorio durante la entrada y restituirlo al despegar. La prueba cubre límites de composición en escritorio/móvil, título escalonado, movimiento reducido y ausencia de mutaciones de simulación.
+
 
 VultureRig usa rigTime, avanzado por tickVisuals, para movimiento continuo de segunda fase. El render no avanza el reloj; pausa y movimiento reducido conservan una pose estable. No aplica filtros de color al atlas.
 La paleta de plumas se precalcula en ocho pasos al cargar el rig, sin fundido de imágenes ni filtros por fotograma. La selección depende del progreso de transformación; conserva la luminancia de los detalles.

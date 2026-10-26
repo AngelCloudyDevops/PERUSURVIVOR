@@ -1,5 +1,8 @@
 # PERUSURVIVOR — Causas del Caos
 
+## Dominio de Makanaky: combos y cámaras
+El dominio de Makanaky ahora encadena jab, jab, cruzado y uppercut, con racha ¡GA! independiente de la energía, impactos y rayos violetas. V o el botón cambia entre primera y tercera persona sin alterar el combate. La tarjeta aparece durante 1,3 s sobre el mapa original antes del callejón. Prueba directa de administrador: /?practice=makanaky tras iniciar sesión; incluye Recargar dominio y Reponer objetivos.
+
 ## Prototipo: dominio de Makanaky
 El UR usa Expansión de dominio con Q (35 bajas). Entra al callejón en primera persona: A/D o flechas para esquivar, ratón para apuntar, clic/Espacio para golpear. En cooperativo el compañero se refugia detrás y puede pulsar ¡GA!. En el laboratorio de administrador, elige Makanaky y activa recarga automática; conserva los permisos existentes. Daño a jefes y arte del callejón son provisionales.
 
@@ -340,6 +343,9 @@ Las entregas administrativas se reciben en vivo durante la sesión: monedas y pe
 ## Música de fondo opcional
 
 En la cabecera, abre **Música ♫** y elige **Original del juego**, **Tema 1**, **Tema 2**, **Alternar ambas** o **Sin música**. Las dos pistas aportadas por el usuario se reproducen en bucle; el volumen y la selección se guardan en este navegador. El botón general de sonido también las silencia. Pausa, menú, pestaña oculta y pérdida de foco detienen su reproducción y conservan la posición para continuar.
+
+Las pistas WebM/Opus se solicitan únicamente al reproducir la opción elegida: no forman parte de la descarga inicial. Un solo reproductor sustituye a la melodía sintetizada, conservando efectos y ambiente. Si falla la carga, se recupera la música original.
+
 
 Las pistas WebM/Opus se solicitan únicamente al reproducir la opción elegida: no forman parte de la descarga inicial. Un reproductor en modo individual y hasta dos al alternar sustituyen a la melodía sintetizada, conservando efectos y ambiente. Si falla la carga, se recupera la música original.
 
