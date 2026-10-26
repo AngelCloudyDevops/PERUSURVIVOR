@@ -43,7 +43,7 @@ receive(m){
  const votes=m.portal?.votes||[];if(m.portal?.open)P.$('#portal-status').textContent+=' · Listos '+votes.length+'/2 · Ambos cerca y E';P.$('#portal-enter').textContent=votes.includes(this.session.slot)?'Listo · E para cancelar':'Entrar juntos al portal · E';
  P.$('#hint').textContent=m.message||(s.player.hp<=0?'CAÍSTE · TU AMIGO PUEDE REANIMARTE ACERCÁNDOSE 4 S':'COOPERATIVO · EXPLORA COFRES, PORTALES Y EVENTOS CON TU AMIGO');
  this.showReward(m.pending);
- if(m.result&&!this.resultShown){this.resultShown=true;this.paused=true;const show=()=>P.UI.show(m.result==='win'?'¡Ganaron, causas!':'Cayó el equipo.',m.kills+' rivales · '+P.Core.clock(m.elapsed),[{title:'Volver al menú',action:()=>{this.leave();P.UI.menu()}}]);if(m.result==='lose')P.PlayerFeedback.finish(show);else show()}
+ if(m.result&&!this.resultShown){this.resultShown=true;this.paused=true;const show=()=>{P.UI.show(m.result==='win'?'¡Ganaron, causas!':'Cayó el equipo.',m.kills+' rivales · '+P.Core.clock(m.elapsed),[{title:'Volver al menú',action:()=>{this.leave();P.UI.menu()}}]);P.Meta.decorate()};P.Meta.result(m.result==='win',m);if(m.result==='lose')P.PlayerFeedback.finish(show);else show()}
 },
 showReward(pending){
  this.activityPending=!!pending;const key=pending?pending.id+':'+pending.phase+':'+pending.applied[this.session.slot]:'';if(key===this.activityKey)return;this.activityKey=key;
@@ -53,7 +53,7 @@ showReward(pending){
  if(pending.phase==='opening'){P.UI.show('Abriendo cofre…','La sala está en pausa para los dos.',[leave]);return}
  if(pending.applied[this.session.slot]){P.UI.show('Recompensa elegida','Esperando la elección de tu compañero…',[leave]);return}
  const choose=choice=>this.send({type:'activity',action:'choose',id:pending.id,choice});let buttons,title,description;
- if(pending.kind==='level'){title='¡SUBIERON DE NIVEL!';description='NIVEL '+P.state.level+' · Cada jugador elige 1 de 3 poderes. La sala está en pausa.';buttons=pending.options[this.session.slot].map((o,i)=>({title:o.title,description:o.description,action:()=>choose(i)}))}
+ if(pending.kind==='level'){title='¡SUBIERON DE NIVEL!';description='NIVEL '+P.state.level+' · Cada jugador elige 1 de 3 poderes. La sala está en pausa.';buttons=pending.options[this.session.slot].map((o,i)=>({title:o.title,description:o.description,card:P.UI.upgradeCard(o),action:()=>choose(i)}))}
  else if(pending.kind==='portal-reward'){title='¡Vencieron al jefe del portal!';description='Cada uno elige una mejora. El juego continúa cuando ambos terminen.';buttons=[{title:'Poder del portal · +30% de daño',action:()=>choose(0)},{title:'Corazón de la arena · +40 vida máxima y curación',action:()=>choose(1)},{title:'Ritmo del campeón · Ataques 25% más frecuentes',action:()=>choose(2)}]}
  else if(pending.kind==='mini-reward'){const item=P.Loot.items[pending.item];title='Recompensa exclusiva · '+item.name;description=item.description+' · Reemplaza tu accesorio. Cada jugador elige; las monedas van al equipo.';buttons=[{title:(P.state.player.equipment===pending.item?'Ya equipado: ':'Equipar ')+item.name,disabled:P.state.player.equipment===pending.item,action:()=>choose(0)},{title:'Cobrar '+P.Relics.coins+' monedas',action:()=>choose(1)}]}
  else {const item=P.Loot.items[pending.item];title=P.Loot.rarity(pending.rarity).name+' · '+item.name;description=item.description+' · Cada jugador recibe su propia recompensa.';buttons=[{title:(item.consumable?'Beber ':'Equipar ')+item.name,action:()=>choose(0)},{title:'Conservar mi equipo',action:()=>choose(1)}]}

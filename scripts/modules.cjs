@@ -48,12 +48,20 @@ module.exports = [
     "output": "js/enemy-art.js"
   },
   {
+    "source": "src/systems/minion-evolution.js",
+    "output": "js/minion-evolution.js"
+  },
+  {
     "source": "src/rendering/power-effects.js",
     "output": "js/power-fx.js"
   },
   {
     "source": "src/rendering/effects.js",
     "output": "js/fx.js"
+  },
+  {
+    "source": "src/systems/meta-progress.js",
+    "output": "js/meta-progress.js"
   },
   {
     "source": "src/entities/actors.js",
@@ -96,7 +104,11 @@ module.exports = [
     "output": "js/vulture-cinematic.js"
   },
   {
-    "source": "src/rendering/vulture-strike-art.js", "output": "js/vulture-strike-art.js"
+    "source": "src/rendering/vulture-strike-art.js",
+    "output": "js/vulture-strike-art.js"
+  },
+  {
+    "source": "src/systems/vulture-impact.js", "output": "js/vulture-impact.js"
   },
   {
     "source": "src/systems/encounters.js",
@@ -127,13 +139,17 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
+    "source": "src/rendering/campo-art.js", "output": "js/campo-art.js"
+  },
+  {
     "source": "src/rendering/garden-art.js", "output": "js/garden-art.js"
   },
   {
     "source": "src/rendering/street-art.js", "output": "js/street-art.js"
   },
   {
-    "source": "src/rendering/plaza-art.js", "output": "js/plaza-art.js"
+    "source": "src/rendering/plaza-art.js",
+    "output": "js/plaza-art.js"
   },
   {
     "source": "src/rendering/ambient.js",
