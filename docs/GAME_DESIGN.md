@@ -708,3 +708,6 @@ Primera entrega social: buscar usuario exacto, solicitud de amistad aceptada por
 La revelación secreta encadena un falso resultado Jade, un último giro, vapor y un seguro que salta al dorarse la máquina. Los ojos preceden a cada cabeza con desplazamientos propios; Cristorata retrocede y extiende el brazo durante su frase. El dragón se inclina para la subida y el aleteo final levanta polvo. Todo deriva de la edad autoritativa de la ulti, conserva los 6,4 s y la pausa compartida; movimiento reducido omite sacudidas, vapor y ráfagas. No añade daño ni entidades.
 
 El marco eléctrico de resultado se sustituye por vapor morado pixel art translúcido con chispas en los cuatro bordes. Dura exactamente los mismos 2 s; aumenta volumen, densidad y chispas desde combo máximo ×16. Ocupa como máximo 34 px de profundidad normal y 42 px intenso, reducidos proporcionalmente en móvil. No cruza el centro ni intercepta controles. Movimiento reducido conserva nubes estáticas sin chispas y solo funde la opacidad. El cartel, coronas, INTOCABLE y sus sonidos no cambian.
+
+### Chosicano: ¡Al fondo hay sitio!
+Tercer ataque tras carga y bocinazo: aviso de 1.2 s con puerta y cobrador, cinco boletos de trayectoria fija (220 unidades/s, 11 de daño), hueco central y bloqueo por coberturas. Recupera 1.1 s; la puerta cierra en 0.3 s. Sin persecución ni nuevos enemigos.
