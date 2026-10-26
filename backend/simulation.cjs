@@ -30,6 +30,7 @@ class Simulation{
   if(!alive.length){this.result='lose';return}
   if(this.activities.pending){this.activities.advance(dt);return}
   if(s.encounter?.defeat){s.mode='play';this.use(alive[0]);const kind=s.encounter.definition.kind;if(kind==='combi')P.ChosicanoCombat.defeatTick(dt);else if(kind==='fujimori')P.FujimoriBoss.defeatTick(dt);else P.Vulture.defeatTick(dt);if(s.encounter?.defeat?.finished)this.activities.tick(0);return}
+  P.ChosicanoDomain.tryStart();if(s.roadDomain){P.ChosicanoDomain.tick(dt,inputs);return}
   if(s.domain){P.Domain.tick(dt,inputs);return}
   if(s.court){this.use(this.players[s.court.slot]);P.Court.tick(dt);return}if(P.DragonUltimate?.advanceScene(dt,this.players))return;P.Court.burstTick(dt);
   s.mode='play';s.elapsed+=dt;if(!s.encounter)s.mapTime+=dt;this.use(alive[0]);P.Chunks.sync();P.Encounters.tick();P.Systems.spawn(dt);
@@ -56,6 +57,6 @@ class Simulation{
   if(!this.players.some(p=>p.hp>0))this.result='lose';
   if(!this.result)this.activities.tick(dt);
  }
- snapshot(){const P=this.P,s=P.state;return {...this.activities.snapshot(),team:this.team.snapshot(),domain:s.domain||null,domainAftermath:s.domainAftermath||null,sideralDomain:s.sideralDomain?{...s.sideralDomain,roomProps:undefined}:null,court:s.court||null,courtBurst:s.courtBurst||null,map:P.Maps.selected,result:this.result,elapsed:s.elapsed,mapTime:s.mapTime,miniWarning:s.miniWarning,miniReport:s.miniReport,kills:s.kills,level:s.level,xp:s.xp,need:s.need,bossSpawned:s.bossSpawned,players:this.players.map(({shots,fields,ultimate,...p})=>({...p,ultimate:{...ultimate,seen:undefined,trails:ultimate.trails.map(({shots,fields,ultimate,...trail})=>trail)}})),shots:this.players.flatMap(p=>p.shots.map(({hits,...q})=>q)),fields:this.players.flatMap(p=>p.fields),enemies:s.enemies,gems:s.gems,danger:s.danger,effects:s.effects,coins:s.coins,broken:[...P.Chunks.broken,...P.Terrain.originProps.filter(p=>p.kind==='crate'&&!p.solid).map(p=>p.id)]}}
+ snapshot(){const P=this.P,s=P.state;return {...this.activities.snapshot(),team:this.team.snapshot(),roadDomain:s.roadDomain||null,domain:s.domain||null,domainAftermath:s.domainAftermath||null,sideralDomain:s.sideralDomain?{...s.sideralDomain,roomProps:undefined}:null,court:s.court||null,courtBurst:s.courtBurst||null,map:P.Maps.selected,result:this.result,elapsed:s.elapsed,mapTime:s.mapTime,miniWarning:s.miniWarning,miniReport:s.miniReport,kills:s.kills,level:s.level,xp:s.xp,need:s.need,bossSpawned:s.bossSpawned,players:this.players.map(({shots,fields,ultimate,...p})=>({...p,ultimate:{...ultimate,seen:undefined,trails:ultimate.trails.map(({shots,fields,ultimate,...trail})=>trail)}})),shots:this.players.flatMap(p=>p.shots.map(({hits,...q})=>q)),fields:this.players.flatMap(p=>p.fields),enemies:s.enemies,gems:s.gems,danger:s.danger,effects:s.effects,coins:s.coins,broken:[...P.Chunks.broken,...P.Terrain.originProps.filter(p=>p.kind==='crate'&&!p.solid).map(p=>p.id)]}}
 }
 module.exports={Simulation};

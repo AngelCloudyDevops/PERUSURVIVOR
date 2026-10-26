@@ -356,4 +356,6 @@ module.exports = [
 , {source:"src/systems/dragon-ultimate.js",output:"js/dragon-ultimate.js"}
 , {source:"src/rendering/dragon-art.js",output:"js/dragon-art.js"}
 , {source:"src/rendering/dragon-epic.js",output:"js/dragon-epic.js"}, {source:"src/network/friends.js",output:"js/friends.js"}
+, {source:"src/systems/chosicano-domain.js",output:"js/chosicano-domain.js"}
+, {source:"src/rendering/chosicano-road.js",output:"js/chosicano-road.js"}
 ];
