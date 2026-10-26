@@ -423,3 +423,9 @@ Catálogo de minijefes separa clave visual de mapa mediante map opcional. miniKe
 AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
 
 VultureRig.arenaMotion conserva motion(4) durante la gracia y dirige la misma jerarquía de piezas en combate, sustituyendo el regreso al atlas de poses de fase II. Las poses de carga, ráfaga y picada comparten anclaje de torso/patas. La máscara del torso conserva patas y pecho y delimita con borde dentado la zona de ala plegada ya pintada en el asset; no modifica archivos de imagen ni colisiones.
+## Cuentas y persistencia privada
+
+`backend/accounts.cjs` proporciona autenticación scrypt, sesiones HttpOnly y copias SQLite con control optimista de revisión. Comparte el servidor HTTP del servicio cooperativo cuando `ACCOUNTS_DB` está configurado. `src/network/account.js`, cargado al final, conecta el diálogo de cuenta y las transacciones de progreso sin tocar el renderizado. El guardado invitado y los de cada cuenta tienen namespaces separados. El volumen está fuera de la release y de la raíz web. Esquema, confianza del cliente, operación y restauración: [ACCOUNTS.md](ACCOUNTS.md).
+
+# Configuración de apoyos de laboratorio
+`TestBench.supports()` normaliza dos espacios y elimina duplicados. `attackFixture()` aplica sus rangos, evoluciones y combos compatibles mediante `Progression.apply`. La firma de `applyAttack()` incluye toda la configuración; reconstruye los campos de arma y apoyos, borra evoluciones retiradas, reinicia temporizadores y sustituye los combos sin acumulación. La ejecución conserva el tick y render de `Progression` existentes. Las pruebas recorren los apoyos/rangos de los 18 causas con daño real y verifican los dos combos, retirada, cambio de escenario/jefe y salida limpia.
