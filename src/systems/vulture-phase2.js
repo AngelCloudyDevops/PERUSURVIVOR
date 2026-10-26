@@ -87,15 +87,13 @@ P.VulturePhase2 = {
     }
     P.Audio.play('vulture-wing');
   },
+  rakePlan(e,index){const count=9,step=.18,speed=210,life=3,shift=index ? .12 : -.12,offset=e.aim-(count-1)*step/2+shift;return {count,step,speed,life,maxRange:speed*life,angles:Array.from({length:count},(_,i)=>offset+i*step)}},
   fire(e,index){
     const s=P.state;
     if(e.chaosAttack==='storm'){
       const q=e.chaosTargets[index];if(q&&s.danger.length<70)s.danger.push({...P.Attributes?.source(e,'special'),...q,vx:0,vy:0,age:0,history:[],life:.22,kind:'stomp',glyph:'CHAOS_LIGHTNING',radius:46,damage:18,color:'#bc8df1'});
     }else{
-      for(let i=0;i<9&&s.danger.length<70;i++){
-        const a=e.aim+(i-4)*.18+(index? .12:-.12),speed=210;
-        s.danger.push({...P.Attributes?.source(e,'special'),x:e.x,y:e.y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,age:0,life:3,history:[],kind:'zigzag',glyph:'FEATHER',chaosFeather:true,heavyFeather:false,damage:14,color:'#bc8df1'});
-      }
+      const plan=this.rakePlan(e,index);for(const a of plan.angles){if(s.danger.length>=70)break;s.danger.push({...P.Attributes?.source(e,'special'),x:e.x,y:e.y,vx:Math.cos(a)*plan.speed,vy:Math.sin(a)*plan.speed,age:0,life:plan.life,history:[],kind:'zigzag',glyph:'FEATHER',chaosFeather:true,heavyFeather:false,damage:14,color:'#bc8df1'})}
     }
     P.Audio.play(e.chaosAttack==='storm'?'vulture-impact':'vulture-feather');
   },
@@ -115,7 +113,7 @@ P.VulturePhase2 = {
       if(until>0){c.beginPath();c.arc(q.x,q.y,46*Math.max(0,until/1.46),0,Math.PI*2);c.stroke()}
       c.fillStyle='#f4d9ff';c.fillRect(q.x-2,q.y-10,4,20);c.fillRect(q.x-10,q.y-2,20,4);
     }
-    else if(t<1.52){c.translate(e.x,e.y);c.rotate(e.aim);const radius=285,half=.66;c.fillStyle='#9760c816';c.strokeStyle='#ddb3ff';c.beginPath();c.moveTo(0,0);c.arc(0,0,radius,-half,half);c.closePath();c.fill();c.stroke();c.globalAlpha=.48;for(const a of [-half,-half*.5,0,half*.5,half]){c.beginPath();c.moveTo(Math.cos(a)*72,Math.sin(a)*72);c.lineTo(Math.cos(a)*radius,Math.sin(a)*radius);c.stroke()}c.globalAlpha=1}
+    else if(t<1.52){const first=this.rakePlan(e,0),second=this.rakePlan(e,1),angles=[...first.angles,...second.angles].sort((a,b)=>a-b);P.Encounters.projectileWarning(c,e,angles,first.maxRange,{stroke:'#ddb3ff',fill:'#9760c816'})}
     c.restore();
     this.warningLabel(c,e,e.chaosAttack==='storm'?'¡TORMENTA DE PLUMAS! · SAL DE LOS CÍRCULOS':'¡PLUMAS SERPIENTE! · BUSCA COBERTURA');
   },
