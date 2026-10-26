@@ -649,3 +649,6 @@ El cierre del asiento converge al anclaje y ancho de cabeza del jinete de la mon
 ### Atlas Chosicano v2
 chosicano-v2 conserva la cuadrícula 3×2 y la medición por alfa del renderer. PNG fuente y prompt permanecen en Git; solo WebP v2 va al runtime, con v1 archivado para evitar duplicar la descarga. No cambian colisiones, balance ni tiempos.
 La revelación del dragón incorpora un reflector cenital sobre la máquina. El aletazo mueve pliegues de cortinas y lámparas colgantes con amortiguación y desplaza una ráfaga de polvo por el suelo. En cooperativo aparece el personaje real del compañero, con pequeños saltos y celebración al revelar el dragón (más marcada con el secreto). Todo es visual, deriva de la edad de la ulti y no mueve ni modifica jugadores. Movimiento reducido conserva iluminación y texto, sin saltos o sacudidas.
+
+### Dominio vial del Chosicano
+roadDomain es un estado serializable independiente del dominio de Makanaky. ChosicanoDomain usa Court.players en cliente y servidor, carriles virtuales por slot, tres cruces temporales únicos y dirección bloqueada al aviso. Game y Simulation suspenden combate normal durante su ciclo; el snapshot transmite el estado completo. ChosicanoRoad dibuja un espacio vial propio con los sprites existentes; no altera coordenadas reales ni precarga nuevos atlas. Reiniciar y derrotar limpian el estado.
