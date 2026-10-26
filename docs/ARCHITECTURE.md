@@ -579,6 +579,8 @@ DomainIntro.pose expone announce/anticipation/handoff a partir de domain.age; fe
 
 TestBench.dragon mantiene una preferencia local y temporal del selector existente del laboratorio. DragonUltimate.variantForRun valida contexto, rol, variante y ausencia de cooperativo/servidor antes de usarla al activar; cualquier otro caso llama pick(). No añade datos de variante al protocolo de red.
 
+DragonEpic.environmentPose deriva oro, sombra, polvo, piedras, viento y sacudida del reloj de cinemática; environment dibuja un número fijo de primitivas sin entidades, timers ni listas de partículas. surface mantiene dos superficies raster cacheadas (marco dorado y luz cálida del actor), reutiliza el atlas original y conserva alfa y contornos. La revelación normal reutiliza los efectos de caída con secret=false.
+
 DragonUltimate.introFor/sceneFor conservan la duración por variante tanto en la simulación como en la protección, pausa y HUD. DragonEpic deriva cabezas, ruptura y despegue únicamente de dragon.age y reutiliza el atlas existente sin decidir daño. Los límites temporales se ajustan con tolerancia numérica para devolver exactamente ocho segundos al salir de la cinemática.
 
 La variante 3 de DragonUltimate es el secreto; pick(roll) concentra la regla del 5 %. hitElement comparte las tres mecánicas sin duplicar fuentes ni listas: chaosPulses/elements/burstAt se serializan por jugador. DragonArt carga el atlas secreto bajo demanda, conserva figuras fuera de celdas nominales y aplica corte de alfa a 160 para eliminar halos y conservar contornos nítidos. secretFeedback identifica cada lanzamiento con cast y limita los tres rugidos a una vez por jugador.
