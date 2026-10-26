@@ -4,6 +4,7 @@
 - Añade el acceso «Objetos de Dota» al menú Habilidades.
 - Presenta objetos y evoluciones con sprites pixel art propios, efectos adaptados, rarezas y niveles de aparición.
 - Permite volver a la ficha del personaje o cerrar el menú; no altera la partida ni el inventario.
+- Conserva los combos ya desbloqueados entre las tres opciones aunque se mezclen cartas de objetos.
 
 ## Objetos de Dota 2 como cartas de equipo — 2026-10-26
 - Añade Boots of Speed con cinco evoluciones, Magic Stick → Magic Wand y Blink Dagger con tres ramas.
