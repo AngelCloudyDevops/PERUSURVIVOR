@@ -84,7 +84,8 @@ module.exports = [
     "output": "js/minibosses.js"
   },
   {
-    "source": "src/rendering/vulture-dark-scene.js", "output": "js/vulture-cinematic.js"
+    "source": "src/rendering/vulture-dark-scene.js",
+    "output": "js/vulture-cinematic.js"
   },
   {
     "source": "src/systems/encounters.js",
@@ -137,6 +138,10 @@ module.exports = [
   {
     "source": "src/rendering/world.js",
     "output": "js/world.js"
+  },
+  {
+    "source": "src/ui/skill-preview.js",
+    "output": "js/skill-preview.js"
   },
   {
     "source": "src/ui/screens.js",
