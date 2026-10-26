@@ -428,6 +428,8 @@ Tarjeta diagonal izquierda de 40 % × 82 % durante 1,3 s, con retrato propio. De
 
 En el laboratorio de administrador, el selector Dragón de Cristorata permite Aleatorio, Jade, Brasa, Trueno o Tricéfalo secreto. La elección se aplica a la próxima ulti: Recargar dragón → Lanzar ulti. Está deshabilitada durante una ulti y no altera el sorteo de partidas normales/cooperativas.
 
+La máquina conserva su color rojo al caer. Solo con el secreto, los tres golpes convierten el marco en oro por franjas ascendentes, manteniendo pantalla, metal y contornos. La caída añade sombra creciente, sacudida breve, polvo lateral, piedritas y grietas visuales; el dorado aporta luz cálida al piso y a Cristorata y el despliegue de alas aparta otra nube de polvo.
+
 La revelación secreta dura 6,4 s después de la tarjeta: avería y silencio breve, tres impactos, cabezas que salen una por una, ruptura con fragmentos, plano grande y despegue hacia la cámara. El combate permanece pausado y los ocho segundos de montura empiezan al terminar.
 
 El Tricéfalo del Caos tiene un 5 % de probabilidad (el 95 % restante se reparte entre los tres dragones normales). Sprite original de tres cabezas, rodillos verde/rojo/azul, grieta, chispas y tres rugidos sintetizados; Cristorata reacciona con ambas manos en la cabeza y el globo ¡¿QUÉ DRAGÓN ES ESEEE?!. Alterna veneno, fuego y rayos y los combina cada ocho pulsos de ataque (dos segundos), conservando ocho segundos de montura.
