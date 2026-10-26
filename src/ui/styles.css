@@ -265,3 +265,5 @@ body.road-scene #ultimate,body.road-scene #mini-boss-hud{visibility:hidden}
 body.road-scene #boss-qte{visibility:hidden}
 
 #road-controls{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:14px;z-index:35}#road-controls[hidden]{display:none}#road-controls button{touch-action:none;background:#172b3e;color:#ffe4a4;border:2px solid #d8ae59;border-radius:8px;padding:14px 24px;font:bold 14px monospace}body.road-scene #hint{visibility:hidden}
+
+.upgrade-dota-icon{object-fit:contain;image-rendering:auto;padding:2px}
