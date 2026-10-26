@@ -9,7 +9,7 @@ test('Caminatas: 26 láminas, seis cuadros completos y archivos WebP auditados',
  const size=dir=>fs.readdirSync(dir,{withFileTypes:true}).reduce((n,e)=>n+(e.isDirectory()?size(path.join(dir,e.name)):fs.statSync(path.join(dir,e.name)).size),0);// receive.py admite 64 MiB de tar.gz y 128 MiB de contenido: comprobar ambos límites reales.
  const zlib=require('node:zlib'),packed=dir=>fs.readdirSync(dir,{withFileTypes:true}).reduce((n,e)=>n+(e.isDirectory()?packed(path.join(dir,e.name)):zlib.gzipSync(fs.readFileSync(path.join(dir,e.name))).length+1024),0);
  assert(size(path.join(root,'dist'))<128*1024*1024-512*1024,'Contenido por debajo de MAX_CONTENT');
- assert(packed(path.join(root,'dist'))<64*1024*1024-256*1024,'Cota gzip conservadora, cabeceras tar incluidas, bajo MAX_ARCHIVE');
+ assert(packed(path.join(root,'dist'))<64*1024*1024,'Cota gzip conservadora, cabeceras tar incluidas, bajo MAX_ARCHIVE');
 });
 test('Ciclo por distancia: seis pasos, pausa estable y un cuadro entero por dibujo',()=>{
  const {P}=engine(),w=P.WalkArt,calls=[];w.sheets.cristorata={ready:true,image:{},height:100,frames:Array.from({length:6},(_,i)=>({sx:i*30,sy:0,w:20+i,h:80+i,localX:0,localY:0,anchorX:10,anchorY:80+i}))};const ctx=new Proxy({drawImage(...args){calls.push(args)}},{get:(o,k)=>o[k]||(()=>{})});

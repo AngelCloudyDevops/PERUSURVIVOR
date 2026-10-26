@@ -293,6 +293,10 @@ module.exports = [
   },
   {"source":"src/rendering/sideral-art.js","output":"js/sideral-art.js"},
   {
+    "source": "src/systems/kingteka-arsenal.js",
+    "output": "js/kingteka-arsenal.js"
+  },
+  {
     "source": "src/systems/animal-ultimates.js",
     "output": "js/animal-ultimates.js"
   },
