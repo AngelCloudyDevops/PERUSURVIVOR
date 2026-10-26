@@ -504,6 +504,8 @@ Práctica de Fujimori: incluye ElZeein de entrenamiento, inmóvil y sin ataques,
 # Laboratorio de combate
 En Ajustes, un único laboratorio permite elegir cualquiera de los 18 causas y probar ataques contra objetivos invencibles o contra un jefe/minijefe. La barra permanece en la arena: cambiar un selector reinicia directamente la prueba, sin regresar al vestíbulo. Ofrece repetir, lanzar las ultis disponibles (Kingteka, Fujimori, Cuy Supremo y Paloma del Centro), recarga automática al terminar la animación, reponer objetivos, curar y activar la ulti del Gallinazo. Se puede minimizar y volver a Ajustes. Las pruebas no gastan mochila ni monedas, no requieren desbloquear el personaje y no guardan récords. La invencibilidad es fija con objetivos y opcional con jefes; el rendimiento conserva su sección independiente.
 
+El selector «Minions al morir» ofrece tres reglas exclusivas del laboratorio: normal, reaparecer e inmortales. En reaparecer, cada minion común derrotado vuelve con toda su vida cerca del jugador después de 0,8 s. En inmortales, recibe daño y efectos normalmente, pero conserva al menos 1 PV. Los jefes, minijefes, imitadores y objetivos especiales quedan fuera de ambas reglas para conservar sus fases y resultados.
+
 
 ## Filtros y presentación de rareza
 C/R/SR/SSR son etiquetas visuales para common/rare/epic/legendary existentes (60/27/10/3%). La colección combina rareza, estrellas exactas y disponibilidad de ascenso; este último exige propiedad, rango menor de cinco y copias suficientes para el siguiente coste. Un borde e indicador verde identifica los listos. Las tarjetas bloqueadas solo aparecen con Todas las estrellas y sin Solo listos. Se conserva la selección aunque los filtros la oculten, con aviso explícito. Sin coincidencias muestra mensaje y botón para limpiar. No se gasta ni asciende por filtrar.
@@ -580,4 +582,24 @@ Alternar ambas mantiene el orden Tema 1 → Tema 2 → Tema 1 con transición su
 
 La música predeterminada para navegadores sin preferencia guardada es Alternar ambas. Las preferencias existentes y el silencio general se respetan; cargar el juego no reproduce ni descarga música automáticamente.
 
+
+Cofres (loot-opening/item) y mejoras (upgrade) conservan la música y su fundido; no cuentan como pausa musical. Pausa explícita, menú, portal, fin de partida, silencio y pérdida de visibilidad/foco detienen la música. Ambiente y voces de combate siguen ligados exclusivamente a play.
+
 Gallinazo fase dos: al desplazarse despega suavemente, recoge las patas y bate las alas con un ciclo completo. La sombra permanece en el piso y el aura acompaña el cuerpo elevado; al detenerse baja progresivamente. No cambia la colisión ni el daño. Movimiento reducido mantiene altura estable sin oscilación.
+
+
+Volumen de efectos independiente de música, inicial 70 % y persistente. Afecta ataques, impactos, avisos y enemigos; el volumen específico de enemigos es un ajuste adicional. Silencio general sigue por encima de todos. Panel móvil con controles táctiles, ancho acotado y desplazamiento vertical cuando falta altura.
+
+Fase dos: cada ráfaga de plumas tiene su propio aletazo, sincronizado a 1,10 y 1,52 segundos. Abre y carga las alas, descarga con cuello/pico y arcos de aire y recupera entre ráfagas. Antes de la picada eleva el cuerpo, abre las alas y las recoge; después adopta una silueta de vuelo inclinado. La carga conserva su posición física.
+
+## Atributos físicos y especiales
+
+Ciclo Fuerza > Técnica > Ingenio > Fuerza. Ventaja 1,15; desventaja 0,90; neutral 1. Un solo atributo por actor; el canal pertenece al ataque, no a la rareza ni al botón de ulti. F/T/I evita depender exclusivamente del color.
+
+`daño = daño_base_de_habilidad × 2A/(A+D) × ventaja`. Ataques y defensas son índices positivos acotados 1–1000; entradas no finitas vuelven a 100. No hay inmunidad por defensa. Poder, rangos, caída de escopeta, armadura de carga, equipo y ventanas de contraataque conservan sus reglas. La defensa se calcula una vez en la ruta del blanco, antes de equipo/feedback. El daño fijo de ejecuciones de Tribunal/Dominio y la sentencia porcentual mantiene los topes originales, sin ventaja elemental.
+
+Especialidad del personaje: índice principal 100, secundario 85. Defensas 90–110 según papel. No aumentar todos los índices por rareza. Escopetas, micrófonos, bumeranes y golpes: físicos según ficha; discursos, emotes, nubes, ondas y tarjetas de apoyo: especiales. Extras persistentes de evolución conservan el tipo especial; otros extras usan el tipo principal. Contacto enemigo físico; proyectiles normales especiales y golpes de oficio físicos; las plumas/conos de minijefe son físicos, quake/flash especiales.
+
+Minions 0/3 Fuerza, 1/4 Técnica, 2/5 Ingenio; pesados defensa física 110/especial 90. Minijefes: Fiscalizador y Makanaky Fuerza, Paloma Brava Técnica, Huaco Ingenio. Jefes finales Fuerza; Gallinazo Ingenio. Invocaciones de Gallinazo Ingenio. No modificar atributos durante el combate. Los proyectiles copian las estadísticas del dueño al nacer.
+
+Antes del despegue lunar, la cámara encuadra al Gallinazo junto al jugador durante el final de la tarjeta. Acompaña la altura visual del jefe y abre el plano para conservar al jugador dentro de márgenes seguros, también en móvil. El combate continúa durante tarjeta y despegue. Una transición de 0,35 s enlaza el último fotograma de la arena con el cielo; movimiento reducido conserva la cámara habitual.
