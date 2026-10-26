@@ -196,6 +196,7 @@ Weather.sample deriva la intensidad de mapTime, sin temporizadores ni acumulaci�
 
 Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
 
+VultureScene renderiza a media resolución con 160 triángulos de malla articulada sobre un único sprite, con deformación continua y pies anclados. Efectos deterministas derivados del reloj: 36 gotas, 10 aves de fondo, 24 motas y 16 plumas; no crean entidades ni temporizadores. Fondo dedicado gallinazo-lima-cinematic-v1.png, fallback a azotea anterior si falla. VultureUltimate mantiene la lógica de combate y la duración de 3 s.
 ### Poses y efectos de ataque de minijefes
 Minibosses.frame/pose derivan el dibujo de warning, charge y recovery. attackPulse y miniFx avanzan solo desde move con dt; miniFx tiene máximo 32 elementos por jefe y contiene datos serializables para cooperativo. Las estelas dibujan el sprite completo; la animación nunca modifica colisiones. Movimiento reducido elimina partículas y usa transformaciones neutras. Se reutilizan los cuatro cuadros del atlas sin imágenes adicionales.
 

@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "rooftops-v1.png",
+  "output": "gallinazo-lima-cinematic-v1.png",
+  "prompt": "Use case: stylized-concept. Production background for a detailed pixel art game boss cinematic, wide landscape 16:9. Reference image gives the established game's Lima rooftop architecture, palette and crisp pixel art style; create a NEW LOW ANGLE rooftop-level cinematic view, NOT top-down. Lima Peru at overcast garua dusk, unmistakable dense terracotta brick homes, black plastic cylindrical water tanks, TV antennas, cables, distant colonial church towers and hazy Cerro San Cristobal. Foreground is a broad concrete rooftop ledge across the lower quarter, chipped brick parapets at lower corners, a little rooftop dust. Midground buildings fill lower half, layered skyline and gray lavender cloud sky in upper half, warm scattered window lights. Leave center-right foreground open so a large vulture boss sprite can be composited there, no character, no bird, no people. Tank and antenna silhouettes at far left and right, no objects occluding center-right. Intricate clean retro RPG pixel art, visible sharp pixel clusters, limited harmonious palette, crisp edges, rich material texture. Readable contrast and clearly visible architecture, not a dark black silhouette. No motion blur, no depth-of-field blur, no text, no UI, no radial speed lines, no watermark.",
+  "delivery": {
+    "file": "gallinazo-lima-cinematic-v1.webp",
+    "width": 768,
+    "height": 432,
+    "quality": 78,
+    "bytes": 85202,
+    "sourcePreserved": true
+  }
+}
