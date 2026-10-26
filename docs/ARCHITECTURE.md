@@ -370,6 +370,10 @@ Minibosses centraliza política de spawn, visitas, métricas y reporte serializa
 
 MinionEvolution.themed compone perfiles de pala, puño y bandera para rangos con oficio. melee crea una amenaza estacionaria con theme/angle/arc/radius serializados. hits comparte intersección sectorial entre Combat y Simulation; continúa respetando la cobertura y el cupo global. themedCue y drawMelee usan la misma geometría, con tierra agrietada, impacto de puño y barrido rojo-blanco-rojo. No se corta ni deforma el sprite base.
 
+
+Soundscape reutiliza el AudioContext y master de Audio, sin autoplay. Dos BufferSource en bucle comparten un buffer mono de dos segundos, con dos filtros y ganancias reutilizados. Audio.tick pasa su estado live; el control se limita a 10 Hz con transiciones suaves y atiende cambios de mapa/pausa de inmediato. El agua usa atenuación cuadrática por distancia; los trinos siguen mapTime y usan Audio.tone, como máximo dos notas espaciadas. Cambio de contexto desconecta las fuentes anteriores. No usa RAF, temporizadores, archivos ni entidades adicionales.
+
+
 ## Gacha por lotes
 P.Gacha.pull acepta únicamente 1 o 10 y procesa cargo, diez resoluciones secuenciales y recibos en una sola P.Meta.transaction bajo el bloqueo existente. Requiere el importe bruto inicial; un fallo de escritura no confirma moneda, personaje ni contador. gachaBatch es un campo opcional compatible del esquema v3, validado y limitado a diez recibos. gachaLast e historial conservan compatibilidad. El lote se persiste antes del revelado; restore recupera el último lote o el recibo individual antiguo. La animación comparte RAF, suspende dibujo fuera del menú y muestra tarjetas seleccionables al terminar; saltarla no modifica los resultados.
 ### Perfiles de consulta

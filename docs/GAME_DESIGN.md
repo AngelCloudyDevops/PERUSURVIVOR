@@ -454,6 +454,10 @@ Legibilidad de minijefes: al agotarse aparece una mira grande y se mantiene +35 
 
 Los minions con oficio de rangos veterano/élite atacan según su accesorio: Pablo golpea con pala en un sector de 70/77 unidades, Tyrone da un puñetazo de 58/63,8 unidades y Uniqua barre con la bandera en un arco de 2,7 radianes y 88/96,8 unidades. Preparación mínima 0,9/0,85/0,85 s; el aviso muestra el alcance y dirección fijados antes del golpe. El impacto dura 0,28 s, causa daño una vez y respeta cobertura. Los normales conservan sus patrones originales. Se refinan casco, pala, manos y anatomía de brazos con contornos, luces y sombra.
 
+
+Ambiente sonoro: agua por proximidad en Plaza (alcance 550 unidades), hojas y trinos en Campo, viento en Machu. Volumen bajo respecto a música/ataques; sin efectos físicos ni señales confundibles con avisos de peligro. Silencio y pausa se respetan. Se retira durante jefes, arenas y prácticas; trinos omitidos con seis o más voces activas.
+
+
 ## Lotes de gacha ×10
 Una compra de diez requiere 600 monedas de saldo inicial. Cada tirada actualiza inmediatamente la colección y las garantías antes de resolver la siguiente; un personaje nuevo repetido dentro del lote devuelve monedas a partir de su segunda aparición. La colección completa al inicio bloquea compras; completarla durante un lote no cancela sus tiradas restantes. El resumen presenta diez resultados y el total de nuevos, repetidos, devoluciones y coste neto. Revelado secuencial de 4,6 segundos, botón para mostrar resultado inmediato y modo de movimiento reducido.
 ### Consulta de personajes
