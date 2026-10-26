@@ -16,7 +16,7 @@ class Simulation{
  constructor(map,characters,root=path.resolve(__dirname,'..')){
   this.P=loadEngine(root);const P=this.P;P.Combat.server=true;P.Maps.selected=map;P.state.chosen=characters[0];P.Game.start();
   this.players=characters.map((id,i)=>{const p=P.Entities.player(P.Data.characters[id]);Object.assign(p,{x:P.state.player.x+i*45,y:P.state.player.y,slot:i,fire:0,shots:[],fields:[],revive:0});P.state.player=p;P.Ultimate.reset();p.ultimate=P.state.ultimate;return p});
-  P.state.player=this.players[0];P.Court.players=()=>this.players;this.result=null;
+  P.state.player=this.players[0];P.Minibosses.partySize=()=>this.players.length;P.Court.players=()=>this.players;this.result=null;
   P.Game.finish=win=>{if(win)this.result='win'};
   P.Systems.levelup=()=>{if(!this.activities.pending)this.activities.levelup()};
   this.activities=new Activities(this);
@@ -42,7 +42,7 @@ class Simulation{
   const danger=s.danger;s.danger=[];
   for(const p of this.players){this.use(p);if(p.hp>0)P.Combat.tick(dt);else {p.shots=[];p.fields=[];s.shots=[];s.fields=[]}this.save(p)}
   s.danger=danger;
-  for(const shot of danger){if(shot.miniId&&!s.enemies.some(e=>e.hp>0&&e.miniId===shot.miniId)){shot.life=0;continue}shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;if(shot.kind==='zigzag'){const wave=(Math.sin((shot.age+dt)*9)-Math.sin(shot.age*9))*14,speed=Math.hypot(shot.vx,shot.vy)||1;shot.x-=shot.vy/speed*wave;shot.y+=shot.vx/speed*wave}shot.age+=dt;shot.life-=dt;if((shot.minion||s.encounter)&&shot.kind!=='stomp'&&(P.Terrain.hit(shot.x,shot.y,7)||P.Minibosses.coverBlocked(shot,dt))){shot.life=0;continue}shot.history.push({x:shot.x,y:shot.y});if(shot.history.length>8)shot.history.shift();for(const p of alive)if(p.hp>0&&p.inv<=0&&shot.life>0&&!shot.spent&&Math.hypot(p.x-shot.x,p.y-shot.y)<(shot.kind==='stomp'?shot.radius:24)&&(shot.kind!=='stomp'||shot.groundWave||P.Terrain.clear(shot.x,shot.y,p.x,p.y))){P.PlayerFeedback.hit(p,shot.damage||14,shot);p.inv=.7;if(shot.kind==='stomp')shot.spent=true;else shot.life=0;break}}
+  for(const shot of danger){if(shot.miniId&&!s.enemies.some(e=>e.hp>0&&e.miniId===shot.miniId)){shot.life=0;continue}shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;if(shot.kind==='zigzag'){const wave=(Math.sin((shot.age+dt)*9)-Math.sin(shot.age*9))*14,speed=Math.hypot(shot.vx,shot.vy)||1;shot.x-=shot.vy/speed*wave;shot.y+=shot.vx/speed*wave}shot.age+=dt;shot.life-=dt;if((shot.minion||s.encounter)&&shot.kind!=='stomp'&&(P.Terrain.hit(shot.x,shot.y,7)||P.Minibosses.coverBlocked(shot,dt))){shot.life=0;continue}shot.history.push({x:shot.x,y:shot.y});if(shot.history.length>8)shot.history.shift();for(const p of alive)if(p.hp>0&&p.inv<=0&&shot.life>0&&!shot.spent&&P.MinionEvolution.hits(shot,p)&&(shot.kind!=='stomp'||shot.groundWave||P.Terrain.clear(shot.x,shot.y,p.x,p.y))){P.PlayerFeedback.hit(p,shot.damage||14,shot);p.inv=.7;if(shot.kind==='stomp')shot.spent=true;else shot.life=0;break}}
   s.danger=danger.filter(q=>q.life>0);
   for(const p of alive){this.use(p);P.Systems.collect(dt/ alive.length);this.save(p)}
   for(const p of this.players)if(p.hp<=0){const friend=this.players[1-p.slot];p.revive=friend.hp>0&&Math.hypot(p.x-friend.x,p.y-friend.y)<85?p.revive+dt:0;if(p.revive>=4){p.hp=Math.ceil(p.maxHp*.5);p.inv=2;p.revive=0}}
