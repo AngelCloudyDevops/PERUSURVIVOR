@@ -6,3 +6,5 @@
 - Documenta reglas nuevas en docs/GAME_DESIGN.md y cambios de arquitectura en docs/ARCHITECTURE.md.
 - Conserva modificaciones de otros chats; revisa git status antes de editar archivos compartidos.
 - No distribuyas utilidades de QA que manipulen el estado del juego.
+- Cada chat trabaja en su propia rama y worktree; integra preservando los cambios de main.
+- Ejecuta las pruebas públicas prolongadas mediante Public cooperative E2E: comparte el bloqueo perusurvivor-production con el despliegue. No publiques por fuera del flujo durante estas pruebas.
