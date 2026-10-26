@@ -16,7 +16,7 @@ class Simulation{
  constructor(map,characters,root=path.resolve(__dirname,'..')){
   this.P=loadEngine(root);const P=this.P;P.Maps.selected=map;P.state.chosen=characters[0];P.Game.start();
   this.players=characters.map((id,i)=>{const p=P.Entities.player(P.Data.characters[id]);Object.assign(p,{x:P.state.player.x+i*45,y:P.state.player.y,slot:i,fire:0,shots:[],fields:[],revive:0});P.state.player=p;P.Ultimate.reset();p.ultimate=P.state.ultimate;return p});
-  P.state.player=this.players[0];this.result=null;
+  P.state.player=this.players[0];P.Court.players=()=>this.players;this.result=null;
   P.Game.finish=win=>{if(win)this.result='win'};
   P.Systems.levelup=()=>{if(!this.activities.pending)this.activities.levelup()};
   this.activities=new Activities(this);
@@ -27,10 +27,11 @@ class Simulation{
   const P=this.P,s=P.state,alive=this.players.filter(p=>p.hp>0);if(this.result)return;
   if(!alive.length){this.result='lose';return}
   if(this.activities.pending){this.activities.advance(dt);return}
+  if(s.court){this.use(this.players[s.court.slot]);P.Court.tick(dt);return}P.Court.burstTick(dt);
   s.mode='play';s.elapsed+=dt;if(!s.encounter)s.mapTime+=dt;this.use(alive[0]);P.Chunks.sync();P.Encounters.tick();P.Systems.spawn(dt);
   for(const p of alive){this.use(p);const input=inputs[p.slot]||{},x=Number(input.x)||0,y=Number(input.y)||0,n=Math.max(1,Math.hypot(x,y)),old={x:p.x,y:p.y};p.inv=Math.max(0,p.inv-dt);p.moving=Math.hypot(x,y)>.05;if(x)p.facing=Math.sign(x);p.x+=x/n*p.speed*dt;p.y+=y/n*p.speed*dt;P.World.collide(p,old);
    const other=this.players[1-p.slot],distance=Math.hypot(p.x-other.x,p.y-other.y);if(distance>720&&other.hp>0){p.x=old.x;p.y=old.y}
-   const travelled=Math.hypot(p.x-old.x,p.y-old.y);p.moving=travelled>.01;p.walkPhase=(p.walkPhase||0)+travelled/10;if(input.ultimate)P.Ultimate.activate();const ultimate=p.ultimate;delete p.ultimate;P.Ultimate.tick(dt);p.ultimate=ultimate;
+   const travelled=Math.hypot(p.x-old.x,p.y-old.y);p.moving=travelled>.01;p.walkPhase=(p.walkPhase||0)+travelled/10;if(input.ultimate)P.Ultimate.activate();if(s.court){this.save(p);return}const ultimate=p.ultimate;delete p.ultimate;P.Ultimate.tick(dt);p.ultimate=ultimate;
   }
   // Cada enemigo persigue al jugador vivo más cercano; ambos reciben colisiones reales.
   for(const e of s.enemies){if(e.hp<=0)continue;const p=alive.reduce((a,b)=>Math.hypot(a.x-e.x,a.y-e.y)<Math.hypot(b.x-e.x,b.y-e.y)?a:b);this.use(p);const old={x:e.x,y:e.y};if(e.miniboss){P.Minibosses.move(e,dt);P.Minibosses.contact(e,alive);continue}if(e.mapBoss){P.Encounters.bossMove(e,dt);for(const q of alive)if(Math.hypot(q.x-e.x,q.y-e.y)<e.r+16&&q.inv<=0){P.PlayerFeedback.hit(q,24,e);q.inv=.7}continue}const dir=P.Terrain.direction(e,p);if(e.charge){const step=Math.min(dt,e.charge.time);e.x+=e.charge.x*300*step;e.y+=e.charge.y*300*step;e.charge.time-=dt;const intended={x:e.x,y:e.y};P.Terrain.resolve(e,old,e.r);if(e.charge.time<=0||Math.hypot(e.x-intended.x,e.y-intended.y)>.1)e.charge=null}else{e.x+=dir.x*e.speed*dt*(e.rangedAim||e.burst?0:1);e.y+=dir.y*e.speed*dt*(e.rangedAim||e.burst?0:1);P.Terrain.resolve(e,old,e.r)}const travelled=Math.hypot(e.x-old.x,e.y-old.y);e.moving=travelled>.01;e.walkPhase=(e.walkPhase||0)+travelled/(e.heavy?10:8);if(Math.abs(e.x-old.x)>.01)e.facing=e.x<old.x?-1:1;e.hit=Math.max(0,e.hit-dt);if(P.Systems.ranged)P.Systems.ranged(e,dt);
@@ -50,6 +51,6 @@ class Simulation{
   if(!this.players.some(p=>p.hp>0))this.result='lose';
   if(!this.result)this.activities.tick(dt);
  }
- snapshot(){const P=this.P,s=P.state;return {...this.activities.snapshot(),map:P.Maps.selected,result:this.result,elapsed:s.elapsed,mapTime:s.mapTime,miniWarning:s.miniWarning,kills:s.kills,level:s.level,xp:s.xp,need:s.need,bossSpawned:s.bossSpawned,players:this.players.map(({shots,fields,ultimate,...p})=>({...p,ultimate:{...ultimate,seen:undefined,trails:ultimate.trails.map(({shots,fields,ultimate,...trail})=>trail)}})),shots:this.players.flatMap(p=>p.shots.map(({hits,...q})=>q)),fields:this.players.flatMap(p=>p.fields),enemies:s.enemies,gems:s.gems,danger:s.danger,effects:s.effects,coins:s.coins,broken:[...P.Chunks.broken,...P.Terrain.originProps.filter(p=>p.kind==='crate'&&!p.solid).map(p=>p.id)]}}
+ snapshot(){const P=this.P,s=P.state;return {...this.activities.snapshot(),court:s.court||null,courtBurst:s.courtBurst||null,map:P.Maps.selected,result:this.result,elapsed:s.elapsed,mapTime:s.mapTime,miniWarning:s.miniWarning,kills:s.kills,level:s.level,xp:s.xp,need:s.need,bossSpawned:s.bossSpawned,players:this.players.map(({shots,fields,ultimate,...p})=>({...p,ultimate:{...ultimate,seen:undefined,trails:ultimate.trails.map(({shots,fields,ultimate,...trail})=>trail)}})),shots:this.players.flatMap(p=>p.shots.map(({hits,...q})=>q)),fields:this.players.flatMap(p=>p.fields),enemies:s.enemies,gems:s.gems,danger:s.danger,effects:s.effects,coins:s.coins,broken:[...P.Chunks.broken,...P.Terrain.originProps.filter(p=>p.kind==='crate'&&!p.solid).map(p=>p.id)]}}
 }
 module.exports={Simulation};

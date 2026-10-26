@@ -84,7 +84,8 @@ module.exports = [
     "output": "js/minibosses.js"
   },
   {
-    "source": "src/rendering/vulture-dark-scene.js", "output": "js/vulture-cinematic.js"
+    "source": "src/rendering/vulture-dark-scene.js",
+    "output": "js/vulture-cinematic.js"
   },
   {
     "source": "src/rendering/vulture-strike-art.js", "output": "js/vulture-strike-art.js"
@@ -118,6 +119,9 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
+    "source": "src/rendering/plaza-art.js", "output": "js/plaza-art.js"
+  },
+  {
     "source": "src/rendering/ambient.js",
     "output": "js/ambient.js"
   },
@@ -140,6 +144,10 @@ module.exports = [
   {
     "source": "src/rendering/world.js",
     "output": "js/world.js"
+  },
+  {
+    "source": "src/ui/skill-preview.js",
+    "output": "js/skill-preview.js"
   },
   {
     "source": "src/ui/screens.js",
@@ -176,5 +184,6 @@ module.exports = [
   {
     "source": "src/rendering/ultimate-comic.js",
     "output": "js/ultimate-comic.js"
-  }
+  },
+  {"source":"src/systems/court-ultimate.js","output":"js/court-ultimate.js"}
 ];
