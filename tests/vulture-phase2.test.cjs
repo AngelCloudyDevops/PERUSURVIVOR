@@ -1,6 +1,6 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 function engine(){
- const e={x:0,y:0,r:62,hp:100,max:100,hit:0},P={state:{elapsed:0,player:{x:100,y:100},danger:[],encounter:{scene:{bounds:{left:-500,right:500,top:-400,bottom:400}}}},Audio:{play(){}},Terrain:{hit(){return false}},VultureImpact:{},VultureUltimate:{boss(){return e}},VultureStrike:{},VultureScene:{init(){},pending(){return false},bird(){}},Vulture:{reduced(){return false},tickVisuals(){},move(){},warn(q,a){q.original=a},draw(){},ground(){}},FX:{projectile(){}}};
+ const e={x:0,y:0,r:62,hp:100,max:100,hit:0},P={state:{mode:'play',elapsed:0,player:{x:100,y:100},danger:[],encounter:{scene:{bounds:{left:-500,right:500,top:-400,bottom:400}}}},Audio:{play(){}},Terrain:{hit(){return false}},VultureImpact:{},VultureUltimate:{boss(){return e},start(){e.phase='vulture-ultimate';e.ultimateTime=0;return true},introTick(dt){e.ultimateTime+=dt;return true},overlay(){}},VultureStrike:{},VultureScene:{init(){},pending(){return false},bird(){}},Vulture:{reduced(){return false},tickVisuals(){},move(){},warn(q,a){q.original=a},draw(){},ground(){}},FX:{projectile(){}}};
  vm.runInNewContext(fs.readFileSync('src/systems/vulture-phase2.js','utf8'),{P});return {P,e,F:P.VulturePhase2};
 }
 test('Fase II: ataques nuevos solo tras transformarse; círculos fijados y 1,1 s de aviso',()=>{
@@ -13,4 +13,12 @@ test('Plumas serpiente: dos abanicos bloqueables, cupo global y picada original 
 });
 test('Tormenta respeta coberturas y bordes; sin objetivos cubiertos ni daño invisible',()=>{
  const {P,e,F}=engine();P.Terrain.hit=()=>true;F.plan(e,'storm');assert.equal(e.chaosTargets.length,0);F.step(e,1.5);assert.equal(P.state.danger.length,0);P.Terrain.hit=()=>false;P.state.player={x:999,y:999};F.plan(e,'storm');assert(e.chaosTargets.every(q=>q.x<=445&&q.y<=345));
+});
+test('Entrada separada: la tarjeta base termina antes de que avance el ojo; pausa congela ambos relojes',()=>{
+ const {P,e,F}=engine(),u=P.VultureUltimate;assert(u.start(e));assert(F.entering(e));u.introTick(.4);assert.equal(e.ultimateEntryTime,.4);assert.equal(e.ultimateTime,0);P.state.mode='pause';assert.equal(u.introTick(.4),false);assert.equal(e.ultimateEntryTime,.4);P.state.mode='play';u.introTick(1);assert.equal(F.entering(e),false);assert.equal(e.ultimateTime,0);u.introTick(.1);assert.equal(e.ultimateTime,.1);
+});
+test('Plumas continuas: cuello y pies fijos, revelado gradual y movimiento reducido estable',()=>{
+ const {F}=engine();let last=0;
+ for(let t=0;t<4;t+=.003){const m=F.transformation(t);assert(m.reveal>=last);assert(m.reveal-last<.006);last=m.reveal;const motion=F.featherMotion(t),next=F.featherMotion(t+.001);for(const [x,y] of [[.85,.4],[.4,1]]){const q=F.warp(x,y,motion);assert.equal(q.x,x);assert.equal(q.y,y)}const p=F.warp(.2,.3,motion),q=F.warp(.2,.3,next);assert(Math.hypot(p.x-q.x,p.y-q.y)<.002)}
+ assert.equal(F.transformation(1.8).reveal,0);assert.equal(F.transformation(3).reveal,1);assert.equal(JSON.stringify(F.featherMotion(0,true)),JSON.stringify(F.featherMotion(1,true)));
 });
