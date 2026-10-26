@@ -204,7 +204,7 @@ P.Evolutions define perfiles de ataque inmutables y efectos serializables por pe
 Las palomas y la vegetación reactiva utilizan [sprites cartoon con acabado pixel](docs/NATURE_ART.md): cuatro poses de ave, tres arbustos con flores/bayas y una mata de ichu. Usar siluetas orgánicas, contornos oscuros y sombras al pie; evitar rectángulos como diseño definitivo. Atlas compartido de 512×256, sin cambiar los límites ambientales ni añadir partículas.
 
 
-Ulti de Fujimori: [Tribunal](docs/GAME_DESIGN.md), escena compartida de 3,4 s, aliado como abogado y remate de radio 340 u que excluye jefes. El menu incluye practica con recarga gratis y objetivos dentro/fuera del radio.
+Ulti de Fujimori: [Tribunal](docs/GAME_DESIGN.md), entrada de 1,1 s y tribunal compartido de 3,4 s, aliado como abogado y remate de radio 340 u que excluye jefes. El menu incluye practica con recarga gratis y objetivos dentro/fuera del radio.
 ## Pileta y fachada de la Plaza
 La fuente ornamental y el edificio colonial usan [sprites cartoon con acabado pixel](docs/PLAZA_LANDMARKS.md): piedra/bronce, balcones tallados y arcos. Conservar perspectiva, contornos y sombras al pie, sin volver a bloques geométricos como arte definitivo. Atlas compartido, ocho reflejos de agua como máximo y transparencia al pasar detrás. No cambia colisiones ni cupos del mapa.
 
