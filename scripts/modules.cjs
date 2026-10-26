@@ -68,6 +68,10 @@ module.exports = [
     "output": "js/supplies.js"
   },
   {
+    "source": "src/systems/gacha.js",
+    "output": "js/gacha.js"
+  },
+  {
     "source": "src/entities/actors.js",
     "output": "js/entities.js"
   },
@@ -151,7 +155,8 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
-    "source": "src/rendering/machu-art.js", "output": "js/machu-art.js"
+    "source": "src/rendering/machu-art.js",
+    "output": "js/machu-art.js"
   },
   {
     "source": "src/rendering/campo-art.js",
