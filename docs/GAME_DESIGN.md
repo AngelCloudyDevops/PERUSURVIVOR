@@ -8,7 +8,7 @@ Este documento describe la implementación existente. La reorganización de carp
 ## Bucle de juego
 1. Elegir uno de catorce personajes y uno de tres mapas.
 2. Moverse y combatir oleadas; recoger puntos de fama.
-3. Al subir de nivel, elegir una de tres mejoras.
+3. Al subir de nivel, elegir una de tres mejoras; cada cuatro niveles puede aparecer un cuarto pacto opcional.
 4. Desde 3:00 del reloj del mapa, entrar opcionalmente a su portal.
 5. A los 5:00 del reloj del mapa, enfrentarse a ElZeein.
 6. Tras victoria o derrota, repetir o cambiar personaje.
@@ -47,7 +47,7 @@ Las apariciones alternan Pablo, Tyrone, Uniqua, Tasha, Austin y policías fictic
 ElZeein es un jefe ficticio de parodia: persigue al jugador y lanza ráfagas de cinco proyectiles. Vencerlo termina la partida en victoria. Llegar a cero de vida termina en derrota.
 
 ## Progresión durante la partida
-La fama recogida llena la barra de experiencia. El primer umbral es 6; los siguientes crecen según la fórmula existente en progression.js. Cada nivel ofrece tres mejoras distintas del catálogo:
+La fama recogida llena la barra de experiencia. El primer umbral es 6; los siguientes crecen según la fórmula existente en progression.js. Cada nivel ofrece tres mejoras distintas del catálogo; cada cuatro niveles aparece además un pacto que intercambia una estadística por otra:
 - +25% de daño.
 - Cadencia un 18% más frecuente, con límite inferior.
 - +25 de vida máxima y recuperación de hasta 40.
@@ -410,7 +410,7 @@ La mochila es compartida entre personajes, tiene hasta 99 unidades por objeto y 
 El esquema local v2 incorpora inventario, preparados y recibos, leyendo también los guardados v1 y conservando saldo, mejoras y marcas. Mantiene la clave local existente; al escribir migra a v2. Las versiones antiguas rechazan ese formato en lugar de sobrescribir la mochila. P.Supply reutiliza P.Meta.transaction y su bloqueo entre pestañas; compra, preparación y consumo validan cantidad, saldo, cupos y modo antes de persistir. El juego espera sin avanzar reloj mientras confirma la mochila; un fallo permite reintentar, conservar objetos y jugar o volver al menú. Nada se aplica si el consumo no queda confirmado. No se distribuyen controles de QA.
 
 Ajuste Tribunal: entrada comparte el layout de Kingteka (40 % ancho, 82 % alto, origen vertical 8 %) y dura 1,3 s; tribunal 3,4 s, total 4,7 s. La mano del juez se deforma desde el codo y el mango usa exactamente el mismo punto de agarre, tambien en el acercamiento. El impacto se calibra contra el bloque de madera. Fujimori sentado levanta el dedo durante la frase y lo baja antes del golpe; la burbuja queda al lado para no ocultar el gesto.
-Subida de nivel: tres tarjetas con icono, categoría (nuevo poder, rango, mejora o evolución), nombre y efecto. Paleta azul noche, crema y coral. Se elige una sola opción y la partida continúa; no cambia el sorteo ni el balance. Cooperativo conserva la espera por ambos jugadores.
+Subida de nivel: tres tarjetas y una cuarta ocasional con icono, categoría, rareza, nombre, efecto, comparación numérica y una vista previa animada. Común, rara, épica y legendaria tienen marcos propios sobre la paleta carbón, crema, coral y latón. La elección produce impacto, destello e icono viajando al personaje; evoluciones y combos reciben presentación completa. Cooperativo conserva la espera por ambos jugadores.
 
 Minijefes: conos y luces ámbar, sombras/plumas y símbolos/polvo identifican el combate en su mapa, sin añadir colisiones inesperadas. Se desvanecen durante la derrota. Tras terminar el combo hay 1,5 s de agotamiento, sin daño por contacto y con +35 % de daño recibido. Un choque corta la cadena y concede 2 s. Las plumas se bloquean con cobertura; la onda del huaco exige salir del radio avisado, incluso detrás de paredes.
 ## Evolución de minions
@@ -418,7 +418,7 @@ Las nuevas oleadas mezclan normales, veteranos y élites según el reloj de mapa
 Veteranos: vida ×1,35, velocidad ×1,06, contacto ×1,15, daño especial ×1,20 y enfriamiento ×0,92. Élites: vida ×1,85, velocidad ×1,12, contacto ×1,30, daño especial ×1,45 y enfriamiento ×0,82. Los avisos previos conservan su duración. Los élites de Pablo lanzan cinco cristales, Uniqua aumenta sus estrellas (tres veterana, cuatro élite), Tasha amplía su pisotón, Austin élite lanza dos zigzags y la PNP élite añade una bala a la ráfaga, hasta cuatro. Tyrone gana velocidad y duración de embestida con el aviso de trayectoria correspondiente. Se respetan cobertura y cupos de amenazas.
 Los veteranos llevan detalles bronce y aro sencillo; los élites llevan armadura violeta y un aro con marcas laterales. Son adornos que acompañan el cuerpo completo, incluidos daño y muerte. Los seis pasos originales y las caras permanecen intactos. No se dibujan nombres ni rangos de texto sobre ellos. Pesados y portadores conservan sus propiedades adicionales.
 
-Las tarjetas usan iconos pixel art de 32×32 específicos del arma, poder o atributo. Las teclas 1, 2 y 3 eligen la tarjeta correspondiente solo con el selector abierto, sin repetición al mantener la tecla. Identidad visual de vestíbulo y mejoras: carbón, coral y latón, bordes rectos y acentos de impresión.
+Las tarjetas usan iconos pixel art de 32×32 específicos del arma, poder o atributo. Las teclas 1, 2, 3 y 4 eligen la tarjeta correspondiente solo con el selector abierto, sin repetición al mantener la tecla. Directo viral combina arma principal y onda; Prensa blindada combina tarjetas y escudo. Los sonidos sintetizados distinguen navegación, elección y evolución. Identidad visual de vestíbulo y mejoras: carbón, coral y latón, bordes rectos y acentos de impresión. Movimiento reducido elimina destellos y desplazamientos sin cambiar la elección.
 
 ### Gallinazo: impacto y forma II
 La ulti al 30 % de vida presenta una tarjeta diagonal propia durante los primeros 1,22 s, sin alargar la cinemática. En el impacto, el plumaje cambia a violeta oscuro y conserva la forma II hasta la derrota; es un cambio visual sin aumentar daño, vida ni velocidad. Bloques de concreto con caras claras/oscuras saltan y aterrizan; una nube de polvo escalonado atraviesa la entrega a la arena y se disipa antes de 2,8 s. Avisos y coberturas conservan su comportamiento. Movimiento reducido elimina el salto y giro del escombro y disminuye el polvo.
