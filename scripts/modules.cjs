@@ -260,6 +260,7 @@ module.exports = [
     "source": "src/core/updates.js",
     "output": "js/updates.js"
   },
+  {"source":"src/network/coop-motion.js","output":"js/coop-motion.js"},
   {
     "source": "src/network/cooperative.js",
     "output": "js/cooperative.js"
