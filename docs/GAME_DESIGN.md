@@ -736,4 +736,6 @@ El HUD de resultado de Makanaky permanece 3 segundos después de regresar al map
 ### Derrota del Chosicano
 Al llegar a cero PV, el bus deja de atacar y frena en su posición. Durante 3 s la carrocería se asienta, apaga faros, sale humo y aparece FUERA DE SERVICIO. Se limpian peligros; la recompensa llega una sola vez al terminar. Pausar congela la secuencia; movimiento reducido omite inclinación, caída y humo.
 
+### Diseño del Chosicano blanco y verde
+El bus usa la referencia aportada: carrocería blanca, franja verde, frente rojo y amarillo, cuatro faros y parabrisas amplio. Seis poses del mismo vehículo mantienen ataques y derrota actuales.
 La revelación del dragón incorpora un reflector cenital sobre la máquina. El aletazo mueve pliegues de cortinas y lámparas colgantes con amortiguación y desplaza una ráfaga de polvo por el suelo. En cooperativo aparece el personaje real del compañero, con pequeños saltos y celebración al revelar el dragón (más marcada con el secreto). Todo es visual, deriva de la edad de la ulti y no mueve ni modifica jugadores. Movimiento reducido conserva iluminación y texto, sin saltos o sacudidas.

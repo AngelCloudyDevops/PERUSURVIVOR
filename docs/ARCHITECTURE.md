@@ -646,4 +646,6 @@ Cristorata usa doce poses completas del atlas reaction-v3 para señalar, girar, 
 
 El cierre del asiento converge al anclaje y ancho de cabeza del jinete de la montura, compartiendo el mismo cálculo para posición y escala. La sala de revelación añade suelo en perspectiva, paneles con pliegues, luces laterales, reflejo cálido localizado y hasta 18 motas ambientales; todo procede del reloj de la escena, sin entidades de combate. Movimiento reducido retira las motas y se conserva el alfa de la transición al mapa.
 
+### Atlas Chosicano v2
+chosicano-v2 conserva la cuadrícula 3×2 y la medición por alfa del renderer. PNG fuente y prompt permanecen en Git; solo WebP v2 va al runtime, con v1 archivado para evitar duplicar la descarga. No cambian colisiones, balance ni tiempos.
 La revelación del dragón incorpora un reflector cenital sobre la máquina. El aletazo mueve pliegues de cortinas y lámparas colgantes con amortiguación y desplaza una ráfaga de polvo por el suelo. En cooperativo aparece el personaje real del compañero, con pequeños saltos y celebración al revelar el dragón (más marcada con el secreto). Todo es visual, deriva de la edad de la ulti y no mueve ni modifica jugadores. Movimiento reducido conserva iluminación y texto, sin saltos o sacudidas.
