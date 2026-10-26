@@ -517,3 +517,5 @@ El compañero celebra el dragón secreto con una silueta completa de brazos leva
 Sideral: al cargar su atlas se conserva la figura conectada principal de cada cuadro y se eliminan fragmentos aislados de cuadros vecinos, incluida la onda roja que invadía la recuperación. La limpieza se hace una sola vez, mantiene la cuadrícula, tamaño y anclaje originales y conserva la lata roja unida a la mano.
 
 Sideral: ataque visual de preparación, grito y recuperación con retroceso continuo; figuras completas, altura visible normalizada y pies anclados. Se omite el cuadro de susto. No cambia el daño ni la cadencia.
+
+Kingteka: durante 8 s los minions normales se convierten en gallinazos, reciben ×2 de daño del equipo, pierden ataques y contacto, y se abalanzan con zigzag hacia Kingteka en grupos alrededor de él. Al volver se detienen y muestran «¡VUELVE!» durante 0,6 s sin atacar. Jefes y minijefes conservan forma y ataques; reciben ×1,2 de daño. Cofres imitadores quedan excluidos.

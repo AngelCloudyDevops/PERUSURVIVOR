@@ -769,3 +769,6 @@ Sustituye los carriles por carrera automática hacia la derecha. Intro de 4.8 s:
 
 ### Probar dominio del Chosicano
 En Desarrollo → Probar jefes, el Chosicano muestra «Probar dominio». Inicia la intro y la persecución con la vida actual, sin esperar el 50 %. Se bloquea durante la secuencia y permite repetir al regresar. La casilla de invencibilidad también se respeta dentro de la persecución. Solo funciona en laboratorio individual.
+
+### Kingteka: bandada inofensiva
+La transformación de 8 s atrae minions normales hacia el lanzador (90–180 unidades/s, zigzag leve y posiciones repartidas a 32–53 unidades). Cancela ataques preparados, embestidas y ráfagas; elimina proyectiles de minions al activar y bloquea contacto. Todo el equipo hace ×2 de daño mientras dura. Al volver hay una pausa de aviso de 0,6 s, sin movimiento ni ataques. Jefes/minijefes no se transforman ni pierden ataques; reciben ×1,2 de daño durante la ulti. Mímicos excluidos.
