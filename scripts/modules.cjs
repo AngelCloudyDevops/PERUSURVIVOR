@@ -349,6 +349,7 @@ module.exports = [
   {"source":"src/systems/domain-aftermath.js","output":"js/domain-aftermath.js"},
   {"source":"src/rendering/domain-finale.js","output":"js/domain-finale.js"},
   {"source":"src/rendering/domain-intro.js","output":"js/domain-intro.js"},
+  {"source":"src/systems/sideral-domain.js","output":"js/sideral-domain.js"},
   {"source":"src/network/live-gifts.js","output":"js/live-gifts.js"}
 , {source:"src/systems/dragon-ultimate.js",output:"js/dragon-ultimate.js"}
 , {source:"src/rendering/dragon-art.js",output:"js/dragon-art.js"}
