@@ -191,3 +191,5 @@ Game.update comprueba VultureUltimate.introTick antes de avanzar combate y tempo
 Weather.sample deriva la intensidad de mapTime, sin temporizadores ni acumulación de partículas. World dibuja hasta 80 gotas por ventana antes de los actores. DayNight añade GARÚA a la fase cuando corresponde.
 
 Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
+
+Weather despacha draw por mapa: gotas compartidas, reflections con hasta 36 marcas en Plaza y fog con cuatro bancos rasterizados en Machu. DayNight consulta Weather.label. Ambient deja de invocar la niebla fija de Machu.

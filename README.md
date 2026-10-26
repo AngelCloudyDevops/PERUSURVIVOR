@@ -161,3 +161,6 @@ Entrada de ulti de Kingteka: panel diagonal al 40 %, retrato animado de cintura 
 
 ## Garúa de Campo de Marte
 Episodios visuales de 25 segundos desde el minuto 1, separados por 65 segundos despejados. Entrada y salida suaves, gotas y pequeñas salpicaduras debajo de actores y avisos. Sigue mapTime: pausa y arenas no avanzan el clima. No aparece en prácticas y se desactiva con movimiento reducido. No modifica daño, velocidad, colisiones ni premios.
+
+## Clima en Plaza y Machu Picchu
+La Plaza comparte los episodios de garúa y añade reflejos cortos y tenues en el pavimento. Machu Picchu tiene bancos de niebla intermitentes en esos intervalos, sustituyendo la niebla ambiental permanente para no acumular capas. El indicador distingue GARÚA y NIEBLA. Todo queda debajo del combate, se congela al pausar y se desactiva con movimiento reducido.
