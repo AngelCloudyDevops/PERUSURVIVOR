@@ -18,7 +18,7 @@ c.clearRect(0,0,w,h);c.save();c.translate(Math.round(slide+bounce),0);c.beginPat
 for(let i=0;i<26;i++){const y=(i*19+(reduced?0:phase*9))%h;c.fillStyle=i%3?'#f4c95d':'#f7dc82';c.fillRect(0,y,Math.round(w*(.2+(i%5)*.12)),2)}
 // Rayos escalonados: cada cuadro cambia el recorrido, con centro claro y borde naranja.
 for(let k=0;k<3;k++){c.beginPath();const base=w*(.15+k*.25);for(let j=0;j<9;j++){const x=Math.round(base+Math.sin(j*2+(reduced?0:phase)+k)*w*.06),y=Math.round(j*h/8);if(j)c.lineTo(x,y);else c.moveTo(x,y)}c.strokeStyle='#e96d32';c.lineWidth=7;c.stroke();c.strokeStyle='#fff0a3';c.lineWidth=3;c.stroke()}
-const bird=P.Ultimate.birdImage;if(P.Ultimate.birdReady&&bird){const frame=reduced?2:[1,2,3,2][phase%4],edges=[0,.215,.435,.76,1],sx=bird.width*edges[frame],sw=bird.width*(edges[frame+1]-edges[frame]),bw=w*1.05,bh=bw*bird.height/sw;c.imageSmoothingEnabled=false;c.drawImage(bird,sx,0,sw,bird.height,Math.round(-w*.19),Math.round(h*.27-bh/2),Math.round(bw),Math.round(bh))}
+const birdSheet=P.WalkArt?.sheets['ulti-bird'];if(birdSheet?.ready){c.save();c.translate(w*.35,h*.31);const motion=P.WalkArt.flightMotion(t*this.total,0,reduced);c.translate(0,motion.bob);c.rotate(motion.roll);P.WalkArt.paintFlight(c,'ulti-bird',w*.92,t*this.total,0,reduced);c.restore()}else P.WalkArt?.load('ulti-bird',true);
 // Secuencia dedicada de cuatro retratos: preparación, bombeo, disparo y retroceso.
 let muzzle;if(this.portraitReady)muzzle=this.drawPortrait(c,t,reduced,w,h);else{const hero=P.Data.characters.find(x=>x.id==='kingteka');P.Sprites.draw(c,w*.34,h*.6,w*.32,hero,3,false)}
 if(muzzle?.flash>0){const {x,y,flash}=muzzle;c.save();c.translate(x,y);c.fillStyle='#fff3ad';c.beginPath();for(let i=0;i<12;i++){const angle=i*Math.PI/6,r=(i%2?5:20)*flash;if(i)c.lineTo(Math.cos(angle)*r,Math.sin(angle)*r);else c.moveTo(r,0)}c.closePath();c.fill();c.restore()}
@@ -28,3 +28,5 @@ for(let i=0;i<7;i++){c.fillStyle='#272238';const x=(i*23+(reduced?0:phase*5))%Ma
 {const activate=P.Ultimate.activate,update=P.Game.update,render=P.World.render,start=P.Game.start;P.Ultimate.activate=function(...args){const ok=activate.apply(this,args);if(ok&&!P.Coop?.active)P.UltimateComic.start();return ok};P.Game.update=function(dt){const comic=P.UltimateComic,s=P.state;if(comic.left>0&&s.mode==='play'&&!P.Coop?.active&&s.player)s.player.inv=Math.max(s.player.inv||0,dt+.02);const result=update.call(this,dt);comic.step(dt);return result};P.World.render=function(...args){const result=render.apply(this,args);P.UltimateComic.draw();return result};P.Game.start=function(...args){P.UltimateComic.left=0;return start.apply(this,args)}}
 
 P.UltimateComic.loadPortrait();
+
+P.WalkArt?.load('ulti-bird',true);

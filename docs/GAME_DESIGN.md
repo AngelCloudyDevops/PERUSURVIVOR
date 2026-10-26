@@ -280,6 +280,7 @@ Garúa solo en Campo de Marte: 1:00–1:25, 2:30–2:55 y 4:00–4:25, con trans
 
 Kingteka: el retrato usa una malla articulada continua de 16 por 12 celdas. Brazo y escopeta se elevan desde el hombro, disparan a mitad de la entrada y retroceden con recuperacion amortiguada. Cabeza y cintura mantienen anclajes; el fogonazo sigue la boca del arma. No cambia de pose ni usa fundidos. Mantiene 40 %, 1,3 s, combate activo e invulnerabilidad. Movimiento reducido conserva el retrato fijo.
 
+Cinemática de Lima: 3 s con azotea dedicada y visible, cámara lenta, cuerpo articulado continuo (sin cambiar de pose), primer plano del ojo que se retira, grito que levanta una bandada y aleteo que desplaza polvo/plumas y sacude antenas. Grietas solo desde las puntas de las alas al final; se eliminan los rayos radiales. Conserva pausa total y 0,7 s de aviso al regresar. Movimiento reducido conserva fondo y ave estáticos.
 ### Ataques animados de minijefes
 Fiscalizador: anticipación hacia atrás, cuerpo inclinado y estela de figuras completas durante la embestida; polvo al frenar o chocar. Paloma: elevación, alas cerradas/abiertas en preparación y aleteo de ejecución, plumas sueltas y arcos de viento. Huaco: levanta el cuerpo con los puños, se comprime al golpear y produce polvo, grietas y onda decorativa. Los avisos, daño, velocidades, alcance y cadencias anteriores no cambian. Movimiento reducido omite las transformaciones y partículas.
 
@@ -297,3 +298,11 @@ Los 18 jugables disponen de seis cuerpos completos de ataque: armas apuntadas, l
 Los rivales dejan experiencia (fama). Al llenar la barra, subes de nivel y eliges exactamente una de tres mejoras, con el mundo pausado. El exceso de XP se conserva y encadena elecciones. El arma inicial puede subir hasta rango 5; se ofrecen desbloqueos de Onda causa (área), Tarjetas del caos (perforantes) y Escudo de bandas (área cercana), con un máximo de dos apoyos. Cada poder tiene cinco rangos. A partir de nivel 8, los poderes de rango 5 pueden evolucionar mediante una elección especial: el arma gana daño, alcance, proyectiles y perforación; los apoyos duplican daño y amplían alcance. Las mejoras de atributos tienen cinco rangos y no ocupan espacios de poderes. El HUD muestra XP, poderes, rangos y estrellas de evolución. Todo se reinicia al empezar otra partida.
 
 P.Progression centraliza opciones, aplicación, efectos automáticos y resumen. El servidor cooperativo pausa la sala y genera tres ofertas por jugador; valida ID de elección y aplica cada mejora una sola vez. Espera a ambos y encadena niveles pendientes. Los rangos y tiempos de los apoyos se serializan con cada jugador. No se cambian las ultis ni se requieren compras para evolucionar.
+
+## Vegetación reactiva y palomas
+Los arbustos de Campo de Marte y las matas de Machu Picchu se sacuden brevemente al pasar cerca; las palomas de la Plaza levantan vuelo y vuelven al suelo. Mantener el estilo cartoon con acabado pixel, masas redondeadas y sombras ancladas al suelo. Son decoración local: no afectan combate, colisiones ni sincronización. Máximo seis palomas y 32 plantas reactivas del grupo visible, detección limitada a 30 Hz y estado descartado al salir de cámara. El reloj de mapa respeta pausa y arenas; movimiento reducido desactiva reacciones y vuelo.
+
+
+
+Aleteo fluido: alas articuladas sobre la pose abierta del atlas existente, con subida y bajada continuas a 2,8 ciclos por segundo, ligera flexion de plumas, balanceo del cuerpo y sombra acompasada. Cada gallinazo tiene una fase propia estable, sin sincronizar toda la bandada. El panel de Kingteka comparte el mismo dibujo. Movimiento reducido mantiene alas y cuerpo fijos. No cambia dano, velocidad ni colisiones.
+
