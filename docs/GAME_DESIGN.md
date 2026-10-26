@@ -508,6 +508,8 @@ Makanaky · La Realeza es un minijefe de parodia ficticia que alterna con la Pal
 
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
 
+### Ajuste anatómico del Gallinazo articulado
+Las dos alas tienen raíces, tamaños y ángulos diferenciados para mantener una silueta legible al abrirse. El torso limita la capa de ala plegada que incluía el dibujo original, con borde de plumas, para evitar una tercera ala aparente. Pico inferior más corto y giro reducido; collar cubre la unión al cuello en la forma base, y cresta/puntas marfil son más pequeñas. La arena de fase II reutiliza el mismo rig de la cinemática y conserva su pose final durante la gracia; después mueve alas y pico al cargar y disparar. No altera daño, avisos ni el combate activo durante la tarjeta.
 ## Cuentas opcionales
 
 El juego permite invitado o usuario registrado. La cuenta conserva colección, estrellas, mejoras, monedas e inventario entre dispositivos; no reanuda una partida en curso. El primer guardado puede importar explícitamente al invitado sin eliminarlo. Ante versiones en conflicto, se conserva la copia local y no se suman monedas ni se fuerzan reemplazos. Las copias individuales proceden del cliente y no habilitan ranking competitivo ni premios reales. Recuperación mediante código privado mostrado una vez, sin correo configurado en esta versión. Detalles en [ACCOUNTS.md](ACCOUNTS.md).
