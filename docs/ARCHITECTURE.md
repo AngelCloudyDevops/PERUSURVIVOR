@@ -166,3 +166,5 @@ Las superficies de proyectiles se ajustan a los límites de cada figura y reserv
 
 Chunks.floor compone la textura original en resolución completa y superpone la capa de caminos rasterizada. Terrain calcula la posición de sombra según la base visual por tipo, independiente del rectángulo de colisión.
 VultureUltimate carga gallinazo-ultimate-v1.png por separado, precalcula seis recortes y reutiliza los ataques y colisiones de Vulture. El reloj avanza exclusivamente desde bossMove, por lo que respeta pausa. El overlay se pinta fuera de la cámara. No usa vídeo, temporizadores reales ni modifica los sprites anteriores.
+
+El HUD conserva nodos fijos y escribe textos solo cuando cambian; la barra de experiencia y el icono de equipo también evitan trabajo idéntico. No se limita su frecuencia ni se retrasan actualizaciones de daño o temporizadores. Las estelas conservan todos sus puntos, tamaños y alfas, fijando el color una vez por estela.
