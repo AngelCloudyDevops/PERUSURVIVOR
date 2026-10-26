@@ -67,3 +67,8 @@ test('Portada: entrar solo habilita el vestíbulo y el audio por gesto',()=>{con
 test('Laboratorio: HUD inicial no exige Domain antes de cargar su módulo',()=>{
  const {P}=new Simulation('campo',[0,1]),bench=P.TestBench;bench.panel={};P.Domain=undefined;assert.doesNotThrow(()=>bench.hud());
 });
+
+test('Laboratorio: transición sin jugador no rompe el HUD y el enlace directo se consume',()=>{
+ const {P}=new Simulation('campo',[0,1]);P.state.player=null;P.state.mode='menu';assert.doesNotThrow(()=>P.UI.hud());assert(P.$('#hud').hidden);
+ assert.equal(P.DomainArt.practiceLink('?practice=makanaky&v=vieja'),'?v=vieja');assert.equal(P.DomainArt.practiceLink('?practice=makanaky'),'');assert.equal(P.DomainArt.practiceLink('?v=normal'),null);
+});
