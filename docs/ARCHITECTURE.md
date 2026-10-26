@@ -307,3 +307,5 @@ Minibosses.hud crea una sola vez el panel de vida dentro de #hud y actualiza sus
 
 ## Posición de etiquetas de rivales
 EnemyArt.labelTop calcula el borde superior de la pose dibujada, a partir del cuadro de caminata o del atlas y sus transformaciones de elevación, giro y escala. World no dibuja nombres de minions; Loot usa ese límite únicamente para apilar los datos del portador. La geometría de colisión y los ataques no cambian.
+
+El HUD conserva IDs y sistemas existentes. UI.hud actualiza nombre, nivel y la barra accesible de vida; XP expone valores ARIA. CSS posiciona las zonas del HUD de forma independiente, manteniendo el contenedor único para ocultar todo en menú y cinemáticas.
