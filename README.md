@@ -448,3 +448,5 @@ El gesto de Cristorata usa piezas pixel art rígidas de manga, antebrazo y mano 
 
 ### Revancha cooperativa
 Al terminar una partida, ambos pulsan **Volver juntos a la sala**. El grupo, código y anfitrión se conservan; pueden cambiar personajes y mapa y deben confirmar **Estoy listo** de nuevo. Una sola confirmación espera al compañero sin cerrar su resultado. **Salir del grupo** termina la sesión compartida. La actualización pendiente del juego se aplaza mientras regresan juntos.
+
+La subida de Cristorata al Tricéfalo mantiene al personaje opaco durante el recorrido: extiende ambas manos, eleva la pierna, aproxima las caderas a la silla y flexiona las piernas al asentarse. El agarre y el asiento preceden al despegue; torso y piernas reutilizan píxeles del atlas y las manos cerradas son piezas cacheadas. Conserva la escena de 6,4 s y los ocho segundos completos de montura.
