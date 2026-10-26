@@ -143,3 +143,4 @@ body:not(.menu) header .enemy-audio-control{position:fixed;top:22px;right:278px;
 .music-settings{max-height:calc(100dvh - 100px);overflow:auto}
 @media(max-width:600px){body:not(.menu) header .music-control{top:19px;right:54px}body:not(.menu) header .enemy-audio-control{top:19px;right:156px}.music-settings{width:min(230px,calc(100vw - 70px))}}
 body:not(.menu) header .enemy-audio-control label{right:auto;left:50%;transform:translateX(-50%)}
+body:not(.menu) header:has(.music-control[open],.enemy-audio-control[open]){z-index:13}
