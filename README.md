@@ -243,6 +243,8 @@ P.Meta valida esquema, identificadores, rangos y saldo. Compra y premio escriben
 
 La pantalla Mejoras reúne rol, fortaleza, debilidad, rareza, crecimiento y los valores permanentes efectivos de vida, daño por impacto, recarga, velocidad e imán. Cada tarjeta compara el valor actual con el siguiente rango antes de gastar. El poder estimado es un índice de progreso relativo: 100 representa a ese mismo personaje a 1★ y sin rangos; sirve para medir su avance, no para prometer DPS ni sustituir las diferencias de alcance, área o perforación. Las proyecciones 1★/3★/5★ reutilizan los rangos actuales. Se pueden reiniciar los cinco rangos de un personaje recuperando el 70% entero de las monedas invertidas; estrellas, colección, partidas y récords se conservan.
 
+La interfaz de Mejoras prioriza decisiones sobre explicación: saldo y selector comparten una barra, las reglas extensas están dentro de «¿Cómo funciona?», cada estadística agrupa su etiqueta con su valor y las estrellas usan una fila compacta. El historial, las proyecciones y los rangos tienen títulos diferenciados. El HUD Combo del Causa se oculta por completo en el vestíbulo para no cubrir la navegación; continúa visible durante las partidas.
+
 ## Árboles y jardineras
 Campo y Plaza usan [árboles y jardineras cartoon con acabado pixel](docs/TREES_PLANTERS.md): dos copas orgánicas y jardineras de piedra en orientación horizontal y alargada. Mantener raíces y sombras apoyadas; solo la parte alta del árbol oscila, con transparencia al pasar detrás. Un atlas compartido, dos llamadas de imagen por árbol y una por jardinera; sin cambiar colisiones ni cantidades. Pausa y movimiento reducido detienen el movimiento.
 
@@ -385,3 +387,4 @@ Para evitar que la densidad regale niveles, los minions de oleada dan 0,75 de fa
 Comparación y límites de las pruebas en [WAVE_PRESSURE.md](docs/WAVE_PRESSURE.md).
 
 Las criaturas de las ultis de Cuy y Paloma tienen una retirada visual de 1,6 segundos: los cuyes siguen corriendo y las palomas ascienden y planean, con desvanecimiento al final. La retirada no prolonga el daño ni la coraza; conserva posiciones del mundo en cooperativo y no se corta al recargar la ulti.
+El panorama exterior del Gallinazo conserva ahora el original de 1536 × 1024, con filtrado al escalar y una sola capa ajustada a la cámara. Se elimina la copia ampliada a 6400 unidades que producía bloques enormes. La azotea jugable, los personajes, las colisiones y las animaciones mantienen su dibujo y escala.

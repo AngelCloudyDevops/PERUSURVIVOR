@@ -484,6 +484,8 @@ Las fichas de Causas muestran valores base de rango 1 sin mochila ni mejoras per
 
 La ficha de Mejoras muestra el estado permanente efectivo y una comparación actual → siguiente rango antes de confirmar la compra. Su índice de poder pondera vida 30%, daño 35%, frecuencia 20%, velocidad 10% e imán 5%, siempre relativo a la base del mismo personaje (=100); no compara directamente geometrías de ataque distintas. Incluye proyecciones a 1★, 3★ y 5★ con los rangos actuales. Reiniciar devuelve `floor(invertido × 70 / 100)` y borra solo los rangos permanentes del personaje; conserva estrellas, desbloqueo, copias, récords y estadísticas históricas.
 
+La lectura visual sigue este orden: saldo/selector, identidad y poder, cinco valores efectivos, estrellas, historial, proyecciones y compras. Las reglas secundarias permanecen en un desplegable. Etiqueta y cifra viven en la misma tarjeta para evitar cruces de fila; móvil reduce a dos columnas. Combo del Causa pertenece al HUD de combate y se oculta mientras `body.menu` esté activo.
+
 
 ## Historial y ascensos por copias
 Desde el perfil v4 se conservan las últimas 200 tiradas. Cada recibo nuevo registra fecha/hora del dispositivo, nuevo/repetido y copias concedidas. Historial en orden inverso, filtros de rareza y resultado, 20 filas por página. Los recibos anteriores no reciben fechas inventadas.
@@ -636,5 +638,8 @@ Fujimori jefe tiene atlas propio de 16 poses: reposo y pasos, preparación/lanza
 
 Pulido de fase dos: alas abiertas en reposo y vuelo, aleteo más lento con menor oscilación vertical, recuperación de ráfagas hacia la misma postura y orientación según desplazamiento real. Una sola aura acompaña al rig; descargas violetas cortas e intermitentes sustituyen los rayos gruesos que tapaban el cuerpo. Los menús automáticos de mejora se aplazan hasta terminar la llegada y recuperación de la ulti, sin gastar ni perder XP; pausa manual permanece disponible.
 Sello de Fujimori: conserva 1,1 s de aviso y la posición fijada al iniciarlo. En los últimos 0,42 s cae desde el cielo sobre una sombra creciente. El contacto visual con el suelo coincide con la creación del único golpe de área; el sello queda 0,6 s antes de desaparecer, con polvo, papeles y una sacudida de 0,18 s. Pausa congela todo; movimiento reducido muestra una anticipación estática y elimina sacudida y partículas. Daño, radio y ventana de contraataque se conservan.
+
+
+El fondo exterior del Gallinazo debe mostrar una ciudad lejana legible, sin ampliar píxeles hasta competir con los personajes. La capa exterior usa el original completo y filtrado suave; el piso y los actores conservan su acabado nítido. La mejora es visual y no modifica cámara, límites ni combate.
 
 Mezcla clara: las pistas grabadas se calibran a 0,18 del volumen elegido para equilibrarlas con efectos Web Audio; la música sintetizada usa 0,85. Golpes y avisos reducen temporalmente la música al 25–45 % durante 0,14–0,35 s, con recuperación de 0,4 s. Los minions ganan presencia ×1,6 conservando distancia, prioridad, cupos y su volumen independiente. Silencio de efectos no activa reducción de música; las preferencias guardadas no cambian.
