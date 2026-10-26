@@ -268,5 +268,6 @@ module.exports = [
     "output": "js/test-bench.js"
   },
   {"source":"src/rendering/animal-entry.js","output":"js/animal-entry.js"},
+  {"source":"src/rendering/animal-entry-poses.js","output":"js/animal-entry-poses.js"},
   {"source":"src/network/account.js","output":"js/account.js"}
 ];
