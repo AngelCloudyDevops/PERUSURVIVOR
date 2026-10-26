@@ -124,6 +124,7 @@ El suelo del combate usa texturas extraídas de los fondos originales y caminos 
 ## Poderes de personajes · primera versión
 Se añaden Cerdito VTuber, Sustento, Cevichero y La G5 (18 personajes en total), y se actualizan los poderes de Kingteka, Ñajasor, Charles, Shakadoto y Fuzo.
 - Kingteka: cinco balas por descarga de escopeta arcade. Cerdito VTuber comparte el arma con siete balas y más dispersión.
+- Prototipo de arsenal de Kingteka: escopeta corta física (4 perdigones, alcance 330, cadencia base 0,95 s); Gallinazo (2 plumas guiadas, daño especial, alcance 520, cadencia 1,15 s); golpe de cuerpo físico (alcance 105, arco 120°, empuje 34, cadencia 0,72 s). Gallinazo se desbloquea en nivel 2 y el golpe en nivel 4. Se alterna con `1–3` o botones HUD; durante una subida de nivel, `1–3` elige tarjeta. Solo se ofrecen tarjetas de arsenal en niveles pares y se mejora el arma activa, con cinco rangos independientes: +16 % daño y +6 % alcance por rango, cadencia +5 % (intervalo ×0,95). Rangos posteriores exigen nivel 4, 7, 10 y 13; Escopeta Contra requiere escopeta rango 5 y nivel 14. Plumas solo fijan objetivos visibles y dentro del alcance factible de vuelo.
 - Ñajasor: tres pescados por descarga y texto CPEZ en cada disparo.
 - Sustento: rifle automático de cucarachas con movimiento zigzag. Cevichero, con disfraz azul, lanza pares de cucarachas marrones a menor cadencia.
 - Charles: lanzador con bebé de juguete y pañales caricaturescos; el impacto deja una nube de daño de 2,5 segundos.

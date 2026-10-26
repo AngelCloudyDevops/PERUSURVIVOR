@@ -85,6 +85,10 @@ module.exports = [
     "output": "js/gacha.js"
   },
   {
+    "source": "src/systems/kingteka-arsenal.js",
+    "output": "js/kingteka-arsenal.js"
+  },
+  {
     "source": "src/entities/actors.js",
     "output": "js/entities.js"
   },
