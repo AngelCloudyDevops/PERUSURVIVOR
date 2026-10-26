@@ -455,3 +455,7 @@ VultureRig.arenaMotion conserva motion(4) durante la gracia y dirige la misma je
 
 
 La bienvenida de Lobby abre Account en login o registro sin desactivar el fondo ni habilitar el menú que permanece inert. Account distingue el origen de la entrada, vuelve al vestíbulo después de un login correcto y muestra el código antes de continuar tras registrarse. Un contador de intentos invalida respuestas tardías cuando se elige invitado; download comprueba la identidad capturada antes de aplicar la copia. El instalador administrativo queda en ops y fuera de dist; el script de backup necesario en producción se sigue distribuyendo.
+
+### Estado de las tres cartas
+causa-combo.js se carga después de los adaptadores de ultis. ultimate.combo contiene solo números serializables; charge conserva compatibilidad con las activaciones y deriva de las tres cartas. El servidor avanza la mano de cada dueño y el cliente solo la muestra. Entities.hurt y Minibosses.hurt aceptan una fuente opcional; disparos y campos llevan comboBlocked para excluir bajas/daño tardíos de las ultis. No cambia el daño de combate. HUD de tres barras con escrituras al cambiar el entero; sin intervalos ni imágenes nuevas. Auditoría local y pruebas en causa-combo-*.cjs.
+

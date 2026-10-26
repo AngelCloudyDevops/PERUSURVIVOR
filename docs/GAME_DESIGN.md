@@ -535,3 +535,7 @@ La sección «Poderes de apoyo» ofrece dos espacios distintos con Onda causa, T
 
 
 Al entrar se elige iniciar sesión, crear cuenta o jugar como invitado. Invitado conserva el progreso de este navegador y no sobrescribe el de una cuenta; no exige conexión al servicio de cuentas. Iniciar sesión lleva al vestíbulo con el progreso recuperado. Registro pide confirmar la contraseña y muestra el código privado antes de continuar. Recuperación aparece solo al elegir «Olvidé mi contraseña».
+
+### Combo del Causa
+Tres cartas automáticas y conservables, sin azar: Aguante impone 45 s de combate; Caos acelera con bajas limitadas y Hazaña con daño efectivo, con progreso alternativo de combate hasta 52 s. Se consumen al activar Q; no se carga durante la ulti ni con sus fuentes persistentes posteriores. Sin enemigos visibles, en pausa o muerto se detiene. Cada jugador cooperativo conserva su mano autoritativa; entrenamiento permite recarga libre. Detalle y doce partidas medidas: CAUSA_COMBO.md.
+

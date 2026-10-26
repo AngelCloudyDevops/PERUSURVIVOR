@@ -30,7 +30,7 @@ afterCast(p,a,target){if(!p.evolved?.primary)return;const s=P.state,v=this.profi
  if(v.extra==='rear')hit(p.x-Math.cos(p.aim)*150,p.y-Math.sin(p.aim)*150,140,.55);
  if(['flanks','kicks'].includes(v.extra))for(const offset of [-.95,.95]){const x=p.x+Math.cos(p.aim+offset)*105,y=p.y+Math.sin(p.aim+offset)*105;hit(x,y,90,.5,35);if(s.mode!=='play')break}
  if(v.extra==='splash')hit(target.x,target.y,140,.5);
- if(['ground','vortex','cloud','swarm'].includes(v.extra)){const ground=v.extra==='ground';s.fields.push({x:ground?p.x:target.x,y:ground?p.y:target.y,r:ground?130:95,power:damage*.18,life:v.extra==='cloud'?4:2.5,tick:0,color:v.color})}
+ if(['ground','vortex','cloud','swarm'].includes(v.extra)){const ground=v.extra==='ground';s.fields.push({x:ground?p.x:target.x,y:ground?p.y:target.y,r:ground?130:95,power:damage*.18,comboBlocked:!!s.ultimate?.left,life:v.extra==='cloud'?4:2.5,tick:0,color:v.color})}
  if(v.extra==='chain'){const list=s.enemies.filter(e=>e.hp>0&&Math.hypot(e.x-target.x,e.y-target.y)<220).slice(0,3);for(const e of list){s.effects.push({kind:'evolution',evolution:p.id,x:e.x,y:e.y,angle:p.aim,r:40,life:.4,maxLife:.4,color:v.color});if(P.Combat.coverAllows(target,e)&&P.Combat.coverAllows(p,e))P.Entities.hurt(e,damage*.45);if(s.mode!=='play')break}}
 },
 effect(ctx,e,t){const v=this.profiles[e.evolution];if(!v)return;const index=Object.keys(this.profiles).indexOf(e.evolution),motion=P.Ambient?.reduced?.matches ? .35 : t,r=e.r*(.35+motion*.65),n=['rails','kicks'].includes(v.shape)?3:3+index%5;ctx.translate(e.x,e.y);ctx.rotate(e.angle||0);ctx.strokeStyle=v.color;ctx.fillStyle=v.color;ctx.lineWidth=3;ctx.shadowBlur=0;
