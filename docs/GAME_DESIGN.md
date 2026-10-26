@@ -480,6 +480,8 @@ Una compra de diez requiere 600 monedas de saldo inicial. Cada tirada actualiza 
 ### Consulta de personajes
 Las fichas de Causas muestran valores base de rango 1 sin mochila ni mejoras permanentes, rol descriptivo y evolución. El daño por impacto incluye powerScale; no se presenta como DPS. La rareza no cambia estas fichas base: aumenta las ganancias posteriores de estrellas y mejoras. Véase CHARACTER_PROFILES.md.
 
+La ficha de Mejoras muestra el estado permanente efectivo y una comparación actual → siguiente rango antes de confirmar la compra. Su índice de poder pondera vida 30%, daño 35%, frecuencia 20%, velocidad 10% e imán 5%, siempre relativo a la base del mismo personaje (=100); no compara directamente geometrías de ataque distintas. Incluye proyecciones a 1★, 3★ y 5★ con los rangos actuales. Reiniciar devuelve `floor(invertido × 70 / 100)` y borra solo los rangos permanentes del personaje; conserva estrellas, desbloqueo, copias, récords y estadísticas históricas.
+
 
 ## Historial y ascensos por copias
 Desde el perfil v4 se conservan las últimas 200 tiradas. Cada recibo nuevo registra fecha/hora del dispositivo, nuevo/repetido y copias concedidas. Historial en orden inverso, filtros de rareza y resultado, 20 filas por página. Los recibos anteriores no reciben fechas inventadas.
