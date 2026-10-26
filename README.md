@@ -283,3 +283,7 @@ Comparación reproducible de ataques base y evolucionados contra blancos cercano
 Tras guardar un ascenso se abre una celebración con el retrato, la estrella recién obtenida, el rango anterior/nuevo, las copias consumidas/restantes y el cambio de bonificación. Se puede cerrar con Continuar o Escape, o saltar directamente a la colección. Movimiento reducido elimina la animación. Las tarjetas y la ficha de colección muestran estrellas y porcentajes actuales de vida/daño; la ficha añade copias y siguiente coste, indicando que se aplican solo en individual. Los atributos base de la ficha siguen identificados como base.
 ## Tribunal legendario de Fujimori
 La sentencia conserva 340 u y añade grietas y onda doradas, expedientes «CASO ARCHIVADO» sobre los minions eliminados y escudo Expediente de 3 s para los jugadores vivos. Jefes alcanzados reciben 8 % de vida máxima (tope 200, no letal) y +20 % de daño recibido durante 5 s. Respeta fases invulnerables de entrada y la ulti del Gallinazo. No acumula vulnerabilidad ni recarga por sus propias bajas. Prueba: Ajustes → Probar ulti de Fujimori → Q; Recargar ulti y Reponer objetivos permiten repetir.
+
+
+## Ultis del Cuy y la Paloma
+Cuy Supremo: Estampida Suprema (5 s, daño de área y coraza del 50 %). Paloma del Centro: Bandada del Centro (6 s, espiral de palomas y remate de área). Carga con 20 bajas; pulsa Q o el botón. En Ajustes están las dos prácticas gratuitas, con recarga y cambio directo de personaje. Conservan los sprites cartoon pixel art actuales.
