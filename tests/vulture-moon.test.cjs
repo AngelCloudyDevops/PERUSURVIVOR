@@ -22,3 +22,17 @@ test('Cámara del despegue: encuadre conjunto, jugador seguro y continuidad entr
  }
  P.Vulture.reduced=()=>true;const quiet=M.cameraFrame(P.state.player,1280,720,1.5);assert.equal(quiet.zoom,1.5);assert.equal(quiet.y,P.state.player.y-70);e.phase='approach';assert.equal(M.cameraFrame(P.state.player,1280,720,1.5),null);
 });
+
+test('Caída: cámara sigue al jefe, conserva jugador y enlaza el impacto sin salto de zoom',()=>{
+ const {P,e,M,u}=engine();P.Vulture.reduced=()=>false;P.BossArt={camera:p=>({x:p.x*.9,y:p.y-70})};P.VultureUltimate.cameraScale=()=>e.phase==='vulture-ultimate'?1.06:1;u.start(e);M.beginLanding(e);const target={...e.moonTarget};
+ for(const [w,h,base] of [[1280,720,1.5],[390,844,1.05],[844,390,1.5]]){
+  e.phase='vulture-landing';let first,last;for(let t=0;t<=1.2;t+=.01){e.moonStageTime=t;const f=M.cameraFrame(P.state.player,w,h,base);first||=f;last=f;assert(Math.abs((P.state.player.x-f.x)*f.zoom)<=w/2-48+1e-7);assert(Math.abs((P.state.player.y-f.y)*f.zoom)<=h/2-80+1e-7)}assert(last.y>first.y);
+  e.moonStageTime=1.2;const before=M.cameraFrame(P.state.player,w,h,base);e.phase='vulture-ultimate';e.moonLanded=true;P.state.encounter.gallinazoScar={...target,moon:true,time:P.state.elapsed};const after=M.cameraFrame(P.state.player,w,h,base*1.06);for(const k of ['x','y','zoom'])assert(Math.abs(before[k]-after[k])<1e-8);
+  e.moonLanded=false;delete P.state.encounter.gallinazoScar;
+ }
+ P.state.player.x+=200;assert.deepEqual({...e.moonTarget},target);
+});
+
+test('Impacto: sacudida acotada, pausa estable, movimiento reducido y regreso completo de cámara',()=>{
+ const {P,e,M,u}=engine();P.Vulture.reduced=()=>false;P.BossArt={camera:p=>({x:p.x,y:p.y})};u.start(e);M.impact(e);const initial=M.impactShake();assert(initial.y>0&&initial.y<=7);P.state.elapsed+=.12;const shake=M.impactShake();assert(Math.abs(shake.x)<=8&&Math.abs(shake.y)<=7);const before=JSON.stringify(shake);P.state.mode='pause';u.introTick(.2);assert.equal(JSON.stringify(M.impactShake()),before);P.Vulture.reduced=()=>true;assert.equal(JSON.stringify(M.impactShake()),JSON.stringify({x:0,y:0}));P.Vulture.reduced=()=>false;P.state.elapsed+=1;assert.equal(JSON.stringify(M.impactShake()),JSON.stringify({x:0,y:0}));assert.equal(M.cameraFrame(P.state.player,1280,720,1.5),null);
+});
