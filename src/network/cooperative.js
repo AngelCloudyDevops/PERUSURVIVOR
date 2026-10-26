@@ -33,7 +33,7 @@ open(message){
 receive(m){
  const first=!this.active;if(first)this.resultShown=false;this.active=true;this.reconnecting=false;
  if(first){P.Maps.select(m.map);P.state.chosen=P.Data.characters.findIndex(c=>c.id===m.players[this.session.slot].id);this.initializing=true;P.Game.start();this.initializing=false;P.Loot.chests=[];P.Loot.debris=[];P.$('#pause').setAttribute('aria-label','Opciones cooperativas')}
- const s=P.state,previousScene=s.encounter?.scene?.id;for(const key of ['miniWarning','keys','portal','encounter','mapBossWon','coins','elapsed','mapTime','kills','level','xp','need','bossSpawned','shots','fields','enemies','gems','danger','effects'])s[key]=m[key];
+ const s=P.state,previousScene=s.encounter?.scene?.id;for(const key of ['court','courtBurst','miniWarning','keys','portal','encounter','mapBossWon','coins','elapsed','mapTime','kills','level','xp','need','bossSpawned','shots','fields','enemies','gems','danger','effects'])s[key]=m[key];
  s.mode='play';s.player=m.players[this.session.slot];s.ultimate=s.player.ultimate;this.peers=m.players.filter(p=>p.slot!==this.session.slot);P.Maps.selected=m.map;
  for(const p of m.players)p.coopPlayer=true;
  const broken=new Set(m.broken);P.Chunks.broken=new Set(m.broken.filter(id=>typeof id==='string'));for(const prop of P.Terrain.props)if(prop.kind==='crate'&&broken.has(prop.id)){prop.solid=false;prop.hp=0;if(prop.generated)P.Chunks.broken.add(prop.id)}
