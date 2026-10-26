@@ -1,12 +1,12 @@
 'use strict';
 // Un único panel para cambiar de prueba sin navegar por el vestíbulo.
 P.TestBench={
-active:false,switching:false,kind:'targets',character:'kingteka',map:'campo',boss:'campo',attack:'1',
+active:false,switching:false,kind:'targets',character:'kingteka',map:'campo',boss:'campo',attack:'1',support1:'none',supportRank1:'1',support2:'none',supportRank2:'1',supportCombos:false,
 init(){
  if(typeof Image==='undefined')return;
  const settings=P.$('#lobby-settings')||P.$('.roster');this.home=settings;
  const panel=document.createElement('section');panel.id='test-bench';panel.setAttribute('aria-label','Laboratorio de pruebas');
- panel.innerHTML='<div class="bench-heading"><div><small>PRUEBA SIN ESPERAS</small><h3>Laboratorio de combate</h3></div><button id="bench-collapse" type="button" aria-expanded="true">Minimizar</button></div><p class="bench-intro">Cambia de causa, escenario o rival y vuelve a probar desde aquí. Sin gastar objetos ni modificar tu progreso.</p><div id="bench-options"><div class="bench-selects"><label>Causa<select id="bench-character"></select></label><label>Prueba<select id="bench-kind"><option value="targets">Ataques y ulti · Objetivos</option><option value="boss">Combate contra jefe</option></select></label><label id="bench-map-label">Escenario<select id="bench-map"></select></label><label id="bench-boss-label" hidden>Rival<select id="bench-boss"></select></label><label>Arma principal<select id="bench-attack"><option value="1">Base · Rango 1</option><option value="2">Mejorado · Rango 2</option><option value="3">Mejorado · Rango 3</option><option value="4">Mejorado · Rango 4</option><option value="5">Máximo · Rango 5</option><option value="evolved">★ Evolución</option></select></label></div><p id="bench-attack-info" aria-live="polite"></p><div class="bench-toggles"><label><input id="bench-invincible" type="checkbox" checked> Invencible</label><label><input id="bench-auto" type="checkbox" checked> Recarga automática de ulti</label></div><div class="bench-actions"><button id="bench-start" type="button">Entrar a la prueba ↗</button><button id="bench-cast" type="button">Lanzar ulti · Q</button><button id="bench-targets" type="button">Reponer objetivos</button><button id="bench-training-boss" type="button" hidden>Volver a invocar jefe</button><button id="bench-heal" type="button">Curar</button><button id="bench-boss-ulti" type="button">Ulti del Gallinazo</button><button id="bench-exit" type="button">Volver a ajustes</button></div></div><p id="bench-training-status" hidden></p><p id="bench-status" role="status" aria-live="polite">Elige una prueba para empezar.</p>';
+ panel.innerHTML='<div class="bench-heading"><div><small>PRUEBA SIN ESPERAS</small><h3>Laboratorio de combate</h3></div><button id="bench-collapse" type="button" aria-expanded="true">Minimizar</button></div><p class="bench-intro">Cambia de causa, escenario o rival y vuelve a probar desde aquí. Sin gastar objetos ni modificar tu progreso.</p><div id="bench-options"><div class="bench-selects"><label>Causa<select id="bench-character"></select></label><label>Prueba<select id="bench-kind"><option value="targets">Ataques y ulti · Objetivos</option><option value="boss">Combate contra jefe</option></select></label><label id="bench-map-label">Escenario<select id="bench-map"></select></label><label id="bench-boss-label" hidden>Rival<select id="bench-boss"></select></label><label>Arma principal<select id="bench-attack"><option value="1">Base · Rango 1</option><option value="2">Mejorado · Rango 2</option><option value="3">Mejorado · Rango 3</option><option value="4">Mejorado · Rango 4</option><option value="5">Máximo · Rango 5</option><option value="evolved">★ Evolución</option></select></label></div><p id="bench-attack-info" aria-live="polite"></p><details class="bench-support"><summary id="bench-support-summary">Poderes de apoyo · 0/2</summary><div id="bench-support-slots"></div><label><input id="bench-support-combos" type="checkbox"> Activar combos compatibles</label><p id="bench-support-info" aria-live="polite"></p></details><div class="bench-toggles"><label><input id="bench-invincible" type="checkbox" checked> Invencible</label><label><input id="bench-auto" type="checkbox" checked> Recarga automática de ulti</label></div><div class="bench-actions"><button id="bench-start" type="button">Entrar a la prueba ↗</button><button id="bench-cast" type="button">Lanzar ulti · Q</button><button id="bench-targets" type="button">Reponer objetivos</button><button id="bench-training-boss" type="button" hidden>Volver a invocar jefe</button><button id="bench-heal" type="button">Curar</button><button id="bench-boss-ulti" type="button">Ulti del Gallinazo</button><button id="bench-exit" type="button">Volver a ajustes</button></div></div><p id="bench-training-status" hidden></p><p id="bench-status" role="status" aria-live="polite">Elige una prueba para empezar.</p>';
  settings.append(panel);this.panel=panel;
  // Las flechas y letras de los selectores no deben mover al jugador ni abrir portales.
  for(const event of ['keydown','keyup'])panel.addEventListener(event,e=>{if(['SELECT','INPUT'].includes(e.target.tagName))e.stopPropagation()});
@@ -20,9 +20,9 @@ init(){
  // Mantener los controles originales para compatibilidad, con una sola entrada visible.
  P.$('#dev-lab').hidden=true;for(const entry of document.querySelectorAll('.practice-entry'))entry.hidden=true;
  const perf=document.createElement('details');perf.className='bench-performance';const summary=document.createElement('summary');summary.textContent='Rendimiento y FPS';perf.append(summary,P.$('.performance-settings'));settings.append(perf);
- this.controls();this.hud();
+ this.initSupports();this.controls();this.hud();
 },
-controls(){if(!this.panel)return;this.describeAttack();P.$('#bench-map-label').hidden=this.kind!=='targets';P.$('#bench-boss-label').hidden=this.kind!=='boss';P.$('#bench-invincible').disabled=this.kind==='targets';P.$('#bench-options').hidden=false;P.$('#bench-collapse').textContent='Minimizar';P.$('#bench-collapse').setAttribute('aria-expanded','true')},
+controls(){if(!this.panel)return;this.describeAttack();this.describeSupports();P.$('#bench-map-label').hidden=this.kind!=='targets';P.$('#bench-boss-label').hidden=this.kind!=='boss';P.$('#bench-invincible').disabled=this.kind==='targets';P.$('#bench-options').hidden=false;P.$('#bench-collapse').textContent='Minimizar';P.$('#bench-collapse').setAttribute('aria-expanded','true')},
 run(){
  if(P.WalkArt&&!P.WalkArt.readyForStart()){P.WalkArt.waitForStart(()=>this.run());return}
  this.active=true;this.switching=true;
@@ -33,11 +33,37 @@ run(){
  if(this.panel){document.body.append(this.panel);this.panel.classList.add('bench-live');document.body.classList.add('test-bench-live')}
  this.applyAttack();P.UI.hud();
 },
+initSupports(){
+ const slots=P.$('#bench-support-slots');
+ for(const slot of [1,2]){
+  const group=document.createElement('div');group.className='bench-support-slot';
+  for(const [key,label,entries] of [['support'+slot,'Apoyo '+slot,[['none','Sin apoyo'],...Object.entries(P.Progression.names)]],['supportRank'+slot,'Rango del apoyo '+slot,[['1','Base · Rango 1'],['2','Rango 2'],['3','Rango 3'],['4','Rango 4'],['5','Máximo · Rango 5'],['evolved','★ Evolución']]]]){
+   const field=document.createElement('label'),select=document.createElement('select');field.textContent=label;select.id='bench-'+key;
+   for(const [value,name] of entries){const o=document.createElement('option');o.value=value;o.textContent=name;select.append(o)}
+   select.value=this[key];select.onchange=()=>{this[key]=select.value;this.describeSupports();if(this.active)this.run()};field.append(select);group.append(field);
+  }
+  slots.append(group);
+ }
+ P.$('#bench-support-combos').checked=this.supportCombos;P.$('#bench-support-combos').onchange=()=>{this.supportCombos=P.$('#bench-support-combos').checked;this.describeSupports();if(this.active)this.run()};
+},
+supports(){const chosen=[];for(const slot of [1,2]){const id=this['support'+slot],stage=this['supportRank'+slot];if(P.Progression.names[id]&&!chosen.some(([other])=>other===id))chosen.push([id,stage==='evolved'?'evolved':String(Math.max(1,Math.min(5,Math.floor(Number(stage)||1))))])}return chosen},
+describeSupports(){
+ const chosen=this.supports(),fixture=this.attackFixture();
+ for(const slot of [1,2]){P.$('#bench-supportRank'+slot).disabled=this['support'+slot]==='none';for(const o of P.$('#bench-support'+slot).options)o.disabled=o.value!=='none'&&o.value===this['support'+(3-slot)]}
+ P.UI.write(P.$('#bench-support-summary'),'Poderes de apoyo · '+chosen.length+'/2'+(chosen.length?' · '+chosen.map(([id])=>P.Progression.names[id]).join(' + '):''));
+ const descriptions={pulse:'Onda automática que daña y empuja cerca de ti.',cards:'Tarjetas perforantes dirigidas al enemigo cercano.',orbit:'Bandas giratorias y pulsos de daño a tu alrededor.'};
+ const text=chosen.map(([id,stage])=>P.Progression.names[id]+' · '+(stage==='evolved'?'★ Evolución · Daño ×2 y alcance ×1,4':'Rango '+stage+'/5')+' · '+descriptions[id]);
+ const compatible=[];if(fixture.powerRanks.pulse)compatible.push('Directo viral: cada onda lanza cuatro copias del ataque');if(fixture.powerRanks.cards&&fixture.powerRanks.orbit)compatible.push('Prensa blindada: tarjetas +1 perforación y bandas +25% de alcance');
+ text.push(compatible.length?(this.supportCombos?'Combo activo · ':'Combo disponible (actívalo para comparar) · ')+compatible.join(' · '):'Elige Onda causa para Directo viral, o Tarjetas + Escudo para Prensa blindada.');
+ P.UI.write(P.$('#bench-support-info'),text.join('\n'));
+},
 attackFixture(){
  const c=P.Data.characters.find(c=>c.id===this.character),p=P.Entities.player(c);P.Progression.init(p);
  const rank=this.attack==='evolved'?5:Math.max(1,Math.min(5,Number(this.attack)||1));
  for(let i=1;i<rank;i++)P.Progression.apply(p,'primary');
  if(this.attack==='evolved')P.Progression.apply(p,'evolve:primary');
+ for(const [id,stage] of this.supports()){const rank=stage==='evolved'?5:Number(stage);for(let i=0;i<rank;i++)P.Progression.apply(p,id);if(stage==='evolved')P.Progression.apply(p,'evolve:'+id)}
+ if(this.supportCombos){if(p.powerRanks.pulse)P.Progression.apply(p,'combo:direct');if(p.powerRanks.cards&&p.powerRanks.orbit)P.Progression.apply(p,'combo:press')}
  return p;
 },
 describeAttack(){
@@ -48,12 +74,15 @@ describeAttack(){
 applyAttack(){
  const s=P.state,p=s.player;
  if(!this.active||!s.devRun||P.Coop?.active||s.mode!=='play'||p?.id!==this.character)return;
- if(this.appliedPlayer===p&&this.appliedAttack===this.attack)return;
+ const signature=JSON.stringify([this.attack,this.supports(),this.supportCombos]);
+ if(this.appliedPlayer===p&&this.appliedAttack===signature)return;
  const fixture=this.attackFixture();
  // Reconstruir desde la base evita acumular multiplicadores al volver de evolución a base.
  for(const key of ['power','reach','rate','projectileBonus','primaryPierce','evolutionBaseBonus']){if(fixture[key]===undefined)delete p[key];else p[key]=fixture[key]}
  P.Progression.init(p);p.powerRanks.primary=fixture.powerRanks.primary;p.evolved.primary=!!fixture.evolved.primary;
- this.appliedPlayer=p;this.appliedAttack=this.attack;
+ for(const id of Object.keys(P.Progression.names)){delete p.powerRanks[id];delete p.evolved[id];if(fixture.powerRanks[id]){p.powerRanks[id]=fixture.powerRanks[id];p.evolved[id]=!!fixture.evolved[id]}}
+ p.powerTimers={};p.combos={...fixture.combos};
+ this.appliedPlayer=p;this.appliedAttack=signature;
 },
 exit(){this.active=false;P.UI.menu();P.Lobby?.show('settings');this.hud()},
 stop(){if(this.switching)return;this.active=false;if(this.panel){this.home.append(this.panel);this.panel.classList.remove('bench-live');document.body.classList.remove('test-bench-live')}this.hud()},
