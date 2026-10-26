@@ -399,6 +399,9 @@ Campo de Marte: monumento de piedra con arco y relieves, más dos variantes de p
 
 HUD de combate distribuido en los bordes: XP de ancho completo arriba, personaje/nivel/vida a la izquierda, tiempo al centro y habilidad abajo. La información de botín y eventos permanece visible sin un panel central opaco.
 
+
+Machu Picchu: tres variantes de roca, dos orientaciones de muro y terrazas con escalera, piedra irregular y musgo sutil. Conserva rutas, cantidades y colisiones, sombras apoyadas y transparencia detrás. Los bordes de piedra del suelo mantienen su distribución y se integran en la caché del terreno. Referencia: MACHU_STONE.md.
+
 ## Tienda del menú y mochila
 El monedero permanente compra unidades de Lonchera del causa (20: +25 vida máxima/inicial), Café de cabina (25: recarga ×0.88), Zapatillas de repuesto (25: velocidad ×1.10), Imán de bolsillo (20: recogida ×1.25), Llave rara (30) y Llave legendaria (70). Los cuatro bonos duran una partida; las llaves se suman al inventario temporal del mapa. Los objetos usan iconos pixel art propios y el estilo azul del vestíbulo.
 

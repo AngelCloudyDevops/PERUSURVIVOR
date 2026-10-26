@@ -317,6 +317,12 @@ CampoArt intercepta landmark/picnic en Terrain solo para Campo fuera de arenas. 
 
 El HUD conserva IDs y sistemas existentes. UI.hud actualiza nombre, nivel y la barra accesible de vida; XP expone valores ARIA. CSS posiciona las zonas del HUD de forma independiente, manteniendo el contenedor único para ocultar todo en menú y cinemáticas.
 
+
+MachuArt intercepta rock/wall/landmark en Terrain únicamente para Machu fuera de arenas. Un atlas de seis celdas, variante de roca por coordenadas y orientación del muro según w/h. Una llamada por obstáculo. Chunks.floor usa MachuArt.edge solo al construir el canvas del sector; la carga del atlas invalida esos canvas una vez si Machu sigue seleccionado. Ningún cambio de física, rutas o entidades. Auditoría y empaquetado: machu-stone-audit.json y pack-machu-stone.py.
+
+
+Los bordes de piedra se componen sobre el canvas final de 512 px del sector, después de ampliar la base de 128 px, para conservar el detalle del sprite sin bloques excesivos. La composición sigue ocurriendo solo al reconstruir el sector.
+
 ## Tienda del menú y mochila
 El monedero permanente compra unidades de Lonchera del causa (20: +25 vida máxima/inicial), Café de cabina (25: recarga ×0.88), Zapatillas de repuesto (25: velocidad ×1.10), Imán de bolsillo (20: recogida ×1.25), Llave rara (30) y Llave legendaria (70). Los cuatro bonos duran una partida; las llaves se suman al inventario temporal del mapa. Los objetos usan iconos pixel art propios y el estilo azul del vestíbulo.
 
