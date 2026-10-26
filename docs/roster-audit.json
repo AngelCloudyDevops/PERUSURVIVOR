@@ -1,0 +1,1133 @@
+{
+  "method": "20 s a 30 Hz, cámara fija 980x550 u, sin ulti/apoyos/mejoras permanentes, terreno vacío, blancos con vida ilimitada. close: 100 u/r18; mid: 250 u/r18; boss: r40 orbitando a 100 u a 0,55 rad/s; line: ocho r18 a 85+40i; ring: ocho r18 alrededor a 100 u. evolved: cuatro rangos y evolución al nivel 8. Daño agregado por segundo, no supervivencia ni tasa de victoria. Escopetas conservan caída y descuento real; órbitas se miden durante todo el ciclo.",
+  "baseline": "1f0a6a6",
+  "characters": [
+    {
+      "id": "cristorata",
+      "name": "Cristorata",
+      "before": {
+        "id": "cristorata",
+        "spriteRow": 1,
+        "name": "Cristorata",
+        "category": "Streamer · parodia",
+        "look": "cap",
+        "color": "#71c9cd",
+        "skin": "#c18c69",
+        "hp": 95,
+        "speed": 205,
+        "power": 16,
+        "attack": "clip"
+      },
+      "after": {
+        "hp": 95,
+        "speed": 205,
+        "power": 18
+      },
+      "base": {
+        "close": {
+          "before": 32.8,
+          "after": 38.7
+        },
+        "mid": {
+          "before": 33.6,
+          "after": 37.8
+        },
+        "boss": {
+          "before": 32.8,
+          "after": 38.7
+        },
+        "line": {
+          "before": 166.4,
+          "after": 192.6
+        },
+        "ring": {
+          "before": 32.8,
+          "after": 38.7
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 343.5,
+          "after": 405.7
+        },
+        "boss": {
+          "before": 194.6,
+          "after": 232.6
+        },
+        "line": {
+          "before": 1635.9,
+          "after": 1926.1
+        },
+        "ring": {
+          "before": 414.9,
+          "after": 491.1
+        }
+      }
+    },
+    {
+      "id": "cuy",
+      "name": "Cuy Supremo",
+      "before": {
+        "id": "cuy",
+        "spriteRow": 2,
+        "name": "Cuy Supremo",
+        "category": "Meme original",
+        "look": "cuy",
+        "color": "#dcb17d",
+        "skin": "#e7bf8e",
+        "hp": 150,
+        "speed": 155,
+        "power": 34,
+        "attack": "nova"
+      },
+      "after": {
+        "hp": 150,
+        "speed": 155,
+        "power": 34
+      },
+      "base": {
+        "close": {
+          "before": 30.6,
+          "after": 34
+        },
+        "mid": {
+          "before": 0,
+          "after": 0
+        },
+        "boss": {
+          "before": 30.6,
+          "after": 34
+        },
+        "line": {
+          "before": 61.2,
+          "after": 68
+        },
+        "ring": {
+          "before": 244.8,
+          "after": 272
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 452.7,
+          "after": 392.3
+        },
+        "boss": {
+          "before": 452.7,
+          "after": 392.3
+        },
+        "line": {
+          "before": 2252.7,
+          "after": 1939.5
+        },
+        "ring": {
+          "before": 3621.3,
+          "after": 3138.3
+        }
+      }
+    },
+    {
+      "id": "paloma",
+      "name": "Paloma del Centro",
+      "before": {
+        "id": "paloma",
+        "spriteRow": 3,
+        "name": "Paloma del Centro",
+        "category": "Meme original",
+        "look": "bird",
+        "color": "#a6bfce",
+        "skin": "#c3d0d8",
+        "hp": 85,
+        "speed": 225,
+        "power": 17,
+        "attack": "feathers"
+      },
+      "after": {
+        "hp": 85,
+        "speed": 225,
+        "power": 17
+      },
+      "base": {
+        "close": {
+          "before": 61.2,
+          "after": 61.2
+        },
+        "mid": {
+          "before": 20.4,
+          "after": 20.4
+        },
+        "boss": {
+          "before": 102,
+          "after": 102
+        },
+        "line": {
+          "before": 61.2,
+          "after": 61.2
+        },
+        "ring": {
+          "before": 61.2,
+          "after": 61.2
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 100.2,
+          "after": 100.2
+        },
+        "boss": {
+          "before": 200.4,
+          "after": 200.4
+        },
+        "line": {
+          "before": 395.5,
+          "after": 395.5
+        },
+        "ring": {
+          "before": 400.8,
+          "after": 400.8
+        }
+      }
+    },
+    {
+      "id": "alan",
+      "name": "Alan García",
+      "before": {
+        "id": "alan",
+        "spriteRow": 4,
+        "name": "Alan García",
+        "category": "Presidente · parodia",
+        "look": "alan",
+        "color": "#e58089",
+        "skin": "#dfb194",
+        "hp": 130,
+        "speed": 160,
+        "power": 31,
+        "attack": "speech"
+      },
+      "after": {
+        "hp": 130,
+        "speed": 160,
+        "power": 31
+      },
+      "base": {
+        "close": {
+          "before": 37.2,
+          "after": 37.2
+        },
+        "mid": {
+          "before": 0,
+          "after": 0
+        },
+        "boss": {
+          "before": 37.2,
+          "after": 37.2
+        },
+        "line": {
+          "before": 186,
+          "after": 186
+        },
+        "ring": {
+          "before": 37.2,
+          "after": 37.2
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 263.3,
+          "after": 263.3
+        },
+        "boss": {
+          "before": 263.3,
+          "after": 263.3
+        },
+        "line": {
+          "before": 2106,
+          "after": 2106
+        },
+        "ring": {
+          "before": 1224.1,
+          "after": 1224.1
+        }
+      }
+    },
+    {
+      "id": "alberto",
+      "name": "Alberto Fujimori",
+      "before": {
+        "id": "alberto",
+        "spriteRow": 5,
+        "name": "Alberto Fujimori",
+        "category": "Presidente · parodia",
+        "look": "alberto",
+        "color": "#f0ad65",
+        "skin": "#dbac88",
+        "hp": 110,
+        "speed": 175,
+        "power": 24,
+        "attack": "orbit"
+      },
+      "after": {
+        "hp": 120,
+        "speed": 175,
+        "power": 28
+      },
+      "base": {
+        "close": {
+          "before": 19.2,
+          "after": 23.8
+        },
+        "mid": {
+          "before": 0,
+          "after": 0
+        },
+        "boss": {
+          "before": 26.4,
+          "after": 40.6
+        },
+        "line": {
+          "before": 34.8,
+          "after": 44.8
+        },
+        "ring": {
+          "before": 154.8,
+          "after": 212.8
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 151.7,
+          "after": 177
+        },
+        "boss": {
+          "before": 151.7,
+          "after": 177
+        },
+        "line": {
+          "before": 603.5,
+          "after": 704.1
+        },
+        "ring": {
+          "before": 1213.8,
+          "after": 1416.1
+        }
+      }
+    },
+    {
+      "id": "keiko",
+      "name": "Keiko Fujimori",
+      "before": {
+        "id": "keiko",
+        "spriteRow": 6,
+        "name": "Keiko Fujimori",
+        "category": "Política · parodia",
+        "look": "keiko",
+        "color": "#f5a049",
+        "skin": "#e4b293",
+        "hp": 110,
+        "speed": 185,
+        "power": 23,
+        "attack": "fan"
+      },
+      "after": {
+        "hp": 110,
+        "speed": 185,
+        "power": 23
+      },
+      "base": {
+        "close": {
+          "before": 43.7,
+          "after": 43.7
+        },
+        "mid": {
+          "before": 43.7,
+          "after": 43.7
+        },
+        "boss": {
+          "before": 43.7,
+          "after": 43.7
+        },
+        "line": {
+          "before": 218.5,
+          "after": 218.5
+        },
+        "ring": {
+          "before": 43.7,
+          "after": 43.7
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 305.7,
+          "after": 305.7
+        },
+        "boss": {
+          "before": 209.4,
+          "after": 209.4
+        },
+        "line": {
+          "before": 1905.3,
+          "after": 1905.3
+        },
+        "ring": {
+          "before": 1116.9,
+          "after": 1116.9
+        }
+      }
+    },
+    {
+      "id": "ollanta",
+      "name": "Ollanta Humala",
+      "before": {
+        "id": "ollanta",
+        "spriteRow": 7,
+        "name": "Ollanta Humala",
+        "category": "Presidente · parodia",
+        "look": "ollanta",
+        "color": "#9fbb77",
+        "skin": "#bd906a",
+        "hp": 135,
+        "speed": 170,
+        "power": 30,
+        "attack": "megaphone"
+      },
+      "after": {
+        "hp": 135,
+        "speed": 170,
+        "power": 30
+      },
+      "base": {
+        "close": {
+          "before": 33,
+          "after": 33
+        },
+        "mid": {
+          "before": 33,
+          "after": 33
+        },
+        "boss": {
+          "before": 33,
+          "after": 33
+        },
+        "line": {
+          "before": 165,
+          "after": 165
+        },
+        "ring": {
+          "before": 33,
+          "after": 33
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 481.2,
+          "after": 385
+        },
+        "boss": {
+          "before": 481.2,
+          "after": 385
+        },
+        "line": {
+          "before": 2406.1,
+          "after": 1924.9
+        },
+        "ring": {
+          "before": 962.4,
+          "after": 769.9
+        }
+      }
+    },
+    {
+      "id": "kingteka",
+      "name": "Kingteka",
+      "before": {
+        "id": "kingteka",
+        "spriteRow": 0,
+        "atlas": "powers",
+        "name": "Kingteka",
+        "category": "Streamer · parodia",
+        "look": "headset",
+        "color": "#c8a6ff",
+        "skin": "#bc906f",
+        "hp": 125,
+        "speed": 175,
+        "power": 28,
+        "attack": "shotgun"
+      },
+      "after": {
+        "hp": 125,
+        "speed": 175,
+        "power": 28
+      },
+      "base": {
+        "close": {
+          "before": 37.8,
+          "after": 37.8
+        },
+        "mid": {
+          "before": 17.8,
+          "after": 17.8
+        },
+        "boss": {
+          "before": 37.8,
+          "after": 37.8
+        },
+        "line": {
+          "before": 37.8,
+          "after": 37.8
+        },
+        "ring": {
+          "before": 37.8,
+          "after": 37.8
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 222.8,
+          "after": 222.8
+        },
+        "boss": {
+          "before": 222.8,
+          "after": 222.8
+        },
+        "line": {
+          "before": 571.8,
+          "after": 571.8
+        },
+        "ring": {
+          "before": 222.8,
+          "after": 222.8
+        }
+      }
+    },
+    {
+      "id": "shaka",
+      "name": "Shakadoto",
+      "before": {
+        "id": "shaka",
+        "spriteRow": 5,
+        "atlas": "powers",
+        "name": "Shakadoto",
+        "category": "Streamer · parodia",
+        "look": "cap",
+        "color": "#b6d1f0",
+        "skin": "#ccaa86",
+        "hp": 140,
+        "speed": 160,
+        "power": 35,
+        "attack": "bananas"
+      },
+      "after": {
+        "hp": 140,
+        "speed": 160,
+        "power": 35
+      },
+      "base": {
+        "close": {
+          "before": 161,
+          "after": 71.8
+        },
+        "mid": {
+          "before": 161,
+          "after": 73.5
+        },
+        "boss": {
+          "before": 120.8,
+          "after": 54.3
+        },
+        "line": {
+          "before": 805,
+          "after": 364
+        },
+        "ring": {
+          "before": 161,
+          "after": 71.8
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 452.7,
+          "after": 202.1
+        },
+        "boss": {
+          "before": 452.7,
+          "after": 202.1
+        },
+        "line": {
+          "before": 3131.2,
+          "after": 1250.9
+        },
+        "ring": {
+          "before": 1738.2,
+          "after": 901.6
+        }
+      }
+    },
+    {
+      "id": "najasor",
+      "name": "Najasor",
+      "before": {
+        "id": "najasor",
+        "spriteRow": 2,
+        "atlas": "powers",
+        "name": "Najasor",
+        "category": "Streamer · parodia",
+        "look": "cap",
+        "color": "#83d5bd",
+        "skin": "#ccaa86",
+        "hp": 95,
+        "speed": 215,
+        "power": 20,
+        "attack": "fishgun"
+      },
+      "after": {
+        "hp": 95,
+        "speed": 215,
+        "power": 20
+      },
+      "base": {
+        "close": {
+          "before": 69,
+          "after": 58.7
+        },
+        "mid": {
+          "before": 23,
+          "after": 19.6
+        },
+        "boss": {
+          "before": 72,
+          "after": 61.2
+        },
+        "line": {
+          "before": 69,
+          "after": 58.7
+        },
+        "ring": {
+          "before": 69,
+          "after": 58.7
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 499.4,
+          "after": 281.4
+        },
+        "boss": {
+          "before": 837.6,
+          "after": 468.2
+        },
+        "line": {
+          "before": 1538.6,
+          "after": 871.9
+        },
+        "ring": {
+          "before": 831.3,
+          "after": 486.5
+        }
+      }
+    },
+    {
+      "id": "cirilo",
+      "name": "CiriloTV",
+      "before": {
+        "id": "cirilo",
+        "spriteRow": 3,
+        "atlas": "streamers",
+        "name": "CiriloTV",
+        "category": "Streamer · parodia",
+        "look": "cap",
+        "color": "#65c2dc",
+        "skin": "#ccaa86",
+        "hp": 120,
+        "speed": 175,
+        "power": 22,
+        "attack": "micro"
+      },
+      "after": {
+        "hp": 120,
+        "speed": 175,
+        "power": 22
+      },
+      "base": {
+        "close": {
+          "before": 45.1,
+          "after": 45.1
+        },
+        "mid": {
+          "before": 46.2,
+          "after": 46.2
+        },
+        "boss": {
+          "before": 45.1,
+          "after": 45.1
+        },
+        "line": {
+          "before": 228.8,
+          "after": 228.8
+        },
+        "ring": {
+          "before": 45.1,
+          "after": 45.1
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 255.2,
+          "after": 255.2
+        },
+        "boss": {
+          "before": 364.4,
+          "after": 364.4
+        },
+        "line": {
+          "before": 1762.8,
+          "after": 1762.8
+        },
+        "ring": {
+          "before": 561,
+          "after": 561
+        }
+      }
+    },
+    {
+      "id": "fuzo",
+      "name": "Fuzo",
+      "before": {
+        "id": "fuzo",
+        "spriteRow": 6,
+        "atlas": "powers",
+        "name": "Fuzo",
+        "category": "Streamer · parodia",
+        "look": "headset",
+        "color": "#e4cf70",
+        "skin": "#ccaa86",
+        "hp": 115,
+        "speed": 180,
+        "power": 24,
+        "attack": "bankCards"
+      },
+      "after": {
+        "hp": 115,
+        "speed": 180,
+        "power": 24
+      },
+      "base": {
+        "close": {
+          "before": 62.4,
+          "after": 53
+        },
+        "mid": {
+          "before": 62.4,
+          "after": 53
+        },
+        "boss": {
+          "before": 62.4,
+          "after": 53
+        },
+        "line": {
+          "before": 187.2,
+          "after": 159.1
+        },
+        "ring": {
+          "before": 62.4,
+          "after": 53
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 811.5,
+          "after": 454.9
+        },
+        "boss": {
+          "before": 811.5,
+          "after": 454.9
+        },
+        "line": {
+          "before": 2881.2,
+          "after": 1611.5
+        },
+        "ring": {
+          "before": 945.5,
+          "after": 542
+        }
+      }
+    },
+    {
+      "id": "charles",
+      "name": "Charles",
+      "before": {
+        "id": "charles",
+        "spriteRow": 4,
+        "atlas": "powers",
+        "name": "Charles",
+        "category": "Streamer · parodia",
+        "look": "cap",
+        "color": "#7ea9f0",
+        "skin": "#ccaa86",
+        "hp": 130,
+        "speed": 165,
+        "power": 33,
+        "attack": "diaper"
+      },
+      "after": {
+        "hp": 130,
+        "speed": 165,
+        "power": 33
+      },
+      "base": {
+        "close": {
+          "before": 68.1,
+          "after": 54.5
+        },
+        "mid": {
+          "before": 67.2,
+          "after": 53.8
+        },
+        "boss": {
+          "before": 68.1,
+          "after": 54.5
+        },
+        "line": {
+          "before": 148.1,
+          "after": 118.5
+        },
+        "ring": {
+          "before": 148.1,
+          "after": 118.5
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 524.1,
+          "after": 253.9
+        },
+        "boss": {
+          "before": 1067.8,
+          "after": 486.7
+        },
+        "line": {
+          "before": 3061.8,
+          "after": 1417.1
+        },
+        "ring": {
+          "before": 1316.4,
+          "after": 649.2
+        }
+      }
+    },
+    {
+      "id": "axelbenba",
+      "name": "Axel Benba",
+      "before": {
+        "id": "axelbenba",
+        "spriteRow": 6,
+        "atlas": "streamers",
+        "name": "Axel Benba",
+        "category": "Streamer · parodia",
+        "look": "headset",
+        "color": "#ef8891",
+        "skin": "#ccaa86",
+        "hp": 100,
+        "speed": 200,
+        "power": 21,
+        "attack": "axelClip"
+      },
+      "after": {
+        "hp": 100,
+        "speed": 200,
+        "power": 21
+      },
+      "base": {
+        "close": {
+          "before": 88.2,
+          "after": 70.6
+        },
+        "mid": {
+          "before": 28.4,
+          "after": 22.7
+        },
+        "boss": {
+          "before": 88.2,
+          "after": 70.6
+        },
+        "line": {
+          "before": 88.2,
+          "after": 70.6
+        },
+        "ring": {
+          "before": 88.2,
+          "after": 70.6
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 280.1,
+          "after": 224.1
+        },
+        "boss": {
+          "before": 280.1,
+          "after": 224.1
+        },
+        "line": {
+          "before": 280.1,
+          "after": 224.1
+        },
+        "ring": {
+          "before": 280.1,
+          "after": 224.1
+        }
+      }
+    },
+    {
+      "id": "cerdito",
+      "name": "Cerdito VTuber",
+      "before": {
+        "id": "cerdito",
+        "name": "Cerdito VTuber",
+        "category": "VTuber · parodia",
+        "look": "cuy",
+        "atlas": "powers",
+        "spriteRow": 1,
+        "color": "#f0a8c9",
+        "skin": "#edb49c",
+        "hp": 130,
+        "speed": 170,
+        "power": 27,
+        "attack": "pigShotgun"
+      },
+      "after": {
+        "hp": 130,
+        "speed": 170,
+        "power": 27
+      },
+      "base": {
+        "close": {
+          "before": 30.4,
+          "after": 34
+        },
+        "mid": {
+          "before": 12.2,
+          "after": 13.2
+        },
+        "boss": {
+          "before": 35.3,
+          "after": 39.5
+        },
+        "line": {
+          "before": 30.4,
+          "after": 34
+        },
+        "ring": {
+          "before": 25.3,
+          "after": 28.4
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 203.3,
+          "after": 214
+        },
+        "boss": {
+          "before": 238,
+          "after": 247.5
+        },
+        "line": {
+          "before": 473.8,
+          "after": 498.8
+        },
+        "ring": {
+          "before": 1269.5,
+          "after": 1336.3
+        }
+      }
+    },
+    {
+      "id": "sustento",
+      "name": "Sustento",
+      "before": {
+        "id": "sustento",
+        "name": "Sustento",
+        "category": "Streamer · parodia",
+        "look": "headset",
+        "atlas": "powers",
+        "spriteRow": 3,
+        "color": "#a4c492",
+        "skin": "#caa07f",
+        "hp": 105,
+        "speed": 190,
+        "power": 12,
+        "attack": "roachRifle"
+      },
+      "after": {
+        "hp": 105,
+        "speed": 190,
+        "power": 12
+      },
+      "base": {
+        "close": {
+          "before": 60,
+          "after": 51.6
+        },
+        "mid": {
+          "before": 59.4,
+          "after": 51
+        },
+        "boss": {
+          "before": 60,
+          "after": 51.6
+        },
+        "line": {
+          "before": 60,
+          "after": 51.6
+        },
+        "ring": {
+          "before": 60,
+          "after": 51.6
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 898.9,
+          "after": 539.3
+        },
+        "boss": {
+          "before": 898.9,
+          "after": 539.3
+        },
+        "line": {
+          "before": 3351.7,
+          "after": 2011
+        },
+        "ring": {
+          "before": 1356.5,
+          "after": 813.9
+        }
+      }
+    },
+    {
+      "id": "cevichero",
+      "name": "Cevichero",
+      "before": {
+        "id": "cevichero",
+        "name": "Cevichero",
+        "category": "Disfraz · parodia",
+        "look": "headset",
+        "atlas": "powers",
+        "spriteRow": 7,
+        "color": "#6ea9f2",
+        "skin": "#d1a080",
+        "hp": 115,
+        "speed": 190,
+        "power": 24,
+        "attack": "roachCast"
+      },
+      "after": {
+        "hp": 115,
+        "speed": 190,
+        "power": 24
+      },
+      "base": {
+        "close": {
+          "before": 76.8,
+          "after": 57.6
+        },
+        "mid": {
+          "before": 74.4,
+          "after": 55.8
+        },
+        "boss": {
+          "before": 76.8,
+          "after": 57.6
+        },
+        "line": {
+          "before": 76.8,
+          "after": 57.6
+        },
+        "ring": {
+          "before": 76.8,
+          "after": 57.6
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 331.3,
+          "after": 248.5
+        },
+        "boss": {
+          "before": 495.1,
+          "after": 371.3
+        },
+        "line": {
+          "before": 2307.9,
+          "after": 1730.9
+        },
+        "ring": {
+          "before": 1496.4,
+          "after": 1122.3
+        }
+      }
+    },
+    {
+      "id": "g5",
+      "name": "La G5",
+      "before": {
+        "id": "g5",
+        "name": "La G5",
+        "category": "Luchadora · avatar",
+        "look": "cap",
+        "atlas": "powers",
+        "spriteRow": 8,
+        "color": "#8bc6ed",
+        "skin": "#dbad8f",
+        "hp": 145,
+        "speed": 210,
+        "power": 42,
+        "attack": "g5Kick"
+      },
+      "after": {
+        "hp": 135,
+        "speed": 195,
+        "power": 36
+      },
+      "base": {
+        "close": {
+          "before": 67.2,
+          "after": 57.6
+        },
+        "mid": {
+          "before": 0,
+          "after": 0
+        },
+        "boss": {
+          "before": 67.2,
+          "after": 57.6
+        },
+        "line": {
+          "before": 134.4,
+          "after": 115.2
+        },
+        "ring": {
+          "before": 201.6,
+          "after": 172.8
+        }
+      },
+      "evolved": {
+        "close": {
+          "before": 931.3,
+          "after": 518.9
+        },
+        "boss": {
+          "before": 931.3,
+          "after": 518.9
+        },
+        "line": {
+          "before": 3725.2,
+          "after": 2075.5
+        },
+        "ring": {
+          "before": 2793.9,
+          "after": 1556.6
+        }
+      }
+    }
+  ]
+}

@@ -1,27 +1,27 @@
 # Perfiles de personajes
 
-Valores base de rango 1, sin mochila ni mejoras permanentes. Derivados de catalog.js y powers.js. No son DPS: área, retorno, nubes, perforación y dispersión cambian los resultados. Los roles son descriptivos; no añaden bonificaciones. La rareza de colección se consulta en P.Gacha.tiers y no aumenta los atributos.
+Base de rango 1 sin mejoras permanentes ni mochila. La rareza de colección no aumenta el poder. El daño por impacto no es DPS: los retornos, nubes y múltiples impactos cuentan por separado. Véase [comparación antes/después](ROSTER_BALANCE.md).
 
-| Causa | Rol | Vida | Velocidad u/s | Daño por impacto | Recarga s | Alcance nominal u | Proyectiles/bandas | Objetivos por proyectil |
-|---|---|---:|---:|---:|---:|---:|---:|---|
-| Cristorata | Hostigador móvil | 95 | 205 | 16 | 0.95 | 520 | 1 | Sin límite por trayecto |
-| Cuy Supremo | Tanque de área | 150 | 155 | 34 | 1.1 | 145 | Área | Área |
-| Paloma del Centro | Exploradora | 85 | 225 | 17 | 0.8 | 650 | 5 | 1 |
-| Alan García | Control frontal | 130 | 160 | 31 | 0.85 | 230 | Área | Área |
-| Alberto Fujimori | Defensa orbital | 110 | 175 | 24 | 0.45 | 100 | 3 | Área |
-| Keiko Fujimori | Hostigadora de retorno | 110 | 185 | 23 | 1.05 | 540 | 1 | Sin límite por trayecto |
-| Ollanta Humala | Vanguardia | 135 | 170 | 30 | 0.9 | 250 | Área | Área |
-| Kingteka | Escopetero cercano | 125 | 175 | 16.8 | 0.78 | 480 | 5 | 1 |
-| Shakadoto | Control de pasillos | 140 | 160 | 35 | 0.85 | 550 | 2 | Sin límite por trayecto |
-| Najasor | Tirador móvil | 95 | 215 | 20 | 0.85 | 650 | 3 | 1 |
-| CiriloTV | Hostigador equilibrado | 120 | 175 | 22 | 0.95 | 520 | 1 | Sin límite por trayecto |
-| Fuzo | Perforador de filas | 115 | 180 | 24 | 0.75 | 850 | 2 | 3 |
-| Charles | Control de zonas | 130 | 165 | 33 | 1.2 | 600 | 1 | 1 |
-| Axel Benba | Tirador de abanico | 100 | 200 | 21 | 0.7 | 700 | 3 | 1 |
-| Cerdito VTuber | Escopetero de cobertura | 130 | 170 | 13.5 | 0.78 | 400 | 7 | 1 |
-| Sustento | Tirador de cadencia | 105 | 190 | 12 | 0.18 | 750 | 1 | 1 |
-| Cevichero | Hostigador de enjambre | 115 | 190 | 24 | 0.62 | 680 | 2 | 1 |
-| La G5 | Luchadora móvil | 145 | 210 | 42 | 0.62 | 118 | Área | Área |
+| Personaje | Rareza | Rol | Vida | Velocidad u/s | Daño/impacto | Recarga s | Alcance nominal u | Proyectiles/bandas | Objetivos/proyectil |
+|---|---|---|---:|---:|---:|---:|---:|---:|---|
+| Cristorata | Común | Hostigador móvil | 95 | 205 | 18 | 0.9 | 520 | 1 | Sin límite por trayecto |
+| Cuy Supremo | Común | Tanque de área | 150 | 155 | 34 | 1 | 145 | Área | Área |
+| Paloma del Centro | Común | Exploradora | 85 | 225 | 17 | 0.8 | 650 | 5 | 1 |
+| Alan García | Épico | Control frontal | 130 | 160 | 31 | 0.85 | 230 | Área | Área |
+| Alberto Fujimori | Legendario | Defensa orbital | 120 | 175 | 28 | 0.42 | 100 | 3 | Área |
+| Keiko Fujimori | Legendario | Hostigadora de retorno | 110 | 185 | 23 | 1.05 | 540 | 1 | Sin límite por trayecto |
+| Ollanta Humala | Épico | Vanguardia | 135 | 170 | 30 | 0.9 | 250 | Área | Área |
+| Kingteka | Épico | Escopetero cercano | 125 | 175 | 16.8 | 0.78 | 480 | 5 | 1 |
+| Shakadoto | Épico | Control de pasillos | 140 | 160 | 17.5 | 0.95 | 550 | 2 | Sin límite por trayecto |
+| Najasor | Raro | Tirador móvil | 95 | 215 | 17 | 0.85 | 650 | 3 | 1 |
+| CiriloTV | Común | Hostigador equilibrado | 120 | 175 | 22 | 0.95 | 520 | 1 | Sin límite por trayecto |
+| Fuzo | Raro | Perforador de filas | 115 | 180 | 20.4 | 0.75 | 850 | 2 | 3 |
+| Charles | Raro | Control de zonas | 130 | 165 | 26.4 | 1.2 | 600 | 1 | 1 |
+| Axel Benba | Común | Tirador de abanico | 100 | 200 | 16.8 | 0.7 | 700 | 3 | 1 |
+| Cerdito VTuber | Épico | Escopetero de cobertura | 130 | 170 | 13.5 | 0.72 | 400 | 7 | 1 |
+| Sustento | Raro | Tirador de cadencia | 105 | 190 | 12 | 0.22 | 750 | 1 | 1 |
+| Cevichero | Común | Hostigador de enjambre | 115 | 190 | 18 | 0.62 | 680 | 2 | 1 |
+| La G5 | Raro | Luchadora móvil | 135 | 195 | 36 | 0.62 | 118 | Área | Área |
 
 ## Cristorata
 
@@ -31,6 +31,8 @@ Debilidad: Poca vida; depende del retorno.
 
 El retorno puede volver a golpear. Alcance nominal: regresa tras 0,55 s; no garantiza recorrer toda esa distancia.
 
+Evolución: Directo encadenado. Rango 5 y nivel 8.
+
 ## Cuy Supremo
 
 Fortaleza: Mucha vida y empuje circular.
@@ -38,6 +40,8 @@ Fortaleza: Mucha vida y empuje circular.
 Debilidad: Lento y de corto alcance.
 
 El daño depende de los impactos que conecten y los enemigos alcanzados.
+
+Evolución: Terremoto del cuy. Rango 5 y nivel 8.
 
 ## Paloma del Centro
 
@@ -47,6 +51,8 @@ Debilidad: Muy poca vida; dispersa impactos.
 
 El daño depende de los impactos que conecten y los enemigos alcanzados.
 
+Evolución: Corona de plumas. Rango 5 y nivel 8.
+
 ## Alan García
 
 Fortaleza: Cono contra grupos.
@@ -54,6 +60,8 @@ Fortaleza: Cono contra grupos.
 Debilidad: Lento y dependiente de la orientación.
 
 El daño depende de los impactos que conecten y los enemigos alcanzados.
+
+Evolución: Eco de la plaza. Rango 5 y nivel 8.
 
 ## Alberto Fujimori
 
@@ -63,6 +71,8 @@ Debilidad: Necesita acercarse; cobertura discontinua.
 
 Solo causa daño si una banda toca al enemigo.
 
+Evolución: Órbita presidencial. Rango 5 y nivel 8.
+
 ## Keiko Fujimori
 
 Fortaleza: Abanico que atraviesa y regresa.
@@ -70,6 +80,8 @@ Fortaleza: Abanico que atraviesa y regresa.
 Debilidad: Recarga larga; depende del retorno.
 
 El retorno puede volver a golpear. Alcance nominal: regresa tras 0,55 s; no garantiza recorrer toda esa distancia.
+
+Evolución: Abanico solar. Rango 5 y nivel 8.
 
 ## Ollanta Humala
 
@@ -79,6 +91,8 @@ Debilidad: Movilidad moderada y alcance corto.
 
 El daño depende de los impactos que conecten y los enemigos alcanzados.
 
+Evolución: Marcha del comando. Rango 5 y nivel 8.
+
 ## Kingteka
 
 Fortaleza: Descarga contra grupos cercanos.
@@ -86,6 +100,8 @@ Fortaleza: Descarga contra grupos cercanos.
 Debilidad: Pierde daño lejos y al concentrar perdigones.
 
 Daño cercano del primer perdigón. Impactos extra: 35%, después 15%. A distancia baja hasta el 35%.
+
+Evolución: Escopeta Contra. Rango 5 y nivel 8.
 
 ## Shakadoto
 
@@ -95,6 +111,8 @@ Debilidad: Lento; necesita alinear el retorno.
 
 El retorno puede volver a golpear. Alcance nominal: regresa tras 0,55 s; no garantiza recorrer toda esa distancia.
 
+Evolución: Tornado bananero. Rango 5 y nivel 8.
+
 ## Najasor
 
 Fortaleza: Tres pescados y alta velocidad.
@@ -102,6 +120,8 @@ Fortaleza: Tres pescados y alta velocidad.
 Debilidad: Poca vida y disparos dispersos.
 
 El daño depende de los impactos que conecten y los enemigos alcanzados.
+
+Evolución: Marea CPEZ. Rango 5 y nivel 8.
 
 ## CiriloTV
 
@@ -111,6 +131,8 @@ Debilidad: Un proyectil base; depende de la trayectoria.
 
 El retorno puede volver a golpear. Alcance nominal: regresa tras 0,55 s; no garantiza recorrer toda esa distancia.
 
+Evolución: Concierto orbital. Rango 5 y nivel 8.
+
 ## Fuzo
 
 Fortaleza: Dos tarjetas contra hasta tres rivales cada una.
@@ -118,6 +140,8 @@ Fortaleza: Dos tarjetas contra hasta tres rivales cada una.
 Debilidad: Necesita alinear enemigos.
 
 El daño depende de los impactos que conecten y los enemigos alcanzados.
+
+Evolución: Banca infinita. Rango 5 y nivel 8.
 
 ## Charles
 
@@ -127,6 +151,8 @@ Debilidad: Recarga larga; los rivales pueden salir de la nube.
 
 La nube añade un 25% del daño por pulso cada 0,4 s durante 2,5 s.
 
+Evolución: Lluvia de pañales. Rango 5 y nivel 8.
+
 ## Axel Benba
 
 Fortaleza: Tres proyectiles y buena movilidad.
@@ -134,6 +160,8 @@ Fortaleza: Tres proyectiles y buena movilidad.
 Debilidad: Poca vida; dispersa impactos.
 
 El daño depende de los impactos que conecten y los enemigos alcanzados.
+
+Evolución: Tormenta relámpago. Rango 5 y nivel 8.
 
 ## Cerdito VTuber
 
@@ -143,6 +171,8 @@ Debilidad: Corto alcance; concentración de daño reducida.
 
 Daño cercano del primer perdigón. Impactos extra: 35%, después 15%. A distancia baja hasta el 35%.
 
+Evolución: Fiesta del cerdito. Rango 5 y nivel 8.
+
 ## Sustento
 
 Fortaleza: Recarga corta para mantener presión.
@@ -150,6 +180,8 @@ Fortaleza: Recarga corta para mantener presión.
 Debilidad: Poco daño por impacto y vida limitada.
 
 El daño depende de los impactos que conecten y los enemigos alcanzados.
+
+Evolución: Infestación veloz. Rango 5 y nivel 8.
 
 ## Cevichero
 
@@ -159,6 +191,8 @@ Debilidad: El zigzag dificulta concentrar impactos.
 
 El daño depende de los impactos que conecten y los enemigos alcanzados.
 
+Evolución: Marea del enjambre. Rango 5 y nivel 8.
+
 ## La G5
 
 Fortaleza: Golpe fuerte en arco amplio.
@@ -166,3 +200,5 @@ Fortaleza: Golpe fuerte en arco amplio.
 Debilidad: Debe entrar a distancia cuerpo a cuerpo.
 
 El daño depende de los impactos que conecten y los enemigos alcanzados.
+
+Evolución: Huracán G5. Rango 5 y nivel 8.

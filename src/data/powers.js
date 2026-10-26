@@ -27,3 +27,17 @@ P.Data.characters.push(
 {id:'g5',name:'La G5',category:'Luchadora · avatar',look:'cap',atlas:'powers',spriteRow:8,color:'#8bc6ed',skin:'#dbad8f',hp:145,speed:210,power:42,attack:'g5Kick'}
 );
 P.Data.upgrades.push({id:'projectiles',title:'Uno más para el combo',description:'+1 proyectil por ataque. En ataques de área, +12% de daño.',apply:p=>{if(['spread','boomerang'].includes(P.Data.attacks[p.attack].kind))p.projectileBonus=(p.projectileBonus||0)+1;else p.power*=1.12}});
+
+// Balance del catálogo: presupuesto por rol, independiente de la rareza de colección.
+for(const [id,patch] of Object.entries({cristorata:{power:18},alberto:{hp:120,power:28},g5:{hp:135,speed:195,power:36}}))Object.assign(P.Data.characters.find(c=>c.id===id),patch);
+Object.assign(P.Data.attacks.clip,{cooldown:.9});
+Object.assign(P.Data.attacks.nova,{cooldown:1});
+Object.assign(P.Data.attacks.orbit,{cooldown:.42});
+Object.assign(P.Data.attacks.bananas,{cooldown:.95,powerScale:.5});
+Object.assign(P.Data.attacks.axelClip,{powerScale:.8});
+Object.assign(P.Data.attacks.fishgun,{powerScale:.85});
+Object.assign(P.Data.attacks.bankCards,{powerScale:.85});
+Object.assign(P.Data.attacks.diaper,{powerScale:.8});
+Object.assign(P.Data.attacks.roachRifle,{cooldown:.22});
+Object.assign(P.Data.attacks.roachCast,{powerScale:.75});
+Object.assign(P.Data.attacks.pigShotgun,{cooldown:.72});
