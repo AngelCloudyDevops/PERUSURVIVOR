@@ -96,7 +96,7 @@ hud(){if(!this.panel)return;const s=P.state,live=this.active&&s.devRun,supported
  if(live){P.$('#lab-tools').hidden=true;P.$('#practice-tools').hidden=true}
  this.panel.hidden=live&&s.mode==='pause';P.$('#bench-collapse').hidden=!live;
  P.$('#bench-start').textContent=live?'↻ Repetir prueba':'Entrar a la prueba ↗';
- P.$('#bench-recharge').hidden=!live||!s.practice||!P.Domain.eligible(s.player);P.$('#bench-recharge').disabled=busy||s.mode!=='play';P.$('#bench-cast').textContent=P.Domain.eligible(s.player)?'Activar dominio · Q':'Lanzar ulti · Q';for(const id of ['cast','targets','heal','boss-ulti','exit'])P.$('#bench-'+id).hidden=!live;
+ P.$('#bench-recharge').hidden=!live||!s.practice||!P.Domain?.eligible(s.player);P.$('#bench-recharge').disabled=busy||s.mode!=='play';P.$('#bench-cast').textContent=P.Domain?.eligible(s.player)?'Activar dominio · Q':'Lanzar ulti · Q';for(const id of ['cast','targets','heal','boss-ulti','exit'])P.$('#bench-'+id).hidden=!live;
  P.$('#bench-cast').hidden=!live||!supported;P.$('#bench-cast').disabled=s.mode!=='play'||busy||(s.ultimate?.charge||0)<100;
  P.$('#bench-targets').hidden=!live||!s.practice;P.$('#bench-targets').disabled=s.mode!=='play'||busy;
  const training=live&&s.practice&&s.player?.id==='alberto';P.$('#bench-training-boss').hidden=!training;P.$('#bench-training-boss').disabled=s.mode!=='play'||!!s.court;P.$('#bench-training-status').hidden=!training;if(training)P.UI.write(P.$('#bench-training-status'),P.$('#practice-boss-status').textContent);
