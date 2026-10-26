@@ -132,6 +132,9 @@ module.exports = [
     "output": "js/loot.js"
   },
   {
+    "source": "src/rendering/campo-art.js", "output": "js/campo-art.js"
+  },
+  {
     "source": "src/rendering/garden-art.js", "output": "js/garden-art.js"
   },
   {

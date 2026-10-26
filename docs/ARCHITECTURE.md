@@ -308,6 +308,9 @@ Minibosses.hud crea una sola vez el panel de vida dentro de #hud y actualiza sus
 ## Posición de etiquetas de rivales
 EnemyArt.labelTop calcula el borde superior de la pose dibujada, a partir del cuadro de caminata o del atlas y sus transformaciones de elevación, giro y escala. World no dibuja nombres de minions; Loot usa ese límite únicamente para apilar los datos del portador. La geometría de colisión y los ataques no cambian.
 
+
+CampoArt intercepta landmark/picnic en Terrain solo para Campo fuera de arenas. Carga un atlas de tres celdas y selecciona el picnic de forma determinista por coordenadas. Una llamada de imagen y una sombra pequeña por objeto; reutiliza descarte/orden de World sin nuevas entidades, temporizadores ni estado por sector. Auditoría y empaquetado: campo-landmarks-audit.json y pack-campo-landmarks.py.
+
 El HUD conserva IDs y sistemas existentes. UI.hud actualiza nombre, nivel y la barra accesible de vida; XP expone valores ARIA. CSS posiciona las zonas del HUD de forma independiente, manteniendo el contenedor único para ocultar todo en menú y cinemáticas.
 
 El ambiente de Minibosses.environment usa un reloj serializado del enemigo y dibujo acotado sin entidades físicas; respeta pausa y movimiento reducido. La recuperación y su multiplicador de daño comparten simulación individual/cooperativa. groundWave distingue el golpe del huaco de otros pisotones y evita aplicar cobertura a su daño radial.
