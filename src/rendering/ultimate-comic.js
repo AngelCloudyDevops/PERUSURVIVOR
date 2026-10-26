@@ -28,3 +28,5 @@ for(let i=0;i<7;i++){c.fillStyle='#272238';const x=(i*23+(reduced?0:phase*5))%Ma
 {const activate=P.Ultimate.activate,update=P.Game.update,render=P.World.render,start=P.Game.start;P.Ultimate.activate=function(...args){const ok=activate.apply(this,args);if(ok&&!P.Coop?.active)P.UltimateComic.start();return ok};P.Game.update=function(dt){const comic=P.UltimateComic,s=P.state;if(comic.left>0&&s.mode==='play'&&!P.Coop?.active&&s.player)s.player.inv=Math.max(s.player.inv||0,dt+.02);const result=update.call(this,dt);comic.step(dt);return result};P.World.render=function(...args){const result=render.apply(this,args);P.UltimateComic.draw();return result};P.Game.start=function(...args){P.UltimateComic.left=0;return start.apply(this,args)}}
 
 P.UltimateComic.loadPortrait();
+
+P.WalkArt?.load('ulti-bird',true);
