@@ -80,7 +80,7 @@ module.exports = [
     "output": "js/minibosses.js"
   },
   {
-    "source": "src/rendering/vulture-cinematic.js", "output": "js/vulture-cinematic.js"
+    "source": "src/rendering/vulture-dark-scene.js", "output": "js/vulture-cinematic.js"
   },
   {
     "source": "src/systems/encounters.js",
