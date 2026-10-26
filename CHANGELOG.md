@@ -2,7 +2,7 @@
 
 ## Catálogo de objetos en el menú — 2026-10-26
 - Añade el acceso «Objetos de Dota» al menú Habilidades.
-- Presenta los objetos base, todas sus ramas, efectos adaptados, rarezas y niveles de aparición con iconos pixel art.
+- Presenta objetos y evoluciones con sprites pixel art propios, efectos adaptados, rarezas y niveles de aparición.
 - Permite volver a la ficha del personaje o cerrar el menú; no altera la partida ni el inventario.
 
 ## Objetos de Dota 2 como cartas de equipo — 2026-10-26
