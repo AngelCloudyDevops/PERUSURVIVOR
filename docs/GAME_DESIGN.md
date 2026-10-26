@@ -315,6 +315,9 @@ Los 18 jugables reaccionan al daño durante 0,26 s con retroceso visual, una inc
 Las armas de fuego conservan la orientación del último disparo durante su recuperación (hasta 0,5 s), aunque se camine en sentido contrario. La pose sigue la fase real de los pies y la dirección registrada al crear los proyectiles; no cambia el alcance, daño ni trayectoria. Esto evita que Kingteka vuelva a mirar hacia su movimiento antes de terminar de disparar.
 
 Entrada oscura del Gallinazo: 4 s. Empieza en el ojo, la cámara retrocede de 6,5x a 1x sin cortes, revela al jefe en penumbra y un aura negra que circula delante/detrás. Anticipa el aletazo y lanza 28 plumas en perspectiva hacia el espectador; cierran la pantalla antes de volver a la arena. Sin carteles, viñetas, grietas ni bandada. Mantiene pausa total y aviso posterior de 0,7 s. Movimiento reducido usa encuadre completo y aura fija.
+
+Arte ambiental v2: palomas reconocibles con cuello tornasolado y cuatro poses; tres arbustos orgánicos con flores o bayas y mata de ichu. Conserva escala discreta, sombras al pie, reacciones y cupos previos. Césped y árboles conservan su arte. Referencia: NATURE_ART.md.
+
 ### Entradas propias de minijefes
 El Fiscalizador entra caminando y emite un pitido doble (1,3 s). La Paloma desciende con alas abiertas y polvo de aterrizaje (1,5 s). El Huaco emerge entre piedras y polvo (1,5 s). Son entradas locales al encuentro: el jugador conserva control y los demás enemigos siguen activos. Durante su entrada el minijefe no golpea ni recibe daño; después conserva 1,4 s antes de preparar el primer ataque. El aviso de 60–90 s y las pruebas de laboratorio usan la misma entrada. Pausa y movimiento reducido se respetan.
 Las apariciones priorizan laterales visibles: entre 220 y 260 unidades del jugador y hasta 130 de separación vertical, siempre fuera de obstáculos. Si el jugador se aleja durante el aviso se busca otra posición segura antes de entrar.
