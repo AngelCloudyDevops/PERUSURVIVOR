@@ -8,6 +8,13 @@ dist/
 *.zip
 .DS_Store
 Thumbs.db
+data/
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.pem
+*.key
 
 __pycache__/
 *.pyc

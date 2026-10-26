@@ -17,6 +17,7 @@ function build(){
  fs.writeFileSync(path.join(out,'backend/modules.json'),JSON.stringify(modules.map(m=>m.output)));
  for(const file of ['package.json','package-lock.json'])copy(path.join(root,file),path.join(out,'backend',file));
  copy(path.join(root,'ops/hostinger/install-coop.py'),path.join(out,'backend/install-vps.py'));
+ copy(path.join(root,'ops/hostinger/backup-accounts.py'),path.join(out,'backend/backup-accounts.py'));
  // Identidad reproducible del contenido; cada recurso cambia de URL cuando cambia.
  const digest=crypto.createHash('sha256');function fingerprint(dir){for(const name of fs.readdirSync(dir).sort()){const file=path.join(dir,name);if(fs.statSync(file).isDirectory())fingerprint(file);else{digest.update(path.relative(out,file).split(path.sep).join('/'));digest.update(fs.readFileSync(file))}}}fingerprint(out);const version=digest.digest('hex').slice(0,20);
  const index=path.join(out,'index.html');let html=fs.readFileSync(index,'utf8');for(const mod of modules)if(!html.includes('src="'+mod.output+'"'))html=html.replace('</body>','<script src="'+mod.output+'"></script></body>');html=html.replace('</head>','<meta name="game-version" content="'+version+'"></head>');html=html.replace(/(src|href)="((?:js\/[^"?]+\.js|style\.css))"/g,(_,attribute,file)=>attribute+'="'+file+'?v='+crypto.createHash('sha256').update(fs.readFileSync(path.join(out,file))).digest('hex').slice(0,16)+'"');fs.writeFileSync(index,html);fs.writeFileSync(path.join(out,'version.json'),JSON.stringify({version})+'\n');

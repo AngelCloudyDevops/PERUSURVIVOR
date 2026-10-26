@@ -17,6 +17,9 @@ def install():
         raise RuntimeError('Release fuera del directorio del juego')
     target = BASE / 'coop'
     target.mkdir(exist_ok=True)
+    data = BASE / 'data'
+    data.mkdir(mode=0o700, exist_ok=True)
+    shutil.chown(data, user=1000, group=1000)
     for name in ['Dockerfile', 'package.json', 'package-lock.json', 'launcher.cjs']:
         shutil.copyfile(source / name, target / name)
     compose = '''services:
@@ -36,10 +39,12 @@ def install():
     environment:
       PORT: "4180"
       MAX_ROOMS: "6"
+      ACCOUNTS_DB: /data/accounts.sqlite
       COOP_ORIGINS: https://perusurvivor.michitech.tech,https://srv2060131.hstgr.cloud
     volumes:
       - /opt/perusurvivor:/releases:ro
       - /opt/perusurvivor/coop/launcher.cjs:/launcher.cjs:ro
+      - /opt/perusurvivor/data:/data:rw
     networks: [gateway]
 networks:
   gateway:
@@ -71,12 +76,30 @@ networks:
   }
   location = /coop/health { proxy_pass http://perusurvivor-coop:4180; }
 '''
-    if marker not in original:
-        match = re.search(r'(?m)^[ \t]*location / \{', original)
+    updated = original
+    if marker not in updated:
+        match = re.search(r'(?m)^[ \t]*location / \{', updated)
         if not match:
             raise RuntimeError('Configuración nginx inesperada')
-        shutil.copyfile(conf, BASE / 'nginx.before-coop.conf')
-        conf.write_text(original[:match.start()] + routes + original[match.start():])
+        updated = updated[:match.start()] + routes + updated[match.start():]
+    if '# PERUSURVIVOR CUENTAS' not in updated:
+        match = re.search(r'(?m)^[ \t]*location / \{', updated)
+        if not match:
+            raise RuntimeError('Configuración nginx inesperada')
+        account_routes = '''  # PERUSURVIVOR CUENTAS
+  location /api/ {
+    client_max_body_size 128k;
+    proxy_pass http://perusurvivor-coop:4180;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 15s;
+    add_header Cache-Control "no-store" always;
+  }
+'''
+        updated = updated[:match.start()] + account_routes + updated[match.start():]
+    if updated != original:
+        shutil.copyfile(conf, BASE / 'nginx.before-accounts.conf')
+        conf.write_text(updated)
         try:
             print(run('docker', 'exec', 'perusurvivor-web', 'nginx', '-t'))
             print(run('docker', 'exec', 'perusurvivor-web', 'nginx', '-s', 'reload'))
@@ -84,6 +107,10 @@ networks:
             conf.write_text(original)
             raise
     print('COOP_READY ' + health)
+    backup_cron = Path('/etc/cron.d/perusurvivor-accounts-backup')
+    backup_cron.write_text('17 4 * * * root python3 /opt/perusurvivor/live/current/backend/backup-accounts.py >/dev/null\n')
+    backup_cron.chmod(0o644)
+    print(run('python3', str(source / 'backup-accounts.py')))
 
 if __name__ == '__main__':
     install()

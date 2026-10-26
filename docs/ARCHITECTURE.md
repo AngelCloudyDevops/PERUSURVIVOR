@@ -416,3 +416,7 @@ MinionAudio observa minionId y contadores serializados audioWarn/audioImpact con
 
 
 AnimalEntry compone un panel a resolución media con sprites íntegros y alas por capas; usa ultimate.animal.age autoritativo, layout compartido 40 % × 82 %, duración 1,3 s y protección de entrada en PlayerFeedback. No congela simulación ni modifica el daño de las ultis.
+
+## Cuentas y persistencia privada
+
+`backend/accounts.cjs` proporciona autenticación scrypt, sesiones HttpOnly y copias SQLite con control optimista de revisión. Comparte el servidor HTTP del servicio cooperativo cuando `ACCOUNTS_DB` está configurado. `src/network/account.js`, cargado al final, conecta el diálogo de cuenta y las transacciones de progreso sin tocar el renderizado. El guardado invitado y los de cada cuenta tienen namespaces separados. El volumen está fuera de la release y de la raíz web. Esquema, confianza del cliente, operación y restauración: [ACCOUNTS.md](ACCOUNTS.md).

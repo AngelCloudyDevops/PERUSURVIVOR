@@ -502,3 +502,7 @@ El selector «Arma principal» permite probar base (rango 1), rangos 2–5 y la 
 
 
 Las ultis de Cuy y Paloma incluyen entrada diagonal izquierda de 1,3 s. Cuy: preparación, salto, aterrizaje y polvo. Paloma: alas articuladas, despegue y plumas. El combate continúa y el lanzador queda protegido durante la entrada; se respetan pausa y movimiento reducido.
+
+## Cuentas opcionales
+
+El juego permite invitado o usuario registrado. La cuenta conserva colección, estrellas, mejoras, monedas e inventario entre dispositivos; no reanuda una partida en curso. El primer guardado puede importar explícitamente al invitado sin eliminarlo. Ante versiones en conflicto, se conserva la copia local y no se suman monedas ni se fuerzan reemplazos. Las copias individuales proceden del cliente y no habilitan ranking competitivo ni premios reales. Recuperación mediante código privado mostrado una vez, sin correo configurado en esta versión. Detalles en [ACCOUNTS.md](ACCOUNTS.md).
