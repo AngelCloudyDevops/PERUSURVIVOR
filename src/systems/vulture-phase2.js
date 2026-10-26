@@ -85,7 +85,7 @@ P.VulturePhase2 = {
       const q={x:Math.max(b.left+55,Math.min(b.right-55,x)),y:Math.max(b.top+55,Math.min(b.bottom-55,y))};
       if(!P.Terrain.hit(q.x,q.y,48))e.chaosTargets.push(q);
     }
-    P.Audio.play('flap');
+    P.Audio.play('vulture-wing');
   },
   fire(e,index){
     const s=P.state;
@@ -97,7 +97,7 @@ P.VulturePhase2 = {
         s.danger.push({...P.Attributes?.source(e,'special'),x:e.x,y:e.y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,age:0,life:3,history:[],kind:'zigzag',glyph:'FEATHER',chaosFeather:true,heavyFeather:false,damage:14,color:'#bc8df1'});
       }
     }
-    P.Audio.play(index?'flap':'stamp');
+    P.Audio.play(e.chaosAttack==='storm'?'vulture-impact':'vulture-feather');
   },
   step(e,dt){
     e.chaosTime+=dt;e.hit=Math.max(0,(e.hit||0)-dt);P.Vulture.tickVisuals(e,dt);

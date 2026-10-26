@@ -58,7 +58,7 @@ P.VultureMoon={
   impact(e){
     if(e.moonLanded)return;e.moonLanded=true;e.moonAirborne=false;e.phase='vulture-ultimate';e.ultimateTime=P.VultureUltimate.duration;e.ultimateGrace=.7;e.ultimateWave=0;e.handoffTime=0;e.moonJustLanded=true;
     const p=P.state.player;e.aim=Math.atan2(p.y-e.y,p.x-e.x);e.dx=Math.cos(e.aim);e.dy=Math.sin(e.aim);
-    P.VultureImpact.mark(e);const scar=P.state.encounter?.gallinazoScar;if(scar)scar.moon=true;P.Audio.fx('hit');P.Audio.play('stamp');
+    P.VultureImpact.mark(e);const scar=P.state.encounter?.gallinazoScar;if(scar)scar.moon=true;P.Audio.fx('hit');
     if(P.state.danger.length<70)P.state.danger.push({...P.Attributes?.source(e,'special'),x:e.x,y:e.y,vx:0,vy:0,history:[],age:0,life:.25,kind:'stomp',glyph:'MOON_IMPACT',radius:this.radius,damage:20,color:'#c6a0ef'});
   },
   tick(e,dt){
@@ -70,14 +70,14 @@ P.VultureMoon={
     }
     if(e.phase==='vulture-takeoff'){
       e.moonStageTime=Math.min(this.takeoffDuration,(e.moonStageTime||0)+dt);e.moonAirborne=this.lift(e.moonStageTime)>45;
-      if(e.moonStageTime>=(e.moonFlap||0)){P.Audio.play('flap');e.moonFlap=e.moonStageTime+.3}
+      if(e.moonStageTime>=(e.moonFlap||0)){P.Audio.play('vulture-wing');e.moonFlap=e.moonStageTime+.3}
       if(e.moonStageTime>=this.takeoffDuration){this.captureDeparture();e.phase='vulture-moon';e.ultimateTime=0;P.Core.clear();return true}
       return false;
     }
     if(e.phase==='vulture-moon'){
       e.ultimateTime=Math.min(P.VultureUltimate.duration,e.ultimateTime+dt);
-      if(e.ultimateTime>=2.05&&!e.moonRoar){e.moonRoar=true;P.Audio.fx('boss')}
-      if(e.ultimateTime>=3.05&&!e.moonDiveSound){e.moonDiveSound=true;P.Audio.play('flap')}
+      if(e.ultimateTime>=2.05&&!e.moonRoar){e.moonRoar=true;P.Audio.play('vulture-cry')}
+      if(e.ultimateTime>=3.05&&!e.moonDiveSound){e.moonDiveSound=true;P.Audio.play('vulture-dive')}
       if(e.ultimateTime>=P.VultureUltimate.duration)this.beginLanding(e);
       return true;
     }
