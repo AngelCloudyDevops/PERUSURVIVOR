@@ -313,3 +313,5 @@ En 54 partidas emparejadas, la mediana de minijefe cambia de 5,8 → 9,1 s para 
 El vestíbulo incluye **Cuenta / Login**: registro, acceso, recuperación con código privado y guardado por cuenta en Hostinger. Jugar como invitado sigue disponible. El progreso incluye monedas, colección, estrellas, mejoras e inventario; se conserva separado del invitado y detecta conflictos entre dispositivos. No guarda partidas a medio jugar ni proporciona un ranking verificado.
 
 La activación del backend requiere el volumen persistente y la ruta `/api/` del juego; el formulario por sí solo no activa la base de datos. Consulta [cuentas, esquema, instalación, backup y límites de confianza](docs/ACCOUNTS.md). **Este repositorio se trata como público**: nunca subir claves, `.env`, bases de datos, usuarios o backups. Los datos reales viven fuera de la carpeta pública y de las releases.
+
+La pantalla de entrada ofrece **Iniciar sesión**, **Crear cuenta** o **Jugar como invitado**. El acceso utiliza los paneles azules y botones dorados del juego. Registro y recuperación tienen formularios separados; elegir invitado conserva su guardado local.

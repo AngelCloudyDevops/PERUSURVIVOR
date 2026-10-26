@@ -46,7 +46,7 @@ En producción NO activar `ACCOUNTS_INSECURE`. Sin `ACCOUNTS_DB` el juego y coop
 
 El instalador `ops/hostinger/install-coop.py` añade solamente `/api/` al nginx del juego y un bind mount de `/opt/perusurvivor/data` a `/data` del contenedor existente. `ACCOUNTS_DB=/data/accounts.sqlite`. No publica un puerto de BD, no cambia DNS ni toca Caddy o servicios ajenos. Conserva el contenedor sin privilegios y el sistema de archivos de la release de solo lectura. Cambiar el contenedor cooperativo puede interrumpir sus salas activas; ejecutar la instalación inicial en una ventana sin partidas. Futuras releases conservan la base fuera de `releases/`.
 
-Antes de instalar, revisar `docker ps`, compose y nginx existentes. Después de que CI publique la release, un administrador ejecuta el instalador incluido en esa release; el usuario de despliegue restringido no tiene ni necesita privilegios para modificar infraestructura. Probar `/api/account` sin cookie (`{"user":null}`), registro, login y guardado y confirmar que `/data/accounts.sqlite` no es accesible por HTTP.
+Antes de instalar, revisar `docker ps`, compose y nginx existentes. Después de que CI publique la release, un administrador copia temporalmente y ejecuta `ops/hostinger/install-coop.py` desde el repositorio revisado (el instalador administrativo no se distribuye en la web); el usuario de despliegue restringido no tiene ni necesita privilegios para modificar infraestructura. Probar `/api/account` sin cookie (`{"user":null}`), registro, login y guardado y confirmar que `/data/accounts.sqlite` no es accesible por HTTP.
 
 ## Copias de seguridad y restauración
 
