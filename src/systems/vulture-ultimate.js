@@ -1,9 +1,9 @@
 'use strict';
 // Entrada de seis fotogramas generados con IA; el reloj pertenece a la simulación.
 P.VultureUltimate={
-duration:3,ready:false,frames:[],
+duration:4,ready:false,frames:[],
 introTick(dt){const e=this.boss();if(P.state.mode!=='play'||!e||e.phase!=='vulture-ultimate'||e.ultimateTime>=this.duration)return false;e.ultimateTime=Math.min(this.duration,e.ultimateTime+dt);if(e.ultimateTime>this.duration-1e-8)e.ultimateTime=this.duration;this.introSounds(e);if(e.ultimateTime>=this.duration){e.ultimateGrace=.7;const p=P.state.player;e.aim=Math.atan2(p.y-e.y,p.x-e.x);e.dx=Math.cos(e.aim);e.dy=Math.sin(e.aim);P.Core.clear()}return true},
-introSounds(e){if(e.comicSound<1&&e.ultimateTime>=1.1){P.Audio.fx('boss');e.comicSound=1}if(e.comicSound<2&&e.ultimateTime>=1.8){P.Audio.play('flap');e.comicSound=2}},
+introSounds(e){if(e.comicSound<1&&e.ultimateTime>=2.1){P.Audio.fx('boss');e.comicSound=1}if(e.comicSound<2&&e.ultimateTime>=3.05){P.Audio.play('flap');e.comicSound=2}},
 initComic(){if(this.comicStarted||typeof Image==='undefined')return;this.comicStarted=true;const image=new Image();image.onload=()=>{this.comicImage=image;this.comicReady=true};image.onerror=()=>{this.comicStarted=false};image.src='assets/bosses/gallinazo-comic-v1.png'},
 comicStage(time){return time<.7?'eye':time<1.4?'scream':time<2.65?'wings':'break'},
 init(){this.initComic();if(this.started||typeof Image==='undefined')return;this.started=true;const image=new Image();image.onload=()=>{const cv=document.createElement('canvas');cv.width=image.width;cv.height=image.height;const ctx=cv.getContext('2d');ctx.drawImage(image,0,0);const raster=ctx.getImageData(0,0,cv.width,cv.height);for(let i=3;i<raster.data.length;i+=4)raster.data[i]=raster.data[i]<150?0:255;ctx.putImageData(raster,0,0);this.surface=cv;for(let row=0;row<2;row++)for(let col=0;col<3;col++){const edges=row?[0,.38,.69,1]:[0,1/3,2/3,1];this.frames.push(P.BossArt.mainBounds(raster.data,cv.width,Math.round(edges[col]*cv.width),row*cv.height/2,Math.round(edges[col+1]*cv.width),(row+1)*cv.height/2))}this.height=Math.max(...this.frames.map(f=>f.h));this.ready=true};image.onerror=()=>{this.started=false};image.src='assets/bosses/gallinazo-ultimate-v1.webp'},

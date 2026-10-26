@@ -337,6 +337,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - g5: **Huracán G5** — Tres barridos consecutivos cubren frente y flancos, con fuerte empuje.
 
 P.Evolutions define perfiles de ataque inmutables y efectos serializables por personaje; Combat conserva el ID de ataque original para mantener sus sprites. Las animaciones nuevas son geometría pixel art de raíles, ondas, abanicos, enjambres, plumas y barridos, además de trayectorias radiales, retorno, búsqueda y zonas persistentes según el perfil. El servidor usa el mismo módulo. Movimiento reducido estabiliza la animación decorativa sin alterar impactos. El menú es solo de consulta: no concede niveles ni poderes.
+Entrada oscura del Gallinazo: 4 s. Empieza en el ojo, la cámara retrocede de 6,5x a 1x sin cortes, revela al jefe en penumbra y un aura negra que circula delante/detrás. Anticipa el aletazo y lanza 28 plumas en perspectiva hacia el espectador; cierran la pantalla antes de volver a la arena. Sin carteles, viñetas, grietas ni bandada. Mantiene pausa total y aviso posterior de 0,7 s. Movimiento reducido usa encuadre completo y aura fija.
 
 Arte ambiental v2: palomas reconocibles con cuello tornasolado y cuatro poses; tres arbustos orgánicos con flores o bayas y mata de ichu. Conserva escala discreta, sombras al pie, reacciones y cupos previos. Césped y árboles conservan su arte. Referencia: NATURE_ART.md.
 

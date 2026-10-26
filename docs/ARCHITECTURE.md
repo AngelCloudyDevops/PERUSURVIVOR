@@ -250,6 +250,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución ex
 - g5: **Huracán G5** — Tres barridos consecutivos cubren frente y flancos, con fuerte empuje.
 
 P.Evolutions define perfiles de ataque inmutables y efectos serializables por personaje; Combat conserva el ID de ataque original para mantener sus sprites. Las animaciones nuevas son geometría pixel art de raíles, ondas, abanicos, enjambres, plumas y barridos, además de trayectorias radiales, retorno, búsqueda y zonas persistentes según el perfil. El servidor usa el mismo módulo. Movimiento reducido estabiliza la animación decorativa sin alterar impactos. El menú es solo de consulta: no concede niveles ni poderes.
+Vulture-dark-scene sustituye el render anterior manteniendo js/vulture-cinematic.js. Su cámara usa el ojo del mismo sprite como punto inicial y retrocede continuamente. La deformación solo afecta a y<0,4 (plumas altas), preservando cabeza, cuello, torso y pies. Aura en dos pasadas con 22 motas y proyección de 28 plumas; datos derivados del reloj, sin entidades ni temporizadores. La escena previa queda fuera del manifiesto de módulos.
 
 Ambient.art carga una sola imagen nature-atlas-v2.webp bajo demanda y dibuja celdas fijas de 128 px sin suavizado. Cuatro poses de paloma y cuatro plantas, una llamada drawImage por sprite. Si falla la carga conserva el dibujo anterior. Original PNG archivado; empaquetado por vecino más cercano y hashes en nature-art-audit.json. El build omite el PNG duplicado.
 
