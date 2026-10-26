@@ -1,0 +1,1794 @@
+{
+  "version": 1,
+  "sourceSha": "5b4379d9219ad235b64985c2e2add1b4eded4eac",
+  "parameters": "Perfiles de antes del ajuste; el resto del código usa el checkout actual",
+  "strategy": {
+    "shotgun": "Keep Escopeta active throughout",
+    "gallinazo": "Switch to Gallinazo when unlocked, keep it active",
+    "golpe": "Switch to Golpe de cuerpo when unlocked, keep it active",
+    "adaptive": "Golpe a 115 u o menos; Gallinazo contra minijefe visible a 520 u o menos o rivales a 260 u o más"
+  },
+  "hz": 30,
+  "secondsLimit": 360,
+  "runs": [
+    {
+      "map": "campo",
+      "seed": 101,
+      "strategy": "shotgun",
+      "result": "death",
+      "seconds": 261.6,
+      "kills": 260,
+      "level": 8,
+      "hp": 0,
+      "maxHp": 150,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 318,
+          "damage": 17161.984031669745,
+          "miniDamage": 154.31960108864172
+        },
+        "gallinazo": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 9.7,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 10.2,
+          "from": "gallinazo",
+          "to": "shotgun"
+        },
+        {
+          "time": 55,
+          "from": "shotgun",
+          "to": "golpe"
+        },
+        {
+          "time": 55.5,
+          "from": "golpe",
+          "to": "shotgun"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 9.7,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 55,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Fiscalizador",
+          "spawn": 83,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "plaza",
+      "seed": 101,
+      "strategy": "shotgun",
+      "result": "death",
+      "seconds": 312.2,
+      "kills": 329,
+      "level": 9,
+      "hp": 0,
+      "maxHp": 150,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 367,
+          "damage": 14256.264034611644,
+          "miniDamage": 566.452256362238
+        },
+        "gallinazo": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 1,
+          "damage": 33.6,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 9.9,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 10.4,
+          "from": "gallinazo",
+          "to": "shotgun"
+        },
+        {
+          "time": 91,
+          "from": "shotgun",
+          "to": "golpe"
+        },
+        {
+          "time": 91.4,
+          "from": "golpe",
+          "to": "shotgun"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 9.9,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 91,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "La Paloma Brava",
+          "spawn": 83,
+          "kill": 141.8
+        },
+        {
+          "id": 2,
+          "name": "Makanaky · La Realeza",
+          "spawn": 153.1,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "machu",
+      "seed": 101,
+      "strategy": "shotgun",
+      "result": "death",
+      "seconds": 140.7,
+      "kills": 175,
+      "level": 7,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 162,
+          "damage": 7502.465465712051,
+          "miniDamage": 415.98218270557834
+        },
+        "gallinazo": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 11.6,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 12.2,
+          "from": "gallinazo",
+          "to": "shotgun"
+        },
+        {
+          "time": 41.6,
+          "from": "shotgun",
+          "to": "golpe"
+        },
+        {
+          "time": 42,
+          "from": "golpe",
+          "to": "shotgun"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 11.6,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 41.6,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Huaco Renegado",
+          "spawn": 83,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "campo",
+      "seed": 202,
+      "strategy": "shotgun",
+      "result": "death",
+      "seconds": 148.7,
+      "kills": 150,
+      "level": 6,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 172,
+          "damage": 7356.34297713773,
+          "miniDamage": 279.91834526491624
+        },
+        "gallinazo": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 6.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 7.3,
+          "from": "gallinazo",
+          "to": "shotgun"
+        },
+        {
+          "time": 61.2,
+          "from": "shotgun",
+          "to": "golpe"
+        },
+        {
+          "time": 61.6,
+          "from": "golpe",
+          "to": "shotgun"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 6.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 61.2,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Fiscalizador",
+          "spawn": 88.9,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "plaza",
+      "seed": 202,
+      "strategy": "shotgun",
+      "result": "death",
+      "seconds": 231.7,
+      "kills": 240,
+      "level": 8,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 256,
+          "damage": 8348.508600966814,
+          "miniDamage": 542.8811085173514
+        },
+        "gallinazo": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 1,
+          "damage": 103.63076923076926,
+          "miniDamage": 39.63076923076926
+        }
+      },
+      "switches": [
+        {
+          "time": 20.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 21.2,
+          "from": "gallinazo",
+          "to": "shotgun"
+        },
+        {
+          "time": 95,
+          "from": "shotgun",
+          "to": "golpe"
+        },
+        {
+          "time": 95.4,
+          "from": "golpe",
+          "to": "shotgun"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 20.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 95,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "La Paloma Brava",
+          "spawn": 88.9,
+          "kill": 125.7
+        },
+        {
+          "id": 2,
+          "name": "Makanaky · La Realeza",
+          "spawn": 165.3,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "machu",
+      "seed": 202,
+      "strategy": "shotgun",
+      "result": "death",
+      "seconds": 176.5,
+      "kills": 202,
+      "level": 7,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 199,
+          "damage": 6463.198921536691,
+          "miniDamage": 371.8227007430618
+        },
+        "gallinazo": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 1,
+          "damage": 255.36,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 13.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 14.2,
+          "from": "gallinazo",
+          "to": "shotgun"
+        },
+        {
+          "time": 90.5,
+          "from": "shotgun",
+          "to": "golpe"
+        },
+        {
+          "time": 91,
+          "from": "golpe",
+          "to": "shotgun"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 13.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 90.5,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Huaco Renegado",
+          "spawn": 88.9,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "campo",
+      "seed": 303,
+      "strategy": "shotgun",
+      "result": "death",
+      "seconds": 270.9,
+      "kills": 266,
+      "level": 8,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 328,
+          "damage": 15637.693768729869,
+          "miniDamage": 506.62101333333385
+        },
+        "gallinazo": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 10.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 11.2,
+          "from": "gallinazo",
+          "to": "shotgun"
+        },
+        {
+          "time": 54.4,
+          "from": "shotgun",
+          "to": "golpe"
+        },
+        {
+          "time": 54.8,
+          "from": "golpe",
+          "to": "shotgun"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 10.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 54.4,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Fiscalizador",
+          "spawn": 84.1,
+          "kill": 212.1
+        },
+        {
+          "id": 2,
+          "name": "El Fiscalizador",
+          "spawn": 215.1,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "plaza",
+      "seed": 303,
+      "strategy": "shotgun",
+      "result": "death",
+      "seconds": 171.2,
+      "kills": 163,
+      "level": 7,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 197,
+          "damage": 8511.02225711906,
+          "miniDamage": 310.94204933951363
+        },
+        "gallinazo": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 14.6,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 15.2,
+          "from": "gallinazo",
+          "to": "shotgun"
+        },
+        {
+          "time": 65,
+          "from": "shotgun",
+          "to": "golpe"
+        },
+        {
+          "time": 65.5,
+          "from": "golpe",
+          "to": "shotgun"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 14.6,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 65,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "La Paloma Brava",
+          "spawn": 84.1,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "machu",
+      "seed": 303,
+      "strategy": "shotgun",
+      "result": "death",
+      "seconds": 136.4,
+      "kills": 151,
+      "level": 7,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 153,
+          "damage": 5894.240982098875,
+          "miniDamage": 263.261313396056
+        },
+        "gallinazo": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 16.6,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 17.2,
+          "from": "gallinazo",
+          "to": "shotgun"
+        },
+        {
+          "time": 58.2,
+          "from": "shotgun",
+          "to": "golpe"
+        },
+        {
+          "time": 58.6,
+          "from": "golpe",
+          "to": "shotgun"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 16.6,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 58.2,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Huaco Renegado",
+          "spawn": 84.1,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "campo",
+      "seed": 101,
+      "strategy": "gallinazo",
+      "result": "death",
+      "seconds": 241.6,
+      "kills": 245,
+      "level": 8,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 10,
+          "damage": 156.520332721035,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 230,
+          "damage": 8729.741203718935,
+          "miniDamage": 28.559999999999945
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 9.7,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 58.6,
+          "from": "gallinazo",
+          "to": "golpe"
+        },
+        {
+          "time": 59,
+          "from": "golpe",
+          "to": "gallinazo"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 9.7,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 58.6,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Fiscalizador",
+          "spawn": 83,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "plaza",
+      "seed": 101,
+      "strategy": "gallinazo",
+      "result": "death",
+      "seconds": 129.5,
+      "kills": 140,
+      "level": 6,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 9,
+          "damage": 161.95016445490978,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 110,
+          "damage": 3478.3179781621643,
+          "miniDamage": 51.433704000000034
+        },
+        "golpe": {
+          "casts": 1,
+          "damage": 183.12,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 9.9,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 60.4,
+          "from": "gallinazo",
+          "to": "golpe"
+        },
+        {
+          "time": 60.9,
+          "from": "golpe",
+          "to": "gallinazo"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 9.9,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 60.4,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "La Paloma Brava",
+          "spawn": 83,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "machu",
+      "seed": 101,
+      "strategy": "gallinazo",
+      "result": "death",
+      "seconds": 323.1,
+      "kills": 316,
+      "level": 9,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 12,
+          "damage": 197.036,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 312,
+          "damage": 14045.058029159243,
+          "miniDamage": 106.29592615384604
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 11.6,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 66.3,
+          "from": "gallinazo",
+          "to": "golpe"
+        },
+        {
+          "time": 66.7,
+          "from": "golpe",
+          "to": "gallinazo"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 11.6,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 66.3,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Huaco Renegado",
+          "spawn": 83,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "campo",
+      "seed": 202,
+      "strategy": "gallinazo",
+      "result": "death",
+      "seconds": 258,
+      "kills": 278,
+      "level": 8,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 8,
+          "damage": 78.52616912848958,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 255,
+          "damage": 10404.661189362178,
+          "miniDamage": 104.8152
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 6.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 52.8,
+          "from": "gallinazo",
+          "to": "golpe"
+        },
+        {
+          "time": 53.2,
+          "from": "golpe",
+          "to": "gallinazo"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 6.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 52.8,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Fiscalizador",
+          "spawn": 88.9,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "plaza",
+      "seed": 202,
+      "strategy": "gallinazo",
+      "result": "death",
+      "seconds": 235,
+      "kills": 207,
+      "level": 7,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 22,
+          "damage": 302.98445310402377,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 212,
+          "damage": 7159.245084324329,
+          "miniDamage": 63.3889200000001
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 20.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 73,
+          "from": "gallinazo",
+          "to": "golpe"
+        },
+        {
+          "time": 73.5,
+          "from": "golpe",
+          "to": "gallinazo"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 20.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 73,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "La Paloma Brava",
+          "spawn": 88.9,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "machu",
+      "seed": 202,
+      "strategy": "gallinazo",
+      "result": "death",
+      "seconds": 328.5,
+      "kills": 345,
+      "level": 9,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 15,
+          "damage": 169.73626592130418,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 322,
+          "damage": 15064.5383189289,
+          "miniDamage": 55.04610461538459
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 13.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 67.7,
+          "from": "gallinazo",
+          "to": "golpe"
+        },
+        {
+          "time": 68.1,
+          "from": "golpe",
+          "to": "gallinazo"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 13.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 67.7,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Huaco Renegado",
+          "spawn": 88.9,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "campo",
+      "seed": 303,
+      "strategy": "gallinazo",
+      "result": "death",
+      "seconds": 157.3,
+      "kills": 161,
+      "level": 7,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 12,
+          "damage": 221.8914006117124,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 144,
+          "damage": 4852.020414097305,
+          "miniDamage": 122.97935999999993
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 10.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 64.4,
+          "from": "gallinazo",
+          "to": "golpe"
+        },
+        {
+          "time": 64.8,
+          "from": "golpe",
+          "to": "gallinazo"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 10.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 64.4,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Fiscalizador",
+          "spawn": 84.1,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "plaza",
+      "seed": 303,
+      "strategy": "gallinazo",
+      "result": "death",
+      "seconds": 239.3,
+      "kills": 201,
+      "level": 7,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 16,
+          "damage": 319.9869011421634,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 220,
+          "damage": 7374.322412237846,
+          "miniDamage": 290.9321520000003
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 14.6,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 72.9,
+          "from": "gallinazo",
+          "to": "golpe"
+        },
+        {
+          "time": 73.2,
+          "from": "golpe",
+          "to": "gallinazo"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 14.6,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 72.9,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "La Paloma Brava",
+          "spawn": 84.1,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "machu",
+      "seed": 303,
+      "strategy": "gallinazo",
+      "result": "death",
+      "seconds": 230,
+      "kills": 223,
+      "level": 7,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 18,
+          "damage": 351.1811678459367,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 212,
+          "damage": 7779.21282980459,
+          "miniDamage": 55.04610461538459
+        },
+        "golpe": {
+          "casts": 0,
+          "damage": 0,
+          "miniDamage": 0
+        }
+      },
+      "switches": [
+        {
+          "time": 16.6,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 58.5,
+          "from": "gallinazo",
+          "to": "golpe"
+        },
+        {
+          "time": 59,
+          "from": "golpe",
+          "to": "gallinazo"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 16.6,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 58.5,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Huaco Renegado",
+          "spawn": 84.1,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "campo",
+      "seed": 101,
+      "strategy": "golpe",
+      "result": "death",
+      "seconds": 152,
+      "kills": 217,
+      "level": 8,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 10,
+          "damage": 156.520332721035,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 42,
+          "damage": 1170.5740540540542,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 141,
+          "damage": 12276.799999999997,
+          "miniDamage": 1407.7599999999993
+        }
+      },
+      "switches": [
+        {
+          "time": 9.7,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 58.6,
+          "from": "gallinazo",
+          "to": "golpe"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 9.7,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 58.6,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Fiscalizador",
+          "spawn": 83,
+          "kill": 96.5
+        },
+        {
+          "id": 2,
+          "name": "El Fiscalizador",
+          "spawn": 144.9,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "plaza",
+      "seed": 101,
+      "strategy": "golpe",
+      "result": "death",
+      "seconds": 184.5,
+      "kills": 246,
+      "level": 8,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 9,
+          "damage": 161.95016445490978,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 43,
+          "damage": 1161.6818594594606,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 192,
+          "damage": 14325.99217230771,
+          "miniDamage": 1673.6324923076918
+        }
+      },
+      "switches": [
+        {
+          "time": 9.9,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 60.4,
+          "from": "gallinazo",
+          "to": "golpe"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 9.9,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 60.4,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "La Paloma Brava",
+          "spawn": 83,
+          "kill": 96.8
+        },
+        {
+          "id": 2,
+          "name": "Makanaky · La Realeza",
+          "spawn": 151.5,
+          "kill": 169.5
+        }
+      ]
+    },
+    {
+      "map": "machu",
+      "seed": 101,
+      "strategy": "golpe",
+      "result": "death",
+      "seconds": 165.3,
+      "kills": 214,
+      "level": 8,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 12,
+          "damage": 197.036,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 47,
+          "damage": 1212.2562162162164,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 147,
+          "damage": 12299.002633846181,
+          "miniDamage": 801.8717538461539
+        }
+      },
+      "switches": [
+        {
+          "time": 11.6,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 66.3,
+          "from": "gallinazo",
+          "to": "golpe"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 11.6,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 66.3,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Huaco Renegado",
+          "spawn": 83,
+          "kill": 102.5
+        }
+      ]
+    },
+    {
+      "map": "campo",
+      "seed": 202,
+      "strategy": "golpe",
+      "result": "death",
+      "seconds": 275.3,
+      "kills": 423,
+      "level": 10,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 8,
+          "damage": 78.52616912848958,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 39,
+          "damage": 1087.20972972973,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 417,
+          "damage": 38064.947200000126,
+          "miniDamage": 3330.3680000000013
+        }
+      },
+      "switches": [
+        {
+          "time": 6.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 52.8,
+          "from": "gallinazo",
+          "to": "golpe"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 6.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 52.8,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Fiscalizador",
+          "spawn": 88.9,
+          "kill": 101.9
+        },
+        {
+          "id": 2,
+          "name": "El Fiscalizador",
+          "spawn": 157.7,
+          "kill": 173.5
+        },
+        {
+          "id": 3,
+          "name": "El Fiscalizador",
+          "spawn": 229.3,
+          "kill": 256.7
+        }
+      ]
+    },
+    {
+      "map": "plaza",
+      "seed": 202,
+      "strategy": "golpe",
+      "result": "death",
+      "seconds": 225,
+      "kills": 297,
+      "level": 9,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 22,
+          "damage": 302.98445310402377,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 45,
+          "damage": 1121.2501621621625,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 234,
+          "damage": 20495.095384615382,
+          "miniDamage": 1778.2793846153843
+        }
+      },
+      "switches": [
+        {
+          "time": 20.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 73,
+          "from": "gallinazo",
+          "to": "golpe"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 20.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 73,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "La Paloma Brava",
+          "spawn": 88.9,
+          "kill": 97.5
+        },
+        {
+          "id": 2,
+          "name": "Makanaky · La Realeza",
+          "spawn": 167.3,
+          "kill": 195.1
+        }
+      ]
+    },
+    {
+      "map": "machu",
+      "seed": 202,
+      "strategy": "golpe",
+      "result": "death",
+      "seconds": 203,
+      "kills": 265,
+      "level": 8,
+      "hp": 0,
+      "maxHp": 150,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 15,
+          "damage": 169.73626592130418,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 46,
+          "damage": 1283.9892324324333,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 204,
+          "damage": 17534.67904000004,
+          "miniDamage": 2003.0975999999996
+        }
+      },
+      "switches": [
+        {
+          "time": 13.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 67.7,
+          "from": "gallinazo",
+          "to": "golpe"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 13.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 67.7,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Huaco Renegado",
+          "spawn": 88.9,
+          "kill": 118.3
+        },
+        {
+          "id": 2,
+          "name": "El Huaco Renegado",
+          "spawn": 175.6,
+          "kill": null
+        }
+      ]
+    },
+    {
+      "map": "campo",
+      "seed": 303,
+      "strategy": "golpe",
+      "result": "death",
+      "seconds": 330.3,
+      "kills": 513,
+      "level": 11,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 12,
+          "damage": 221.8914006117124,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 46,
+          "damage": 1253.938378378379,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 433,
+          "damage": 53052.33681170766,
+          "miniDamage": 3040.4480000000026
+        }
+      },
+      "switches": [
+        {
+          "time": 10.8,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 64.4,
+          "from": "gallinazo",
+          "to": "golpe"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 10.8,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 64.4,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Fiscalizador",
+          "spawn": 84.1,
+          "kill": 103.2
+        },
+        {
+          "id": 2,
+          "name": "El Fiscalizador",
+          "spawn": 152.5,
+          "kill": 171.8
+        },
+        {
+          "id": 3,
+          "name": "El Fiscalizador",
+          "spawn": 228,
+          "kill": 282.3
+        }
+      ]
+    },
+    {
+      "map": "plaza",
+      "seed": 303,
+      "strategy": "golpe",
+      "result": "death",
+      "seconds": 281.8,
+      "kills": 374,
+      "level": 10,
+      "hp": 0,
+      "maxHp": 150,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 16,
+          "damage": 319.9869011421634,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 50,
+          "damage": 1346.3338378378382,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 318,
+          "damage": 31529.1433846154,
+          "miniDamage": 2956.6985846153825
+        }
+      },
+      "switches": [
+        {
+          "time": 14.6,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 72.9,
+          "from": "gallinazo",
+          "to": "golpe"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 14.6,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 72.9,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "La Paloma Brava",
+          "spawn": 84.1,
+          "kill": 100.2
+        },
+        {
+          "id": 2,
+          "name": "Makanaky · La Realeza",
+          "spawn": 159,
+          "kill": 212.6
+        },
+        {
+          "id": 3,
+          "name": "La Paloma Brava",
+          "spawn": 230.5,
+          "kill": 281.3
+        }
+      ]
+    },
+    {
+      "map": "machu",
+      "seed": 303,
+      "strategy": "golpe",
+      "result": "death",
+      "seconds": 129.1,
+      "kills": 150,
+      "level": 7,
+      "hp": 0,
+      "maxHp": 125,
+      "weaponUse": {
+        "shotgun": {
+          "casts": 18,
+          "damage": 351.1811678459367,
+          "miniDamage": 0
+        },
+        "gallinazo": {
+          "casts": 36,
+          "damage": 964.2473513513512,
+          "miniDamage": 0
+        },
+        "golpe": {
+          "casts": 102,
+          "damage": 6633.547569230764,
+          "miniDamage": 763.5987692307692
+        }
+      },
+      "switches": [
+        {
+          "time": 16.6,
+          "from": "shotgun",
+          "to": "gallinazo"
+        },
+        {
+          "time": 58.5,
+          "from": "gallinazo",
+          "to": "golpe"
+        }
+      ],
+      "unlocks": [
+        {
+          "time": 16.6,
+          "weapon": "gallinazo"
+        },
+        {
+          "time": 58.5,
+          "weapon": "golpe"
+        }
+      ],
+      "minis": [
+        {
+          "id": 1,
+          "name": "El Huaco Renegado",
+          "spawn": 84.1,
+          "kill": 107.9
+        }
+      ]
+    }
+  ]
+}
