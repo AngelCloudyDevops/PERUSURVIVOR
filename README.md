@@ -215,6 +215,9 @@ P.Progression centraliza opciones, rarezas, comparaciones, combos, pactos, aplic
 ## Vegetación reactiva y palomas
 Los arbustos de Campo de Marte y las matas de Machu Picchu se sacuden brevemente al pasar cerca; las palomas de la Plaza levantan vuelo y vuelven al suelo. Mantener el estilo cartoon con acabado pixel, masas redondeadas y sombras ancladas al suelo. Son decoración local: no afectan combate, colisiones ni sincronización. Máximo seis palomas y 32 plantas reactivas del grupo visible, detección limitada a 30 Hz y estado descartado al salir de cámara. El reloj de mapa respeta pausa y arenas; movimiento reducido desactiva reacciones y vuelo.
 
+## Campo de Marte reactivo
+Campo de Marte responde durante toda la partida, no solamente al desenlace de ElZeein. Un estado visual local combina progreso del reloj, amenazas a menos de 520 unidades, vida baja, entrada de minijefes o jefe final y activación de la ulti. Esa intensidad acelera suavemente hojas y vegetación; las entradas importantes producen una onda breve que sacude únicamente arbustos cercanos. El sistema no cambia colisiones, daño, aparición de rivales ni estado cooperativo. Examina como máximo 80 enemigos, mantiene entre seis y diez ráfagas visibles, reutiliza los arbustos existentes y se desactiva con movimiento reducido, menú, prácticas y arenas separadas.
+
 
 ## Evoluciones propias y menú de habilidades
 Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución exclusiva, disponible mediante elección con rango 5 y nivel 8. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.

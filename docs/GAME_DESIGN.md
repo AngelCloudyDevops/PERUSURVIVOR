@@ -654,3 +654,8 @@ Identidad sonora del Gallinazo: graznido descendente, aleteo pesado, silbido de 
 Sin objetivos, la estampida de Cuy corre en órbitas elípticas y la bandada de Paloma alterna aleteo y planeo con cambios de altura. Ambas orientan su cuerpo según el desplazamiento; no añaden daño ni cambian el radio de la ulti. Movimiento reducido conserva poses quietas.
 
 Cristorata carga las tres cartas comunes de ulti. Su entrada protegida dura 2,6 s y no detiene el combate; tarjeta izquierda estándar durante los primeros 1,3 s. Montura: ocho segundos, velocidad ×1,6, fase sobre sólidos y fuente, límites de jefe conservados. Fuego especial en cono (coseno ≥0,78), radio 230 más radio del enemigo; pulsos cada 0,25 s de 0,35 × poder. Solo el objetivo principal acumula foco hasta ×2 tras tres segundos; cambiar/perder objetivo reinicia. No carga su propia ulti. Al desmontar se comprueba el terreno y se vuelve al último punto seguro si hace falta. Tres colores con idéntico poder.
+# Fondo reactivo de Campo de Marte
+
+El fondo del mapa principal evoluciona antes del jefe final. La intensidad combina tiempo de partida, amenazas cercanas, vida baja y eventos mayores. Los enemigos normales aumentan gradualmente el viento; pesados y minijefes pesan más; la llegada del jefe final y la activación de una ulti generan una sola onda ambiental breve. La respuesta es informativa y estética: no concede ventajas, no modifica el terreno y no esconde proyectiles.
+
+Las reacciones se mantienen cerca de la cámara y del evento. La onda alcanza 190 unidades para arbustos, dura 1,2 segundos y no se repite mientras la misma ulti siga activa. Movimiento reducido elimina ondas, ráfagas y reacciones adicionales. Pausa congela el reloj ambiental.
