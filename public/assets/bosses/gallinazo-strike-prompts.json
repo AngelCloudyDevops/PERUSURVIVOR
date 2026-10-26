@@ -1,0 +1,23 @@
+{
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "reference": "gallinazo-ultimate-v1.png",
+      "output": "gallinazo-strike-v1.png",
+      "prompt": "Production sprite animation sheet, EXACTLY 8 full-body frames in a uniform 4-column x 2-row grid. Transparent background, no text or lines. Identity reference: the same detailed pixel art Gallinazo black vulture, gray bare wrinkled head, yellow eye, ivory hook beak, golden talons, charcoal-blue feathers. All eight frames same character, scale, facing right in three-quarter view, body centered at 55% of each cell and feet baseline at 90% of each cell, full wings and talons safely inside cell with ample margin. Do NOT draw eight identical spread-wing poses: this is a physically distinct strong wing-strike animation. Reading order: 1 alert standing with wings folded and beak closed; 2 crouches, bends both knees, draws neck back and wings behind shoulders; 3 deepest crouch with raised elbows and wings cocked far back ready to strike; 4 pushes off with legs extended and wings rising overhead, toes leaving ground; 5 airborne, legs curled and huge wings high in a V, open beak screaming; 6 forceful forward downstroke with both wings swept toward the viewer, strongly foreshortened, body leaning forward; 7 follows through with wing tips down and forward, body recoil and curled talons; 8 recovers upright, wings half open, talons lowered for landing. Match reference sharp detailed retro RPG pixel clusters and anatomy, no blur, no smoky aura or particles, no background or shadow. Camera and body size remain consistent; animate real poses of legs, neck, body and wings, never stretched or rubbery.",
+      "delivery": {
+        "file": "gallinazo-strike-v1.webp",
+        "quality": 92
+      }
+    },
+    {
+      "reference": "gallinazo-lima-cinematic-v1.png",
+      "output": "lima-parallax-v1.png",
+      "prompt": "Production game background PARALLAX LAYER ATLAS matching the detailed crisp pixel art of the reference Lima rooftop scene. Exactly THREE equal-height full-width horizontal rows stacked vertically, clear empty separation at row boundaries, no text, no labels or border. Each row is a separate independent layer for the same aligned 16:9 camera. TOP ROW: only dusk gray-purple clouds and warm twilight horizon sky, edge-to-edge opaque sky, NO buildings. MIDDLE ROW: only the Lima city skyline and middle-distance buildings, colonial church towers, Cerro San Cristobal at right, dense brick and plaster homes with lit windows and rooftop black water tanks; transparent sky above all silhouettes, buildings fill the lower 65% of this row and meet the bottom edge. BOTTOM ROW: only the nearest concrete rooftop floor, low chipped brick parapet and side corners, a black water tank at far left and TV antennas at far right; transparent above the parapet/floor, open empty center so a vulture sprite can stand there; floor fills lower 35% of this row, foreground side objects can rise higher. All three row widths match and align spatially when stacked as game layers. Reference for architecture and pixel art, preserve the Lima identity. Full transparent alpha outside the city and foreground objects, only top sky row opaque. Detailed sharp retro RPG pixel clusters, no smooth painting, no blur, no characters, no birds, no UI, no gradients covering objects. Keep every row's objects within its own row.",
+      "delivery": {
+        "file": "lima-parallax-v1.webp",
+        "quality": 85
+      }
+    }
+  ]
+}
