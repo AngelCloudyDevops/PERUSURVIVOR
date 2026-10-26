@@ -87,6 +87,9 @@ module.exports = [
     "source": "src/rendering/vulture-dark-scene.js", "output": "js/vulture-cinematic.js"
   },
   {
+    "source": "src/rendering/vulture-strike-art.js", "output": "js/vulture-strike-art.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
   },

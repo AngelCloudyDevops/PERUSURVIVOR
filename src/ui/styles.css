@@ -54,3 +54,5 @@ body.vulture-cinematic header,body.vulture-cinematic #hud,body.vulture-cinematic
 #skills-panel .skill-nav{top:0;bottom:auto;margin-bottom:12px}
 
 header #skills-hud{width:auto;min-width:92px;flex-shrink:0;height:40px}header #skills-hud+button{margin-left:0}
+
+body.vulture-cinematic #game-update{visibility:hidden}
