@@ -101,3 +101,38 @@ test('Ruta: bloqueo cercano, objetivo móvil y terreno modificado',()=>{
 test('Agotamiento: poses distintas, cuerpo completo, pausa y movimiento reducido',()=>{
  const {P}=new Simulation('campo',[0,6]),M=P.Minibosses,poses=[];for(const map of ['campo','plaza','machu']){const e=M.create(map,{x:0,y:0});e.phase='mini-recover';e.recoveryTotal=1.5;e.recovery=1;e.ambientTime=1;poses.push(JSON.stringify(M.pose(e)));assert.equal(M.frame(e),map==='plaza'?1:0);const first=JSON.stringify(M.pose(e));assert.equal(JSON.stringify(M.pose(e)),first);P.Ambient.reduced={matches:true};const still=JSON.stringify(M.pose(e));e.ambientTime=7;assert.equal(JSON.stringify(M.pose(e)),still);P.Ambient.reduced={matches:false};}assert.equal(new Set(poses).size,3);
 });
+
+test('Matriz minijefes: corto alcance, escopeta y proyectiles aprovechan recuperación sin contacto',()=>{
+ for(const map of ['campo','plaza','machu'])for(const id of ['g5','cuy','kingteka','sustento']){
+  const index=new Simulation('campo',[0]).P.Data.characters.findIndex(c=>c.id===id),sim=new Simulation(map,[index]),P=sim.P,s=P.state,p=s.player,M=P.Minibosses,e=M.create(map,{x:0,y:0});P.Terrain.active=()=>[];P.Terrain.hit=()=>null;P.Progression.tick=()=>{};s.enemies=[e];e.hp=e.max=10000;M.recover(e);p.x=-200;p.y=0;p.inv=0;s.fire=0;const hp=p.hp,near=['g5','cuy'].includes(id)?90:160;
+  for(let step=0;step<36;step++){s.elapsed+=.04;if(Math.abs(p.x)>near)p.x+=p.speed*.04;M.move(e,.04);P.Combat.tick(.04);M.contact(e,[p])}
+  assert(e.hp<10000,map+' '+id+' conecta dentro de la ventana');assert.equal(p.hp,hp);assert.equal(e.counterWindows,1);assert.equal(s.effects.filter(q=>q.kind==='mini-counter').length,1);
+ }
+});
+test('Cobertura de minijefes: melee, área, bandas y tiradores no eligen objetivos tras paredes',()=>{
+ for(const id of ['g5','cuy','alberto','kingteka','sustento']){
+  const index=new Simulation('campo',[0]).P.Data.characters.findIndex(c=>c.id===id),{P}=new Simulation('campo',[index]),s=P.state,p=s.player,e=P.Minibosses.create('campo',{x:100,y:0});p.x=p.y=0;s.enemies=[e];P.Terrain.active=()=>[];P.Terrain.hit=(x,y,r=0)=>x>40-r&&x<50+r&&Math.abs(y)<150+r?{solid:true,hp:Infinity}:null;P.Progression.tick=()=>{};const hp=e.hp;
+  assert.equal(P.Combat.cast(),false,id+' no apunta a través del muro');s.fields=[{x:0,y:0,r:200,power:100,life:1,tick:0}];s.fire=100;P.Combat.tick(.04);assert.equal(e.hp,hp,id+' nube respeta cobertura');P.Terrain.hit=()=>null;assert(P.Combat.cast(),id+' puede atacar al salir de cobertura');
+ }
+});
+test('Pared fina: un bumerán no atraviesa la cobertura entre pasos durante minijefe',()=>{
+ const {P}=new Simulation('campo',[0]),s=P.state,e=P.Minibosses.create('campo',{x:160,y:0});s.player.x=s.player.y=0;s.enemies=[e];P.Progression.tick=()=>{};P.Terrain.active=()=>[];P.Terrain.hit=x=>x>=45&&x<=47?{solid:true,hp:Infinity}:null;s.fire=100;s.shots=[{x:0,y:0,vx:2000,vy:0,age:0,life:1,history:[],kind:'boomerang',turnAt:2,power:100,hits:new Set(),remaining:Infinity}];const hp=e.hp;P.Combat.tick(.1);assert.equal(e.hp,hp);assert.equal(s.shots.length,0);
+});
+test('Señales: impacto acotado por material, confirmación única y pausa',()=>{
+ for(const map of ['campo','plaza','machu']){const {P}=new Simulation(map,[0]),M=P.Minibosses,s=P.state,e=M.create(map,{x:0,y:0});s.enemies=[e];e.hp=e.max=10000;M.recover(e);for(let i=0;i<20;i++)M.hurt(e,1,0);assert.equal(s.effects.filter(q=>q.kind==='mini-counter').length,1);assert.equal(s.effects.filter(q=>q.kind==='mini-impact').length,1);const impact=s.effects.find(q=>q.kind==='mini-impact');assert.equal(impact.miniMap,map);const life=impact.life;s.mode='pause';P.Game.update(.2);assert.equal(impact.life,life);P.Ambient.reduced={matches:true};e.impactCooldown=0;M.hurt(e,1,0);assert.equal(s.effects.filter(q=>q.kind==='mini-impact').length,1);}
+});
+
+test('Nubes tras el objetivo: no permiten esconderse detrás de cobertura',()=>{
+ const {P}=new Simulation('campo',[0]),s=P.state,p=s.player,e=P.Minibosses.create('campo',{x:100,y:0});p.x=p.y=0;s.enemies=[e];P.Terrain.active=()=>[];P.Progression.tick=()=>{};P.Terrain.hit=(x,y,r=0)=>x>40-r&&x<50+r?{solid:true,hp:Infinity}:null;s.fire=100;s.fields=[{x:100,y:0,r:200,power:100,life:1,tick:0}];const hp=e.hp;P.Combat.tick(.04);assert.equal(e.hp,hp);P.Terrain.hit=()=>null;s.fields[0].tick=0;P.Combat.tick(.04);assert(e.hp<hp);
+});
+test('Pantalla cargada: avisos de minijefes se dibujan después de proyectiles y efectos',()=>{
+ const {P}=new Simulation('campo',[0]),s=P.state,e=P.Minibosses.create('campo',{x:0,y:220});s.enemies=[e,...Array.from({length:80},(_,i)=>({x:(i%8)*10,y:220,r:12,hp:20,design:0}))];P.Minibosses.warn(e,'charge');s.shots=Array.from({length:200},()=>({x:0,y:220,vx:1,vy:0,history:[],life:1}));s.effects=Array.from({length:100},()=>({kind:'damage',x:0,y:220,life:1,maxLife:1,text:'1'}));const order=[];P.FX.projectile=()=>order.push('projectile');P.FX.effect=()=>order.push('effect');const front=P.Minibosses.foreground.bind(P.Minibosses);P.Minibosses.foreground=ctx=>{order.push('warning');front(ctx)};P.World.render(1000);assert.equal(order.filter(x=>x==='projectile').length,200);assert.equal(order.filter(x=>x==='effect').length,100);assert.equal(order.at(-1),'warning');
+});
+
+test('Huaco: acercarse tras terminar la onda permite contraataque melee sin daño',()=>{
+ const index=new Simulation('campo',[0]).P.Data.characters.findIndex(c=>c.id==='g5'),{P}=new Simulation('machu',[index]),s=P.state,p=s.player,M=P.Minibosses,e=M.create('machu',{x:0,y:0});P.Terrain.active=()=>[];P.Terrain.hit=()=>null;P.Progression.tick=()=>{};s.enemies=[e];e.hp=e.max=10000;p.x=-200;p.y=0;p.inv=0;s.fire=0;const hp=p.hp;e.attack='quake';M.fire(e);M.recover(e);
+ for(let i=0;i<36;i++){s.elapsed+=.04;if(i>=11&&Math.abs(p.x)>100)p.x+=p.speed*.04;M.move(e,.04);P.Combat.tick(.04);M.contact(e,[p])}assert.equal(p.hp,hp);assert(e.hp<10000);assert.equal(e.counterWindows,1);
+});
+test('Evoluciones y daño nulo: sin atajos detrás de cobertura ni falso contraataque',()=>{
+ const index=new Simulation('campo',[0]).P.Data.characters.findIndex(c=>c.id==='g5'),{P}=new Simulation('campo',[index]),s=P.state,p=s.player,M=P.Minibosses,e=M.create('campo',{x:100,y:0});p.x=p.y=0;p.aim=0;p.evolved={primary:true};s.enemies=[e];P.Terrain.active=()=>[];P.Terrain.hit=x=>x>40&&x<50?{solid:true,hp:Infinity}:null;const hp=e.hp;P.Evolutions.afterCast(p,P.Evolutions.attack(p),{x:100,y:0});assert.equal(e.hp,hp);M.recover(e);M.hurt(e,0,0);assert.equal(e.counterWindows,0);assert(!s.effects.some(q=>q.kind==='mini-counter'));
+});
