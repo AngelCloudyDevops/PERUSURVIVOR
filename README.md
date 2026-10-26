@@ -291,3 +291,6 @@ Etiquetas de colección: C · Común, R · Raro, SR · Súper raro y SSR · Ultr
 
 ## Ultis del Cuy y la Paloma
 Cuy Supremo: Estampida Suprema (5 s, daño de área y coraza del 50 %). Paloma del Centro: Bandada del Centro (6 s, espiral de palomas y remate de área). Carga con 20 bajas; pulsa Q o el botón. En Ajustes están las dos prácticas gratuitas, con recarga y cambio directo de personaje. Conservan los sprites cartoon pixel art actuales.
+
+## Ordenar la colección
+El selector Ordenar colección permite rareza, estrellas o copias disponibles, de mayor a menor. En los tres casos van primero los personajes listos para ascender; los empates conservan el orden del catálogo. Orden y filtros se combinan y duran durante la sesión. Limpiar filtros mantiene el orden elegido. Cambiar de orden no cambia la selección, los personajes ni el progreso; tarjetas, retratos y navegación por teclado siguen el mismo orden visible.
