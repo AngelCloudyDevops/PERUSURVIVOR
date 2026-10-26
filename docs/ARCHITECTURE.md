@@ -261,6 +261,7 @@ Las entradas se inician con Minibosses.beginEntry al aparecer en mapa/laboratori
 
 Remate DENUNCIADO: papel compacto de 72 x 48 unidades, caida acelerada con giro que se estabiliza al aterrizar, sello de 84 x 20 sin ampliacion gigante, impacto unico sincronizado con audio, rebote y onda breve. Se dibuja directamente a resolucion completa para conservar texto nitido. Se fija al lugar donde termina la ulti y respeta pausa y movimiento reducido. El panel tambien usa resolucion completa sin suavizado y reduce el gallinazo para evitar recortar las alas.
 
+La fase 2 de Minibosses usa enraged latched, mini-fury y mini-chain-gap con relojes dt serializables. beginFury se activa una vez al cruzar hp<=max*0.5 fuera de la entrada y retira solo los peligros de miniId. warn configura un único seguimiento del ataque primario; recover consume chainLeft y chainTick vuelve a avisar sin crear cadenas infinitas. El salto lateral resuelve colisiones. La notificación sonora se deduplica por miniId en cada cliente y se restablece al reiniciar.
 El manifiesto de módulos del paquete publicado conserva solo las rutas de salida; el servidor acepta también el formato anterior con objetos. Así evita duplicar rutas de desarrollo y mantiene el margen de tamaño sin alterar las imágenes ni el orden de carga.
 
 El build excluye los JSON de prompts de generación de arte (sin referencias desde el juego). Permanecen completos en Git como documentación de autoría; las pruebas comprueban su exclusión y mantienen la comparación exacta de todos los recursos de ejecución.
