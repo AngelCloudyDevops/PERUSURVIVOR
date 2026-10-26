@@ -49,4 +49,4 @@ c.save();c.translate(0,h*(.07+m.hero*.2));a.speech(c,t-1.35,w,h,reduced,true);c.
 if(t>=4.85)this.boarding(c,g,p,t,w,h,reduced);
 }
 };
-{const reveal=P.DragonArt.reveal;P.DragonArt.reveal=function(g,p=P.state.player){if(g.variant===3)return P.DragonEpic.draw(g,p);const result=reveal.call(this,g,p),t=g.age-P.DragonUltimate.entry;if(t>=0&&t<P.DragonUltimate.sceneFor(g)){const {ctx,width,height}=P.Core;P.DragonEpic.companion(ctx,p,t,width,height,this.reduced(),false)}return result};P.DragonArt.secretFeedback=function(g,p,t){if(g.variant===3)P.DragonEpic.feedback(g,p,t)}}
+{const reveal=P.DragonArt.reveal;P.DragonArt.reveal=function(g,p=P.state.player){if(g.variant===3)return P.DragonEpic.draw(g,p);const result=reveal.call(this,g,p),t=g.age-P.DragonUltimate.entry;if(t>=0&&t<P.DragonUltimate.sceneFor(g)){const {ctx,width,height}=P.Core;P.DragonEpic.spotlight(ctx,width,height,t,this.reduced());P.DragonEpic.companion(ctx,p,t,width,height,this.reduced(),false)}return result};P.DragonArt.secretFeedback=function(g,p,t){if(g.variant===3)P.DragonEpic.feedback(g,p,t)}}
