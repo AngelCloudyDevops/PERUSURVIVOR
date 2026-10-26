@@ -730,6 +730,11 @@ Los avisos de Gabinete, Guardián, Fujimori, Gallinazo y ElZeein se derivan del 
 
 ElZeein fija la dirección del jugador durante un aviso de 0,7 s, permanece quieto mientras carga y después dispara cinco proyectiles. Moverse durante el aviso permite esquivar; el disparo no vuelve a apuntar en el instante final. Las coberturas cortan tanto el aviso como el proyectil.
 
+### IA táctica y diagnóstico de jefes
+Los jefes y minijefes calculan rutas con el radio real de su cuerpo. Si no avanzan durante 0,42 s invalidan la ruta; si el bloqueo persiste alternan un flanqueo lateral durante 1,6 s. Una embestida fija dirección, distancia, punto final y cobertura al comenzar el aviso. Si choca, consume la carga pendiente, cancela cadenas incompatibles y entra en recuperación. La cobertura que detendrá una carga se resalta como COBERTURA SEGURA.
+
+Al cruzar 50 % de vida, cada jefe salvo el Gallinazo ofrece una única esquiva perfecta opcional de 1,15 s. E o el botón táctil conceden 0,85 s de invulnerabilidad sin pausar la pelea; fallar no bloquea la progresión. El Gallinazo conserva su transformación cinematográfica propia. Los impactos de área se consumen una sola vez aunque un escudo absorba el daño. En Probar jefes, Diagnóstico muestra hitbox, ruta, destino, estado, flanqueo y recálculos.
+
 ### Chosicano: ¡Al fondo hay sitio!
 Tercer ataque tras carga y bocinazo: aviso de 1.2 s con puerta y cobrador, cinco boletos de trayectoria fija (220 unidades/s, 11 de daño), hueco central y bloqueo por coberturas. Recupera 1.1 s; la puerta cierra en 0.3 s. Sin persecución ni nuevos enemigos.
 
