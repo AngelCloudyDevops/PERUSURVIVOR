@@ -714,3 +714,5 @@ El marco eléctrico de resultado se sustituye por vapor morado pixel art transl�
 
 ### Chosicano: ¡Al fondo hay sitio!
 Tercer ataque tras carga y bocinazo: aviso de 1.2 s con puerta y cobrador, cinco boletos de trayectoria fija (220 unidades/s, 11 de daño), hueco central y bloqueo por coberturas. Recupera 1.1 s; la puerta cierra en 0.3 s. Sin persecución ni nuevos enemigos.
+
+Por petición explícita del usuario, el humo del resultado deja de ser pixel art: usa vapor suave, volumétrico y translúcido, con remolinos continuos y puntos de luz. Ocupa hasta 72 px normal y 90 px en ×16, proporcionalmente menos en móvil; el centro y controles permanecen libres. Dura 2 s y conserva reducción de movimiento. Esta excepción visual solo afecta al humo; no cambia sprites, coronas ni cartel.
