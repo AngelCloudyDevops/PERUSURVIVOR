@@ -116,6 +116,7 @@ test('Revancha cliente: conserva sesión/socket, limpia el resultado y abre la s
  const {P}=new Simulation('campo',[0,6]);const session={code:'ABCD1234',slot:0},socket={readyState:1};let leaves=0,reloads=0,shown,decorated=0;
  P.Coop.session=session;P.Coop.ws=socket;P.Coop.active=true;P.Coop.paused=true;P.Coop.resultShown=true;P.Coop.resultVisible=true;P.Coop.activityPending=true;P.Coop.peers=[{}];P.Coop.ultimate=true;P.Coop.room={round:3,players:[{returning:true},{returning:false}]};P.Coop.resultSummary={win:false,kills:12,elapsed:90};P.Coop.leave=()=>leaves++;P.UI.show=(title,description,buttons)=>{shown={title,description,buttons}};P.Meta.decorate=()=>decorated++;P.Updates={pending:true,reload:()=>reloads++};P.Lobby.ready=false;
  P.Coop.showResult();assert.match(shown.description,/1\/2/);assert(shown.buttons[0].disabled);assert.match(shown.buttons[1].title,/Salir del grupo/);assert.equal(decorated,1);
+ P.Coop.pause();assert(P.Coop.paused,'Esc no cierra el resultado ni oculta el regreso a la sala');assert.match(shown.description,/1\/2/);
  P.Coop.backToRoom();assert.equal(P.Coop.session,session);assert.equal(P.Coop.ws,socket);assert.equal(leaves,0);assert.equal(reloads,0);assert.equal(P.state.mode,'menu');assert.equal(P.Lobby.route,'coop');assert(!P.Coop.active&&!P.Coop.paused&&!P.Coop.resultVisible&&!P.Coop.activityPending&&!P.Coop.ultimate);assert.equal(P.Coop.resultSummary,null);assert.equal(P.Coop.peers.length,0);
  P.UI.menu();assert.equal(reloads,1,'Salir normalmente sigue aplicando las actualizaciones pendientes');
 });
