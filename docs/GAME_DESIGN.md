@@ -1,5 +1,8 @@
 # Documento de diseño — PERUSURVIVOR
 
+## Dominio de Makanaky: combos y cámaras
+Makanaky: golpes encadenados jab/jab/cruzado/uppercut. Conectar suma racha GA; fallar o esperar 1,1 s la corta, sin perder energía acumulada. Uppercut añade 0,65 de alcance. Enemigos en fila de profundidad con leve variación lateral. Tarjeta protegida de 1,3 s antes de mostrar el callejón y habilitar golpes; cámaras V equivalentes en daño y alcance. Práctica administrativa con recarga explícita gratuita.
+
 ## Expansión de dominio · ¡BÓTAME TU GA!
 Exclusiva del UR Makanaky. Carga con 35 bajas. Entrada de 1,3 s, combate de 7 s y salida de 0,4 s: callejón recto en primera persona, avance automático, desplazamiento lateral con A/D/flechas, puntería con ratón y puñetazo con clic/Espacio o botón táctil. Hasta 24 enemigos reales a 650 u entran; minions caen de un golpe conectado y jefes/minijefes reciben daño provisional finito (poder×4, máximo base 140). Las zonas de invulnerabilidad de jefe se respetan. Los ataques se anuncian y se esquivan lateralmente. GA de bajas (máximo 10) potencia el remate; no recarga el dominio. El reloj del mapa queda detenido, pero el encuentro avanza. El compañero se refugia protegido detrás de Makanaky, no ataca y puede animarlo con ¡GA!; otro dominio no consume su carga mientras hay uno activo. Al volver se mantienen bajas, botín y HP, sin duplicar recompensas. Los ataques de jefes dentro del dominio son genéricos en este prototipo; el daño se ajustará después de probarlo.
 
@@ -569,5 +572,6 @@ La tarjeta organiza identidad arriba, retrato central y nombre del ataque abajo 
 En móvil aumenta el ancho útil y limita altura a 1,55 veces el ancho, para que el personaje y el título no queden diminutos en una franja alta. El laboratorio se oculta solo durante la tarjeta para no tapar su pie; el combate sigue activo. Movimiento reducido elimina golpe tipográfico, brillo y plumas móviles y conserva la composición estática.
 
 
-Makanaky: golpes encadenados jab/jab/cruzado/uppercut. Conectar suma racha GA; fallar o esperar 1,1 s la corta, sin perder energía acumulada. Uppercut añade 0,65 de alcance. Enemigos en fila de profundidad con leve variación lateral. Tarjeta protegida de 1,3 s antes de mostrar el callejón y habilitar golpes; cámaras V equivalentes en daño y alcance. Práctica administrativa con recarga explícita gratuita.
+La segunda fase del Gallinazo mantiene movimiento articulado de alas, cabeza, corona y collar durante el combate. Las patas y el torso permanecen anclados; el aura y los rayos rodean el plumaje sin tapar su textura.
+La transformación también cambia gradualmente el plumaje a morado oscuro. Conserva pico, patas, luces y transparencias; la tarjeta sigue mostrando la forma base.
 Alternar ambas mantiene el orden Tema 1 → Tema 2 → Tema 1 con transición suave de tres segundos, sin solapar música sintetizada. Volumen, silencio y pausa afectan a las dos pistas; la transición continúa desde su punto al reanudar. Se prepara la próxima pista solo cerca del final y se mantiene la actual si no está disponible.
