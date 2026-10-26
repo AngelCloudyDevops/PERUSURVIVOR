@@ -37,5 +37,5 @@ draw(ctx,e){if(!this.ready)return false;const row=e.design||0,gait=this.gait(e),
 ctx.translate(0,-gait.lift-(pose?.lift||0));ctx.rotate(gait.step*.025+(pose?.tilt||0)+(hitPose?.tilt||0));ctx.scale(1,(1-Math.abs(gait.step)*.012)*(pose?.squash||1)*(hitPose?.squash||1));
 // One intact atlas frame for walking, attacks and hit reactions.
 if(armored){ctx.shadowColor='#ffe4a0';ctx.shadowBlur=8}
-ctx.drawImage(this.image,cell.sx,cell.sy,cell.w,cell.h,Math.round(-width/2),-height,Math.round(width),height);ctx.restore();return true}
+if(!(e.moving&&!pose&&P.WalkArt?.paint(ctx,'enemy-'+row,height,e.walkPhase||0)))ctx.drawImage(this.image,cell.sx,cell.sy,cell.w,cell.h,Math.round(-width/2),-height,Math.round(width),height);ctx.restore();return true}
 };
