@@ -3,9 +3,10 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'dist'),modules=requi
 // Estos atlas se conservan como fuentes; simpleStyle no los solicita en ejecución.
 const archivedMapArt=new Set(['campo-props-v1','plaza-props-v1','machu-props-v1','ground-tiles-v1'].map(id=>'assets/environment/'+id+'.webp'));
 // Prompts y metadatos de autoría: permanecen en Git; el runtime no los solicita.
+const archivedCinematics=new Set(['assets/bosses/gallinazo-comic-v1.webp']);
 const sourceMetadata=new Set(['assets/characters/atlas.json','assets/characters/powers-atlas.json','assets/characters/streamers-atlas.json','assets/enemies/gallinazos-atlas.json','assets/enemies/rivales-atlas.json','assets/characters/kingteka-ultimate-portrait.json','assets/bosses/gallinazo-phase2-frames.json','assets/bosses/gallinazo-rig-frames.json']);
 const legacyCourtArt=new Set(['judge-v1','fujimori-objection-v1'].map(id=>'assets/court/'+id+'.webp'));
-function archivedAsset(rel){const normalized=rel.split(path.sep).join('/');if(legacyCourtArt.has(normalized)&&/judge-joints-v2/.test(fs.readFileSync(path.join(root,'src/rendering/court-art.js'),'utf8')))return true;if(sourceMetadata.has(normalized)||normalized.endsWith('.prompt.txt'))return true;return archivedMapArt.has(normalized)&&/simpleStyle\s*:\s*true/.test(fs.readFileSync(path.join(root,'src/rendering/map-art.js'),'utf8'))}
+function archivedAsset(rel){const normalized=rel.split(path.sep).join('/');if(legacyCourtArt.has(normalized)&&/judge-joints-v2/.test(fs.readFileSync(path.join(root,'src/rendering/court-art.js'),'utf8')))return true;if(sourceMetadata.has(normalized)||archivedCinematics.has(normalized)||normalized.endsWith('.prompt.txt'))return true;return archivedMapArt.has(normalized)&&/simpleStyle\s*:\s*true/.test(fs.readFileSync(path.join(root,'src/rendering/map-art.js'),'utf8'))}
 function copy(from,to){fs.mkdirSync(path.dirname(to),{recursive:true});fs.copyFileSync(from,to)}
 function build(){
  // dist es una salida reconstruible; comprobar el destino antes de limpiarlo.
