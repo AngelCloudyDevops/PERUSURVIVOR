@@ -153,6 +153,10 @@ module.exports = [
     "output": "js/skill-preview.js"
   },
   {
+    "source": "src/ui/lobby.js",
+    "output": "js/lobby.js"
+  },
+  {
     "source": "src/ui/screens.js",
     "output": "js/ui.js"
   },
