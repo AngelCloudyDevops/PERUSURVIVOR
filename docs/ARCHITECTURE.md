@@ -1,5 +1,11 @@
 # Arquitectura
 
+## Almacenamiento de preferencias de colección
+P.Gacha usa la clave independiente causas-collection-preferences-v1 con version/tier/stars/ready/order. No cambia ni escribe el perfil v4. loadPrefs se ejecuta antes de crear controles; la normalización admite únicamente opciones conocidas. Cada gesto de control y Limpiar filtros guarda una instantánea pequeña; refresh, selección, ascensos y RAF no escriben preferencias. El evento storage actualiza controles/filtros/orden sin eco de escritura y contempla eliminación o clear. Errores de lectura usan valores iniciales sin borrar el contenido; errores de escritura conservan la vista de sesión y ofrecen reintento explícito. La preferencia no sincroniza navegadores ni crea una cuenta.
+
+El paquete también excluye tres metadatos de autoría conservados en public/Git (gallinazo-phase2-frames.json, gallinazo-rig-frames.json y kingteka-ultimate-portrait.json). Los frames usados en ejecución ya están integrados en los módulos JS; ningún runtime solicita estos JSON. Se conserva el margen de tamaño existente sin cambiar imágenes ni reglas.
+
+
 ## Separación entre fuente y distribución
 src/ contiene la lógica y la interfaz editables. public/assets/ contiene los recursos originales. scripts/build.cjs copia ambos a dist/ sin empaquetar ni minificar el código. dist/ está ignorado por Git y siempre puede reconstruirse.
 
@@ -441,3 +447,4 @@ VultureRig.arenaMotion conserva motion(4) durante la gracia y dirige la misma je
 
 # Configuración de apoyos de laboratorio
 `TestBench.supports()` normaliza dos espacios y elimina duplicados. `attackFixture()` aplica sus rangos, evoluciones y combos compatibles mediante `Progression.apply`. La firma de `applyAttack()` incluye toda la configuración; reconstruye los campos de arma y apoyos, borra evoluciones retiradas, reinicia temporizadores y sustituye los combos sin acumulación. La ejecución conserva el tick y render de `Progression` existentes. Las pruebas recorren los apoyos/rangos de los 18 causas con daño real y verifican los dos combos, retirada, cambio de escenario/jefe y salida limpia.
+

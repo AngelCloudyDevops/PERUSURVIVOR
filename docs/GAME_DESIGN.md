@@ -1,5 +1,10 @@
 # Documento de diseño — PERUSURVIVOR
 
+## Persistencia de la vista de colección
+Filtros y orden se recuerdan entre visitas en el mismo navegador. Se restauran antes de presentar la colección; la prioridad de listos para ascender se recalcula con el progreso actual. Limpiar filtros también queda guardado y mantiene el criterio de orden. La sincronización entre pestañas no escribe otra vez ni consume recursos del juego. Si no hay acceso al almacenamiento, se informa que la vista solo se aplica a la sesión.
+
+
+
 ## Identidad y objetivo
 Título visible: Causas del Caos. Supervivencia de acción en vista superior con humor y referencias peruanas. El jugador controla el movimiento y esquiva rivales mientras su personaje ataca automáticamente. La meta es crecer durante la partida y derrotar al jefe final ElZeein.
 

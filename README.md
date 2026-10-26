@@ -1,5 +1,10 @@
 # PERUSURVIVOR — Causas del Caos
 
+## Preferencias de colección persistentes
+Rareza, estrellas, Solo listos para ascender y orden se guardan automáticamente en este navegador al cambiar un control y se restauran al recargar o volver a abrir el juego. Limpiar filtros guarda los filtros iniciales y conserva el orden elegido. Las pestañas del mismo sitio se sincronizan. Si el navegador impide guardar, los controles siguen funcionando durante la sesión y aparece un aviso con reintento; el progreso del personaje se conserva.
+
+
+
 [![CI](https://github.com/AngelCloudyDevops/PERUSURVIVOR/actions/workflows/ci.yml/badge.svg)](https://github.com/AngelCloudyDevops/PERUSURVIVOR/actions/workflows/ci.yml)
 
 Juego de supervivencia y parodia peruana para navegador: dieciocho personajes, Backyardigans y policías ficticios como rivales, tres mapas y encuentros opcionales. HTML, CSS y Canvas 2D, sin dependencias de ejecución.
