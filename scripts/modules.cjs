@@ -379,4 +379,5 @@ module.exports = [
 ,{source:"src/ui/admin-balance.js",output:"js/admin-balance.js"}
 ,{source:"src/systems/cirilo-arena.js",output:"js/cirilo-arena.js"}
 ,{source:"src/ui/balance-preview.js",output:"js/balance-preview.js"}
+, {source:"src/rendering/portal-fx.js",output:"js/portal-fx.js"}
 ];

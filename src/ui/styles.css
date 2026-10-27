@@ -413,6 +413,7 @@ body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:
  body.test-bench-live:has(#bench-collapse[aria-expanded="true"]) #dota-inventory{visibility:hidden}
 }
 
+body.portal-transfer #hud,body.portal-transfer #hint,body.portal-transfer #ultimate{visibility:hidden}
 
 /* Mobile-only compact layout: preserve the desktop full-art card composition. */
 @media(max-width:540px){

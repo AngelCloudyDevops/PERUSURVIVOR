@@ -717,3 +717,6 @@ BalancePreview es presentación y cálculo puro. estimate recibe copias del form
 El build conserva sideral-domain-v2.png como fuente en Git y la excluye del paquete: el runtime usa exclusivamente v3. Esto recupera margen dentro del límite de 64 MiB sin alterar el arte activo.
 
 portalDefinition mantiene bossChoices serializable por ventana, excluye elecciones previas y el último kind afrontado. recordPortalBoss confirma el historial solo tras validar la entrada y cargar el arte. El navegador conserva el último kind en almacenamiento local; el servidor usa memoria por sala y la transfiere a la simulación de revancha. Nunca acepta un jefe elegido por el cliente. Los fixtures de jefes concretos pasan su definición explícita.
+
+### PortalFX y contacto
+PortalFX cachea una textura radial de niebla y dibuja anillos, remolino y hasta 24 brasas desde elapsed, sin entidades ni acumulación de partículas. Game intercepta solo la transición individual; si falla la carga durante 12 s devuelve el control y bloquea la reentrada hasta alejarse. Activities.autoPortal detecta el contacto de cualquiera y enterPortal guarda ambas posiciones antes de transportar al grupo; tryPortal reutiliza esa entrada para compatibilidad con los controles anteriores. El cliente dibuja una transición breve al recibir la nueva arena.

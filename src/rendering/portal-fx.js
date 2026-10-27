@@ -1,0 +1,26 @@
+'use strict';
+P.PortalFX={remoteAt:-99,fog:null,
+ reduced(){return !!globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches},
+ reset(){this.remoteAt=-99},
+ mist(){if(this.fog)return this.fog;const cv=document.createElement('canvas');cv.width=cv.height=128;const c=cv.getContext('2d'),g=c.createRadialGradient(64,64,3,64,64,64);g.addColorStop(0,'#aa88db70');g.addColorStop(.35,'#6b508e48');g.addColorStop(1,'#241d4000');c.fillStyle=g;c.fillRect(0,0,128,128);return this.fog=cv},
+ draw(c,point,time,duo=false){const reduced=this.reduced(),t=reduced?0:time;c.save();c.translate(point.x,point.y);c.imageSmoothingEnabled=true;
+  const ground=c.createRadialGradient(0,7,5,0,7,120);ground.addColorStop(0,'#bb89f25c');ground.addColorStop(.5,'#7545b52b');ground.addColorStop(1,'#63389a00');c.save();c.scale(1,.36);c.fillStyle=ground;c.fillRect(-125,-125,250,250);c.restore();
+  for(let i=0;i<12;i++){const a=i*2.399+t*.15,r=44+(i%3)*18,x=Math.cos(a)*r,y=10+Math.sin(a)*r*.22,size=65+(i%4)*13;c.globalAlpha=.45; c.drawImage(this.mist(),x-size/2,y-size*.55,size,size*.65)}c.globalAlpha=1;
+  c.save();c.translate(0,-35);c.scale(.67,1);const core=c.createRadialGradient(0,0,4,0,0,77);core.addColorStop(0,'#070b15f5');core.addColorStop(.58,'#21172ee8');core.addColorStop(.82,'#674096a0');core.addColorStop(1,'#ad7ee900');c.fillStyle=core;c.beginPath();c.arc(0,0,80,0,Math.PI*2);c.fill();c.globalCompositeOperation='lighter';
+  for(let i=0;i<6;i++){const radius=60+i*2+Math.sin(t*1.5+i)*2;c.strokeStyle=i%2?'#b889eb70':'#d7b9ff55';c.lineWidth=i<2?3:1.5;c.beginPath();c.arc(0,0,radius,t*.35+i*.9,t*.35+i*.9+Math.PI*1.55);c.stroke()}c.restore();
+  c.globalCompositeOperation='lighter';for(let i=0;i<(reduced?5:24);i++){const a=i*2.399-t*(.4+i%3*.08),radius=30+(i*17)%57,x=Math.cos(a)*radius*.7,y=-35+Math.sin(a)*radius,alpha=.35+(Math.sin(t*2+i)+1)*.25;c.globalAlpha=alpha;c.fillStyle=i%3?'#edbf78':'#c19aff';c.beginPath();c.arc(x,y,i%4?1.3:2.1,0,Math.PI*2);c.fill()}c.globalCompositeOperation='source-over';
+  for(let i=0;i<8;i++){const a=i*.8+t*.23,size=60+i%3*15;c.globalAlpha=.32;c.drawImage(this.mist(),Math.cos(a)*48-size/2,-40+Math.sin(a)*59-size/2,size,size)}c.globalAlpha=1;c.fillStyle='#eedfff';c.font='bold 12px monospace';c.textAlign='center';c.fillText(duo?'UNO TOCA · ENTRAN LOS DOS':'CRUZA EL CENTRO PARA ENTRAR',0,64);c.font='10px monospace';c.fillStyle='#c9b5dd';c.fillText('PORTAL DEL CAOS · JEFE MISTERIOSO',0,81);c.restore()
+ },
+ eligible(){const s=P.state;return s.mode==='play'&&!s.encounter&&!s.devRun&&!s.domain&&!s.court&&!s.roadDomain&&!s.sideralDomain&&!s.chamelinDomain&&!s.portalTransition},
+ begin(){const s=P.state;if(!this.eligible()||!P.Encounters.touch())return false;if(s.portal.blockTouch)return false;s.portalTransition={age:0,exit:0,waiting:0,attempted:false,def:P.Encounters.portalDefinition()};s.player.inv=Math.max(s.player.inv||0,1);P.Core.clear();P.Audio.fx('whistle');return true},
+ advance(dt){const s=P.state,tr=s.portalTransition;if(!tr||['pause','menu','end'].includes(s.mode))return;dt=Math.max(0,Math.min(.1,dt));tr.age+=dt;s.elapsed+=dt;if(s.encounter){tr.exit+=dt;if(tr.exit>=.3)s.portalTransition=null;return}if(tr.age>=.45&&!tr.attempted){tr.attempted=true;s.mode='portal';P.Encounters.enter(tr.def)}if(tr.attempted&&!s.encounter){tr.waiting+=dt;if(tr.waiting>=12){s.portalTransition=null;s.mode='play';s.portal.blockTouch=true;s.player.inv=1;P.$('#hint').textContent='No se pudo abrir el portal. Aléjate y vuelve para reintentar.'}}},
+ remoteTransfer(time){this.remoteAt=time},
+ overlay(){const s=P.state;if(s.mode==='menu')return;const tr=s.portalTransition,remote=s.elapsed-this.remoteAt;if(!tr&&(remote<0||remote>.6))return;const {ctx:c,width:w,height:h}=P.Core,alpha=tr?(s.encounter?Math.max(0,1-tr.exit/.3):Math.min(1,tr.age/.45)):Math.max(0,1-remote/.6);c.save();const g=c.createRadialGradient(w/2,h*.55,10,w/2,h*.55,Math.max(w,h)*.65);g.addColorStop(0,'#110c1df0');g.addColorStop(.55,'#3e235bcc');g.addColorStop(1,'#70508e55');c.globalAlpha=alpha;c.fillStyle=g;c.fillRect(0,0,w,h);c.restore()}
+};
+{const update=P.Game.update,render=P.World.render,reset=P.Encounters.reset;
+ P.Encounters.reset=function(...args){P.PortalFX.reset();return reset.apply(this,args)};
+ P.Game.update=function(dt){const s=P.state;if(!P.Coop?.active){if(s.portalTransition){P.PortalFX.advance(dt);P.UI.hud();return}if(s.portal?.blockTouch&&s.player){const point=P.Encounters.definition().portal;if(Math.hypot(s.player.x-point.x,s.player.y-point.y)>60)s.portal.blockTouch=false}if(P.PortalFX.begin()){P.PortalFX.advance(dt);return}}const result=update.call(this,dt);if(!P.Coop?.active)P.PortalFX.begin();return result};
+ P.World.render=function(...args){const age=P.state.elapsed-P.PortalFX.remoteAt,active=P.state.portalTransition||(age>=0&&age<.6);if(typeof document!=='undefined')document.body.classList.toggle('portal-transfer',!!active&&P.state.mode!=='menu');const result=render.apply(this,args);P.PortalFX.overlay();return result};
+}
+
+for(const owner of [P.Ultimate,P.Domain,P.Court,P.SideralDomain,P.DragonUltimate]){if(!owner?.activate)continue;const activate=owner.activate;owner.activate=function(...args){if(P.state.portalTransition)return false;return activate.apply(this,args)}}
