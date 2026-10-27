@@ -307,6 +307,10 @@ module.exports = [
     "source": "src/systems/ability-cards.js",
     "output": "js/ability-cards.js"
   },
+  {
+    "source": "src/ui/card-gallery.js",
+    "output": "js/card-gallery.js"
+  },
   {"source":"src/rendering/sideral-art.js","output":"js/sideral-art.js"},
   {
     "source": "src/systems/kingteka-arsenal.js",
