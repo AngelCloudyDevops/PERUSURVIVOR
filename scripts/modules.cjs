@@ -266,6 +266,7 @@ module.exports = [
   },
   {"source":"src/network/coop-extras.js","output":"js/coop-extras.js"},
   {"source":"src/network/coop-assist.js","output":"js/coop-assist.js"},
+  {"source":"src/systems/run-mode.js","output":"js/run-mode.js"},
   {"source":"src/network/coop-motion.js","output":"js/coop-motion.js"},
   {
     "source": "src/network/cooperative.js",

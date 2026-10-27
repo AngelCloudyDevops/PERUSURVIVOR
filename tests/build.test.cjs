@@ -210,3 +210,8 @@ test('Garúa: episodios acotados, continuidad, pausa, mapas y movimiento reducid
 });
 
 test('Actualizar no recarga automáticamente una sala cooperativa',()=>{const vm=require('node:vm'),P={state:{mode:'menu'},Coop:{session:{code:'TEST'}}};let reloads=0;vm.runInNewContext(fs.readFileSync(path.join(root,'src/core/updates.js'),'utf8'),{P,location:{reload(){reloads++}}});P.Updates.pending=true;P.Updates.button={hidden:true};P.Updates.apply();assert.equal(reloads,0);assert.equal(P.Updates.button.hidden,false);P.Coop.session=null;P.Updates.apply();assert.equal(reloads,1)});
+
+test('Supervivencia del Caos: 30 minutos, seis etapas y tres ventanas por mapa',()=>{
+ const vm=require('node:vm'),nodes=new Map(),P={state:{mode:'menu',mapTime:0},Data:{arena:{duration:300}},Maps:{selected:'campo'},Coop:{active:false,initializing:false},$(id){if(!nodes.has(id))nodes.set(id,{value:'quick',textContent:'',style:{}});return nodes.get(id)}};
+ vm.runInNewContext(fs.readFileSync(path.join(root,'src/systems/run-mode.js'),'utf8'),{P,Math});const R=P.RunMode;R.selected='chaos';R.begin();assert.equal(P.Data.arena.duration,1800);assert.equal(P.state.runMode,'chaos');assert.deepEqual([0,299,300,899,1500,1799].map(t=>R.stageAt(t)),[0,0,1,2,5,5]);assert.equal(R.dayTime(1800),300);const windows=R.portalWindows();assert.equal(windows.length,3);for(let i=0;i<windows.length;i++){const [from,to]=windows[i];assert.equal(R.portalWindow(from),i);assert.equal(R.portalWindow(to),-1)}P.Maps.selected='plaza';assert.equal(R.portalWindows()[0][0],395);P.Maps.selected='machu';assert.equal(R.portalWindows()[0][0],430);R.selected='quick';R.begin();assert.equal(P.Data.arena.duration,300);assert.equal(R.portalWindow(180),0);assert.equal(R.portalWindow(300),-1);
+});
