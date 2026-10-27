@@ -312,6 +312,10 @@ module.exports = [
     "output": "js/kingteka-arsenal.js"
   },
   {
+    "source": "src/systems/character-arsenal.js",
+    "output": "js/character-arsenal.js"
+  },
+  {
     "source": "src/systems/animal-ultimates.js",
     "output": "js/animal-ultimates.js"
   },

@@ -34,6 +34,8 @@ src/ contiene la lógica y la interfaz editables. public/assets/ contiene los re
 El HTML conserva sus referencias js/*.js y style.css. scripts/modules.cjs mapea cada ruta de fuente organizada a la ruta histórica de distribución y preserva el orden de ejecución. Solo las referencias a imágenes cambian de assets/sprites/ a assets/characters/ y assets/enemies/.
 
 ## Módulos y responsabilidades
+`src/systems/character-arsenal.js` registra kits de tres ranuras por ID de personaje y expone init/attack/card/apply/switch/hud/summary. `P.Evolutions.attack` consulta esta fachada antes del ataque base. Los perfiles declaran parámetros de simulación y `artKey`; su definición no crea assets por sí sola. `P.KingtekaArsenal` sigue siendo la implementación heredada detrás de la fachada para que la progresión y compatibilidad existente no cambien. El primer kit nuevo, Makanaky, guarda `active`, `unlocked`, `ranks` y temporizador de cambio en `player.characterArsenal`; el servidor aplica el mismo índice de arma en cooperativo.
+
 | Fuente | Responsabilidad |
 |---|---|
 | data/catalog.js | Catálogos, estadísticas, ataques y mejoras |
