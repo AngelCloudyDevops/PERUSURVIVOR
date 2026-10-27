@@ -583,8 +583,8 @@ La revisión móvil usa un encuadre mínimo de 0,38× para mostrar los 920 píxe
 
 La audiencia es una arena física de 920 × 600 unidades: traslada temporalmente a jugadores, enemigos, cofres, botín, tienda y evento cercano, añade cuatro paredes sólidas y conserva movimiento, ataques, recogida y reanimación. Al terminar, el tribunal se fragmenta durante 0,9 s, muestra **SE LEVANTA LA AUDIENCIA**, reconstruye gradualmente el mapa original y recién entonces devuelve cada elemento a sus coordenadas anteriores. La práctica `/?practice=cirilo` mantiene sus controles por encima del panel general del laboratorio e incluye un botón grande **RECARGAR Y LANZAR DOMINIO** que fuerza la forma demoníaca, llena la carga y activa la audiencia en un solo paso. Los botones secundarios permiten revisar Forma I, Deterioro II, silla de ruedas y demonio sin acumular estadísticas.
 
-- **Partida rápida:** conserva el recorrido original de 5 minutos, un portal opcional y ElZeein al final.
-- **Supervivencia del Caos:** recorrido individual de 30 minutos en el mapa elegido, dividido en seis etapas de cinco minutos.
+- **Modo inicial — Supervivencia del Caos:** al pulsar Jugar comienza el recorrido individual de 30 minutos en el mapa elegido, dividido en seis etapas de cinco minutos.
+- **Partida rápida:** permanece disponible en el selector como alternativa de 5 minutos, con un portal opcional y ElZeein al final.
 - En Supervivencia aparecen minijefes cada 4–6 minutos y tres ventanas de portal. El reloj se pausa dentro de cada arena y ElZeein aparece al minuto 30.
 - Cada etapa puede añadir un solo obstáculo destructible y seguro: ramas en Campo de Marte, barricadas en Plaza de Armas y derrumbes pequeños en Machu Picchu.
 - Las seis etapas cambian el tono del terreno con una transición breve; al vencer a un jefe de portal, el mapa responde con otro pulso visual. El escenario elegido no cambia de forma arbitraria.
