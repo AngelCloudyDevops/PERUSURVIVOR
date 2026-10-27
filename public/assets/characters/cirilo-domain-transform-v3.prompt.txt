@@ -1,1 +1,0 @@
-Built-in ImageGen edit of cirilo-domain-transform-v2.webp. Removed the two stray solid red connector bars, restored fully transparent gaps between all eight cells, and preserved the character identity, poses, flames and hard pixel edges. Integrated as a lossless 896x512 WebP with nearest-neighbor resizing.

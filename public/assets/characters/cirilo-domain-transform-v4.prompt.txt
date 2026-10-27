@@ -1,0 +1,3 @@
+Generated with the built-in ImageGen tool using cirilo-domain-transform-v3.webp as the identity and pixel-art reference.
+
+Production prompt summary: transparent 4x3 atlas with twelve chronological, full-body frames of CiriloTV. The sequence uses the character's real connected hands for the seal, then progressively transforms forearms, legs, suit, horns and folded wings before opening the wings, levitating and descending. Preserve the stocky build, brown skin, black cap, beard, black/red clothing, blue jeans and white sneakers. Crisp high-resolution pixel art, consistent scale and baseline, one connected silhouette per cell, no text, UI, borders, loose hands, disconnected limbs or cropped wings.
