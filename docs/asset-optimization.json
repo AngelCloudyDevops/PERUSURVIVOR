@@ -371,10 +371,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 3731941,
-      "optimizedBytes": 2814784,
+      "optimizedBytes": 912544,
       "sourceSha256": "0f199ba4a1e3363e919f5a252c217e198475bbab32672fc7592225be79e641e5",
-      "outputSha256": "26c4c34b529f4a1f424c1ed87b8843c1a5ba127010b5c9b739fc0f2561c7c93c",
-      "rgbaSha256": "315cd21299136dc2d1b8c6e46f70c5054a0a0a1ce69007f51a0e5f6b2564447d"
+      "outputSha256": "7f616282373f3c908288eb686cff9127d74b8caac9bad1957e56e73444f0d6c1",
+      "rgbaSha256": "315cd21299136dc2d1b8c6e46f70c5054a0a0a1ce69007f51a0e5f6b2564447d",
+      "quality": 95
     },
     {
       "source": "assets/maps/machu-v1.png",
@@ -456,5 +457,5 @@
     }
   ],
   "originalBytes": 73441844,
-  "optimizedBytes": 44710096
+  "optimizedBytes": 42807856
 }

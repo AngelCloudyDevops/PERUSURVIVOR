@@ -2,10 +2,11 @@
   "source": "public/assets/environment/halloween-terrain-atlas-v1.png",
   "runtime": "public/assets/environment/halloween-terrain-atlas-v1.webp",
   "source_sha256": "92a0961446489e9f1b1a6a140429df3f89625f740733c41ac248be743162fede",
-  "runtime_sha256": "de15804acaa8c14d67fb80d790b6d4c2d5d70cbca4769f024160e349dadbd540",
+  "runtime_sha256": "f3b0e333e18d4714750cb9675a6fa08747b0ca45b823cbffc2866cca0e86ad18",
   "width": 1024,
   "height": 768,
-  "bytes": 527258,
+  "bytes": 217686,
+  "runtime_encoding": "WebP quality 88, alpha quality 100",
   "grid": {"columns": 4, "rows": 3, "cell": 256},
   "cells": [
     "haunted-house", "crypt", "dead-tree-a", "dead-tree-b",
