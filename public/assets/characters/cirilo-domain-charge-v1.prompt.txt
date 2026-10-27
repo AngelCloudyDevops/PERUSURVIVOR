@@ -1,0 +1,6 @@
+Tool: built-in image generation
+Use case: stylized-concept
+Asset: transparent four-frame horizontal sprite strip for Cirilo's domain cinematic.
+Reference: cirilo-domain-transform-v4.webp; preserve Cirilo's black suit, red shirt, white sneakers, horns, lava-cracked limbs and red-black bat wings.
+Frames: airborne anticipation with wings swept back; explosive frontal launch; foreshortened flight with fist and screaming face approaching the viewer; direct camera-impact pose with open wings and red impact energy.
+Constraints: equal cells, one complete character per cell, transparent background, no text, scenery, chains, extra characters, duplicated limbs, clipping or watermark.
