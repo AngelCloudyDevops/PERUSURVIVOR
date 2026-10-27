@@ -720,3 +720,7 @@ portalDefinition mantiene bossChoices serializable por ventana, excluye eleccion
 
 ### PortalFX y contacto
 PortalFX cachea una textura radial de niebla y dibuja anillos, remolino y hasta 24 brasas desde elapsed, sin entidades ni acumulación de partículas. Game intercepta solo la transición individual; si falla la carga durante 12 s devuelve el control y bloquea la reentrada hasta alejarse. Activities.autoPortal detecta el contacto de cualquiera y enterPortal guarda ambas posiciones antes de transportar al grupo; tryPortal reutiliza esa entrada para compatibilidad con los controles anteriores. El cliente dibuja una transición breve al recibir la nueva arena.
+
+# HUD compartido de ataques
+
+`P.AttackHud.slots(player)` es el adaptador visual común. Para Kingteka consulta `P.KingtekaArsenal` y devuelve sus tres armas, rangos, desbloqueos y selección; para el resto devuelve el ataque principal y dos reservas deshabilitadas. `P.AttackHud.hud(player)` renderiza una única barra `#weapon-bar` para todo el roster. El modelo no concede ataques ni modifica controles: solamente refleja capacidades reales. Un arsenal futuro debe integrarse en este contrato, sin crear otro DOM por personaje.
