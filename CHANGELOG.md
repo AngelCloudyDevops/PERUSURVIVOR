@@ -8,7 +8,7 @@
 - Separa Q (ulti) y R (expansión de dominio) en tarjetas compactas a la derecha de las armas; los objetos quedan a la izquierda.
 - Las tarjetas suben para mostrar su arte al pasar el cursor o recibir foco; en pantallas táctiles se mantienen accesibles.
 - Makanaky y Sideral muestran el dominio en R y un espacio Q gris reservado mientras no tengan ulti propia.
-- Documenta teclas, estados y distribución del HUD en README.
+- Registra los controles y la distribución del HUD implementados.
 
 
 ## Iconos de objetos como arte de carta — 2026-10-26
