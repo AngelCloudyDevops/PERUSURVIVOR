@@ -384,3 +384,15 @@ body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:
  .upgrade-front .upgrade-content p{font-size:10px;line-height:1.4}
  .hud-ability-card:hover,.hud-ability-card:focus-visible,.hud-ability-card.is-peeking{bottom:calc(12px + env(safe-area-inset-bottom))}
 }
+
+/* Portrait touch polish: cards stay tucked away until a deliberate hold, and
+   the practice drawer shares vertical space with the passive inventory. */
+@media(max-width:760px) and (hover:none){
+ .hud-ability-card:hover:not(.is-peeking):not(:focus-visible){bottom:-72px!important;filter:none;box-shadow:0 0 0 3px #101820aa,0 8px 20px #0008}
+}
+@media(max-width:760px){
+ #test-bench.bench-live{bottom:calc(6px + env(safe-area-inset-bottom))}
+ body.test-bench-live #dota-inventory{bottom:calc(158px + env(safe-area-inset-bottom))}
+ body.test-bench-live:has(#bench-collapse[aria-expanded="true"]) #dota-inventory{visibility:hidden}
+ body.test-bench-live #ultimate.is-peeking,body.test-bench-live #domain-ability.is-peeking{bottom:calc(158px + env(safe-area-inset-bottom))}
+}
