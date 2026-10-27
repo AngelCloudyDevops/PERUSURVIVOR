@@ -261,6 +261,10 @@ module.exports = [
     "output": "js/ultimate.js"
   },
   {
+    "source": "src/systems/ability-cards.js",
+    "output": "js/ability-cards.js"
+  },
+  {
     "source": "src/core/updates.js",
     "output": "js/updates.js"
   },
