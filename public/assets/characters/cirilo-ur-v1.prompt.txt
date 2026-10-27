@@ -1,0 +1,4 @@
+Built-in image generation. Production transparent 4×4 pixel-art atlas for CiriloTV UR.
+Rows: base, Deterioro II with bloodless bandage sleeves, Deterioro III in wheelchair with bloodless bandages, and restored infernal form in a black suit with horns and folded wings.
+Columns: idle, walk-left, walk-right, mouth attack. Toxic green attack in rows 1–3 and fire in row 4.
+Detailed 16-bit chibi RPG style, crisp pixels, dark outlines, no text, logos, gore, visible wounds or cell overlap.

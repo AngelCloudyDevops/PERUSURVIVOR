@@ -299,7 +299,7 @@ Kingteka empieza con una escopeta corta de cuatro perdigones; su caída de daño
 - kingteka: **Escopeta Contra** — Tres disparos concentrados, tres penetraciones base y pérdida de fuerza a distancia.
 - shaka: **Tornado bananero** — Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.
 - najasor: **Marea CPEZ** — Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.
-- cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
+- cirilo (UR): **Glucosa Maldita** — dispara vómito tóxico desde la boca y exclama, con 25% cada una, «¿ME ENTIENDES O NO?», «FACTOS», «ME DAS RISA» o «FULL MALDAD». En nivel 10 obtiene Deterioro II (+25% área y ralentización); en nivel 20 pasa a Deterioro III con silla de ruedas (+25% movilidad). Su primera caída en Deterioro III lo revive una vez como Cirilo Infernal, restaura sus extremidades, cambia el vómito por fuego y gana +50% daño. Su Expansión de Dominio «Audiencia de Medianoche» dura 9 s: Sandy, Fiscal de la Noche, golpea el martillo cada 3 s y renueva +50% daño, +50% velocidad y +80% alcance. Prueba directa de administrador: `/?practice=cirilo`.
 - fuzo: **Banca infinita** — Cinco tarjetas rápidas atraviesan ocho rivales y enlazan al grupo más cercano.
 - charles: **Lluvia de pañales** — Tres pañales dejan nubes y una nube adicional aparece junto al objetivo.
 - axelbenba: **Tormenta relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
