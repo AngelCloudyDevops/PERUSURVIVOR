@@ -16,7 +16,7 @@ P.LobbyComplete={
   this.mountLaboratory();
   const render=r.render.bind(r);r.render=route=>{if(['gacha-hub','coop-hub','growth','prepare','profile-hub','help'].includes(route))this.render(route);else render(route)};
   const progress=r.renderProgress.bind(r);r.renderProgress=()=>{progress();this.enrichMissions()};
-  this.bindHub();this.makeSocialDialog();this.patchRefresh();this.patchAdminAccess();this.patchOptionsLaboratory();this.styleToolDialogs();
+  this.bindHub();this.retireLegacyCharacterPicker();this.makeSocialDialog();this.patchRefresh();this.patchAdminAccess();this.patchOptionsLaboratory();this.styleToolDialogs();
  },
  node(tag,text,className){const el=document.createElement(tag);if(text!==undefined&&text!==null)el.textContent=text;if(className)el.className=className;return el},
  button(text,action,className='reference-primary'){const el=this.node('button',text,className);el.type='button';el.onclick=action;return el},
@@ -28,6 +28,8 @@ P.LobbyComplete={
   const right=P.$('#hub-right');if(right&&!P.$('#hub-laboratory-open')){const lab=this.node('button',null);lab.id='hub-laboratory-open';lab.type='button';lab.append(this.node('span','⌁'),this.node('strong','Laboratorio'));lab.onclick=()=>r.open('laboratory');right.append(lab)}
   const bottom=P.$('#hub-bottom');if(!bottom||P.$('#hub-social'))return;const social=this.node('div',null,'hub-social');social.id='hub-social';social.append(this.button('DISCORD',()=>this.social('discord'),'social-button discord-button'),this.button('♡ APÓYAME',()=>this.social('support'),'social-button support-button'),this.button('? AYUDA',()=>r.open('help'),'social-button help-button'));bottom.insertAdjacentElement('afterend',social)
  },
+ chooseCause(){if(P.state.mode!=='menu')P.UI.menu();const current=P.Data.characters[P.state.chosen];if(current)this.reference.characterId=current.id;return this.reference.open('dex')},
+ retireLegacyCharacterPicker(){const show=P.Lobby.show.bind(P.Lobby),owner=this;P.Lobby.show=function(route,focus=true){if(route==='characters')return owner.chooseCause();return show(route,focus)};const legacy=P.$('#lobby-nav-characters');if(legacy)legacy.onclick=()=>owner.chooseCause()},
  mountLaboratory(){const body=this.reference.panels.laboratory?.body,panel=P.TestBench?.panel;if(!body||!panel)return;panel.classList.add('bench-reference');body.append(panel);P.TestBench.home=body;P.TestBench.exit=function(){this.active=false;P.UI.menu();P.ReferenceMenus.open('laboratory');this.hud()};P.Lab.open=function(){P.UI.menu();P.TestBench.kind='boss';if(P.TestBench.panel){P.$('#bench-kind').value='boss';P.TestBench.controls();P.ReferenceMenus.open('laboratory');P.$('#bench-boss').focus()}}},
  patchAdminAccess(){if(!P.Profile?.access)return;const access=P.Profile.access.bind(P.Profile),owner=this;P.Profile.access=function(...args){const result=access(...args);owner.updateDevAccess();return result};this.updateDevAccess()},
  updateDevAccess(){const allowed=!!P.TestBench?.isAdmin?.(),button=P.$('#hub-laboratory-open');if(button)button.hidden=!allowed;if(!allowed&&this.reference.route==='laboratory')this.reference.back()},

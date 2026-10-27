@@ -43,6 +43,13 @@ test('El vestíbulo completo conecta las siete áreas y conserva enlaces sociale
  assert.match(source,/links:\{discord:'',support:''\}/,'Los enlaces externos parten vacíos y no se inventan');
  assert.match(css,/\.hub-social/);assert.match(css,/\.period-missions/);assert.match(css,/\.prepare-grid/);
 });
+test('Cambiar causa usa únicamente el selector moderno sin recargar ni mostrar la colección heredada',()=>{
+ const complete=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),reference=fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8'),game=fs.readFileSync(path.join(root,'src/scenes/game.js'),'utf8'),screens=fs.readFileSync(path.join(root,'src/ui/screens.js'),'utf8');
+ assert.match(complete,/retireLegacyCharacterPicker\(\)/);assert.match(complete,/if\(route==='characters'\)return owner\.chooseCause\(\)/);assert.match(complete,/reference\.open\('dex'\)/);
+ assert.match(reference,/if\(!this\.open\('prepare'\)\)P\.Lobby\.show\('play'\)/);assert.match(reference,/ELEGIR A /);
+ assert.match(game,/LobbyComplete\?\.chooseCause\?\.\(\)/);assert.match(screens,/LobbyComplete\?\.chooseCause\?\.\(\)/);
+ assert.doesNotMatch(game,/Elegir otro causa/);assert.doesNotMatch(screens,/Elegir otro personaje/);
+});
 test('Laboratorio, Balance y Admin comparten la estructura visual del lobby sin perder sus controles',()=>{
  const source=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8'),bench=fs.readFileSync(path.join(root,'src/development/test-bench.js'),'utf8');
  assert.match(source,/#hub-right/);assert.match(source,/hub-laboratory-open/);assert.match(source,/P\.TestBench\.home=body/);assert.match(source,/P\.ReferenceMenus\.open\('laboratory'\)/);assert.match(source,/patchOptionsLaboratory/);
