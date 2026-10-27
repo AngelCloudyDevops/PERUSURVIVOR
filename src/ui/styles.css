@@ -214,7 +214,7 @@ body.domain-result #hud>.stats,body.domain-result #hud>#level{visibility:hidden}
 /* Tres cartas boca abajo: revelación completa antes de habilitar la elección. */
 #overlay.level-up.card-reveal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:min(920px,96vw);max-width:96vw;padding:clamp(15px,2.5vw,28px);text-align:center}
 #overlay.level-up.card-reveal h2,#overlay.level-up.card-reveal>p{grid-column:1/-1}
-#overlay.level-up.card-reveal h2:after{content:'REVELA LAS 3 CARTAS · LUEGO ELIGE 1'}
+#overlay.level-up.card-reveal h2:after{content:'ELIGE UNA MEJORA'}
 #overlay.level-up.card-reveal .upgrade-card{position:relative;display:block;width:100%;height:clamp(260px,38vh,330px);min-height:0;margin:0;padding:0;overflow:visible;perspective:1000px;border:0;background:transparent!important;box-shadow:none;transform:none}
 .upgrade-flipper{position:absolute;inset:0;display:block;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.75,.25,1)}
 .upgrade-card[data-revealed=true] .upgrade-flipper{transform:rotateY(180deg)}
@@ -234,6 +234,15 @@ body.domain-result #hud>.stats,body.domain-result #hud>#level{visibility:hidden}
 .upgrade-card[data-revealed=true][data-rarity=legendary] .upgrade-front:after{background:linear-gradient(110deg,transparent 20%,#ffd45f22 34%,#fff4b4 48%,#ffd45f 53%,#fff1a566 61%,transparent 77%);filter:drop-shadow(0 0 12px #ffd45f);animation:rarityCardSweep 1s cubic-bezier(.16,.7,.2,1) .1s both}
 .upgrade-card[data-revealed=true][data-rarity=epic] .upgrade-front:before,.upgrade-card[data-revealed=true][data-rarity=legendary] .upgrade-front:before{inset:8px;border:1px solid var(--rarity);border-radius:6px;box-shadow:inset 0 0 18px color-mix(in srgb,var(--rarity) 22%,transparent);animation:rarityCardPulse .7s steps(2) .12s both}
 .upgrade-card[data-revealed=true][data-rarity=legendary] .upgrade-front:before{inset:5px;border-width:2px;box-shadow:inset 0 0 24px #ffd45f55,0 0 14px #ffd45f88;animation-duration:1s}
+#overlay.level-up.card-reveal[data-phase=reveal]{cursor:pointer}
+#overlay.level-up.card-reveal[data-phase=reveal] .upgrade-card{cursor:pointer}
+#overlay.level-up.card-reveal[data-phase=reveal] .upgrade-card:not([data-revealed=true]){filter:saturate(.82) brightness(.9)}
+.upgrade-card.legendary-reveal{z-index:5;animation:legendaryCardArrival .68s steps(5) both}
+.upgrade-card.legendary-reveal:before,.upgrade-card.legendary-reveal:after{position:absolute;z-index:-1;content:'';pointer-events:none}
+.upgrade-card.legendary-reveal:before{inset:-34px;background:repeating-conic-gradient(from 5deg,#ffd45f 0 2deg,transparent 2deg 15deg);clip-path:polygon(50% 0,58% 35%,76% 8%,70% 40%,100% 30%,76% 50%,100% 70%,68% 60%,78% 100%,57% 67%,50% 100%,43% 67%,22% 100%,32% 60%,0 70%,24% 50%,0 30%,30% 40%,24% 8%,42% 35%);animation:legendaryRays .68s steps(4) both}
+.upgrade-card.legendary-reveal:after{inset:-10px;border:4px solid #fff0a8;box-shadow:0 0 0 4px #d58a22,0 0 28px 10px #ffd45faa;animation:legendaryFrameBurst .68s steps(4) both}
+#overlay.level-up.card-reveal.legendary-impact:before{position:fixed;z-index:-1;inset:-12vh -12vw;content:'';pointer-events:none;background:radial-gradient(circle at 50% 50%,#fff4bdcc 0 8%,#ffd24f66 18%,transparent 52%);animation:legendaryScreenFlash .62s steps(4) both}
+#overlay.level-up.card-reveal.legendary-impact{animation:legendaryPanelKick .38s steps(4) both}
 .illustrated-cards .upgrade-front{position:absolute;inset:0;gap:0;padding:0;justify-content:flex-end;background:#151c22}
 .illustrated-cards .upgrade-art{position:absolute;z-index:0;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center 42%;background:#151c22;image-rendering:pixelated}
 .illustrated-cards .upgrade-card[data-full-art=true] .upgrade-icon,.illustrated-cards .upgrade-preview{display:none}
@@ -248,6 +257,11 @@ body.domain-result #hud>.stats,body.domain-result #hud>#level{visibility:hidden}
 .illustrated-cards .upgrade-front .upgrade-key{position:absolute;z-index:4;top:12px;left:12px;width:24px;height:24px;min-height:24px;margin:0;border:1px solid #f5c482;background:#171c20eF;box-shadow:2px 2px #0d1013;font-size:12px}
 @keyframes rarityCardSweep{0%{opacity:0;transform:translateX(-125%) skewX(-14deg)}18%{opacity:.9}100%{opacity:0;transform:translateX(125%) skewX(-14deg)}}
 @keyframes rarityCardPulse{0%,100%{opacity:0}35%,65%{opacity:.8}}
+@keyframes legendaryCardArrival{0%{transform:scale(.88) rotate(-1deg)}30%{transform:scale(1.06) rotate(1deg)}55%{transform:scale(.98) rotate(-.5deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes legendaryRays{0%{opacity:0;transform:scale(.35) rotate(-8deg)}30%{opacity:1}100%{opacity:0;transform:scale(1.18) rotate(7deg)}}
+@keyframes legendaryFrameBurst{0%{opacity:0;transform:scale(.82)}35%{opacity:1}100%{opacity:0;transform:scale(1.12)}}
+@keyframes legendaryScreenFlash{0%{opacity:0}25%{opacity:.95}100%{opacity:0}}
+@keyframes legendaryPanelKick{0%,100%{transform:translate(-50%,-50%)}28%{transform:translate(calc(-50% + 5px),calc(-50% - 2px))}52%{transform:translate(calc(-50% - 4px),calc(-50% + 2px))}76%{transform:translate(calc(-50% + 2px),-50%)}}
 .upgrade-card[data-rarity=common]{--rarity:#b6aa98}.upgrade-card[data-rarity=rare]{--rarity:#59d6c1}.upgrade-card[data-rarity=epic]{--rarity:#c98cff}.upgrade-card[data-rarity=legendary]{--rarity:#ffd45f}
 .upgrade-card[data-rarity=rare] .upgrade-front{background:linear-gradient(150deg,#253b38,#202a32)}.upgrade-card[data-rarity=epic] .upgrade-front{background:linear-gradient(150deg,#392c42,#20232c)}.upgrade-card[data-rarity=legendary] .upgrade-front{background:linear-gradient(150deg,#493d26,#292a29)}
 .upgrade-front .upgrade-icon{flex:0 0 42px;width:42px;height:42px;border-color:var(--rarity);border-radius:7px}
@@ -262,7 +276,7 @@ body.domain-result #hud>.stats,body.domain-result #hud>#level{visibility:hidden}
 #overlay.level-up.card-reveal>button:not(.upgrade-card){grid-column:1/-1;min-height:34px}
 @media(max-width:600px){#overlay.level-up.card-reveal{gap:8px;padding:14px 10px;max-height:94vh;overflow-y:auto}#overlay.level-up.card-reveal .upgrade-card{height:clamp(225px,34vh,285px)}.upgrade-back,.upgrade-front{gap:7px;padding:9px 6px}.upgrade-back b,.upgrade-back small{font-size:7px;letter-spacing:.5px}.upgrade-front .upgrade-icon{flex-basis:34px;width:34px;height:34px}.upgrade-front .upgrade-key{width:22px;height:22px;font-size:11px}.upgrade-front .upgrade-preview{height:26px}.illustrated-cards .upgrade-front{gap:0;padding:0}.illustrated-cards .upgrade-front .upgrade-content{padding:13px 6px 7px}.illustrated-cards .upgrade-front .upgrade-content strong{font-size:clamp(9px,2.5vw,12px)}.illustrated-cards .upgrade-front .upgrade-content small{font-size:8px;line-height:1.14}.illustrated-cards .upgrade-front .upgrade-comparison{font-size:7px}.illustrated-cards .upgrade-front .upgrade-key{top:5px;left:5px;width:20px;height:20px;min-height:20px;font-size:10px}.illustrated-cards .upgrade-front .upgrade-icon{top:5px;right:5px;flex-basis:34px;width:34px;height:34px}}
 @media(max-width:380px){#overlay.level-up.card-reveal{gap:5px;padding:12px 7px}#overlay.level-up.card-reveal .upgrade-card{height:225px}.upgrade-back,.upgrade-front{padding:7px 4px}.upgrade-front .upgrade-content strong{font-size:11px}}
-@media(prefers-reduced-motion:reduce){.upgrade-flipper{transition:none}.upgrade-front:before,.upgrade-front:after{animation:none!important;content:none!important}#overlay.level-up.card-reveal .upgrade-card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.upgrade-flipper{transition:none}.upgrade-front:before,.upgrade-front:after,.upgrade-card.legendary-reveal:before,.upgrade-card.legendary-reveal:after,#overlay.level-up.card-reveal.legendary-impact:before{animation:none!important;content:none!important}.upgrade-card.legendary-reveal,#overlay.level-up.card-reveal.legendary-impact{animation:none!important}#overlay.level-up.card-reveal .upgrade-card:hover{transform:none}}
 body.road-scene #hud,body.road-scene #causa-combo,body.road-scene #portal-enter,body.road-scene #mini-boss-arrow,body.road-scene #mini-boss-card{visibility:hidden}body.road-scene #pause{z-index:90}
 body.road-scene #ultimate,body.road-scene #mini-boss-hud{visibility:hidden}
 #coop-signals{position:fixed;right:16px;top:185px;z-index:25;max-width:240px}#coop-signals button,#coop-escort button{background:#1b2b40;color:#ffe1a0;border:1px solid #dfb963;border-radius:6px;padding:10px;cursor:pointer}#coop-signals div{display:grid;grid-template-columns:1fr 1fr;gap:4px}#coop-signals div[hidden]{display:none}#coop-escort{position:fixed;left:16px;top:285px;z-index:24;max-width:min(340px,65vw);background:#142337e8;color:#ffe2a0;border-left:3px solid #edb76a;padding:7px 10px;font:12px monospace;pointer-events:none}#coop-escort p{margin:0}#coop-escort button{pointer-events:auto;margin-top:6px}[hidden]#coop-escort,[hidden]#coop-signals{display:none}@media(max-width:600px){#coop-escort{top:310px;font-size:10px;max-width:57vw}#coop-signals{top:180px;right:8px}}
@@ -297,17 +311,14 @@ body:not(.menu) header .game-controls{position:fixed;top:18px;right:16px;z-index
 .hud-ability-card[data-card-art="empty"]:after{border-color:#78828a;background:#262d33;color:#9aa4ad}
 #ultimate{left:calc(50% + 244px)}
 #domain-ability{left:calc(50% + 382px);border-color:#a57bd7}
-.hud-ability-card{background-image:linear-gradient(180deg,#0e172622 30%,#101822 96%),linear-gradient(135deg,#394855,#18232d);background-position:center;background-size:cover}
-#ultimate[data-card-art="kingteka"]{background-image:linear-gradient(180deg,#0e172622 12%,#10182222 55%,#101822 96%),url("/assets/cards/kingteka-gallinazo-ultimate-fullart-v2.webp")}
-#ultimate[data-card-art="kingteka"]:before{content:"";position:absolute;z-index:2;top:0;left:0;width:var(--charge-progress,0%);height:3px;background:linear-gradient(90deg,#ffe8a2,#f4bd4e 72%,#fff1b8);box-shadow:0 0 7px #ffd15c;transition:width .2s linear;pointer-events:none}
-#ultimate.ultimate-ready{border-color:#ffe09a;animation:ultimate-ready-glow 1.45s ease-in-out infinite alternate}
-#ultimate.ultimate-ready:before{width:100%;height:4px;background:linear-gradient(90deg,#fff0b8,#ffb936 48%,#fff4cc);box-shadow:0 0 9px #ffd45f,0 0 17px #ff873d}
+.hud-ability-card{background-image:linear-gradient(180deg,#0e172610 8%,#10182212 53%,#101822 96%),var(--ability-card-art,linear-gradient(135deg,#394855,#18232d));background-position:center;background-size:cover}
+.hud-ability-card:before{content:"";position:absolute;z-index:2;top:0;left:0;width:var(--charge-progress,0%);height:3px;background:linear-gradient(90deg,#ffe8a2,#f4bd4e 72%,#fff1b8);box-shadow:0 0 7px #ffd15c;transition:width .2s linear;pointer-events:none}
+.hud-ability-card.ability-ready{border-color:#ffe09a;animation:ultimate-ready-glow 1.45s ease-in-out infinite alternate}
+.hud-ability-card.ability-ready:before{width:100%;height:4px;background:linear-gradient(90deg,#fff0b8,#ffb936 48%,#fff4cc);box-shadow:0 0 9px #ffd45f,0 0 17px #ff873d}
+#ultimate.ability-ready{animation-name:ultimate-ready-glow}
 #ultimate.is-peeking{filter:brightness(1.1)}
 @keyframes ultimate-ready-glow{from{box-shadow:0 0 0 3px #101820aa,0 0 8px 2px #f0b83e88,0 -4px 8px 1px #e96d2c38,0 -10px 13px 1px #626d7940,inset 0 0 8px #ffb13218}to{box-shadow:0 0 0 3px #101820aa,0 0 17px 5px #ff9b4266,0 -7px 12px 2px #fb853044,0 -13px 18px 1px #9197a044,inset 0 0 18px #ffd45f25}}
-#domain-ability[data-card-art="makanaky"]{background-image:linear-gradient(180deg,#0e172622 25%,#101822 96%),url("/assets/characters/makanaky-domain-portrait-v1.webp")}
-#domain-ability[data-card-art="sideral"]{background-image:linear-gradient(180deg,#0e172622 25%,#101822 96%),url("/assets/characters/sideral-domain-v3.png")}
 #ultimate[data-card-art="empty"]{border-color:#65717c;background-image:repeating-linear-gradient(135deg,#ffffff0c 0 10px,transparent 10px 22px),linear-gradient(135deg,#3b4249,#1b2229 62%);color:#9aa4ad}
-#ultimate[data-card-art="empty"]:before{content:"Q";position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);color:#87939d;font:900 48px monospace;text-shadow:none;opacity:.4;pointer-events:none}
 @media(max-width:1100px) and (min-width:761px){#dota-inventory{left:12px;min-width:190px;max-width:205px}.hud-ability-card{width:112px}#ultimate{left:auto;right:136px}#domain-ability{left:auto;right:12px}}
 @media(max-width:760px){
  #dota-inventory{left:8px;right:auto;top:auto;bottom:82px;min-width:0;max-width:calc(50vw - 14px);padding:4px}
@@ -321,7 +332,7 @@ body:not(.menu) header .game-controls{position:fixed;top:18px;right:16px;z-index
  #weapon-bar{width:min(220px,56vw);bottom:8px;gap:4px;padding:5px}
  #weapon-bar button{min-width:0;flex:1;padding:7px 4px;font-size:8px}
 }
-@media(prefers-reduced-motion:reduce){.hud-ability-card{transition:none}#ultimate.ultimate-ready{animation:none;box-shadow:0 0 0 3px #101820aa,0 0 10px 2px #f0b83e88,0 -5px 9px 1px #78818d44}}
+@media(prefers-reduced-motion:reduce){.hud-ability-card{transition:none}.hud-ability-card.ability-ready{animation:none;box-shadow:0 0 0 3px #101820aa,0 0 10px 2px #f0b83e88,0 -5px 9px 1px #78818d44}}
 
 /* A cinematic owns the canvas: cover current and future DOM HUDs, including nested explicit visibility. */
 body.cinematic-only > :not(#game):not(script):not(style):not(link),
@@ -329,4 +340,5 @@ body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:
 
 .trovo-domain #test-bench,.trovo-domain #time,.trovo-domain #level,.trovo-domain #hint,.trovo-domain #dota-inventory,.trovo-domain #domain-ability{visibility:hidden}
 
+.trovo-arena #time,.trovo-arena #level{visibility:hidden}.trovo-arena #test-bench:has(#bench-collapse[aria-expanded="false"]){left:auto;right:16px;bottom:16px;width:auto;max-width:240px}.trovo-arena #test-bench:has(#bench-collapse[aria-expanded="false"]) .bench-heading>div,.trovo-arena #test-bench:has(#bench-collapse[aria-expanded="false"]) #bench-status{display:none}
 .run-mode-picker{display:grid;grid-template-columns:auto minmax(170px,1fr);align-items:center;gap:6px 12px;margin:14px 0 4px;max-width:520px;padding:12px;border:1px solid #6984ad;border-radius:8px;background:#183661}.run-mode-picker label{font:800 10px monospace;color:#ffe28a;letter-spacing:1px}.run-mode-picker select{min-width:0;padding:9px;border:1px solid #8aa6cf;border-radius:5px;background:#102b52;color:#fff1ca;font:700 11px monospace}.run-mode-picker small{grid-column:1/-1;color:#bfd0e8;font:9px/1.5 monospace}#run-stage{font:800 10px/1.4 monospace;letter-spacing:.8px;margin:5px 0}@media(max-width:760px){.run-mode-picker{grid-template-columns:1fr;margin-top:8px}.run-mode-picker small{grid-column:1}.run-mode-picker select{width:100%}}

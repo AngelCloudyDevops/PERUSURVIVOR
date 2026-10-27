@@ -300,6 +300,10 @@ module.exports = [
     "source": "src/rendering/court-art.js",
     "output": "js/court-art.js"
   },
+  {
+    "source": "src/systems/ability-cards.js",
+    "output": "js/ability-cards.js"
+  },
   {"source":"src/rendering/sideral-art.js","output":"js/sideral-art.js"},
   {
     "source": "src/systems/kingteka-arsenal.js",
@@ -365,4 +369,6 @@ module.exports = [
 , {source:"src/rendering/chosicano-road.js",output:"js/chosicano-road.js"}
  ,{source:"src/systems/chamelin.js",output:"js/chamelin.js"}
  ,{source:"src/rendering/chamelin-art.js",output:"js/chamelin-art.js"}
+,{source:"src/systems/chamelin-arena.js",output:"js/chamelin-arena.js"}
+,{source:"src/rendering/chamelin-bathroom.js",output:"js/chamelin-bathroom.js"}
 ];

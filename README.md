@@ -9,7 +9,7 @@ Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posici
 ## Estándar obligatorio de tarjetas de ulti
 Las entradas de ulti usan 40 % de ancho, 82 % de alto, x = 0, y = 8 %, 1,3 s, borde diagonal con marco oscuro y retrato dedicado de cintura arriba. Render a resolución de pantalla, sin margen ni ampliación del lienzo del dominio. Las vistas de espalda deben usar sprites cartoon pixel art completos y contorneados, nunca figuras geométricas de sustitución. Detalles y assets: [Contrato visual de ultis](docs/ULTIMATE_ART.md).
 
-Las Expansiones de Dominio UR —Makanaky y Sideral— son un sistema distinto de las ultis: comienzan directamente con su cinemática propia a pantalla completa y nunca usan tarjeta lateral.
+Las Expansiones de Dominio son distintas de las ultis: comienzan con su cinemática a pantalla completa. Su carta lateral R funciona como indicador de carga y acceso a la habilidad; los personajes que aún no tengan ulti conservan el espacio Q gris reservado.
 
 ## Revelado de mejoras
 Al subir de nivel se revelan las tres cartas antes de elegir una. El giro muestra un destello breve de izquierda a derecha según la rareza: turquesa para rara, violeta para épica y dorado para legendaria; común conserva un giro limpio. El efecto es cosmético y de una sola ejecución, respeta `prefers-reduced-motion` y no modifica el poder: la rareza solo influye en la probabilidad de aparición.
@@ -159,6 +159,23 @@ Cajas, cofres comunes y dorados y los cuatro objetos usan el atlas pixel art pub
 
 ## Cofres por rareza
 Común (madera, ●), raro (azul, ◆) y legendario (violeta/dorado, ★), con cuatro objetos mejorados por nivel. Las aperturas y el arte se distribuyen desde GitHub al hosting de producción https://perusurvivor.michitech.tech según docs/DEPLOYMENT.md. El sitio chatgpt.site es una copia independiente y no es el destino principal.
+
+## Cartas de ulti y expansión de dominio
+
+Las ocho habilidades actuales usan un patrón HUD compartido: arte full art vertical, marco y placa inferior legible, tecla visible (Q para ulti y R para dominio), barra dorada que recorre el borde superior con la carga, y resplandor cálido con humo suave al quedar lista. Mantener Q durante 180 ms revela cualquier carta de ulti; un toque activa la habilidad lista. Las expansiones conservan su activación con R y comparten el mismo marco, carga y estado listo. El diseño respeta `prefers-reduced-motion`.
+
+| Personaje | Habilidad | Arte de carta |
+| --- | --- | --- |
+| Kingteka | Modo Gallinazo | `kingteka-gallinazo-ultimate-fullart-v2.webp` |
+| Alberto | Tribunal de Fujimori | `alberto-tribunal-ultimate-fullart-v1.webp` |
+| Cristorata | Dragón | `cristorata-dragon-ultimate-fullart-v1.webp` |
+| Cuy | Estampida | `cuy-stampede-ultimate-fullart-v1.webp` |
+| Paloma | Bandada | `paloma-bandada-ultimate-fullart-v1.webp` |
+| Makanaky | Habitación del Lagarto | `makanaky-domain-fullart-v1.webp` |
+| Sideral | Habitación del Lagarto | `sideral-domain-fullart-v1.webp` |
+| Chamelín Trovo | Baño de Trovo | `chamelin-domain-fullart-v1.webp` |
+
+Para habilitar una nueva habilidad, agrega el personaje, tipo (`ultimate` o `domain`) y ruta estática de arte en `P.AbilityCards.entries` (`src/systems/ability-cards.js`); luego su función HUD llama `P.AbilityCards.apply(button,id,kind,charge,ready,active)`. Q y R mantienen sus manejadores de juego existentes. Si todavía no tiene habilidad, el espacio Q de los personajes con dominio queda como reserva gris; el patrón no muestra una carta activa hasta registrar la habilidad. Conserva las fuentes PNG y registra sus WebP en `docs/asset-optimization.json` usando `scripts/optimize-assets.py`.
 
 ## Kingteka: ulti y sonido
 La ulti se carga con 20 bajas y se activa con Q o el botón táctil: ocho segundos de gallinazos animados, velocidad ×1,5 y cadencia ×2; rivales normales reciben ×2 daño. Incluye aleteo, escopeta reforzada, efectos pixel art y sello DENUNCIADO con golpe sincronizado. La carta Q usa un full art exclusivo de la ulti: Kingteka de espaldas apunta a un gallinazo lejano mientras otros rivales se transforman sobre el atardecer limeño. Es distinto al arte del ataque de escopeta; su archivo optimizado mide 512×768, usa WebP calidad 60 y figura en el informe de activos para respetar el límite de despliegue de 64 MiB. La secuencia cinematográfica de la ulti conserva su arte independiente y se sirve en WebP calidad 85. Una línea dorada recorre el borde superior según la carga; al completarse, el marco muestra un resplandor cálido con humo suave, sin partículas de combate. Mantener Q durante 180 ms despliega la carta como al pasar el cursor; soltarla solo la oculta. Un toque breve en Q activa la ulti cuando está lista. El efecto se reduce con `prefers-reduced-motion`; el botón táctil y el hover siguen disponibles. El botón Sonido permite silenciar. La recarga instantánea y el selector de pruebas son utilidades locales y no se publican.
@@ -525,7 +542,7 @@ Las cartas de nivel se aplazan durante las presentaciones de ultis y las escenas
 Las cinemáticas a pantalla completa ocultan todas las capas DOM del HUD (vida, minijefes, inventario, combos, rendimiento y controles). El bucle sincroniza cinematic-only antes de renderizar; se restaura al volver al combate, pausar o salir. El combate interactivo de los dominios conserva sus controles.
 
 ## Chamelín Trovo · El baño de Trovo
-UR de control de zonas. Sus emojis salen desde atrás y dejan charcos de 4 s, daño cada 0,5 s sin acumulación por solapamiento. R activa una entrada a pantalla completa de 2,6 s, un baño temporal de 8 s y una mordida de 0,6 s. Chullo y barril cubren al personaje durante el dominio. Chorros: defensa −20 % y velocidad −25 % mientras recibe impactos. Mordida única: instakill a creeps, daño actual ×3 a minijefes y ×1,90 a jefes, sin multiplicadores de vulnerabilidad adicionales. Prueba de administrador: /?practice=chamelin, con recarga y objetivos/jefes del laboratorio.
+UR de control de zonas. Sus emojis dejan charcos de 4 s sin acumular daño al solaparse. R abre un baño físico: entrada de 2,6 s con ocho gestos completos, 8 s de combate jugable para ambos compañeros y enemigos, y mordida protegida de 0,6 s. Solo entrada y mordida protegen; durante el combate se conservan movimiento, ataques, daño y avisos de jefes. El chorro sigue el giro con retardo, respeta paredes y aplica defensa −20 % y velocidad −25 %. El compañero dispara su arma normal y aprovecha el debuff. La mordida conserva instakill normal, ×3 a minijefes y ×1,90 a jefes. Regreso a posiciones originales y 2 s de vapor/gotas visuales sin daño. Prueba admin /?practice=chamelin con recarga; Invencible es opcional dentro del baño.
 
 Sideral: los aterrizajes del retroceso sacuden brevemente la cámara (último salto más fuerte), seguidos por un temblor leve de risa. Desplazamientos enteros sin reescalar sprites; movimiento reducido desactiva todo temblor. El dominio ofrece 8 s para auxiliar o saquear: jefes/minijefes están inmóviles e inmunes, con reacción pixel art de asco. Al terminar ambos jugadores vivos conservan al menos 0,8 s de protección. No puede iniciarse sobre otra cinemática a pantalla completa.
 
