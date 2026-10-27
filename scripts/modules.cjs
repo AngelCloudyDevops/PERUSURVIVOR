@@ -376,4 +376,5 @@ module.exports = [
 ,{source:"src/systems/cirilo-ur.js",output:"js/cirilo-ur.js"}
 ,{source:"src/systems/character-balance.js",output:"js/character-balance.js"}
 ,{source:"src/ui/admin-balance.js",output:"js/admin-balance.js"}
+,{source:"src/systems/cirilo-arena.js",output:"js/cirilo-arena.js"}
 ];
