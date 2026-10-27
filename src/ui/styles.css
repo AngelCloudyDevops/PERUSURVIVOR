@@ -337,7 +337,7 @@ body:not(.menu) header .game-controls{position:fixed;top:18px;right:16px;z-index
 @media(prefers-reduced-motion:reduce){.hud-ability-card{transition:none}.hud-ability-card.ability-ready{animation:none;box-shadow:0 0 0 3px #101820aa,0 0 10px 2px #f0b83e88,0 -5px 9px 1px #78818d44}}
 
 /* Dock inferior único: inventario, ataques y cartas comparten una cuadrícula sin solaparse. */
-#combat-dock{position:fixed;z-index:30;left:12px;right:12px;bottom:8px;display:grid;grid-template-columns:minmax(180px,230px) minmax(360px,520px) 266px;align-items:end;justify-content:center;gap:12px;pointer-events:none}
+#combat-dock{position:fixed;z-index:30;left:190px;right:12px;bottom:8px;display:grid;grid-template-columns:minmax(180px,230px) minmax(360px,520px) 266px;align-items:end;justify-content:center;gap:12px;pointer-events:none}
 body.menu #combat-dock{display:none}
 #combat-dock>*{min-width:0}
 #combat-dock #dota-inventory{position:relative;inset:auto;z-index:1;width:100%;min-width:0;max-width:none;pointer-events:auto}
@@ -348,7 +348,7 @@ body.menu #combat-dock{display:none}
 #ability-dock #ultimate{left:0;right:auto}
 #ability-dock #domain-ability{left:auto;right:0}
 @media(max-width:1100px) and (min-width:761px){
- #combat-dock{left:8px;right:8px;grid-template-columns:minmax(150px,205px) minmax(280px,1fr) 236px;gap:8px}
+ #combat-dock{left:190px;right:8px;grid-template-columns:minmax(150px,205px) minmax(280px,1fr) 236px;gap:8px}
  #ability-dock{width:236px}
  #ability-dock .hud-ability-card{width:112px}
 }
