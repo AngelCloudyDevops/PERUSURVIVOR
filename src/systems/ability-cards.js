@@ -2,24 +2,33 @@
 // Registry for character-specific ability cards. Add a static art path here when
 // a new character receives a Q ultimate or R domain; unknown skills keep a grey slot.
 P.AbilityCards={
- entries:{
-  kingteka:{kind:'ultimate',art:'assets/cards/kingteka-gallinazo-ultimate-fullart-v2.webp'},
-  alberto:{kind:'ultimate',art:'assets/cards/alberto-tribunal-ultimate-fullart-v1.webp'},
-  cristorata:{kind:'ultimate',art:'assets/cards/cristorata-dragon-ultimate-fullart-v1.webp'},
-  cuy:{kind:'ultimate',art:'assets/cards/cuy-stampede-ultimate-fullart-v1.webp'},
-  paloma:{kind:'ultimate',art:'assets/cards/paloma-bandada-ultimate-fullart-v1.webp'},
-  makanaky:{kind:'domain',state:'domain',label:'DOMINIO',art:'assets/cards/makanaky-domain-fullart-v1.webp'},
-  sideral:{kind:'domain',state:'sideralDomain',label:'DOMINIO',art:'assets/cards/sideral-domain-fullart-v1.webp'},
-  cirilo:{kind:'domain',state:'ciriloDomain',label:'AUDIENCIA',art:'assets/cards/cirilo-audiencia-domain-fullart-v1.webp'},
-  chamelin:{kind:'domain',state:'chamelinDomain',label:'BAÑO DE TROVO',art:'assets/cards/chamelin-domain-fullart-v1.webp'}
+ frames:{
+  none:{family:'empty',visual:'none'},
+  fire:{family:'ultimate',visual:'fire'},
+  'domain-demon':{family:'domain',visual:'fire',futureVisual:'demon'},
+  'domain-royal':{family:'domain',visual:'fire',futureVisual:'royal'},
+  'domain-cosmic':{family:'domain',visual:'fire',futureVisual:'cosmic'},
+  'domain-steam':{family:'domain',visual:'fire',futureVisual:'steam'}
  },
+ entries:{
+  kingteka:{kind:'ultimate',frame:'fire',art:'assets/cards/kingteka-gallinazo-ultimate-fullart-v2.webp'},
+  alberto:{kind:'ultimate',frame:'fire',art:'assets/cards/alberto-tribunal-ultimate-fullart-v1.webp'},
+  cristorata:{kind:'ultimate',frame:'fire',art:'assets/cards/cristorata-dragon-ultimate-fullart-v1.webp'},
+  cuy:{kind:'ultimate',frame:'fire',art:'assets/cards/cuy-stampede-ultimate-fullart-v1.webp'},
+  paloma:{kind:'ultimate',frame:'fire',art:'assets/cards/paloma-bandada-ultimate-fullart-v1.webp'},
+  makanaky:{kind:'domain',frame:'domain-royal',state:'domain',label:'DOMINIO',art:'assets/cards/makanaky-domain-fullart-v1.webp'},
+  sideral:{kind:'domain',frame:'domain-cosmic',state:'sideralDomain',label:'DOMINIO',art:'assets/cards/sideral-domain-fullart-v1.webp'},
+  cirilo:{kind:'domain',frame:'domain-demon',state:'ciriloDomain',label:'AUDIENCIA',art:'assets/cards/cirilo-audiencia-domain-fullart-v1.webp'},
+  chamelin:{kind:'domain',frame:'domain-steam',state:'chamelinDomain',label:'BAÑO DE TROVO',art:'assets/cards/chamelin-domain-fullart-v1.webp'}
+ },
+ frame(name){return this.frames[name]||this.frames.none},
  definition(id,kind){const entry=this.entries[id];return entry&&(!kind||entry.kind===kind)?entry:null},
  syncReadyFx(){
-  for(const [kind,id] of [['ultimate','ultimate'],['domain','domain-ability']]){const button=P.$('#'+id),slot=P.$('#'+kind+'-ability-slot'),ready=!!button&&!button.hidden&&button.classList.contains('ability-ready');slot?.classList.toggle('is-ready',ready)}
+  for(const [kind,id] of [['ultimate','ultimate'],['domain','domain-ability']]){const button=P.$('#'+id),slot=P.$('#'+kind+'-ability-slot');if(!slot)continue;const ready=!!button&&!button.hidden&&button.classList.contains('ability-ready'),wasReady=slot.classList.contains('is-ready'),theme=button?.dataset.frameTheme||'none',frame=this.frame(theme);slot.dataset.frameTheme=theme;slot.dataset.frameVisual=frame.visual;if(ready&&!wasReady){slot.classList.remove('is-extinguishing');slot.classList.add('is-ready','is-igniting')}else if(!ready&&wasReady){slot.classList.remove('is-ready','is-igniting');slot.classList.add('is-extinguishing')}}
  },
  apply(button,id,kind,charge,ready=false,active=false){
   if(!button)return;const entry=this.definition(id,kind),empty=id==='empty'||!entry;
-  button.dataset.cardArt=empty?'empty':id;button.dataset.abilityKind=kind;
+  const theme=empty?'none':entry.frame;button.dataset.cardArt=empty?'empty':id;button.dataset.abilityKind=kind;button.dataset.frameTheme=theme;button.dataset.frameVisual=this.frame(theme).visual;
   button.style?.setProperty?.('--charge-progress',Math.max(0,Math.min(100,charge||0))+'%');
   button.style?.setProperty?.('--ability-card-art',entry?'url("/'+entry.art+'")':'none');
   button.classList.toggle('ability-ready',!!ready);button.classList.toggle('ability-active',!!active);
