@@ -40,6 +40,18 @@ test('la galería ofrece inclinación, giro y controles accesibles sin bucle per
  for(const selector of ['#codex-tabs','.collectible-stage','.collectible-holo','.collectible-card-back','prefers-reduced-motion'])assert.match(css,new RegExp(selector.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
 });
 
+test('el álbum abre un visor y recorre sólo las cartas visibles',()=>{
+ const cards=gallery(),visible=cards.entries();
+ cards.render=()=>{};
+ cards.selected='cirilo:base';
+ cards.navigate(1,visible);
+ assert.equal(cards.selected,'cirilo:nocturna');
+ cards.navigate(-1,visible);
+ assert.equal(cards.selected,'cirilo:base');
+ for(const contract of ['card-album-grid','card-viewer','aria-modal','card-viewer-arrow','ArrowLeft','ArrowRight','swipe'])assert.match(gallerySource,new RegExp(contract));
+ for(const selector of ['.card-album-grid','.card-viewer-panel','.card-viewer-strip','.card-strip-thumb'])assert.match(css,new RegExp(selector.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
+});
+
 test('el marco demoníaco termina de entrar antes de pasar al pulso de reposo',()=>{
  assert.match(hudSource,/ability-demon-horns-in/);
  assert.match(css,/ability-demon-base-in \.42s/);
