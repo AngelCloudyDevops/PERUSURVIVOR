@@ -822,3 +822,6 @@ El muñeco del editor es una referencia visual de cálculo, sin partida ni progr
 
 ### Jefes aleatorios del portal
 Partida rápida y Supervivencia del Caos sortean entre Chosicano, Gabinete, Guardián, Gallinazo y Fujimori. Los escenarios de temporada sustituyen al jefe equivalente por su variante temática. No se repite el último jefe afrontado; los portales de una misma partida usan elecciones distintas mientras queden candidatos. El sorteo queda fijado por portal y no cambia al cancelar el diálogo o reintentar la carga. En dúo decide el servidor y conserva el último jefe al jugar la revancha. Minijefes y pruebas de laboratorio siguen ligados a la selección explícita.
+
+### Portal por contacto y niebla
+Solo el núcleo de 30 unidades activa la entrada; pasar por el borde visual no transporta. En individual, una transición de niebla de .45 s envuelve al jugador y revela la arena; pausa congela la transición y el reloj del mapa no avanza. En dúo basta el toque de un jugador vivo: el servidor transporta a ambos aunque el compañero esté lejos. Se conserva la vida del compañero caído, sin resucitarlo, y cada uno recupera su posición original al salir. Se oculta el botón E; el acceso manual existente queda como compatibilidad. El portal mezcla niebla oscura, energía violeta y brasas doradas con movimiento reducido y partículas visuales acotadas.

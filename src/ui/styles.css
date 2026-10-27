@@ -412,3 +412,5 @@ body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:
  body.test-bench-live #dota-inventory,body.test-bench-live #causa-combo{bottom:calc(158px + env(safe-area-inset-bottom))}
  body.test-bench-live:has(#bench-collapse[aria-expanded="true"]) #dota-inventory{visibility:hidden}
 }
+
+body.portal-transfer #hud,body.portal-transfer #hint,body.portal-transfer #ultimate{visibility:hidden}

@@ -24,16 +24,9 @@ class Activities{
   }
   return false;
  }
- tryPortal(){
-  const sim=this.sim,P=this.P,s=P.state;
-  for(const p of sim.players){sim.use(p);if(p.hp<=0||!P.Encounters.near())this.votes.delete(p.slot)}
-  if(this.votes.size!==2)return;
-  this.positions=sim.players.map(p=>({x:p.x,y:p.y}));sim.use(sim.players[0]);s.mode='portal';P.Encounters.enter();
-  if(!s.encounter){s.mode='play';return}
-  s.portal.open=false;
-  for(const p of sim.players){p.x=p.slot?60:0;p.y=220;p.inv=1.5;p.moving=false;p.fire=.2;p.shots=[];p.fields=[]}
-  this.votes.clear();this.notice('Entraron juntos a '+s.encounter.scene.name);
- }
+ autoPortal(){const sim=this.sim,P=this.P,s=P.state;if(!s.portal?.open||s.encounter||this.pending)return;const touched=sim.players.find(p=>P.Encounters.touch(p));if(touched)this.enterPortal(touched)}
+ tryPortal(){const sim=this.sim,P=this.P;for(const p of sim.players){sim.use(p);if(p.hp<=0||!P.Encounters.near())this.votes.delete(p.slot)}if(this.votes.size===2)this.enterPortal(sim.players[0])}
+ enterPortal(trigger){const sim=this.sim,P=this.P,s=P.state;if(s.encounter||this.pending||!trigger||trigger.hp<=0)return false;this.positions=sim.players.map(p=>({x:p.x,y:p.y}));sim.use(trigger);s.mode='portal';P.Encounters.enter();if(!s.encounter){s.mode='play';return false}s.portal.open=false;for(const p of sim.players){p.x=p.slot?60:0;p.y=220;p.inv=1.5;p.moving=false;p.fire=.2;p.shots=[];p.fields=[]}this.votes.clear();this.notice('Entraron juntos a '+s.encounter.scene.name);return true}
  returnFromArena(){
   const sim=this.sim,P=this.P,s=P.state,arena=s.encounter;if(!arena)return;
   s.enemies=arena.enemies;s.gems=arena.gems;s.spawn=arena.spawn;s.encounter=null;s.danger=[];s.effects=[];s.portal.open=false;s.portal.cleared=true;s.mapBossWon=true;
@@ -86,7 +79,7 @@ class Activities{
   const sim=this.sim,P=this.P,s=P.state;this.messageTime=Math.max(0,this.messageTime-dt);P.Loot.messageTime=Math.max(0,P.Loot.messageTime-dt);
   if(this.pending)return;
   if(this.returning)this.returnFromArena();
-  P.Encounters.tick();this.tryPortal();if(s.encounter)return;
+  P.Encounters.tick();this.autoPortal();this.tryPortal();if(s.encounter)return;
   this.escort.tick(dt);this.duo.tick(dt);this.syncChests();P.Loot.animate(dt);sim.use(sim.players.find(p=>p.hp>0)||sim.players[0]);P.Loot.spawnKeepers();P.Market.tick();
   const o=P.Exploration.station;
   if(o&&o.phase==='active'){

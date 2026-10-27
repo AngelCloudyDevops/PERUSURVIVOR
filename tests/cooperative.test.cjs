@@ -23,9 +23,7 @@ test('Actividades cooperativas: portales de cinco mapas, retorno de ambos y prem
   s.mapTime=180;P.Encounters.tick();s.portal.bossChoices={0:P.Encounters.definition().kind};const pos=P.Encounters.definition().portal;
   for(const p of sim.players)Object.assign(p,{x:pos.x+p.slot*20,y:pos.y});
   const positions=sim.players.map(p=>({x:p.x,y:p.y})),worldEnemy={x:20,y:30,hp:50,max:50,r:13,speed:0};s.enemies=[worldEnemy];
-  assert(a.action(0,'portal'));assert(!s.encounter,'No arrastrar al otro jugador sin confirmar');assert.equal(a.votes.size,1);
-  sim.players[0].x+=300;sim.tick(.04,[{},{}]);assert.equal(a.votes.size,0,'Cancelar confirmación al alejarse');sim.players[0].x=positions[0].x;
-  assert(a.action(0,'portal'));assert(a.action(1,'portal'));assert(s.encounter);const clock=s.mapTime;
+  sim.tick(.04,[{},{}]);assert(s.encounter,'Un contacto transporta al dúo sin confirmaciones');const clock=s.mapTime;
   sim.tick(.04,[{},{}]);assert.equal(s.mapTime,clock,'El reloj del mapa no avanza en arena');assert.equal(s.enemies.filter(e=>e.mapBoss).length,1);
   const boss=s.enemies[0];boss.attackT=0;sim.tick(.04,[{},{}]);assert.equal(boss.phase,'warning');assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));
   P.Entities.hurt(boss,999999);if(map==='campo'){assert(s.encounter.defeat);assert.equal(sim.snapshot().encounter.defeat.actor.phase,'chosicano-defeat');assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));for(let i=0;i<76;i++)sim.tick(.04,[{},{}])}else sim.tick(.04,[{},{}]);assert(!s.encounter);assert(s.portal.cleared);assert.equal(s.enemies[0],worldEnemy);
