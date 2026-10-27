@@ -554,6 +554,10 @@ Sideral: los aterrizajes del retroceso sacuden brevemente la cámara (último sa
 
 ## Modos de partida
 
+### CiriloTV UR · Audiencia de Medianoche
+
+Cirilo usa un atlas propio de cuatro etapas y cuatro acciones. Cada celda conserva únicamente la silueta conectada del personaje para impedir que aparezcan brazos, zapatos o fragmentos de cuadros vecinos. Su Expansión de Dominio comienza con una cinemática de 3,2 s a pantalla completa: Cirilo infernal declara **EXPANSIÓN DE DOMINIO · AUDIENCIA DE MEDIANOCHE**, aparecen rayos rojos y Sandy dicta la sentencia. Después, el mapa queda totalmente cubierto por un tribunal pixel art con estrado, público, suelo en perspectiva y Cirilo suspendido en primer plano. El martillo mueve conjuntamente brazo, mango y cabeza; cada golpe renueva durante tres segundos daño +50 %, velocidad +50 % y rango +80 %. Movimiento reducido elimina saltos y vibraciones cosméticas sin cambiar tiempos ni combate.
+
 - **Partida rápida:** conserva el recorrido original de 5 minutos, un portal opcional y ElZeein al final.
 - **Supervivencia del Caos:** recorrido individual de 30 minutos en el mapa elegido, dividido en seis etapas de cinco minutos.
 - En Supervivencia aparecen minijefes cada 4–6 minutos y tres ventanas de portal. El reloj se pausa dentro de cada arena y ElZeein aparece al minuto 30.
