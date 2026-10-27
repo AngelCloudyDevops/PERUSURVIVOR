@@ -858,3 +858,16 @@ El hub amplía esa navegación con cinco bibliotecas coherentes. **Causas** func
 Primera ampliación de profesiones: Pablo astronauta desde 0:30, Tyrone bombero desde 0:45 y Uniqua chef desde 1:05. Reemplazan el 35 % de los nacimientos de su tipo. En Halloween, Tasha momia desde 1:50; en Navidad, Austin duende desde 2:50, con probabilidad del 60 % para su tipo. No alteran el roster por etapa ni añaden enemigos. Se mantienen los rangos por nacimiento (veteranos 2:05, élites 3:35); comparten vida/daño/velocidad de rango, más defensa física/especial ×1/1,12/1,28 y escala visual 0,92/1/1,08. No son invulnerables.
 Ataques: astronauta, pulso lunar circular de 65/75/85; bombero, chorro corto en cono de 105/115/125; chef, sartenazo en arco de 70/77/84; momia, azote de vendas de 80/90/100; duende, uno o dos regalos bloqueables. Cada ataque tiene al menos 0,95 s de preparación, daño una vez por impacto, aviso de alcance, cobertura y los cupos de peligro existentes. Los sonidos reutilizan el mezclador limitado. Los 45 cuadros nuevos integran ropa y accesorios: seis pasos, preparación, impacto y derrota por profesión; no se dibujan nombres encima.
 Policía y arquitecto amplían el catálogo sin aumentar nacimientos. Policía (tipo 5) desde 3:35, cuando se incorpora su tipo al roster: golpe físico de escudo en sector, radio 72/82/92, preparación 1,1 s. Arquitecto (Pablo, tipo 0) desde 1:30: escuadra lanzada bloqueable, una por disparo normal/veterano y dos en élite, preparación mínima 1,1 s y alcance de adquisición 110–360. Comparten los rangos y defensas de las otras profesiones. Cuando varias profesiones están disponibles para el mismo tipo, se reparten uniformemente el 35 % reservado a profesiones, sin desplazar a las primeras; en el tipo 0 conviven astronauta y arquitecto. Sus 18 cuadros adicionales son cuerpos completos: seis pasos, preparación, impacto y derrota. Sin nombres encima.
+# Vestíbulo completo
+
+El vestíbulo presenta siete áreas conectadas a los sistemas reales del juego:
+
+1. Gacha: probabilidades, garantías, tiradas de una o diez, historial, duplicados y ascensos.
+2. Cooperativo: sala privada para dos, código, personaje, mapa, estado listo, invitaciones y reconexión.
+3. Mejoras y habilidades: proyección antes de comprar, cinco rangos permanentes y ramas de evolución en partida.
+4. Preparar partida: causa, escenario, modo, dificultad dinámica y suministros equipados.
+5. Perfil: favorito, colección, partidas, victorias, rivales, jefes, monedas y récords.
+6. Misiones: objetivos generales y recompensas diarias/semanales en forma de insignias cosméticas.
+7. Ayuda y créditos: controles, reglas, atribución del proyecto, Discord y apoyo.
+
+Los botones sociales se muestran desde el inicio, pero no navegan hasta que se configuren enlaces oficiales. Esto evita promocionar servidores o cuentas incorrectos.
