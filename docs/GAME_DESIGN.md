@@ -817,6 +817,9 @@ Chamelín: la presentación encadena el sello con una pausa breve, pisotón y ol
 
 Chamelín — balance de zonas: el proyectil directo multiplica por 0,15; el charco usa la potencia previa a ese coeficiente, aplica 0,15 cada 0,5 s (0,30/s) durante 4 s y no suma zonas solapadas. Ralentización espacial mientras permanece dentro: normales 20 %, jefes y minijefes 10 %, salida inmediata al abandonar la zona o expirar. Entre charco y chorro se aplica el mayor slow de Chamelín, sin multiplicarlos. Los charcos no modifican defensa física ni especial. El dominio, su daño y la mordida no cambian.
 
+### Cirilo UR: Audiencia de Medianoche
+La Audiencia es una Expansión de Dominio y se activa exclusivamente desde la carta **R**, compartiendo el medidor de carga general pero no el botón **Q** de ulti. Durante su fase jugable Cirilo despega en 0,58 s, conserva sombra de suelo, alterna aleteo, se inclina hacia el movimiento y aterriza durante los últimos 0,72 s. Movimiento reducido mantiene las alturas y tiempos, pero elimina balanceo, inclinación y polvo.
+
 ### Herramienta admin de balance
 Edición global por personaje de vida (25–2000), daño base (1–300), velocidad (50–500), recarga (0,15–5 s), alcance (0,25–3×) y cuatro ratings de ataque/defensa (1–500). No concede progresión ni cambia la rareza. Revisión previa de cambios, restauración a catálogo original y auditoría con autor. Los cambios se aplican al crear entidades nuevas; en cooperativo se fijan desde el servidor al iniciar la sala, conservando una versión durante toda la partida. Los coeficientes de charcos, vulnerabilidad y mordidas no se editan aquí.
 
