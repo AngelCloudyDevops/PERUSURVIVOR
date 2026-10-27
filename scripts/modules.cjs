@@ -373,4 +373,5 @@ module.exports = [
 ,{source:"src/systems/chamelin-arena.js",output:"js/chamelin-arena.js"}
 ,{source:"src/rendering/chamelin-bathroom.js",output:"js/chamelin-bathroom.js"}
 ,{source:"src/rendering/chamelin-fluency.js",output:"js/chamelin-fluency.js"}
+,{source:"src/systems/cirilo-ur.js",output:"js/cirilo-ur.js"}
 ];
