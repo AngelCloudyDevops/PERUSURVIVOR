@@ -278,6 +278,18 @@
       "rgbaSha256": "4e8b7c690d58059f89911cfb62217f24b82da854f7a7de5676d520daf02f0fa4"
     },
     {
+      "source": "assets/court/audience-back-v1.png",
+      "output": "assets/court/audience-back-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 1590455,
+      "optimizedBytes": 203540,
+      "sourceSha256": "1bd758d97553daf2093adb42831e8445febc77216d8cb7a7371ba37258725c94",
+      "outputSha256": "0d4652f7c3b0f7a6bb9b983ac5bf452a6f449a11b7e9cb23fb3ff7b747bef3ea",
+      "rgbaSha256": "f492ebe55f8224abbfdeda2b5b91b6a34f8a756b35820d816ec702e25204de63",
+      "quality": 90
+    },
+    {
       "source": "assets/enemies/gallinazos-atlas-v1.png",
       "output": "assets/enemies/gallinazos-atlas-v1.webp",
       "width": 2172,
@@ -433,6 +445,30 @@
       "rgbaSha256": "b4055e5f8dbe9b3c4bdf1abd09eb5ba03add597b3a306e7c556793b316ff34c2"
     },
     {
+      "source": "assets/scenarios/cirilo-midnight-court-v1.png",
+      "output": "assets/scenarios/cirilo-midnight-court-v1.webp",
+      "width": 1672,
+      "height": 941,
+      "originalBytes": 2105364,
+      "optimizedBytes": 227886,
+      "sourceSha256": "c3790f3c5ddcdacda854e6490d9b7e26ff0fe8ab0ce62d0496e79ba7351787ca",
+      "outputSha256": "0b6d8ccceaea47ebf369358bc424b1a9223c2e6b021708a4e57da8460531a6ca",
+      "rgbaSha256": "88cdad3425af6d10098b64a722330d0251571979b35f66df3bbd44b9d1440af8",
+      "quality": 88
+    },
+    {
+      "source": "assets/scenarios/cirilo-midnight-court-v2.png",
+      "output": "assets/scenarios/cirilo-midnight-court-v2.webp",
+      "width": 1672,
+      "height": 941,
+      "originalBytes": 2058112,
+      "optimizedBytes": 108626,
+      "sourceSha256": "26a323d5cc15e603ae17711fb675e4e762c766de22090c6bbd6d29c8dde932e4",
+      "outputSha256": "e3fbe408ec3b572c38aea3c1c2245f59742b3330c0e4d1d22c5ef6097dbf7d0c",
+      "rgbaSha256": "5d015e3a8b9ad3eb8a2fb0b79e26a006429ac147933a12e81c1f1cd0a3d27761",
+      "quality": 65
+    },
+    {
       "source": "assets/ui/cirilo-domain-demon-frame-v1.png",
       "output": "assets/ui/cirilo-domain-demon-frame-v1.webp",
       "width": 256,
@@ -468,6 +504,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 73554864,
-  "optimizedBytes": 42850040
+  "originalBytes": 79308795,
+  "optimizedBytes": 43390092
 }
