@@ -304,15 +304,14 @@ body:not(.menu) header .game-controls{position:fixed;top:18px;right:16px;z-index
 /* HUD de cartas: inventario al lado izquierdo y espacios Q/R al derecho del selector de armas. */
 #dota-inventory{position:fixed;left:calc(50% - 478px);right:auto;top:auto;bottom:18px;z-index:31;min-width:220px;max-width:230px}
 #dota-inventory[hidden]{display:none}
-.hud-ability-card{position:fixed;z-index:30;bottom:-132px;width:128px;height:188px;padding:8px 7px 12px;display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden;border:2px solid #c2b08f;border-radius:10px 10px 0 0;background-color:#202b35;color:#fff0d2;font:800 10px/1.25 monospace;letter-spacing:.25px;text-shadow:1px 2px #111;box-shadow:0 0 0 3px #101820aa,0 8px 20px #0008;cursor:pointer;transition:bottom .22s ease,filter .22s ease,box-shadow .22s ease}
-.hud-ability-card:hover,.hud-ability-card:focus-visible,.hud-ability-card.is-peeking{bottom:18px;filter:brightness(1.08);box-shadow:0 0 0 3px #101820aa,0 0 18px #f1c86777}
+.hud-ability-card{position:fixed;z-index:2;width:128px;height:188px;padding:8px 7px 12px;display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden;border:2px solid #c2b08f;border-radius:10px 10px 0 0;background-color:#202b35;color:#fff0d2;font:800 10px/1.25 monospace;letter-spacing:.25px;text-shadow:1px 2px #111;box-shadow:0 0 0 3px #101820aa,0 8px 20px #0008;cursor:pointer;transition:filter .22s ease,box-shadow .22s ease}
+.hud-ability-card:hover,.hud-ability-card:focus-visible,.hud-ability-card.is-peeking{filter:brightness(1.08);box-shadow:0 0 0 3px #101820aa,0 0 18px #f1c86777}
 .hud-ability-card:disabled{cursor:default}
 .hud-ability-card:disabled:hover{filter:none}
 .hud-ability-card:after{content:"Q";position:absolute;z-index:3;top:8px;left:8px;display:grid;place-items:center;width:25px;height:25px;border:1px solid #f2d49b;background:#111923dc;color:#f6e6c4;font:900 13px monospace}
 #domain-ability:after{content:"R";border-color:#c8a4ef;color:#e5d5ff}
 .hud-ability-card[data-card-art="empty"]:after{border-color:#78828a;background:#262d33;color:#9aa4ad}
-#ultimate{left:calc(50% + 244px)}
-#domain-ability{left:calc(50% + 382px);border-color:#a57bd7}
+#domain-ability{border-color:#a57bd7}
 .hud-ability-card{background-image:linear-gradient(180deg,#0e172610 8%,#10182212 53%,#101822 96%),var(--ability-card-art,linear-gradient(135deg,#394855,#18232d));background-position:center;background-size:cover}
 .hud-ability-card:before{content:"";position:absolute;z-index:2;top:0;left:0;width:var(--charge-progress,0%);height:3px;background:linear-gradient(90deg,#ffe8a2,#f4bd4e 72%,#fff1b8);box-shadow:0 0 7px #ffd15c;transition:width .2s linear;pointer-events:none}
 .hud-ability-card.ability-ready{border-color:#ffe09a;animation:ultimate-ready-glow 1.45s ease-in-out infinite alternate}
@@ -321,16 +320,13 @@ body:not(.menu) header .game-controls{position:fixed;top:18px;right:16px;z-index
 #ultimate.is-peeking{filter:brightness(1.1)}
 @keyframes ultimate-ready-glow{from{box-shadow:0 0 0 3px #101820aa,0 0 8px 2px #f0b83e88,0 -4px 8px 1px #e96d2c38,0 -10px 13px 1px #626d7940,inset 0 0 8px #ffb13218}to{box-shadow:0 0 0 3px #101820aa,0 0 17px 5px #ff9b4266,0 -7px 12px 2px #fb853044,0 -13px 18px 1px #9197a044,inset 0 0 18px #ffd45f25}}
 #ultimate[data-card-art="empty"]{border-color:#65717c;background-image:repeating-linear-gradient(135deg,#ffffff0c 0 10px,transparent 10px 22px),linear-gradient(135deg,#3b4249,#1b2229 62%);color:#9aa4ad}
-@media(max-width:1100px) and (min-width:761px){#dota-inventory{left:12px;min-width:190px;max-width:205px}.hud-ability-card{width:112px}#ultimate{left:auto;right:136px}#domain-ability{left:auto;right:12px}}
+@media(max-width:1100px) and (min-width:761px){#dota-inventory{left:12px;min-width:190px;max-width:205px}.hud-ability-card{width:112px}}
 @media(max-width:760px){
  #dota-inventory{left:8px;right:auto;top:auto;bottom:82px;min-width:0;max-width:calc(50vw - 14px);padding:4px}
  .dota-inventory-slots{flex-wrap:wrap;justify-content:center}
  .dota-inventory-slot{grid-template-rows:28px 14px 8px;width:38px;min-height:54px}
  .dota-inventory-icon{width:26px;height:26px}
- .hud-ability-card{width:min(70px,18vw);height:118px;bottom:-72px;padding:6px 3px 8px;font-size:8px;border-radius:8px 8px 0 0;transition:bottom .18s ease}
- .hud-ability-card:hover,.hud-ability-card:focus-visible,.hud-ability-card.is-peeking{bottom:84px}
- #ultimate{left:auto;right:calc(50% + 112px)}
- #domain-ability{left:auto;right:8px}
+ .hud-ability-card{width:min(70px,18vw);height:118px;padding:6px 3px 8px;font-size:8px;border-radius:8px 8px 0 0}
  #weapon-bar{width:min(220px,56vw);bottom:8px;gap:4px;padding:5px}
  #weapon-bar button{min-width:0;flex:1;padding:7px 4px;font-size:8px}
 }
@@ -344,25 +340,32 @@ body.menu #combat-dock{display:none}
 #attack-dock-slot{grid-column:2;min-width:0;pointer-events:auto}
 #combat-dock #weapon-bar{position:relative;inset:auto;z-index:2;width:100%;transform:none}
 #ability-dock{position:relative;grid-column:3;width:266px;height:58px;pointer-events:none}
-#ability-dock .hud-ability-card{position:absolute;pointer-events:auto}
-#ability-dock #ultimate{left:0;right:auto}
-#ability-dock #domain-ability{left:auto;right:0}
-#ultimate-ready-fx{position:absolute;z-index:29;left:-36px;top:-54px;width:200px;height:286px;overflow:visible;opacity:0;pointer-events:none;transform:scale(.86) translateY(9px);transform-origin:50% 72px;isolation:isolate;will-change:transform,opacity;filter:drop-shadow(0 0 5px #ff9a32b8) saturate(1.12);background:url('/assets/ui/ultimate-fire-aura-v1.webp') center/100% 100% no-repeat;transition:opacity .26s ease,transform .34s ease}
-#ultimate-ready-fx:before{content:"";position:absolute;z-index:-1;left:25%;top:14%;width:50%;height:33%;border-radius:50%;background:radial-gradient(ellipse,#fff2b58a 0 12%,#ff9a3c66 36%,#e44b292f 58%,transparent 74%);filter:blur(9px);transform-origin:50% 70%}
-#ultimate-ready-fx:after{content:"";position:absolute;left:31%;top:20%;width:4px;height:4px;border-radius:50%;background:#fff8d7;box-shadow:-25px 18px 0 0 #ffcb58,58px 8px 0 -1px #fff0a0,-42px 48px 0 -1px #ff8b38,78px 42px 0 -1px #ff6b30,4px -18px 0 -1px #fff4b8;filter:drop-shadow(0 0 4px #ff8a32);opacity:.75}
-#ultimate-ready-fx.is-ready{opacity:.96;transform:scale(1) translateY(0);animation:ultimate-fire-sway 1.42s ease-in-out infinite alternate}
-#ultimate-ready-fx.is-domain{left:102px}
-#ultimate-ready-fx.is-ready:before{animation:ultimate-fire-pulse 1.18s ease-in-out -.3s infinite alternate}
-#ultimate-ready-fx.is-ready:after{animation:ultimate-embers-rise 1.65s ease-out infinite}
+.ability-card-shell{position:absolute;bottom:-132px;width:128px;height:188px;pointer-events:none;isolation:isolate;transition:bottom .22s ease;will-change:bottom}
+#ultimate-ability-slot{left:0}
+#domain-ability-slot{right:0}
+.ability-card-shell:has(.hud-ability-card:hover),.ability-card-shell:has(.hud-ability-card:focus-visible),.ability-card-shell:has(.hud-ability-card.is-peeking){bottom:18px}
+.ability-card-shell .hud-ability-card{position:absolute;inset:0;width:100%;height:100%;pointer-events:auto}
+.ability-fire-back,.ability-fire-front{position:absolute;inset:-42px -24px -38px;opacity:0;pointer-events:none;transform:scale(.86) translateY(9px);transform-origin:50% 66%;will-change:transform,opacity;background:url('/assets/ui/ultimate-fire-aura-v1.webp') center/100% 100% no-repeat;transition:opacity .26s ease,transform .34s ease}
+.ability-fire-back{z-index:0;filter:drop-shadow(0 0 3px #ff7d28a8) saturate(1.12)}
+.ability-fire-front{z-index:4;filter:drop-shadow(0 0 2px #ffb13ba0) saturate(1.18);-webkit-mask:linear-gradient(#000 0 0) left/17% 100% no-repeat,linear-gradient(#000 0 0) right/17% 100% no-repeat,linear-gradient(#000 0 0) bottom/100% 31% no-repeat;mask:linear-gradient(#000 0 0) left/17% 100% no-repeat,linear-gradient(#000 0 0) right/17% 100% no-repeat,linear-gradient(#000 0 0) bottom/100% 31% no-repeat}
+.ability-card-foil{position:absolute;z-index:3;inset:3px;border-radius:7px 7px 0 0;overflow:hidden;opacity:0;pointer-events:none;contain:paint;mix-blend-mode:screen}
+.ability-card-foil:before{content:"";position:absolute;left:-82%;top:-38%;width:54%;height:176%;background:linear-gradient(105deg,transparent 4%,#88d9ff18 25%,#fff7d8c4 47%,#ffb9ed66 57%,transparent 82%);filter:blur(.6px);transform:skewX(-17deg);will-change:transform}
+.ability-card-foil:after{content:"";position:absolute;inset:0;background:linear-gradient(128deg,#6bdcff10 10%,transparent 37%,#ffe8891c 52%,transparent 69%,#ff7ed20e 88%)}
+.ability-card-shell:has(.hud-ability-card[data-card-art="empty"]) .ability-card-foil{display:none}
+.ability-card-shell:has(.hud-ability-card:hover) .ability-card-foil,.ability-card-shell:has(.hud-ability-card:focus-visible) .ability-card-foil,.ability-card-shell:has(.hud-ability-card.is-peeking) .ability-card-foil{opacity:.82}
+.ability-card-shell:has(.hud-ability-card:hover) .ability-card-foil:before,.ability-card-shell:has(.hud-ability-card:focus-visible) .ability-card-foil:before,.ability-card-shell:has(.hud-ability-card.is-peeking) .ability-card-foil:before{animation:ability-foil-sweep .78s cubic-bezier(.2,.65,.28,1) both}
+.ability-ready-embers{position:absolute;z-index:5;left:31%;top:20%;width:4px;height:4px;border-radius:50%;background:#fff8d7;box-shadow:-25px 18px 0 0 #ffcb58,58px 8px 0 -1px #fff0a0,-42px 48px 0 -1px #ff8b38,78px 42px 0 -1px #ff6b30,4px -18px 0 -1px #fff4b8;filter:drop-shadow(0 0 3px #ff8a32);opacity:0;pointer-events:none}
+.ability-card-shell.is-ready .ability-fire-back,.ability-card-shell.is-ready .ability-fire-front{opacity:.94;transform:scale(1) translateY(0);animation:ultimate-fire-sway 1.42s ease-in-out infinite alternate}
+.ability-card-shell.is-ready .ability-fire-front{animation-delay:-.44s}
+.ability-card-shell.is-ready .ability-ready-embers{animation:ultimate-embers-rise 1.65s ease-out infinite}
 @keyframes ultimate-fire-sway{from{opacity:.84;transform:scale(.985,1.015) translate(-1px,1px) rotate(-.45deg)}to{opacity:1;transform:scale(1.018,.985) translate(2px,-2px) rotate(.55deg)}}
-@keyframes ultimate-fire-pulse{from{opacity:.48;transform:scale(.88)}to{opacity:.9;transform:scale(1.12)}}
 @keyframes ultimate-embers-rise{0%{opacity:0;transform:translateY(18px) scale(.7)}28%{opacity:.82}100%{opacity:0;transform:translate(5px,-34px) scale(1.08)}}
+@keyframes ability-foil-sweep{0%{transform:translateX(0) skewX(-17deg);opacity:0}14%{opacity:.4}52%{opacity:1}100%{transform:translateX(360%) skewX(-17deg);opacity:0}}
 @media(max-width:1100px) and (min-width:761px){
  #combat-dock{left:190px;right:8px;grid-template-columns:minmax(150px,205px) minmax(280px,1fr) 236px;gap:8px}
  #ability-dock{width:236px}
- #ability-dock .hud-ability-card{width:112px}
- #ultimate-ready-fx{left:-32px;top:-50px;width:176px;height:252px}
- #ultimate-ready-fx.is-domain{left:92px}
+ .ability-card-shell{width:112px}
+ .ability-fire-back,.ability-fire-front{inset:-38px -24px -34px}
 }
 @media(max-width:760px){
  #combat-dock{left:8px;right:8px;bottom:8px;grid-template-columns:minmax(0,1fr) minmax(140px,1fr);grid-template-rows:64px auto;align-items:end;gap:6px}
@@ -373,14 +376,15 @@ body.menu #combat-dock{display:none}
  #attack-dock-slot{grid-column:1/-1;grid-row:2;width:100%}
  #combat-dock #weapon-bar{bottom:auto;width:100%;gap:3px;padding:4px}
  #ability-dock{grid-column:2;grid-row:1;width:100%;height:64px}
- #ultimate-ready-fx{left:-25px;top:-34px;width:calc(50% + 50px);height:104px;background-size:100% auto;background-position:center top}
- #ultimate-ready-fx.is-domain{left:calc(50% - 22px)}
- #ability-dock .hud-ability-card{top:0;bottom:auto;width:calc(50% - 3px);height:64px;padding:6px 3px 8px;font-size:8px;border-radius:8px 8px 0 0;transition:height .18s ease,transform .18s ease}
- #ability-dock .hud-ability-card:hover,#ability-dock .hud-ability-card:focus-visible,#ability-dock .hud-ability-card.is-peeking{top:0;bottom:auto;height:118px;transform:translateY(-54px)}
- #ability-dock #ultimate{left:0;right:auto}
- #ability-dock #domain-ability{left:auto;right:0}
+ .ability-card-shell{top:0;bottom:auto;width:calc(50% - 3px);height:64px;transition:height .18s ease,transform .18s ease}
+ #ultimate-ability-slot{left:0}
+ #domain-ability-slot{right:0}
+ .ability-card-shell:has(.hud-ability-card:hover),.ability-card-shell:has(.hud-ability-card:focus-visible),.ability-card-shell:has(.hud-ability-card.is-peeking){top:0;bottom:auto;height:118px;transform:translateY(-54px)}
+ .ability-card-shell .hud-ability-card{padding:6px 3px 8px;font-size:8px;border-radius:8px 8px 0 0}
+ .ability-fire-back,.ability-fire-front{inset:-30px -8px -25px;background-size:100% 100%}
+ .ability-card-foil{inset:3px;border-radius:5px 5px 0 0}
 }
-@media(prefers-reduced-motion:reduce){#ultimate-ready-fx.is-ready,#ultimate-ready-fx.is-ready:before,#ultimate-ready-fx.is-ready:after{animation:none}#ultimate-ready-fx.is-ready{opacity:.9;filter:drop-shadow(0 0 5px #ff9a32a8) saturate(1.08)}}
+@media(prefers-reduced-motion:reduce){.ability-card-shell{transition:none}.ability-card-shell.is-ready .ability-fire-back,.ability-card-shell.is-ready .ability-fire-front,.ability-card-shell.is-ready .ability-ready-embers,.ability-card-shell .ability-card-foil:before{animation:none}.ability-card-shell.is-ready .ability-fire-back,.ability-card-shell.is-ready .ability-fire-front{opacity:.9}.ability-card-shell:has(.hud-ability-card:hover) .ability-card-foil:before,.ability-card-shell:has(.hud-ability-card:focus-visible) .ability-card-foil:before,.ability-card-shell:has(.hud-ability-card.is-peeking) .ability-card-foil:before{left:20%;opacity:.55}}
 
 /* A cinematic owns the canvas: cover current and future DOM HUDs, including nested explicit visibility. */
 body.cinematic-only > :not(#game):not(script):not(style):not(link),
@@ -429,19 +433,19 @@ body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:
  #overlay.level-up.card-reveal>p{font-size:11px;margin:0 0 5px}
  .upgrade-front .upgrade-content strong{font-size:13px}
  .upgrade-front .upgrade-content p{font-size:10px;line-height:1.4}
- .hud-ability-card:hover,.hud-ability-card:focus-visible,.hud-ability-card.is-peeking{bottom:calc(12px + env(safe-area-inset-bottom))}
 }
 
 /* Portrait touch polish: cards stay tucked away until a deliberate hold, and
    the practice drawer shares vertical space with the passive inventory. */
 @media(max-width:760px) and (hover:none){
- .hud-ability-card:hover:not(.is-peeking):not(:focus-visible){bottom:-72px!important;filter:none;box-shadow:0 0 0 3px #101820aa,0 8px 20px #0008}
+ .ability-card-shell:has(.hud-ability-card:hover:not(.is-peeking):not(:focus-visible)){height:64px;transform:none}
+ .hud-ability-card:hover:not(.is-peeking):not(:focus-visible){filter:none;box-shadow:0 0 0 3px #101820aa,0 8px 20px #0008}
 }
 @media(max-width:760px){
  #test-bench.bench-live{bottom:calc(6px + env(safe-area-inset-bottom))}
  body.test-bench-live #dota-inventory{bottom:calc(158px + env(safe-area-inset-bottom))}
  body.test-bench-live:has(#bench-collapse[aria-expanded="true"]) #dota-inventory{visibility:hidden}
- body.test-bench-live #ultimate.is-peeking,body.test-bench-live #domain-ability.is-peeking{bottom:calc(158px + env(safe-area-inset-bottom))}
+ body.test-bench-live .ability-card-shell:has(.hud-ability-card.is-peeking){transform:translateY(calc(-146px - env(safe-area-inset-bottom)))}
 }
 
 /* Portrait HUD lanes: keep inventory, combo, and map exploration separate. */
