@@ -130,7 +130,9 @@ El mapa principal ahora continúa sin bordes mediante sectores deterministas. Co
 
 ## Mapas estacionales
 
-**Noche de Halloween** transforma el parque en una noche violeta con caminos oscuros, árboles secos, lápidas, calabazas, faroles, bruma y murciélagos. **Navidad Peruana** usa nieve, senderos claros, pinos iluminados, regalos, muñecos de nieve y nevada continua. Ambos conservan el cartoon pixel art, mundo procedural infinito, colisiones, cajas, portales, jefe final y salas cooperativas. Reutilizan el suelo base de Campo de Marte con capas de color y objetos geométricos cacheados: no descargan fondos nuevos ni crean entidades decorativas. Movimiento reducido conserva una cantidad menor de partículas.
+**Noche de Halloween** es un cementerio-parque: cruces y diagonales estrechas, anillos de lápidas, casona embrujada, criptas, cercas, filas de velas, calabazas, bruma y murciélagos. **Navidad Peruana** es una feria de plaza: explanadas, pasillos de puestos, recorridos radiales, nacimiento, arcos de luces, carrito de cacao, pinos, regalos, nieve y destellos festivos. Sus miniaturas también son composiciones propias; no son filtros del Campo de Marte.
+
+Ambos conservan cartoon pixel art, mundo procedural infinito, colisiones, cajas, portales, jefe final y salas cooperativas. El suelo jugable se genera con paletas y manchas propias sin muestrear la ilustración de Campo de Marte. Caminos, zonas y tablas de objetos cambian por escenario, mientras el cargador puede deduplicar recursos base que ya están presentes. Bruma, murciélagos, copos y luces se limitan a la ventana visible, no crean entidades y respetan pausa y movimiento reducido para cuidar los FPS.
 
 Halloween usa a El Fiscalizador como minijefe de superficie y el portal «La Procesión de Medianoche»; Navidad alterna La Paloma Brava/Makanaky y abre «El Grinch del Cercado». Sus ventanas del modo Caos están desplazadas respecto de los mapas existentes para conservar variedad. El clima, la iluminación y el ambiente sonoros respetan pausa, silencio y arenas separadas.
 
