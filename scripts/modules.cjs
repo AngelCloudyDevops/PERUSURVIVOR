@@ -268,6 +268,7 @@ module.exports = [
   {"source":"src/network/coop-extras.js","output":"js/coop-extras.js"},
   {"source":"src/network/coop-assist.js","output":"js/coop-assist.js"},
   {"source":"src/systems/run-mode.js","output":"js/run-mode.js"},
+  {"source":"src/systems/map-events.js","output":"js/map-events.js"},
   {"source":"src/network/coop-motion.js","output":"js/coop-motion.js"},
   {
     "source": "src/network/cooperative.js",
@@ -377,4 +378,5 @@ module.exports = [
 ,{source:"src/systems/character-balance.js",output:"js/character-balance.js"}
 ,{source:"src/ui/admin-balance.js",output:"js/admin-balance.js"}
 ,{source:"src/systems/cirilo-arena.js",output:"js/cirilo-arena.js"}
+,{source:"src/ui/balance-preview.js",output:"js/balance-preview.js"}
 ];

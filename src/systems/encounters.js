@@ -54,7 +54,7 @@ win(){const s=P.state;if(s.devRun&&!s.balanceTest){P.Lab.finish(true);return}con
 {title:'Corazón de la arena',description:'+40 de vida máxima y recupera toda tu vida.',action:()=>this.reward(()=>{p.maxHp+=40;p.hp=p.maxHp})},
 {title:'Ritmo del campeón',description:'Ataques un 25% más frecuentes.',action:()=>this.reward(()=>p.rate=Math.max(.1,p.rate*.75))}
 ])});},
-reward(apply){if(P.state.mode!=='reward')return;apply();P.state.mode='play';P.Core.clear();P.$('#overlay').hidden=true;P.$('#hint').textContent='JEFE DEL MAPA DERROTADO · ELZEEIN LLEGA AL MINUTO '+(P.RunMode.isChaos()?30:5)+'';P.UI.hud()},
+reward(apply){if(P.state.mode!=='reward')return;apply();P.state.mode='play';P.ChaosDirector?.bossVictory();P.Core.clear();P.$('#overlay').hidden=true;P.$('#hint').textContent='JEFE DEL MAPA DERROTADO · ELZEEIN LLEGA AL MINUTO '+(P.RunMode.isChaos()?30:5)+'';P.UI.hud()},
 bossMove(e,dt){if(e.kind==='combi'){P.ChosicanoCombat.move(e,dt);return}if(e.kind==='vulture'){P.Vulture.move(e,dt);return}const s=P.state,p=s.player;if(e.kind==='combi')e.busMoving=false;e.hit=Math.max(0,e.hit-dt);
 if(e.phase==='recover'){e.recovery-=dt;if(e.recovery<=0)e.phase='approach';return}
 if(e.phase==='charge'){const b=P.state.encounter.scene.bounds,old={x:e.x,y:e.y};e.x+=e.dx*530*dt;e.y+=e.dy*530*dt;e.windup-=dt;const blocked=P.Terrain.hit(e.x,e.y,e.r);if(blocked)P.Terrain.resolve(e,old,e.r);if(blocked||e.windup<=0||e.x<b.left+e.r||e.x>b.right-e.r||e.y<b.top+e.r||e.y>b.bottom-e.r){e.phase='recover';e.recovery=.55;e.attackT=1.8;e.x=Math.max(b.left+e.r,Math.min(b.right-e.r,e.x));e.y=Math.max(b.top+e.r,Math.min(b.bottom-e.r,e.y))}if(e.kind==='combi')P.ChosicanoArt.step(e,old);return}

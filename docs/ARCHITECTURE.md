@@ -692,6 +692,8 @@ SideralDomain.introShake deriva impulsos de los cuatro aterrizajes y la risa del
 
 `ChaosDirector` deriva su etapa de `state.mapTime`. En una transición puede añadir un prop sólido y destructible a `Terrain.props`, e invalida una vez el índice espacial y el flow field. El dibujo usa como máximo 18 motas y no crea entidades persistentes. `Encounters` registra `portal.index` y `clearedWindows`; la arena captura su índice para atribuir la victoria correcta. `DayNight.current` recibe tiempo visual escalado sin cambiar el contrato puro de `sample(t)`.
 
+MapEvents mantiene un evento acotado en el cliente individual de 30 minutos. Su calendario usa mapTime; las señales son coordenadas de evento, no actores ni colisiones. Se dibujan con primitivas en el pase de suelo. Los jefes y portales pausan y ocultan temporalmente los marcadores; el progreso se retoma al volver. ChaosDirector presenta transiciones de etapa y victoria sin cambiar el mapa ni la física.
+
 DotaItems admite cadenas con from y requiredLevel, reemplazando el objeto de la familia sin duplicar espacios ni aplicar acumulativamente el mismo modificador. Las armas marcan weaponAttack en Combat para separar críticos de daños secundarios. Las pruebas de cadenas, cupo, regeneración y reducción de perdigones se ejecutan en CI.
 chamelin-fluency.js añade exclusivamente presentación derivada de edad/elapsed. Conserva los atlas completos existentes. Captura el mapa una vez y reutiliza un lienzo para la arena (máximo una copia cada 0,16 s más el cierre), liberando ambos al salir. El remate compone el mapa bajo 96 fragmentos de la arena, sin modificar entidades ni colisiones. Partículas acotadas: 30 pulsos, 12 gotas de punta, 7 por impacto y 18 de vapor al regresar. El golpe remoto se reproduce una vez desde bit replicado; los cambios no agregan mensajes ni autoridad de daño.
 
@@ -705,3 +707,7 @@ character-balance.js captura valores originales una vez, aplica overrides a copi
 UI.dotaSelectionFx separa el feedback de equipar de selectionFx genérico. Usa DotaItems.familyFor/iconUrl y limpieza automática; no calcula efectos de combate. selectUpgrade mantiene bloqueo de doble elección y solo difiere el callback 760/1000 ms para objetos. El canvas upgrade-dota-character usa el sprite completo actual, sin deformar partes.
 
 AdminBalance conserva el grid de tarjetas entre selecciones y renderEditor reemplaza solo la ficha. Sus tarjetas usan la clase aislada balance-causa para no entrar en los selectores globales de Gacha/UI de la colección. Las búsquedas ocultan tarjetas sin redibujar sprites; la selección y el borrador no cambian el personaje elegido para jugar.
+
+BalancePreview es presentación y cálculo puro. estimate recibe copias del formulario y usa Attributes.multiplier sin Entities, Combat.cast, TestBench ni escrituras de P.state, catálogo, almacenamiento o API. Su modal se superpone al editor sin reconstruir sus inputs. El único ciclo visual usa requestAnimationFrame mientras el modal y la sesión admin están activos; al cerrar se cancela. La referencia usa un proyectil/contacto básico y distancia/defensa explícitas; no simula una partida.
+
+El build conserva sideral-domain-v2.png como fuente en Git y la excluye del paquete: el runtime usa exclusivamente v3. Esto recupera margen dentro del límite de 64 MiB sin alterar el arte activo.
