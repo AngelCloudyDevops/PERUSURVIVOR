@@ -1,12 +1,16 @@
 'use strict';
 // Escenarios de temporada con siluetas, animaciones y puntos de interés propios.
 P.SeasonalArt={
+atlas:{image:null,ready:false,failed:false},
 active(){return P.Maps.selected==='halloween'||P.Maps.selected==='navidad'},
 clock(){return P.state.paused?0:(typeof performance!=='undefined'?performance.now()/1000:(P.state.elapsed||P.state.mapTime||0))},
 near(o,range=150){const p=P.state.player;return p&&Math.hypot(p.x-o.x,p.y-o.y)<range},
+load(){const a=this.atlas;if(a.ready||a.failed||a.image||typeof Image==='undefined')return;const image=new Image();a.image=image;image.onload=()=>{a.ready=true};image.onerror=()=>{a.failed=true;a.image=null};image.src='assets/environment/halloween-terrain-atlas-v1.webp'},
+sprite(ctx,o){this.load();const a=this.atlas;if(!a.ready)return false;const variants={
+ 'haunted-house':[0,300],landmark:[0,300],crypt:[1,150],'dead-tree':[(Math.abs(Math.round(o.x+o.y))%2)?2:3,145],grave:[(Math.abs(Math.round(o.x))%2)?4:5,92],pumpkin:[6,82],fence:[7,155],'candle-row':[8,105],lamp:[9,125],'pumpkin-patch':[10,125],'cemetery-gate':[11,180]
+},entry=variants[o.kind];if(!entry)return false;const [cell,size]=entry,sx=cell%4*256,sy=Math.floor(cell/4)*256,isHouse=o.kind==='haunted-house'||o.kind==='landmark',ratio=isHouse?.82:o.kind==='fence'?.72:o.kind==='candle-row'?.78:1,dh=Math.round(size*ratio);ctx.imageSmoothingEnabled=false;if(o.flash>0){ctx.globalAlpha=.55;ctx.drawImage(a.image,sx,sy,256,256,-size/2,-dh+18,size,dh);ctx.globalAlpha=1;ctx.filter='brightness(1.35)'}ctx.drawImage(a.image,sx,sy,256,256,-size/2,-dh+18,size,dh);ctx.filter='none';if(o.kind==='grave'&&this.near(o,120)&&Math.sin(this.clock()*6+o.x)>.25){ctx.fillStyle='#d99cff';ctx.fillRect(-4,-dh*.55,8,4)}return true},
 shadow(ctx,w,y=3){P.Ambient.leafMass(ctx,1,y,Math.max(11,w*.42),6,'#17262955')},
-draw(ctx,o){const map=P.Maps.selected;if((map!=='halloween'&&map!=='navidad')||P.state.encounter)return false;const w=o.w,h=o.h;ctx.save();ctx.translate(Math.round(o.x),Math.round(o.y));this.shadow(ctx,w,o.kind==='landmark'?12:h/2-1);
-if(map==='halloween')this.halloween(ctx,o,w,h);else this.navidad(ctx,o,w,h);if(o.flash>0)o.flash-=.02;ctx.restore();return true},
+draw(ctx,o){const map=P.Maps.selected;if((map!=='halloween'&&map!=='navidad')||P.state.encounter)return false;const w=o.w,h=o.h;ctx.save();ctx.translate(Math.round(o.x),Math.round(o.y));const sprite=map==='halloween'&&this.sprite(ctx,o);if(!sprite){this.shadow(ctx,w,o.kind==='landmark'?12:h/2-1);if(map==='halloween')this.halloween(ctx,o,w,h);else this.navidad(ctx,o,w,h)}if(o.flash>0)o.flash-=.02;ctx.restore();return true},
 halloween(ctx,o,w,h){
  if(o.kind==='dead-tree'){ctx.fillStyle='#251d27';ctx.fillRect(-8,-72,16,82);ctx.fillStyle='#604051';ctx.fillRect(-5,-69,10,75);for(const [x,y,ww] of [[-27,-66,29],[3,-58,31],[-20,-40,21],[2,-34,24]]){ctx.fillStyle='#251d27';ctx.fillRect(x,y,ww,6);ctx.fillStyle='#735263';ctx.fillRect(x+2,y,ww-5,3)}ctx.fillStyle='#a66a3f';for(const [x,y] of [[-29,-69],[28,-61],[-21,-44]])ctx.fillRect(x,y,5,4)}
  else if(o.kind==='pumpkin'){ctx.fillStyle='#26302b';ctx.fillRect(-3,-30,6,8);ctx.fillStyle='#5b2b27';ctx.fillRect(-23,-24,46,31);ctx.fillStyle='#e4772f';ctx.fillRect(-19,-27,38,34);ctx.fillStyle='#ffad3d';ctx.fillRect(-7,-25,14,35);ctx.fillStyle='#2b2428';ctx.fillRect(-12,-13,7,6);ctx.fillRect(6,-13,7,6);ctx.fillRect(-8,1,17,5);ctx.fillStyle='#ffd56a';ctx.fillRect(-10,-12,4,3);ctx.fillRect(7,-12,4,3)}
