@@ -431,6 +431,18 @@
       "sourceSha256": "c8041f9e84791d61de747820cfe29b5be188a3fab2a4d3528f9966c018fb2858",
       "outputSha256": "f9036d9db80ff2e1a4b93c367683df0c02eafcf970c8f583937a90c57e129192",
       "rgbaSha256": "b4055e5f8dbe9b3c4bdf1abd09eb5ba03add597b3a306e7c556793b316ff34c2"
+    },
+    {
+      "source": "assets/ui/cirilo-domain-demon-frame-v1.png",
+      "output": "assets/ui/cirilo-domain-demon-frame-v1.webp",
+      "width": 256,
+      "height": 384,
+      "originalBytes": 113020,
+      "optimizedBytes": 42184,
+      "sourceSha256": "19befa37c59cb8a5f746d66018d279919549fdc609ceac9904ecc79afe16f8d0",
+      "outputSha256": "17aaf615637716275229346e014dd7cc8f2985eae9df14c451086902b2467702",
+      "rgbaSha256": "78f11c9113a77a2896c81456c5c21815ad6c722c7d479b135f6edd36a8e1f4a2",
+      "quality": 88
     }
   ],
   "previews": [
@@ -456,6 +468,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 73441844,
-  "optimizedBytes": 42807856
+  "originalBytes": 73554864,
+  "optimizedBytes": 42850040
 }

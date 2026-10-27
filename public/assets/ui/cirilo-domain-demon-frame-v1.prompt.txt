@@ -1,0 +1,10 @@
+Use case: stylized-concept
+Asset type: transparent game HUD frame aura for a vertical ability card
+Primary request: Create a polished demonic domain aura frame for Cirilo's ultimate-domain card. The center must remain completely transparent and unobstructed so existing card artwork stays readable.
+Subject: a symmetrical pair of compact bat-like demon wings wrapping the left and right outer edges, two elegant curved black-red horns rising from the top corners, and infernal flame wisps pooling at the bottom edge. Small ember accents may travel along the wings.
+Style/medium: clean high-detail cartoon game VFX illustration, smooth painted shapes and luminous edges, consistent with a premium ability-card fire aura; not pixel art, not photorealistic.
+Composition/framing: portrait 2:3 aspect ratio, border-only composition, all visual mass confined to a narrow perimeter; wings should not extend excessively wide; empty rectangular center occupies at least 72% of width and 78% of height.
+Lighting/mood: dramatic infernal glow, readable against both bright grass and dark maps.
+Color palette: deep crimson, black-purple shadows, hot orange-red highlights, tiny violet accents.
+Constraints: genuine transparent background and transparent center; no card artwork, no character, no face, no hands, no text, no symbols, no watermark, no rectangular backdrop; clean alpha edges; suitable for downscaling to roughly 128 by 188 pixels.
+Avoid: opaque black background, giant wings, center obstruction, typography, pixelation, excessive blur.

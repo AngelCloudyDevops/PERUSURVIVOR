@@ -5,7 +5,7 @@ P.AbilityCards={
  frames:{
   none:{family:'empty',visual:'none'},
   fire:{family:'ultimate',visual:'fire'},
-  'domain-demon':{family:'domain',visual:'fire',futureVisual:'demon'},
+  'domain-demon':{family:'domain',visual:'demon'},
   'domain-royal':{family:'domain',visual:'fire',futureVisual:'royal'},
   'domain-cosmic':{family:'domain',visual:'fire',futureVisual:'cosmic'},
   'domain-steam':{family:'domain',visual:'fire',futureVisual:'steam'}
