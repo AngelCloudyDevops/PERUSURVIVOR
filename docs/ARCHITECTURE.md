@@ -750,3 +750,6 @@ EnemyArt delega las poses y avisos al módulo: reutiliza cuadros completos 6/7 y
 
 ## Cuadros de combo
 MinionComboArt selecciona una lámina de seis cuerpos completos por familia/rango e indexa sus poses con tactic.age y los eventos autoritativos. MinionEvolution.spriteFrame la usa sólo durante una secuencia y nunca para la muerte; al terminar vuelve al atlas de caminar existente. WalkArt precarga las láminas necesarias, incluyendo duendes sólo en Navidad, con el límite de dos descargas y el reintento existentes. Se preservan fuentes PNG, prompts y auditoría de figuras/hashes; WebP de 288 px con alfa conservado es la versión de ejecución. La auditoría de partidas es un informe estático: los controladores locales de QA y scripts externos de medición no forman parte del paquete publicado.
+
+### Guía de minions
+`src/ui/minion-codex.js` adapta las definiciones compartidas de MinionTactics, MinionProfessions, Difficulty y MinionEvolution a fichas de consulta. Los retratos dibujan los cuadros completos del atlas de caminata; el selector de rango solo cambia estado de UI y carga de imágenes, sin insertar actores ni amenazas en el mundo. Lobby conserva las fichas y prácticas de jefes/minijefes y añade el filtro Minions.

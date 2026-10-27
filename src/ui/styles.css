@@ -616,3 +616,5 @@ body[data-lobby-panel=codex] #game{opacity:.08;filter:blur(8px) saturate(.45)}bo
 .collection-card-key,.collection-card-edition{z-index:4}
 .card-strip-thumb .collection-card-frame{display:none}
 @media(max-width:760px){.collectible-card-front[data-frame-visual=fire] .collectible-frame{inset:auto;left:50%;top:50%;width:calc(100% + 30px);height:calc(100% + 42px)}.collectible-card-front[data-frame-visual=demon] .collectible-frame{inset:auto;left:50%;top:50%;width:calc(100% + 38px);height:calc(100% + 50px)}}
+
+.codex-ranks{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}.codex-ranks button{padding:8px 10px;border:1px solid #756289;border-radius:6px;background:#201a2f;color:#eee0c3;font:700 11px monospace}.codex-ranks button[aria-pressed=true]{background:#e6bf6a;color:#171020;border-color:#ffe7a6}

@@ -250,6 +250,9 @@ module.exports = [
     "output": "js/skill-preview.js"
   },
   {
+    "source": "src/ui/minion-codex.js", "output": "js/minion-codex.js"
+  },
+  {
     "source": "src/ui/lobby.js",
     "output": "js/lobby.js"
   },
