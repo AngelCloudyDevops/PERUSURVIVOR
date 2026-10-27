@@ -51,3 +51,7 @@ P.CharacterProfiles.roles.sideral=['Control UR','Hace huir a los minions en un c
 
 Object.assign(P.Data.attacks.pigShotgun,{cooldown:.72,powerScale:.56,falloff:{near:165,min:.35}});
 Object.assign(P.Data.attacks.g5Kick,{cooldown:.68});
+
+P.Data.attacks.trovoShot={name:'Retaguardia de Trovo',description:'Emojis que dejan charcos dañinos durante cuatro segundos al impactar.',kind:'spread',cooldown:.8,range:420,count:1,speed:310,glyph:'POOP',color:'#a87543',damageType:'special'};
+P.Data.characters.push({id:'chamelin',name:'Chamelín Trovo',category:'Streamer · parodia',look:'chullo',atlas:'chamelin',spriteRow:0,color:'#5097cf',skin:'#d49b70',hp:125,speed:185,power:28,attack:'trovoShot'});
+P.CharacterProfiles.roles.chamelin=['Control de zonas UR','Charcos persistentes y dominio de debilitamiento.','Movilidad moderada y daño gradual.'];

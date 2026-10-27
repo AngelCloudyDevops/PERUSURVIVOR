@@ -523,3 +523,6 @@ Kingteka: durante 8 s los minions normales se convierten en gallinazos, reciben 
 Las cartas de nivel se aplazan durante las presentaciones de ultis y las escenas de dominio; la experiencia permanece acumulada. Sideral permite elegir durante el combate de su habitación, después de la entrada y antes de la salida. Individual y cooperativo comparten el bloqueo; los niveles pendientes se entregan en orden al volver al combate.
 
 Las cinemáticas a pantalla completa ocultan todas las capas DOM del HUD (vida, minijefes, inventario, combos, rendimiento y controles). El bucle sincroniza cinematic-only antes de renderizar; se restaura al volver al combate, pausar o salir. El combate interactivo de los dominios conserva sus controles.
+
+## Chamelín Trovo · El baño de Trovo
+UR de control de zonas. Sus emojis salen desde atrás y dejan charcos de 4 s, daño cada 0,5 s sin acumulación por solapamiento. R activa una entrada a pantalla completa de 2,6 s, un baño temporal de 8 s y una mordida de 0,6 s. Chullo y barril cubren al personaje durante el dominio. Chorros: defensa −20 % y velocidad −25 % mientras recibe impactos. Mordida única: instakill a creeps, daño actual ×3 a minijefes y ×1,90 a jefes, sin multiplicadores de vulnerabilidad adicionales. Prueba de administrador: /?practice=chamelin, con recarga y objetivos/jefes del laboratorio.

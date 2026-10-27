@@ -362,4 +362,6 @@ module.exports = [
 , {source:"src/rendering/dragon-epic.js",output:"js/dragon-epic.js"}, {source:"src/network/friends.js",output:"js/friends.js"}
 , {source:"src/systems/chosicano-domain.js",output:"js/chosicano-domain.js"}
 , {source:"src/rendering/chosicano-road.js",output:"js/chosicano-road.js"}
+ ,{source:"src/systems/chamelin.js",output:"js/chamelin.js"}
+ ,{source:"src/rendering/chamelin-art.js",output:"js/chamelin-art.js"}
 ];

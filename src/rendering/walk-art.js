@@ -19,7 +19,7 @@ pump(){while(this.active<2&&this.queue.length){const sheet=this.queue.shift();th
  image.onload=()=>{try{this.measure(sheet);finish(true)}catch{finish(false)}};image.onerror=()=>finish(false);image.src=this.url(sheet.id);
 }},
 url(id){if(id==='makanaky'||id==='attack-makanaky')return 'assets/characters/makanaky-motion-v2.webp';if(this.integratedIds.includes(id))return 'assets/minions/'+id+'-integrated-v1.webp';if(id.startsWith('attack-'))return this.directionalIds.includes(id.slice(7))?'assets/aim/'+id.slice(7)+'-aim-v1.webp':'assets/attacks/'+id.slice(7)+'-attack-v1.webp';return 'assets/walks/'+id+'-walk-'+(P.Data.characters.some(c=>c.id===id)?'v2':'v1')+'.webp'},
-needed(){const id=P.Data.characters[P.state.chosen||0].id,actor=id==='sideral'?[]:[id,'attack-'+id];return [...actor,...Array.from({length:6},(_,i)=>'enemy-'+i),...this.integratedIds]},
+needed(){const id=P.Data.characters[P.state.chosen||0].id,actor=['sideral','chamelin'].includes(id)?[]:[id,'attack-'+id];return [...actor,...Array.from({length:6},(_,i)=>'enemy-'+i),...this.integratedIds]},
 init(){for(const id of this.needed())this.load(id)},
 readyForStart(){return typeof Image==='undefined'||this.needed().every(id=>this.sheets[id]?.ready)},
 waitForStart(action,retry=false){const token=++this.waitToken;P.UI.show('Preparando las caminatas…','Cargando los pasos de tu personaje y los rivales.',[{title:'Volver al menú',action:()=>{this.waitToken++;P.UI.menu()}}]);
