@@ -519,3 +519,7 @@ Sideral: al cargar su atlas se conserva la figura conectada principal de cada cu
 Sideral: ataque visual de preparación, grito y recuperación con retroceso continuo; figuras completas, altura visible normalizada y pies anclados. Se omite el cuadro de susto. No cambia el daño ni la cadencia.
 
 Kingteka: durante 8 s los minions normales se convierten en gallinazos, reciben ×2 de daño del equipo, pierden ataques y contacto, y se abalanzan con zigzag hacia Kingteka en grupos alrededor de él. Al volver se detienen y muestran «¡VUELVE!» durante 0,6 s sin atacar. Jefes y minijefes conservan forma y ataques; reciben ×1,2 de daño. Cofres imitadores quedan excluidos.
+
+Las cartas de nivel se aplazan durante las presentaciones de ultis y las escenas de dominio; la experiencia permanece acumulada. Sideral permite elegir durante el combate de su habitación, después de la entrada y antes de la salida. Individual y cooperativo comparten el bloqueo; los niveles pendientes se entregan en orden al volver al combate.
+
+Las cinemáticas a pantalla completa ocultan todas las capas DOM del HUD (vida, minijefes, inventario, combos, rendimiento y controles). El bucle sincroniza cinematic-only antes de renderizar; se restaura al volver al combate, pausar o salir. El combate interactivo de los dominios conserva sus controles.
