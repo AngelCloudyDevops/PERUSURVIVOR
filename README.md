@@ -68,7 +68,7 @@ Estrellas · mejoras permanentes · rangos de partida · casos de balance
 
 ## Primera ficha completa: Makanaky · La Realeza
 
-**Estado:** los stats, ataque, evolución y dominio descritos abajo ya existen. La pasiva es el primer diseño del nuevo sistema y debe implementarse y validarse antes de marcarse como activa.
+**Estado:** ficha activa. Los stats, ataque, evolución, dominio y la pasiva descritos abajo funcionan tanto en individual como bajo autoridad del servidor cooperativo. La variante minijefe conserva su propio balance y no hereda esta pasiva.
 
 | Campo | Base actual |
 |---|---:|
@@ -96,7 +96,7 @@ Fortaleza: presión cuerpo a cuerpo, movilidad alta y golpes que cubren un arco.
 - El HUD muestra cuatro segmentos `GA`; el cuarto enciende un contorno rosado y el Golpe Real muestra una corona breve sobre el impacto.
 - En cooperativo la sala/servidor es autoritativa. La pasiva no debe ejecutar dos veces un impacto ni confiar en el contador visual del cliente.
 
-La intención es que Makanaky busque una ruta segura para mantenerse cerca, encadene cuatro golpes y decida si arriesgarse a buscar el remate. No es un bono permanente: apuntar mal o abandonar el combate corta la ventaja.
+La intención es que Makanaky busque una ruta segura para mantenerse cerca, encadene cuatro golpes y decida si arriesgarse a buscar el remate. No es un bono permanente: apuntar mal o abandonar el combate corta la ventaja. Sus mejoras permanentes y estrellas escalan vida, daño y recarga mediante el sistema general; la pasiva multiplica el valor resultante sin crear una segunda progresión oculta.
 
 ### Kit de Makanaky
 
@@ -106,7 +106,7 @@ La intención es que Makanaky busque una ruta segura para mantenerse cerca, enca
 - **Ulti Q:** espacio reservado actualmente.
 - **Dominio R — ¡BÓTAME TU GA!:** carga con 35 bajas; entrada de 3 s, combate de 9 s y salida de 1,35 s. Su combo interno y la racha del dominio son sistemas separados de la pasiva del ataque normal.
 
-Antes de implementar la pasiva se medirán los valores actuales y después los mismos escenarios con la pasiva: enemigo cercano, grupo frontal, jefe móvil, falla deliberada, pérdida de objetivo, evolución, pausa, movimiento reducido y dos jugadores. El objetivo no es que Makanaky gane todas las pruebas, sino que su ventaja aparezca cuando mantiene el combo y desaparezca cuando no consigue conectar.
+La pasiva se valida con los mismos escenarios base y con la racha activa: enemigo cercano, grupo frontal, jefe móvil, falla deliberada, pérdida de objetivo, evolución, pausa, movimiento reducido y dos jugadores. El objetivo no es que Makanaky gane todas las pruebas, sino que su ventaja aparezca cuando mantiene el combo y desaparezca cuando no consigue conectar.
 
 ## Estándar obligatorio de tarjetas de ulti
 Las entradas de ulti usan 40 % de ancho, 82 % de alto, x = 0, y = 8 %, 1,3 s, borde diagonal con marco oscuro y retrato dedicado de cintura arriba. Render a resolución de pantalla, sin margen ni ampliación del lienzo del dominio. Las vistas de espalda deben usar sprites cartoon pixel art completos y contorneados, nunca figuras geométricas de sustitución. Detalles y assets: [Contrato visual de ultis](docs/ULTIMATE_ART.md).

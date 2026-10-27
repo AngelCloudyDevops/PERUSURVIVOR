@@ -861,6 +861,12 @@ Solo el núcleo de 30 unidades activa la entrada; pasar por el borde visual no t
 - No se dibuja una segunda franja informativa detrás del dock: nombre, ataque y escenario aparecen una sola vez en sus zonas vigentes.
 - Dominios, cinemáticas y arenas que reemplazan el combate normal ocultan el selector.
 - No se admiten HUD de armas exclusivos por personaje: las diferencias se modelan como datos y comportamiento dentro del componente compartido.
+## Pasiva de Makanaky: Racha de la Realeza
+
+El ataque principal y su evolución generan una marca GA cuando dañan al menos a un rival. Las tres primeras marcas reducen 5 % del intervalo y aumentan 3 % del alcance cada una. El cuarto impacto es Golpe Real: ×1,35 de daño y ×1,40 de empuje, presenta una corona de impacto y consume la racha. Fallar un ataque ejecutado o pasar 1,8 s sin conectar reinicia las marcas; recibir daño no las elimina. Objetos, campos, ulti y expansión de dominio no generan ni consumen GA.
+
+El HUD muestra cuatro segmentos y el tiempo restante. La ficha de Causas expone activación, acumulaciones, remate y reinicio. El estado es parte del jugador serializable: en cooperativo solo la simulación del servidor lo modifica y los clientes se limitan a representarlo. El Makanaky minijefe usa su catálogo propio y no recibe la pasiva. Las mejoras permanentes y estrellas alteran los stats base mediante la progresión general; los multiplicadores de la pasiva se aplican después y no escalan por separado.
+
 ## Vestíbulo principal
 
 La portada de menú funciona como centro de navegación: presenta al causa seleccionado con dos compañeros cosméticos y ofrece accesos directos a partida, colección, Gacha, tienda, mejoras, cooperativo, opciones, laboratorio de jefes y Causapedia. Abrir una sección no inicia ni modifica una partida. La Causapedia ocupa una pantalla propia inspirada en un archivo de colección: ficha grande a la izquierda, cuadrícula compacta al centro y filtros con contadores a la derecha; en móvil se apilan filtros, ficha y colección. Enumera los jefes de portal y minijefes desde sus catálogos jugables para que vida, velocidad y ataques no se desactualicen al ajustar el combate. La ficha seleccionada reutiliza el sprite real y muestra arena, estadísticas, lista de ataques y segunda fase. «Probar jefe» enlaza la entrada existente del laboratorio; las amenazas estacionales sin prueba aislada conservan la ficha informativa sin inventar un combate alternativo.

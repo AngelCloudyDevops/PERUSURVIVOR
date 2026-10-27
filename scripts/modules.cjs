@@ -393,4 +393,5 @@ module.exports = [
 , {source:"src/ui/reference-menus.js",output:"js/reference-menus.js"}
 , {source:"src/ui/lobby-complete.js",output:"js/lobby-complete.js"}
 , {source:"src/systems/stat-runtime.js",output:"js/stat-runtime.js"}
+, {source:"src/systems/passives.js",output:"js/passives.js"}
 ];
