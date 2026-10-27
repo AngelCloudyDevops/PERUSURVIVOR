@@ -26,10 +26,12 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
  const friends=require('./friends.cjs').createFriends({db,reply,body,now});
  const gifts=require('./gifts.cjs').createGifts({db,session,reply});
  const admin=require('./admin.cjs').createAdmin({db,reply,body,now,notify:gifts.notify});
+ const balance=require('./balance.cjs').createBalance({db,reply,body,now});
  async function handle(req,res){try{
   const url=new URL(req.url,'http://localhost');if(!url.pathname.startsWith('/api/'))return false;
   if(req.method!=='GET'&&!origins.includes(req.headers.origin)){reply(res,403,{error:'Origen no permitido'});return true}
   const route=url.pathname,user=session(req);
+  if(route==='/api/balance'&&req.method==='GET'){await balance.handle(req,res,user,url,()=>session(req));return true}
   if(route==='/api/account'&&req.method==='GET'){reply(res,200,{user:user||null});return true}
   if(['/api/register','/api/login','/api/recover'].includes(route)&&req.method==='POST'){
    if(!limit(req)||running>=4){reply(res,429,{error:'Demasiados intentos. Vuelve a intentarlo más tarde.'});return true}
@@ -53,6 +55,7 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
   if(req.headers['x-account-id']!==user.id){reply(res,409,{error:'La sesión cambió en otra pestaña. Recarga la página antes de guardar.'});return true}
   if(route==='/api/friends'||route.startsWith('/api/friends/')){await friends.handle(req,res,user,url);return true}
   if(route==='/api/gifts'&&req.method==='GET'){gifts.sync(req,res,user,url);return true}
+  if(route==='/api/admin/balance'){await balance.handle(req,res,user,url,()=>session(req));return true}
   if(route.startsWith('/api/admin/')){await admin.handle(req,res,user,url,()=>session(req));return true}
   if(route==='/api/logout'&&req.method==='POST'){db.prepare('DELETE FROM sessions WHERE user_id=?').run(user.id);cookie(res,'',0);reply(res,200,{ok:true});return true}
   if(route==='/api/save'&&req.method==='GET'){const row=db.prepare('SELECT * FROM saves WHERE user_id=?').get(user.id);reply(res,200,row?{revision:row.revision,data:JSON.parse(row.payload),updatedAt:row.updated_at}:{revision:0,data:null});return true}
@@ -63,6 +66,6 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
   reply(res,404,{error:'Ruta no encontrada'});return true;
  }catch(e){if(!res.headersSent)reply(res,e.status||500,{error:e.status?e.message:'No se pudo completar la operación'});else res.end();return true}}
  function owns(user,id){if(!user)return true;if(user.role==='admin'||['cristorata','cuy','paloma','makanaky'].includes(id))return true;const save=db.prepare('SELECT payload FROM saves WHERE user_id=?').get(user.id);let unlocked=[];try{unlocked=JSON.parse(save?.payload||'{}').progress?.unlocked||[]}catch{}return unlocked.includes(id)||!!db.prepare('SELECT id FROM admin_actions WHERE target_id=? AND character_id=? LIMIT 1').get(user.id,id)}
- return {handle,session,owns,friends,closeStreams:gifts.closeStreams,close:()=>{gifts.closeStreams();db.close()}};
+ return {handle,session,owns,friends,balance,closeStreams:gifts.closeStreams,close:()=>{gifts.closeStreams();db.close()}};
 }
 module.exports={createAccounts};

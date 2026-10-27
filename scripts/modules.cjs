@@ -372,4 +372,6 @@ module.exports = [
 ,{source:"src/systems/chamelin-arena.js",output:"js/chamelin-arena.js"}
 ,{source:"src/rendering/chamelin-bathroom.js",output:"js/chamelin-bathroom.js"}
 ,{source:"src/rendering/chamelin-fluency.js",output:"js/chamelin-fluency.js"}
+,{source:"src/systems/character-balance.js",output:"js/character-balance.js"}
+,{source:"src/ui/admin-balance.js",output:"js/admin-balance.js"}
 ];
