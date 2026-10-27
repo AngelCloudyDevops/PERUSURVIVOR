@@ -848,3 +848,6 @@ Solo el núcleo de 30 unidades activa la entrada; pasar por el borde visual no t
 - No se dibuja una segunda franja informativa detrás del dock: nombre, ataque y escenario aparecen una sola vez en sus zonas vigentes.
 - Dominios, cinemáticas y arenas que reemplazan el combate normal ocultan el selector.
 - No se admiten HUD de armas exclusivos por personaje: las diferencias se modelan como datos y comportamiento dentro del componente compartido.
+## Vestíbulo principal
+
+La portada de menú funciona como centro de navegación: presenta al causa seleccionado con dos compañeros cosméticos y ofrece accesos directos a partida, colección, Gacha, tienda, mejoras, cooperativo, opciones, laboratorio de jefes y Causapedia. Abrir una sección no inicia ni modifica una partida. La Causapedia inicial enumera los jefes de portal y minijefes desde sus catálogos jugables para que vida, velocidad y cantidad de ataques no se desactualicen al ajustar el combate.
