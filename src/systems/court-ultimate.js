@@ -46,4 +46,4 @@ if(typeof document!=='undefined'){const style=document.createElement('style');st
 }
 
 // Shared authoritative hooks: expiry uses the simulation clock, so pause freezes both effects.
-{const hurt=P.Entities.hurt,hit=P.PlayerFeedback.hit;P.Entities.hurt=function(e,damage,...args){return hurt.call(this,e,damage*(P.Court.verdict(e)?1.2:1),...args)};P.PlayerFeedback.hit=function(p,...args){if(P.Court.shield(p))return 0;return hit.call(this,p,...args)}}
+{const hurt=P.Entities.hurt,hit=P.PlayerFeedback.hit;P.Entities.hurt=function(e,damage,...args){return hurt.call(this,e,damage*(P.Court.verdict(e)&&!args[1]?.trovoBite?1.2:1),...args)};P.PlayerFeedback.hit=function(p,...args){if(P.Court.shield(p))return 0;return hit.call(this,p,...args)}}

@@ -316,3 +316,5 @@ body.road-scene #boss-qte{visibility:hidden}
 /* A cinematic owns the canvas: cover current and future DOM HUDs, including nested explicit visibility. */
 body.cinematic-only > :not(#game):not(script):not(style):not(link),
 body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:hidden!important;pointer-events:none!important}
+
+.trovo-domain #test-bench,.trovo-domain #time,.trovo-domain #level,.trovo-domain #hint,.trovo-domain #dota-inventory,.trovo-domain #domain-ability{visibility:hidden}

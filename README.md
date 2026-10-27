@@ -524,4 +524,7 @@ Las cartas de nivel se aplazan durante las presentaciones de ultis y las escenas
 
 Las cinemáticas a pantalla completa ocultan todas las capas DOM del HUD (vida, minijefes, inventario, combos, rendimiento y controles). El bucle sincroniza cinematic-only antes de renderizar; se restaura al volver al combate, pausar o salir. El combate interactivo de los dominios conserva sus controles.
 
+## Chamelín Trovo · El baño de Trovo
+UR de control de zonas. Sus emojis salen desde atrás y dejan charcos de 4 s, daño cada 0,5 s sin acumulación por solapamiento. R activa una entrada a pantalla completa de 2,6 s, un baño temporal de 8 s y una mordida de 0,6 s. Chullo y barril cubren al personaje durante el dominio. Chorros: defensa −20 % y velocidad −25 % mientras recibe impactos. Mordida única: instakill a creeps, daño actual ×3 a minijefes y ×1,90 a jefes, sin multiplicadores de vulnerabilidad adicionales. Prueba de administrador: /?practice=chamelin, con recarga y objetivos/jefes del laboratorio.
+
 Sideral: los aterrizajes del retroceso sacuden brevemente la cámara (último salto más fuerte), seguidos por un temblor leve de risa. Desplazamientos enteros sin reescalar sprites; movimiento reducido desactiva todo temblor. El dominio ofrece 8 s para auxiliar o saquear: jefes/minijefes están inmóviles e inmunes, con reacción pixel art de asco. Al terminar ambos jugadores vivos conservan al menos 0,8 s de protección. No puede iniciarse sobre otra cinemática a pantalla completa.
