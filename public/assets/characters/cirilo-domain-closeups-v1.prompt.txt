@@ -1,0 +1,5 @@
+Use case: stylized-concept
+Asset: transparent 4x3 cinematic sprite atlas for Cirilo's domain expansion.
+Frames: hand seal start and completion; chained and transformed right arm; chained and transformed left arm; chained and transformed right leg; chained and transformed left leg; chained human face; horned demon face roaring and breaking the final chain.
+Style: polished high-resolution 2D cartoon game art matching Cirilo's existing black cap, beard, clothing, red-black demon suit, lava cracks, horns and wings.
+Constraints: one isolated close-up per cell, transparent background, generous padding, no full bodies, no cross-cell fragments, no text or watermark.
