@@ -15,9 +15,7 @@ P.AbilityCards={
  },
  definition(id,kind){const entry=this.entries[id];return entry&&(!kind||entry.kind===kind)?entry:null},
  syncReadyFx(){
-  const fx=P.$('#ultimate-ready-fx'),ultimate=P.$('#ultimate'),domain=P.$('#domain-ability');if(!fx)return;
-  const ultimateReady=!!ultimate&&!ultimate.hidden&&ultimate.classList.contains('ability-ready'),domainReady=!!domain&&!domain.hidden&&domain.classList.contains('ability-ready'),onDomain=!ultimateReady&&domainReady;
-  fx.classList.toggle('is-ready',ultimateReady||domainReady);fx.classList.toggle('is-domain',onDomain);
+  for(const [kind,id] of [['ultimate','ultimate'],['domain','domain-ability']]){const button=P.$('#'+id),slot=P.$('#'+kind+'-ability-slot'),ready=!!button&&!button.hidden&&button.classList.contains('ability-ready');slot?.classList.toggle('is-ready',ready)}
  },
  apply(button,id,kind,charge,ready=false,active=false){
   if(!button)return;const entry=this.definition(id,kind),empty=id==='empty'||!entry;

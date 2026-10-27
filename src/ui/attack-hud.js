@@ -1,9 +1,9 @@
 'use strict';
 // Contrato visual común: tres slots de ataque para todo el roster, sin inventar habilidades.
 P.AttackHud={
- dock(){if(typeof document==='undefined')return null;let dock=P.$('#combat-dock');if(!dock){dock=document.createElement('div');dock.id='combat-dock';dock.setAttribute('aria-label','Controles de combate');const attacks=document.createElement('div'),abilities=document.createElement('div'),readyFx=document.createElement('span');attacks.id='attack-dock-slot';abilities.id='ability-dock';readyFx.id='ultimate-ready-fx';readyFx.setAttribute('aria-hidden','true');abilities.append(readyFx);dock.append(P.$('#dota-inventory'),attacks,abilities);for(const node of [P.$('#ultimate'),P.$('#domain-ability')])if(node)abilities.append(node);document.body.append(dock)}return dock},
+ dock(){if(typeof document==='undefined')return null;let dock=P.$('#combat-dock');if(!dock){dock=document.createElement('div');dock.id='combat-dock';dock.setAttribute('aria-label','Controles de combate');const attacks=document.createElement('div'),abilities=document.createElement('div');attacks.id='attack-dock-slot';abilities.id='ability-dock';const shell=kind=>{const slot=document.createElement('div');slot.id=kind+'-ability-slot';slot.className='ability-card-shell';slot.dataset.abilityKind=kind;for(const cls of ['ability-fire-back','ability-card-foil','ability-fire-front','ability-ready-embers']){const layer=document.createElement('span');layer.className=cls;layer.setAttribute('aria-hidden','true');slot.append(layer)}return slot},ultimate=shell('ultimate'),domain=shell('domain');abilities.append(ultimate,domain);dock.append(P.$('#dota-inventory'),attacks,abilities);const q=P.$('#ultimate'),r=P.$('#domain-ability');if(q)ultimate.append(q);if(r)domain.append(r);document.body.append(dock)}return dock},
  attackSlot(){return this.dock()?.querySelector('#attack-dock-slot')||null},
- abilitySlot(){return this.dock()?.querySelector('#ability-dock')||null},
+ abilitySlot(kind){const dock=this.dock();return kind?dock?.querySelector('#'+kind+'-ability-slot')||null:dock?.querySelector('#ability-dock')||null},
  slots(p){
   if(!p)return[];
   if(p.id==='kingteka'){
