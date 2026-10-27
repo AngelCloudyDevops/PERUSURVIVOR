@@ -279,16 +279,21 @@ body.road-scene #boss-qte{visibility:hidden}
 #dota-inventory{position:fixed;left:calc(50% - 478px);right:auto;top:auto;bottom:18px;z-index:31;min-width:220px;max-width:230px}
 #dota-inventory[hidden]{display:none}
 .hud-ability-card{position:fixed;z-index:30;bottom:-132px;width:128px;height:188px;padding:8px 7px 12px;display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden;border:2px solid #c2b08f;border-radius:10px 10px 0 0;background-color:#202b35;color:#fff0d2;font:800 10px/1.25 monospace;letter-spacing:.25px;text-shadow:1px 2px #111;box-shadow:0 0 0 3px #101820aa,0 8px 20px #0008;cursor:pointer;transition:bottom .22s ease,filter .22s ease,box-shadow .22s ease}
-.hud-ability-card:hover,.hud-ability-card:focus-visible{bottom:18px;filter:brightness(1.08);box-shadow:0 0 0 3px #101820aa,0 0 18px #f1c86777}
+.hud-ability-card:hover,.hud-ability-card:focus-visible,.hud-ability-card.is-peeking{bottom:18px;filter:brightness(1.08);box-shadow:0 0 0 3px #101820aa,0 0 18px #f1c86777}
 .hud-ability-card:disabled{cursor:default}
 .hud-ability-card:disabled:hover{filter:none}
-.hud-ability-card:after{content:"Q";position:absolute;top:8px;left:8px;display:grid;place-items:center;width:25px;height:25px;border:1px solid #f2d49b;background:#111923dc;color:#f6e6c4;font:900 13px monospace}
+.hud-ability-card:after{content:"Q";position:absolute;z-index:3;top:8px;left:8px;display:grid;place-items:center;width:25px;height:25px;border:1px solid #f2d49b;background:#111923dc;color:#f6e6c4;font:900 13px monospace}
 #domain-ability:after{content:"R";border-color:#c8a4ef;color:#e5d5ff}
 .hud-ability-card[data-card-art="empty"]:after{border-color:#78828a;background:#262d33;color:#9aa4ad}
 #ultimate{left:calc(50% + 244px)}
 #domain-ability{left:calc(50% + 382px);border-color:#a57bd7}
 .hud-ability-card{background-image:linear-gradient(180deg,#0e172622 30%,#101822 96%),linear-gradient(135deg,#394855,#18232d);background-position:center;background-size:cover}
-#ultimate[data-card-art="kingteka"]{background-image:linear-gradient(180deg,#0e172622 25%,#101822 96%),url("/assets/characters/kingteka-ultimate-portrait-v1.webp")}
+#ultimate[data-card-art="kingteka"]{background-image:linear-gradient(180deg,#0e172622 12%,#10182222 55%,#101822 96%),url("/assets/cards/kingteka-gallinazo-fullart-v1.webp")}
+#ultimate[data-card-art="kingteka"]:before{content:"";position:absolute;z-index:2;top:0;left:0;width:var(--charge-progress,0%);height:3px;background:linear-gradient(90deg,#ffe8a2,#f4bd4e 72%,#fff1b8);box-shadow:0 0 7px #ffd15c;transition:width .2s linear;pointer-events:none}
+#ultimate.ultimate-ready{border-color:#ffe09a;animation:ultimate-ready-glow 1.45s ease-in-out infinite alternate}
+#ultimate.ultimate-ready:before{width:100%;height:4px;background:linear-gradient(90deg,#fff0b8,#ffb936 48%,#fff4cc);box-shadow:0 0 9px #ffd45f,0 0 17px #ff873d}
+#ultimate.is-peeking{filter:brightness(1.1)}
+@keyframes ultimate-ready-glow{from{box-shadow:0 0 0 3px #101820aa,0 0 8px 2px #f0b83e88,inset 0 0 8px #ffb13218}to{box-shadow:0 0 0 3px #101820aa,0 0 17px 5px #ff9b4266,inset 0 0 18px #ffd45f25}}
 #domain-ability[data-card-art="makanaky"]{background-image:linear-gradient(180deg,#0e172622 25%,#101822 96%),url("/assets/characters/makanaky-domain-portrait-v1.webp")}
 #domain-ability[data-card-art="sideral"]{background-image:linear-gradient(180deg,#0e172622 25%,#101822 96%),url("/assets/characters/sideral-domain-v3.png")}
 #ultimate[data-card-art="empty"]{border-color:#65717c;background-image:repeating-linear-gradient(135deg,#ffffff0c 0 10px,transparent 10px 22px),linear-gradient(135deg,#3b4249,#1b2229 62%);color:#9aa4ad}
@@ -300,13 +305,13 @@ body.road-scene #boss-qte{visibility:hidden}
  .dota-inventory-slot{grid-template-rows:28px 14px 8px;width:38px;min-height:54px}
  .dota-inventory-icon{width:26px;height:26px}
  .hud-ability-card{width:min(70px,18vw);height:118px;bottom:-72px;padding:6px 3px 8px;font-size:8px;border-radius:8px 8px 0 0;transition:bottom .18s ease}
- .hud-ability-card:hover,.hud-ability-card:focus-visible{bottom:84px}
+ .hud-ability-card:hover,.hud-ability-card:focus-visible,.hud-ability-card.is-peeking{bottom:84px}
  #ultimate{left:auto;right:calc(50% + 112px)}
  #domain-ability{left:auto;right:8px}
  #weapon-bar{width:min(220px,56vw);bottom:8px;gap:4px;padding:5px}
  #weapon-bar button{min-width:0;flex:1;padding:7px 4px;font-size:8px}
 }
-@media(prefers-reduced-motion:reduce){.hud-ability-card{transition:none}}
+@media(prefers-reduced-motion:reduce){.hud-ability-card{transition:none}#ultimate.ultimate-ready{animation:none;box-shadow:0 0 0 3px #101820aa,0 0 10px 2px #f0b83e88}}
 
 /* A cinematic owns the canvas: cover current and future DOM HUDs, including nested explicit visibility. */
 body.cinematic-only > :not(#game):not(script):not(style):not(link),
