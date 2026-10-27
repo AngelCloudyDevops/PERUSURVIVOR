@@ -113,6 +113,18 @@
       "quality": 88
     },
     {
+      "source": "assets/cards/kingteka-gallinazo-ultimate-fullart-v2.png",
+      "output": "assets/cards/kingteka-gallinazo-ultimate-fullart-v2.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 646140,
+      "optimizedBytes": 47684,
+      "sourceSha256": "36f0e48181a2518ca509cf575d083f1e125ddb9d53a77c7ac01bd397b716ace0",
+      "outputSha256": "2af8de2b909828fd033e7abd4115801a710a509878ce7ded95cd319eaacb08ef",
+      "rgbaSha256": "a37afc03bf80867b925355a388eaa64a93f5da494566945d6b6d30337958f7a1",
+      "quality": 60
+    },
+    {
       "source": "assets/cards/kingteka-golpe-fullart-v1.png",
       "output": "assets/cards/kingteka-golpe-fullart-v1.webp",
       "width": 1024,
@@ -153,10 +165,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 1773088,
-      "optimizedBytes": 1245400,
+      "optimizedBytes": 205038,
       "sourceSha256": "2f1958e0285b099e345e4203199a4a05418786a9b66a1a89329f9cbafb287f4e",
-      "outputSha256": "99ec631a329360270fe44856d621dcc88c29746165799583633a8fa278b83e9b",
-      "rgbaSha256": "fb6beb889a49b4981da511da0d5636b39938011faebc855b4fe2185c85cba75a"
+      "outputSha256": "d12ce6b811834305c8ea253acbbb94d135420a3a062ed533067eaad229612ae5",
+      "rgbaSha256": "fb6beb889a49b4981da511da0d5636b39938011faebc855b4fe2185c85cba75a",
+      "quality": 85
     },
     {
       "source": "assets/characters/powers-atlas-v1.png",
@@ -358,6 +371,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 67675638,
-  "optimizedBytes": 45204880
+  "originalBytes": 68321778,
+  "optimizedBytes": 44212202
 }
