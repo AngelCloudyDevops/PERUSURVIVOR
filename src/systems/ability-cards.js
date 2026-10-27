@@ -10,7 +10,7 @@ P.AbilityCards={
   paloma:{kind:'ultimate',art:'assets/cards/paloma-bandada-ultimate-fullart-v1.webp'},
   makanaky:{kind:'domain',state:'domain',label:'DOMINIO',art:'assets/cards/makanaky-domain-fullart-v1.webp'},
   sideral:{kind:'domain',state:'sideralDomain',label:'DOMINIO',art:'assets/cards/sideral-domain-fullart-v1.webp'},
-  cirilo:{kind:'domain',state:'ciriloDomain',label:'AUDIENCIA',art:'assets/characters/cirilo-domain-transform-v2.webp'},
+  cirilo:{kind:'domain',state:'ciriloDomain',label:'AUDIENCIA',art:'assets/cards/cirilo-audiencia-domain-fullart-v1.webp'},
   chamelin:{kind:'domain',state:'chamelinDomain',label:'BAÑO DE TROVO',art:'assets/cards/chamelin-domain-fullart-v1.webp'}
  },
  definition(id,kind){const entry=this.entries[id];return entry&&(!kind||entry.kind===kind)?entry:null},
