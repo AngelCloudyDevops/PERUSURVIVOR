@@ -707,3 +707,7 @@ character-balance.js captura valores originales una vez, aplica overrides a copi
 UI.dotaSelectionFx separa el feedback de equipar de selectionFx genérico. Usa DotaItems.familyFor/iconUrl y limpieza automática; no calcula efectos de combate. selectUpgrade mantiene bloqueo de doble elección y solo difiere el callback 760/1000 ms para objetos. El canvas upgrade-dota-character usa el sprite completo actual, sin deformar partes.
 
 AdminBalance conserva el grid de tarjetas entre selecciones y renderEditor reemplaza solo la ficha. Sus tarjetas usan la clase aislada balance-causa para no entrar en los selectores globales de Gacha/UI de la colección. Las búsquedas ocultan tarjetas sin redibujar sprites; la selección y el borrador no cambian el personaje elegido para jugar.
+
+BalancePreview es presentación y cálculo puro. estimate recibe copias del formulario y usa Attributes.multiplier sin Entities, Combat.cast, TestBench ni escrituras de P.state, catálogo, almacenamiento o API. Su modal se superpone al editor sin reconstruir sus inputs. El único ciclo visual usa requestAnimationFrame mientras el modal y la sesión admin están activos; al cerrar se cancela. La referencia usa un proyectil/contacto básico y distancia/defensa explícitas; no simula una partida.
+
+El build conserva sideral-domain-v2.png como fuente en Git y la excluye del paquete: el runtime usa exclusivamente v3. Esto recupera margen dentro del límite de 64 MiB sin alterar el arte activo.
