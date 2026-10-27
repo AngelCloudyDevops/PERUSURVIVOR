@@ -8,7 +8,7 @@ reset(){this.revision++;this.flow=null;const id=P.Maps.current().id;const specs=
 ]:id==='halloween'?[
 ['dead-tree',-360,-190,58,48],['crypt',350,-170,82,58],['fence',-620,210,128,34],['grave',590,260,54,36],['pumpkin-patch',-230,230,78,42],['lamp',250,300,18,30],['candle-row',-450,430,86,18],['grave',480,-330,54,36]
 ]:id==='navidad'?[
-['market-stall',-370,-185,104,48],['cocoa-cart',350,-155,82,44],['snowman',-610,210,50,38],['light-arch',590,260,118,28],['gift',-220,230,42,38],['lamp',250,300,18,30],['nativity',-450,430,92,46],['pine',470,-330,60,50]
+['market-stall',-370,-185,104,48],['cocoa-cart',350,-155,82,44],['snowman',-610,210,50,38],['light-arch',590,260,118,28],['gift',-220,230,42,38],['lamp',250,300,18,30],['nativity',-450,430,92,46],['pine',470,-330,60,50],['paneton-table',170,455,96,42]
 ]:[
 ['wall',-330,-80,260,45],['wall',360,80,250,45],['wall',-420,330,45,220],['wall',450,-210,45,200],['rock',-140,340,90,65],['rock',150,-240,100,70],['wall',-200,480,240,45]
 ];this.props=specs.map(([kind,x,y,w,h],i)=>({kind,x,y,w,h,id:i,solid:true,hp:Infinity}));
