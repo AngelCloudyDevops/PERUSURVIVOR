@@ -1,6 +1,6 @@
 'use strict';
 P.AdminBalance={selected:'chamelin',
- allowed(){return P.Account.user?.role==='admin'},
+ allowed(){const user=P.Account.user;return user?.role==='admin'||user?.username==='reysuperior'},
  async open(){if(!this.allowed()||P.state.mode!=='menu')return;this.dialog.showModal();await this.load()},
  async load(){const owner=P.Account.user;this.status.textContent='Cargando balance…';try{const data=await P.Account.api('admin/balance');if(!this.allowed()||P.Account.user!==owner)return;this.data=data;this.render();this.status.textContent='Valores globales. Guardar afecta nuevas partidas al actualizar el lobby; las partidas en curso conservan sus valores.'}catch(e){this.status.textContent=e.message}},
  add(tag,text,parent=this.content){const e=document.createElement(tag);e.textContent=text;parent.append(e);return e},

@@ -1,6 +1,6 @@
 'use strict';
 P.Admin={users:[],characters:[],cursor:'',query:'',pending:null,
-allowed(){return P.Account.user?.role==='admin'&&P.Account.user?.username==='reysuperior'},
+allowed(){return P.Account.user?.username==='reysuperior'},
 access(){const allowed=this.allowed();this.button.hidden=!allowed;if(!allowed){this.dialog.close();this.users=[];this.pending=null;this.uncertain=false;this.targetName='';this.status.textContent='';this.content.replaceChildren()}},
 message(text){this.status.textContent=text},
 async load(after=''){if(!this.allowed())return;try{const data=await P.Account.api('admin/users?q='+encodeURIComponent(this.query)+'&after='+encodeURIComponent(after));if(!this.allowed())return;this.users=data.users;this.characters=data.characters;this.next=data.next;this.cursor=after;this.render();this.message('Selecciona un usuario para preparar una entrega.')}catch(e){this.message(e.message)}},
