@@ -84,7 +84,7 @@ attackFixture(){
 describeAttack(){
  const p=this.attackFixture(),evolved=!!p.evolved.primary,v=P.Evolutions.profile(p),a=P.Data.attacks[p.attack];
  P.$('#bench-attack option[value="evolved"]').textContent='★ '+v.name+' · Evolución';
- P.UI.write(P.$('#bench-attack-info'),(evolved?v.name:a.name)+' · '+(evolved?'Evolución':('Rango '+p.powerRanks.primary+'/5'))+' · Daño '+Math.round(p.power*100)/100+' · Ataque cada '+p.rate.toFixed(2)+' s · Alcance ×'+p.reach.toFixed(2)+'\n'+(evolved?v.description:'Mejoras reales del arma. Cambia de rango para comparar; no necesitas subir de nivel.'));
+ P.UI.write(P.$('#bench-attack-info'),(evolved?v.name:a.name)+' · '+(evolved?'Evolución':('Rango '+p.powerRanks.primary+'/5'))+(p.id==='chamelin'?' · Impacto '+(p.power*(a.damageScale||1)).toFixed(2)+' · Charco '+(p.power*.30).toFixed(2)+'/s · Lento 20% (jefes 10%)':' · Daño '+Math.round(p.power*100)/100)+' · Ataque cada '+p.rate.toFixed(2)+' s · Alcance ×'+p.reach.toFixed(2)+'\n'+(evolved?v.description:'Mejoras reales del arma. Cambia de rango para comparar; no necesitas subir de nivel.'));
 },
 applyAttack(){
  const s=P.state,p=s.player;
