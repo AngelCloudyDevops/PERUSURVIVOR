@@ -22,13 +22,12 @@ P.AbilityCards={
  },
  hud(){
   const b=P.$('#domain-ability'),s=P.state,id=s.player?.id,entry=this.definition(id,'domain');if(!b)return;
-  if(!entry){b.hidden=true;return}
-  const charge=Math.max(0,Math.min(100,s.ultimate?.charge||0)),active=!!s[entry.state];
-  const waiting=id==='makanaky'&&typeof Image!=='undefined'&&P.DomainIntro&&!P.DomainIntro.ready&&!P.DomainIntro.failed||id==='sideral'&&!P.SideralDomain?.artReady?.()&&!P.SideralDomain?.failed;
-  b.hidden=s.mode!=='play';b.disabled=active||charge<100||!!waiting;
-  this.apply(b,id,'domain',charge,charge>=100&&!active&&!waiting,active);
-  b.setAttribute('aria-label','Expansión de dominio · tecla R');
-  P.UI.write(b,waiting?'R · CARGANDO ARTE':active?'R · '+entry.label+' EN CURSO':'R · '+entry.label+' '+Math.floor(charge)+'%');
+  const charge=Math.max(0,Math.min(100,s.ultimate?.charge||0)),active=!!(entry&&s[entry.state]);
+  const waiting=!!entry&&(id==='makanaky'&&typeof Image!=='undefined'&&P.DomainIntro&&!P.DomainIntro.ready&&!P.DomainIntro.failed||id==='sideral'&&!P.SideralDomain?.artReady?.()&&!P.SideralDomain?.failed);
+  b.hidden=s.mode!=='play';b.disabled=!entry||active||charge<100||!!waiting;
+  this.apply(b,entry?id:'empty','domain',charge,!!entry&&charge>=100&&!active&&!waiting,active);
+  b.setAttribute('aria-label',entry?'Expansión de dominio · tecla R':'Espacio reservado para expansión de dominio · tecla R');
+  P.UI.write(b,!entry?'R · EXPANSIÓN · PRÓXIMAMENTE':waiting?'R · CARGANDO ARTE':active?'R · '+entry.label+' EN CURSO':'R · '+entry.label+' '+Math.floor(charge)+'%');
  }
 };
 {const hud=P.UI.hud;P.UI.hud=function(...args){const result=hud.apply(this,args);P.AbilityCards.hud();return result}}
