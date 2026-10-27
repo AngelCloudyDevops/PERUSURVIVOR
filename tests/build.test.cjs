@@ -273,3 +273,11 @@ test('Las estadísticas universales cargan antes del arranque y el catálogo tol
  assert.match(powers,/P\.Stats\?\.channelRows\?\.\(c\)\|\|\[\]/);
  assert.match(powers,/P\.Stats\?\.advancedRows\?\.\(c\)\|\|\[\]/);
 });
+
+
+test('El atlas de Makanaky se distribuye porque el runtime lo solicita',()=>{
+ const rel='assets/minibosses/makanaky-v1.webp',source=path.join(root,'public',rel),built=path.join(root,'dist',rel);
+ assert(fs.existsSync(source));
+ assert.equal(require('../scripts/build.cjs').archivedAsset(rel),false);
+ assert.equal(hash(source),hash(built));
+});
