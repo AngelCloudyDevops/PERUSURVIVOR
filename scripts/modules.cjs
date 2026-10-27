@@ -8,6 +8,7 @@ module.exports = [
     "output": "js/powers.js"
   },
   {"source":"src/data/attributes.js","output":"js/attributes.js"},
+  {"source":"src/data/stats.js","output":"js/stats.js"},
   {
     "source": "src/data/muzzle-anchors.js",
     "output": "js/muzzle-anchors.js"
@@ -307,7 +308,6 @@ module.exports = [
     "source": "src/systems/ability-cards.js",
     "output": "js/ability-cards.js"
   },
-  {"source":"src/data/stats.js","output":"js/stats.js"},
   {
     "source": "src/ui/card-gallery.js",
     "output": "js/card-gallery.js"
