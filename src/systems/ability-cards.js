@@ -21,11 +21,11 @@ P.AbilityCards={
   button.classList.toggle('ability-ready',!!ready);button.classList.toggle('ability-active',!!active);
  },
  hud(){
-  const s=P.state,id=s.player?.id,charge=Math.max(0,Math.min(100,s.ultimate?.charge||0));
+  const s=P.state,id=s.player?.id,ultimateCharge=Math.max(0,Math.min(100,s.ultimate?.charge||0));
   // Character-specific HUDs set disabled while charging; keep the controls
   // pointer-active so a hold can preview the reserved/full-art card on touch.
   const ultimate=P.$('#ultimate');
-  if(ultimate){const entry=this.definition(id,'ultimate'),active=(s.ultimate?.left||0)>0;ultimate.disabled=false;ultimate.setAttribute('aria-disabled',String(!entry||!s.ultimate||active||charge<100))}
+  if(ultimate){const entry=this.definition(id,'ultimate'),active=(s.ultimate?.left||0)>0;ultimate.disabled=false;ultimate.setAttribute('aria-disabled',String(!entry||!s.ultimate||active||ultimateCharge<100))}
   const b=P.$('#domain-ability'),entry=this.definition(id,'domain');if(!b)return;
   const charge=Math.max(0,Math.min(100,s.ultimate?.charge||0)),active=!!(entry&&s[entry.state]);
   const waiting=!!entry&&(id==='makanaky'&&typeof Image!=='undefined'&&P.DomainIntro&&!P.DomainIntro.ready&&!P.DomainIntro.failed||id==='sideral'&&!P.SideralDomain?.artReady?.()&&!P.SideralDomain?.failed);
