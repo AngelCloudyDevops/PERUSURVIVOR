@@ -336,6 +336,37 @@ body:not(.menu) header .game-controls{position:fixed;top:18px;right:16px;z-index
 }
 @media(prefers-reduced-motion:reduce){.hud-ability-card{transition:none}.hud-ability-card.ability-ready{animation:none;box-shadow:0 0 0 3px #101820aa,0 0 10px 2px #f0b83e88,0 -5px 9px 1px #78818d44}}
 
+/* Dock inferior único: inventario, ataques y cartas comparten una cuadrícula sin solaparse. */
+#combat-dock{position:fixed;z-index:30;left:12px;right:12px;bottom:8px;display:grid;grid-template-columns:minmax(180px,230px) minmax(360px,520px) 266px;align-items:end;justify-content:center;gap:12px;pointer-events:none}
+body.menu #combat-dock{display:none}
+#combat-dock>*{min-width:0}
+#combat-dock #dota-inventory{position:relative;inset:auto;z-index:1;width:100%;min-width:0;max-width:none;pointer-events:auto}
+#attack-dock-slot{grid-column:2;min-width:0;pointer-events:auto}
+#combat-dock #weapon-bar{position:relative;inset:auto;z-index:2;width:100%;transform:none}
+#ability-dock{position:relative;grid-column:3;width:266px;height:58px;pointer-events:none}
+#ability-dock .hud-ability-card{position:absolute;pointer-events:auto}
+#ability-dock #ultimate{left:0;right:auto}
+#ability-dock #domain-ability{left:auto;right:0}
+@media(max-width:1100px) and (min-width:761px){
+ #combat-dock{left:8px;right:8px;grid-template-columns:minmax(150px,205px) minmax(280px,1fr) 236px;gap:8px}
+ #ability-dock{width:236px}
+ #ability-dock .hud-ability-card{width:112px}
+}
+@media(max-width:760px){
+ #combat-dock{left:8px;right:8px;bottom:8px;grid-template-columns:minmax(0,1fr) minmax(140px,1fr);grid-template-rows:64px auto;align-items:end;gap:6px}
+ #combat-dock #dota-inventory{grid-column:1;grid-row:1;align-self:end;padding:3px}
+ #combat-dock .dota-inventory-slots{flex-wrap:nowrap;gap:2px}
+ #combat-dock .dota-inventory-slot,#combat-dock .dota-inventory-slot.empty{grid-template-rows:24px 12px 7px;width:32px;min-height:47px;padding:2px}
+ #combat-dock .dota-inventory-icon{width:23px;height:23px}
+ #attack-dock-slot{grid-column:1/-1;grid-row:2;width:100%}
+ #combat-dock #weapon-bar{bottom:auto;width:100%;gap:3px;padding:4px}
+ #ability-dock{grid-column:2;grid-row:1;width:100%;height:64px}
+ #ability-dock .hud-ability-card{top:0;bottom:auto;width:calc(50% - 3px);height:64px;padding:6px 3px 8px;font-size:8px;border-radius:8px 8px 0 0;transition:height .18s ease,transform .18s ease}
+ #ability-dock .hud-ability-card:hover,#ability-dock .hud-ability-card:focus-visible,#ability-dock .hud-ability-card.is-peeking{top:0;bottom:auto;height:118px;transform:translateY(-54px)}
+ #ability-dock #ultimate{left:0;right:auto}
+ #ability-dock #domain-ability{left:auto;right:0}
+}
+
 /* A cinematic owns the canvas: cover current and future DOM HUDs, including nested explicit visibility. */
 body.cinematic-only > :not(#game):not(script):not(style):not(link),
 body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:hidden!important;pointer-events:none!important}
