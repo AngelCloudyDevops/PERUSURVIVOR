@@ -288,7 +288,7 @@ body.road-scene #boss-qte{visibility:hidden}
 #ultimate{left:calc(50% + 244px)}
 #domain-ability{left:calc(50% + 382px);border-color:#a57bd7}
 .hud-ability-card{background-image:linear-gradient(180deg,#0e172622 30%,#101822 96%),linear-gradient(135deg,#394855,#18232d);background-position:center;background-size:cover}
-#ultimate[data-card-art="kingteka"]{background-image:linear-gradient(180deg,#0e172622 12%,#10182222 55%,#101822 96%),url("/assets/cards/kingteka-gallinazo-ultimate-fullart-v2.png")}
+#ultimate[data-card-art="kingteka"]{background-image:linear-gradient(180deg,#0e172622 12%,#10182222 55%,#101822 96%),url("/assets/cards/kingteka-gallinazo-ultimate-fullart-v2.webp")}
 #ultimate[data-card-art="kingteka"]:before{content:"";position:absolute;z-index:2;top:0;left:0;width:var(--charge-progress,0%);height:3px;background:linear-gradient(90deg,#ffe8a2,#f4bd4e 72%,#fff1b8);box-shadow:0 0 7px #ffd15c;transition:width .2s linear;pointer-events:none}
 #ultimate.ultimate-ready{border-color:#ffe09a;animation:ultimate-ready-glow 1.45s ease-in-out infinite alternate}
 #ultimate.ultimate-ready:before{width:100%;height:4px;background:linear-gradient(90deg,#fff0b8,#ffb936 48%,#fff4cc);box-shadow:0 0 9px #ffd45f,0 0 17px #ff873d}
