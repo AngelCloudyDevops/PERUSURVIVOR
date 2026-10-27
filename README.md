@@ -567,3 +567,5 @@ Chamelín: sello encadenado con pausa y pisotón, giro con arrastre visual, chor
 
 Balance de Chamelín: el impacto del emoji usa 15 % del daño base del arma; el charco conserva su daño independiente de 30 % del daño base por segundo durante 4 s. Ralentiza 20 % a normales y 10 % a jefes/minijefes. Las zonas superpuestas no suman daño ni ralentización. Solo el chorro del dominio reduce ambas defensas; la mordida conserva sus multiplicadores y potencia anteriores.
 Las cartas de todos los objetos Dota muestran su imagen original grande como arte principal, igual que el catálogo y el inventario. No usan una reinterpretación generada ni el fondo de personaje con franjas. Se conserva el respaldo local si falla la imagen remota.
+
+Las imágenes originales de objetos Dota en cartas se reducen 28 %, se centran con margen y se acompañan del sprite del causa actual. Al elegir, la confirmación usa la misma imagen original y un efecto por familia (regeneración, filo, movilidad, cargas o Blink), sin icono genérico. Movimiento reducido aplica la elección inmediatamente.
