@@ -514,7 +514,7 @@ La revelación secreta encadena un falso resultado Jade, un último giro, vapor 
 
 
 ### Fluidez y diagnóstico cooperativo
-El servidor envía posiciones cada 40 ms (25 Hz). El cliente interpola aliados y enemigos y anticipa visualmente su movimiento con reconciliación y colisión local; daño y posición real siguen siendo del servidor. Los cambios de dirección se envían al siguiente frame. El panel de rendimiento distingue FPS, ping RED, coste de tick del servidor y frecuencia de snapshots. El ping depende de la conexión y distancia al VPS.
+El servidor envía posiciones cada 40 ms (25 Hz). El cliente interpola aliados y enemigos y anticipa visualmente su movimiento con reconciliación y colisión local; daño y posición real siguen siendo del servidor. Los cambios de dirección se envían al siguiente frame. El panel de rendimiento distingue FPS, ping RED, coste de tick del servidor y frecuencia de snapshots. El ping depende de la conexión y distancia al VPS. Para aliviar la deformación animada, minions voladores pequeños usan una malla de 5×4 celdas (40 triángulos) en vez de 8×5; el arte grande conserva el detalle completo.
 
 ### Evento para dos y relevo de anfitrión
 **Dos puestos, una causa** se desbloquea a los 45 s de mapa en los tres escenarios. Los indicadores A/B del borde guían a los puestos fuera de cámara. Acérquense a los puestos A/B y pulsen **F** o el botón para empezar. Cada jugador ocupa uno distinto: acumulen 15 s de defensa simultánea antes de que pasen 45 s. Salir del radio detiene el progreso; fallar permite reintentar tras 20 s. Completar da **35 monedas de equipo y 20% de curación a ambos**, una sola vez por partida. Arenas, elecciones y desconexiones no consumen el reloj del evento.
