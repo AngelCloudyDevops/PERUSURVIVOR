@@ -844,7 +844,7 @@ Solo el núcleo de 30 unidades activa la entrada; pasar por el borde visual no t
 - Los slots 2 y 3 dicen `RESERVA` hasta que existan variantes jugables reales. Una reserva no responde a las teclas ni simula contenido inexistente.
 - Kingteka es la primera implementación con tres armas intercambiables y conserva 1–3 como controles de selección.
 - Q (ulti) y R (expansión de dominio) permanecen como cartas independientes del selector de ataques.
-- Al alcanzar 100 % y quedar disponible, Q muestra una aura suave de fuego y humo alrededor de la carta; se apaga al activar o perder disponibilidad y no sustituye ni modifica la barra amarilla.
+- Al alcanzar 100 % y quedar disponible, Q muestra una corona de fuego fluido alrededor de la carta: núcleo blanco-dorado, llamas naranjas, estelas curvas y brasas discretas. El centro queda libre para conservar el arte; se apaga al activar o perder disponibilidad y no sustituye ni modifica la barra amarilla.
 - Inventario, selector y cartas forman un dock inferior común. Ninguna zona puede invadir otra: escritorio usa tres columnas y móvil coloca inventario/cartas sobre el selector.
 - No se dibuja una segunda franja informativa detrás del dock: nombre, ataque y escenario aparecen una sola vez en sus zonas vigentes.
 - Dominios, cinemáticas y arenas que reemplazan el combate normal ocultan el selector.
