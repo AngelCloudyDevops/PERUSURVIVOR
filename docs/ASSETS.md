@@ -42,6 +42,9 @@ Los PNG originales se conservan como fuentes. El navegador y el build usan copia
 
 Para añadir una imagen sin regenerar los demás recursos, ejecutar `python scripts/optimize-assets.py --only public/assets/ruta/archivo.png`; agrega su WebP lossless y actualiza el manifiesto existente. El control integral continúa siendo `python scripts/optimize-assets.py --check`.
 
+## Terreno de Halloween
+`public/assets/environment/halloween-terrain-atlas-v1.png` es la fuente transparente de un atlas 4×3 generado con la herramienta integrada image_gen. Contiene casona embrujada, cripta, dos árboles secos, dos tumbas, calabazas, cerca, velas, farol, sembrío y portón. El navegador carga su copia WebP sin pérdida y recorta celdas de 256×256 con filtrado desactivado. `docs/halloween-terrain-art-audit.json` conserva distribución, prompt resumido, tamaños y hashes. Las primitivas anteriores permanecen como respaldo durante la carga o ante un error del recurso.
+
 ## Cartas full art de Kingteka
 `public/assets/cards/` conserva las ilustraciones full art PNG maestras y sus copias WebP a calidad 88 para las cartas de escopeta, Gallinazo y golpe de cuerpo. La compresión con pérdida moderada mantiene el tamaño del paquete dentro del límite de despliegue; el arte llena el frente de la carta y una placa inferior mantiene legibles el nombre y el efecto. Generar o verificar estos recursos con `python scripts/optimize-assets.py --quality 88 --only public/assets/cards/kingteka-shotgun-fullart-v1.png public/assets/cards/kingteka-gallinazo-fullart-v1.png public/assets/cards/kingteka-golpe-fullart-v1.png` y añadir `--check` para verificar hashes y dimensiones. Prompts y poses: `docs/kingteka-card-art-prompts.json`.
 
