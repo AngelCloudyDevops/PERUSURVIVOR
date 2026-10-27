@@ -414,21 +414,18 @@ body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:
 }
 
 
-/* Mobile-only compact layout: preserve the desktop full-art card composition. */
+/* Mobile cards keep the same full-art face as desktop, stacked for touch. */
 @media(max-width:540px){
- #overlay.level-up.card-reveal{z-index:90;grid-template-rows:auto auto repeat(3,clamp(122px,17vh,150px));gap:7px;padding:11px 9px calc(11px + env(safe-area-inset-bottom));background:linear-gradient(145deg,#262522ff,#171d22ff)}
- #overlay.level-up.card-reveal h2{font-size:clamp(23px,6.5vw,30px);margin:0 0 2px;scroll-margin-block:0}
- #overlay.level-up.card-reveal>p{font-size:9px;line-height:1.3;margin:0 0 2px;padding-bottom:7px}
- #overlay.level-up.card-reveal .upgrade-card{height:clamp(122px,17vh,150px);min-height:122px;scroll-margin-block:0}
- .illustrated-cards .upgrade-front{justify-content:flex-start;background:#17212aff}
- .illustrated-cards .upgrade-front .upgrade-art{inset:0 auto 0 0;width:42%;height:100%;object-fit:contain;object-position:center;background:linear-gradient(145deg,#26343c,#131c23);image-rendering:pixelated}
- .illustrated-cards .upgrade-front .upgrade-content{position:absolute;inset:0 0 0 auto;display:flex;flex-direction:column;justify-content:center;width:62%;height:100%;margin:0;padding:8px 7px;background:linear-gradient(90deg,#111820ed,#111820fa);border-top:0;border-left:1px solid #ffffff38;text-align:left}
- .illustrated-cards .upgrade-front .upgrade-badge{font-size:6.5px;letter-spacing:.25px;line-height:1.1;margin-bottom:3px}
- .illustrated-cards .upgrade-front .upgrade-content strong{font-size:clamp(10px,2.9vw,13px);line-height:1.05}
- .illustrated-cards .upgrade-front .upgrade-content small{font-size:clamp(7px,2vw,8px);line-height:1.16;margin-top:3px}
- .illustrated-cards .upgrade-front .upgrade-comparison{font-size:6.5px;line-height:1.1;margin-top:2px}
- .illustrated-cards .upgrade-front .upgrade-key{top:5px;left:5px;width:20px;height:20px;min-height:20px;font-size:10px}
- .illustrated-cards .upgrade-card[data-dota-item=true] .upgrade-front .upgrade-dota-art{inset:10% auto 10% 4%;width:36%;height:80%;object-fit:contain;background:transparent}
- .illustrated-cards .upgrade-card[data-dota-item=true] .upgrade-front .upgrade-dota-character{left:4%;bottom:13%;width:38%;height:52%}
- .illustrated-cards .upgrade-card[data-dota-item=true] .upgrade-front .upgrade-dota-icon,.illustrated-cards .upgrade-card[data-dota-item=true] .upgrade-front .upgrade-icon{top:50%;left:22%;right:auto;width:46px;height:46px;min-width:46px;min-height:46px;padding:6px;transform:translate(-50%,-50%);border-radius:5px}
+ #overlay.level-up.card-reveal{z-index:90;grid-template-rows:auto auto repeat(3,clamp(178px,22vh,210px));gap:9px;width:min(440px,calc(100vw - 18px));max-width:calc(100vw - 18px);max-height:calc(100dvh - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain;padding:12px 9px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(145deg,#262522ff,#171d22ff)}
+ #overlay.level-up.card-reveal h2{font-size:clamp(24px,7vw,34px);margin:2px 0;scroll-margin-block:0}
+ #overlay.level-up.card-reveal>p{font-size:10px;line-height:1.35;margin:0 0 5px;padding-bottom:8px}
+ #overlay.level-up.card-reveal .upgrade-card{height:clamp(178px,22vh,210px);min-height:178px;scroll-margin-block:0}
+ .illustrated-cards .upgrade-front{justify-content:flex-end}
+ .illustrated-cards .upgrade-front .upgrade-art{inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;background:#151c22;image-rendering:pixelated}
+ .illustrated-cards .upgrade-front .upgrade-content{position:relative;width:100%;height:auto;margin-top:auto;padding:22px 9px 8px;background:linear-gradient(0deg,#111820fa 0%,#111820ed 72%,#11182000 100%);border-top:1px solid #ffffff40;text-align:left}
+ .illustrated-cards .upgrade-front .upgrade-badge{font-size:7px;letter-spacing:.5px;margin-bottom:4px}
+ .illustrated-cards .upgrade-front .upgrade-content strong{font-size:clamp(12px,3.5vw,15px);line-height:1.05}
+ .illustrated-cards .upgrade-front .upgrade-content small{font-size:clamp(8px,2.5vw,10px);line-height:1.22;margin-top:4px}
+ .illustrated-cards .upgrade-front .upgrade-comparison{font-size:7px;line-height:1.15;margin-top:3px}
+ .illustrated-cards .upgrade-front .upgrade-key{top:8px;left:8px;width:22px;height:22px;min-height:22px;font-size:11px}
 }
