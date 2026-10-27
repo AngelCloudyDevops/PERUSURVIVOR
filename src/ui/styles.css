@@ -318,3 +318,5 @@ body.cinematic-only > :not(#game):not(script):not(style):not(link),
 body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:hidden!important;pointer-events:none!important}
 
 .trovo-domain #test-bench,.trovo-domain #time,.trovo-domain #level,.trovo-domain #hint,.trovo-domain #dota-inventory,.trovo-domain #domain-ability{visibility:hidden}
+
+.trovo-arena #time,.trovo-arena #level{visibility:hidden}.trovo-arena #test-bench:has(#bench-collapse[aria-expanded="false"]){left:auto;right:16px;bottom:16px;width:auto;max-width:240px}.trovo-arena #test-bench:has(#bench-collapse[aria-expanded="false"]) .bench-heading>div,.trovo-arena #test-bench:has(#bench-collapse[aria-expanded="false"]) #bench-status{display:none}

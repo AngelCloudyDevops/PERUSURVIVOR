@@ -19,7 +19,7 @@ class Simulation{
   this.P=loadEngine(root);const P=this.P;P.Combat.server=true;P.Maps.selected=map;P.state.chosen=characters[0];P.Game.start();
   this.players=characters.map((id,i)=>{const p=P.Entities.player(P.Data.characters[id]);Object.assign(p,{x:P.state.player.x+i*45,y:P.state.player.y,slot:i,fire:0,shots:[],fields:[],revive:0});P.state.player=p;P.Ultimate.reset();p.ultimate=P.state.ultimate;return p});
   P.state.player=this.players[0];P.Minibosses.partySize=()=>this.players.length;P.Court.players=()=>this.players;this.result=null;
-  P.Game.finish=win=>{if(win)this.result='win'};
+  P.Game.finish=win=>{if(P.state.chamelinDomain){P.state.chamelinDomain.result=win;return}if(win)this.result='win'};
   P.Systems.levelup=()=>{if(!this.activities.pending)this.activities.levelup()};
   this.activities=new Activities(this);this.team=new (require('./team-combo.cjs').TeamCombo)(this);
  }
@@ -27,17 +27,17 @@ class Simulation{
  save(p){const s=this.P.state;p.fire=s.fire;p.shots=s.shots;p.fields=s.fields;p.ultimate=s.ultimate}
  tick(dt,inputs){
   const P=this.P,s=P.state,alive=this.players.filter(p=>p.hp>0);if(this.result)return;
-  if(!alive.length){this.result='lose';return}
+  if(!alive.length){if(s.chamelinDomain){s.chamelinDomain.result=undefined;P.Chamelin.end()}this.result='lose';return}
   if(this.activities.pending){this.activities.advance(dt);return}
   if(s.encounter?.defeat){s.mode='play';this.use(alive[0]);const kind=s.encounter.definition.kind;if(kind==='combi')P.ChosicanoCombat.defeatTick(dt);else if(kind==='fujimori')P.FujimoriBoss.defeatTick(dt);else P.Vulture.defeatTick(dt);if(s.encounter?.defeat?.finished)this.activities.tick(0);return}
   P.ChosicanoDomain.tryStart();if(s.roadDomain){P.ChosicanoDomain.tick(dt,inputs);return}
   if(s.domain){P.Domain.tick(dt,inputs);return}
-  if(s.chamelinDomain){this.use(this.players[s.chamelinDomain.slot]);P.Chamelin.tick(dt);this.save(s.player);return}
+  if(s.chamelinDomain){const owner=this.players[s.chamelinDomain.slot];this.use(owner);const blocked=P.Chamelin.tick(dt);this.save(owner);if(blocked)return}
   if(s.court){this.use(this.players[s.court.slot]);P.Court.tick(dt);return}if(P.DragonUltimate?.advanceScene(dt,this.players))return;P.Court.burstTick(dt);
-  s.mode='play';s.elapsed+=dt;if(!s.encounter)s.mapTime+=dt;this.use(alive[0]);P.Chunks.sync();P.Encounters.tick();P.Systems.spawn(dt);
+  s.mode='play';s.elapsed+=dt;if(!s.encounter&&!s.chamelinDomain)s.mapTime+=dt;this.use(alive[0]);P.Chunks.sync();P.Encounters.tick();P.Systems.spawn(dt);
   for(const p of alive){this.use(p);const input=inputs[p.slot]||{},x=Number(input.x)||0,y=Number(input.y)||0,n=Math.max(1,Math.hypot(x,y)),old={x:p.x,y:p.y};p.inv=Math.max(0,p.inv-dt);p.moving=Math.hypot(x,y)>.05;if(x)p.facing=Math.sign(x);p.x+=x/n*p.speed*(P.DragonUltimate?.speed(p)??1)*dt;p.y+=y/n*p.speed*(P.DragonUltimate?.speed(p)??1)*dt;P.World.collide(p,old);
    p.aimView=P.Combat.sanitizeView(input.view)||p.aimView||null;const other=this.players[1-p.slot],distance=Math.hypot(p.x-other.x,p.y-other.y);if(distance>720&&other.hp>0){p.x=old.x;p.y=old.y}
-   const travelled=Math.hypot(p.x-old.x,p.y-old.y);p.moving=travelled>.01;p.walkPhase=(p.walkPhase||0)+travelled/10;if(input.weapon&&p.arsenalInputWeapon!==input.weapon){P.KingtekaArsenal?.switch(p,input.weapon);p.arsenalInputWeapon=input.weapon}else if(!input.weapon)p.arsenalInputWeapon=0;if(input.domain){if(P.Chamelin.eligible(p))P.Chamelin.activate();else if(P.Domain.eligible(p))P.Domain.activate();else if(P.SideralDomain.eligible(p))P.SideralDomain.activate()}if(input.ultimate)P.Ultimate.activate();if(s.court||s.domain||s.chamelinDomain){this.save(p);return}const ultimate=p.ultimate;delete p.ultimate;P.Ultimate.tick(dt);p.ultimate=ultimate;
+   const travelled=Math.hypot(p.x-old.x,p.y-old.y);p.moving=travelled>.01;p.walkPhase=(p.walkPhase||0)+travelled/10;if(input.weapon&&p.arsenalInputWeapon!==input.weapon){P.KingtekaArsenal?.switch(p,input.weapon);p.arsenalInputWeapon=input.weapon}else if(!input.weapon)p.arsenalInputWeapon=0;if(input.domain){if(P.Chamelin.eligible(p))P.Chamelin.activate();else if(P.Domain.eligible(p))P.Domain.activate();else if(P.SideralDomain.eligible(p))P.SideralDomain.activate()}if(input.ultimate)P.Ultimate.activate();if(s.court||s.domain||s.chamelinDomain&&P.TrovoArena.protected()){this.save(p);return}const ultimate=p.ultimate;delete p.ultimate;P.Ultimate.tick(dt);p.ultimate=ultimate;
   }
   if(s.sideralDomain){const domain=s.sideralDomain,owner=this.players.find(p=>p.slot===domain.slot)||alive[0];this.use(owner);P.SideralDomain.tick(dt);this.save(owner);if(s.sideralDomain)for(const p of this.players)if(p._sideralReturnX===undefined)P.SideralDomain.moveInside(p,domain,35);else for(const p of this.players)P.SideralDomain.restore(p)}
   // Cada enemigo persigue al jugador vivo más cercano; ambos reciben colisiones reales.
@@ -58,6 +58,6 @@ class Simulation{
   if(!this.players.some(p=>p.hp>0))this.result='lose';
   if(!this.result)this.activities.tick(dt);
  }
- snapshot(){const P=this.P,s=P.state;return {...this.activities.snapshot(),team:this.team.snapshot(),roadDomain:s.roadDomain||null,domain:s.domain||null,chamelinDomain:s.chamelinDomain||null,trovoPools:s.trovoPools||[],domainAftermath:s.domainAftermath||null,sideralDomain:s.sideralDomain?{...s.sideralDomain,roomProps:undefined}:null,court:s.court||null,courtBurst:s.courtBurst||null,map:P.Maps.selected,result:this.result,elapsed:s.elapsed,mapTime:s.mapTime,miniWarning:s.miniWarning,miniReport:s.miniReport,kills:s.kills,level:s.level,xp:s.xp,need:s.need,bossSpawned:s.bossSpawned,players:this.players.map(({shots,fields,ultimate,...p})=>({...p,ultimate:{...ultimate,seen:undefined,trails:ultimate.trails.map(({shots,fields,ultimate,...trail})=>trail)}})),shots:this.players.flatMap(p=>p.shots.map(({hits,...q})=>q)),fields:this.players.flatMap(p=>p.fields),enemies:s.enemies,gems:s.gems,danger:s.danger,effects:s.effects,coins:s.coins,broken:[...P.Chunks.broken,...P.Terrain.originProps.filter(p=>p.kind==='crate'&&!p.solid).map(p=>p.id)]}}
+ snapshot(){const P=this.P,s=P.state;return {...this.activities.snapshot(),team:this.team.snapshot(),roadDomain:s.roadDomain||null,domain:s.domain||null,chamelinDomain:s.chamelinDomain?{...s.chamelinDomain,roomProps:undefined}:null,trovoAftermath:s.trovoAftermath||null,trovoPools:s.trovoPools||[],domainAftermath:s.domainAftermath||null,sideralDomain:s.sideralDomain?{...s.sideralDomain,roomProps:undefined}:null,court:s.court||null,courtBurst:s.courtBurst||null,map:P.Maps.selected,result:this.result,elapsed:s.elapsed,mapTime:s.mapTime,miniWarning:s.miniWarning,miniReport:s.miniReport,kills:s.kills,level:s.level,xp:s.xp,need:s.need,bossSpawned:s.bossSpawned,players:this.players.map(({shots,fields,ultimate,...p})=>({...p,ultimate:{...ultimate,seen:undefined,trails:ultimate.trails.map(({shots,fields,ultimate,...trail})=>trail)}})),shots:this.players.flatMap(p=>p.shots.map(({hits,...q})=>q)),fields:this.players.flatMap(p=>p.fields),enemies:s.enemies,gems:s.gems,danger:s.danger,effects:s.effects,coins:s.coins,broken:[...P.Chunks.broken,...P.Terrain.originProps.filter(p=>p.kind==='crate'&&!p.solid).map(p=>p.id)]}}
 }
 module.exports={Simulation};
