@@ -318,3 +318,5 @@ body.cinematic-only > :not(#game):not(script):not(style):not(link),
 body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:hidden!important;pointer-events:none!important}
 
 .trovo-domain #test-bench,.trovo-domain #time,.trovo-domain #level,.trovo-domain #hint,.trovo-domain #dota-inventory,.trovo-domain #domain-ability{visibility:hidden}
+
+.run-mode-picker{display:grid;grid-template-columns:auto minmax(170px,1fr);align-items:center;gap:6px 12px;margin:14px 0 4px;max-width:520px;padding:12px;border:1px solid #6984ad;border-radius:8px;background:#183661}.run-mode-picker label{font:800 10px monospace;color:#ffe28a;letter-spacing:1px}.run-mode-picker select{min-width:0;padding:9px;border:1px solid #8aa6cf;border-radius:5px;background:#102b52;color:#fff1ca;font:700 11px monospace}.run-mode-picker small{grid-column:1/-1;color:#bfd0e8;font:9px/1.5 monospace}#run-stage{font:800 10px/1.4 monospace;letter-spacing:.8px;margin:5px 0}@media(max-width:760px){.run-mode-picker{grid-template-columns:1fr;margin-top:8px}.run-mode-picker small{grid-column:1}.run-mode-picker select{width:100%}}

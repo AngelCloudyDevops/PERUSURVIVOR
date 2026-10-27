@@ -528,3 +528,12 @@ Las cinemáticas a pantalla completa ocultan todas las capas DOM del HUD (vida, 
 UR de control de zonas. Sus emojis salen desde atrás y dejan charcos de 4 s, daño cada 0,5 s sin acumulación por solapamiento. R activa una entrada a pantalla completa de 2,6 s, un baño temporal de 8 s y una mordida de 0,6 s. Chullo y barril cubren al personaje durante el dominio. Chorros: defensa −20 % y velocidad −25 % mientras recibe impactos. Mordida única: instakill a creeps, daño actual ×3 a minijefes y ×1,90 a jefes, sin multiplicadores de vulnerabilidad adicionales. Prueba de administrador: /?practice=chamelin, con recarga y objetivos/jefes del laboratorio.
 
 Sideral: los aterrizajes del retroceso sacuden brevemente la cámara (último salto más fuerte), seguidos por un temblor leve de risa. Desplazamientos enteros sin reescalar sprites; movimiento reducido desactiva todo temblor. El dominio ofrece 8 s para auxiliar o saquear: jefes/minijefes están inmóviles e inmunes, con reacción pixel art de asco. Al terminar ambos jugadores vivos conservan al menos 0,8 s de protección. No puede iniciarse sobre otra cinemática a pantalla completa.
+
+## Modos de partida
+
+- **Partida rápida:** conserva el recorrido original de 5 minutos, un portal opcional y ElZeein al final.
+- **Supervivencia del Caos:** recorrido individual de 30 minutos en el mapa elegido, dividido en seis etapas de cinco minutos.
+- En Supervivencia aparecen minijefes cada 4–6 minutos y tres ventanas de portal. El reloj se pausa dentro de cada arena y ElZeein aparece al minuto 30.
+- Cada etapa puede añadir un solo obstáculo destructible y seguro: ramas en Campo de Marte, barricadas en Plaza de Armas y derrumbes pequeños en Machu Picchu.
+- La iluminación recorre día, atardecer, anochecer y noche durante los 30 minutos. Los efectos respetan movimiento reducido y tienen límites fijos para cuidar los FPS.
+- Cooperativo y las pruebas de desarrollo permanecen temporalmente en Partida rápida para conservar el protocolo autoritativo actual.
