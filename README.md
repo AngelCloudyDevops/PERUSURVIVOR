@@ -121,7 +121,7 @@ GitHub Actions ejecuta las mismas comprobaciones en cada push y pull request. La
 
 ## Publicación
 
-El destino principal es https://perusurvivor.michitech.tech, en el VPS de Hostinger srv2060131.hstgr.cloud (179.236.77.159). Nginx (perusurvivor-web) sirve /opt/perusurvivor/live/current detrás de Caddy. Un push a main despliega automáticamente dist/ después de CI; las ramas y PR no publican. Véase docs/DEPLOYMENT.md. El sitio de ChatGPT configurado en .openai/hosting.json es una copia separada: publicarlo no actualiza el dominio principal.
+El destino público es https://perusurvivor.michitech.tech. La publicación se ejecuta desde main después de que CI aprueba los cambios; las ramas y PR no publican. Véase docs/DEPLOYMENT.md. El sitio de ChatGPT configurado en .openai/hosting.json es una copia separada y no actualiza el dominio principal.
 
 Esta es una versión de un jugador, sin cuentas, pagos, multijugador ni voces de figuras reales. El récord se guarda en el navegador. Las figuras públicas aparecen como caricaturas de parodia con habilidades inventadas; no existe afiliación.
 
@@ -170,7 +170,7 @@ Común (madera, ●), raro (azul, ◆) y legendario (violeta/dorado, ★), con c
 
 ## Cartas de ulti y expansión de dominio
 
-Las ocho habilidades actuales usan un patrón HUD compartido: arte full art vertical, marco y placa inferior legible, tecla visible (Q para ulti y R para dominio), barra dorada que recorre el borde superior con la carga, y resplandor cálido con humo suave al quedar lista. Mantener Q durante 180 ms revela cualquier carta de ulti; un toque activa la habilidad lista. Las expansiones conservan su activación con R y comparten el mismo marco, carga y estado listo. El diseño respeta `prefers-reduced-motion`.
+Las ocho habilidades actuales usan un patrón HUD compartido: arte full art vertical, marco y placa inferior legible, tecla visible (Q para ulti y R para dominio), barra dorada que recorre el borde superior con la carga, y resplandor cálido con humo suave al quedar lista. Mantener Q durante 180 ms revela cualquier carta de ulti; un toque activa la habilidad lista. En pantallas táctiles, mantener la carta Q o R revela el full art y soltar no activa la habilidad; un toque corto intenta activarla y el juego valida carga/estado. Las expansiones conservan R y comparten el marco, carga y estado listo. El CTA de inicio queda fijo al desplazarse por el lobby y las cartas de subida se apilan en una columna en móviles pequeños, con scroll y áreas táctiles amplias. La partida empieza sin esperar atlas opcionales de caminata: el render usa el arte de respaldo mientras termina la carga. El diseño respeta `prefers-reduced-motion`.
 
 | Personaje | Habilidad | Arte de carta |
 | --- | --- | --- |
@@ -426,11 +426,11 @@ G5 conserva vida, movilidad y arco: recarga 0,62 → 0,68 s y multiplicador evol
 
 En 54 partidas emparejadas, la mediana de minijefe cambia de 5,8 → 9,1 s para G5, 5,4 → 7,5 s para Fuzo y 13,5 → 12,8 s para Cerdito. Las 27 posteriores sobreviven cinco minutos: 26 victorias y un límite con vida. Se conservan los resultados completos, incluidos minijefes no abatidos, y los límites de una sola estrategia automatizada.
 
-# Cuentas y guardado en el VPS
+# Cuentas y guardado
 
-El vestíbulo incluye **Cuenta / Login**: registro, acceso, recuperación con código privado y guardado por cuenta en Hostinger. Jugar como invitado sigue disponible. El progreso incluye monedas, colección, estrellas, mejoras e inventario; se conserva separado del invitado y detecta conflictos entre dispositivos. No guarda partidas a medio jugar ni proporciona un ranking verificado.
+El vestíbulo incluye **Cuenta / Login**: registro, acceso, recuperación y guardado por cuenta. Jugar como invitado sigue disponible. El progreso incluye monedas, colección, estrellas, mejoras e inventario; se conserva separado del invitado y detecta conflictos entre dispositivos. No guarda partidas a medio jugar ni proporciona un ranking verificado.
 
-La activación del backend requiere el volumen persistente y la ruta `/api/` del juego; el formulario por sí solo no activa la base de datos. Consulta [cuentas, esquema, instalación, backup y límites de confianza](docs/ACCOUNTS.md). **Este repositorio se trata como público**: nunca subir claves, `.env`, bases de datos, usuarios o backups. Los datos reales viven fuera de la carpeta pública y de las releases.
+La configuración y los límites de confianza del backend se describen en [cuentas y guardado](docs/ACCOUNTS.md). **Este repositorio es público**: nunca subir claves, `.env`, bases de datos, nombres de usuario ni backups.
 
 La pantalla de entrada ofrece **Iniciar sesión**, **Crear cuenta** o **Jugar como invitado**. El acceso utiliza los paneles azules y botones dorados del juego. Registro y recuperación tienen formularios separados; elegir invitado conserva su guardado local.
 
@@ -587,7 +587,7 @@ Balance de Chamelín: el impacto del emoji usa 15 % del daño base del arma; el 
 Las cartas de todos los objetos Dota muestran su imagen original grande como arte principal, igual que el catálogo y el inventario. No usan una reinterpretación generada ni el fondo de personaje con franjas. Se conserva el respaldo local si falla la imagen remota.
 
 ### Balance global de personajes (solo admin)
-En el vestíbulo, **Balance de personajes** permite seleccionar un causa con su retrato y ajustar vida, daño base, velocidad, recarga, alcance y ATQ/DEF físicos y especiales. Muestra originales y cambios antes de guardar. El servidor valida el rol admin, límites y revisión; conserva auditoría y permite restaurar cada personaje. Todos los admins pueden balancear; las entregas siguen reservadas a ReySuperior.
+En el vestíbulo, **Balance de personajes** permite seleccionar un causa con su retrato y ajustar vida, daño base, velocidad, recarga, alcance y ATQ/DEF físicos y especiales. Muestra originales y cambios antes de guardar. El servidor valida el rol admin, límites y revisión; conserva auditoría y permite restaurar cada personaje. Todos los admins pueden balancear; las entregas se limitan a cuentas autorizadas.
 Los ajustes persisten en SQLite, sin editar archivos ni redesplegar. Afectan nuevas partidas individuales/prácticas y salas cooperativas, nunca entidades en una partida activa. El lobby consulta al abrir, volver al menú, recuperar foco y cada 15 s; recarga la página para recibirlos inmediatamente. No modifica estrellas, inventario, progresión ni coeficientes exclusivos de ultis. Un cambio de daño base sí escala habilidades que dependen de ese valor.
 Las imágenes originales de objetos Dota en cartas se reducen 28 %, se centran con margen y se acompañan del sprite del causa actual. Al elegir, la confirmación usa la misma imagen original y un efecto por familia (regeneración, filo, movilidad, cargas o Blink), sin icono genérico. Movimiento reducido aplica la elección inmediatamente.
 
