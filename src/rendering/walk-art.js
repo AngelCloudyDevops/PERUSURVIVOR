@@ -4,8 +4,10 @@ P.WalkArt={
 ids:['makanaky','cristorata','cuy','paloma','alan','alberto','keiko','ollanta','kingteka','shaka','najasor','cirilo','fuzo','charles','axelbenba','cerdito','sustento','cevichero','g5','enemy-0','enemy-1','enemy-2','enemy-3','enemy-4','enemy-5','vulture','ulti-bird'],
 integratedIds:Array.from({length:6},(_,i)=>'minion-'+i),
 professionIds:['astronaut','firefighter','chef','mummy','elf','police','architect'].map(id=>'profession-'+id),
-isIntegrated(id){return this.integratedIds.includes(id)||this.professionIds.includes(id)},
-professionNeeded(){return this.professionIds.filter(id=>id!=='profession-mummy'&&id!=='profession-elf'||id==='profession-mummy'&&P.Maps?.selected==='halloween'||id==='profession-elf'&&P.Maps?.selected==='navidad')},
+professionSheet(id,rank=0){return 'profession-'+id+(rank===1?'-veteran':rank===2?'-elite':'')},
+professionRankIds(){return this.professionIds.flatMap(id=>[id+'-veteran',id+'-elite'])},
+isIntegrated(id){return this.integratedIds.includes(id)||this.professionIds.includes(id)||this.professionRankIds().includes(id)},
+professionNeeded(){return this.professionIds.filter(id=>id!=='profession-mummy'&&id!=='profession-elf'||id==='profession-mummy'&&P.Maps?.selected==='halloween'||id==='profession-elf'&&P.Maps?.selected==='navidad').flatMap(id=>[id,id+'-veteran',id+'-elite'])},
 directionalIds:["cristorata","paloma","alan","keiko","ollanta","kingteka","shaka","najasor","cirilo","fuzo","charles","axelbenba","cerdito","sustento","cevichero"],
 directionalColumns:{keiko:3},
 attackIds:P.Data.characters.map(c=>'attack-'+c.id),
@@ -21,7 +23,7 @@ pump(){while(this.active<2&&this.queue.length){const sheet=this.queue.shift();th
  const finish=ok=>{sheet.ready=ok;sheet.failed=!ok;sheet.resolve(ok?sheet:null);this.active--;this.trim();this.pump()};
  image.onload=()=>{try{this.measure(sheet);finish(true)}catch{finish(false)}};image.onerror=()=>finish(false);image.src=this.url(sheet.id);
 }},
-url(id){if(id==='makanaky'||id==='attack-makanaky')return 'assets/characters/makanaky-motion-v2.webp';if(this.professionIds.includes(id))return 'assets/minions/'+id+'-integrated-v1.webp';if(this.integratedIds.includes(id))return 'assets/minions/'+id+'-integrated-v1.webp';if(id.startsWith('attack-'))return this.directionalIds.includes(id.slice(7))?'assets/aim/'+id.slice(7)+'-aim-v1.webp':'assets/attacks/'+id.slice(7)+'-attack-v1.webp';return 'assets/walks/'+id+'-walk-'+(P.Data.characters.some(c=>c.id===id)?'v2':'v1')+'.webp'},
+url(id){if(id==='makanaky'||id==='attack-makanaky')return 'assets/characters/makanaky-motion-v2.webp';if(this.professionIds.includes(id)||this.professionRankIds().includes(id))return 'assets/minions/'+id+'-integrated-v1.webp';if(this.integratedIds.includes(id))return 'assets/minions/'+id+'-integrated-v1.webp';if(id.startsWith('attack-'))return this.directionalIds.includes(id.slice(7))?'assets/aim/'+id.slice(7)+'-aim-v1.webp':'assets/attacks/'+id.slice(7)+'-attack-v1.webp';return 'assets/walks/'+id+'-walk-'+(P.Data.characters.some(c=>c.id===id)?'v2':'v1')+'.webp'},
 needed(){const id=P.Data.characters[P.state.chosen||0].id,actor=['sideral','chamelin'].includes(id)?[]:[id,'attack-'+id];return [...actor,...Array.from({length:6},(_,i)=>'enemy-'+i),...this.integratedIds,...this.professionNeeded()]},
 init(){for(const id of this.needed())this.load(id)},
 readyForStart(){return typeof Image==='undefined'||this.needed().every(id=>this.sheets[id]?.ready)},

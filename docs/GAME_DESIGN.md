@@ -871,3 +871,6 @@ El vestíbulo presenta siete áreas conectadas a los sistemas reales del juego:
 7. Ayuda y créditos: controles, reglas, atribución del proyecto, Discord y apoyo.
 
 Los botones sociales se muestran desde el inicio, pero no navegan hasta que se configuren enlaces oficiales. Esto evita promocionar servidores o cuentas incorrectos.
+
+## Diseños de rango de profesiones
+Cada profesión tiene tres atlas distintos: normal, veterano y élite. Las catorce láminas nuevas añaden 126 cuadros completos (seis pasos, preparación, impacto y derrota por variante), sin accesorios superpuestos ni nombres. Astronauta: traje plateado reforzado / comandante lunar azul y dorado; bombero: capitán de rescate / traje aluminizado; chef: chaqueta azul y delantal / jefe de cocina burdeos y dorado; momia: guardián de tumba / faraón; duende: mensajero rojo / guardián navideño; policía: equipo táctico / armadura antidisturbios; arquitecto: chaleco técnico / maestro de obra reforzado. El equipo de cada rango se conserva también al atacar y morir. La escala y los efectos existentes son señales adicionales. El cambio es visual: se mantienen las reglas de aparición, daño, defensa, vida, alcance y cadencia actuales.

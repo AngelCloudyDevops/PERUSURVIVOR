@@ -1,0 +1,134 @@
+{
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "id": "astronaut",
+      "rank": 1,
+      "key": "astronaut-veteran",
+      "reference": "public/assets/minions/profession-astronaut-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Veteran astronaut: silver-gray padded suit, orange reinforced shoulders and knee pads, square double oxygen backpack, sturdier silver boots and emitter. Preserve clear round helmet and blue penguin face.",
+      "source": "public/assets/minions/profession-astronaut-veteran-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-astronaut-veteran-integrated-v1.webp"
+    },
+    {
+      "id": "astronaut",
+      "rank": 2,
+      "key": "astronaut-elite",
+      "correctionPrompt": "Use case: precise-object-edit. Fix ONLY atlas spacing. Some of the nine figures in this transparent 3x3 sheet are too close and touch vertically. Redraw all NINE complete figures at 85% current scale, each centered within its original uniform cell, with at least 25px fully transparent gutters between ALL characters and 25px transparent outer padding. Preserve exact costume, equipment, character, right-facing orientation and all six different walking step poses plus preparation, attack and X-eye seated defeat. No overlaps between heads and preceding row's boots. All tools, helmet, backpack and limbs complete. Every pose must be one connected full body, no detached parts, labels or new objects. Do not recolor or change any costume design.",
+      "reference": "public/assets/minions/profession-astronaut-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Elite lunar commander: deep navy armored spacesuit with broad white shoulder plates, gold collar and wrist bands, cyan illuminated chest core, twin compact oxygen tanks, heavy silver boots and chunky emitter. Keep full blue penguin face visible inside clear helmet.",
+      "source": "public/assets/minions/profession-astronaut-elite-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-astronaut-elite-integrated-v1.webp"
+    },
+    {
+      "id": "firefighter",
+      "rank": 1,
+      "key": "firefighter-veteran",
+      "reference": "public/assets/minions/profession-firefighter-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Veteran fire captain: tan heavy rescue coat and trousers with yellow reflective bands, red helmet, black reinforced knees, brass hose nozzle and paired oxygen cylinders, preserve orange moose face and complete antlers.",
+      "source": "public/assets/minions/profession-firefighter-veteran-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-firefighter-veteran-integrated-v1.webp"
+    },
+    {
+      "id": "firefighter",
+      "rank": 2,
+      "key": "firefighter-elite",
+      "reference": "public/assets/minions/profession-firefighter-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Elite rescue specialist: silver aluminized heavy rescue suit, broad red shoulder protection, gold helmet with raised visor exposing orange moose face and complete antlers, two red water tanks connected to wider silver hose nozzle. No mask hiding face.",
+      "source": "public/assets/minions/profession-firefighter-elite-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-firefighter-elite-integrated-v1.webp"
+    },
+    {
+      "id": "chef",
+      "rank": 1,
+      "key": "chef-veteran",
+      "reference": "public/assets/minions/profession-chef-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Veteran chef: navy double-breasted chef jacket, cream apron tied around waist, white pleated toque, copper frying pan and red scarf, black trousers and red shoes. Pink spotted face and curly antennae remain visible.",
+      "source": "public/assets/minions/profession-chef-veteran-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-chef-veteran-integrated-v1.webp"
+    },
+    {
+      "id": "chef",
+      "rank": 2,
+      "key": "chef-elite",
+      "reference": "public/assets/minions/profession-chef-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Elite head chef: burgundy double-breasted jacket with gold buttons, long cream apron with gold edging, tall black-and-cream toque, heavy dark steel frying pan with gold rim and handle, sturdy black shoes. Preserve pink face, spots and antennae.",
+      "source": "public/assets/minions/profession-chef-elite-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-chef-elite-integrated-v1.webp"
+    },
+    {
+      "id": "mummy",
+      "rank": 1,
+      "key": "mummy-veteran",
+      "reference": "public/assets/minions/profession-mummy-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Veteran tomb guardian: beige wrapped mummy with teal Egyptian broad collar, bronze wrist bracers and belt, teal striped head wrap leaving ears, yellow face and green eyes visible. Keep hand cloths connected to wrists during strike.",
+      "source": "public/assets/minions/profession-mummy-veteran-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-mummy-veteran-integrated-v1.webp"
+    },
+    {
+      "id": "mummy",
+      "rank": 2,
+      "key": "mummy-elite",
+      "reference": "public/assets/minions/profession-mummy-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Elite pharaoh mummy: blue-and-gold striped nemes headdress, broad gold chest collar with purple central gem, gold wrist and shin guards over cream wrappings, purple waistcloth. Full yellow hippo face and ears recognizable, green glowing eyes, no staff; preserve cloth hand strike.",
+      "source": "public/assets/minions/profession-mummy-elite-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-mummy-elite-integrated-v1.webp"
+    },
+    {
+      "id": "elf",
+      "rank": 1,
+      "key": "elf-veteran",
+      "reference": "public/assets/minions/profession-elf-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Veteran Christmas courier: dark red fitted tunic with green trim, fur-lined red cap, reinforced brown gift satchel, gold belt and dark green curled boots, candy-striped stockings; carry same red gift in both hands, preserve full purple ears and tail.",
+      "source": "public/assets/minions/profession-elf-veteran-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-elf-veteran-integrated-v1.webp"
+    },
+    {
+      "id": "elf",
+      "rank": 2,
+      "key": "elf-elite",
+      "reference": "public/assets/minions/profession-elf-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Elite Christmas guardian: emerald long tunic with white fur collar, gold shoulder guards, tall red-and-gold cap between full purple ears, red armored gloves and boots, large dark red gift backpack with gold buckle, present with ornate gold bow held in both hands. Purple face and tail remain visible.",
+      "source": "public/assets/minions/profession-elf-elite-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-elf-elite-integrated-v1.webp",
+      "correctionPrompt": "Use case: precise-object-edit. Correct ONLY clipping and spacing in this transparent 3x3 sprite atlas: the top of elite elf tall red hats in the top row touches/clips the canvas. Redraw all nine FULL figures at 90% of current scale within their SAME 3x3 cells, with at least 24px transparent margin on every outside edge and visible gutters between all figures. Complete rounded hat tops, ears, tails, boots and gift boxes fully inside their cells. Preserve identical green-and-gold guardian costume, faces, six walking steps, preparation, gift-throw action, X-eye seated defeat, facing right, connected body drawing and alpha. No other changes, no labels, no detached elements."
+    },
+    {
+      "id": "police",
+      "rank": 1,
+      "key": "police-veteran",
+      "correctionPrompt": "Use case: precise-object-edit. Fix ONLY atlas spacing. Some of the nine figures in this transparent 3x3 sheet are too close and touch vertically. Redraw all NINE complete figures at 85% current scale, each centered within its original uniform cell, with at least 25px fully transparent gutters between ALL characters and 25px transparent outer padding. Preserve exact costume, equipment, character, right-facing orientation and all six different walking step poses plus preparation, attack and X-eye seated defeat. No overlaps between heads and preceding row's boots. All tools, helmet, backpack and limbs complete. Every pose must be one connected full body, no detached parts, labels or new objects. Do not recolor or change any costume design.",
+      "reference": "public/assets/minions/profession-police-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Veteran Peruvian police: dark green reinforced tactical vest with white shoulder straps, dark helmet with raised transparent visor, elbow and knee guards, wide blue-gray rectangular shield with reinforced silver edges, short black baton lowered. Preserve orange cartoon human face.",
+      "source": "public/assets/minions/profession-police-veteran-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-police-veteran-integrated-v1.webp"
+    },
+    {
+      "id": "police",
+      "rank": 2,
+      "key": "police-elite",
+      "reference": "public/assets/minions/profession-police-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Elite riot police: heavy dark charcoal segmented body armor over olive uniform, broad shoulder protection, olive helmet with raised clear visor, substantial rectangular shield with gold central plate and metal rim, black heavy boots and gloves; baton stays lowered during shield attack. Orange cartoon human face visible.",
+      "source": "public/assets/minions/profession-police-elite-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-police-elite-integrated-v1.webp"
+    },
+    {
+      "id": "architect",
+      "rank": 1,
+      "key": "architect-veteran",
+      "reference": "public/assets/minions/profession-architect-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Veteran architect: orange reflective technical vest over pale blue rolled-sleeve shirt, white hard hat, tan cargo trousers with tool belt, brown boots. Cyan rolled blueprint tucked under foreground left-image arm, metallic silver drafting triangle in far right-image hand, consistent hands through walking.",
+      "source": "public/assets/minions/profession-architect-veteran-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-architect-veteran-integrated-v1.webp"
+    },
+    {
+      "id": "architect",
+      "rank": 2,
+      "key": "architect-elite",
+      "reference": "public/assets/minions/profession-architect-integrated-v1.png",
+      "prompt": "Use case: identity-preserve. Edit this production game sprite atlas to a DISTINCT NEW RANK COSTUME described below. Exactly NINE whole-body figures in the SAME uniform 3x3 layout as reference, transparent background. Preserve character identity, species, face colors, pose ordering, facing RIGHT 3/4, anatomy, tool hands, full-body proportions and polished outlined cartoon pixel-art style. First two rows six sequential complete walking steps with alternating feet; bottom row preparation, exact SAME attack action as reference, seated defeated with X eyes. Change clothing and equipment coherently INSIDE EVERY complete figure, including walking, attack and defeated. Each costume piece connected to body, props held firmly. Keep ample transparent gutters and at least 25px outside padding; no overlap, cropped hats, clipped accessories, names, text, detached particles or baked shadows. Not a recolor: substantially different outfit silhouette and equipment. Do not change attack type or add weapons not requested. Keep six distinct foot poses and same costume and tools consistent across all nine figures. Elite master architect: dark navy technical jacket with gold shoulder panels, white hard hat with gold side plates, broad brown tool belt, reinforced knee pads and boots, cyan rolled blueprint tucked under foreground left-image arm and large gold-and-steel drafting triangle in far right-image hand. Preserve blue penguin face and yellow beak; keep tools in same hands through walking.",
+      "source": "public/assets/minions/profession-architect-elite-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-architect-elite-integrated-v1.webp"
+    }
+  ]
+}
