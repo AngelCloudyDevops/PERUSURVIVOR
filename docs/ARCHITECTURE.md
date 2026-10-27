@@ -699,3 +699,5 @@ Chamelín separa trovoBasePower del power reducido del proyectil para que el da�
 UI.show usa upgrade-dota-art con DotaItems.iconUrl para la imagen protagonista de todas las cartas Dota, independientes del personaje y la rareza. Se conserva el contenido textual y la selección/revelado; el icono pequeño duplicado no se inserta. No añade assets generados ni modifica estadísticas.
 
 La simulación cooperativa de Sideral agrupa explícitamente la recolocación dentro del dominio y la restauración al cerrarlo: un jugador ya trasladado no dispara la restauración de todo el grupo, lo que permite mantener la proximidad durante una reanimación.
+
+UI.dotaSelectionFx separa el feedback de equipar de selectionFx genérico. Usa DotaItems.familyFor/iconUrl y limpieza automática; no calcula efectos de combate. selectUpgrade mantiene bloqueo de doble elección y solo difiere el callback 760/1000 ms para objetos. El canvas upgrade-dota-character usa el sprite completo actual, sin deformar partes.
