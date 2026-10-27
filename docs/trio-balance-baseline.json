@@ -139,14 +139,14 @@
       "spriteRow": 3,
       "atlas": "streamers",
       "name": "CiriloTV",
-      "category": "Streamer · parodia",
+      "category": "Streamer UR · parodia",
       "look": "cap",
       "color": "#65c2dc",
       "skin": "#ccaa86",
-      "hp": 120,
-      "speed": 175,
-      "power": 22,
-      "attack": "micro"
+      "hp": 135,
+      "speed": 165,
+      "power": 24,
+      "attack": "ciriloVomit"
     },
     {
       "id": "fuzo",
@@ -598,14 +598,14 @@
       "damageScale": 0.65
     },
     "cirilo": {
-      "name": "Concierto orbital",
-      "description": "Tres micros van y vuelven en abanico; una onda corta protege al artista.",
-      "kind": "boomerang",
-      "count": 3,
-      "spread": 0.5,
+      "name": "Glucosa Maldita",
+      "description": "El vómito tóxico crece, ralentiza y prepara la resurrección infernal.",
+      "kind": "spread",
+      "count": 1,
+      "spread": 0,
       "extra": "center",
       "shape": "equalizer",
-      "color": "#7cddff"
+      "color": "#69ee73"
     },
     "fuzo": {
       "name": "Banca infinita",
