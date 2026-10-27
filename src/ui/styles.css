@@ -498,3 +498,5 @@ body[data-lobby-panel=codex] #game{opacity:.08;filter:blur(8px) saturate(.45)}bo
  .illustrated-cards .upgrade-front .upgrade-comparison{font-size:7px;line-height:1.15;margin-top:3px}
  .illustrated-cards .upgrade-front .upgrade-key{top:8px;left:8px;width:22px;height:22px;min-height:22px;font-size:11px}
 }
+
+#hub-left button[hidden],#hub-right button[hidden]{display:none!important}
