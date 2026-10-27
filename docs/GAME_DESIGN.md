@@ -820,6 +820,8 @@ Chamelín — balance de zonas: el proyectil directo multiplica por 0,15; el cha
 ### Cirilo UR: Audiencia de Medianoche
 La Audiencia es una Expansión de Dominio y se activa exclusivamente desde la carta **R**, compartiendo el medidor de carga general pero no el botón **Q** de ulti. Durante su fase jugable Cirilo despega en 0,58 s, conserva sombra de suelo, alterna aleteo, se inclina hacia el movimiento y aterriza durante los últimos 0,72 s. Movimiento reducido mantiene las alturas y tiempos, pero elimina balanceo, inclinación y polvo.
 
+La entrada conserva el estado de origen: forma completa de pie, brazos vendados o silla según el nivel. La reconstrucción empieza desde el primer paso que realmente falta y el cierre devuelve exactamente esa forma, salvo que la resurrección de nivel 20 ya haya vuelto permanente al demonio. El atlas de ocho cuadros usa 896×512 píxeles con celdas separadas. La mezcla limita el aleteo a una señal cada 0,62 s y encadena sello, reconstrucción, rugido, despegue, llamarada, impacto, martillazos, reacción del público, aterrizaje y ruptura. **Q** permanece visible y deshabilitada como `ULTI · PRÓXIMAMENTE`.
+
 ### Herramienta admin de balance
 Edición global por personaje de vida (25–2000), daño base (1–300), velocidad (50–500), recarga (0,15–5 s), alcance (0,25–3×) y cuatro ratings de ataque/defensa (1–500). No concede progresión ni cambia la rareza. Revisión previa de cambios, restauración a catálogo original y auditoría con autor. Los cambios se aplican al crear entidades nuevas; en cooperativo se fijan desde el servidor al iniciar la sala, conservando una versión durante toda la partida. Los coeficientes de charcos, vulnerabilidad y mordidas no se editan aquí.
 
