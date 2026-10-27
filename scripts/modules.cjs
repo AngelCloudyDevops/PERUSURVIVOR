@@ -371,4 +371,5 @@ module.exports = [
  ,{source:"src/rendering/chamelin-art.js",output:"js/chamelin-art.js"}
 ,{source:"src/systems/chamelin-arena.js",output:"js/chamelin-arena.js"}
 ,{source:"src/rendering/chamelin-bathroom.js",output:"js/chamelin-bathroom.js"}
+,{source:"src/rendering/chamelin-fluency.js",output:"js/chamelin-fluency.js"}
 ];
