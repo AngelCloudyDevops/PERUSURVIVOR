@@ -845,5 +845,6 @@ Solo el núcleo de 30 unidades activa la entrada; pasar por el borde visual no t
 - Kingteka es la primera implementación con tres armas intercambiables y conserva 1–3 como controles de selección.
 - Q (ulti) y R (expansión de dominio) permanecen como cartas independientes del selector de ataques.
 - Inventario, selector y cartas forman un dock inferior común. Ninguna zona puede invadir otra: escritorio usa tres columnas y móvil coloca inventario/cartas sobre el selector.
+- No se dibuja una segunda franja informativa detrás del dock: nombre, ataque y escenario aparecen una sola vez en sus zonas vigentes.
 - Dominios, cinemáticas y arenas que reemplazan el combate normal ocultan el selector.
 - No se admiten HUD de armas exclusivos por personaje: las diferencias se modelan como datos y comportamiento dentro del componente compartido.
