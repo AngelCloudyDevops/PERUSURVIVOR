@@ -836,3 +836,13 @@ Partida rápida y Supervivencia del Caos sortean entre Chosicano, Gabinete, Guar
 
 ### Portal por contacto y niebla
 Solo el núcleo de 30 unidades activa la entrada; pasar por el borde visual no transporta. En individual, una transición de niebla de .45 s envuelve al jugador y revela la arena; pausa congela la transición y el reloj del mapa no avanza. En dúo basta el toque de un jugador vivo: el servidor transporta a ambos aunque el compañero esté lejos. Se conserva la vida del compañero caído, sin resucitarlo, y cada uno recupera su posición original al salir. Se oculta el botón E; el acceso manual existente queda como compatibilidad. El portal mezcla niebla oscura, energía violeta y brasas doradas con movimiento reducido y partículas visuales acotadas.
+
+# HUD general de ataques
+
+- Toda causa muestra el mismo selector inferior de tres slots durante juego, pausa y elección de mejora.
+- El slot 1 representa el ataque principal actual; refleja rango y evolución.
+- Los slots 2 y 3 dicen `RESERVA` hasta que existan variantes jugables reales. Una reserva no responde a las teclas ni simula contenido inexistente.
+- Kingteka es la primera implementación con tres armas intercambiables y conserva 1–3 como controles de selección.
+- Q (ulti) y R (expansión de dominio) permanecen como cartas independientes del selector de ataques.
+- Dominios, cinemáticas y arenas que reemplazan el combate normal ocultan el selector.
+- No se admiten HUD de armas exclusivos por personaje: las diferencias se modelan como datos y comportamiento dentro del componente compartido.
