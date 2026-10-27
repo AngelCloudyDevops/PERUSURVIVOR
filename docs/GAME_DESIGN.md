@@ -813,3 +813,5 @@ Chamelín — balance de zonas: el proyectil directo multiplica por 0,15; el cha
 
 ### Herramienta admin de balance
 Edición global por personaje de vida (25–2000), daño base (1–300), velocidad (50–500), recarga (0,15–5 s), alcance (0,25–3×) y cuatro ratings de ataque/defensa (1–500). No concede progresión ni cambia la rareza. Revisión previa de cambios, restauración a catálogo original y auditoría con autor. Los cambios se aplican al crear entidades nuevas; en cooperativo se fijan desde el servidor al iniciar la sala, conservando una versión durante toda la partida. Los coeficientes de charcos, vulnerabilidad y mordidas no se editan aquí.
+
+El muñeco del editor es una referencia visual de cálculo, sin partida ni progreso. Daño por impacto y por segundo se etiquetan como referencia de un proyectil/contacto básico (no toda una descarga). Defensa del objetivo igual para ambos tipos, atributo neutral, distancia configurable; fuera de alcance muestra cero. El administrador decide aparte si publica el borrador mediante el guardado global existente.
