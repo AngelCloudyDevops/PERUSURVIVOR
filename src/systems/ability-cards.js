@@ -20,6 +20,7 @@ P.AbilityCards={
   button.style?.setProperty?.('--charge-progress',Math.max(0,Math.min(100,charge||0))+'%');
   button.style?.setProperty?.('--ability-card-art',entry?'url("/'+entry.art+'")':'none');
   button.classList.toggle('ability-ready',!!ready);button.classList.toggle('ability-active',!!active);
+  if(button.id==='ultimate')P.$('#ultimate-ready-fx')?.classList.toggle('is-ready',!!ready&&!button.hidden);
  },
  hud(){
   const s=P.state,id=s.player?.id,ultimateCharge=Math.max(0,Math.min(100,s.ultimate?.charge||0));
