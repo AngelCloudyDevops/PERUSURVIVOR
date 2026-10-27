@@ -1,6 +1,6 @@
 # PERUSURVIVOR — Causas del Caos
 
-Supervivencia peruana con dieciocho personajes, tres mapas, encuentros opcionales y objetos de Dota 2 adaptados como cartas de equipo evolutivo durante cada partida.
+Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcionales y objetos de Dota 2 adaptados como cartas de equipo evolutivo durante cada partida.
 
 Estabilidad cooperativa: paquetes WebSocket de más de 1 KiB usan compresión rápida negociada, sin retener contexto, con dos tareas concurrentes como máximo; el límite de entrada de 2 KiB sigue aplicándose tras descomprimir. una excepción se limita a su sala y queda registrada; salud muestra errores y coste de tick/serialización agregados. Reconectar con el token válido sustituye la conexión anterior sin perder el grupo. El cliente procesa el último estado por fotograma, conserva el resultado final y evita recargarse automáticamente mientras tiene sala. Scripts VM compilados se reutilizan, manteniendo una VM independiente por sala. Las publicaciones solicitan reinicio al quedar el servidor sin salas: las partidas existentes no se cierran por cambiar de release (un reinicio forzado del contenedor sigue interrumpiéndolas). El backend puede permanecer temporalmente en la release anterior hasta quedar libre.
 
@@ -49,7 +49,7 @@ Rareza, estrellas, Solo listos para ascender y orden se guardan automáticamente
 
 [![CI](https://github.com/AngelCloudyDevops/PERUSURVIVOR/actions/workflows/ci.yml/badge.svg)](https://github.com/AngelCloudyDevops/PERUSURVIVOR/actions/workflows/ci.yml)
 
-Juego de supervivencia y parodia peruana para navegador: diecinueve personajes, Backyardigans y policías ficticios como rivales, tres mapas y encuentros opcionales. HTML, CSS y Canvas 2D, sin dependencias de ejecución.
+Juego de supervivencia y parodia peruana para navegador: diecinueve personajes, Backyardigans y policías ficticios como rivales, cinco mapas y encuentros opcionales. HTML, CSS y Canvas 2D, sin dependencias de ejecución.
 
 Modo público: [Práctica de Kingteka con recarga gratuita](docs/KINGTEKA_PRACTICE.md).
 
@@ -93,7 +93,7 @@ src/
 public/assets/
   characters/    Hojas de personajes y sus prompts
   enemies/       Hoja de rivales y su prompt
-  maps/          Tres fondos y sus prompts
+  maps/          Tres fondos base y sus prompts; dos temas estacionales procedurales
   audio/         Reservado; la ulti usa síntesis Web Audio
 scripts/         Compilación y orden de carga
 tests/           Regresión, compilación, HTTP y herramientas manuales
@@ -115,7 +115,7 @@ Edita src/ y public/, nunca dist/. Los scripts clásicos siguen compartiendo P; 
 
 ## Validación
 
-Las pruebas cubren los ataques de los dieciocho personajes, oleadas, mejoras, pausa, bumerán, daño del jefe, los tres mapas, portales y sus recompensas, colisiones, cajas y rutas enemigas. También comprueban los recursos compilados y el servidor HTTP. La lógica corre en un entorno simulado; estas pruebas no sustituyen la revisión visual en navegador.
+Las pruebas cubren los ataques de los dieciocho personajes, oleadas, mejoras, pausa, bumerán, daño del jefe, los cinco mapas, portales y sus recompensas, colisiones, cajas y rutas enemigas. También comprueban los recursos compilados y el servidor HTTP. La lógica corre en un entorno simulado; estas pruebas no sustituyen la revisión visual en navegador.
 
 GitHub Actions ejecuta las mismas comprobaciones en cada push y pull request. La CI publica en el VPS únicamente tras un push a main y después de superar todas las pruebas.
 
@@ -126,7 +126,13 @@ El destino principal es https://perusurvivor.michitech.tech, en el VPS de Hostin
 Esta es una versión de un jugador, sin cuentas, pagos, multijugador ni voces de figuras reales. El récord se guarda en el navegador. Las figuras públicas aparecen como caricaturas de parodia con habilidades inventadas; no existe afiliación.
 
 ## Terreno continuo
-El mapa principal ahora continúa sin bordes mediante sectores deterministas. Conserva los tres temas, obstáculos y cajas destruibles; las arenas de portales siguen cerradas. El terreno de combate usa texturas de suelo de los fondos, no mosaicos de la ilustración completa. Código en src/systems/chunks.js; build generado con npm run build. Las pruebas verifican viaje a coordenadas lejanas, caché acotada, cámara libre y persistencia de cajas destruidas.
+El mapa principal ahora continúa sin bordes mediante sectores deterministas. Conserva los cinco temas, obstáculos y cajas destruibles; las arenas de portales siguen cerradas. El terreno de combate usa texturas de suelo de los fondos, no mosaicos de la ilustración completa. Código en src/systems/chunks.js; build generado con npm run build. Las pruebas verifican viaje a coordenadas lejanas, caché acotada, cámara libre y persistencia de cajas destruidas.
+
+## Mapas estacionales
+
+**Noche de Halloween** transforma el parque en una noche violeta con caminos oscuros, árboles secos, lápidas, calabazas, faroles, bruma y murciélagos. **Navidad Peruana** usa nieve, senderos claros, pinos iluminados, regalos, muñecos de nieve y nevada continua. Ambos conservan el cartoon pixel art, mundo procedural infinito, colisiones, cajas, portales, jefe final y salas cooperativas. Reutilizan el suelo base de Campo de Marte con capas de color y objetos geométricos cacheados: no descargan fondos nuevos ni crean entidades decorativas. Movimiento reducido conserva una cantidad menor de partículas.
+
+Halloween usa a El Fiscalizador como minijefe de superficie y el portal «La Procesión de Medianoche»; Navidad alterna La Paloma Brava/Makanaky y abre «El Grinch del Cercado». Sus ventanas del modo Caos están desplazadas respecto de los mapas existentes para conservar variedad. El clima, la iluminación y el ambiente sonoros respetan pausa, silencio y arenas separadas.
 
 ## Estilo visual obligatorio
 
