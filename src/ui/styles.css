@@ -307,3 +307,7 @@ body.road-scene #boss-qte{visibility:hidden}
  #weapon-bar button{min-width:0;flex:1;padding:7px 4px;font-size:8px}
 }
 @media(prefers-reduced-motion:reduce){.hud-ability-card{transition:none}}
+
+/* A cinematic owns the canvas: cover current and future DOM HUDs, including nested explicit visibility. */
+body.cinematic-only > :not(#game):not(script):not(style):not(link),
+body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:hidden!important;pointer-events:none!important}

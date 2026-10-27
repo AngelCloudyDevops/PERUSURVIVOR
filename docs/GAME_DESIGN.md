@@ -772,3 +772,8 @@ En Desarrollo → Probar jefes, el Chosicano muestra «Probar dominio». Inicia 
 
 ### Kingteka: bandada inofensiva
 La transformación de 8 s atrae minions normales hacia el lanzador (90–180 unidades/s, zigzag leve y posiciones repartidas a 32–53 unidades). Cancela ataques preparados, embestidas y ráfagas; elimina proyectiles de minions al activar y bloquea contacto. Todo el equipo hace ×2 de daño mientras dura. Al volver hay una pausa de aviso de 0,6 s, sin movimiento ni ataques. Jefes/minijefes no se transforman ni pierden ataques; reciben ×1,2 de daño durante la ulti. Mímicos excluidos.
+
+### Mejoras sin interrumpir cinemáticas
+No se abre el selector de nivel durante entradas de Kingteka, cuy, paloma o Cristorata, su revelación de dragón, el remate del papel de Kingteka, el tribunal, Makanaky, la carretera del Chosicano ni entradas y salidas de Sideral y del Gallinazo. No se consume XP ni se incrementa el nivel hasta que pueda mostrarse la elección. La fase de combate normal de Sideral y los buffs activos permiten elegir tras la entrada. En cooperativo se considera la animación de cualquiera de los jugadores.
+
+Las cinemáticas a pantalla completa ocultan todas las capas DOM del HUD (vida, minijefes, inventario, combos, rendimiento y controles). El bucle sincroniza cinematic-only antes de renderizar; se restaura al volver al combate, pausar o salir. El combate interactivo de los dominios conserva sus controles.
