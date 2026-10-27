@@ -14,13 +14,18 @@ P.AbilityCards={
   chamelin:{kind:'domain',state:'chamelinDomain',label:'BAÑO DE TROVO',art:'assets/cards/chamelin-domain-fullart-v1.webp'}
  },
  definition(id,kind){const entry=this.entries[id];return entry&&(!kind||entry.kind===kind)?entry:null},
+ syncReadyFx(){
+  const fx=P.$('#ultimate-ready-fx'),ultimate=P.$('#ultimate'),domain=P.$('#domain-ability');if(!fx)return;
+  const ultimateReady=!!ultimate&&!ultimate.hidden&&ultimate.classList.contains('ability-ready'),domainReady=!!domain&&!domain.hidden&&domain.classList.contains('ability-ready'),onDomain=!ultimateReady&&domainReady;
+  fx.classList.toggle('is-ready',ultimateReady||domainReady);fx.classList.toggle('is-domain',onDomain);
+ },
  apply(button,id,kind,charge,ready=false,active=false){
   if(!button)return;const entry=this.definition(id,kind),empty=id==='empty'||!entry;
   button.dataset.cardArt=empty?'empty':id;button.dataset.abilityKind=kind;
   button.style?.setProperty?.('--charge-progress',Math.max(0,Math.min(100,charge||0))+'%');
   button.style?.setProperty?.('--ability-card-art',entry?'url("/'+entry.art+'")':'none');
   button.classList.toggle('ability-ready',!!ready);button.classList.toggle('ability-active',!!active);
-  if(button.id==='ultimate')P.$('#ultimate-ready-fx')?.classList.toggle('is-ready',!!ready&&!button.hidden);
+  if(button.id==='ultimate'||button.id==='domain-ability')this.syncReadyFx();
  },
  hud(){
   const s=P.state,id=s.player?.id,ultimateCharge=Math.max(0,Math.min(100,s.ultimate?.charge||0));
