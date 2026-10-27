@@ -93,7 +93,8 @@ Fortaleza: presión cuerpo a cuerpo, movilidad alta y golpes que cubren un arco.
 - Al conectar con cuatro marcas, ese impacto se convierte en **Golpe Real**: +35% de daño y +40% de empuje; después consume todas las marcas.
 - Fallar el ataque o pasar 1,8 s sin conectar elimina la racha. Recibir daño no la borra automáticamente.
 - Solo el ataque principal y su evolución generan marcas. Ulti, dominio, objetos y apoyos no las generan ni consumen.
-- El HUD muestra cuatro segmentos `GA`; el cuarto enciende un contorno rosado y el Golpe Real muestra una corona breve sobre el impacto.
+- La ficha de Causas muestra la pasiva como una pieza `ÚNICA` independiente con icono `GA`, descripción interactiva y cuatro marcas; el retrato tiene una animación de reposo sutil y respeta movimiento reducido.
+- El HUD de partida muestra cuatro segmentos `GA`; el cuarto enciende un contorno rosado y el Golpe Real muestra una corona breve sobre el impacto.
 - En cooperativo la sala/servidor es autoritativa. La pasiva no debe ejecutar dos veces un impacto ni confiar en el contador visual del cliente.
 
 La intención es que Makanaky busque una ruta segura para mantenerse cerca, encadene cuatro golpes y decida si arriesgarse a buscar el remate. No es un bono permanente: apuntar mal o abandonar el combate corta la ventaja. Sus mejoras permanentes y estrellas escalan vida, daño y recarga mediante el sistema general; la pasiva multiplica el valor resultante sin crear una segunda progresión oculta.

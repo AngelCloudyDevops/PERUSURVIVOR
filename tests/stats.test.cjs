@@ -29,13 +29,14 @@ test('Balance acepta snapshots antiguos y rellena los nuevos campos con valores 
  P.CharacterBalance.apply({revision:2,overrides:{[id]:legacy}});assert(P.CharacterBalance.overrides[id]);assert.equal(P.CharacterBalance.overrides[id].penetration,0);assert.equal(P.CharacterBalance.overrides[id].criticalDamage,1.5);assert(P.CharacterBalance.valid(P.CharacterBalance.overrides[id]));
 });
 
-test('Causas y Jefes presentan el contrato completo sin recortar los stats',()=>{
+test('Causas prioriza cinco stats y conserva el contrato completo desplegable',()=>{
  const source=fs.readFileSync('src/ui/reference-menus.js','utf8');
  assert(source.includes("title:'CANALES DE ATAQUE Y DEFENSA'"));
  assert(source.includes("title:'STATS AVANZADOS'"));
  assert(source.includes("title:'CANALES DE COMBATE'"));
  assert(source.includes('this.bossStatGroups(selected,record)'));
- assert(!source.includes('stats.rows.slice(0,5)'));
+ assert(source.includes("this.statSection('STATS PRINCIPALES',stats.rows.slice(0,5),true)"));
+ assert(source.includes('this.characterStatGroups(selected,stats.rows)'));
 });
 
 test('Makanaky encadena tres marcas y convierte el cuarto impacto en Golpe Real',()=>{
@@ -50,5 +51,5 @@ test('Racha de la Realeza modifica cadencia y alcance, expira y excluye al minij
 });
 
 test('La ficha de Makanaky muestra la misma pasiva que usa el combate',()=>{
- const {P}=setup(),rows=P.Passives.rows('makanaky'),source=fs.readFileSync('src/ui/reference-menus.js','utf8');assert.equal(rows[0][1],'Racha de la Realeza');assert(rows.some(row=>row[1].includes('+35 % daño')));assert(source.includes("title:'PASIVA ÚNICA'"));
+ const {P}=setup(),rows=P.Passives.rows('makanaky'),source=fs.readFileSync('src/ui/reference-menus.js','utf8');assert.equal(rows[0][1],'Racha de la Realeza');assert(rows.some(row=>row[1].includes('+35 % daño')));assert(source.includes("label:'PASIVA ÚNICA'"));assert(source.includes("icon:c.id==='makanaky'?'GA':'◆'"));assert(source.includes('owner.idleFrame(time)'));
 });
