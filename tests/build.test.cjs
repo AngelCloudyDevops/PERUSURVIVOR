@@ -47,7 +47,8 @@ test('La selección de causa, mapa y modo permanece en el flujo moderno hasta in
  const complete=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),reference=fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8'),game=fs.readFileSync(path.join(root,'src/scenes/game.js'),'utf8'),screens=fs.readFileSync(path.join(root,'src/ui/screens.js'),'utf8');
  assert.match(complete,/retireLegacyPickers\(\)/);assert.match(complete,/if\(route==='characters'\)return owner\.chooseCause\(\)/);assert.match(complete,/if\(route==='play'\)return owner\.prepare\(\)/);assert.match(complete,/reference\.open\('dex'\)/);
  assert.match(complete,/P\.Maps\.select\(id\)/);assert.match(complete,/P\.RunMode\.selected=id/);assert.match(complete,/startPreparedRun\(\)\{this\.reference\.hide\(\);return P\.Game\.start\(\)\}/);assert.doesNotMatch(complete,/\(\)=>P\.Lobby\.show\('play'\)/);
- assert.match(reference,/if\(!this\.open\('prepare'\)\)P\.Lobby\.show\('play'\)/);assert.match(reference,/ELEGIR A /);
+ assert.match(reference,/openCharacterViewer\(character\)/);assert.match(reference,/this\.closeCharacterViewer\(\);P\.Lobby\.show\('play'\)/);assert.match(reference,/ELEGIR A /);
+ assert.match(reference,/role','dialog'/);assert.match(reference,/character-viewer-strip/);assert.match(reference,/ArrowLeft/);assert.match(reference,/ArrowRight/);
  assert.match(game,/LobbyComplete\?\.chooseCause\?\.\(\)/);assert.match(screens,/LobbyComplete\?\.chooseCause\?\.\(\)/);
  assert.doesNotMatch(game,/Elegir otro causa/);assert.doesNotMatch(screens,/Elegir otro personaje/);
 });

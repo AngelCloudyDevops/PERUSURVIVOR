@@ -36,7 +36,8 @@ test('Causas prioriza cinco stats y conserva el contrato completo desplegable',(
  assert(source.includes("title:'CANALES DE COMBATE'"));
  assert(source.includes('this.bossStatGroups(selected,record)'));
  assert(source.includes("this.statSection('STATS PRINCIPALES',stats.rows.slice(0,5),true)"));
- assert(source.includes('this.characterStatGroups(selected,stats.rows)'));
+ assert(source.includes('this.characterStatGroups(character,stats.rows)'));
+ assert(source.includes("this.statSection('STATS PRINCIPALES',stats.rows.slice(0,5),true)"));
 });
 
 test('Makanaky encadena tres marcas y convierte el cuarto impacto en Golpe Real',()=>{
