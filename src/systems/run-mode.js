@@ -15,6 +15,7 @@ P.RunMode={
  dayTime(time=P.state.mapTime){return this.isChaos()?(Number(time)||0)/6:Number(time)||0},
  portalWindows(map=P.Maps.selected){const shift=map==='plaza'?35:map==='machu'?70:0;return [[360+shift,540+shift],[780+shift,1020+shift],[1260+shift,1500+shift]]},
  portalWindow(time=P.state.mapTime){if(!this.isChaos())return time>=180&&time<this.current().duration?0:-1;return this.portalWindows().findIndex(([from,to])=>time>=from&&time<to)},
+ portalWarning(time=P.state.mapTime){const windows=this.isChaos()?this.portalWindows():[[180,this.current().duration]];return windows.findIndex(([from])=>time>=from-10&&time<from)},
  nextPortal(time=P.state.mapTime){if(!this.isChaos())return time<180?180:null;for(const [from,to] of this.portalWindows())if(time<to)return time<from?from:time;return null}
 };
 
