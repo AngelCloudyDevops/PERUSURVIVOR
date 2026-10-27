@@ -2,7 +2,7 @@
 // El reloj del modo largo siempre usa mapTime: pausa, portales y cinemáticas no
 // adelantan el mundo. Sus eventos son escasos y acotados para cuidar los FPS.
 P.RunMode={
- selected:'quick',
+ selected:'chaos',
  modes:{quick:{id:'quick',name:'Partida rápida',duration:300,description:'5 minutos · un portal · ElZeein al final'},chaos:{id:'chaos',name:'Supervivencia del Caos',duration:1800,description:'30 minutos · seis etapas · tres portales · mundo reactivo'}},
  init(){const select=P.$('#run-mode');if(!select)return;select.value=this.selected;select.onchange=()=>{this.selected=this.modes[select.value]?select.value:'quick';this.describe()};this.describe()},
  describe(){const mode=this.modes[this.selected],text=P.$('#run-mode-description'),label=P.$('#run-length-label');if(text)text.textContent=mode.description;if(label)label.textContent=this.selected==='chaos'?'SUPERVIVENCIA · 30 MIN':'PARTIDA RÁPIDA · 5 MIN'},
