@@ -1,0 +1,3 @@
+Mode: imagegen, transparent raster sprite atlas
+
+Six-frame 16-bit pixel-art sequence for Sandy, a fictional Peruvian night-court prosecutor seated behind a dark wooden bench. The frames show attentive idle, connected shoulder/elbow lifting the ceremonial gavel, gavel overhead, downward swing, impact on the sound block, and recoil. Consistent proportions, anchors, plum judicial clothing, magenta accents, warm wood and gold hardware; transparent gutters, no text, no borders, no detached limbs.
