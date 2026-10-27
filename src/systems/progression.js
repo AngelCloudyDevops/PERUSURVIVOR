@@ -20,7 +20,8 @@ ranged(e,dt){if(P.Ultimate.suppressed(e))return;const s=P.state,p=s.player,attac
  if(e.charge)return;
  if(e.burst){e.burst.timer-=dt;if(e.burst.timer<=0){this.minionShot(e,attack,e.burst.aim);e.burst.left--;e.burst.timer+=.18;if(!e.burst.left)e.burst=null}return}
  if(e.rangedAim){e.rangedWindup-=dt;if(e.rangedWindup<=0){const aim=e.rangedAim;e.audioImpact=(e.audioImpact||0)+1;e.audioImpactAt=s.elapsed;e.rangedAim=null;e.rangedCooldown=attack.cooldown;e.attackUntil=s.elapsed+.4;
-  if(['shovel','punch','sweep'].includes(attack.mode)){P.MinionEvolution.melee(e,attack,aim)}
+  if(attack.mode==='profession'){P.MinionProfessions.cast(e,attack,aim)}
+  else if(['shovel','punch','sweep'].includes(attack.mode)){P.MinionEvolution.melee(e,attack,aim)}
   else if(attack.mode==='charge'){e.charge={x:aim.x,y:aim.y,time:attack.chargeTime||.42,speed:attack.chargeSpeed||300,damage:attack.damage};e.attackUntil=s.elapsed+e.charge.time}
   else if(attack.mode==='stomp'){if(s.danger.length<P.Difficulty.limits(e).danger)s.danger.push({...P.Attributes.source(e,'special'),x:e.x,y:e.y,vx:0,vy:0,age:0,life:.35,damage:attack.damage,minion:true,minionRank:P.MinionEvolution.rank(e),kind:'stomp',radius:attack.radius,color:attack.color,history:[]})}
   else if(P.Terrain.clear(e.x,e.y,e.x+aim.x*aim.distance,e.y+aim.y*aim.distance)){if(attack.mode==='fan')for(const offset of P.MinionEvolution.offsets(attack.fanCount||3,.52))this.minionShot(e,attack,aim,offset);else if(attack.mode==='twin')for(const offset of P.MinionEvolution.offsets(attack.twinCount||2,.2))this.minionShot(e,attack,aim,offset);else{for(const offset of P.MinionEvolution.offsets(attack.zigCount||1,.24))this.minionShot(e,attack,aim,offset);if(attack.mode==='burst')e.burst={aim,left:(attack.burstCount||3)-1,timer:.18}}}
