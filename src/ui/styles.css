@@ -396,3 +396,19 @@ body.cinematic-only > :not(#game):not(script):not(style):not(link) *{visibility:
  body.test-bench-live:has(#bench-collapse[aria-expanded="true"]) #dota-inventory{visibility:hidden}
  body.test-bench-live #ultimate.is-peeking,body.test-bench-live #domain-ability.is-peeking{bottom:calc(158px + env(safe-area-inset-bottom))}
 }
+
+/* Portrait HUD lanes: keep inventory, combo, and map exploration separate. */
+@media(max-width:600px){
+ #dota-inventory{left:8px;right:auto;bottom:calc(145px + env(safe-area-inset-bottom));width:calc(44vw - 12px);max-width:165px;min-width:0;padding:4px}
+ .dota-inventory-title{font-size:7px;letter-spacing:.2px}
+ .dota-inventory-slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;justify-content:stretch;flex-wrap:nowrap}
+ .dota-inventory-slot{grid-template-rows:24px 12px 7px;width:auto;min-width:0;min-height:48px;padding:2px}
+ .dota-inventory-icon{width:24px;height:24px}
+ #causa-combo{right:8px;bottom:calc(145px + env(safe-area-inset-bottom));width:min(210px,calc(50vw + 15px));padding:5px}
+ #causa-combo>strong{font-size:8px;margin-bottom:3px}
+ .causa-card{padding:4px 2px 7px}
+ .causa-card span,.causa-card b{font-size:8px}
+ #causa-combo>small{font-size:7px;line-height:1.2;margin-top:4px}
+ body.test-bench-live #dota-inventory,body.test-bench-live #causa-combo{bottom:calc(158px + env(safe-area-inset-bottom))}
+ body.test-bench-live:has(#bench-collapse[aria-expanded="true"]) #dota-inventory{visibility:hidden}
+}
