@@ -40,10 +40,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 3819270,
-      "optimizedBytes": 2666012,
+      "optimizedBytes": 764868,
       "sourceSha256": "608b891d6ded62f11e2167b97cc28a306315338d735a9571acd4bfcb6e6eeae3",
-      "outputSha256": "7612d5630abb896464ffcf240e3e17308365f2b8392788ec8c175e051cea8903",
-      "rgbaSha256": "a3b3d5cb0c58dc1278fc7fb489239f1b2d190cd916d1320884be83e9a7e55c40"
+      "outputSha256": "4eda95a1b715393558f9b2d47b8170f13d7176bad644b678780470a1b4e19048",
+      "rgbaSha256": "a3b3d5cb0c58dc1278fc7fb489239f1b2d190cd916d1320884be83e9a7e55c40",
+      "quality": 92
     },
     {
       "source": "assets/arenas/rooftops-v1.png",
@@ -505,5 +506,5 @@
     }
   ],
   "originalBytes": 79308795,
-  "optimizedBytes": 43390092
+  "optimizedBytes": 41488948
 }
