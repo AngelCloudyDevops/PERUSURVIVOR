@@ -12,13 +12,14 @@ const css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');
 
 function gallery(){
  const P={
-  Data:{characters:[{id:'cirilo',name:'CiriloTV',color:'#f05d83'},{id:'kingteka',name:'Kingteka',color:'#dca63a'}]},
+  Data:{characters:[{id:'cirilo',name:'CiriloTV',color:'#f05d83'},{id:'kingteka',name:'Kingteka',color:'#dca63a'},{id:'makanaky',name:'Makanaky',color:'#e2a95c'}]},
   AbilityCards:{
    entries:{
     cirilo:{kind:'domain',frame:'domain-demon',art:'cirilo.webp',variants:[{id:'nocturna',edition:'Edición nocturna',art:'cirilo-night.webp'}]},
-    kingteka:{kind:'ultimate',frame:'fire',art:'kingteka.webp'}
+    kingteka:{kind:'ultimate',frame:'fire',art:'kingteka.webp'},
+    makanaky:{kind:'domain',frame:'domain-royal',art:'makanaky.webp'}
    },
-   frame(name){return {visual:name==='domain-demon'?'demon':'fire'}}
+   frame(name){return name==='domain-demon'?{visual:'demon'}:name==='domain-royal'?{visual:'fire',futureVisual:'royal'}:{visual:'fire'}}
   }
  };
  vm.runInNewContext(gallerySource,{P,console});
@@ -27,11 +28,12 @@ function gallery(){
 
 test('la colección se genera desde el registro y expande variantes futuras',()=>{
  const cards=gallery().entries();
- assert.equal(cards.length,3);
- assert.deepEqual(Array.from(cards.map(card=>card.key)),['cirilo:base','cirilo:nocturna','kingteka:base']);
+ assert.equal(cards.length,4);
+ assert.deepEqual(Array.from(cards.map(card=>card.key)),['cirilo:base','cirilo:nocturna','kingteka:base','makanaky:base']);
  assert.equal(cards[0].visual,'demon');
  assert.equal(cards[1].edition,'Edición nocturna');
  assert.equal(cards[2].visual,'fire');
+ assert.equal(cards[3].visual,'royal');
 });
 
 test('la galería ofrece inclinación, giro y controles accesibles sin bucle permanente',()=>{
@@ -49,7 +51,7 @@ test('el álbum abre un visor y recorre sólo las cartas visibles',()=>{
  cards.navigate(-1,visible);
  assert.equal(cards.selected,'cirilo:base');
  for(const contract of ['card-album-grid','card-viewer','aria-modal','card-viewer-arrow','ArrowLeft','ArrowRight','swipe'])assert.match(gallerySource,new RegExp(contract));
- for(const selector of ['.card-album-grid','.card-viewer-panel','.card-viewer-strip','.card-strip-thumb'])assert.match(css,new RegExp(selector.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
+ for(const selector of ['.card-album-grid','.card-viewer-panel','.card-viewer-strip','.card-strip-thumb','.collection-card-frame'])assert.match(css,new RegExp(selector.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
 });
 
 test('el marco demoníaco termina de entrar antes de pasar al pulso de reposo',()=>{
