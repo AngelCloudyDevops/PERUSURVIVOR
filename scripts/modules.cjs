@@ -386,4 +386,5 @@ module.exports = [
 ,{source:"src/ui/balance-preview.js",output:"js/balance-preview.js"}
 , {source:"src/rendering/portal-fx.js",output:"js/portal-fx.js"}
 , {source:"src/ui/reference-menus.js",output:"js/reference-menus.js"}
+, {source:"src/ui/lobby-complete.js",output:"js/lobby-complete.js"}
 ];
