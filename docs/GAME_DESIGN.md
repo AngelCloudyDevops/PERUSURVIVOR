@@ -8,6 +8,16 @@ Estabilidad cooperativa: una excepción se limita a su sala y queda registrada; 
 
 Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posición validada por servidor, 5 s de duración, una por jugador y recarga de 2 s. Ayuda funciona al estar caído. La escolta de la combi se desbloquea a los 90 s: acérquense y pulsen Iniciar escolta. Ambos vivos a 200 unidades; dos paradas de 6 s despejadas de enemigos. Vida 150, límite 100 s, reintento 20 s; premio único +50 monedas compartidas y 25% de vida a cada superviviente. Se suspende durante arenas, escenas, mejoras y desconexiones; no coincide con la defensa doble. Backend Escort/Signals serializados en activities; CoopExtras dibuja vehículo, avisos y controles sin autoridad sobre premios.
 
+## Contrato de estadísticas y pasivas
+
+La estructura canónica de cada personaje está documentada en [README — Contrato general de personajes](../README.md#contrato-general-de-personajes-estadísticas-pasiva-y-habilidades). Toda causa debe declarar identidad, stats base, cuatro índices físico/especial, una pasiva única, kit, progresión y pruebas. Los valores de ficha representan rango 1, una estrella y ausencia de mejoras, objetos o bonificaciones temporales.
+
+Una pasiva debe tener condición, efecto, límite, reinicio e indicador visibles. No se aceptan aumentos permanentes sin condición ni estadísticas decorativas. Poder estimado es un resumen de progreso del mismo personaje y no una estadística de combate. Rareza regula colección y crecimiento, no poder directo.
+
+El contrato `P.Stats` es universal para jugables, minions, minijefes y jefes. Los stats avanzados parten de valores neutrales para mantener el balance histórico y se normalizan también en cooperativo. Los snapshots antiguos de Balance se migran completando los campos nuevos con esos valores; una partida en curso conserva sus primitivas y copias de `combatStats`.
+
+Makanaky es el primer contrato completo. Su pasiva propuesta, **Racha de la Realeza**, acumula hasta cuatro impactos básicos consecutivos, aumenta temporalmente cadencia y alcance, y convierte el remate en Golpe Real antes de reiniciar. Sigue marcada como diseño pendiente hasta contar con implementación, HUD, autoridad cooperativa y las pruebas indicadas en el README.
+
 Mover A/D o flechas desplaza al propio Makanaky en tercera persona; la fila y el escenario conservan su lateral. La cámara cercana muestra el paso con perspectiva del callejón completo y a Makanaky grande desde atrás, interpuesto entre cámara y rival. Jab izquierdo, derecho, cruzado y uppercut usan poses de espalda dedicadas, embestida corporal, retroceso y estela pixel art. Conserva alcance, daño, secuencia, tarjeta y retorno al mapa.
 
 Mantener el combo recorre siempre los cuatro golpes, aunque fallen o no queden rivales. Fallar corta la racha GA, sin reiniciar la secuencia visual. El botón de combo apunta al frente; ratón/canvas conservan la puntería manual.

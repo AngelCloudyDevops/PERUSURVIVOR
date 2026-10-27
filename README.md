@@ -10,6 +10,104 @@ Estabilidad cooperativa: paquetes WebSocket de más de 1 KiB usan compresión r�
 
 Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posición validada por servidor, 5 s de duración, una por jugador y recarga de 2 s. Ayuda funciona al estar caído. La escolta de la combi se desbloquea a los 90 s: acérquense y pulsen Iniciar escolta. Ambos vivos a 200 unidades; dos paradas de 6 s despejadas de enemigos. Vida 150, límite 100 s, reintento 20 s; premio único +50 monedas compartidas y 25% de vida a cada superviviente. Se suspende durante arenas, escenas, mejoras y desconexiones; no coincide con la defensa doble. Backend Escort/Signals serializados en activities; CoopExtras dibuja vehículo, avisos y controles sin autoridad sobre premios.
 
+## Contrato general de personajes: estadísticas, pasiva y habilidades
+
+Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa. Una ficha no debe enseñar una estadística que todavía no tenga efecto real en el combate. Los valores base significan **rango 1, una estrella, sin mejoras permanentes, objetos ni bonificaciones de la partida**.
+
+1. **Identidad:** nombre, rareza de colección, rol, atributo (`Fuerza`, `Técnica` o `Ingenio`), canal principal (`Físico` o `Especial`), fortaleza y debilidad.
+2. **Estadísticas base:** vida máxima, daño base por impacto, intervalo entre ataques, alcance, velocidad de movimiento y radio de recogida.
+3. **Índices de combate:** ATQ físico, ATQ especial, DEF física y DEF especial. Son índices para la fórmula de daño; un índice 100 no equivale a 100 puntos de daño.
+4. **Pasiva única:** nombre, condición, efecto, límite, reinicio y señal visual. Siempre debe cambiar una decisión de juego; no puede ser solamente un aumento permanente sin condición.
+5. **Kit:** ataque principal automático, habilidad especial si existe, ulti Q, Expansión de Dominio R si corresponde y evolución del ataque.
+6. **Progresión:** estrellas y mejoras permanentes antes de jugar; rangos, evoluciones, pactos y objetos únicamente durante la partida.
+7. **Validación:** daño por impacto, daño por segundo de referencia, supervivencia, corto/medio alcance, grupos, jefe móvil, obstáculos y cooperativo.
+
+### Cómo se interpretan los stats
+
+| Grupo | Stat | Significado |
+|---|---|---|
+| Supervivencia | Vida máxima | Daño que puede recibir antes de caer. |
+| Ofensiva | Daño base | Presupuesto del ataque antes de coeficientes, crítico, atributo y defensa rival. |
+| Ofensiva | Intervalo | Segundos entre intentos de ataque; un número menor significa mayor cadencia. |
+| Espacio | Alcance | Distancia nominal del ataque antes del multiplicador de alcance. |
+| Movilidad | Velocidad | Unidades recorridas por segundo. |
+| Utilidad | Recogida | Radio para atraer experiencia y botín. |
+| Canales | ATQ/DEF Físico y Especial | Ajustan el daño del canal correspondiente mediante `2A/(A+D)`. |
+| Atributo | Fuerza/Técnica/Ingenio | Ciclo Fuerza → Técnica → Ingenio → Fuerza: +15% con ventaja y −10% con desventaja. |
+| Resumen | Poder estimado | Índice informativo de progreso del mismo personaje; no causa daño ni debe comparar roles diferentes. Base = 100. |
+
+El poder estimado actual pondera vida 30%, daño 35%, eficiencia de recarga 20%, velocidad 10% y recogida 5%. No incluye pasiva, alcance, defensas, forma del ataque, control, perforaciones múltiples, ulti ni dominio; por eso no es una “clase de combate” absoluta.
+
+El contrato se aplica a **personajes jugables, minions normales y pesados, minijefes y jefes**. Todos comparten los cuatro índices de canal y los stats avanzados: perforación, resistencia de estado, regeneración, probabilidad y daño crítico, resistencia y defensa crítica, recuperación y robo de vida. Los valores sin fuente comienzan neutrales —cero, excepto daño crítico 150% y recuperación 100%— para conservar el balance anterior. Los controles de Balance pueden configurarlos y las pruebas automáticas verifican sus límites. Crítico, regeneración y recuperación ya se conectan además con los objetos existentes; resistencia de estado modifica la duración del miedo y perforación reduce la defensa efectiva del canal.
+
+La diferencia entre categorías está en sus valores y kit, no en el formato: un minion puede tener menos campos relevantes para la interfaz, pero internamente usa las mismas fórmulas que un personaje, minijefe o jefe. Así una pasiva futura puede afectar un stat sin crear una excepción nueva.
+
+### Fuentes y orden de cálculo
+
+La ficha debe poder separar `Base → estrellas → mejoras permanentes → mejoras de partida → objetos → efectos temporales`. La rareza decide disponibilidad y crecimiento de colección; no aumenta por sí sola el daño. Las estrellas y mejoras permanentes afectan el modo individual según sus reglas actuales; cooperativo conserva el balance autoritativo de la sala. Los porcentajes deben indicar si se suman o multiplican y nunca modificar silenciosamente el catálogo base.
+
+### Plantilla de ficha para todas las causas
+
+```text
+NOMBRE · RAREZA · ROL
+Atributo / canal principal / fortaleza / debilidad
+
+STATS BASE
+Vida · Daño · Intervalo · Alcance · Velocidad · Recogida
+ATQ físico/especial · DEF física/especial · Poder estimado
+
+PASIVA ÚNICA
+Nombre · condición · acumulaciones o recarga · efecto · reinicio · indicador
+
+KIT
+Ataque principal · Habilidad especial · Ulti Q · Dominio R · Evolución
+
+PROGRESIÓN Y PRUEBAS
+Estrellas · mejoras permanentes · rangos de partida · casos de balance
+```
+
+## Primera ficha completa: Makanaky · La Realeza
+
+**Estado:** los stats, ataque, evolución y dominio descritos abajo ya existen. La pasiva es el primer diseño del nuevo sistema y debe implementarse y validarse antes de marcarse como activa.
+
+| Campo | Base actual |
+|---|---:|
+| Rareza / rol | UR · Supremo / Luchador de presión |
+| Atributo / canal | Fuerza / Físico |
+| Vida máxima | 125 |
+| Daño base por golpe | 32 |
+| Intervalo de ataque | 0,56 s |
+| Alcance base | 100 u |
+| Velocidad | 200 u/s |
+| Recogida | 90 u |
+| ATQ físico / especial | 100 / 85 |
+| DEF física / especial | 105 / 95 |
+| Poder estimado base | 100 |
+
+Fortaleza: presión cuerpo a cuerpo, movilidad alta y golpes que cubren un arco. Debilidad: debe permanecer cerca y una falla rompe su ritmo.
+
+### Pasiva propuesta — Racha de la Realeza
+
+- Un ataque principal que dañe al menos a un rival concede una marca de **GA**, hasta cuatro.
+- Cada marca reduce 5% el intervalo del siguiente ataque y aumenta 3% su alcance. Máximo: 20% de cadencia y 12% de alcance.
+- Al conectar con cuatro marcas, ese impacto se convierte en **Golpe Real**: +35% de daño y +40% de empuje; después consume todas las marcas.
+- Fallar el ataque o pasar 1,8 s sin conectar elimina la racha. Recibir daño no la borra automáticamente.
+- Solo el ataque principal y su evolución generan marcas. Ulti, dominio, objetos y apoyos no las generan ni consumen.
+- El HUD muestra cuatro segmentos `GA`; el cuarto enciende un contorno rosado y el Golpe Real muestra una corona breve sobre el impacto.
+- En cooperativo la sala/servidor es autoritativa. La pasiva no debe ejecutar dos veces un impacto ni confiar en el contador visual del cliente.
+
+La intención es que Makanaky busque una ruta segura para mantenerse cerca, encadene cuatro golpes y decida si arriesgarse a buscar el remate. No es un bono permanente: apuntar mal o abandonar el combate corta la ventaja.
+
+### Kit de Makanaky
+
+- **Ataque principal — Puño de la Realeza:** arco físico de 120°, alcance 100, empuje 24 y recarga base de 0,56 s.
+- **Evolución — Combo de la Realeza:** arco de 150°, alcance 135, daño ×1,35 y empuje 42.
+- **Habilidad especial:** espacio reservado; no se mostrará como disponible hasta tener comportamiento y controles reales.
+- **Ulti Q:** espacio reservado actualmente.
+- **Dominio R — ¡BÓTAME TU GA!:** carga con 35 bajas; entrada de 3 s, combate de 9 s y salida de 1,35 s. Su combo interno y la racha del dominio son sistemas separados de la pasiva del ataque normal.
+
+Antes de implementar la pasiva se medirán los valores actuales y después los mismos escenarios con la pasiva: enemigo cercano, grupo frontal, jefe móvil, falla deliberada, pérdida de objetivo, evolución, pausa, movimiento reducido y dos jugadores. El objetivo no es que Makanaky gane todas las pruebas, sino que su ventaja aparezca cuando mantiene el combo y desaparezca cuando no consigue conectar.
+
 ## Estándar obligatorio de tarjetas de ulti
 Las entradas de ulti usan 40 % de ancho, 82 % de alto, x = 0, y = 8 %, 1,3 s, borde diagonal con marco oscuro y retrato dedicado de cintura arriba. Render a resolución de pantalla, sin margen ni ampliación del lienzo del dominio. Las vistas de espalda deben usar sprites cartoon pixel art completos y contorneados, nunca figuras geométricas de sustitución. Detalles y assets: [Contrato visual de ultis](docs/ULTIMATE_ART.md).
 

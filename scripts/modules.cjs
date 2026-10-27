@@ -307,6 +307,7 @@ module.exports = [
     "source": "src/systems/ability-cards.js",
     "output": "js/ability-cards.js"
   },
+  {"source":"src/data/stats.js","output":"js/stats.js"},
   {
     "source": "src/ui/card-gallery.js",
     "output": "js/card-gallery.js"
@@ -391,4 +392,5 @@ module.exports = [
 , {source:"src/rendering/portal-fx.js",output:"js/portal-fx.js"}
 , {source:"src/ui/reference-menus.js",output:"js/reference-menus.js"}
 , {source:"src/ui/lobby-complete.js",output:"js/lobby-complete.js"}
+, {source:"src/systems/stat-runtime.js",output:"js/stat-runtime.js"}
 ];

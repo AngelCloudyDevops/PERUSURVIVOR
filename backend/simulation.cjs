@@ -27,6 +27,7 @@ class Simulation{
  save(p){const s=this.P.state;p.fire=s.fire;p.shots=s.shots;p.fields=s.fields;p.ultimate=s.ultimate}
  tick(dt,inputs){
   const P=this.P,s=P.state,alive=this.players.filter(p=>p.hp>0);if(this.result)return;
+  P.Stats.step(s,dt,this.players);
   if(!alive.length){if(s.chamelinDomain){s.chamelinDomain.result=undefined;P.Chamelin.end()}this.result='lose';return}
   if(this.activities.pending){this.activities.advance(dt);return}
   if(s.encounter?.defeat){s.mode='play';this.use(alive[0]);const kind=s.encounter.definition.kind;if(kind==='combi')P.ChosicanoCombat.defeatTick(dt);else if(kind==='fujimori')P.FujimoriBoss.defeatTick(dt);else P.Vulture.defeatTick(dt);if(s.encounter?.defeat?.finished)this.activities.tick(0);return}
