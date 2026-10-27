@@ -8,7 +8,7 @@ function setup(){
 }
 
 test('Sideral: reemplaza el mapa por una habitación física y la serializa en cooperativo',()=>{
- const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);for(let i=0;i<142;i++)sim.tick(.04,[{},{}]);
+ const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true},{}]);for(let i=0;i<142;i++)sim.tick(.04,[{},{}]);
  assert.equal(s.sideralDomain.arena,true);assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,4);
  assert.equal(s.sideralDomain.waves,1);assert.equal(s.sideralDomain.pulse,0);
  assert(P.Terrain.active().some(o=>o.kind==='sideral-desk'));assert(P.Terrain.active().some(o=>o.kind==='sideral-library'));
@@ -19,14 +19,14 @@ test('Sideral: reemplaza el mapa por una habitación física y la serializa en c
 });
 
 test('Sideral: choque daña, rebota y al terminar restaura coordenadas',()=>{
- const {sim,P,s,p}=setup(),e={x:640,y:90,hp:100,max:100,r:14,speed:0,boss:false,hit:0,attackT:9};P.Attributes.init(e);s.enemies=[e];p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);for(let i=0;i<142;i++)sim.tick(.04,[{},{}]);
+ const {sim,P,s,p}=setup(),e={x:640,y:90,hp:100,max:100,r:14,speed:0,boss:false,hit:0,attackT:9};P.Attributes.init(e);s.enemies=[e];p.ultimate.charge=100;sim.tick(.04,[{domain:true},{}]);for(let i=0;i<142;i++)sim.tick(.04,[{},{}]);
  const d=s.sideralDomain,b=P.SideralDomain.bounds(d);e.x=b.right-e.r-20;e.sideralFear=.9;e.sideralWallHit={side:'right'};P.SideralDomain.boundary(e,d,.04);
  assert.equal(e.hp,92);assert.equal(e.domainEdgeHits,1);assert(e.charge.x<0);assert.equal(e._sideralReturnX,640);
  P.SideralDomain.end();assert.equal(s.sideralDomain,null);assert.equal(e.x,640);assert.equal(e._sideralReturnX,undefined);assert.equal(p.x,120);assert.equal(p.y,90);
 });
 
 test('Sideral: el dominio entra directamente y cada pulso nace desde el personaje',()=>{
- const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);const d=s.sideralDomain;
+ const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true},{}]);const d=s.sideralDomain;
  sim.tick(.4,[{},{}]);assert(d.age>0);assert.equal(d.card,undefined);assert(sim.players[1].inv>0);
  assert.equal(P.SideralDomain.pose(P.SideralDomain.entry*.7).hop,0);assert(P.SideralDomain.pose(P.SideralDomain.entry*.88).hop>0);assert(P.SideralDomain.pose(P.SideralDomain.entry*.98).laugh>0);
  p.x=333;p.y=222;P.SideralDomain.burst();assert.equal(d.waveX,333);assert.equal(d.waveY,222);
@@ -40,6 +40,6 @@ test('Sideral: la cinemática compone una sola figura sobre una sola habitación
 });
 
 test('Sideral: el cierre dura 0,95 s y protege a ambos jugadores',()=>{
- const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{ultimate:true},{}]);const d=s.sideralDomain;d.age=P.SideralDomain.entry+P.SideralDomain.duration-.01;sim.tick(.04,[{},{}]);
+ const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true},{}]);const d=s.sideralDomain;d.age=P.SideralDomain.entry+P.SideralDomain.duration-.01;sim.tick(.04,[{},{}]);
  assert.equal(d.exitTotal,.95);p.inv=0;sim.players[1].inv=0;sim.tick(.04,[{},{}]);assert(p.inv>0);assert(sim.players[1].inv>0);assert(d.exit>0);
 });
