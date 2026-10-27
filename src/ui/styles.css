@@ -592,3 +592,26 @@ body[data-lobby-panel=codex] #game{opacity:.08;filter:blur(8px) saturate(.45)}bo
 @media(max-width:1450px){.card-album-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media(max-width:1100px){.card-album-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:760px){.card-album-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Marcos de Causapedia: un único centro geométrico evita que el aura se descuadre al escalar. */
+.collectible-frame{inset:auto;left:50%;top:50%;width:calc(100% + 22px);height:calc(100% + 30px);transform:translate(-50%,-50%) translateZ(8px);border-radius:22px;box-sizing:border-box;background-image:none;filter:none}
+.collectible-card-front[data-frame-visual=fire] .collectible-frame{inset:auto;left:50%;top:50%;width:calc(100% + 38px);height:calc(100% + 52px);background-image:url('/assets/ui/ultimate-fire-aura-v1.webp');filter:drop-shadow(0 0 5px #ff6b43aa)}
+.collectible-card-front[data-frame-visual=demon] .collectible-frame{inset:auto;left:50%;top:50%;width:calc(100% + 50px);height:calc(100% + 64px);background-image:url('/assets/ui/cirilo-domain-demon-frame-v1.webp');filter:drop-shadow(0 0 6px #ff493cb8) drop-shadow(0 0 11px #812050a0)}
+.collectible-card-front[data-frame-visual=royal] .collectible-frame{border:5px double #ffdf78;outline:2px solid #7a4519;outline-offset:3px;background:linear-gradient(135deg,#fff3a2 0 5%,transparent 5% 45%,#a86520 45% 50%,transparent 50% 95%,#fff3a2 95%);box-shadow:0 0 0 2px #271408,0 0 20px #f4b83c8f,inset 0 0 13px #ffcf6366}
+.collectible-card-front[data-frame-visual=cosmic] .collectible-frame{border:4px solid #ad7dff;outline:2px solid #58e5ff;outline-offset:3px;background:radial-gradient(circle at 12% 16%,#fff 0 2px,transparent 3px),radial-gradient(circle at 88% 74%,#72efff 0 2px,transparent 3px);box-shadow:0 0 0 2px #291558,0 0 23px #8e4cffaa,inset 0 0 17px #66e4ff66}
+.collectible-card-front[data-frame-visual=steam] .collectible-frame{border:5px ridge #b98a54;outline:2px solid #55d4d8;outline-offset:3px;background:linear-gradient(90deg,#d3a96c 0 5px,transparent 5px calc(100% - 5px),#d3a96c calc(100% - 5px)),linear-gradient(#55d4d8 0 4px,transparent 4px calc(100% - 4px),#55d4d8 calc(100% - 4px));box-shadow:0 0 0 2px #241b19,0 0 19px #54dbe177,inset 0 0 15px #d9b47a55}
+
+.collection-card-art{overflow:visible}
+.collection-card-art:after{display:none}
+.collection-card-crop{position:absolute;inset:0;z-index:1;display:block;border-radius:8px;overflow:hidden}
+.collection-card-crop:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 20%,#fff4 38%,transparent 53%);transform:translateX(-120%);transition:transform .55s ease}
+.collection-card-thumb:hover .collection-card-crop:after,.collection-card-thumb:focus-visible .collection-card-crop:after{transform:translateX(120%)}
+.collection-card-frame{position:absolute;z-index:3;left:50%;top:50%;width:calc(100% + 10px);height:calc(100% + 14px);box-sizing:border-box;border-radius:12px;pointer-events:none;transform:translate(-50%,-50%);background-position:center;background-size:100% 100%;background-repeat:no-repeat}
+.collection-card-art[data-frame-visual=fire] .collection-card-frame{width:calc(100% + 18px);height:calc(100% + 24px);background-image:url('/assets/ui/ultimate-fire-aura-v1.webp');filter:drop-shadow(0 0 3px #ff7138aa)}
+.collection-card-art[data-frame-visual=demon] .collection-card-frame{width:calc(100% + 22px);height:calc(100% + 28px);background-image:url('/assets/ui/cirilo-domain-demon-frame-v1.webp');filter:drop-shadow(0 0 4px #ff493ca8)}
+.collection-card-art[data-frame-visual=royal] .collection-card-frame{border:3px double #ffdc70;outline:1px solid #7a4519;outline-offset:2px;box-shadow:0 0 10px #f4b83c8f,inset 0 0 7px #ffcf6366}
+.collection-card-art[data-frame-visual=cosmic] .collection-card-frame{border:3px solid #ae7cff;outline:1px solid #59e5ff;outline-offset:2px;box-shadow:0 0 11px #8e4cffaa,inset 0 0 8px #66e4ff66}
+.collection-card-art[data-frame-visual=steam] .collection-card-frame{border:3px ridge #c29a66;outline:1px solid #55d4d8;outline-offset:2px;box-shadow:0 0 10px #54dbe177,inset 0 0 7px #d9b47a55}
+.collection-card-key,.collection-card-edition{z-index:4}
+.card-strip-thumb .collection-card-frame{display:none}
+@media(max-width:760px){.collectible-card-front[data-frame-visual=fire] .collectible-frame{inset:auto;left:50%;top:50%;width:calc(100% + 30px);height:calc(100% + 42px)}.collectible-card-front[data-frame-visual=demon] .collectible-frame{inset:auto;left:50%;top:50%;width:calc(100% + 38px);height:calc(100% + 50px)}}
