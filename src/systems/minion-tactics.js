@@ -15,14 +15,15 @@ P.MinionTactics={
  },
  key(e){if(P.MinionProfessions.definition(e))return e.profession;return ['shovel','punch','sweep'][e.design]||null},
  profile(e,base){const s=P.state,key=this.key(e),d=this.definitions[key];if(!base||!d||!P.MinionEvolution.eligible(e)||!e.progressive||s.devRun&&!s.balanceTest||s.encounter)return base;return {...base,...d,tactic:key,tactical:true,mode:'tactical',min:d.ranged?70:0,max:d.range,damage:d.damage*P.MinionEvolution.profiles[P.MinionEvolution.rank(e)].damage,windup:Math.max(d.windup,base.windup),cooldown:Math.max(5.5,base.cooldown),recovery:d.recovery}},
- limits(stage){const i=P.Difficulty.index();return {...stage,casts:Math.min(stage.casts,[0,1,2,2,3,3,4,4][i]),danger:Math.min(stage.danger,[0,6,10,12,16,18,22,24][i])}},
+ breathing(time=P.state.mapTime){return time>=65&&time%30>=24},
+ limits(stage){const i=P.Difficulty.index(),cap=this.breathing()?2:4;return {...stage,casts:Math.min(stage.casts,cap,[0,1,2,2,3,3,4,4][i]),danger:Math.min(stage.danger,[0,6,10,12,16,18,22,24][i])}},
  busy(e){return !!(e.tactic||e.rangedAim||e.burst||e.charge)},
  isRanged(a){return !!a&&(!!a.ranged||['fan','twin','zigzag','burst'].includes(a.mode))},
  started(e){const s=P.state;if(e.progressive&&(!s.devRun||s.balanceTest)&&!s.encounter)s.tacticGate={at:s.elapsed}},
  canStart(e,a){const s=P.state;if(!e.progressive||s.devRun&&!s.balanceTest||s.encounter)return true;const limits=P.Difficulty.limits(e),busy=s.enemies.filter(q=>q.hp>0&&this.busy(q));if(busy.length>=limits.casts||s.danger.length>=limits.danger)return false;
   const active=busy.filter(q=>q.tactic),ranged=busy.filter(q=>this.isRanged(q.attackProfile||P.Difficulty.attack(q))).length;
-  if(this.isRanged(a)&&ranged>=Math.min(2,limits.casts)||active.filter(q=>q.attackProfile?.tactic===a.tactic).length>=(P.Difficulty.index()<6?1:2))return false;
-  const gate=s.tacticGate;if(gate&&s.elapsed>=gate.at&&s.elapsed<gate.at+.38)return false;return true;
+  if(this.isRanged(a)&&ranged>=Math.min(this.breathing()?1:2,limits.casts)||active.filter(q=>q.attackProfile?.tactic===a.tactic).length>=(P.Difficulty.index()<6?1:2))return false;
+  const gate=s.tacticGate;if(gate&&s.elapsed>=gate.at&&s.elapsed<gate.at+(this.breathing()?.65:.38))return false;return true;
  },
  plan(e,a,aim){const tier=P.MinionEvolution.rank(e),angle=Math.atan2(aim.y,aim.x),at=a.windup,events=[],sector=(time,radius,arc,extra={})=>events.push({at:time,x:e.x,y:e.y,angle,radius,arc,shape:'sector',duration:.22,...extra});
   if(a.tactic==='punch'||a.tactic==='chef'){const count=tier+1;for(let i=0;i<count;i++)sector(at+i*.82,a.tactic==='chef'?66:55,i===2?1.65:1.15,{damageScale:i===2?1.35:1,reverse:i%2===1});}
@@ -33,7 +34,7 @@ P.MinionTactics={
   else if(a.tactic==='firefighter'){sector(at,145+tier*12,.58,{duration:[.7,1,1.25][tier],sweep:tier===2?.5:0,visual:'water'});}
   else if(a.tactic==='astronaut'){const distance=Math.min(tier?150:115,aim.distance),x=e.x+aim.x*distance,y=e.y+aim.y*distance;sector(at+.55,53+tier*7,Math.PI*2,{x,y,visual:'lunar'});if(tier===2)sector(at+.8,110,Math.PI*2,{x,y,shape:'ring',duration:.65,visual:'lunar'});}
   else if(a.tactic==='mummy'){for(const off of tier===2?[-.3,.3]:[0])events.push({at,x:e.x,y:e.y,angle:angle+off,shape:'line',length:205+tier*22,width:12,duration:.3,slow:.7,visual:'bandage'});}
-  else if(a.tactic==='elf'){const count=tier?2:1;for(let i=0;i<count;i++){const off=count===1?0:(i?1:-1)*(tier===2?60:48),distance=Math.min(aim.distance,230);events.push({at:at+i*.35,x:e.x+aim.x*distance-aim.y*off,y:e.y+aim.y*distance+aim.x*off,shape:'bomb',radius:34,arc:Math.PI*2,angle,duration:1.22,delay:.9,visual:'gift'});}}
+  else if(a.tactic==='elf'){const count=tier?2:1;for(let i=0;i<count;i++){const off=count===1?0:(i?1:-1)*(tier===2?60:48),distance=Math.min(aim.distance,230);events.push({at:at+i*.65,x:e.x+aim.x*distance-aim.y*off,y:e.y+aim.y*distance+aim.x*off,shape:'bomb',radius:34,arc:Math.PI*2,angle,duration:1.22,delay:.9,visual:'gift'});}}
   return {age:0,aim:{...aim},origin:{x:e.x,y:e.y},events,next:0,end:Math.max(...events.map(q=>q.at+q.duration))+a.recovery};
  },
  tick(e,dt,a){if(!a?.tactical&&!e.tactic)return false;const s=P.state;if((e.fearUntil||0)>s.elapsed){this.cancel(e);return true;}if(e.hp<=0){this.cancel(e);return true;}

@@ -1,0 +1,574 @@
+[
+  {
+    "key": "punch",
+    "width": 288,
+    "height": 288,
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-punch",
+    "sha256": "fdfe964337c40fc32cd4577659b29fa3e802e13e6cf0213ff444c5fa56422711",
+    "bytes": 27338,
+    "frames": [
+      {
+        "w": 83,
+        "h": 111,
+        "anchorX": 41.865400463559105,
+        "anchorY": 111
+      },
+      {
+        "w": 106,
+        "h": 111,
+        "anchorX": 48.66376849764143,
+        "anchorY": 111
+      },
+      {
+        "w": 81,
+        "h": 112,
+        "anchorX": 38.33212434385473,
+        "anchorY": 112
+      },
+      {
+        "w": 109,
+        "h": 113,
+        "anchorX": 48.921635451878785,
+        "anchorY": 113
+      },
+      {
+        "w": 86,
+        "h": 101,
+        "anchorX": 48.376615519689416,
+        "anchorY": 101
+      },
+      {
+        "w": 88,
+        "h": 115,
+        "anchorX": 44,
+        "anchorY": 115
+      }
+    ]
+  },
+  {
+    "key": "sweep",
+    "width": 288,
+    "height": 192,
+    "sourceWidth": 1536,
+    "sourceHeight": 1024,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-sweep",
+    "sha256": "7a182b42077f1ce5234205610a4a816da06721aa048b9fdc3f467e384d972cd8",
+    "bytes": 19778,
+    "frames": [
+      {
+        "w": 82,
+        "h": 83,
+        "anchorX": 28.85661181953355,
+        "anchorY": 83
+      },
+      {
+        "w": 108,
+        "h": 64,
+        "anchorX": 43.96998752171541,
+        "anchorY": 64
+      },
+      {
+        "w": 83,
+        "h": 87,
+        "anchorX": 45.562847740504004,
+        "anchorY": 87
+      },
+      {
+        "w": 86,
+        "h": 69,
+        "anchorX": 44.75192450837559,
+        "anchorY": 69
+      },
+      {
+        "w": 98,
+        "h": 68,
+        "anchorX": 49,
+        "anchorY": 68
+      },
+      {
+        "w": 70,
+        "h": 83,
+        "anchorX": 29.750114371609698,
+        "anchorY": 83
+      }
+    ]
+  },
+  {
+    "key": "chef",
+    "width": 288,
+    "height": 192,
+    "sourceWidth": 1536,
+    "sourceHeight": 1024,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-chef",
+    "sha256": "1c535a79da40ea8b9c2225c5777002852ebc7d399b671af8f94f0e17cc7d3e7f",
+    "bytes": 18798,
+    "frames": [
+      {
+        "w": 72,
+        "h": 86,
+        "anchorX": 35.18750215765744,
+        "anchorY": 86
+      },
+      {
+        "w": 108,
+        "h": 83,
+        "anchorX": 49.638381477357434,
+        "anchorY": 83
+      },
+      {
+        "w": 64,
+        "h": 85,
+        "anchorX": 31.800077056260584,
+        "anchorY": 85
+      },
+      {
+        "w": 83,
+        "h": 81,
+        "anchorX": 47.48504697606697,
+        "anchorY": 81
+      },
+      {
+        "w": 70,
+        "h": 91,
+        "anchorX": 35,
+        "anchorY": 91
+      },
+      {
+        "w": 97,
+        "h": 74,
+        "anchorX": 48.71882079856608,
+        "anchorY": 74
+      }
+    ]
+  },
+  {
+    "key": "chef-veteran",
+    "width": 288,
+    "height": 192,
+    "sourceWidth": 1536,
+    "sourceHeight": 1024,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-chef-veteran",
+    "sha256": "7b94d0ae766ce7a08f9251f580f545543d23d4f0853054782bd173a4f0b26c79",
+    "bytes": 18400,
+    "frames": [
+      {
+        "w": 68,
+        "h": 81,
+        "anchorX": 34.63754465189762,
+        "anchorY": 81
+      },
+      {
+        "w": 99,
+        "h": 80,
+        "anchorX": 36.45277803255945,
+        "anchorY": 80
+      },
+      {
+        "w": 64,
+        "h": 80,
+        "anchorX": 30.485434696284077,
+        "anchorY": 80
+      },
+      {
+        "w": 88,
+        "h": 79,
+        "anchorX": 38.41353086745026,
+        "anchorY": 79
+      },
+      {
+        "w": 70,
+        "h": 89,
+        "anchorX": 35,
+        "anchorY": 89
+      },
+      {
+        "w": 95,
+        "h": 75,
+        "anchorX": 47.64302467911678,
+        "anchorY": 75
+      }
+    ]
+  },
+  {
+    "key": "chef-elite",
+    "width": 288,
+    "height": 192,
+    "sourceWidth": 1536,
+    "sourceHeight": 1024,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-chef-elite",
+    "sha256": "d523b92dbaee80c7f4a5c1854fb1890be1b1c0dc0b5b8ff3b4ccc2639be2105b",
+    "bytes": 19580,
+    "frames": [
+      {
+        "w": 66,
+        "h": 87,
+        "anchorX": 33,
+        "anchorY": 87
+      },
+      {
+        "w": 97,
+        "h": 86,
+        "anchorX": 40.529947213595904,
+        "anchorY": 86
+      },
+      {
+        "w": 60,
+        "h": 86,
+        "anchorX": 30.65098449365191,
+        "anchorY": 86
+      },
+      {
+        "w": 102,
+        "h": 86,
+        "anchorX": 42.80093484761751,
+        "anchorY": 86
+      },
+      {
+        "w": 70,
+        "h": 90,
+        "anchorX": 31.63056729161165,
+        "anchorY": 90
+      },
+      {
+        "w": 86,
+        "h": 81,
+        "anchorX": 51.63441048135773,
+        "anchorY": 81
+      }
+    ]
+  },
+  {
+    "key": "architect",
+    "width": 288,
+    "height": 192,
+    "sourceWidth": 1536,
+    "sourceHeight": 1024,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-architect",
+    "sha256": "1e8ff4da5593fd1e2988e293088efcfced863ffc3fcf1832e502c24a10619e82",
+    "bytes": 19572,
+    "frames": [
+      {
+        "w": 73,
+        "h": 82,
+        "anchorX": 37.37325320708517,
+        "anchorY": 82
+      },
+      {
+        "w": 93,
+        "h": 82,
+        "anchorX": 39.96042232861642,
+        "anchorY": 82
+      },
+      {
+        "w": 77,
+        "h": 82,
+        "anchorX": 34.28181047392736,
+        "anchorY": 82
+      },
+      {
+        "w": 68,
+        "h": 81,
+        "anchorX": 34.12477977674619,
+        "anchorY": 81
+      },
+      {
+        "w": 86,
+        "h": 82,
+        "anchorX": 43,
+        "anchorY": 82
+      },
+      {
+        "w": 72,
+        "h": 81,
+        "anchorX": 32.7460644952862,
+        "anchorY": 81
+      }
+    ]
+  },
+  {
+    "key": "architect-veteran",
+    "width": 288,
+    "height": 192,
+    "sourceWidth": 1536,
+    "sourceHeight": 1024,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-architect-veteran",
+    "sha256": "00e26099cf57cde61bfe4a44ab0926307e64d0fc7d38d77fe46b083a71e0a57e",
+    "bytes": 21102,
+    "frames": [
+      {
+        "w": 77,
+        "h": 85,
+        "anchorX": 37.44347580738511,
+        "anchorY": 85
+      },
+      {
+        "w": 97,
+        "h": 81,
+        "anchorX": 45.86682486398888,
+        "anchorY": 81
+      },
+      {
+        "w": 79,
+        "h": 81,
+        "anchorX": 38.80300604187419,
+        "anchorY": 81
+      },
+      {
+        "w": 79,
+        "h": 83,
+        "anchorX": 41.06443558742446,
+        "anchorY": 83
+      },
+      {
+        "w": 99,
+        "h": 83,
+        "anchorX": 49.56064714031268,
+        "anchorY": 83
+      },
+      {
+        "w": 71,
+        "h": 83,
+        "anchorX": 35.5,
+        "anchorY": 83
+      }
+    ]
+  },
+  {
+    "key": "architect-elite",
+    "width": 288,
+    "height": 192,
+    "sourceWidth": 1536,
+    "sourceHeight": 1024,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-architect-elite",
+    "sha256": "b2f41d7747e65698ff45c003786df588cd87378750fdc326115aff6e8bf02838",
+    "bytes": 20154,
+    "frames": [
+      {
+        "w": 79,
+        "h": 82,
+        "anchorX": 39.515557438452795,
+        "anchorY": 82
+      },
+      {
+        "w": 95,
+        "h": 82,
+        "anchorX": 42.395296804384024,
+        "anchorY": 82
+      },
+      {
+        "w": 79,
+        "h": 82,
+        "anchorX": 36.67233399522935,
+        "anchorY": 82
+      },
+      {
+        "w": 72,
+        "h": 79,
+        "anchorX": 36,
+        "anchorY": 79
+      },
+      {
+        "w": 99,
+        "h": 79,
+        "anchorX": 51.62037075379243,
+        "anchorY": 79
+      },
+      {
+        "w": 70,
+        "h": 79,
+        "anchorX": 33.02440063046431,
+        "anchorY": 79
+      }
+    ]
+  },
+  {
+    "key": "elf",
+    "width": 288,
+    "height": 192,
+    "sourceWidth": 1536,
+    "sourceHeight": 1024,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-elf",
+    "sha256": "d03fcd7d7419a7ddf117af1c2afd21d2bb470e202b3e698fd974a0fbe132e88c",
+    "bytes": 22744,
+    "frames": [
+      {
+        "w": 71,
+        "h": 88,
+        "anchorX": 37.16541638386019,
+        "anchorY": 88
+      },
+      {
+        "w": 85,
+        "h": 88,
+        "anchorX": 41.86766258610639,
+        "anchorY": 88
+      },
+      {
+        "w": 82,
+        "h": 88,
+        "anchorX": 40.548415408458624,
+        "anchorY": 88
+      },
+      {
+        "w": 71,
+        "h": 87,
+        "anchorX": 35.5,
+        "anchorY": 87
+      },
+      {
+        "w": 88,
+        "h": 86,
+        "anchorX": 42.53437774643857,
+        "anchorY": 86
+      },
+      {
+        "w": 74,
+        "h": 86,
+        "anchorX": 38.807363997874845,
+        "anchorY": 86
+      }
+    ]
+  },
+  {
+    "key": "elf-veteran",
+    "width": 288,
+    "height": 192,
+    "sourceWidth": 1536,
+    "sourceHeight": 1024,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-elf-veteran",
+    "sha256": "1fad8b22eadfa8827992fe8249719132a1be4ce17466c17ca4ae23876d4df534",
+    "bytes": 24484,
+    "frames": [
+      {
+        "w": 73,
+        "h": 90,
+        "anchorX": 34.250362505621304,
+        "anchorY": 90
+      },
+      {
+        "w": 92,
+        "h": 90,
+        "anchorX": 43.73024625997253,
+        "anchorY": 90
+      },
+      {
+        "w": 84,
+        "h": 90,
+        "anchorX": 42,
+        "anchorY": 90
+      },
+      {
+        "w": 73,
+        "h": 90,
+        "anchorX": 36.55192331918713,
+        "anchorY": 90
+      },
+      {
+        "w": 93,
+        "h": 83,
+        "anchorX": 43.845774475836514,
+        "anchorY": 83
+      },
+      {
+        "w": 75,
+        "h": 89,
+        "anchorX": 38.280254133071864,
+        "anchorY": 89
+      }
+    ]
+  },
+  {
+    "key": "elf-elite",
+    "width": 288,
+    "height": 192,
+    "sourceWidth": 1536,
+    "sourceHeight": 1024,
+    "alpha": [
+      0,
+      255
+    ],
+    "id": "combo-elf-elite",
+    "sha256": "2e45c93a658bba6d3e69d56a68ddf43b802475345ead3f290ebc01675ba1cdea",
+    "bytes": 22810,
+    "frames": [
+      {
+        "w": 76,
+        "h": 86,
+        "anchorX": 34.451293611423246,
+        "anchorY": 86
+      },
+      {
+        "w": 88,
+        "h": 86,
+        "anchorX": 43.026988597477256,
+        "anchorY": 86
+      },
+      {
+        "w": 82,
+        "h": 86,
+        "anchorX": 41.29389537330148,
+        "anchorY": 86
+      },
+      {
+        "w": 73,
+        "h": 88,
+        "anchorX": 36.5,
+        "anchorY": 88
+      },
+      {
+        "w": 84,
+        "h": 84,
+        "anchorX": 40.86161848903784,
+        "anchorY": 84
+      },
+      {
+        "w": 70,
+        "h": 84,
+        "anchorX": 41.054363090571215,
+        "anchorY": 84
+      }
+    ]
+  }
+]

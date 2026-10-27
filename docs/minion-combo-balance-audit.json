@@ -1,0 +1,735 @@
+{
+  "baselineSha": "1655192b334e96ebdcb40327468a416867f82848",
+  "ruleSha256": "4fe7ba1f793856ab002f3312f59b808d0c9bddbb17fc733e657e276061b018e0",
+  "method": "20 deterministic full Game.update runs; six characters x three exploration maps plus two seasonal maps. Seed 831, 30 Hz, normal stats, displayed upgrades only, automated movement and available ultimates. This tests mechanics and progression, not human enjoyment or rendered FPS.",
+  "seed": 831,
+  "hz": 30,
+  "limitSeconds": 330,
+  "pairedRuns": 20,
+  "firstMinuteUnchanged": true,
+  "before": {
+    "runs": 20,
+    "outcomes": {
+      "win": 9,
+      "death": 6,
+      "timeout": 5
+    },
+    "damage": 1698.1560213385244,
+    "tacticalDamage": 514.6779862414007,
+    "contactDamage": 142.05733846812151
+  },
+  "after": {
+    "runs": 20,
+    "outcomes": {
+      "win": 9,
+      "death": 5,
+      "timeout": 6
+    },
+    "damage": 1612.1969513605775,
+    "tacticalDamage": 406.0190209341364,
+    "contactDamage": 133.390243902439
+  },
+  "cases": [
+    {
+      "id": "cristorata",
+      "map": "machu",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "win",
+        "seconds": 324.3,
+        "damage": {
+          "taken": 113.00794246404001,
+          "hits": 8,
+          "sources": {
+            "tactical": 18.812820512820508,
+            "contact": 0,
+            "other": 94.1951219512195
+          }
+        },
+        "level": 14,
+        "kills": 583
+      },
+      "after": {
+        "result": "win",
+        "seconds": 319.5,
+        "damage": {
+          "taken": 128.66979362101313,
+          "hits": 11,
+          "sources": {
+            "tactical": 25.048780487804876,
+            "contact": 0,
+            "other": 103.62101313320827
+          }
+        },
+        "level": 14,
+        "kills": 551
+      }
+    },
+    {
+      "id": "cristorata",
+      "map": "campo",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "death",
+        "seconds": 317.2,
+        "damage": {
+          "taken": 103.42926829268293,
+          "hits": 11,
+          "sources": {
+            "tactical": 66.85897435897435,
+            "contact": 0,
+            "other": 70
+          }
+        },
+        "level": 14,
+        "kills": 538
+      },
+      "after": {
+        "result": "win",
+        "seconds": 321,
+        "damage": {
+          "taken": 110.44878048780485,
+          "hits": 9,
+          "sources": {
+            "tactical": 36.731707317073166,
+            "contact": 45.99999999999999,
+            "other": 43.42439024390244
+          }
+        },
+        "level": 14,
+        "kills": 554
+      }
+    },
+    {
+      "id": "cristorata",
+      "map": "plaza",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "win",
+        "seconds": 320.1,
+        "damage": {
+          "taken": 105.58824265165727,
+          "hits": 8,
+          "sources": {
+            "tactical": 8.307692307692307,
+            "contact": 13.333333333333332,
+            "other": 83.94721701063163
+          }
+        },
+        "level": 14,
+        "kills": 555
+      },
+      "after": {
+        "result": "win",
+        "seconds": 324,
+        "damage": {
+          "taken": 121.59399624765477,
+          "hits": 10,
+          "sources": {
+            "tactical": 19.630769230769225,
+            "contact": 0,
+            "other": 101.96322701688554
+          }
+        },
+        "level": 14,
+        "kills": 583
+      }
+    },
+    {
+      "id": "kingteka",
+      "map": "plaza",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "death",
+        "seconds": 198.4,
+        "damage": {
+          "taken": 125,
+          "hits": 13,
+          "sources": {
+            "tactical": 88.3209505941213,
+            "contact": 11.21951219512195,
+            "other": 35.85741088180112
+          }
+        },
+        "level": 11,
+        "kills": 283
+      },
+      "after": {
+        "result": "death",
+        "seconds": 221.1,
+        "damage": {
+          "taken": 143,
+          "hits": 14,
+          "sources": {
+            "tactical": 67.26203877423389,
+            "contact": 45.09756097560975,
+            "other": 38.31894934333958
+          }
+        },
+        "level": 11,
+        "kills": 283
+      }
+    },
+    {
+      "id": "kingteka",
+      "map": "campo",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "death",
+        "seconds": 204.2,
+        "damage": {
+          "taken": 124.99999999999999,
+          "hits": 11,
+          "sources": {
+            "tactical": 44.491557223264536,
+            "contact": 41.3170731707317,
+            "other": 47.429643527204504
+          }
+        },
+        "level": 11,
+        "kills": 288
+      },
+      "after": {
+        "result": "death",
+        "seconds": 230.2,
+        "damage": {
+          "taken": 124.99999999999997,
+          "hits": 12,
+          "sources": {
+            "tactical": 46.448780487804875,
+            "contact": 21.317073170731707,
+            "other": 68.10656660412758
+          }
+        },
+        "level": 11,
+        "kills": 337
+      }
+    },
+    {
+      "id": "kingteka",
+      "map": "machu",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "death",
+        "seconds": 139.7,
+        "damage": {
+          "taken": 179,
+          "hits": 13,
+          "sources": {
+            "tactical": 40.491557223264536,
+            "contact": 33.8780487804878,
+            "other": 106.66666666666664
+          }
+        },
+        "level": 9,
+        "kills": 182
+      },
+      "after": {
+        "result": "death",
+        "seconds": 167.2,
+        "damage": {
+          "taken": 161,
+          "hits": 11,
+          "sources": {
+            "tactical": 30.522326454033767,
+            "contact": 9.75609756097561,
+            "other": 132.10256410256406
+          }
+        },
+        "level": 10,
+        "kills": 229
+      }
+    },
+    {
+      "id": "g5",
+      "map": "machu",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 38.59999999999998,
+          "hits": 3,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 38.599999999999994
+          }
+        },
+        "level": 14,
+        "kills": 609
+      },
+      "after": {
+        "result": "win",
+        "seconds": 329.9,
+        "damage": {
+          "taken": 61.29473684210521,
+          "hits": 5,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 61.29473684210526
+          }
+        },
+        "level": 15,
+        "kills": 601
+      }
+    },
+    {
+      "id": "g5",
+      "map": "campo",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "win",
+        "seconds": 326.7,
+        "damage": {
+          "taken": 6.631578947368411,
+          "hits": 1,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 6.63157894736842
+          }
+        },
+        "level": 14,
+        "kills": 580
+      },
+      "after": {
+        "result": "win",
+        "seconds": 314,
+        "damage": {
+          "taken": 36.73684210526312,
+          "hits": 3,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 36.73684210526315
+          }
+        },
+        "level": 14,
+        "kills": 564
+      }
+    },
+    {
+      "id": "g5",
+      "map": "plaza",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "win",
+        "seconds": 320.9,
+        "damage": {
+          "taken": 27.99999999999997,
+          "hits": 3,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 28
+          }
+        },
+        "level": 14,
+        "kills": 571
+      },
+      "after": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 6.631578947368411,
+          "hits": 1,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 6.63157894736842
+          }
+        },
+        "level": 15,
+        "kills": 606
+      }
+    },
+    {
+      "id": "fuzo",
+      "map": "campo",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "win",
+        "seconds": 316.5,
+        "damage": {
+          "taken": 65.07298311444653,
+          "hits": 5,
+          "sources": {
+            "tactical": 14.641463414634144,
+            "contact": 0,
+            "other": 50.431519699812384
+          }
+        },
+        "level": 14,
+        "kills": 561
+      },
+      "after": {
+        "result": "win",
+        "seconds": 312,
+        "damage": {
+          "taken": 55.35759849906191,
+          "hits": 5,
+          "sources": {
+            "tactical": 12.117073170731706,
+            "contact": 0,
+            "other": 43.24052532833021
+          }
+        },
+        "level": 14,
+        "kills": 560
+      }
+    },
+    {
+      "id": "fuzo",
+      "map": "plaza",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "win",
+        "seconds": 313,
+        "damage": {
+          "taken": 65.69512195121952,
+          "hits": 5,
+          "sources": {
+            "tactical": 42.01463414634146,
+            "contact": 0,
+            "other": 23.680487804878048
+          }
+        },
+        "level": 14,
+        "kills": 553
+      },
+      "after": {
+        "result": "win",
+        "seconds": 315.7,
+        "damage": {
+          "taken": 12.292682926829272,
+          "hits": 1,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 12.292682926829269
+          }
+        },
+        "level": 14,
+        "kills": 562
+      }
+    },
+    {
+      "id": "fuzo",
+      "map": "machu",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 156.24878048780488,
+          "hits": 12,
+          "sources": {
+            "tactical": 41.39999999999999,
+            "contact": 0,
+            "other": 114.84878048780489
+          }
+        },
+        "level": 15,
+        "kills": 595
+      },
+      "after": {
+        "result": "win",
+        "seconds": 311.1,
+        "damage": {
+          "taken": 65.6780487804878,
+          "hits": 5,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 65.6780487804878
+          }
+        },
+        "level": 15,
+        "kills": 549
+      }
+    },
+    {
+      "id": "paloma",
+      "map": "campo",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "win",
+        "seconds": 322.1,
+        "damage": {
+          "taken": 51.68947368421051,
+          "hits": 3,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 51.68947368421051
+          }
+        },
+        "level": 14,
+        "kills": 546
+      },
+      "after": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 53.029473684210515,
+          "hits": 4,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 53.029473684210515
+          }
+        },
+        "level": 14,
+        "kills": 555
+      }
+    },
+    {
+      "id": "paloma",
+      "map": "machu",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "win",
+        "seconds": 324.3,
+        "damage": {
+          "taken": 58.60000000000001,
+          "hits": 5,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 58.6
+          }
+        },
+        "level": 14,
+        "kills": 586
+      },
+      "after": {
+        "result": "win",
+        "seconds": 329.5,
+        "damage": {
+          "taken": 92.51315789473685,
+          "hits": 7,
+          "sources": {
+            "tactical": 21.36315789473684,
+            "contact": 0,
+            "other": 71.14999999999999
+          }
+        },
+        "level": 14,
+        "kills": 556
+      }
+    },
+    {
+      "id": "paloma",
+      "map": "plaza",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "win",
+        "seconds": 322.1,
+        "damage": {
+          "taken": 68.51736842105262,
+          "hits": 5,
+          "sources": {
+            "tactical": 0,
+            "contact": 10.894736842105262,
+            "other": 57.62263157894736
+          }
+        },
+        "level": 14,
+        "kills": 563
+      },
+      "after": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 48.874999999999986,
+          "hits": 3,
+          "sources": {
+            "tactical": 16.674999999999997,
+            "contact": 0,
+            "other": 32.199999999999996
+          }
+        },
+        "level": 14,
+        "kills": 563
+      }
+    },
+    {
+      "id": "cuy",
+      "map": "campo",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 85.7142857142857,
+          "hits": 6,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 102.85714285714285
+          }
+        },
+        "level": 14,
+        "kills": 541
+      },
+      "after": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 85.7142857142857,
+          "hits": 6,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 102.85714285714285
+          }
+        },
+        "level": 14,
+        "kills": 541
+      }
+    },
+    {
+      "id": "cuy",
+      "map": "machu",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 36.80000000000001,
+          "hits": 2,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 36.8
+          }
+        },
+        "level": 14,
+        "kills": 601
+      },
+      "after": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 36.80000000000001,
+          "hits": 2,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 36.8
+          }
+        },
+        "level": 14,
+        "kills": 601
+      }
+    },
+    {
+      "id": "cuy",
+      "map": "plaza",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 0,
+          "hits": 0,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 0
+          }
+        },
+        "level": 12,
+        "kills": 599
+      },
+      "after": {
+        "result": "timeout",
+        "seconds": 330,
+        "damage": {
+          "taken": 0,
+          "hits": 0,
+          "sources": {
+            "tactical": 0,
+            "contact": 0,
+            "other": 0
+          }
+        },
+        "level": 12,
+        "kills": 601
+      }
+    },
+    {
+      "id": "kingteka",
+      "map": "halloween",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "death",
+        "seconds": 270.3,
+        "damage": {
+          "taken": 160.5609756097561,
+          "hits": 15,
+          "sources": {
+            "tactical": 64.4565353345841,
+            "contact": 31.414634146341463,
+            "other": 68.90056285178237
+          }
+        },
+        "level": 12,
+        "kills": 391
+      },
+      "after": {
+        "result": "death",
+        "seconds": 170.9,
+        "damage": {
+          "taken": 142.56097560975607,
+          "hits": 12,
+          "sources": {
+            "tactical": 68.77173233270793,
+            "contact": 11.21951219512195,
+            "other": 64.9906191369606
+          }
+        },
+        "level": 10,
+        "kills": 233
+      }
+    },
+    {
+      "id": "kingteka",
+      "map": "navidad",
+      "firstMinuteUnchanged": true,
+      "before": {
+        "result": "death",
+        "seconds": 223.9,
+        "damage": {
+          "taken": 125,
+          "hits": 12,
+          "sources": {
+            "tactical": 84.88180112570355,
+            "contact": 0,
+            "other": 42.17636022514071
+          }
+        },
+        "level": 12,
+        "kills": 338
+      },
+      "after": {
+        "result": "death",
+        "seconds": 235,
+        "damage": {
+          "taken": 125,
+          "hits": 13,
+          "sources": {
+            "tactical": 61.44765478424014,
+            "contact": 0,
+            "other": 63.87992495309568
+          }
+        },
+        "level": 12,
+        "kills": 352
+      }
+    }
+  ],
+  "limits": "One deterministic seed. Automated movement and upgrades, not a human skill study. Timeouts include final bosses still alive. Does not measure rendered FPS or prove all characters equally balanced."
+}
