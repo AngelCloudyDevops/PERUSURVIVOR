@@ -369,4 +369,6 @@ module.exports = [
 , {source:"src/rendering/chosicano-road.js",output:"js/chosicano-road.js"}
  ,{source:"src/systems/chamelin.js",output:"js/chamelin.js"}
  ,{source:"src/rendering/chamelin-art.js",output:"js/chamelin-art.js"}
+,{source:"src/systems/chamelin-arena.js",output:"js/chamelin-arena.js"}
+,{source:"src/rendering/chamelin-bathroom.js",output:"js/chamelin-bathroom.js"}
 ];

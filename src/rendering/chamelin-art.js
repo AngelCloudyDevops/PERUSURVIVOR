@@ -18,5 +18,5 @@ P.Sprites.draw=function(c,x,y,r,p,frame=0,flip=false,...a){if(p.id==='chamelin'&
 P.PlayerAttackArt.draw=function(c,p){if(p.id!=='chamelin')return attack.call(this,c,p);if(this.progress(p)===null)return false;return P.ChamelinArt.actor(c,p.x,p.y,27,p,0,this.heading(p)<0)};
 P.FX.glyph=function(c,s){if(s.glyph==='POOP'){P.ChamelinArt.poop(c,0,0);return}return glyph.call(this,c,s)};
 P.DomainAftermath.draw=function(...a){ground.apply(this,a);P.ChamelinArt.pools(a[0])};
-P.World.render=function(...a){if(P.state.chamelinDomain&&P.state.mode!=='menu'){P.ChamelinArt.draw(P.state.chamelinDomain);return}return world.apply(this,a)};
+P.World.render=function(...a){if(P.state.chamelinDomain&&P.state.mode!=='menu'){if(P.TrovoArena.protected()){P.ChamelinArt.draw(P.state.chamelinDomain);return}const result=world.apply(this,a);P.TrovoBathroom.hud(P.state.chamelinDomain);return result}return world.apply(this,a)};
 }
