@@ -71,6 +71,13 @@ test('Las zonas varían y la red de caminos conecta sectores sin obstáculos',()
  }
 });
 
+test('Halloween y Navidad tienen trazados, objetos y miniaturas propios',()=>{
+ const vm=require('node:vm'),P={Maps:{selected:'halloween'},state:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'src/systems/chunks.js'),'utf8'),{P});const c=P.Chunks,points=[];for(let y=-700;y<=700;y+=70)for(let x=-700;x<=700;x+=70)points.push([x,y]);const fingerprints={},kinds={};
+ for(const map of ['halloween','navidad']){P.Maps.selected=map;c.reset();fingerprints[map]=points.map(([x,y])=>c.ground(x,y).road?1:0).join('');kinds[map]=new Set();for(let cy=-5;cy<=5;cy++)for(let cx=-5;cx<=5;cx++)for(const o of c.get(cx,cy).props)kinds[map].add(o.kind)}
+ assert.notEqual(fingerprints.halloween,fingerprints.navidad);for(const kind of ['crypt','fence','candle-row','pumpkin-patch'])assert(kinds.halloween.has(kind),kind);for(const kind of ['market-stall','cocoa-cart','nativity','light-arch'])assert(kinds.navidad.has(kind),kind);
+ const maps=fs.readFileSync(path.join(root,'src/scenes/maps.js'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8'),chunks=fs.readFileSync(path.join(root,'src/systems/chunks.js'),'utf8');assert.match(maps,/seasonal-thumb/);assert.doesNotMatch(css,/data-map="halloween"[^}]+filter:/);assert.match(chunks,/const palette=id==='halloween'/);assert.doesNotMatch(chunks,/globalAlpha=id==='halloween'/);
+});
+
 test('Audio: inicio por gesto, silencio, pausa y temas por mapa',()=>{
  const vm=require('node:vm'),gains=[],saved={},P={state:{mode:'play'},Maps:{selected:'campo'},$:()=>({setAttribute(){}})},context={P,localStorage:{getItem:k=>saved[k],setItem:(k,v)=>saved[k]=v},document:{hidden:false},addEventListener(){}};
  class AC{constructor(){this.currentTime=0;this.state='running';this.destination={}}createGain(){const g={gain:{value:0,setTargetAtTime(v){this.value=v}},connect(){}};gains.push(g);return g}}
