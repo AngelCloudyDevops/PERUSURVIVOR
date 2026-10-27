@@ -1,0 +1,4 @@
+Use case: stylized-concept
+Asset type: production sprite sheet for a 2D browser survival game
+Reference: cirilo-domain-transform-v4.webp, preserving Cirilo's demon identity and rendering style.
+Create exactly four separate full-body flight animation frames: takeoff impulse, wings raised, wings fully extended, and wings lowered. In every frame both legs are tucked at different heights so the character clearly reads as airborne. Transparent background, no text, no frame borders, no ground shadow.
