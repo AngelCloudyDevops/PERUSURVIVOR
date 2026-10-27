@@ -12,7 +12,7 @@ P.CharacterArsenal={
    profiles:{
     puno:{name:'Puño de la realeza',description:'Golpe físico corto en un arco amplio. Es el ataque inicial fiable de Makanaky.',kind:'melee',cooldown:.56,range:100,arc:120*Math.PI/180,push:24,glyph:'FIST',damageType:'physical',damageScale:1,artKey:'makanaky-attack-puno'},
     cabezazo:{name:'Cabezazo real',description:'Se inclina y embiste de frente: alcance corto, daño concentrado y empuje fuerte.',kind:'melee',cooldown:1.05,range:128,arc:66*Math.PI/180,push:58,glyph:'CABEZA',damageType:'physical',damageScale:1.5,pose:'headbutt',color:'#ffbd67',artKey:'makanaky-attack-cabezazo'},
-    gritos:{name:'Gritos de K',description:'Grita «¡GA, GA, GA!» en un cono frontal. Daño especial moderado, alcance medio y recarga lenta.',kind:'cone',cooldown:1.65,range:255,arc:1.25,push:14,glyph:'GA',damageType:'special',damageScale:.78,shout:'¡GA, GA, GA!',pose:'shout',color:'#f28bd1',artKey:'makanaky-attack-gritos'}
+    gritos:{name:'Gritos de K',description:'Grita «¡Gaaaa!» en un cono frontal. Daño especial moderado, alcance medio y recarga lenta.',kind:'cone',cooldown:1.65,range:255,arc:1.25,push:14,glyph:'GA',damageType:'special',damageScale:.78,shout:'¡Gaaaa!',pose:'shout',color:'#f28bd1',artKey:'makanaky-attack-gritos'}
    }
   }
  },
