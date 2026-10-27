@@ -1,7 +1,7 @@
 'use strict';
 // Contrato visual común: tres slots de ataque para todo el roster, sin inventar habilidades.
 P.AttackHud={
- dock(){if(typeof document==='undefined')return null;let dock=P.$('#combat-dock');if(!dock){dock=document.createElement('div');dock.id='combat-dock';dock.setAttribute('aria-label','Controles de combate');const attacks=document.createElement('div'),abilities=document.createElement('div');attacks.id='attack-dock-slot';abilities.id='ability-dock';dock.append(P.$('#dota-inventory'),attacks,abilities);for(const node of [P.$('#ultimate'),P.$('#domain-ability')])if(node)abilities.append(node);document.body.append(dock)}return dock},
+ dock(){if(typeof document==='undefined')return null;let dock=P.$('#combat-dock');if(!dock){dock=document.createElement('div');dock.id='combat-dock';dock.setAttribute('aria-label','Controles de combate');const attacks=document.createElement('div'),abilities=document.createElement('div'),readyFx=document.createElement('span');attacks.id='attack-dock-slot';abilities.id='ability-dock';readyFx.id='ultimate-ready-fx';readyFx.setAttribute('aria-hidden','true');abilities.append(readyFx);dock.append(P.$('#dota-inventory'),attacks,abilities);for(const node of [P.$('#ultimate'),P.$('#domain-ability')])if(node)abilities.append(node);document.body.append(dock)}return dock},
  attackSlot(){return this.dock()?.querySelector('#attack-dock-slot')||null},
  abilitySlot(){return this.dock()?.querySelector('#ability-dock')||null},
  slots(p){
