@@ -48,3 +48,5 @@ for(const [system,key]of [[P.Domain,'activate'],[P.SideralDomain,'activate'],[P.
 if(P.ChaosDirector)for(const key of ['tick','draw']){const base=P.ChaosDirector[key];P.ChaosDirector[key]=function(...a){if(!P.TrovoArena.active())return base.apply(this,a)}}
 
 {const activate=P.Chamelin.activate,hud=P.Chamelin.hud;P.Chamelin.activate=function(...a){if(typeof Image!=='undefined'&&!P.TrovoBathroom.ready&&!P.TrovoBathroom.failed){P.TrovoBathroom.load();return false}return activate.apply(this,a)};P.Chamelin.hud=function(...a){hud.apply(this,a);if(P.Chamelin.eligible(P.state.player)&&typeof Image!=='undefined'&&!P.TrovoBathroom.ready&&!P.TrovoBathroom.failed){const b=P.$('#domain-ability');if(b){b.disabled=true;P.UI.write(b,'R · CARGANDO GESTOS')}}}}
+
+{const view=P.Combat.view;P.Combat.view=function(p=P.state.player){const d=P.state.chamelinDomain;if(d?.arena)return {hw:P.TrovoArena.width/2+40,hh:P.TrovoArena.height/2+40,dx:d.x-p.x,dy:d.y-p.y};return view.call(this,p)}}
