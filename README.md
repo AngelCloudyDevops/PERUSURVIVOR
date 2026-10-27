@@ -9,7 +9,7 @@ Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posici
 ## Estándar obligatorio de tarjetas de ulti
 Las entradas de ulti usan 40 % de ancho, 82 % de alto, x = 0, y = 8 %, 1,3 s, borde diagonal con marco oscuro y retrato dedicado de cintura arriba. Render a resolución de pantalla, sin margen ni ampliación del lienzo del dominio. Las vistas de espalda deben usar sprites cartoon pixel art completos y contorneados, nunca figuras geométricas de sustitución. Detalles y assets: [Contrato visual de ultis](docs/ULTIMATE_ART.md).
 
-Las Expansiones de Dominio son distintas de las ultis: comienzan con su cinemática a pantalla completa. Su carta lateral R funciona como indicador de carga y acceso a la habilidad; los personajes que aún no tengan ulti conservan el espacio Q gris reservado.
+En partida, todos los personajes muestran dos espacios de carta en el HUD: ulti (Q) y Expansión de Dominio (R). La habilidad implementada usa su arte, carga y estado; si aún no existe para ese personaje, el espacio queda visible en gris como «PRÓXIMAMENTE», sin activarse. Mantener Q o R levanta la carta para revelar su arte; una pulsación breve activa una habilidad disponible cuando está cargada. Las expansiones de dominio comienzan con su cinemática a pantalla completa.
 
 ## Revelado de mejoras
 Al subir de nivel se revelan las tres cartas antes de elegir una. El giro muestra un destello breve de izquierda a derecha según la rareza: turquesa para rara, violeta para épica y dorado para legendaria; común conserva un giro limpio. El efecto es cosmético y de una sola ejecución, respeta `prefers-reduced-motion` y no modifica el poder: la rareza solo influye en la probabilidad de aparición.
