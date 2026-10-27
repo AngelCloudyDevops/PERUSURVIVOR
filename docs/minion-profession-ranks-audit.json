@@ -1,0 +1,968 @@
+[
+  {
+    "key": "profession-astronaut-veteran",
+    "profession": "astronaut",
+    "rank": 1,
+    "width": 320,
+    "height": 320,
+    "sha256": "619b2e4b9c36f82de788b99c2060975c1e90c085926adc14c2e672920e4044c4",
+    "bytes": 39926,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 97,
+        "h": 107,
+        "anchorX": 47.80265738491362,
+        "anchorY": 107
+      },
+      {
+        "w": 92,
+        "h": 106,
+        "anchorX": 46.21424051640583,
+        "anchorY": 106
+      },
+      {
+        "w": 95,
+        "h": 107,
+        "anchorX": 47.35504273069024,
+        "anchorY": 107
+      },
+      {
+        "w": 97,
+        "h": 105,
+        "anchorX": 48.23907054808903,
+        "anchorY": 105
+      },
+      {
+        "w": 93,
+        "h": 105,
+        "anchorX": 46.8674526586326,
+        "anchorY": 105
+      },
+      {
+        "w": 93,
+        "h": 105,
+        "anchorX": 46.5,
+        "anchorY": 105
+      },
+      {
+        "w": 94,
+        "h": 87,
+        "anchorX": 48.66490880536817,
+        "anchorY": 87
+      },
+      {
+        "w": 97,
+        "h": 88,
+        "anchorX": 44.366959249933586,
+        "anchorY": 88
+      },
+      {
+        "w": 93,
+        "h": 88,
+        "anchorX": 46.998317233674555,
+        "anchorY": 88
+      }
+    ]
+  },
+  {
+    "key": "profession-astronaut-elite",
+    "profession": "astronaut",
+    "rank": 2,
+    "width": 320,
+    "height": 320,
+    "sha256": "dc6c03cc36fa190a43fc21eddcbb62329301d9dd206ee51f1c20f74e84442dc9",
+    "bytes": 36658,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 86,
+        "h": 94,
+        "anchorX": 42.34376348982719,
+        "anchorY": 94
+      },
+      {
+        "w": 84,
+        "h": 95,
+        "anchorX": 42.01093629287108,
+        "anchorY": 95
+      },
+      {
+        "w": 85,
+        "h": 96,
+        "anchorX": 42.806688590807866,
+        "anchorY": 96
+      },
+      {
+        "w": 89,
+        "h": 97,
+        "anchorX": 44.5,
+        "anchorY": 97
+      },
+      {
+        "w": 85,
+        "h": 97,
+        "anchorX": 42.51541152904637,
+        "anchorY": 97
+      },
+      {
+        "w": 86,
+        "h": 97,
+        "anchorX": 42.51751202386092,
+        "anchorY": 97
+      },
+      {
+        "w": 87,
+        "h": 81,
+        "anchorX": 43.95029678271758,
+        "anchorY": 81
+      },
+      {
+        "w": 95,
+        "h": 87,
+        "anchorX": 43.59752285980078,
+        "anchorY": 87
+      },
+      {
+        "w": 92,
+        "h": 77,
+        "anchorX": 42.937168073044504,
+        "anchorY": 77
+      }
+    ]
+  },
+  {
+    "key": "profession-firefighter-veteran",
+    "profession": "firefighter",
+    "rank": 1,
+    "width": 320,
+    "height": 320,
+    "sha256": "0f3b46454170002cb234ab2426b50ca783559092ec1e621603552d00cc0076aa",
+    "bytes": 44052,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 86,
+        "h": 114,
+        "anchorX": 44.90564824545924,
+        "anchorY": 114
+      },
+      {
+        "w": 81,
+        "h": 113,
+        "anchorX": 41.27879077147335,
+        "anchorY": 113
+      },
+      {
+        "w": 82,
+        "h": 113,
+        "anchorX": 41.36031013346483,
+        "anchorY": 113
+      },
+      {
+        "w": 87,
+        "h": 110,
+        "anchorX": 43.5,
+        "anchorY": 110
+      },
+      {
+        "w": 84,
+        "h": 111,
+        "anchorX": 40.67914325937302,
+        "anchorY": 111
+      },
+      {
+        "w": 86,
+        "h": 112,
+        "anchorX": 42.62706333910216,
+        "anchorY": 112
+      },
+      {
+        "w": 89,
+        "h": 98,
+        "anchorX": 48.22118382752658,
+        "anchorY": 98
+      },
+      {
+        "w": 121,
+        "h": 96,
+        "anchorX": 58.55556292257511,
+        "anchorY": 96
+      },
+      {
+        "w": 86,
+        "h": 87,
+        "anchorX": 39.744151835836576,
+        "anchorY": 87
+      }
+    ]
+  },
+  {
+    "key": "profession-firefighter-elite",
+    "profession": "firefighter",
+    "rank": 2,
+    "width": 320,
+    "height": 320,
+    "sha256": "9d719e559a5f026ef83336bbd1f69aed13634087bdc01825b445ac832ced8aed",
+    "bytes": 45476,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 85,
+        "h": 113,
+        "anchorX": 43.14391681076923,
+        "anchorY": 113
+      },
+      {
+        "w": 82,
+        "h": 114,
+        "anchorX": 42.22834828901968,
+        "anchorY": 114
+      },
+      {
+        "w": 82,
+        "h": 113,
+        "anchorX": 41,
+        "anchorY": 113
+      },
+      {
+        "w": 88,
+        "h": 109,
+        "anchorX": 45.154082743453294,
+        "anchorY": 109
+      },
+      {
+        "w": 87,
+        "h": 110,
+        "anchorX": 42.54031210651657,
+        "anchorY": 110
+      },
+      {
+        "w": 87,
+        "h": 111,
+        "anchorX": 43.25115666553848,
+        "anchorY": 111
+      },
+      {
+        "w": 86,
+        "h": 98,
+        "anchorX": 46.46528976920038,
+        "anchorY": 98
+      },
+      {
+        "w": 118,
+        "h": 97,
+        "anchorX": 55.971830901008,
+        "anchorY": 97
+      },
+      {
+        "w": 87,
+        "h": 87,
+        "anchorX": 40.54154100334635,
+        "anchorY": 87
+      }
+    ]
+  },
+  {
+    "key": "profession-chef-veteran",
+    "profession": "chef",
+    "rank": 1,
+    "width": 320,
+    "height": 320,
+    "sha256": "7b5c52d5f317bb87cc9db6f677886008089ea5836a0354bcffc77d108e37a60e",
+    "bytes": 28614,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 69,
+        "h": 87,
+        "anchorX": 34.429850559171946,
+        "anchorY": 87
+      },
+      {
+        "w": 63,
+        "h": 86,
+        "anchorX": 34.07071266294911,
+        "anchorY": 86
+      },
+      {
+        "w": 69,
+        "h": 85,
+        "anchorX": 33.911401418135426,
+        "anchorY": 85
+      },
+      {
+        "w": 71,
+        "h": 87,
+        "anchorX": 35.856797993161635,
+        "anchorY": 87
+      },
+      {
+        "w": 66,
+        "h": 86,
+        "anchorX": 36.094031786395426,
+        "anchorY": 86
+      },
+      {
+        "w": 70,
+        "h": 88,
+        "anchorX": 35,
+        "anchorY": 88
+      },
+      {
+        "w": 74,
+        "h": 85,
+        "anchorX": 38.46516696502433,
+        "anchorY": 85
+      },
+      {
+        "w": 110,
+        "h": 81,
+        "anchorX": 50.99215389058076,
+        "anchorY": 81
+      },
+      {
+        "w": 61,
+        "h": 79,
+        "anchorX": 25.80869365874678,
+        "anchorY": 79
+      }
+    ]
+  },
+  {
+    "key": "profession-chef-elite",
+    "profession": "chef",
+    "rank": 2,
+    "width": 320,
+    "height": 320,
+    "sha256": "502664fe053fff0b6a2b4708bd54f0a33ad8763f3710e191fabac7967f34197a",
+    "bytes": 30814,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 72,
+        "h": 93,
+        "anchorX": 36,
+        "anchorY": 93
+      },
+      {
+        "w": 64,
+        "h": 93,
+        "anchorX": 35.03991709291761,
+        "anchorY": 93
+      },
+      {
+        "w": 72,
+        "h": 94,
+        "anchorX": 35.75660614494275,
+        "anchorY": 94
+      },
+      {
+        "w": 71,
+        "h": 93,
+        "anchorX": 35.660509302919095,
+        "anchorY": 93
+      },
+      {
+        "w": 67,
+        "h": 94,
+        "anchorX": 35.62110724136432,
+        "anchorY": 94
+      },
+      {
+        "w": 72,
+        "h": 93,
+        "anchorX": 35.5450546971152,
+        "anchorY": 93
+      },
+      {
+        "w": 76,
+        "h": 89,
+        "anchorX": 39.79416731039135,
+        "anchorY": 89
+      },
+      {
+        "w": 113,
+        "h": 86,
+        "anchorX": 50.36010982493905,
+        "anchorY": 86
+      },
+      {
+        "w": 65,
+        "h": 84,
+        "anchorX": 27.602577054723948,
+        "anchorY": 84
+      }
+    ]
+  },
+  {
+    "key": "profession-mummy-veteran",
+    "profession": "mummy",
+    "rank": 1,
+    "width": 320,
+    "height": 320,
+    "sha256": "c1f6000822a659924036dfcd1e9058edb3060a422b996e04699336c7545f2e27",
+    "bytes": 42636,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 82,
+        "h": 107,
+        "anchorX": 41,
+        "anchorY": 107
+      },
+      {
+        "w": 80,
+        "h": 107,
+        "anchorX": 41.17210364135132,
+        "anchorY": 107
+      },
+      {
+        "w": 79,
+        "h": 107,
+        "anchorX": 40.87359820656871,
+        "anchorY": 107
+      },
+      {
+        "w": 82,
+        "h": 103,
+        "anchorX": 40.87683285569152,
+        "anchorY": 103
+      },
+      {
+        "w": 78,
+        "h": 104,
+        "anchorX": 38.35077366008345,
+        "anchorY": 104
+      },
+      {
+        "w": 82,
+        "h": 105,
+        "anchorX": 41.380370169692355,
+        "anchorY": 105
+      },
+      {
+        "w": 88,
+        "h": 97,
+        "anchorX": 45.18760546987631,
+        "anchorY": 97
+      },
+      {
+        "w": 111,
+        "h": 98,
+        "anchorX": 48.31555324423349,
+        "anchorY": 98
+      },
+      {
+        "w": 95,
+        "h": 85,
+        "anchorX": 46.94920127674415,
+        "anchorY": 85
+      }
+    ]
+  },
+  {
+    "key": "profession-mummy-elite",
+    "profession": "mummy",
+    "rank": 2,
+    "width": 320,
+    "height": 320,
+    "sha256": "8cf1486c6dd17438b393060376703ae174c7e2e51fbd2f82f186063b6f517e78",
+    "bytes": 43076,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 84,
+        "h": 106,
+        "anchorX": 41.64291331598865,
+        "anchorY": 106
+      },
+      {
+        "w": 80,
+        "h": 106,
+        "anchorX": 40.94914164469877,
+        "anchorY": 106
+      },
+      {
+        "w": 80,
+        "h": 105,
+        "anchorX": 41.38982527521678,
+        "anchorY": 105
+      },
+      {
+        "w": 84,
+        "h": 105,
+        "anchorX": 42,
+        "anchorY": 105
+      },
+      {
+        "w": 78,
+        "h": 105,
+        "anchorX": 39.491716004024994,
+        "anchorY": 105
+      },
+      {
+        "w": 84,
+        "h": 105,
+        "anchorX": 41.76659980426341,
+        "anchorY": 105
+      },
+      {
+        "w": 89,
+        "h": 97,
+        "anchorX": 45.73975776194193,
+        "anchorY": 97
+      },
+      {
+        "w": 110,
+        "h": 99,
+        "anchorX": 46.96638013904495,
+        "anchorY": 99
+      },
+      {
+        "w": 94,
+        "h": 87,
+        "anchorX": 46.30514739283238,
+        "anchorY": 87
+      }
+    ]
+  },
+  {
+    "key": "profession-elf-veteran",
+    "profession": "elf",
+    "rank": 1,
+    "width": 320,
+    "height": 320,
+    "sha256": "fa680d4061ba8930f9ebc1c42f3e7d2accf4a2489354bd6d78a3b454738a17ef",
+    "bytes": 44470,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 87,
+        "h": 112,
+        "anchorX": 46.847972299378306,
+        "anchorY": 112
+      },
+      {
+        "w": 87,
+        "h": 112,
+        "anchorX": 43.87242543155353,
+        "anchorY": 112
+      },
+      {
+        "w": 85,
+        "h": 112,
+        "anchorX": 42.05557336128587,
+        "anchorY": 112
+      },
+      {
+        "w": 86,
+        "h": 110,
+        "anchorX": 45.21146050968772,
+        "anchorY": 110
+      },
+      {
+        "w": 87,
+        "h": 111,
+        "anchorX": 43.50908126575624,
+        "anchorY": 111
+      },
+      {
+        "w": 86,
+        "h": 110,
+        "anchorX": 43,
+        "anchorY": 110
+      },
+      {
+        "w": 86,
+        "h": 99,
+        "anchorX": 41.43383625196245,
+        "anchorY": 99
+      },
+      {
+        "w": 112,
+        "h": 97,
+        "anchorX": 54.60785160820849,
+        "anchorY": 97
+      },
+      {
+        "w": 87,
+        "h": 88,
+        "anchorX": 39.84193240389205,
+        "anchorY": 88
+      }
+    ]
+  },
+  {
+    "key": "profession-elf-elite",
+    "profession": "elf",
+    "rank": 2,
+    "width": 320,
+    "height": 320,
+    "sha256": "9a390e62716e281210a7520ee675e15a7e87285e80bdaa196bbd8c1c33b92636",
+    "bytes": 39066,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 79,
+        "h": 101,
+        "anchorX": 43.191067004186756,
+        "anchorY": 101
+      },
+      {
+        "w": 78,
+        "h": 102,
+        "anchorX": 40.86776934258496,
+        "anchorY": 102
+      },
+      {
+        "w": 78,
+        "h": 102,
+        "anchorX": 39.46243686062823,
+        "anchorY": 102
+      },
+      {
+        "w": 81,
+        "h": 99,
+        "anchorX": 42.826208815568855,
+        "anchorY": 99
+      },
+      {
+        "w": 79,
+        "h": 101,
+        "anchorX": 39.5,
+        "anchorY": 101
+      },
+      {
+        "w": 78,
+        "h": 101,
+        "anchorX": 38.55689068855195,
+        "anchorY": 101
+      },
+      {
+        "w": 82,
+        "h": 90,
+        "anchorX": 39.0440211152103,
+        "anchorY": 90
+      },
+      {
+        "w": 101,
+        "h": 91,
+        "anchorX": 49.82992338367329,
+        "anchorY": 91
+      },
+      {
+        "w": 81,
+        "h": 87,
+        "anchorX": 37.40803857049863,
+        "anchorY": 87
+      }
+    ]
+  },
+  {
+    "key": "profession-police-veteran",
+    "profession": "police",
+    "rank": 1,
+    "width": 320,
+    "height": 320,
+    "sha256": "42b3bd7dfc50e228c25e5c8a2d4632d06c2d2f5f466d95b2d15f365d829c15ce",
+    "bytes": 33650,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 84,
+        "h": 98,
+        "anchorX": 43.216312006990314,
+        "anchorY": 98
+      },
+      {
+        "w": 81,
+        "h": 98,
+        "anchorX": 40.5,
+        "anchorY": 98
+      },
+      {
+        "w": 76,
+        "h": 99,
+        "anchorX": 35.33808039466029,
+        "anchorY": 99
+      },
+      {
+        "w": 86,
+        "h": 99,
+        "anchorX": 44.910819113340864,
+        "anchorY": 99
+      },
+      {
+        "w": 76,
+        "h": 98,
+        "anchorX": 34.779217227221416,
+        "anchorY": 98
+      },
+      {
+        "w": 76,
+        "h": 99,
+        "anchorX": 34.3343991618607,
+        "anchorY": 99
+      },
+      {
+        "w": 86,
+        "h": 94,
+        "anchorX": 43.960684691782554,
+        "anchorY": 94
+      },
+      {
+        "w": 94,
+        "h": 93,
+        "anchorX": 52.096357819074335,
+        "anchorY": 93
+      },
+      {
+        "w": 94,
+        "h": 83,
+        "anchorX": 36.76789850720659,
+        "anchorY": 83
+      }
+    ]
+  },
+  {
+    "key": "profession-police-elite",
+    "profession": "police",
+    "rank": 2,
+    "width": 320,
+    "height": 320,
+    "sha256": "d5c04742fa047fe12aae242ac3bd805b6066de0e54238d75cbce27791cfd1ed0",
+    "bytes": 38138,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 94,
+        "h": 112,
+        "anchorX": 47.295802779774746,
+        "anchorY": 112
+      },
+      {
+        "w": 93,
+        "h": 113,
+        "anchorX": 46.5,
+        "anchorY": 113
+      },
+      {
+        "w": 86,
+        "h": 113,
+        "anchorX": 39.20393584889142,
+        "anchorY": 113
+      },
+      {
+        "w": 96,
+        "h": 108,
+        "anchorX": 49.99693552756332,
+        "anchorY": 108
+      },
+      {
+        "w": 84,
+        "h": 108,
+        "anchorX": 38.76435376367456,
+        "anchorY": 108
+      },
+      {
+        "w": 84,
+        "h": 108,
+        "anchorX": 38.649802843111985,
+        "anchorY": 108
+      },
+      {
+        "w": 96,
+        "h": 100,
+        "anchorX": 50.21968237843695,
+        "anchorY": 100
+      },
+      {
+        "w": 103,
+        "h": 101,
+        "anchorX": 55.92501555530331,
+        "anchorY": 101
+      },
+      {
+        "w": 99,
+        "h": 89,
+        "anchorX": 38.594032741178566,
+        "anchorY": 89
+      }
+    ]
+  },
+  {
+    "key": "profession-architect-veteran",
+    "profession": "architect",
+    "rank": 1,
+    "width": 320,
+    "height": 320,
+    "sha256": "f92cc549b437f43ab840cdb842378c3b1b33314fc991844aa40bf0532de04849",
+    "bytes": 39532,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 92,
+        "h": 107,
+        "anchorX": 46,
+        "anchorY": 107
+      },
+      {
+        "w": 80,
+        "h": 106,
+        "anchorX": 41.04298025896837,
+        "anchorY": 106
+      },
+      {
+        "w": 85,
+        "h": 105,
+        "anchorX": 41.483070443584,
+        "anchorY": 105
+      },
+      {
+        "w": 86,
+        "h": 107,
+        "anchorX": 44.80850904553961,
+        "anchorY": 107
+      },
+      {
+        "w": 89,
+        "h": 107,
+        "anchorX": 45.219871055310485,
+        "anchorY": 107
+      },
+      {
+        "w": 88,
+        "h": 107,
+        "anchorX": 43.73852797392721,
+        "anchorY": 107
+      },
+      {
+        "w": 94,
+        "h": 92,
+        "anchorX": 53.7382281568197,
+        "anchorY": 92
+      },
+      {
+        "w": 110,
+        "h": 96,
+        "anchorX": 47.64279761904762,
+        "anchorY": 96
+      },
+      {
+        "w": 86,
+        "h": 87,
+        "anchorX": 37.988499095840865,
+        "anchorY": 87
+      }
+    ]
+  },
+  {
+    "key": "profession-architect-elite",
+    "profession": "architect",
+    "rank": 2,
+    "width": 320,
+    "height": 320,
+    "sha256": "5d21c6eba690457b06b5cf2e77db3087ad0280c82d88f087259ad8746bba3a12",
+    "bytes": 40534,
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "w": 95,
+        "h": 109,
+        "anchorX": 47.5,
+        "anchorY": 109
+      },
+      {
+        "w": 85,
+        "h": 109,
+        "anchorX": 43.05863881733351,
+        "anchorY": 109
+      },
+      {
+        "w": 88,
+        "h": 110,
+        "anchorX": 43.057035670181214,
+        "anchorY": 110
+      },
+      {
+        "w": 89,
+        "h": 107,
+        "anchorX": 45.631086876511056,
+        "anchorY": 107
+      },
+      {
+        "w": 89,
+        "h": 107,
+        "anchorX": 44.523365992233344,
+        "anchorY": 107
+      },
+      {
+        "w": 90,
+        "h": 107,
+        "anchorX": 44.94143772510791,
+        "anchorY": 107
+      },
+      {
+        "w": 95,
+        "h": 93,
+        "anchorX": 52.526691164859685,
+        "anchorY": 93
+      },
+      {
+        "w": 111,
+        "h": 96,
+        "anchorX": 48.591790667833735,
+        "anchorY": 96
+      },
+      {
+        "w": 85,
+        "h": 88,
+        "anchorX": 37.48035371768711,
+        "anchorY": 88
+      }
+    ]
+  }
+]

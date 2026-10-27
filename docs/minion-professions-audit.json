@@ -1,496 +1,496 @@
 [
   {
     "id": "astronaut",
-    "width": 512,
-    "height": 512,
+    "width": 320,
+    "height": 320,
     "sourceWidth": 1254,
     "sourceHeight": 1254,
-    "sha256": "e3106cc9a5c919d5cc954fe3e6ea9e5d1dc156cd166dc5fee9b8608798990860",
-    "bytes": 87116,
+    "sha256": "a154a3c15cc6a0269643f961e92ad96e8bf25c702a4ae38d28d5ef208589b5c9",
+    "bytes": 40374,
     "alpha": [
       0,
       255
     ],
-    "encoding": "512px WebP quality 80; full PNG source retained; lossless alpha",
+    "encoding": "320px WebP quality 70; full PNG source retained; lossless alpha",
     "frames": [
       {
-        "w": 146,
-        "h": 167,
-        "anchorX": 73.00988069153212,
-        "anchorY": 167
+        "w": 92,
+        "h": 106,
+        "anchorX": 45.90078392040492,
+        "anchorY": 106
       },
       {
-        "w": 138,
-        "h": 166,
-        "anchorX": 70.18671418490823,
-        "anchorY": 166
+        "w": 87,
+        "h": 105,
+        "anchorX": 43.716388022687326,
+        "anchorY": 105
       },
       {
-        "w": 144,
-        "h": 168,
-        "anchorX": 72,
-        "anchorY": 168
+        "w": 91,
+        "h": 106,
+        "anchorX": 45.69961487023109,
+        "anchorY": 106
       },
       {
-        "w": 148,
-        "h": 165,
-        "anchorX": 73.93047212429066,
-        "anchorY": 165
+        "w": 94,
+        "h": 105,
+        "anchorX": 46.658253479279495,
+        "anchorY": 105
       },
       {
-        "w": 139,
-        "h": 165,
-        "anchorX": 69.25367362619548,
-        "anchorY": 165
+        "w": 88,
+        "h": 105,
+        "anchorX": 43.34166208623919,
+        "anchorY": 105
       },
       {
-        "w": 139,
-        "h": 166,
-        "anchorX": 69.43352580297807,
-        "anchorY": 166
+        "w": 88,
+        "h": 105,
+        "anchorX": 44,
+        "anchorY": 105
       },
       {
-        "w": 145,
-        "h": 137,
-        "anchorX": 76.8892919715552,
-        "anchorY": 137
+        "w": 93,
+        "h": 87,
+        "anchorX": 49.07732494229304,
+        "anchorY": 87
       },
       {
-        "w": 152,
-        "h": 136,
-        "anchorX": 70.54079334770796,
-        "anchorY": 136
+        "w": 97,
+        "h": 86,
+        "anchorX": 44.958301014925276,
+        "anchorY": 86
       },
       {
-        "w": 145,
-        "h": 138,
-        "anchorX": 73.8323743838191,
-        "anchorY": 138
+        "w": 92,
+        "h": 88,
+        "anchorX": 46.80972013669549,
+        "anchorY": 88
       }
     ],
     "bodyHeight": 168
   },
   {
     "id": "firefighter",
-    "width": 512,
-    "height": 512,
+    "width": 320,
+    "height": 320,
     "sourceWidth": 1254,
     "sourceHeight": 1254,
-    "sha256": "629c9032b49cb74e1acb594baf682889ffe116e3a796481bd040920f9f4c03c3",
-    "bytes": 88206,
+    "sha256": "ffcdf56949dd7cb50f9336b752631b4f31a6b7ef4630ce7fff90711135a6f922",
+    "bytes": 41386,
     "alpha": [
       0,
       255
     ],
-    "encoding": "512px WebP quality 80; full PNG source retained; lossless alpha",
+    "encoding": "320px WebP quality 70; full PNG source retained; lossless alpha",
     "frames": [
       {
-        "w": 130,
-        "h": 178,
-        "anchorX": 67.26738691915492,
-        "anchorY": 178
+        "w": 83,
+        "h": 113,
+        "anchorX": 42.78830509866551,
+        "anchorY": 113
       },
       {
-        "w": 127,
-        "h": 178,
-        "anchorX": 65.54416601097637,
-        "anchorY": 178
+        "w": 80,
+        "h": 113,
+        "anchorX": 41.641596277149574,
+        "anchorY": 113
       },
       {
-        "w": 127,
-        "h": 176,
-        "anchorX": 63.5,
-        "anchorY": 176
+        "w": 80,
+        "h": 111,
+        "anchorX": 40,
+        "anchorY": 111
       },
       {
-        "w": 138,
-        "h": 172,
-        "anchorX": 70.18692437550669,
-        "anchorY": 172
+        "w": 88,
+        "h": 109,
+        "anchorX": 44.96598291262616,
+        "anchorY": 109
       },
       {
-        "w": 135,
-        "h": 173,
-        "anchorX": 66.66400616763266,
-        "anchorY": 173
+        "w": 86,
+        "h": 110,
+        "anchorX": 42.855646540635234,
+        "anchorY": 110
       },
       {
-        "w": 134,
-        "h": 173,
-        "anchorX": 66.38684522834495,
-        "anchorY": 173
+        "w": 85,
+        "h": 110,
+        "anchorX": 42.0200707412484,
+        "anchorY": 110
       },
       {
-        "w": 133,
-        "h": 153,
-        "anchorX": 71.53902462300545,
-        "anchorY": 153
+        "w": 86,
+        "h": 97,
+        "anchorX": 46.4047611101022,
+        "anchorY": 97
       },
       {
-        "w": 186,
-        "h": 152,
-        "anchorX": 87.29662035512624,
-        "anchorY": 152
+        "w": 118,
+        "h": 96,
+        "anchorX": 55.85673423418832,
+        "anchorY": 96
       },
       {
-        "w": 134,
-        "h": 136,
-        "anchorX": 60.998595996720994,
-        "anchorY": 136
+        "w": 84,
+        "h": 86,
+        "anchorX": 38.31468130348816,
+        "anchorY": 86
       }
     ],
     "bodyHeight": 178
   },
   {
     "id": "chef",
-    "width": 512,
-    "height": 512,
+    "width": 320,
+    "height": 320,
     "sourceWidth": 1254,
     "sourceHeight": 1254,
-    "sha256": "9944a983512d57a065413e32ebd66f052a2d6b47f9e92d9859531324b4868cc3",
-    "bytes": 59222,
+    "sha256": "6cc855ee933a66c5b9f6d8a7a7ba5013a206ed31838c805f5c17f9126a26613b",
+    "bytes": 28066,
     "alpha": [
       0,
       255
     ],
-    "encoding": "512px WebP quality 80; full PNG source retained; lossless alpha",
+    "encoding": "320px WebP quality 70; full PNG source retained; lossless alpha",
     "frames": [
       {
-        "w": 105,
-        "h": 134,
-        "anchorX": 51.58810454581515,
-        "anchorY": 134
+        "w": 67,
+        "h": 86,
+        "anchorX": 32.56398164133226,
+        "anchorY": 86
       },
       {
-        "w": 96,
-        "h": 132,
-        "anchorX": 51.06333256645507,
-        "anchorY": 132
+        "w": 62,
+        "h": 84,
+        "anchorX": 32.92399074679517,
+        "anchorY": 84
       },
       {
-        "w": 103,
-        "h": 130,
-        "anchorX": 51.5,
-        "anchorY": 130
+        "w": 66,
+        "h": 83,
+        "anchorX": 32.89309272284025,
+        "anchorY": 83
+      },
+      {
+        "w": 69,
+        "h": 85,
+        "anchorX": 34.582204621682564,
+        "anchorY": 85
+      },
+      {
+        "w": 64,
+        "h": 85,
+        "anchorX": 34.11108482439042,
+        "anchorY": 85
+      },
+      {
+        "w": 67,
+        "h": 85,
+        "anchorX": 33.5,
+        "anchorY": 85
+      },
+      {
+        "w": 73,
+        "h": 83,
+        "anchorX": 36.811668549461295,
+        "anchorY": 83
       },
       {
         "w": 107,
-        "h": 134,
-        "anchorX": 54.45858089115278,
-        "anchorY": 134
+        "h": 80,
+        "anchorX": 47.994655927692136,
+        "anchorY": 80
       },
       {
-        "w": 99,
-        "h": 135,
-        "anchorX": 53.74299477284028,
-        "anchorY": 135
-      },
-      {
-        "w": 106,
-        "h": 135,
-        "anchorX": 52.91626577300981,
-        "anchorY": 135
-      },
-      {
-        "w": 115,
-        "h": 132,
-        "anchorX": 59.13529876741901,
-        "anchorY": 132
-      },
-      {
-        "w": 170,
-        "h": 126,
-        "anchorX": 76.55742520965072,
-        "anchorY": 126
-      },
-      {
-        "w": 90,
-        "h": 123,
-        "anchorX": 35.169494211686164,
-        "anchorY": 123
+        "w": 58,
+        "h": 78,
+        "anchorX": 22.59374278215223,
+        "anchorY": 78
       }
     ],
     "bodyHeight": 135
   },
   {
     "id": "mummy",
-    "width": 512,
-    "height": 512,
+    "width": 320,
+    "height": 320,
     "sourceWidth": 1254,
     "sourceHeight": 1254,
-    "sha256": "bd84002d98e2358b0c90bc2a8a6aaf2755c0034c3b6a93c3f75d36cd15e6adfc",
-    "bytes": 87876,
+    "sha256": "bb29cfb085fb8eefa2ec18c03c7b6d36e080bc484d04ffa6aa16243cd1dff5a5",
+    "bytes": 40304,
     "alpha": [
       0,
       255
     ],
-    "encoding": "512px WebP quality 80; full PNG source retained; lossless alpha",
+    "encoding": "320px WebP quality 70; full PNG source retained; lossless alpha",
     "frames": [
       {
-        "w": 129,
-        "h": 165,
-        "anchorX": 64.21668651086753,
-        "anchorY": 165
+        "w": 83,
+        "h": 105,
+        "anchorX": 41.5,
+        "anchorY": 105
       },
       {
-        "w": 124,
-        "h": 166,
-        "anchorX": 66.16753951844923,
-        "anchorY": 166
+        "w": 79,
+        "h": 106,
+        "anchorX": 42.23666652708569,
+        "anchorY": 106
       },
       {
-        "w": 124,
-        "h": 164,
-        "anchorX": 66.0756954983823,
-        "anchorY": 164
+        "w": 78,
+        "h": 104,
+        "anchorX": 41.534119585274944,
+        "anchorY": 104
       },
       {
-        "w": 131,
-        "h": 162,
-        "anchorX": 65.5,
-        "anchorY": 162
+        "w": 83,
+        "h": 102,
+        "anchorX": 41.415467156096696,
+        "anchorY": 102
       },
       {
-        "w": 119,
-        "h": 163,
-        "anchorX": 58.9121841745029,
-        "anchorY": 163
+        "w": 76,
+        "h": 103,
+        "anchorX": 37.669603253455115,
+        "anchorY": 103
       },
       {
-        "w": 128,
-        "h": 163,
-        "anchorX": 64.70576313323615,
-        "anchorY": 163
+        "w": 81,
+        "h": 103,
+        "anchorX": 40.598948167014385,
+        "anchorY": 103
       },
       {
-        "w": 138,
-        "h": 152,
-        "anchorX": 69.97842503982108,
-        "anchorY": 152
+        "w": 87,
+        "h": 97,
+        "anchorX": 44.290635157325504,
+        "anchorY": 97
       },
       {
-        "w": 171,
-        "h": 153,
-        "anchorX": 72.38178747085442,
-        "anchorY": 153
+        "w": 109,
+        "h": 97,
+        "anchorX": 46.75929775217333,
+        "anchorY": 97
       },
       {
-        "w": 148,
-        "h": 134,
-        "anchorX": 72.19283609948273,
-        "anchorY": 134
+        "w": 94,
+        "h": 85,
+        "anchorX": 46.239077785809116,
+        "anchorY": 85
       }
     ],
     "bodyHeight": 166
   },
   {
     "id": "elf",
-    "width": 512,
-    "height": 512,
+    "width": 320,
+    "height": 320,
     "sourceWidth": 1254,
     "sourceHeight": 1254,
-    "sha256": "23700b9da7edafb9a3dbb2339a9a63302a79e7f4c469fb39af8fb8cd8cbfb22a",
-    "bytes": 90600,
+    "sha256": "9540f2f6ed719c70aa96adc6b16d3492515515b322ad8224ef59d2435d273401",
+    "bytes": 42676,
     "alpha": [
       0,
       255
     ],
-    "encoding": "512px WebP quality 80; full PNG source retained; lossless alpha",
+    "encoding": "320px WebP quality 70; full PNG source retained; lossless alpha",
     "frames": [
       {
-        "w": 136,
-        "h": 176,
-        "anchorX": 74.16762026204277,
-        "anchorY": 176
+        "w": 87,
+        "h": 111,
+        "anchorX": 46.71223092998955,
+        "anchorY": 111
       },
       {
-        "w": 135,
-        "h": 177,
-        "anchorX": 68.11859101160942,
-        "anchorY": 177
+        "w": 86,
+        "h": 112,
+        "anchorX": 43.22895742423745,
+        "anchorY": 112
       },
       {
-        "w": 135,
-        "h": 177,
-        "anchorX": 67.5,
-        "anchorY": 177
+        "w": 86,
+        "h": 112,
+        "anchorX": 43,
+        "anchorY": 112
       },
       {
-        "w": 134,
-        "h": 173,
-        "anchorX": 71.48396780301857,
-        "anchorY": 173
+        "w": 85,
+        "h": 110,
+        "anchorX": 44.99110609702261,
+        "anchorY": 110
       },
       {
-        "w": 135,
-        "h": 174,
-        "anchorX": 66.71686797217457,
-        "anchorY": 174
+        "w": 86,
+        "h": 110,
+        "anchorX": 41.87300777356986,
+        "anchorY": 110
       },
       {
-        "w": 134,
-        "h": 174,
-        "anchorX": 67.83343638401186,
-        "anchorY": 174
+        "w": 85,
+        "h": 110,
+        "anchorX": 43.016417532860366,
+        "anchorY": 110
       },
       {
-        "w": 134,
-        "h": 157,
-        "anchorX": 63.56274871150569,
-        "anchorY": 157
+        "w": 85,
+        "h": 99,
+        "anchorX": 39.886242263483645,
+        "anchorY": 99
       },
       {
-        "w": 173,
-        "h": 153,
-        "anchorX": 84.23123397308876,
-        "anchorY": 153
+        "w": 110,
+        "h": 97,
+        "anchorX": 52.87903788846317,
+        "anchorY": 97
       },
       {
-        "w": 136,
-        "h": 138,
-        "anchorX": 61.0875249405054,
-        "anchorY": 138
+        "w": 86,
+        "h": 88,
+        "anchorX": 37.79284650275759,
+        "anchorY": 88
       }
     ],
     "bodyHeight": 177
   },
   {
     "id": "police",
-    "width": 512,
-    "height": 512,
+    "width": 320,
+    "height": 320,
     "sourceWidth": 1254,
     "sourceHeight": 1254,
-    "sha256": "7f73dd232dae3a928b89987b8e9a62a313af9629184354db8ebb18cc2a4173e3",
-    "bytes": 79866,
+    "sha256": "419e0dc4bc58c042a1b4a198f232e77146fc47906ee947928a354207514524d9",
+    "bytes": 37244,
     "alpha": [
       0,
       255
     ],
-    "encoding": "512px WebP quality 80; full PNG source retained; lossless alpha",
+    "encoding": "320px WebP quality 70; full PNG source retained; lossless alpha",
     "frames": [
       {
-        "w": 145,
-        "h": 174,
-        "anchorX": 74.13903504770016,
-        "anchorY": 174
+        "w": 92,
+        "h": 110,
+        "anchorX": 46.46504733795802,
+        "anchorY": 110
       },
       {
-        "w": 142,
-        "h": 174,
-        "anchorX": 71,
-        "anchorY": 174
+        "w": 91,
+        "h": 110,
+        "anchorX": 45.5,
+        "anchorY": 110
       },
       {
-        "w": 127,
-        "h": 174,
-        "anchorX": 56.4472634495655,
-        "anchorY": 174
+        "w": 81,
+        "h": 110,
+        "anchorX": 36.1397613099367,
+        "anchorY": 110
       },
       {
-        "w": 148,
-        "h": 169,
-        "anchorX": 76.84151918543486,
-        "anchorY": 169
+        "w": 93,
+        "h": 107,
+        "anchorX": 48.252679300969234,
+        "anchorY": 107
       },
       {
-        "w": 127,
-        "h": 169,
-        "anchorX": 55.68117546158298,
-        "anchorY": 169
+        "w": 81,
+        "h": 107,
+        "anchorX": 35.5664460132606,
+        "anchorY": 107
       },
       {
-        "w": 126,
-        "h": 169,
-        "anchorX": 55.439214112732515,
-        "anchorY": 169
+        "w": 80,
+        "h": 107,
+        "anchorX": 35.34411795760675,
+        "anchorY": 107
       },
       {
-        "w": 146,
-        "h": 156,
-        "anchorX": 73.90872704214898,
-        "anchorY": 156
+        "w": 92,
+        "h": 99,
+        "anchorX": 46.33061256795157,
+        "anchorY": 99
       },
       {
-        "w": 159,
-        "h": 158,
-        "anchorX": 86.24668404898982,
-        "anchorY": 158
+        "w": 101,
+        "h": 100,
+        "anchorX": 54.71142214235136,
+        "anchorY": 100
       },
       {
-        "w": 156,
-        "h": 137,
-        "anchorX": 60.46755981371223,
-        "anchorY": 137
+        "w": 100,
+        "h": 87,
+        "anchorX": 39.451130221580904,
+        "anchorY": 87
       }
     ]
   },
   {
     "id": "architect",
-    "width": 512,
-    "height": 512,
+    "width": 320,
+    "height": 320,
     "sourceWidth": 1254,
     "sourceHeight": 1254,
-    "sha256": "ee20eeb3b1e9a52a5fb5054907577afbac1af5d1cc2e80a1f8eb1b16a1e4cb8e",
-    "bytes": 82324,
+    "sha256": "7175646d138c67d4be9980f823c2729220fecdf4f5e152845c66e950639ee1cb",
+    "bytes": 39524,
     "alpha": [
       0,
       255
     ],
-    "encoding": "512px WebP quality 80; full PNG source retained; lossless alpha",
+    "encoding": "320px WebP quality 70; full PNG source retained; lossless alpha",
     "frames": [
       {
-        "w": 145,
-        "h": 169,
-        "anchorX": 72.5,
-        "anchorY": 169
+        "w": 92,
+        "h": 107,
+        "anchorX": 46,
+        "anchorY": 107
       },
       {
-        "w": 126,
-        "h": 166,
-        "anchorX": 64.59140209563802,
-        "anchorY": 166
+        "w": 80,
+        "h": 105,
+        "anchorX": 40.893896998594975,
+        "anchorY": 105
       },
       {
-        "w": 133,
-        "h": 165,
-        "anchorX": 64.2677085707773,
-        "anchorY": 165
+        "w": 84,
+        "h": 105,
+        "anchorX": 40.42184258556762,
+        "anchorY": 105
       },
       {
-        "w": 136,
-        "h": 168,
-        "anchorX": 71.32005049542683,
-        "anchorY": 168
+        "w": 86,
+        "h": 107,
+        "anchorX": 44.858964765472436,
+        "anchorY": 107
       },
       {
-        "w": 141,
-        "h": 168,
-        "anchorX": 72.13261703289835,
-        "anchorY": 168
+        "w": 89,
+        "h": 106,
+        "anchorX": 45.092982077305116,
+        "anchorY": 106
       },
       {
-        "w": 138,
-        "h": 167,
-        "anchorX": 67.85041070494731,
-        "anchorY": 167
+        "w": 87,
+        "h": 106,
+        "anchorX": 42.69830675262979,
+        "anchorY": 106
       },
       {
-        "w": 148,
-        "h": 145,
-        "anchorX": 84.8175823572165,
-        "anchorY": 145
+        "w": 94,
+        "h": 92,
+        "anchorX": 53.69858904518753,
+        "anchorY": 92
       },
       {
-        "w": 175,
-        "h": 151,
-        "anchorX": 74.83746446206793,
-        "anchorY": 151
+        "w": 110,
+        "h": 96,
+        "anchorX": 47.30898675545725,
+        "anchorY": 96
       },
       {
-        "w": 135,
-        "h": 136,
-        "anchorX": 59.012950802584946,
-        "anchorY": 136
+        "w": 86,
+        "h": 87,
+        "anchorX": 37.48820891768098,
+        "anchorY": 87
       }
     ]
   }
