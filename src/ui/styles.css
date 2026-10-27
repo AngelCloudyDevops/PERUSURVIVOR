@@ -288,12 +288,12 @@ body.road-scene #boss-qte{visibility:hidden}
 #ultimate{left:calc(50% + 244px)}
 #domain-ability{left:calc(50% + 382px);border-color:#a57bd7}
 .hud-ability-card{background-image:linear-gradient(180deg,#0e172622 30%,#101822 96%),linear-gradient(135deg,#394855,#18232d);background-position:center;background-size:cover}
-#ultimate[data-card-art="kingteka"]{background-image:linear-gradient(180deg,#0e172622 12%,#10182222 55%,#101822 96%),url("/assets/cards/kingteka-gallinazo-fullart-v1.webp")}
+#ultimate[data-card-art="kingteka"]{background-image:linear-gradient(180deg,#0e172622 12%,#10182222 55%,#101822 96%),url("/assets/cards/kingteka-gallinazo-ultimate-fullart-v2.png")}
 #ultimate[data-card-art="kingteka"]:before{content:"";position:absolute;z-index:2;top:0;left:0;width:var(--charge-progress,0%);height:3px;background:linear-gradient(90deg,#ffe8a2,#f4bd4e 72%,#fff1b8);box-shadow:0 0 7px #ffd15c;transition:width .2s linear;pointer-events:none}
 #ultimate.ultimate-ready{border-color:#ffe09a;animation:ultimate-ready-glow 1.45s ease-in-out infinite alternate}
 #ultimate.ultimate-ready:before{width:100%;height:4px;background:linear-gradient(90deg,#fff0b8,#ffb936 48%,#fff4cc);box-shadow:0 0 9px #ffd45f,0 0 17px #ff873d}
 #ultimate.is-peeking{filter:brightness(1.1)}
-@keyframes ultimate-ready-glow{from{box-shadow:0 0 0 3px #101820aa,0 0 8px 2px #f0b83e88,inset 0 0 8px #ffb13218}to{box-shadow:0 0 0 3px #101820aa,0 0 17px 5px #ff9b4266,inset 0 0 18px #ffd45f25}}
+@keyframes ultimate-ready-glow{from{box-shadow:0 0 0 3px #101820aa,0 0 8px 2px #f0b83e88,0 -4px 8px 1px #e96d2c38,0 -10px 13px 1px #626d7940,inset 0 0 8px #ffb13218}to{box-shadow:0 0 0 3px #101820aa,0 0 17px 5px #ff9b4266,0 -7px 12px 2px #fb853044,0 -13px 18px 1px #9197a044,inset 0 0 18px #ffd45f25}}
 #domain-ability[data-card-art="makanaky"]{background-image:linear-gradient(180deg,#0e172622 25%,#101822 96%),url("/assets/characters/makanaky-domain-portrait-v1.webp")}
 #domain-ability[data-card-art="sideral"]{background-image:linear-gradient(180deg,#0e172622 25%,#101822 96%),url("/assets/characters/sideral-domain-v3.png")}
 #ultimate[data-card-art="empty"]{border-color:#65717c;background-image:repeating-linear-gradient(135deg,#ffffff0c 0 10px,transparent 10px 22px),linear-gradient(135deg,#3b4249,#1b2229 62%);color:#9aa4ad}
@@ -311,7 +311,7 @@ body.road-scene #boss-qte{visibility:hidden}
  #weapon-bar{width:min(220px,56vw);bottom:8px;gap:4px;padding:5px}
  #weapon-bar button{min-width:0;flex:1;padding:7px 4px;font-size:8px}
 }
-@media(prefers-reduced-motion:reduce){.hud-ability-card{transition:none}#ultimate.ultimate-ready{animation:none;box-shadow:0 0 0 3px #101820aa,0 0 10px 2px #f0b83e88}}
+@media(prefers-reduced-motion:reduce){.hud-ability-card{transition:none}#ultimate.ultimate-ready{animation:none;box-shadow:0 0 0 3px #101820aa,0 0 10px 2px #f0b83e88,0 -5px 9px 1px #78818d44}}
 
 /* A cinematic owns the canvas: cover current and future DOM HUDs, including nested explicit visibility. */
 body.cinematic-only > :not(#game):not(script):not(style):not(link),
