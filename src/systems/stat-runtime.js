@@ -15,7 +15,7 @@
  const codex=P.Lobby?.renderCodexDetail;
  if(codex)P.Lobby.renderCodexDetail=function(entry){
   const result=codex.call(this,entry),copy=typeof document!=='undefined'&&document.querySelector?.('#codex-detail-copy');
-  if(!entry||!copy)return result;
+  if(!entry||!copy||entry.type==='minion')return result;
   const actor={...entry,miniboss:entry.type==='mini',miniMap:entry.miniKey,mapBoss:entry.type==='boss',max:entry.hp};P.Attributes.init(actor);
   const details=document.createElement('details'),summary=document.createElement('summary'),grid=document.createElement('dl');details.className='codex-combat-stats';summary.textContent='ESTADÍSTICAS DE COMBATE';grid.className='codex-stats';
   for(const [label,value]of [...P.Stats.channelRows(actor),...P.Stats.advancedRows(actor)]){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label.toUpperCase();dd.textContent=String(value);grid.append(dt,dd)}details.append(summary,grid);copy.append(details);return result

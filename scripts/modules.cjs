@@ -8,6 +8,7 @@ module.exports = [
     "output": "js/powers.js"
   },
   {"source":"src/data/attributes.js","output":"js/attributes.js"},
+  {"source":"src/data/stats.js","output":"js/stats.js"},
   {
     "source": "src/data/muzzle-anchors.js",
     "output": "js/muzzle-anchors.js"
@@ -65,6 +66,8 @@ module.exports = [
     "output": "js/minion-evolution.js"
   },
   {"source":"src/systems/minion-professions.js","output":"js/minion-professions.js"},
+  {"source":"src/systems/minion-tactics.js","output":"js/minion-tactics.js"},
+  {"source":"src/rendering/minion-combo-art.js","output":"js/minion-combo-art.js"},
   {
     "source": "src/rendering/power-effects.js",
     "output": "js/power-fx.js"
@@ -247,6 +250,9 @@ module.exports = [
     "output": "js/skill-preview.js"
   },
   {
+    "source": "src/ui/minion-codex.js", "output": "js/minion-codex.js"
+  },
+  {
     "source": "src/ui/lobby.js",
     "output": "js/lobby.js"
   },
@@ -307,7 +313,6 @@ module.exports = [
     "source": "src/systems/ability-cards.js",
     "output": "js/ability-cards.js"
   },
-  {"source":"src/data/stats.js","output":"js/stats.js"},
   {
     "source": "src/ui/card-gallery.js",
     "output": "js/card-gallery.js"
