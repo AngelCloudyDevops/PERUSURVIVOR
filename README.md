@@ -9,7 +9,7 @@ Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posici
 ## Estándar obligatorio de tarjetas de ulti
 Las entradas de ulti usan 40 % de ancho, 82 % de alto, x = 0, y = 8 %, 1,3 s, borde diagonal con marco oscuro y retrato dedicado de cintura arriba. Render a resolución de pantalla, sin margen ni ampliación del lienzo del dominio. Las vistas de espalda deben usar sprites cartoon pixel art completos y contorneados, nunca figuras geométricas de sustitución. Detalles y assets: [Contrato visual de ultis](docs/ULTIMATE_ART.md).
 
-Las Expansiones de Dominio UR —Makanaky y Sideral— son un sistema distinto de las ultis: comienzan directamente con su cinemática propia a pantalla completa y nunca usan tarjeta lateral.
+Las Expansiones de Dominio son distintas de las ultis: comienzan con su cinemática a pantalla completa. Su carta lateral R funciona como indicador de carga y acceso a la habilidad; los personajes que aún no tengan ulti conservan el espacio Q gris reservado.
 
 ## Revelado de mejoras
 Al subir de nivel se revelan las tres cartas antes de elegir una. El giro muestra un destello breve de izquierda a derecha según la rareza: turquesa para rara, violeta para épica y dorado para legendaria; común conserva un giro limpio. El efecto es cosmético y de una sola ejecución, respeta `prefers-reduced-motion` y no modifica el poder: la rareza solo influye en la probabilidad de aparición.
@@ -28,7 +28,7 @@ Sideral es UR y carga su expansión con 35 bajas. La entrada cinematográfica oc
 
 Durante ocho segundos el escenario es reemplazado por un mapa temporal de habitación de 1.100 × 760 unidades: suelo embaldosado, tapete, escritorio con dos monitores, computadora, silla, sofá y biblioteca, rodeados por un vacío violeta. Sus cuatro paredes y los muebles son geometría con colisión real, no una imagen superpuesta. Enemigos, cofres, tienda, llaves, botín, evento y compañero son trasladados dentro conservando su posición cuando ya cabe; todo continúa siendo utilizable para saquear o reanimar y vuelve a sus coordenadas originales al finalizar.
 
-El primer pulso borra proyectiles hostiles de minions y todos los minions normales huyen de Sideral. Durante el dominio Sideral no reproduce su ataque automático ni su pose de ataque: el control proviene exclusivamente de sus gritos periódicos, representados por ondas moradas que recorren toda la habitación. El daño de pared solo se dispara cuando la resolución física confirma el choque. Cada impacto quita 8 % de vida máxima, produce un rebote fuerte, sacudida localizada, polvo, texto y una grieta temporal, hasta tres choques por enemigo. Los jefes y minijefes no son empujados ni reciben ese daño porcentual, pero cada pulso los vuelve 20 % más vulnerables durante tres segundos.
+El primer pulso borra proyectiles hostiles de minions y todos los minions normales huyen de Sideral. Durante el dominio Sideral no reproduce su ataque automático ni su pose de ataque: el control proviene exclusivamente de sus gritos periódicos, representados por ondas moradas que recorren toda la habitación. El daño de pared solo se dispara cuando la resolución física confirma el choque. Cada impacto quita 8 % de vida máxima, produce un rebote fuerte, sacudida localizada, polvo, texto y una grieta temporal, hasta tres choques por enemigo. Los jefes y minijefes quedan inmóviles, sin atacar ni hacer daño por contacto e invulnerables durante el dominio. Muestran una reacción de asco y no reciben la vulnerabilidad de los pulsos.
 
 La alfombra se pinta en la capa del suelo; paredes y muebles usan capas separadas. Al trasladar cualquier entidad —incluidas las creadas con el dominio activo— se busca una celda libre para evitar apariciones dentro del escritorio, sofá o biblioteca. El portal también recibe una posición interior temporal. La cámara reserva margen superior para el HUD y encuadra la habitación completa incluso en pantallas bajas. Las paredes comparten exactamente el límite de colisión, sin huecos en las esquinas. Al finalizar, una transición de 0,95 s apaga los monitores, quiebra paredes y muebles en píxeles violetas, muestra el mapa original reconstruyéndose por debajo y remata con el destello de lentes y «¿QUÉ FUE?». El último pulso empuja a los minions sin añadir daño extra. Sideral y su compañero conservan invulnerabilidad hasta que termina la transición y se restauran las coordenadas. En cooperativo la simulación del servidor traslada a ambos jugadores y conserva la misma geometría, miedo, daño, interacciones y rescate. Prueba directa de administrador: `/?practice=sideral`; el laboratorio ofrece recarga automática y objetivos que reaparecen.
 
@@ -160,8 +160,25 @@ Cajas, cofres comunes y dorados y los cuatro objetos usan el atlas pixel art pub
 ## Cofres por rareza
 Común (madera, ●), raro (azul, ◆) y legendario (violeta/dorado, ★), con cuatro objetos mejorados por nivel. Las aperturas y el arte se distribuyen desde GitHub al hosting de producción https://perusurvivor.michitech.tech según docs/DEPLOYMENT.md. El sitio chatgpt.site es una copia independiente y no es el destino principal.
 
+## Cartas de ulti y expansión de dominio
+
+Las ocho habilidades actuales usan un patrón HUD compartido: arte full art vertical, marco y placa inferior legible, tecla visible (Q para ulti y R para dominio), barra dorada que recorre el borde superior con la carga, y resplandor cálido con humo suave al quedar lista. Mantener Q durante 180 ms revela cualquier carta de ulti; un toque activa la habilidad lista. Las expansiones conservan su activación con R y comparten el mismo marco, carga y estado listo. El diseño respeta `prefers-reduced-motion`.
+
+| Personaje | Habilidad | Arte de carta |
+| --- | --- | --- |
+| Kingteka | Modo Gallinazo | `kingteka-gallinazo-ultimate-fullart-v2.webp` |
+| Alberto | Tribunal de Fujimori | `alberto-tribunal-ultimate-fullart-v1.webp` |
+| Cristorata | Dragón | `cristorata-dragon-ultimate-fullart-v1.webp` |
+| Cuy | Estampida | `cuy-stampede-ultimate-fullart-v1.webp` |
+| Paloma | Bandada | `paloma-bandada-ultimate-fullart-v1.webp` |
+| Makanaky | Habitación del Lagarto | `makanaky-domain-fullart-v1.webp` |
+| Sideral | Habitación del Lagarto | `sideral-domain-fullart-v1.webp` |
+| Chamelín Trovo | Baño de Trovo | `chamelin-domain-fullart-v1.webp` |
+
+Para habilitar una ulti futura, agrega personaje y arte a `P.AbilityCards.entries` (`src/systems/ability-cards.js`) y conecta su HUD/activación Q existente con `P.AbilityCards.apply(button,id,'ultimate',charge,ready,active)`. Para un dominio, registra también `state` (la clave de su estado activo) y `label`: el HUD central muestra automáticamente su carta R y carga. Conecta por separado la activación R y sus reglas de combate. Q y R mantienen sus manejadores de juego. Los espacios sin ulti siguen como reserva gris. Conserva los PNG fuente y registra sus WebP en `docs/asset-optimization.json` con `scripts/optimize-assets.py`.
+
 ## Kingteka: ulti y sonido
-La ulti se carga con 20 bajas y se activa con Q o el botón táctil: ocho segundos de gallinazos animados, velocidad ×1,5 y cadencia ×2; rivales normales reciben ×2 daño. Incluye aleteo, escopeta reforzada, efectos pixel art y sello DENUNCIADO con golpe sincronizado. El botón Sonido permite silenciar. La recarga instantánea y el selector de pruebas son utilidades locales y no se publican.
+La ulti se carga con 20 bajas y se activa con Q o el botón táctil: ocho segundos de gallinazos animados, velocidad ×1,5 y cadencia ×2; rivales normales reciben ×2 daño. Incluye aleteo, escopeta reforzada, efectos pixel art y sello DENUNCIADO con golpe sincronizado. La carta Q usa un full art exclusivo de la ulti: Kingteka de espaldas apunta a un gallinazo lejano mientras otros rivales se transforman sobre el atardecer limeño. Es distinto al arte del ataque de escopeta; su archivo optimizado mide 512×768, usa WebP calidad 60 y figura en el informe de activos para respetar el límite de despliegue de 64 MiB. La secuencia cinematográfica de la ulti conserva su arte independiente y se sirve en WebP calidad 85. Una línea dorada recorre el borde superior según la carga; al completarse, el marco muestra un resplandor cálido con humo suave, sin partículas de combate. Mantener Q durante 180 ms despliega la carta como al pasar el cursor; soltarla solo la oculta. Un toque breve en Q activa la ulti cuando está lista. El efecto se reduce con `prefers-reduced-motion`; el botón táctil y el hover siguen disponibles. El botón Sonido permite silenciar. La recarga instantánea y el selector de pruebas son utilidades locales y no se publican.
 
 ## Sonido y música
 Música retro original por mapa, tema de jefe y efectos sintetizados mediante Web Audio. El botón Sonido recuerda el silencio. Requiere una interacción inicial y se pausa fuera de la partida. No descarga grabaciones externas.
@@ -174,7 +191,7 @@ Nuevo jefe opcional de pixel art detallado en los Techos de Lima. Portal desde l
 
 ### Estructura actual de jefes y minijefes
 
-Reglas implementadas: el portal opcional abre a los **3:00**. Permite elegir el jefe del mapa, Gallinazo o Fujimori; dentro se pausa el reloj del mapa. ElZeein aparece obligatoriamente a los **5:00** del mapa. Aviso → ataque → recuperación constituye el ciclo habitual.
+Reglas implementadas: el portal opcional abre a los **3:00**. Su jefe permanece oculto hasta cruzar; dentro se pausa el reloj del mapa. En partida rápida corresponde al jefe del mapa. En Supervivencia del Caos, las tres ventanas rotan sin repetir entre el jefe local, Gallinazo y Fujimori. ElZeein aparece obligatoriamente al final. Aviso → ataque → recuperación constituye el ciclo habitual.
 
 | Jefe | Patrones de ataque | Fases y ulti |
 | --- | --- | --- |
@@ -264,7 +281,7 @@ Campo de Marte responde durante toda la partida, no solamente al desenlace de El
 Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución exclusiva, disponible mediante elección con rango 5 y nivel 8. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.
 
 ### Prototipo de arsenal de Kingteka
-Kingteka empieza con una escopeta corta de cuatro perdigones; su caída de daño mantiene el impacto cerca. En nivel 2 puede desbloquear Gallinazo, que lanza dos plumas especiales guiadas y perforantes; en nivel 4 puede desbloquear el golpe de cuerpo, físico y frontal, con empuje y cadencia pausada. `1`, `2` y `3` cambian de arma durante la partida, también desde los botones del HUD. Durante una subida de nivel, esas teclas siguen escogiendo tarjeta. Los rangos son independientes por arma, mejoran daño, alcance y cadencia y tienen requisitos escalonados; el arma activa recibe la tarjeta de arsenal cada dos niveles. La Escopeta Contra requiere rango 5 y nivel 14. El cambio funciona en cooperativo con autoridad del servidor. Las cartas de poderes y mejoras usan escenas con el sprite del personaje elegido y un motivo del poder o estadística. Las cartas de objetos muestran su icono oficial como arte central, sin el sprite del personaje. Solo las tres armas distintivas de Kingteka usan ilustraciones full art dedicadas. La cara ilustrada ocupa todo el marco al revelarse; categoría, efecto y comparación quedan en una placa inferior, y la rareza conserva su destello. El juego carga WebP a calidad 88 para respetar el límite del paquete publicado; los PNG maestros y prompts se conservan en [Kingteka card art](docs/kingteka-card-art-prompts.json). Balance de las tres armas y partidas completas: [KINGTEKA_ARSENAL_BALANCE](docs/KINGTEKA_ARSENAL_BALANCE.md).
+Kingteka empieza con una escopeta corta de cuatro perdigones; su caída de daño mantiene el impacto cerca. En nivel 2 puede desbloquear Gallinazo, que lanza dos plumas especiales guiadas y perforantes; en nivel 4 puede desbloquear el golpe de cuerpo, físico y frontal, con empuje y cadencia pausada. `1`, `2` y `3` cambian de arma durante la partida, también desde los botones del HUD. Durante una subida de nivel, esas teclas siguen escogiendo tarjeta. Los rangos son independientes por arma, mejoran daño, alcance y cadencia y tienen requisitos escalonados; el arma activa recibe la tarjeta de arsenal cada dos niveles. La Escopeta Contra requiere rango 5 y nivel 14. El cambio funciona en cooperativo con autoridad del servidor. Las cartas de poderes y mejoras usan escenas con el sprite del personaje elegido y un motivo del poder o estadística. Las cartas de objetos muestran su icono oficial como arte central, sin el sprite del personaje. Solo las tres armas distintivas de Kingteka usan ilustraciones full art dedicadas. La cara ilustrada ocupa todo el marco al revelarse; categoría, efecto y comparación quedan en una placa inferior, y la rareza conserva su destello. El paquete usa WebP y conserva los PNG fuente; algunos recursos seleccionados tienen compresión con pérdida para caber en el límite de 64 MiB. El manifiesto registra calidad, tamaños y hashes en [asset-optimization.json](docs/asset-optimization.json); prompts de cartas: [Kingteka card art](docs/kingteka-card-art-prompts.json). Balance de las tres armas y partidas completas: [KINGTEKA_ARSENAL_BALANCE](docs/KINGTEKA_ARSENAL_BALANCE.md).
 
 - cristorata: **Directo encadenado** — Dos micrófonos de retorno enlazan hasta tres rivales con sonido.
 - cuy: **Terremoto del cuy** — Una onda completa empuja y deja una zona de temblor a tus pies.
@@ -426,7 +443,7 @@ Las entregas administrativas se reciben en vivo durante la sesión: monedas y pe
 
 ## Música de fondo opcional
 
-En la cabecera, abre **Música ♫** y elige **Original del juego**, **Tema 1**, **Tema 2**, **Alternar ambas** o **Sin música**. Las dos pistas aportadas por el usuario se reproducen en bucle; el volumen y la selección se guardan en este navegador. El botón general de sonido también las silencia. Pausa, menú, pestaña oculta y pérdida de foco detienen su reproducción y conservan la posición para continuar.
+En la cabecera, pulsa la flecha junto a **🔊** y elige **Original del juego**, **Tema 1**, **Tema 2**, **Alternar ambas** o **Sin música**. El mismo panel reúne los volúmenes de música, efectos y enemigos; tocar el altavoz silencia o reactiva todo. Las dos pistas aportadas por el usuario se reproducen en bucle; el volumen y la selección se guardan en este navegador. Pausa, menú, pestaña oculta y pérdida de foco detienen su reproducción y conservan la posición para continuar.
 
 Las pistas WebM/Opus se solicitan únicamente al reproducir la opción elegida: no forman parte de la descarga inicial. Un solo reproductor sustituye a la melodía sintetizada, conservando efectos y ambiente. Si falla la carga, se recupera la música original.
 
@@ -519,3 +536,23 @@ Sideral: al cargar su atlas se conserva la figura conectada principal de cada cu
 Sideral: ataque visual de preparación, grito y recuperación con retroceso continuo; figuras completas, altura visible normalizada y pies anclados. Se omite el cuadro de susto. No cambia el daño ni la cadencia.
 
 Kingteka: durante 8 s los minions normales se convierten en gallinazos, reciben ×2 de daño del equipo, pierden ataques y contacto, y se abalanzan con zigzag hacia Kingteka en grupos alrededor de él. Al volver se detienen y muestran «¡VUELVE!» durante 0,6 s sin atacar. Jefes y minijefes conservan forma y ataques; reciben ×1,2 de daño. Cofres imitadores quedan excluidos.
+
+Las cartas de nivel se aplazan durante las presentaciones de ultis y las escenas de dominio; la experiencia permanece acumulada. Sideral permite elegir durante el combate de su habitación, después de la entrada y antes de la salida. Individual y cooperativo comparten el bloqueo; los niveles pendientes se entregan en orden al volver al combate.
+
+Las cinemáticas a pantalla completa ocultan todas las capas DOM del HUD (vida, minijefes, inventario, combos, rendimiento y controles). El bucle sincroniza cinematic-only antes de renderizar; se restaura al volver al combate, pausar o salir. El combate interactivo de los dominios conserva sus controles.
+
+## Chamelín Trovo · El baño de Trovo
+UR de control de zonas. Sus emojis dejan charcos de 4 s sin acumular daño al solaparse. R abre un baño físico: entrada de 2,6 s con ocho gestos completos, 8 s de combate jugable para ambos compañeros y enemigos, y mordida protegida de 0,6 s. Solo entrada y mordida protegen; durante el combate se conservan movimiento, ataques, daño y avisos de jefes. El chorro sigue el giro con retardo, respeta paredes y aplica defensa −20 % y velocidad −25 %. El compañero dispara su arma normal y aprovecha el debuff. La mordida conserva instakill normal, ×3 a minijefes y ×1,90 a jefes. Regreso a posiciones originales y 2 s de vapor/gotas visuales sin daño. Prueba admin /?practice=chamelin con recarga; Invencible es opcional dentro del baño.
+
+Sideral: los aterrizajes del retroceso sacuden brevemente la cámara (último salto más fuerte), seguidos por un temblor leve de risa. Desplazamientos enteros sin reescalar sprites; movimiento reducido desactiva todo temblor. El dominio ofrece 8 s para auxiliar o saquear: jefes/minijefes están inmóviles e inmunes, con reacción pixel art de asco. Al terminar ambos jugadores vivos conservan al menos 0,8 s de protección. No puede iniciarse sobre otra cinemática a pantalla completa.
+
+## Modos de partida
+
+- **Partida rápida:** conserva el recorrido original de 5 minutos, un portal opcional y ElZeein al final.
+- **Supervivencia del Caos:** recorrido individual de 30 minutos en el mapa elegido, dividido en seis etapas de cinco minutos.
+- En Supervivencia aparecen minijefes cada 4–6 minutos y tres ventanas de portal. El reloj se pausa dentro de cada arena y ElZeein aparece al minuto 30.
+- Cada etapa puede añadir un solo obstáculo destructible y seguro: ramas en Campo de Marte, barricadas en Plaza de Armas y derrumbes pequeños en Machu Picchu.
+- La iluminación recorre día, atardecer, anochecer y noche durante los 30 minutos. Los efectos respetan movimiento reducido y tienen límites fijos para cuidar los FPS.
+- Cooperativo y las pruebas de desarrollo permanecen temporalmente en Partida rápida para conservar el protocolo autoritativo actual.
+
+El HUD superior agrupa nombre, nivel, XP y vida en una sola tarjeta izquierda; tiempo, rivales y etapa ocupan el centro. El contador de ElZeein aparece al comenzar cada etapa y durante el último minuto, sin repetir nivel o experiencia. Los portales no publican su horario exacto: diez segundos antes anuncian una anomalía y, al abrir, una flecha de borde señala dirección y distancia hasta acercarse. El jefe se revela al cruzar y recibe una barra superior propia con nombre, fase, PV reales y aviso de reloj pausado. En móvil el panel de audio se abre como una bandeja inferior y los controles conservan áreas táctiles separadas.

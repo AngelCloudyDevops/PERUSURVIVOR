@@ -101,6 +101,54 @@
       "rgbaSha256": "cda9580092e6bcb0e01bf880e90c3145145bf6272ca0487244295a9ca43af99a"
     },
     {
+      "source": "assets/cards/alberto-tribunal-ultimate-fullart-v1.png",
+      "output": "assets/cards/alberto-tribunal-ultimate-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 674208,
+      "optimizedBytes": 58106,
+      "sourceSha256": "3f75de6ab7533d12ad8c782266c562132a52101f10c55c61de27c4ee73bc3eb4",
+      "outputSha256": "08bcf51c6a9ab9d2ac2a59be44b50f531afd55ea6420ae6395ab552f92c45b7a",
+      "rgbaSha256": "889de03eb0d7ba6c1d2ba55936df0dd7dc35fcf7df2c6413e7e214a4387a51ae",
+      "quality": 60
+    },
+    {
+      "source": "assets/cards/chamelin-domain-fullart-v1.png",
+      "output": "assets/cards/chamelin-domain-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 735428,
+      "optimizedBytes": 74448,
+      "sourceSha256": "83ba4c2f01248cb410d57f15fdbebc1e003f5146f578c04eddca56ccd2a3910f",
+      "outputSha256": "a5ccabeac4d9afeb83e094f1d9e87850d414e0b4b4c92043b656136c04228d76",
+      "rgbaSha256": "0daa9fe50b70521bf34821bc765fd179186b6fab72198dff5f8b0cb31aadfd85",
+      "quality": 60
+    },
+    {
+      "source": "assets/cards/cristorata-dragon-ultimate-fullart-v1.png",
+      "output": "assets/cards/cristorata-dragon-ultimate-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 771101,
+      "optimizedBytes": 83052,
+      "sourceSha256": "e6876830f416ac2885ed8dc0b0bd9707bd4db48039bd0e23f06156f82fd70623",
+      "outputSha256": "4c712f0aa13191ad8d3c903629ed109e796a5b2808050e81d438d586445f2ade",
+      "rgbaSha256": "7df602f3ebde203a4069acadc7fd1a0649fc6d7ad5967bb67a25fd43e6983f60",
+      "quality": 60
+    },
+    {
+      "source": "assets/cards/cuy-stampede-ultimate-fullart-v1.png",
+      "output": "assets/cards/cuy-stampede-ultimate-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 729679,
+      "optimizedBytes": 71846,
+      "sourceSha256": "d859c5408a171d632bf6ba51bb83677c39aeedc8177f57ab4f1ca8dd089942e5",
+      "outputSha256": "81fcae5674bb03c166eee7b8c75be572474d92e44a4fcc9b506d04f27242550d",
+      "rgbaSha256": "3e28189321a8b43eb5a44f4377caf0b9d28878c60537109f703a6bd347fc6734",
+      "quality": 60
+    },
+    {
       "source": "assets/cards/kingteka-gallinazo-fullart-v1.png",
       "output": "assets/cards/kingteka-gallinazo-fullart-v1.webp",
       "width": 1024,
@@ -111,6 +159,18 @@
       "outputSha256": "2c374cbaf2cce64f29fa451b7292d8afe564b1e9e452057f92d36c21888dfb7e",
       "rgbaSha256": "7ed7587693ccdd9f3fecbc111849f3625eb6848366d25070bd666ef0a53d2d99",
       "quality": 88
+    },
+    {
+      "source": "assets/cards/kingteka-gallinazo-ultimate-fullart-v2.png",
+      "output": "assets/cards/kingteka-gallinazo-ultimate-fullart-v2.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 646140,
+      "optimizedBytes": 47684,
+      "sourceSha256": "36f0e48181a2518ca509cf575d083f1e125ddb9d53a77c7ac01bd397b716ace0",
+      "outputSha256": "2af8de2b909828fd033e7abd4115801a710a509878ce7ded95cd319eaacb08ef",
+      "rgbaSha256": "a37afc03bf80867b925355a388eaa64a93f5da494566945d6b6d30337958f7a1",
+      "quality": 60
     },
     {
       "source": "assets/cards/kingteka-golpe-fullart-v1.png",
@@ -137,6 +197,42 @@
       "quality": 88
     },
     {
+      "source": "assets/cards/makanaky-domain-fullart-v1.png",
+      "output": "assets/cards/makanaky-domain-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 704493,
+      "optimizedBytes": 63052,
+      "sourceSha256": "ba4a7bdb57237841d26a5712e39eea7722976764e1644587302462c28bb6d375",
+      "outputSha256": "afac18dd99644d956366da192375b1d3b8f2bd6d98952aab5050bdf672a39e5d",
+      "rgbaSha256": "ea465598840540d996c3217587a695a1302962ddc5c564c2ecd79b0ff873890a",
+      "quality": 60
+    },
+    {
+      "source": "assets/cards/paloma-bandada-ultimate-fullart-v1.png",
+      "output": "assets/cards/paloma-bandada-ultimate-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 743355,
+      "optimizedBytes": 76550,
+      "sourceSha256": "a9c3591cfcc392a56ee0be4551b68de80c00b72aa7c8027c103830bf3b449c00",
+      "outputSha256": "60b9899bcd1b6c3fbe08d92f558cf48a2d323926302ec653637b224359d73e03",
+      "rgbaSha256": "c4bf3cd3d04f887a7e2e7129c2ec2da5ad49546fb8882a5ecc00ce72138ea70a",
+      "quality": 60
+    },
+    {
+      "source": "assets/cards/sideral-domain-fullart-v1.png",
+      "output": "assets/cards/sideral-domain-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 761802,
+      "optimizedBytes": 70840,
+      "sourceSha256": "6ae7937ac43acb2613bf5cfec6aee945b4475376f42597f0bf6f9947c6fefbd4",
+      "outputSha256": "3738f3bcc9d2ddeb388aafaf658f25a004302a087b384ea7afdd52c3ccb1ac60",
+      "rgbaSha256": "927bcda5d115800c135b9aead8cd28b5c9f545c8e6cb563559fc84baf494edb4",
+      "quality": 60
+    },
+    {
       "source": "assets/characters/causas-atlas-v1.png",
       "output": "assets/characters/causas-atlas-v1.webp",
       "width": 887,
@@ -153,10 +249,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 1773088,
-      "optimizedBytes": 1245400,
+      "optimizedBytes": 205038,
       "sourceSha256": "2f1958e0285b099e345e4203199a4a05418786a9b66a1a89329f9cbafb287f4e",
-      "outputSha256": "99ec631a329360270fe44856d621dcc88c29746165799583633a8fa278b83e9b",
-      "rgbaSha256": "fb6beb889a49b4981da511da0d5636b39938011faebc855b4fe2185c85cba75a"
+      "outputSha256": "d12ce6b811834305c8ea253acbbb94d135420a3a062ed533067eaad229612ae5",
+      "rgbaSha256": "fb6beb889a49b4981da511da0d5636b39938011faebc855b4fe2185c85cba75a",
+      "quality": 85
     },
     {
       "source": "assets/characters/powers-atlas-v1.png",
@@ -358,6 +455,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 67675638,
-  "optimizedBytes": 45204880
+  "originalBytes": 73441844,
+  "optimizedBytes": 44710096
 }

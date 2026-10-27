@@ -4,6 +4,13 @@
 
 # Cambios
 
+## Tarjetas de ulti y expansión de dominio en el HUD — 2026-10-26
+- Separa Q (ulti) y R (expansión de dominio) en tarjetas compactas a la derecha de las armas; los objetos quedan a la izquierda.
+- Las tarjetas suben para mostrar su arte al pasar el cursor o recibir foco; en pantallas táctiles se mantienen accesibles.
+- Makanaky y Sideral muestran el dominio en R y un espacio Q gris reservado mientras no tengan ulti propia.
+- Registra los controles y la distribución del HUD implementados.
+
+
 ## Iconos de objetos como arte de carta — 2026-10-26
 - Las cartas de Blink Dagger, Magic Stick y demás objetos muestran su logo centrado como imagen principal, sin repetir el sprite del personaje.
 - Las cartas de poderes y armas conservan sus escenas ilustradas.

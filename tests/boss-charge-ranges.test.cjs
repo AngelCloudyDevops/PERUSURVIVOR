@@ -41,3 +41,8 @@ test('Daño de jefe: impacto único, invulnerabilidad y escudo se respetan',()=>
 test('Diagnóstico del laboratorio dibuja hitbox, ruta, destino y estado sin mutar IA',()=>{
  const {P}=new Simulation('campo',[0]),s=P.state,e=P.Minibosses.create('campo',{x:0,y:0}),calls=[];s.devRun=true;s.enemies=[e];e.navPath=[{x:40,y:10},{x:80,y:30}];e.navGoal={x:120,y:50};e.navReplans=2;P.Lab.diagnostics=true;const before=JSON.stringify(e),ctx=new Proxy({arc(){calls.push('arc')},lineTo(){calls.push('line')},fillText(){calls.push('text')}},{get:(o,k)=>o[k]||(()=>{})});P.Encounters.diagnostics(ctx);assert(calls.includes('arc')&&calls.includes('line')&&calls.includes('text'));assert.equal(JSON.stringify(e),before);
 });
+
+test('HUD de portal: rota tres jefes misteriosos y muestra vida/fase en la arena',()=>{
+ const {P}=new Simulation('campo',[0]),s=P.state;s.runMode='chaos';P.Data.arena.duration=1800;const kinds=[0,1,2].map(index=>{s.portal={index};return P.Encounters.portalDefinition().kind});assert.equal(new Set(kinds).size,3);assert(kinds.includes('combi'));assert(kinds.includes('vulture'));assert(kinds.includes('fujimori'));
+ P.$('#lab-boss').value='campo';P.Lab.run();const boss=s.enemies[0];P.Encounters.bossHud();assert.equal(P.$('#boss-panel').hidden,false);assert.equal(P.$('#boss-name').textContent,boss.name);assert.equal(P.$('#boss-phase').textContent,'FASE 1');boss.hp=boss.max*.5;P.Encounters.bossHud();assert.match(P.$('#boss-phase').textContent,/FASE 2/);assert.equal(P.$('#boss-health').textContent,Math.ceil(boss.hp)+' / '+boss.max+' PV');s.encounter=null;P.Encounters.bossHud();assert.equal(P.$('#boss-panel').hidden,true);
+});

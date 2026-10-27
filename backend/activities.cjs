@@ -57,7 +57,7 @@ class Activities{
   for(const p of this.sim.players)p.moving=false;
   return true;
  }
- levelup(){const P=this.P,s=P.state;if(this.pending||s.xp<s.need)return;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.22+1);this.pending={id:++this.serial,kind:'level',phase:'choice',applied:[false,false],options:this.sim.players.map(p=>P.Progression.options(p))};for(const p of this.sim.players)p.moving=false}
+ levelup(){const P=this.P,s=P.state;if(this.pending||s.xp<s.need||P.Progression.blocksUpgrade(this.sim.players))return;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.22+1);this.pending={id:++this.serial,kind:'level',phase:'choice',applied:[false,false],options:this.sim.players.map(p=>P.Progression.options(p))};for(const p of this.sim.players)p.moving=false}
  choose(slot,id,choice){
   const pending=this.pending;if(!pending||pending.id!==id||pending.phase!=='choice'||pending.applied[slot]||!Number.isInteger(choice))return false;
   const P=this.P,p=this.sim.players[slot];this.sim.use(p);
