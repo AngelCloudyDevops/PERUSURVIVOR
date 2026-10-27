@@ -566,7 +566,11 @@ La audiencia es una arena física de 920 × 600 unidades: traslada temporalmente
 - **Supervivencia del Caos:** recorrido individual de 30 minutos en el mapa elegido, dividido en seis etapas de cinco minutos.
 - En Supervivencia aparecen minijefes cada 4–6 minutos y tres ventanas de portal. El reloj se pausa dentro de cada arena y ElZeein aparece al minuto 30.
 - Cada etapa puede añadir un solo obstáculo destructible y seguro: ramas en Campo de Marte, barricadas en Plaza de Armas y derrumbes pequeños en Machu Picchu.
-- La iluminación recorre día, atardecer, anochecer y noche durante los 30 minutos. Los efectos respetan movimiento reducido y tienen límites fijos para cuidar los FPS.
+- Las seis etapas cambian el tono del terreno con una transición breve; al vencer a un jefe de portal, el mapa responde con otro pulso visual. El escenario elegido no cambia de forma arbitraria.
+- La iluminación recorre día, atardecer, anochecer y noche durante los 30 minutos; garúa y reflejos de Plaza y niebla de Machu vuelven por ciclos. Los efectos respetan movimiento reducido.
+- Desde 2:45 aparece un minievento opcional aproximadamente cada 2:45. Solo hay uno activo: meteoritos, picnic y cometas en Campo; garúa, palomas y faroles en Plaza; cóndor, viento y terrazas en Machu. Cada evento avisa 7 s, dura 45 s y ofrece hasta 25 monedas; no causa daño ni modifica colisiones.
+- A los 12 minutos se ofrece una vez un minijuego opcional por mapa: cinco señales en 60 s y hasta 50 monedas. Se aplaza si coincide con jefes o portales.
+- Los eventos dibujan hasta cinco señales y un marcador con primitivas, sin añadir enemigos ni partículas persistentes, para cuidar los FPS.
 - Cooperativo y las pruebas de desarrollo permanecen temporalmente en Partida rápida para conservar el protocolo autoritativo actual.
 
 El HUD superior agrupa nombre, nivel, XP y vida en una sola tarjeta izquierda; tiempo, rivales y etapa ocupan el centro. El contador de ElZeein aparece al comenzar cada etapa y durante el último minuto, sin repetir nivel o experiencia. Los portales no publican su horario exacto: diez segundos antes anuncian una anomalía y, al abrir, una flecha de borde señala dirección y distancia hasta acercarse. El jefe se revela al cruzar y recibe una barra superior propia con nombre, fase, PV reales y aviso de reloj pausado. En móvil el panel de audio se abre como una bandeja inferior y los controles conservan áreas táctiles separadas.

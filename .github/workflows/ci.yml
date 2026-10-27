@@ -83,7 +83,7 @@ jobs:
           trap 'rm -f "$key" "$archive"' EXIT
           umask 077
           printf '%s\n' "$DEPLOY_KEY" > "$key"
-          tar -czf "$archive" -C dist .
+          tar -cf - -C dist . | gzip -9 > "$archive"
           ssh -T -i "$key" -o BatchMode=yes -o IdentitiesOnly=yes \
             -o StrictHostKeyChecking=yes -o UserKnownHostsFile=ops/hostinger/known_hosts \
             perusurvivor-deploy@179.236.77.159 "deploy $GITHUB_SHA" < "$archive"
