@@ -559,4 +559,5 @@ El HUD superior agrupa nombre, nivel, XP y vida en una sola tarjeta izquierda; t
 
 Chamelín: sello encadenado con pausa y pisotón, giro con arrastre visual, chorro de pulsos/gotas y salpicaduras, tuberías y charcos animados. Al cerrar la boca las baldosas se desprenden y revelan el mapa original; quedan huellas y vapor 2 s sin daño extra. Se conservan el baño jugable, las duraciones y protección solo de entrada/mordida; respeta movimiento reducido.
 
+Balance de Chamelín: el impacto del emoji usa 15 % del daño base del arma; el charco conserva su daño independiente de 30 % del daño base por segundo durante 4 s. Ralentiza 20 % a normales y 10 % a jefes/minijefes. Las zonas superpuestas no suman daño ni ralentización. Solo el chorro del dominio reduce ambas defensas; la mordida conserva sus multiplicadores y potencia anteriores.
 Las cartas de todos los objetos Dota muestran su imagen original grande como arte principal, igual que el catálogo y el inventario. No usan una reinterpretación generada ni el fondo de personaje con franjas. Se conserva el respaldo local si falla la imagen remota.
