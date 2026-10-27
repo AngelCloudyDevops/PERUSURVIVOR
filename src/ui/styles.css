@@ -351,6 +351,7 @@ body.menu #combat-dock{display:none}
 #ultimate-ready-fx:before{content:"";position:absolute;z-index:-1;left:25%;top:14%;width:50%;height:33%;border-radius:50%;background:radial-gradient(ellipse,#fff2b58a 0 12%,#ff9a3c66 36%,#e44b292f 58%,transparent 74%);filter:blur(9px);transform-origin:50% 70%}
 #ultimate-ready-fx:after{content:"";position:absolute;left:31%;top:20%;width:4px;height:4px;border-radius:50%;background:#fff8d7;box-shadow:-25px 18px 0 0 #ffcb58,58px 8px 0 -1px #fff0a0,-42px 48px 0 -1px #ff8b38,78px 42px 0 -1px #ff6b30,4px -18px 0 -1px #fff4b8;filter:drop-shadow(0 0 4px #ff8a32);opacity:.75}
 #ultimate-ready-fx.is-ready{opacity:.96;transform:scale(1) translateY(0);animation:ultimate-fire-sway 1.42s ease-in-out infinite alternate}
+#ultimate-ready-fx.is-domain{left:102px}
 #ultimate-ready-fx.is-ready:before{animation:ultimate-fire-pulse 1.18s ease-in-out -.3s infinite alternate}
 #ultimate-ready-fx.is-ready:after{animation:ultimate-embers-rise 1.65s ease-out infinite}
 @keyframes ultimate-fire-sway{from{opacity:.84;transform:scale(.985,1.015) translate(-1px,1px) rotate(-.45deg)}to{opacity:1;transform:scale(1.018,.985) translate(2px,-2px) rotate(.55deg)}}
@@ -361,6 +362,7 @@ body.menu #combat-dock{display:none}
  #ability-dock{width:236px}
  #ability-dock .hud-ability-card{width:112px}
  #ultimate-ready-fx{left:-32px;top:-50px;width:176px;height:252px}
+ #ultimate-ready-fx.is-domain{left:92px}
 }
 @media(max-width:760px){
  #combat-dock{left:8px;right:8px;bottom:8px;grid-template-columns:minmax(0,1fr) minmax(140px,1fr);grid-template-rows:64px auto;align-items:end;gap:6px}
@@ -372,6 +374,7 @@ body.menu #combat-dock{display:none}
  #combat-dock #weapon-bar{bottom:auto;width:100%;gap:3px;padding:4px}
  #ability-dock{grid-column:2;grid-row:1;width:100%;height:64px}
  #ultimate-ready-fx{left:-25px;top:-34px;width:calc(50% + 50px);height:104px;background-size:100% auto;background-position:center top}
+ #ultimate-ready-fx.is-domain{left:calc(50% - 22px)}
  #ability-dock .hud-ability-card{top:0;bottom:auto;width:calc(50% - 3px);height:64px;padding:6px 3px 8px;font-size:8px;border-radius:8px 8px 0 0;transition:height .18s ease,transform .18s ease}
  #ability-dock .hud-ability-card:hover,#ability-dock .hud-ability-card:focus-visible,#ability-dock .hud-ability-card.is-peeking{top:0;bottom:auto;height:118px;transform:translateY(-54px)}
  #ability-dock #ultimate{left:0;right:auto}
