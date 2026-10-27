@@ -1,0 +1,10 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),path=require('node:path');
+const {Simulation}=require('../backend/simulation.cjs');
+function setup(){const sim=new Simulation('campo',[0,1],path.resolve(__dirname,'..')),P=sim.P,s=P.state,c=P.Data.characters.find(q=>q.id==='cirilo'),p=P.Entities.player(c);Object.assign(p,{slot:0,x:0,y:0,shots:[],fields:[],revive:0});s.player=p;sim.players[0]=p;P.Ultimate.reset();p.ultimate=s.ultimate;s.mode='play';return{sim,P,s,p}}
+
+test('Cirilo UR: cuatro frases equiprobables sin disparo silencioso',()=>{const{P,s,p}=setup(),old=Math.random,list=[];try{for(const value of [.01,.26,.51,.76]){Math.random=()=>value;P.CiriloUR.phrase(p);list.push(s.effects.at(-1).text)}}finally{Math.random=old}assert.deepEqual(list,['¿ME ENTIENDES O NO?','FACTOS','ME DAS RISA','FULL MALDAD']);assert.equal(P.Gacha.tier('cirilo'),'ultra')});
+
+test('Cirilo UR: deterioros, resurrección y forma infernal',()=>{const{P,s,p}=setup(),speed=p.speed,reach=p.reach;s.level=10;P.CiriloUR.applyStage(p);assert.equal(p.ciriloStage,1);assert.equal(p.reach,reach*1.25);s.level=20;P.CiriloUR.applyStage(p);assert.equal(p.ciriloStage,2);assert.equal(p.speed,speed*1.25);p.hp=0;assert(P.CiriloUR.revive(p));assert.equal(p.ciriloDemon,true);assert(p.hp>0);assert.equal(P.CiriloUR.revive(p),false)});
+
+test('Cirilo UR: Sandy renueva cada tres segundos daño, velocidad y rango',()=>{const{P,s,p}=setup();s.level=20;P.CiriloUR.applyStage(p);p.hp=0;p.ciriloStage=2;P.CiriloUR.revive(p);s.ultimate.charge=100;const speed=p.speed;assert(P.CiriloUR.activate());P.CiriloUR.tick(P.CiriloUR.entry+.01);assert.equal(s.ciriloDomain.hammer,1);assert.equal(p.speed,speed*1.5);assert.equal(P.CiriloUR.attack(p).range,520*1.25*1.15*1.8);s.ciriloDomain.age=P.CiriloUR.entry+3.01;P.CiriloUR.tick(.01);assert.equal(s.ciriloDomain.hammer,2);assert(s.ciriloDomain.buff>3)});

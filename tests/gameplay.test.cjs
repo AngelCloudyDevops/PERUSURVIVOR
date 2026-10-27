@@ -40,7 +40,7 @@ for(const map of P.Maps.catalog){
  P.UI.menu();P.Maps.select(map.id);P.Game.start();assert.equal(s.player.x,map.spawn.x);assert.equal(s.player.y,map.spawn.y);
  const old={x:s.player.x,y:s.player.y};s.player.x=99999;s.player.y=-99999;P.World.collide(s.player,old);assert.equal(s.player.x,99999);assert.equal(s.player.y,-99999);
  const selected=P.Maps.selected;P.Maps.select('invalid');assert.equal(P.Maps.selected,selected);P.World.render(100);
- const png=fs.readFileSync(root+'/public/assets/maps/'+map.id+'-v1.png');assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
+ const png=fs.readFileSync(root+'/public/assets/maps/'+(map.base||map.id)+'-v1.png');assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
  console.log('OK mapa: '+map.name+' / aparición, límites, dibujo y PNG')
 }
 P.UI.menu();P.Maps.select('plaza');P.Game.start();const f=P.Maps.current().fountain;s.player.x=0;s.player.y=f.y+10;P.Maps.collide(s.player,{x:0,y:220});assert(Math.hypot((s.player.x-f.x)/f.rx,(s.player.y-f.y)/f.ry)>=.999);
@@ -69,10 +69,10 @@ P.Game.start();s.mapTime=180;P.Encounters.tick();const entrance=P.Encounters.def
 
 for(const map of P.Maps.catalog){
  P.UI.menu();P.Maps.select(map.id);P.Game.start();assert(P.Terrain.props.length>=10);
- const obstacle=P.Terrain.props.find(o=>o.kind==='bench'||o.kind==='wall');const start={x:obstacle.x-obstacle.w/2-30,y:obstacle.y};const body={x:obstacle.x-obstacle.w/2+3,y:obstacle.y};P.Terrain.resolve(body,start,14);assert(body.x<=obstacle.x-obstacle.w/2-14,'No atravesar obstáculos');
+ const obstacle=P.Terrain.props.find(o=>o.solid&&o.kind!=='crate'&&o.kind!=='landmark');const start={x:obstacle.x-obstacle.w/2-30,y:obstacle.y};const body={x:obstacle.x-obstacle.w/2+3,y:obstacle.y};P.Terrain.resolve(body,start,14);assert(body.x<=obstacle.x-obstacle.w/2-14,'No atravesar obstáculos');
  const box=P.Terrain.props.find(o=>o.kind==='crate');P.Terrain.damage(box,60);assert(!box.solid);assert(s.gems.some(g=>g.kind==='heal'));
  P.Game.start();assert(P.Terrain.props.filter(o=>o.kind==='crate').every(o=>o.solid&&o.hp===55));
- const wall=P.Terrain.props.find(o=>o.kind==='bench'||o.kind==='wall');s.player.x=wall.x;s.player.y=wall.y-150;s.enemies=[target(wall.x,wall.y+150)];const walker=s.enemies[0];walker.speed=110;const initial=Math.hypot(walker.x-s.player.x,walker.y-s.player.y);for(let i=0;i<300;i++)P.Systems.move(.04);assert(Math.hypot(walker.x-s.player.x,walker.y-s.player.y)<initial/2,'El enemigo debe rodear el obstáculo');
+ const wall=P.Terrain.props.find(o=>o.solid&&o.kind!=='crate'&&o.kind!=='landmark');s.player.x=wall.x;s.player.y=wall.y-150;s.enemies=[target(wall.x,wall.y+150)];const walker=s.enemies[0];walker.speed=110;const initial=Math.hypot(walker.x-s.player.x,walker.y-s.player.y);for(let i=0;i<300;i++)P.Systems.move(.04);assert(Math.hypot(walker.x-s.player.x,walker.y-s.player.y)<initial/2,'El enemigo debe rodear el obstáculo');
  console.log('OK terreno: '+map.name+' / colisión, cajas, reinicio y ruta enemiga');
 }
 P.UI.menu();P.Maps.select('campo');P.Game.start();const box=P.Terrain.props.find(o=>o.kind==='crate');s.player.x=box.x-100;s.player.y=box.y;s.player.power=100;s.player.attack='emotes';const covered=target(box.x+90,box.y);s.enemies=[covered];s.fire=999;P.Combat.cast();for(let i=0;i<6;i++)P.Combat.tick(.04);assert(!box.solid);assert.equal(covered.hp,2000,'Las cajas deben bloquear los proyectiles');

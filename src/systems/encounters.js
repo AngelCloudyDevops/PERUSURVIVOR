@@ -38,10 +38,12 @@ diagnostics(ctx){if(!P.state.devRun||!P.Lab?.diagnostics)return;const actors=P.s
 catalog:{
 campo:{name:'El Chosicano · Última Parada',kind:'combi',color:'#7db8f6',hp:1250,r:74,speed:48,portal:{x:440,y:180}},
 plaza:{name:'El Gabinete Infinito',kind:'cabinet',color:'#cc7f9d',hp:1400,r:64,speed:35,portal:{x:420,y:260}},
-machu:{name:'El Guardián de la Niebla',kind:'stone',color:'#9bcbb5',hp:1500,r:70,speed:40,portal:{x:300,y:180}}
+machu:{name:'El Guardián de la Niebla',kind:'stone',color:'#9bcbb5',hp:1500,r:70,speed:40,portal:{x:300,y:180}},
+halloween:{name:'La Procesión de Medianoche',kind:'stone',color:'#b56ee0',hp:1450,r:70,speed:42,portal:{x:420,y:180}},
+navidad:{name:'El Grinch del Cercado',kind:'cabinet',color:'#75c69a',hp:1450,r:66,speed:38,portal:{x:420,y:220}}
 },
 definition(){return this.catalog[P.Maps.current().id]},
-portalDefinition(index=P.state.portal?.index||0){if(!P.RunMode.isChaos())return this.definition();const pool=[this.definition(),P.Vulture.definition,P.FujimoriBoss.definition],offset={campo:0,plaza:1,machu:2}[P.Maps.current().id]||0;return pool[(Math.max(0,index)+offset)%pool.length]},
+portalDefinition(index=P.state.portal?.index||0){if(!P.RunMode.isChaos())return this.definition();const pool=[this.definition(),P.Vulture.definition,P.FujimoriBoss.definition],offset={campo:0,plaza:1,machu:2,halloween:1,navidad:2}[P.Maps.current().id]||0;return pool[(Math.max(0,index)+offset)%pool.length]},
 reset(){const s=P.state;s.mapTime=0;s.encounter=null;s.portal={open:false,cleared:false,announced:false,index:-1,warning:-1,clearedWindows:[],warnedWindows:[],openedAt:-99,alertUntil:0};s.mapBossWon=false},
 tick(){const s=P.state;if(s.encounter)return;const warning=P.RunMode.portalWarning(s.mapTime);s.portal.warning=warning;if(warning>=0&&!s.portal.warnedWindows.includes(warning)){s.portal.warnedWindows.push(warning);P.Audio.fx('whistle')}const index=P.RunMode.portalWindow(s.mapTime),changed=s.portal.index!==index;if(changed){s.portal.index=index;s.portal.announced=false}const cleared=P.RunMode.isChaos()?s.portal.clearedWindows.includes(index):s.portal.cleared;s.portal.open=index>=0&&!cleared&&!s.bossSpawned&&s.mapTime<P.Data.arena.duration;if(s.portal.open&&!s.portal.announced){s.portal.announced=true;s.portal.openedAt=s.elapsed;s.portal.alertUntil=s.elapsed+3.2;P.Audio.fx('boss');P.$('#hint').textContent='PORTAL DEL CAOS ABIERTO · SIGUE LA SEÑAL'}},
 near(){const s=P.state,p=s.player,point=this.definition().portal;return s.portal?.open&&!s.encounter&&Math.hypot(p.x-point.x,p.y-point.y)<=this.range},

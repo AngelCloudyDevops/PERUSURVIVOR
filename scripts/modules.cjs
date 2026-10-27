@@ -216,6 +216,7 @@ module.exports = [
     "source": "src/rendering/ambient.js",
     "output": "js/ambient.js"
   },
+  {"source":"src/rendering/seasonal-art.js","output":"js/seasonal-art.js"},
   {
     "source": "src/systems/market.js",
     "output": "js/market.js"
@@ -372,6 +373,7 @@ module.exports = [
 ,{source:"src/systems/chamelin-arena.js",output:"js/chamelin-arena.js"}
 ,{source:"src/rendering/chamelin-bathroom.js",output:"js/chamelin-bathroom.js"}
 ,{source:"src/rendering/chamelin-fluency.js",output:"js/chamelin-fluency.js"}
+,{source:"src/systems/cirilo-ur.js",output:"js/cirilo-ur.js"}
 ,{source:"src/systems/character-balance.js",output:"js/character-balance.js"}
 ,{source:"src/ui/admin-balance.js",output:"js/admin-balance.js"}
 ];

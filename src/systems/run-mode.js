@@ -13,7 +13,7 @@ P.RunMode={
  stageAt(time=P.state.mapTime){return this.isChaos()?Math.min(5,Math.max(0,Math.floor((Number(time)||0)/300))):0},
  stage(time=P.state.mapTime){return this.stages[this.stageAt(time)]},
  dayTime(time=P.state.mapTime){return this.isChaos()?(Number(time)||0)/6:Number(time)||0},
- portalWindows(map=P.Maps.selected){const shift=map==='plaza'?35:map==='machu'?70:0;return [[360+shift,540+shift],[780+shift,1020+shift],[1260+shift,1500+shift]]},
+ portalWindows(map=P.Maps.selected){const shift={plaza:35,machu:70,halloween:105,navidad:140}[map]||0;return [[360+shift,540+shift],[780+shift,1020+shift],[1260+shift,1500+shift]]},
  portalWindow(time=P.state.mapTime){if(!this.isChaos())return time>=180&&time<this.current().duration?0:-1;return this.portalWindows().findIndex(([from,to])=>time>=from&&time<to)},
  portalWarning(time=P.state.mapTime){const windows=this.isChaos()?this.portalWindows():[[180,this.current().duration]];return windows.findIndex(([from])=>time>=from-10&&time<from)},
  nextPortal(time=P.state.mapTime){if(!this.isChaos())return time<180?180:null;for(const [from,to] of this.portalWindows())if(time<to)return time<from?from:time;return null}
@@ -22,7 +22,7 @@ P.RunMode={
 P.ChaosDirector={
  lastStage:-1,props:[],
  reset(){this.lastStage=-1;this.props=[];if(P.RunMode.isChaos())this.tick(true)},
- propKind(){return P.Maps.selected==='campo'?'chaos-branch':P.Maps.selected==='plaza'?'chaos-barricade':'chaos-rubble'},
+ propKind(){return P.Maps.selected==='campo'||P.Maps.selected==='navidad'?'chaos-branch':P.Maps.selected==='plaza'?'chaos-barricade':'chaos-rubble'},
  addProp(stage){const p=P.state.player,kind=this.propKind(),angles=[-.55,.72,2.35,-2.42,1.45,-1.5],distance=360+stage*35;for(let attempt=0;attempt<6;attempt++){const a=angles[(stage+attempt)%angles.length],x=Math.round(p.x+Math.cos(a)*distance),y=Math.round(p.y+Math.sin(a)*distance*.62),w=kind==='chaos-branch'?118:kind==='chaos-barricade'?104:92,h=kind==='chaos-rubble'?52:38;if(P.Terrain.hit(x,y,Math.max(w,h)/2+22)||Math.hypot(x-P.Encounters.definition().portal.x,y-P.Encounters.definition().portal.y)<150)continue;const prop={kind,x,y,w,h,solid:true,hp:90+stage*20,maxHp:90+stage*20,id:'chaos:'+stage,chaos:true};this.props.push(prop);P.Terrain.props.push(prop);P.Terrain.revision++;P.Terrain.flow=null;P.Terrain.indexProps();return prop}},
  tick(initial=false){if(!P.RunMode.isChaos()||P.state.encounter)return;const stage=P.RunMode.stageAt();if(stage===this.lastStage)return;const previous=this.lastStage;this.lastStage=stage;if(stage>0&&!initial)this.addProp(stage);if(previous>=0&&stage>previous){const data=P.RunMode.stage();P.Loot.notify('ETAPA '+(stage+1)+' · '+data.name);P.Audio.fx('boss');P.$('#hint').textContent='EL MAPA CAMBIA · '+data.name.toUpperCase()}},
  draw(ctx,cx,cy,w,h){if(!P.RunMode.isChaos()||P.state.encounter)return;const stage=P.RunMode.stageAt(),t=P.state.mapTime,reduced=P.Ambient.reduced?.matches;ctx.save();if(stage>=2){ctx.fillStyle=P.Maps.selected==='machu'?'#c6d3ca':stage>=4?'#3e3152':'#8b6744';ctx.globalAlpha=(stage-1)*.018;ctx.fillRect(cx-w/2-8,cy-h/2-8,w+16,h+16)}if(!reduced&&stage>=1){ctx.globalAlpha=.18+stage*.025;ctx.fillStyle=P.Maps.selected==='plaza'?'#d9c59a':P.Maps.selected==='machu'?'#d8d0b5':'#d3b36d';for(let i=0;i<Math.min(18,6+stage*2);i++){const seed=(i*97+stage*53)%997,x=cx-w/2+((seed*37+t*(18+stage*3))%(w+80))-40,y=cy-h/2+((seed*61+i*43)%(h+40))-20;ctx.fillRect(Math.round(x),Math.round(y),stage>=4?4:3,stage>=4?3:2)}}ctx.restore()},

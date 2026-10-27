@@ -1,7 +1,7 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),{once}=require('node:events'),{WebSocket}=require('ws'),{Simulation}=require('../backend/simulation.cjs'),{createCoopServer}=require('../backend/cooperative.cjs');
-test('Cooperativo: tres mapas, 18 ataques, reanimación y mejoras compartidas',()=>{
- for(const map of ['campo','plaza','machu']){
+test('Cooperativo: cinco mapas, 18 ataques, reanimación y mejoras compartidas',()=>{
+ for(const map of ['campo','plaza','machu','halloween','navidad']){
   const sim=new Simulation(map,[0,6]);sim.tick(.04,[{x:1,y:0},{x:-1,y:0}]);assert.equal(sim.snapshot().map,map);assert.notEqual(sim.players[0].x,sim.players[1].x);
   const [a,b]=sim.players;b.hp=0;b.x=a.x;b.y=a.y;sim.P.Systems.spawn=()=>{};for(let i=0;i<101;i++)sim.tick(.04,[{},{}]);assert(b.hp>0,'Reanimar después de 4 segundos');
   sim.P.state.xp=sim.P.state.need;sim.tick(.04,[{},{}]);assert.equal(sim.P.state.level,2);const levelChoice=sim.activities.pending;assert.equal(levelChoice.kind,'level');const pick=slot=>levelChoice.options[slot].findIndex(o=>o.id==='primary');sim.activities.choose(0,levelChoice.id,pick(0));sim.activities.choose(1,levelChoice.id,pick(1));assert(a.power>sim.P.Data.characters[0].power);assert(b.power>sim.P.Data.characters[6].power);
@@ -16,8 +16,8 @@ test('Release compilada: simulación, ulti serializable y victoria del equipo',(
  sim.players[0].ultimate.charge=100;sim.tick(.04,[{x:1,y:0,ultimate:true},{}]);assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));
  sim.P.state.mapTime=300;sim.tick(.04,[{},{}]);const boss=sim.P.state.enemies.find(e=>e.boss);assert(boss);sim.P.Entities.hurt(boss,999999);assert.equal(sim.snapshot().result,'win');
 });
-test('Actividades cooperativas: portales de tres mapas, retorno de ambos y premios únicos',()=>{
- for(const map of ['campo','plaza','machu']){
+test('Actividades cooperativas: portales de cinco mapas, retorno de ambos y premios únicos',()=>{
+ for(const map of ['campo','plaza','machu','halloween','navidad']){
   const sim=new Simulation(map,[0,6]),P=sim.P,s=P.state,a=sim.activities;const originalSpawn=P.Systems.spawn;P.Systems.spawn=()=>{};
   assert.equal(a.action(0,'portal'),false,'No entrar antes de desbloquear o estando lejos');
   s.mapTime=180;P.Encounters.tick();const pos=P.Encounters.definition().portal;
