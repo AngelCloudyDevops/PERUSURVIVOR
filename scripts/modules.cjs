@@ -66,6 +66,7 @@ module.exports = [
     "output": "js/minion-evolution.js"
   },
   {"source":"src/systems/minion-professions.js","output":"js/minion-professions.js"},
+  {"source":"src/systems/minion-tactics.js","output":"js/minion-tactics.js"},
   {
     "source": "src/rendering/power-effects.js",
     "output": "js/power-fx.js"
