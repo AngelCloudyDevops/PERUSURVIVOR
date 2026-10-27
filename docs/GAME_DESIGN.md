@@ -86,6 +86,8 @@ Las mejoras de combate pertenecen a esa partida. No hay árbol permanente de mej
 | Mapa | Aspecto | Encuentro opcional |
 |---|---|---|
 | Campo de Marte | Césped, senderos y monumento | La Combi Final |
+| Noche de Halloween | Parque nocturno, bruma, tumbas y calabazas | La Procesión de Medianoche |
+| Navidad Peruana | Parque nevado, pinos, regalos y luces | El Grinch del Cercado |
 | Plaza de Armas | Piedra, edificios coloniales y fuente | El Gabinete Infinito |
 | Machu Picchu | Terrazas, ruinas y montañas | El Guardián de la Niebla |
 
@@ -161,7 +163,15 @@ El disparo de ulti tiene retroceso visual sin mover la colisión, impactos radia
 Audio de Kingteka: aleteo al activar y transformar nuevos rivales (agrupado para evitar saturación), escopeta grave durante ulti y golpe sincronizado con sello. Botón de silenciar; audio desbloqueado con interacción.
 
 ## Variedad al explorar
-Cada región de 1536 unidades alterna entre zonas densas, áreas de descanso, corredores y claros. Campo de Marte combina arboledas y paseos circulares; Plaza de Armas añade plazoletas pavimentadas; Machu Picchu alterna pasos y terrazas. La red de caminos conecta nodos compartidos con desvíos y algunas diagonales. Los obstáculos respetan un margen libre alrededor de los caminos. La geometría y las cajas persisten al volver a una zona. Se conservan los atlas pixel art.
+Cada región de 1536 unidades alterna entre zonas densas, áreas de descanso, corredores y claros. Campo de Marte combina arboledas y paseos circulares; Plaza de Armas añade plazoletas pavimentadas; Machu Picchu alterna pasos y terrazas; Halloween combina paseos circulares con cementerios y claros de calabazas; Navidad alterna plazas nevadas con bosques de pinos y regalos. La red de caminos conecta nodos compartidos con desvíos y algunas diagonales. Los obstáculos respetan un margen libre alrededor de los caminos. La geometría y las cajas persisten al volver a una zona. Se conservan los atlas pixel art.
+
+## Escenarios estacionales
+
+Halloween y Navidad son mapas completos seleccionables, no capas aleatorias sobre otra partida. Mantienen la misma escala, cámara infinita y reglas de combate. El primero conserva noche violeta, bruma continua, murciélagos y faroles encendidos; el segundo sigue el ciclo día/noche con nieve continua. `prefers-reduced-motion` reduce partículas y elimina recorridos decorativos, sin alterar visibilidad de ataques.
+
+Las siluetas usan bloques de píxel, contorno oscuro, paletas cortas y sombra anclada al pie. Halloween distribuye árbol seco, lápida, calabaza y farol; Navidad distribuye pino, muñeco, regalo y farol. Los hitos iniciales son, respectivamente, una entrada embrujada y un árbol navideño grande. Los objetos son geometría sólida cuando corresponde y participan en la misma navegación que los tres escenarios base.
+
+En superficie, Halloween reutiliza El Fiscalizador y Navidad alterna La Paloma Brava con Makanaky. Los portales tienen nombres y estadísticas propias, pero reutilizan contratos de combate ya verificados (`stone` y `cabinet`) para no introducir daño o telegráficos sin validar. Individual y cooperativo aceptan ambos IDs. La decoración estacional no se serializa como entidades: se reconstruye determinísticamente desde el sector.
 
 ### Cámara y escala de las arenas
 La cámara del terreno usa zoom base 1,45 y las arenas 1,05. Los sprites conservan su tamaño de mundo. Las arenas de jefe tienen suelo jugable de 1360 × 720 unidades, fondo de 1920 × 1280 y cámara que acompaña parcialmente al jugador. Los márgenes de la embestida se calculan desde los límites de la escena y el radio del jefe.

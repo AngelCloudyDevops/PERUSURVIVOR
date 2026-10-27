@@ -216,6 +216,7 @@ module.exports = [
     "source": "src/rendering/ambient.js",
     "output": "js/ambient.js"
   },
+  {"source":"src/rendering/seasonal-art.js","output":"js/seasonal-art.js"},
   {
     "source": "src/systems/market.js",
     "output": "js/market.js"

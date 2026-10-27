@@ -115,6 +115,12 @@ La capa de efectos de la ulti se rasteriza en un lienzo de media resolución y s
 
 Ambient comparte la ventana determinista entre los tres mapas. En Plaza dibuja palomas por profundidad y anima la fuente según su posición real; en Machu usa ichu y niebla debajo del combate. Todo depende de elapsed y no introduce entidades de combate ni estado persistente.
 
+## Capas estacionales
+
+`scenes/maps.js` registra `halloween` y `navidad` como mapas jugables con `base: campo`; de ese modo el cargador deduplica el arte de suelo existente y no añade descargas pesadas. `Chunks` conserva su semilla, red de caminos, caché máxima y colisiones, pero selecciona paletas y tablas de objetos específicas. `rendering/seasonal-art.js`, cargado después de `Ambient`, intercepta únicamente las clases estacionales de `Terrain.draw` y `Ambient.bush`. Los demás mapas siguen sus renderizadores sin cambios.
+
+La bruma, murciélagos y nieve se dibujan en una sola pasada visible desde `World`, sin objetos persistentes, temporizadores por partícula ni estado cooperativo. Los cupos son 6 murciélagos y 42 copos, reducidos a 18 copos con movimiento reducido. Suelo y caminos continúan rasterizados una vez por sector; cambiar de mapa invalida la caché mediante la firma existente. El servidor solo valida los nuevos IDs y simula la misma geometría determinista, portales y minijefes que el cliente.
+
 ## Atlas de botín
 P.LootArt carga y mide un atlas alfa de 4×4 celdas. Las filas de cajas y cofres comparten el recorte por fila para mantener escala y anclaje entre poses; los objetos tienen recortes individuales. El filtrado se desactiva al dibujar. P.Loot gestiona loot-opening y el premio pendiente; Game.update solo avanza esa animación durante la apertura, sin combate ni reloj. El reinicio elimina premios pendientes y escombros. Terrain delega únicamente el dibujo de cajas; las colisiones y el botín permanecen independientes del arte.
 
