@@ -261,3 +261,15 @@ test('Supervivencia del Caos: 30 minutos, seis etapas y tres ventanas sorpresa p
 test('HUD superior: vida consolidada, jefe legible, guía de portal y audio agrupado',()=>{
  const html=fs.readFileSync(path.join(root,'src/index.html'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');for(const id of ['hud-vitals','boss-countdown','boss-panel','boss-health-track','portal-alert','portal-guide','audio-toggle','enemy-audio-volume'])assert.match(html,new RegExp('id="'+id+'"'));assert.match(html,/class="game-controls"/);assert.match(html,/class="music-control audio-panel"/);assert.doesNotMatch(html,/class="enemy-audio-control"/);assert.match(css,/#portal-guide/);assert.match(css,/#boss-panel/);assert.match(css,/max-width:760px/);
 });
+
+
+test('Las estadísticas universales cargan antes del arranque y el catálogo tolera una carga escalonada',()=>{
+ const order=Object.fromEntries(modules.map((entry,index)=>[entry.source,index]));
+ assert(order['src/data/catalog.js']<order['src/data/powers.js']);
+ assert(order['src/data/powers.js']<order['src/data/attributes.js']);
+ assert(order['src/data/attributes.js']<order['src/data/stats.js']);
+ assert(order['src/data/stats.js']<order['src/scenes/game.js']);
+ const powers=fs.readFileSync(path.join(root,'src/data/powers.js'),'utf8');
+ assert.match(powers,/P\.Stats\?\.channelRows\?\.\(c\)\|\|\[\]/);
+ assert.match(powers,/P\.Stats\?\.advancedRows\?\.\(c\)\|\|\[\]/);
+});
