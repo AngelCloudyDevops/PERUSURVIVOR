@@ -180,6 +180,7 @@ module.exports = [
     "source": "src/rendering/cover-art.js",
     "output": "js/cover-art.js"
   },
+  {"source":"src/rendering/biome-art.js","output":"js/biome-art.js"},
   {
     "source": "src/systems/terrain.js",
     "output": "js/terrain.js"

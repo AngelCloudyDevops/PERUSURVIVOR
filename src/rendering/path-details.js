@@ -1,10 +1,17 @@
 'use strict';
 // Acabado de caminos: se compone una vez por sector, sin modificar rutas ni colisiones.
 P.PathDetails={
-paint(out,chunk){const id=P.Maps.selected,surface=P.Maps.current?.()?.surface,c=P.Chunks,ox=chunk.x*512,oy=chunk.y*512,width=surface?88:id==='plaza'?96:id==='machu'?58:id==='navidad'?86:id==='halloween'?68:74,color=surface==='rooftop'?'#9ba1a4':surface==='terminal'?'#b49b76':surface==='cabinet'?'#b59495':surface==='mist'?'#a3b39f':surface==='archive'?'#ad9478':id==='plaza'?'#d2c5a4':id==='machu'?'#b5ac88':id==='halloween'?'#77606f':id==='navidad'?'#d8e4df':'#c9b382',edges=c.edges(Math.floor((ox+256)/768),Math.floor((oy+256)/768)),layer=document.createElement('canvas');layer.width=layer.height=256;const ctx=layer.getContext('2d'),stoneEdges=[],circles=[];ctx.scale(.5,.5);ctx.lineCap=ctx.lineJoin='round';
+paint(out,chunk){const id=P.Maps.selected,surface=P.Maps.current?.()?.surface,c=P.Chunks,ox=chunk.x*512,oy=chunk.y*512,width=surface==='terminal'?116:surface==='rooftop'||surface==='cabinet'?96:surface==='archive'?68:surface==='mist'?58:id==='plaza'?96:id==='machu'?58:id==='navidad'?86:id==='halloween'?68:74,color=surface==='rooftop'?'#9ba1a4':surface==='terminal'?'#b49b76':surface==='cabinet'?'#b59495':surface==='mist'?'#a3b39f':surface==='archive'?'#ad9478':id==='plaza'?'#d2c5a4':id==='machu'?'#b5ac88':id==='halloween'?'#77606f':id==='navidad'?'#d8e4df':'#c9b382',edges=c.edges(Math.floor((ox+256)/768),Math.floor((oy+256)/768)),layer=document.createElement('canvas');layer.width=layer.height=256;const ctx=layer.getContext('2d'),stoneEdges=[],circles=[];ctx.scale(.5,.5);ctx.lineCap=ctx.lineJoin='round';
 for(const [shade,extra] of [[surface?'#4f565a':id==='plaza'?'#ab9c7b':id==='halloween'?'#342d45':id==='navidad'?'#9bb9b1':'#91a45d',10],[color,0]]){ctx.strokeStyle=shade;ctx.lineWidth=width+extra;ctx.beginPath();for(const [a,b] of edges){ctx.moveTo(a.x-ox,a.y-oy);ctx.lineTo(b.x-ox,b.y-oy)}ctx.stroke()}
 for(let gy=Math.floor(oy/1536)-1;gy<=Math.floor((oy+512)/1536)+1;gy++)for(let gx=Math.floor(ox/1536)-1;gx<=Math.floor((ox+512)/1536)+1;gx++){const z=c.zone(gx*1536,gy*1536),x=z.cx-ox,y=z.cy-oy;ctx.fillStyle=ctx.strokeStyle=color;
-if(surface)continue;
+if(surface&&surface!=='mist'){
+ ctx.fillStyle=ctx.strokeStyle=color;
+ if(surface==='terminal'){ctx.fillRect(x-360,y-62,720,124);if(z.type===1)for(let step=-2;step<=2;step++)ctx.fillRect(x-300,y+step*192-34,600,68);else if(z.type===2){ctx.lineWidth=84;ctx.beginPath();ctx.moveTo(x-360,y-126);ctx.lineTo(x+360,y+126);ctx.stroke()}}
+ else if(surface==='rooftop'){ctx.lineWidth=76;if(z.type===1){ctx.strokeRect(x-230,y-230,460,460)}else if(z.type===2){ctx.fillRect(x-38,y-340,76,680);ctx.fillRect(x-340,y-38,680,76)}else if(z.type===3){ctx.beginPath();ctx.moveTo(x-330,y-231);ctx.lineTo(x+330,y+231);ctx.stroke()}}
+ else if(surface==='cabinet'){ctx.fillRect(x-36,y-340,72,680);ctx.fillRect(x-340,y-36,680,72);if(z.type===1){ctx.fillRect(x-250,y-190,500,380);ctx.strokeStyle='#80666d';ctx.lineWidth=4;ctx.strokeRect(x-230,y-170,460,340)}}
+ else if(surface==='archive'){for(let step=-2;step<=2;step++){ctx.fillRect(x+step*180-28,y-340,56,680);ctx.fillRect(x-340,y+step*180-28,680,56)}}
+ continue
+}
 if(id==='halloween'){
  ctx.lineWidth=54;
  if(z.type===1){ctx.beginPath();ctx.arc(x,y,245,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(x-340,y);ctx.lineTo(x+340,y);ctx.moveTo(x,y-340);ctx.lineTo(x,y+340);ctx.stroke();circles.push(z)}

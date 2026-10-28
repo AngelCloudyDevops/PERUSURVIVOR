@@ -59,6 +59,16 @@ test('Laboratorio admin: permite inspeccionar los cinco escenarios secretos sin 
  for(const map of P.Maps.biomes){bench.map=map.id;bench.run();assert.equal(P.Maps.selected,map.id);assert.equal(P.Maps.current(),map);assert(P.state.devRun);assert(P.state.balanceTest)}
  P.UI.menu();P.Account.user={role:'player'};P.Maps.ensureAllowed();assert.equal(P.Maps.selected,'campo');assert.equal(Array.from(P.Maps.available(),map=>map.id).join(','),Array.from(P.Maps.catalog,map=>map.id).join(','));P.Maps.select('azoteas-lima');assert.equal(P.Maps.selected,'campo');
 });
+test('Escenarios de jefe: la utilería inicial distingue terminal, distrito, santuario, azotea y archivo',()=>{
+ const expected={
+  'ruta-chosicano':['road-barrier','bus-stop','tire-stack'],
+  'distrito-gabinete':['office-planter','security-desk','filing-cabinet'],
+  'santuario-niebla':['wall','rock'],
+  'azoteas-lima':['parapet','antenna','roof-vent','water-tank'],
+  'archivo-final':['archive-shelf','archive-cabinet','archive-boxes','warning-light']
+ };
+ for(const [map,kinds]of Object.entries(expected)){const {P}=new Simulation(map,[0]),present=new Set(P.Terrain.originProps.map(o=>o.kind));for(const kind of kinds)assert(present.has(kind),map+' · '+kind)}
+});
 test('Laboratorio: minions comunes pueden reaparecer o quedar inmortales sin proteger jefes',()=>{
  const {P}=new Simulation('campo',[0,1]),bench=P.TestBench,s=P.state;P.WalkArt.readyForStart=()=>true;P.Terrain.active=()=>[];bench.active=true;s.devRun=true;s.mode='play';
  const immortal=P.Entities.enemy();immortal.hp=immortal.max=20;s.enemies=[immortal];bench.minionMode='immortal';P.Entities.hurt(immortal,999);assert.equal(immortal.hp,1);assert.equal(s.kills,0);assert.equal(bench.respawns.length,0);

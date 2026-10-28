@@ -1,0 +1,19 @@
+'use strict';
+// Utilería propia de los mundos de jefe. Mantiene las colisiones en Terrain y sólo cambia su lectura visual.
+P.BiomeArt={
+ kinds:new Set(['bus-stop','road-barrier','tire-stack','parapet','antenna','roof-vent','office-planter','filing-cabinet','security-desk','archive-shelf','archive-boxes','archive-cabinet','warning-light']),
+ draw(ctx,o){const surface=P.Maps.current?.()?.surface;if(P.state.encounter||!surface||!this.kinds.has(o.kind))return false;const w=o.w,h=o.h,base=o.y+h/2,r=(x,y,rw,rh,color)=>{ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),Math.round(rw),Math.round(rh))};ctx.save();ctx.translate(Math.round(o.x),Math.round(base));P.Ambient.leafMass(ctx,2,-2,Math.max(12,w*.43),Math.max(5,Math.min(9,h*.16)),'#17282d55');
+ if(o.kind==='bus-stop'){r(-w/2,-h-62,w,8,'#26383f');r(-w/2+5,-h-57,w-10,10,'#d4a443');r(-w/2+8,-h-47,6,h+45,'#31434a');r(w/2-14,-h-47,6,h+45,'#31434a');r(-w/2+11,-h-42,w-22,29,'#e2d4b3');r(-w/2+15,-h-38,w-30,21,'#325d75');r(-w/2+20,-h-33,12,11,'#f3c64f');r(-w/2+36,-h-33,w-60,4,'#dbe9e8');r(-w/2+36,-h-25,w-70,3,'#9ec7ce')}
+ else if(o.kind==='road-barrier'){r(-w/2-3,-h-8,w+6,h+10,'#25343a');r(-w/2,-h-12,w,h,'#e9b840');for(let x=-w/2+5;x<w/2-9;x+=26){r(x,-h-12,12,h,'#f2d475');r(x+12,-h-12,11,h,'#303c42')}r(-w/2+8,-7,8,14,'#29373d');r(w/2-16,-7,8,14,'#29373d')}
+ else if(o.kind==='tire-stack'){for(let i=0;i<3;i++){ctx.fillStyle='#1d292d';ctx.beginPath();ctx.ellipse((i-1)*18,-10-i%2*8,22,12,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#506066';ctx.beginPath();ctx.ellipse((i-1)*18,-12-i%2*8,11,5,0,0,Math.PI*2);ctx.fill();r((i-1)*18-19,-13-i%2*8,38,4,'#2c3b40')}}
+ else if(o.kind==='parapet'){r(-w/2-3,-h-25,w+6,h+27,'#27363d');r(-w/2,-h-28,w,h+25,'#8b6f66');r(-w/2,-h-28,w,8,'#c5aca0');for(let y=-h-16;y<-4;y+=15)for(let x=-w/2+3;x<w/2-8;x+=29){const shift=(Math.floor((y+h)/15)%2)*13;r(x+shift,y,24,8,'#a98779');r(x+shift,y+8,24,3,'#665954')}}
+ else if(o.kind==='antenna'){r(-4,-h-55,8,h+57,'#24343b');r(-22,-h-46,44,5,'#a9b8b7');r(-14,-h-58,5,29,'#a9b8b7');r(9,-h-58,5,29,'#a9b8b7');r(-28,-h-25,56,4,'#677b80');r(-18,-h-41,4,16,'#677b80');r(14,-h-41,4,16,'#677b80')}
+ else if(o.kind==='roof-vent'){r(-w/2-3,-h-20,w+6,h+22,'#23333a');r(-w/2,-h-23,w,h+18,'#71868b');r(-w/2+5,-h-18,w-10,8,'#a7b8b9');for(let y=-h+2;y<-4;y+=9)r(-w/2+8,y,w-16,3,'#435b61')}
+ else if(o.kind==='office-planter'){r(-w/2-3,-h/2-2,w+6,h/2+10,'#28383a');r(-w/2,-h/2-5,w,h/2+9,'#bda993');r(-w/2+5,-h/2,w-10,8,'#6d5c50');for(let x=-w/2+12;x<w/2-8;x+=18){r(x,-h/2-28,13,29,'#25483d');r(x+3,-h/2-34,8,12,'#3f6a55')}r(-w/2,2,w,5,'#e0cdb0')}
+ else if(o.kind==='filing-cabinet'||o.kind==='archive-cabinet'){const archive=o.kind==='archive-cabinet',color=archive?'#5d4c43':'#718184',light=archive?'#9a7a62':'#aebdbb';r(-w/2-3,-h-42,w+6,h+44,'#233239');r(-w/2,-h-45,w,h+40,color);for(let y=-h-39;y<-5;y+=19){r(-w/2+5,y,w-10,15,light);r(-5,y+5,10,3,'#35464a')}r(-w/2+4,-3,7,7,'#29383b');r(w/2-11,-3,7,7,'#29383b')}
+ else if(o.kind==='security-desk'){r(-w/2-4,-h/2-22,w+8,h/2+25,'#29383d');r(-w/2,-h/2-26,w,h/2+24,'#8b6c56');r(-w/2+5,-h/2-22,w-10,8,'#cfb18a');r(-18,-h/2-52,36,28,'#26373e');r(-14,-h/2-48,28,18,'#6fa1a2');r(-3,-h/2-25,6,12,'#37474a')}
+ else if(o.kind==='archive-shelf'){r(-w/2-4,-h-58,w+8,h+60,'#252f32');r(-w/2,-h-61,w,h+56,'#59483e');for(let y=-h-52;y<-3;y+=24){r(-w/2+5,y,w-10,4,'#b08b65');for(let x=-w/2+8;x<w/2-10;x+=18)r(x,y-16,13,15,(x+y)%3?'#9b7654':'#c39b69')}r(-w/2+3,-3,7,6,'#1e2b2f');r(w/2-10,-3,7,6,'#1e2b2f')}
+ else if(o.kind==='archive-boxes'){const boxes=[[-w/2,-31,w*.55,31],[-2,-25,w*.52,25],[-w*.28,-55,w*.5,25]];for(const [x,y,bw,bh] of boxes){r(x-2,y-2,bw+4,bh+4,'#3c3732');r(x,y,bw,bh,'#ad8257');r(x+4,y+4,bw-8,5,'#d1ad78');r(x+bw*.42,y,bw*.16,bh,'#765941')}}
+ else if(o.kind==='warning-light'){r(-4,-h-60,8,h+62,'#28373c');r(-14,-h-67,28,8,'#29383d');r(-11,-h-83,22,18,'#9c463d');r(-7,-h-79,14,10,'#f27a54');r(-16,-3,32,6,'#233238')}
+ if(o.flash>0)o.flash-=.02;ctx.restore();return true}
+};
