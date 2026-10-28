@@ -162,6 +162,18 @@
       "quality": 60
     },
     {
+      "source": "assets/cards/cuy-character-fullart-v1.png",
+      "output": "assets/cards/cuy-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 630035,
+      "optimizedBytes": 220108,
+      "sourceSha256": "18b022989b24879cdc589b118945a024d0ef065607ae6f73d49961abb31aa1e3",
+      "outputSha256": "c766f7d0bb035612063e16c825a6269a61a3b0dfca413d94dc5a7205e9510d8e",
+      "rgbaSha256": "3aa49cf7c72ef6094a256b0e92d6fbad52a8de1b0d9428cf7300a48896b3789f",
+      "quality": 88
+    },
+    {
       "source": "assets/cards/cuy-stampede-ultimate-fullart-v1.png",
       "output": "assets/cards/cuy-stampede-ultimate-fullart-v1.webp",
       "width": 512,
@@ -553,7 +565,7 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 88185322,
-  "optimizedBytes": 43200476
+  "originalBytes": 88815357,
+  "optimizedBytes": 43420584
 }
 
