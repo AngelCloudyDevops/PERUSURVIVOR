@@ -198,6 +198,18 @@
       "quality": 88
     },
     {
+      "source": "assets/cards/makanaky-character-fullart-v1.png",
+      "output": "assets/cards/makanaky-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2675614,
+      "optimizedBytes": 471272,
+      "sourceSha256": "fb21980df8e4a1e43d7b3f29dc28791d328981f8d4349743daf74858c263be95",
+      "outputSha256": "604a9e545b4225c0be8607f4de8b3d7d5f201252e8a89516780f10afe91d7277",
+      "rgbaSha256": "0a48f6aff6aa9a2cf70296071342473246dc77c164ebf9dfb34647799d554525",
+      "quality": 90
+    },
+    {
       "source": "assets/cards/makanaky-domain-fullart-v1.png",
       "output": "assets/cards/makanaky-domain-fullart-v1.webp",
       "width": 512,
@@ -505,6 +517,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 79308795,
-  "optimizedBytes": 41488948
+  "originalBytes": 81984409,
+  "optimizedBytes": 41960220
 }
