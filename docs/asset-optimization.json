@@ -126,6 +126,18 @@
       "quality": 60
     },
     {
+      "source": "assets/cards/cirilo-character-fullart-v1.png",
+      "output": "assets/cards/cirilo-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2674939,
+      "optimizedBytes": 439220,
+      "sourceSha256": "a9e2682df8237c855c49f26a7b63d43f3bc732de0a4c9d641c4216dc6bf53850",
+      "outputSha256": "48b6ce566d7424af017825a374780142f5af3cf10daeced00c5b363ac85c3fc9",
+      "rgbaSha256": "ce5286be56e651b26c4b96f14cfecbe32cfeadaac6e43d251ee32f323b187709",
+      "quality": 90
+    },
+    {
       "source": "assets/cards/cristorata-dragon-ultimate-fullart-v1.png",
       "output": "assets/cards/cristorata-dragon-ultimate-fullart-v1.webp",
       "width": 512,
@@ -529,6 +541,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 84859822,
-  "optimizedBytes": 42479860
+  "originalBytes": 87534761,
+  "optimizedBytes": 42919080
 }
