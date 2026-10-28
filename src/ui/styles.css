@@ -766,3 +766,38 @@ body[data-lobby-panel=home] #menu .home-banner .home-play{display:none!important
 @keyframes domain-energy-flow{to{background-position:200% 0;filter:drop-shadow(0 0 7px var(--frame-a))}}
 @keyframes domain-steam-flow{0%{background-position:0 0;opacity:.58;filter:blur(.3px)}100%{background-position:100% 0;opacity:1;filter:drop-shadow(0 0 8px #8ffcff)}}
 @media(prefers-reduced-motion:reduce){[data-frame-visual=demon] .collection-card-frame:before,[data-frame-visual=demon] .collectible-frame:before,[data-frame-visual=demon] .collection-card-frame:after,[data-frame-visual=demon] .collectible-frame:after,[data-frame-visual=royal] .collection-card-frame:before,[data-frame-visual=royal] .collectible-frame:before,[data-frame-visual=cosmic] .collection-card-frame:before,[data-frame-visual=cosmic] .collectible-frame:before,[data-frame-visual=steam] .collection-card-frame:before,[data-frame-visual=steam] .collectible-frame:before{animation:none}}
+
+/* Prototipo Cirilo: recupera su marco infernal propio y lo mantiene abrazado a la carta. */
+[data-frame-visual=demon] .collection-card-frame,[data-frame-visual=demon] .collectible-frame{
+ border:0!important;
+ background:url('/assets/ui/cirilo-domain-demon-frame-v1.webp') center/100% 100% no-repeat!important;
+ box-shadow:none!important;
+ filter:drop-shadow(0 0 4px #ff3b2f) drop-shadow(0 0 12px #8b123f)!important;
+ transform-origin:50% 52%;
+ animation:cirilo-frame-breathe 1.45s ease-in-out infinite alternate!important
+}
+[data-frame-visual=demon] .collection-card-frame{width:calc(100% + 24px)!important;height:calc(100% + 34px)!important}
+[data-frame-visual=demon] .collectible-frame{width:calc(100% + 52px)!important;height:calc(100% + 72px)!important}
+[data-frame-visual=demon] .collection-card-frame:before,[data-frame-visual=demon] .collectible-frame:before{
+ display:block;
+ inset:0;
+ padding:0;
+ border-radius:0;
+ background:url('/assets/ui/cirilo-domain-demon-frame-v1.webp') center/100% 100% no-repeat;
+ -webkit-mask:none;
+ mask:none;
+ clip-path:polygon(0 0,100% 0,100% 38%,70% 28%,30% 28%,0 38%);
+ opacity:.35;
+ filter:brightness(1.7) saturate(1.35) drop-shadow(0 0 9px #ff653c);
+ animation:cirilo-horns-glow .82s ease-in-out infinite alternate
+}
+[data-frame-visual=demon] .collection-card-frame:after,[data-frame-visual=demon] .collectible-frame:after{
+ inset:-8px;
+ background:radial-gradient(circle at 8% 88%,#fff3a5 0 1px,#ff582f 2px 4px,transparent 5px),radial-gradient(circle at 21% 7%,#ffb153 0 2px,#a80d32 3px 5px,transparent 6px),radial-gradient(circle at 78% 94%,#fff3a5 0 1px,#ff582f 2px 4px,transparent 5px),radial-gradient(circle at 96% 31%,#ffb153 0 2px,#a80d32 3px 5px,transparent 6px);
+ filter:drop-shadow(0 0 5px #ff3d2e);
+ animation:cirilo-frame-embers .68s ease-in-out infinite alternate
+}
+@keyframes cirilo-frame-breathe{0%{transform:translate(-50%,-50%) scale(.992);filter:drop-shadow(0 0 3px #ff3b2f) drop-shadow(0 0 8px #68102f)}100%{transform:translate(-50%,-50%) scale(1.018);filter:brightness(1.12) drop-shadow(0 0 7px #ff6a3d) drop-shadow(0 0 17px #a3154d)}}
+@keyframes cirilo-horns-glow{0%{opacity:.18;transform:scale(.992) translateY(1px)}100%{opacity:.62;transform:scale(1.018) translateY(-2px)}}
+@keyframes cirilo-frame-embers{0%{opacity:.38;transform:translateY(3px) scale(.98)}100%{opacity:1;transform:translateY(-4px) scale(1.025)}}
+@media(prefers-reduced-motion:reduce){[data-frame-visual=demon] .collection-card-frame,[data-frame-visual=demon] .collectible-frame,[data-frame-visual=demon] .collection-card-frame:before,[data-frame-visual=demon] .collectible-frame:before,[data-frame-visual=demon] .collection-card-frame:after,[data-frame-visual=demon] .collectible-frame:after{animation:none!important}}
