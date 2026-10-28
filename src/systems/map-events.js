@@ -1,7 +1,7 @@
 'use strict';
 // Minieventos opcionales de Supervivencia. Estado pequeño y visuales acotados.
 P.MapEvents={
-  event:null,nextAt:165,serial:0,cadence:165,miniDue:720,miniPlayed:false,
+  event:null,impacts:[],nextAt:165,serial:0,cadence:165,miniDue:720,miniPlayed:false,worldPlayed:false,
   catalog:{
     campo:[
       {kind:'meteor',name:'Lluvia de meteoritos',verb:'Recoge los fragmentos del impacto',color:'#ffb85c'},
@@ -19,10 +19,40 @@ P.MapEvents={
       {kind:'terrazas',name:'Ecos de las terrazas',verb:'Reúne las piedras antiguas',color:'#e4b974'}
     ]
   },
-  reset(){this.event=null;this.nextAt=165;this.serial=0;this.miniDue=720;this.miniPlayed=false},
+  reset(){this.event=null;this.impacts=[];this.nextAt=165;this.serial=0;this.miniDue=720;this.miniPlayed=false;this.worldPlayed=false},
   active(){return !!this.event},
+  players(){const party=P.Court?.players?.()||[P.state.player,...(P.Coop?.peers||[])];return party.filter(p=>p?.hp>0)},
+  cinematic(){return !!this.event?.world&&this.event.phase==='cinematic'},
+  worldDue(){return P.RunMode?.isChaos?.()?630:this.players().length>1?105:Infinity},
   blocked(){const s=P.state;return s.mode!=='play'||s.encounter||s.bossSpawned||s.mapTime>=P.Data.arena.duration||s.portal?.open||P.RunMode.portalWarning(s.mapTime)>=0||P.Market?.shopping||P.Market?.available?.()||P.Exploration?.station?.phase==='active'||P.Performance?.active||P.Progression?.cinematicOnly?.()||s.enemies.some(e=>e.hp>0&&(e.miniboss||e.mapBoss||e.boss))},
   safePoint(x,y){return !P.Terrain.hit(x,y,44)&&Math.hypot(x-P.Encounters.definition().portal.x,y-P.Encounters.definition().portal.y)>180},
+  startWorld(){
+    const s=P.state,players=this.players();if(!players.length)return false;const pick=Math.abs(P.Chunks.hash(Math.floor(s.mapTime),this.serial,911))%players.length,anchor=players[pick];let point=null;
+    const turn=(P.Chunks.hash(Math.floor(anchor.x/256),Math.floor(anchor.y/256),this.serial+773)%628)/100;
+    for(let i=0;i<14;i++){const a=turn+i*2.399,d=270+(i%4)*34,x=Math.round(anchor.x+Math.cos(a)*d),y=Math.round(anchor.y+Math.sin(a)*d*.7),portal=P.Encounters.definition().portal;if(!P.Terrain.hit(x,y,72)&&Math.hypot(x-portal.x,y-portal.y)>420){point={x,y};break}}
+    if(!point)return false;this.worldPlayed=true;this.serial++;this.event={kind:'meteor',world:true,name:'Impacto del cielo',verb:'recoge los núcleos que dejó el cráter',color:'#ff9d55',x:point.x,y:point.y,anchorX:anchor.x,anchorY:anchor.y,targetSlot:anchor.slot??0,phase:'cinematic',age:0,left:6.4,total:6.4,points:[],collected:0,serial:this.serial,impacted:false};
+    P.Loot.notify('EVENTO MUNDIAL · ALGO SE ACERCA DESDE EL CIELO');P.Audio.fx('boss');return true
+  },
+  impact(e){
+    if(e.impacted)return;e.impacted=true;const destroyed=[];
+    for(const o of P.Terrain.props){if(!o.solid||o.meteorImpact||Math.hypot(o.x-e.x,o.y-e.y)>235||String(o.id).startsWith('landmark')||String(o.id).startsWith('chaos:'))continue;if(!(o.generated||o.kind==='crate'||['tree','bench','lamp','planter','grass','rock','wall','fence','grave','pine','gift','snowman'].includes(o.kind)))continue;o.solid=false;destroyed.push(o.id);if(o.generated)P.Chunks.broken.add(o.id)}
+    const impact={id:'meteor:'+e.serial,x:e.x,y:e.y,radius:235,seed:e.serial*97,destroyed};this.impacts.push(impact);e.impactId=impact.id;P.Terrain.revision++;P.Terrain.flow=null;this.ensureTerrain();P.Entities.burst(e.x,e.y,'#ffb56b');P.Audio.fx('boss');P.Loot.notify('¡IMPACTO! · EL TERRENO CAMBIÓ')
+  },
+  rubble(impact){return Array.from({length:7},(_,i)=>{const a=i*Math.PI*2/7+.31,r=impact.radius*(.6+(i%2)*.12);return {id:impact.id+':rubble:'+i,kind:'chaos-rubble',x:Math.round(impact.x+Math.cos(a)*r),y:Math.round(impact.y+Math.sin(a)*r*.58),w:58+(i%3)*13,h:34+(i%2)*10,solid:i%3!==0,hp:Infinity,meteorImpact:true}})},
+  ensureTerrain(){
+    if(!this.impacts.length)return;const destroyed=new Set(this.impacts.flatMap(q=>q.destroyed||[])),ids=new Set(this.impacts.flatMap(q=>this.rubble(q).map(o=>o.id)));let changed=false;
+    for(const o of P.Terrain.props)if(destroyed.has(o.id)&&o.solid){o.solid=false;if(o.generated)P.Chunks.broken.add(o.id);changed=true}
+    const present=new Set(P.Terrain.props.filter(o=>o.meteorImpact).map(o=>o.id));for(const impact of this.impacts)for(const o of this.rubble(impact))if(!present.has(o.id)){P.Terrain.props.push(o);changed=true}
+    if(changed||[...ids].some(id=>!present.has(id))){P.Terrain.revision++;P.Terrain.flow=null;P.Terrain.indexProps()}
+  },
+  activateWorld(e){
+    const turn=e.serial*.63;e.points=Array.from({length:5},(_,i)=>{const a=turn+i*Math.PI*2/5;return {x:Math.round(e.x+Math.cos(a)*90),y:Math.round(e.y+Math.sin(a)*90),taken:false}});e.phase='active';e.left=60;e.total=60;P.Loot.notify('CRÁTER ABIERTO · RECOGE 5 NÚCLEOS · 60 s');P.Audio.fx('upgrade')
+  },
+  tickWorld(dt){
+    const e=this.event,s=P.state;if(!e?.world)return false;if(this.impacts.length)this.ensureTerrain();if(e.phase==='cinematic'){s.mapTime=Math.max(0,s.mapTime-dt);e.age+=dt;e.left=Math.max(0,e.total-e.age);for(const p of this.players())p.inv=Math.max(p.inv||0,dt+.25);if(e.age>=4.75&&!e.impacted)this.impact(e);if(e.age>=e.total)this.activateWorld(e);return true}
+    if(e.phase!=='active')return false;e.left=Math.max(0,e.left-dt);for(const q of e.points){if(q.taken)continue;const collector=this.players().find(p=>Math.hypot(p.x-q.x,p.y-q.y)<=46);if(!collector)continue;q.taken=true;e.collected++;s.coins+=8;P.Audio.fx('upgrade-pick');P.Loot.notify('Núcleo recuperado · +8 monedas')}
+    if(e.collected>=e.points.length){s.coins+=35;P.Loot.notify('¡CRÁTER ASEGURADO! · +35 monedas extra');this.event=null;P.UI.hud();return false}if(e.left<=0){P.Loot.notify(e.collected?'El cráter se enfrió · conservas las monedas':'El cráter se enfrió');this.event=null}return false
+  },
   start(miniGame=false){
     const s=P.state,map=P.Maps.current().eventBase||P.Maps.current().id,options=this.catalog[map]||this.catalog.campo;
     let definition=options[this.serial%options.length];const angle=(this.serial*2.399+P.Chunks.hash(Math.floor(s.player.x/768),Math.floor(s.player.y/768),this.serial)*Math.PI*2);
@@ -44,11 +74,14 @@ P.MapEvents={
   },
   tick(dt){
     const s=P.state;
-    if(!P.RunMode?.isChaos()||s.mode!=='play'||s.devRun||P.Performance?.active)return;
+    if(s.mode!=='play'||s.devRun&&!s.balanceTest||P.Performance?.active)return false;
+    if(this.event?.world)return this.tickWorld(dt);
+    if(!this.worldPlayed&&s.mapTime>=this.worldDue()&&!this.blocked()&&!s.miniWarning){if(this.startWorld())return true}
+    if(!P.RunMode?.isChaos())return false;
     let e=this.event;
     if(!e){if(this.blocked()||s.miniWarning)return;if(!this.miniPlayed&&s.mapTime>=this.miniDue){this.start(true);return}if(s.mapTime<this.nextAt)return;this.start();return}
     // Los portales pausan el reto; el jefe final cancela cualquier actividad pendiente.
-    if(s.bossSpawned||s.mapTime>=P.Data.arena.duration){this.event=null;return}
+    if(s.bossSpawned||s.mapTime>=P.Data.arena.duration){this.event=null;return false}
     if(s.encounter||s.portal?.open||P.RunMode.portalWarning(s.mapTime)>=0||P.Market?.shopping||P.Market?.available?.()||P.Exploration?.station?.phase==='active')return;
     e.left=Math.max(0,e.left-dt);
     if(e.phase==='warning'&&e.left<=0){this.activate(e);return}
@@ -56,17 +89,24 @@ P.MapEvents={
     const p=s.player;
     for(const q of e.points){if(q.taken||Math.hypot(p.x-q.x,p.y-q.y)>46)continue;q.taken=true;e.collected++;s.coins+=5;P.Audio.fx('upgrade-pick');P.Loot.notify('Fragmento recuperado · +5 monedas')}
     if(e.collected>=e.points.length){const bonus=e.miniGame?25:10;P.Loot.notify((e.miniGame?'¡MINIJUEGO COMPLETADO!':'¡MINIEVENTO COMPLETADO!')+' · +'+bonus+' monedas extra');s.coins+=bonus;this.event=null;P.UI.hud();return}
-    if(e.left<=0){P.Loot.notify(e.collected?'El minievento terminó · conservas las monedas':'El minievento terminó · puedes seguir con la partida');this.event=null}
+    if(e.left<=0){P.Loot.notify(e.collected?'El minievento terminó · conservas las monedas':'El minievento terminó · puedes seguir con la partida');this.event=null}return false
+  },
+  camera(player,w,h,zoom){
+    const e=this.event;if(!e?.world||e.phase!=='cinematic'||P.Ambient.reduced?.matches)return null;const smooth=q=>{q=Math.max(0,Math.min(1,q));return q*q*(3-2*q)},age=e.age||0;
+    if(age<1)return {x:player.x,y:player.y-55,zoom};if(age<3){const q=smooth((age-1)/2);return {x:e.anchorX+(e.x-e.anchorX)*q*.25,y:e.anchorY-55-q*430,zoom:zoom*(1-q*.15)}}if(age<4.75){const q=smooth((age-3)/1.75);return {x:e.anchorX+(e.x-e.anchorX)*q,y:e.anchorY-485+(e.y-e.anchorY+430)*q,zoom:zoom*.85}}const q=smooth((age-4.75)/1.25);return {x:e.x+(player.x-e.x)*q*.15,y:e.y-35+(player.y-e.y-20)*q*.15,zoom:zoom*(.85+q*.15)}
+  },
+  drawImpact(ctx,impact){
+    const t=P.state.elapsed,rx=impact.radius,ry=impact.radius*.56;ctx.save();ctx.translate(impact.x,impact.y);ctx.fillStyle='#15232977';ctx.beginPath();ctx.ellipse(8,13,rx+18,ry+13,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#3a302d';ctx.beginPath();ctx.ellipse(0,0,rx,ry,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#171b20';ctx.beginPath();ctx.ellipse(0,2,rx*.72,ry*.67,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#e37a45';ctx.lineWidth=6;ctx.globalAlpha=.55+.12*Math.sin(t*2);ctx.beginPath();ctx.ellipse(0,0,rx*.76,ry*.7,0,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=1;for(let i=0;i<12;i++){const a=i*.91+impact.seed,r=rx*(.72+(i%4)*.13),x=Math.cos(a)*r,y=Math.sin(a)*r*.56;ctx.strokeStyle=i%3?'#6d5142':'#bd6842';ctx.lineWidth=i%3?3:5;ctx.beginPath();ctx.moveTo(Math.cos(a)*rx*.65,Math.sin(a)*ry*.65);ctx.lineTo(x,y);ctx.lineTo(x+Math.cos(a+.7)*28,y+Math.sin(a+.7)*16);ctx.stroke()}ctx.restore()
   },
   draw(ctx){
-    const e=this.event,s=P.state;if(!e||s.mode!=='play'||s.encounter||s.portal?.open||P.RunMode.portalWarning(s.mapTime)>=0||P.Market?.shopping||P.Market?.available?.()||P.Exploration?.station?.phase==='active'||s.bossSpawned)return;
+    const e=this.event,s=P.state;if(s.mode==='play'&&!s.encounter)for(const impact of this.impacts)this.drawImpact(ctx,impact);if(!e||s.mode!=='play'||s.encounter||s.portal?.open||P.RunMode.portalWarning(s.mapTime)>=0||P.Market?.shopping||P.Market?.available?.()||P.Exploration?.station?.phase==='active'||s.bossSpawned)return;
     const reduced=P.Ambient.reduced?.matches,elapsed=s.elapsed;
     ctx.save();ctx.imageSmoothingEnabled=false;ctx.translate(Math.round(e.x),Math.round(e.y));
     if(e.kind==='meteor'){
       ctx.fillStyle='#202b2c55';ctx.beginPath();ctx.ellipse(0,12,78,31,0,0,Math.PI*2);ctx.fill();
-      ctx.strokeStyle=e.phase==='warning'?'#ffc66d':'#df7444';ctx.lineWidth=4;ctx.beginPath();ctx.ellipse(0,0,64,25,0,0,Math.PI*2);ctx.stroke();
+      ctx.strokeStyle=e.phase==='warning'||e.phase==='cinematic'?'#ffc66d':'#df7444';ctx.lineWidth=e.world?7:4;ctx.beginPath();ctx.ellipse(0,0,e.world?112:64,e.world?49:25,0,0,Math.PI*2);ctx.stroke();
       if(e.phase==='warning'&&!reduced){ctx.fillStyle='#ffe092';ctx.fillRect(Math.sin(elapsed*7)*40-2,-75,4,22)}
-      if(e.phase==='active'){ctx.fillStyle='#5b392f';ctx.fillRect(-22,-4,44,16);ctx.fillStyle='#cf7650';ctx.fillRect(-12,-1,24,7)}
+      if(e.phase==='active'&&!e.world){ctx.fillStyle='#5b392f';ctx.fillRect(-22,-4,44,16);ctx.fillStyle='#cf7650';ctx.fillRect(-12,-1,24,7)}
     }else if(e.kind==='garua'){
       ctx.strokeStyle=e.color;ctx.globalAlpha=.65;ctx.lineWidth=3;for(let i=0;i<3;i++){const radius=26+i*19+(reduced?0:Math.sin(elapsed*2+i)*2);ctx.beginPath();ctx.ellipse(0,3,radius,radius*.42,0,0,Math.PI*2);ctx.stroke()}
       ctx.globalAlpha=.55;ctx.fillStyle='#c9edf0';if(!reduced)for(let i=0;i<12;i++){const x=((i*37+Math.floor(elapsed*18))%150)-75,y=((i*53+Math.floor(elapsed*27))%72)-36;ctx.fillRect(x,y,2,7)}
@@ -97,9 +137,13 @@ P.MapEvents={
     }
     ctx.restore()
   },
+  overlay(ctx,w,h){
+    const e=this.event;if(!e?.world||e.phase!=='cinematic'||P.state.mode==='menu')return;const t=e.age||0,reduced=P.Ambient.reduced?.matches,sky=Math.max(0,Math.min(1,(t-.65)/1.15)),impact=Math.max(0,Math.min(1,(t-4.75)/.8));ctx.save();ctx.fillStyle='#07111d';ctx.globalAlpha=sky*(1-impact*.75)*.72;ctx.fillRect(0,0,w,h);ctx.globalAlpha=sky*(1-impact*.6);for(let i=0;i<28;i++){const x=(i*137+e.serial*31)%w,y=(i*73+e.serial*17)%Math.max(1,h*.62);ctx.fillStyle=i%4?'#b9c7d0':'#ffe2a2';ctx.fillRect(x,y,i%5?2:3,i%5?2:3)}const q=Math.max(0,Math.min(1,(t-1.15)/3.6)),mx=w*(.82-q*.34),my=h*(-.12+q*.68),size=18+q*52;if(sky>0){ctx.globalAlpha=sky*(1-impact);ctx.strokeStyle='#ff8f4f';ctx.lineWidth=Math.max(7,size*.28);ctx.beginPath();ctx.moveTo(mx+size*2.8,my-size*2.2);ctx.lineTo(mx,my);ctx.stroke();ctx.fillStyle='#fff0b0';ctx.beginPath();ctx.arc(mx,my,size*.54,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e85b35';ctx.beginPath();ctx.arc(mx-size*.08,my+size*.06,size*.42,0,Math.PI*2);ctx.fill()}if(impact>0){ctx.globalAlpha=(1-impact)*.82;ctx.fillStyle='#fff4d0';ctx.fillRect(0,0,w,h)}ctx.globalAlpha=Math.min(1,t*2)*Math.max(0,1-(t-5.8)*2);ctx.textAlign='center';ctx.font='900 '+Math.max(18,Math.min(34,w/30))+'px monospace';ctx.fillStyle='#fff0c2';ctx.fillText(t<1.15?'ALGO SE ACERCA…':t<4.75?'IMPACTO INMINENTE':'EL TERRENO CAMBIÓ',w/2,h*.16);if(reduced){ctx.globalAlpha=.16;ctx.fillStyle='#ff9d55';ctx.fillRect(0,h*.47,w,4)}ctx.restore()
+  },
   hud(){
     const el=P.$('#event-status');if(!el)return;const e=this.event;if(!e)return;if(P.state.mode!=='play'||P.state.encounter||P.state.portal?.open||P.RunMode.portalWarning(P.state.mapTime)>=0||P.Market?.shopping||P.Market?.available?.()||P.Exploration?.station?.phase==='active'||P.state.bossSpawned){el.hidden=true;return}
+    if(e.world&&e.phase==='cinematic'){el.hidden=false;el.textContent='EVENTO MUNDIAL · '+e.name+' · impacto en '+Math.ceil(e.left)+' s · mira el cielo';return}
     const progress=e.phase==='warning'?' · en '+Math.ceil(e.left)+' s':' · '+e.collected+'/'+e.points.length+' · '+Math.ceil(e.left)+' s';
-    el.hidden=false;el.textContent=(e.miniGame?'MINIJUEGO · ':'')+e.name+progress+' · '+(e.phase==='warning'?'se aproxima':'recoge las señales');
+    el.hidden=false;el.textContent=(e.world?'EVENTO MUNDIAL · ':e.miniGame?'MINIJUEGO · ':'')+e.name+progress+' · '+(e.phase==='warning'?'se aproxima':e.world?'recoge los núcleos':'recoge las señales');
   }
 };
