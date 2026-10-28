@@ -61,11 +61,11 @@ test('Laboratorio admin: permite inspeccionar los cinco escenarios secretos sin 
 });
 test('Escenarios de jefe: la utilería inicial distingue terminal, distrito, santuario, azotea y archivo',()=>{
  const expected={
-  'ruta-chosicano':['road-barrier','bus-stop','tire-stack'],
-  'distrito-gabinete':['office-planter','security-desk','filing-cabinet'],
+  'ruta-chosicano':['road-barrier','bus-stop','tire-stack','ticket-booth','traffic-cones','vendor-cart'],
+  'distrito-gabinete':['office-planter','security-desk','filing-cabinet','queue-barrier','civic-bench','civic-lamp'],
   'santuario-niebla':['wall','rock'],
-  'azoteas-lima':['parapet','antenna','roof-vent','water-tank'],
-  'archivo-final':['archive-shelf','archive-cabinet','archive-boxes','warning-light']
+  'azoteas-lima':['parapet','antenna','roof-vent','water-tank','rebar-columns','roof-bridge'],
+  'archivo-final':['archive-shelf','archive-cabinet','archive-boxes','warning-light','archive-ladder','evidence-cage']
  };
  for(const [map,kinds]of Object.entries(expected)){const {P}=new Simulation(map,[0]),present=new Set(P.Terrain.originProps.map(o=>o.kind));for(const kind of kinds)assert(present.has(kind),map+' · '+kind)}
 });

@@ -2,13 +2,13 @@
 P.Terrain={
 props:[],revision:0,flow:null,flowAt:-1,tiles:[],
 reset(){this.revision++;this.flow=null;this.flowCache=new Map();const map=P.Maps.current(),id=map.id,surface=map.surface;const specs=surface==='rooftop'?[
-['parapet',-360,-170,230,42],['parapet',380,170,210,42],['antenna',-540,260,48,76],['roof-vent',520,-260,72,58],['crate',-230,310,38,38],['water-tank',260,-310,64,52]
+['parapet',-360,-170,230,42],['roof-bridge',680,360,118,42],['antenna',-540,260,48,76],['roof-vent',520,-260,72,58],['rebar-columns',-230,310,72,68],['water-tank',260,-310,64,52]
 ]:surface==='terminal'?[
-['road-barrier',-390,-170,210,42],['bus-stop',360,-150,132,46],['tire-stack',-510,270,76,50],['road-barrier',520,250,180,42],['crate',-220,320,38,38],['bus-stop',270,-310,120,44]
+['road-barrier',-390,-170,210,42],['bus-stop',360,-150,132,46],['tire-stack',-510,270,76,50],['vendor-cart',680,360,88,52],['traffic-cones',-220,320,72,42],['ticket-booth',270,-310,92,58]
 ]:surface==='cabinet'?[
-['office-planter',-370,-170,180,55],['office-planter',390,-150,180,55],['security-desk',-320,300,120,48],['filing-cabinet',520,230,62,96],['crate',-220,360,38,38]
+['office-planter',-370,-170,180,55],['civic-bench',390,-150,96,40],['security-desk',-320,300,120,48],['filing-cabinet',520,230,62,96],['queue-barrier',-220,360,112,34],['civic-lamp',250,-330,28,52]
 ]:surface==='archive'?[
-['archive-shelf',-370,-170,210,54],['archive-shelf',390,-130,220,54],['archive-cabinet',-520,280,64,112],['archive-boxes',520,250,120,48],['crate',-220,340,38,38],['warning-light',250,-330,24,44]
+['archive-shelf',-370,-170,210,54],['archive-ladder',390,-130,116,54],['archive-cabinet',-520,280,64,112],['archive-boxes',520,250,120,48],['evidence-cage',-220,340,82,70],['warning-light',250,-330,24,44]
 ]:surface==='mist'?[
 ['wall',-350,-100,270,45],['wall',370,100,260,45],['rock',-430,330,90,65],['rock',440,-260,100,70],['wall',-180,480,240,45]
 ]:id==='campo'?[

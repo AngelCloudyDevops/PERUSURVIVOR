@@ -85,8 +85,14 @@ test('La compilación copia el código y recursos sin transformarlos',()=>{
  inspect(path.join(root,'public'));
 });
 test('Las hojas y mapas PNG contienen imágenes válidas de tamaño no nulo',()=>{
- const files=["enemies/gallinazos-atlas-v1.png","characters/causas-atlas-v1.png","characters/powers-atlas-v1.png","characters/streamers-atlas-v1.png","enemies/rivales-atlas-v1.png","maps/campo-v1.png","maps/plaza-v1.png","maps/machu-v1.png","environment/campo-props-v1.png","environment/plaza-props-v1.png","environment/machu-props-v1.png","environment/ground-tiles-v1.png","bosses/boss-atlas-v1.png","arenas/combi-v1.png","arenas/cabinet-v1.png","arenas/guardian-v1.png"];
+ const files=["enemies/gallinazos-atlas-v1.png","characters/causas-atlas-v1.png","characters/powers-atlas-v1.png","characters/streamers-atlas-v1.png","enemies/rivales-atlas-v1.png","maps/campo-v1.png","maps/plaza-v1.png","maps/machu-v1.png","environment/campo-props-v1.png","environment/plaza-props-v1.png","environment/machu-props-v1.png","environment/terminal-props-v1.png","environment/rooftop-props-v1.png","environment/cabinet-props-v1.png","environment/archive-props-v1.png","environment/ground-tiles-v1.png","bosses/boss-atlas-v1.png","arenas/combi-v1.png","arenas/cabinet-v1.png","arenas/guardian-v1.png"];
  for(const file of files){const data=fs.readFileSync(path.join(root,'public/assets',file));assert.equal(data.toString('hex',0,8),'89504e470d0a1a0a');assert(data.readUInt32BE(16)>0);assert(data.readUInt32BE(20)>0)}
+});
+
+test('Los mundos secretos cargan cuatro atlas propios y recortan seis objetos completos por ambiente',()=>{
+ const vm=require('node:vm'),images=[],draws=[];let surface='terminal';class Image{constructor(){images.push(this)}}const P={Maps:{current:()=>({surface})},state:{encounter:false,player:{x:999,y:999}},Ambient:{leafMass(){}}},ctx=new Proxy({save(){},restore(){},translate(){},fillRect(){},beginPath(){},ellipse(){},fill(){},drawImage(...args){draws.push(args)}},{get:(o,k)=>o[k]||(()=>{})});vm.runInNewContext(fs.readFileSync(path.join(root,'src/rendering/biome-art.js'),'utf8'),{P,Image,Math});
+ const probes={terminal:'bus-stop',rooftop:'water-tank',cabinet:'security-desk',archive:'evidence-cage'};for(const [biome,kind]of Object.entries(probes)){surface=biome;const before=draws.length;assert(P.BiomeArt.draw(ctx,{kind,x:0,y:0,w:100,h:50,flash:0}));assert.equal(draws.length,before,'Conserva respaldo durante la carga');const image=images.at(-1);assert.match(image.src,new RegExp(biome+'-props-v1\\.webp$'));image.onload();assert(P.BiomeArt.draw(ctx,{kind,x:0,y:0,w:100,h:50,flash:0}));assert.equal(draws.length,before+1);assert.equal(draws.at(-1).length,9)}assert.equal(images.length,4);
+ const audit=JSON.parse(fs.readFileSync(path.join(root,'docs/biome-props-audit.json'),'utf8'));assert.equal(audit.atlases.length,4);for(const atlas of audit.atlases){assert.equal(hash(path.join(root,atlas.source)),atlas.source_sha256);assert.equal(hash(path.join(root,atlas.runtime)),atlas.runtime_sha256);assert.equal(atlas.cells.length,6);assert(atlas.bytes<400*1024)}
 });
 
 test('El recorte del atlas excluye fragmentos de la celda vecina',()=>{
