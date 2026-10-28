@@ -16,7 +16,7 @@ P.ReferenceMenus={
  owns(id){return !P.Gacha?.ready||P.Gacha.owns(id)},
  tier(id){const key=P.Gacha?.tier?.(id)||'common';return P.Gacha?.tiers?.[key]||{name:'C',color:'#8fcf85'}},
  characterFrame(c){const key=P.Gacha?.tier?.(c.id)||'common';if(c.id==='makanaky')return 'royal';if(c.id==='cirilo')return 'demon';if(c.id==='sideral')return 'cosmic';if(key==='ur')return 'fire';if(key==='ssr')return 'royal';if(key==='sr')return 'cosmic';return 'base'},
- characterIllustration(c){return ({cristorata:'/assets/cards/cristorata-character-fullart-v1.webp',makanaky:'/assets/cards/makanaky-character-fullart-v1.webp',sideral:'/assets/cards/sideral-character-fullart-v1.webp',cirilo:'/assets/cards/cirilo-character-fullart-v1.webp'})[c?.id]||null},
+ characterIllustration(c){return ({cristorata:'/assets/cards/cristorata-character-fullart-v1.webp',cuy:'/assets/cards/cuy-character-fullart-v1.webp',paloma:'/assets/cards/paloma-character-fullart-v1.webp',chamelin:'/assets/cards/chamelin-character-fullart-v1.webp',makanaky:'/assets/cards/makanaky-character-fullart-v1.webp',sideral:'/assets/cards/sideral-character-fullart-v1.webp',cirilo:'/assets/cards/cirilo-character-fullart-v1.webp'})[c?.id]||null},
  characterStats(c){const profile=P.CharacterProfiles?.base?.(c)||{role:c.category||'Causa',strength:'Ataque característico',weakness:'Sin analizar'};const rows=P.CharacterProfiles?.rows?.(c)||[['Vida',c.hp],['Daño',c.damage],['Velocidad',c.speed],['Recarga',c.rate]];return {profile,rows}},
  statSection(title,rows,open=true){const section=this.make(open?'section':'details',null,'reference-stat-section');if(!open){const summary=this.make('summary');summary.append(this.make('strong',title),this.make('small',rows.length+' STATS'));section.append(summary)}else section.append(this.make('h4',title));const grid=this.make('dl',null,'reference-stats');for(const [label,value] of rows)grid.append(this.make('dt',label),this.make('dd',String(value)));section.append(grid);return section},
 characterStatGroups(c,rows){const channel=P.Stats?.channelRows?.(c)||[],advanced=P.Stats?.advancedRows?.(c)||[],firstChannel=rows.findIndex(([label])=>label==='Atributo'),summary=rows.slice(0,firstChannel<0?rows.length:firstChannel);return [{title:'RESUMEN DE COMBATE',rows:summary,open:true},{title:'CANALES DE ATAQUE Y DEFENSA',rows:channel,open:true},{title:'STATS AVANZADOS',rows:advanced,open:true}]},
@@ -46,4 +46,7 @@ characterStatGroups(c,rows){const channel=P.Stats?.channelRows?.(c)||[],advanced
  polishCodex(){if(!P.Lobby.renderCodexDetail)return;const render=P.Lobby.renderCodexDetail.bind(P.Lobby);P.Lobby.renderCodexDetail=function(entry){const result=render(entry),detail=P.$('#codex-detail');if(detail){detail.classList.remove('codex-enter');requestAnimationFrame(()=>detail.classList.add('codex-enter'))}return result}}
 };
 if(typeof document!=='undefined')P.ReferenceMenus.init();
+
+
+
 

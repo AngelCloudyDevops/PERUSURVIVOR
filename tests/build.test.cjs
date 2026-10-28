@@ -51,7 +51,7 @@ test('La selección de causa, mapa y modo permanece en el flujo moderno hasta in
  assert.match(reference,/openCharacterViewer\(character\)/);assert.match(reference,/this\.closeCharacterViewer\(\);P\.Lobby\.show\('play'\)/);assert.match(reference,/ELEGIR A /);
  assert.match(reference,/role','dialog'/);assert.match(reference,/character-viewer-strip/);assert.match(reference,/ArrowLeft/);assert.match(reference,/ArrowRight/);
  assert.match(reference,/characterFrame\(c\)/);assert.match(reference,/cause-collectible-card/);assert.match(reference,/cause-card-shell cause-card-large/);assert.match(reference,/ARTE PROVISIONAL/);
- assert.match(reference,/cause-card-inner/);assert.match(reference,/ILUSTRACIÓN/);assert.match(reference,/PASA EL MOUSE/);assert.match(reference,/PIXEL/);assert.match(reference,/cristorata-character-fullart-v1\.webp/);assert.match(reference,/makanaky-character-fullart-v1\.webp/);assert.match(reference,/sideral-character-fullart-v1\.webp/);assert.match(reference,/cirilo-character-fullart-v1\.webp/);assert.match(reference,/characterIllustration\(c\)/);
+ assert.match(reference,/cause-card-inner/);assert.match(reference,/ILUSTRACIÓN/);assert.match(reference,/PASA EL MOUSE/);assert.match(reference,/PIXEL/);assert.match(reference,/cristorata-character-fullart-v1\.webp/);assert.match(reference,/cuy-character-fullart-v1\.webp/);assert.match(reference,/paloma-character-fullart-v1\.webp/);assert.match(reference,/chamelin-character-fullart-v1\.webp/);assert.match(reference,/makanaky-character-fullart-v1\.webp/);assert.match(reference,/sideral-character-fullart-v1\.webp/);assert.match(reference,/cirilo-character-fullart-v1\.webp/);assert.match(reference,/characterIllustration\(c\)/);
  for(const selector of ['.cause-card-shell','.cause-card-art','.cause-card-frame','.cause-card-large'])assert(css.includes(selector),selector);
  assert.match(css,/\.cause-collectible-card:hover \.cause-card-inner/);assert.match(css,/rotateY\(180deg\)/);assert.match(css,/prefers-reduced-motion:reduce[^}]*\{\.cause-card-inner/);assert.match(css,/\.cause-card-placeholder\.has-art/);assert.match(css,/\.character-viewer-illustration/);
  assert.match(game,/LobbyComplete\?\.chooseCause\?\.\(\)/);assert.match(screens,/LobbyComplete\?\.chooseCause\?\.\(\)/);
@@ -149,7 +149,7 @@ test('Cada build identifica su contenido y versiona scripts y estilos',()=>{cons
 test('Actualizaciones: menú automático, partida preservada y red sin conexión',async()=>{const vm=require('node:vm');let reloads=0,request,answer={version:'aaaaaaaaaaaaaaaaaaaa'};const button={hidden:true},P={state:{mode:'play'}};const env={P,console,Date,location:{reload(){reloads++}},fetch:async(url,options)=>{request={url,options};if(answer instanceof Error)throw answer;return {ok:true,json:async()=>answer}}};vm.createContext(env);vm.runInContext(fs.readFileSync(path.join(root,'src/core/updates.js'),'utf8'),env);const u=P.Updates;u.version='aaaaaaaaaaaaaaaaaaaa';u.button=button;await u.check();assert.equal(reloads,0);assert.equal(request.options.cache,'no-store');answer=new Error('offline');await u.check();assert.equal(reloads,0);assert(!u.pending);answer={version:'bbbbbbbbbbbbbbbbbbbb'};await u.check();assert(u.pending);assert.equal(reloads,0);assert.equal(button.hidden,false);P.state.mode='menu';await u.check();assert.equal(reloads,1);await u.check();assert.equal(reloads,1)});
 
 test('Activos WebP: integridad del informe y salida sin PNG duplicados',()=>{
- const report=require('../docs/asset-optimization.json');assert.equal(report.assets.length,46);let before=0,after=0;
+ const report=require('../docs/asset-optimization.json');assert.equal(report.assets.length,49);let before=0,after=0;
  for(const asset of report.assets){const source=path.join(root,'public',asset.source),output=path.join(root,'public',asset.output),built=path.join(root,'dist',asset.output),data=fs.readFileSync(output);assert.equal(hash(source),asset.sourceSha256);assert.equal(hash(output),asset.outputSha256);if(require('../scripts/build.cjs').archivedAsset(asset.output))assert(!fs.existsSync(built));else assert.equal(hash(output),hash(built));assert.equal(data.toString('ascii',0,4),'RIFF');assert.equal(data.toString('ascii',8,12),'WEBP');assert(asset.optimizedBytes<asset.originalBytes);assert(!fs.existsSync(path.join(root,'dist',asset.source)));before+=asset.originalBytes;after+=asset.optimizedBytes}
  assert.equal(before,report.originalBytes);assert.equal(after,report.optimizedBytes);assert(after<before*.75);
  for(const p of report.previews){assert.equal(hash(path.join(root,'public',p.output)),p.sha256);assert(p.width<=384);assert(p.height<=256);assert(p.bytes<200000)}
@@ -300,4 +300,7 @@ test('El atlas de Makanaky se distribuye porque el runtime lo solicita',()=>{
  assert.equal(require('../scripts/build.cjs').archivedAsset(rel),false);
  assert.equal(hash(source),hash(built));
 });
+
+
+
 
