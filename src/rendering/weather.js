@@ -2,7 +2,7 @@
 // Episodios visuales deterministas: 25 s de garúa, 65 s despejados.
 P.Weather={
 sample(t){t=Math.max(0,Number(t)||0);if(t<60)return {intensity:0};const phase=(t-60)%90;if(phase>=25)return {intensity:0};const smooth=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)};return {intensity:smooth(phase/3)*smooth((25-phase)/3)}},
-active(){const s=P.state;return (!!P.Maps.current?.()||['campo','plaza','machu','halloween','navidad'].includes(P.Maps.selected))&&s.mode!=='menu'&&!s.encounter&&(!s.devRun||s.balanceTest)},
+active(){const s=P.state;return (!!P.Maps.current?.()||['campo','plaza','machu','halloween','navidad'].includes(P.Maps.selected))&&s.mode!=='menu'&&!s.encounter&&(!s.devRun||s.balanceTest||P.TestBench?.active)},
 current(){if(!this.active())return {intensity:0,storm:false};const preview=P.TestBench?.weatherPreview?.();if(preview)return preview;const theme=P.Maps.current?.()?.climate||P.Maps.selected,time=P.state.mapTime||0,storm=!!P.RunMode?.isChaos?.()&&time>=1500;if(theme==='halloween'||theme==='navidad')return {intensity:storm?.82:.45+Math.sin(time*.07)*.2,storm};const weather=this.sample(time);return {intensity:storm?Math.max(.88,weather.intensity):weather.intensity,storm}},
 label(){const theme=P.Maps.current?.()?.climate||P.Maps.selected,weather=this.current();if(weather.intensity<=0)return '';if(weather.storm&&theme!=='machu'&&theme!=='halloween'&&theme!=='navidad')return 'TORMENTA';return theme==='machu'?(weather.storm?'NIEBLA Y LLUVIA':'NIEBLA'):theme==='halloween'?'BRUMA':theme==='navidad'?'NIEVE':'GARÚA'},
 icon(){const theme=P.Maps.current?.()?.climate||P.Maps.selected;return theme==='machu'?'🌫️':theme==='halloween'?'🎃':theme==='navidad'?'🌨️':'🌧️'},
