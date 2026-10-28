@@ -25,3 +25,12 @@ test('Impacto cooperativo: el servidor elige un jugador vivo, sincroniza el terr
  for(let i=0;i<165;i++)sim.tick(.04,[{x:1},{x:-1}]);snap=JSON.parse(JSON.stringify(sim.snapshot()));assert.equal(snap.mapEvent.phase,'active');assert.equal(snap.meteorImpacts.length,1);assert.doesNotThrow(()=>JSON.stringify(snap));
  const point=M.event.points.find(q=>!q.taken);Object.assign(b,{x:point.x,y:point.y});const coins=s.coins;sim.tick(.04,[{},{}]);assert(point.taken);assert.equal(s.coins,coins+8);assert.equal(JSON.parse(JSON.stringify(sim.snapshot())).mapEvent.collected,1);
 });
+
+test('Laboratorio de ambiente: permite forzar cada hora, clima y evento sin alterar el reloj',()=>{
+ const {P,s}=ready(),bench=P.TestBench,M=P.MapEvents;bench.active=true;s.devRun=true;s.balanceTest=true;s.mode='play';s.mapTime=42;M.worldPlayed=true;P.Terrain.hit=()=>null;
+ assert(P.$('#bench-environment'));assert(P.$('#bench-climate'));assert(P.$('#bench-weather'));assert(P.$('#bench-event'));
+ bench.climate='4';bench.weather='storm';assert.equal(P.DayNight.current().label,'NOCHE');assert.equal(P.Weather.current().storm,true);assert.equal(P.Weather.current().intensity,1);assert.equal(s.mapTime,42);
+ bench.weather='clear';assert.equal(P.Weather.current().intensity,0);bench.eventChoice='garua';assert(bench.startEvent());assert.equal(M.event.kind,'garua');assert.equal(M.event.phase,'warning');
+ for(let i=0;i<180;i++)M.tick(.04);assert.equal(M.event.phase,'active');bench.stopEvent();assert.equal(M.event,null);assert.equal(M.impacts.length,0);
+ bench.climate='auto';bench.weather='auto';assert.equal(bench.climatePreview(),null);assert.equal(bench.weatherPreview(),null);
+});

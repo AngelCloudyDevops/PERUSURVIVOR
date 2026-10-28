@@ -53,9 +53,9 @@ P.MapEvents={
     if(e.phase!=='active')return false;e.left=Math.max(0,e.left-dt);for(const q of e.points){if(q.taken)continue;const collector=this.players().find(p=>Math.hypot(p.x-q.x,p.y-q.y)<=46);if(!collector)continue;q.taken=true;e.collected++;s.coins+=8;P.Audio.fx('upgrade-pick');P.Loot.notify('Núcleo recuperado · +8 monedas')}
     if(e.collected>=e.points.length){s.coins+=35;P.Loot.notify('¡CRÁTER ASEGURADO! · +35 monedas extra');this.event=null;P.UI.hud();return false}if(e.left<=0){P.Loot.notify(e.collected?'El cráter se enfrió · conservas las monedas':'El cráter se enfrió');this.event=null}return false
   },
-  start(miniGame=false){
+  start(miniGame=false,forcedKind=null){
     const s=P.state,map=P.Maps.current().eventBase||P.Maps.current().id,options=this.catalog[map]||this.catalog.campo;
-    let definition=options[this.serial%options.length];const angle=(this.serial*2.399+P.Chunks.hash(Math.floor(s.player.x/768),Math.floor(s.player.y/768),this.serial)*Math.PI*2);
+    let definition=forcedKind?Object.values(this.catalog).flat().find(event=>event.kind===forcedKind):options[this.serial%options.length];if(!definition)return false;const angle=(this.serial*2.399+P.Chunks.hash(Math.floor(s.player.x/768),Math.floor(s.player.y/768),this.serial)*Math.PI*2);
     let point=null;
     for(let i=0;i<10;i++){const a=angle+i*2.399,d=260+(i%3)*48,x=Math.round(s.player.x+Math.cos(a)*d),y=Math.round(s.player.y+Math.sin(a)*d*.7);if(this.safePoint(x,y)){point={x,y};break}}
     if(!point){this.nextAt=s.mapTime+5;return false}
@@ -77,7 +77,7 @@ P.MapEvents={
     if(s.mode!=='play'||s.devRun&&!s.balanceTest||P.Performance?.active)return false;
     if(this.event?.world)return this.tickWorld(dt);
     if(!this.worldPlayed&&s.mapTime>=this.worldDue()&&!this.blocked()&&!s.miniWarning){if(this.startWorld())return true}
-    if(!P.RunMode?.isChaos())return false;
+    if(!P.RunMode?.isChaos()&&!s.balanceTest)return false;
     let e=this.event;
     if(!e){if(this.blocked()||s.miniWarning)return;if(!this.miniPlayed&&s.mapTime>=this.miniDue){this.start(true);return}if(s.mapTime<this.nextAt)return;this.start();return}
     // Los portales pausan el reto; el jefe final cancela cualquier actividad pendiente.
