@@ -315,6 +315,7 @@ module.exports = [
     "source": "src/systems/ability-cards.js",
     "output": "js/ability-cards.js"
   },
+  {"source":"src/systems/kingteka-domain.js","output":"js/kingteka-domain.js"},
   {
     "source": "src/ui/card-gallery.js",
     "output": "js/card-gallery.js"
