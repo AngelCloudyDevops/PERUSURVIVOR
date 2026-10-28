@@ -5,7 +5,7 @@ function ready(duo=false,map='campo'){
  const sim=new Simulation(map,duo?[0,6]:[0]),P=sim.P,s=P.state;
  if(!duo){s.runMode='chaos';P.Data.arena.duration=1800}
  s.enemies=[];s.miniWarning=null;s.portal.open=false;P.Market.merchant=null;P.Exploration.station=null;
- s.mapTime=P.MapEvents.worldDue();P.Terrain.hit=()=>null;
+ P.MapEvents.worldPlanned=true;P.MapEvents.worldAt=duo?105:630;s.mapTime=P.MapEvents.worldDue();P.Terrain.hit=()=>null;
  return {sim,P,s};
 }
 
@@ -24,6 +24,11 @@ test('Impacto cooperativo: el servidor elige un jugador vivo, sincroniza el terr
  sim.tick(.04,[{x:1},{x:-1}]);let snap=JSON.parse(JSON.stringify(sim.snapshot()));assert(snap.mapEvent?.world);assert([0,1].includes(snap.mapEvent.targetSlot));assert.deepEqual(sim.players.map(p=>[p.x,p.y]),positions,'El servidor congela a los dos durante la toma');
  for(let i=0;i<165;i++)sim.tick(.04,[{x:1},{x:-1}]);snap=JSON.parse(JSON.stringify(sim.snapshot()));assert.equal(snap.mapEvent.phase,'active');assert.equal(snap.meteorImpacts.length,1);assert.doesNotThrow(()=>JSON.stringify(snap));
  const point=M.event.points.find(q=>!q.taken);Object.assign(b,{x:point.x,y:point.y});const coins=s.coins;sim.tick(.04,[{},{}]);assert(point.taken);assert.equal(s.coins,coins+8);assert.equal(JSON.parse(JSON.stringify(sim.snapshot())).mapEvent.collected,1);
+});
+
+test('Eventos: el impacto tiene 65 % de probabilidad, momento variable, arte propio y minieventos sin repetición',()=>{
+ const {P,s}=ready(),M=P.MapEvents,fs=require('node:fs'),path=require('node:path');M.reset(.64,.5);assert.equal(M.worldPlanned,true);assert(M.worldAt>=420&&M.worldAt<=1080);M.reset(.65,.5);assert.equal(M.worldPlanned,false);assert.equal(M.worldDue(),Infinity);
+ M.worldPlayed=true;s.mapTime=1;assert(M.start(false,null,.99));const first=M.event.kind;M.event=null;assert(M.start(false,null,.99));assert.notEqual(M.event.kind,first);const art=path.resolve(__dirname,'../public/assets/environment/meteor-cinematic-v1.webp'),source=fs.readFileSync(path.resolve(__dirname,'../src/systems/map-events.js'),'utf8');assert(fs.existsSync(art));assert(fs.statSync(art).size>20000);assert(source.includes('meteor-cinematic-v1.webp'));assert(source.includes('ctx.drawImage(this.meteorArt'));
 });
 
 test('Laboratorio de ambiente: permite forzar cada hora, clima y evento sin alterar el reloj',()=>{

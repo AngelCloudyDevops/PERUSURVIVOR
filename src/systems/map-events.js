@@ -1,7 +1,7 @@
 'use strict';
 // Minieventos opcionales de Supervivencia. Estado pequeño y visuales acotados.
 P.MapEvents={
-  event:null,impacts:[],nextAt:165,serial:0,cadence:165,miniDue:720,miniPlayed:false,worldPlayed:false,
+  event:null,impacts:[],nextAt:165,serial:0,cadence:165,miniDue:720,miniPlayed:false,worldPlayed:false,worldPlanned:false,worldAt:Infinity,worldChance:.65,lastKind:null,meteorArt:null,meteorArtFailed:false,
   catalog:{
     campo:[
       {kind:'meteor',name:'Lluvia de meteoritos',verb:'Recoge los fragmentos del impacto',color:'#ffb85c'},
@@ -19,11 +19,12 @@ P.MapEvents={
       {kind:'terrazas',name:'Ecos de las terrazas',verb:'Reúne las piedras antiguas',color:'#e4b974'}
     ]
   },
-  reset(){this.event=null;this.impacts=[];this.nextAt=165;this.serial=0;this.miniDue=720;this.miniPlayed=false;this.worldPlayed=false},
+  reset(worldRoll=Math.random(),timingRoll=Math.random()){this.event=null;this.impacts=[];this.nextAt=165;this.serial=0;this.miniDue=720;this.miniPlayed=false;this.worldPlayed=false;this.lastKind=null;const chaos=P.RunMode?.isChaos?.(),duo=this.players().length>1;this.worldPlanned=chaos?worldRoll<this.worldChance:duo;this.worldAt=this.worldPlanned?(chaos?420+Math.floor(timingRoll*661):105):Infinity;this.loadArt()},
   active(){return !!this.event},
   players(){const party=P.Court?.players?.()||[P.state.player,...(P.Coop?.peers||[])];return party.filter(p=>p?.hp>0)},
   cinematic(){return !!this.event?.world&&this.event.phase==='cinematic'},
-  worldDue(){return P.RunMode?.isChaos?.()?630:this.players().length>1?105:Infinity},
+  worldDue(){return this.worldAt},
+  loadArt(){if(this.meteorArt||this.meteorArtFailed||typeof Image==='undefined')return;const image=new Image();image.onload=()=>{this.meteorArt=image};image.onerror=()=>{this.meteorArtFailed=true};image.src='assets/environment/meteor-cinematic-v1.webp'},
   blocked(){const s=P.state;return s.mode!=='play'||s.encounter||s.bossSpawned||s.mapTime>=P.Data.arena.duration||s.portal?.open||P.RunMode.portalWarning(s.mapTime)>=0||P.Market?.shopping||P.Market?.available?.()||P.Exploration?.station?.phase==='active'||P.Performance?.active||P.Progression?.cinematicOnly?.()||s.enemies.some(e=>e.hp>0&&(e.miniboss||e.mapBoss||e.boss))},
   safePoint(x,y){return !P.Terrain.hit(x,y,44)&&Math.hypot(x-P.Encounters.definition().portal.x,y-P.Encounters.definition().portal.y)>180},
   startWorld(){
@@ -53,13 +54,13 @@ P.MapEvents={
     if(e.phase!=='active')return false;e.left=Math.max(0,e.left-dt);for(const q of e.points){if(q.taken)continue;const collector=this.players().find(p=>Math.hypot(p.x-q.x,p.y-q.y)<=46);if(!collector)continue;q.taken=true;e.collected++;s.coins+=8;P.Audio.fx('upgrade-pick');P.Loot.notify('Núcleo recuperado · +8 monedas')}
     if(e.collected>=e.points.length){s.coins+=35;P.Loot.notify('¡CRÁTER ASEGURADO! · +35 monedas extra');this.event=null;P.UI.hud();return false}if(e.left<=0){P.Loot.notify(e.collected?'El cráter se enfrió · conservas las monedas':'El cráter se enfrió');this.event=null}return false
   },
-  start(miniGame=false,forcedKind=null){
+  start(miniGame=false,forcedKind=null,roll=Math.random()){
     const s=P.state,map=P.Maps.current().eventBase||P.Maps.current().id,options=this.catalog[map]||this.catalog.campo;
-    let definition=forcedKind?Object.values(this.catalog).flat().find(event=>event.kind===forcedKind):options[this.serial%options.length];if(!definition)return false;const angle=(this.serial*2.399+P.Chunks.hash(Math.floor(s.player.x/768),Math.floor(s.player.y/768),this.serial)*Math.PI*2);
+    const available=options.filter(event=>event.kind!==this.lastKind),pool=available.length?available:options;let definition=forcedKind?Object.values(this.catalog).flat().find(event=>event.kind===forcedKind):pool[Math.min(pool.length-1,Math.floor(Math.max(0,Math.min(.999999,roll))*pool.length))];if(!definition)return false;const angle=(this.serial*2.399+P.Chunks.hash(Math.floor(s.player.x/768),Math.floor(s.player.y/768),this.serial)*Math.PI*2);
     let point=null;
     for(let i=0;i<10;i++){const a=angle+i*2.399,d=260+(i%3)*48,x=Math.round(s.player.x+Math.cos(a)*d),y=Math.round(s.player.y+Math.sin(a)*d*.7);if(this.safePoint(x,y)){point={x,y};break}}
     if(!point){this.nextAt=s.mapTime+5;return false}
-    this.serial++;
+    this.serial++;this.lastKind=definition.kind;
     if(miniGame){const signature={campo:{kind:'meteor',color:'#ffb85c'},plaza:{kind:'faroles',color:'#ffd071'},machu:{kind:'condor',color:'#d4c3a3'}}[map]||{};definition={...definition,...signature,miniGame:true,name:map==='campo'?'Reto del meteorito':map==='plaza'?'Circuito de faroles':'Ruta del cóndor',verb:'completa el recorrido recogiendo sus señales'};this.miniPlayed=true}
     this.event={...definition,...point,phase:'warning',left:7,total:7,points:[],collected:0,serial:this.serial,miniGame};
     this.nextAt=s.mapTime+this.cadence;
@@ -137,8 +138,9 @@ P.MapEvents={
     }
     ctx.restore()
   },
+  cinematicMeteor(ctx,mx,my,size,alpha,reduced){this.loadArt();ctx.save();ctx.globalAlpha=alpha;ctx.shadowColor='#ff6a2d';ctx.shadowBlur=reduced?0:Math.max(12,size*.34);if(this.meteorArt){const side=size*3.4;ctx.translate(mx,my);ctx.rotate(-.025);ctx.drawImage(this.meteorArt,-side*.54,-side*.48,side,side*.82)}else{ctx.strokeStyle='#ff8f4f';ctx.lineWidth=Math.max(7,size*.28);ctx.beginPath();ctx.moveTo(mx+size*2.8,my-size*2.2);ctx.lineTo(mx,my);ctx.stroke();ctx.fillStyle='#fff0b0';ctx.beginPath();ctx.arc(mx,my,size*.54,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e85b35';ctx.beginPath();ctx.arc(mx-size*.08,my+size*.06,size*.42,0,Math.PI*2);ctx.fill()}ctx.restore();if(reduced)return;ctx.save();ctx.globalAlpha=alpha*.8;for(let i=0;i<9;i++){const drift=(P.state.elapsed*90+i*37)%(size*2.8),x=mx+size*.75+drift,y=my-size*.5-drift*.62+Math.sin(i*2.1)*size*.18;ctx.fillStyle=i%3?'#ff7b3d':'#ffe39a';ctx.fillRect(Math.round(x),Math.round(y),i%3?3:5,i%3?3:5)}ctx.restore()},
   overlay(ctx,w,h){
-    const e=this.event;if(!e?.world||e.phase!=='cinematic'||P.state.mode==='menu')return;const t=e.age||0,reduced=P.Ambient.reduced?.matches,sky=Math.max(0,Math.min(1,(t-.65)/1.15)),impact=Math.max(0,Math.min(1,(t-4.75)/.8));ctx.save();ctx.fillStyle='#07111d';ctx.globalAlpha=sky*(1-impact*.75)*.72;ctx.fillRect(0,0,w,h);ctx.globalAlpha=sky*(1-impact*.6);for(let i=0;i<28;i++){const x=(i*137+e.serial*31)%w,y=(i*73+e.serial*17)%Math.max(1,h*.62);ctx.fillStyle=i%4?'#b9c7d0':'#ffe2a2';ctx.fillRect(x,y,i%5?2:3,i%5?2:3)}const q=Math.max(0,Math.min(1,(t-1.15)/3.6)),mx=w*(.82-q*.34),my=h*(-.12+q*.68),size=18+q*52;if(sky>0){ctx.globalAlpha=sky*(1-impact);ctx.strokeStyle='#ff8f4f';ctx.lineWidth=Math.max(7,size*.28);ctx.beginPath();ctx.moveTo(mx+size*2.8,my-size*2.2);ctx.lineTo(mx,my);ctx.stroke();ctx.fillStyle='#fff0b0';ctx.beginPath();ctx.arc(mx,my,size*.54,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e85b35';ctx.beginPath();ctx.arc(mx-size*.08,my+size*.06,size*.42,0,Math.PI*2);ctx.fill()}if(impact>0){ctx.globalAlpha=(1-impact)*.82;ctx.fillStyle='#fff4d0';ctx.fillRect(0,0,w,h)}ctx.globalAlpha=Math.min(1,t*2)*Math.max(0,1-(t-5.8)*2);ctx.textAlign='center';ctx.font='900 '+Math.max(18,Math.min(34,w/30))+'px monospace';ctx.fillStyle='#fff0c2';ctx.fillText(t<1.15?'ALGO SE ACERCA…':t<4.75?'IMPACTO INMINENTE':'EL TERRENO CAMBIÓ',w/2,h*.16);if(reduced){ctx.globalAlpha=.16;ctx.fillStyle='#ff9d55';ctx.fillRect(0,h*.47,w,4)}ctx.restore()
+    const e=this.event;if(!e?.world||e.phase!=='cinematic'||P.state.mode==='menu')return;const t=e.age||0,reduced=P.Ambient.reduced?.matches,sky=Math.max(0,Math.min(1,(t-.65)/1.15)),impact=Math.max(0,Math.min(1,(t-4.75)/.8));ctx.save();ctx.fillStyle='#07111d';ctx.globalAlpha=sky*(1-impact*.75)*.72;ctx.fillRect(0,0,w,h);ctx.globalAlpha=sky*(1-impact*.6);for(let i=0;i<28;i++){const x=(i*137+e.serial*31)%w,y=(i*73+e.serial*17)%Math.max(1,h*.62);ctx.fillStyle=i%4?'#b9c7d0':'#ffe2a2';ctx.fillRect(x,y,i%5?2:3,i%5?2:3)}const q=Math.max(0,Math.min(1,(t-1.15)/3.6)),mx=w*(.82-q*.34),my=h*(-.12+q*.68),size=18+q*52;if(sky>0)this.cinematicMeteor(ctx,mx,my,size,sky*(1-impact),reduced);if(impact>0){ctx.globalAlpha=(1-impact)*.82;ctx.fillStyle='#fff4d0';ctx.fillRect(0,0,w,h)}ctx.globalAlpha=Math.min(1,t*2)*Math.max(0,1-(t-5.8)*2);ctx.textAlign='center';ctx.font='900 '+Math.max(18,Math.min(34,w/30))+'px monospace';ctx.fillStyle='#fff0c2';ctx.fillText(t<1.15?'ALGO SE ACERCA…':t<4.75?'IMPACTO INMINENTE':'EL TERRENO CAMBIÓ',w/2,h*.16);if(reduced){ctx.globalAlpha=.16;ctx.fillStyle='#ff9d55';ctx.fillRect(0,h*.47,w,4)}ctx.restore()
   },
   hud(){
     const el=P.$('#event-status');if(!el)return;const e=this.event;if(!e)return;if(P.state.mode!=='play'||P.state.encounter||P.state.portal?.open||P.RunMode.portalWarning(P.state.mapTime)>=0||P.Market?.shopping||P.Market?.available?.()||P.Exploration?.station?.phase==='active'||P.state.bossSpawned){el.hidden=true;return}
