@@ -19,6 +19,9 @@ biomes:[
 ],
 definition(id=this.selected){return [...this.catalog,...this.biomes].find(m=>m.id===id)},
 current(){return this.definition()||this.catalog[0]},
+available(){return this.catalog.concat(P.TestBench?.isAdmin?.()?this.biomes:[])},
+thumbnail(map){return map.asset||'assets/maps/'+(map.base||map.id)+'-menu-v1.webp'},
+ensureAllowed(){if(P.state.mode==='menu'&&this.biomes.some(map=>map.id===this.selected)&&!P.TestBench?.isAdmin?.())this.select(this.catalog[0].id)},
 transition(kind){const map=this.biomes.find(m=>m.bossKind===kind);if(!map)return null;this.selected=map.id;this.load(map.id);return map},
 init(){this.catalog.forEach(map=>{const button=document.createElement('button');button.className='map-card';button.dataset.map=map.id;button.setAttribute('aria-pressed',String(map.id===this.selected));let image;if(['halloween','navidad'].includes(map.id)){image=document.createElement('canvas');image.className='seasonal-thumb';image.width=384;image.height=256;image.setAttribute('aria-hidden','true');this.preview(image,map.id)}else{image=document.createElement('img');image.src='assets/maps/'+(map.base||map.id)+'-menu-v1.webp';image.alt='';image.width=384;image.height=256}const name=document.createElement('b');name.textContent=map.name;const region=document.createElement('small');region.textContent=map.region;button.append(image,name,region);button.onclick=()=>this.select(map.id);P.$('#maps').append(button);
 });

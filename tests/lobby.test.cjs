@@ -55,8 +55,9 @@ test('Laboratorio: cambiar causa, mapa y jefe, repetir y salir limpia ultis y no
 });
 test('Laboratorio admin: permite inspeccionar los cinco escenarios secretos sin mostrarlos en el menú público',()=>{
  const {P}=new Simulation('campo',[0,1]),bench=P.TestBench;P.WalkArt.readyForStart=()=>true;P.Account.user={role:'admin'};bench.character='cristorata';bench.kind='survival';
+ assert.deepEqual(Array.from(P.Maps.available(),map=>map.id),[...P.Maps.catalog,...P.Maps.biomes].map(map=>map.id));
  for(const map of P.Maps.biomes){bench.map=map.id;bench.run();assert.equal(P.Maps.selected,map.id);assert.equal(P.Maps.current(),map);assert(P.state.devRun);assert(P.state.balanceTest)}
- P.UI.menu();P.Maps.select('campo');P.Account.user={role:'player'};P.Maps.select('azoteas-lima');assert.equal(P.Maps.selected,'campo');
+ P.UI.menu();P.Account.user={role:'player'};P.Maps.ensureAllowed();assert.equal(P.Maps.selected,'campo');assert.equal(Array.from(P.Maps.available(),map=>map.id).join(','),Array.from(P.Maps.catalog,map=>map.id).join(','));P.Maps.select('azoteas-lima');assert.equal(P.Maps.selected,'campo');
 });
 test('Laboratorio: minions comunes pueden reaparecer o quedar inmortales sin proteger jefes',()=>{
  const {P}=new Simulation('campo',[0,1]),bench=P.TestBench,s=P.state;P.WalkArt.readyForStart=()=>true;P.Terrain.active=()=>[];bench.active=true;s.devRun=true;s.mode='play';
