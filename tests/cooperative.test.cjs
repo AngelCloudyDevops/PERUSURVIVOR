@@ -59,7 +59,7 @@ test('Salas reales: código privado, máximo dos, autoridad, reconexión, limpie
  async function connect(){const ws=new WebSocket(url,{origin});const receive=mailbox(ws);clients.push(ws);await once(ws,'open');return {ws,receive,send:obj=>ws.send(JSON.stringify(obj))}}
  try{
   const a=await connect();assert.match(a.ws.extensions,/permessage-deflate/);a.send({type:'create',protocol:2,map:'plaza',character:0});const joined=await a.receive('joined');assert.match(joined.code,/^[A-F0-9]{8}$/);
-  const b=await connect();b.send({type:'join',protocol:2,code:joined.code,character:18});const bj=await b.receive('joined');assert.equal(bj.slot,1);
+  const b=await connect();b.send({type:'join',protocol:2,code:joined.code,character:17});const bj=await b.receive('joined');assert.equal(bj.slot,1);
   const third=await connect();third.send({type:'join',protocol:2,code:joined.code,character:1});assert.match((await third.receive('error')).message,/completa/);
   a.send({type:'ready',ready:true,revision:2});b.send({type:'ready',ready:true,revision:2});await new Promise(r=>setTimeout(r,20));b.send({type:'start'});assert.equal((await b.receive('error')).type,'error');a.send({type:'start'});const stateA=await a.receive('state'),stateB=await b.receive('state');assert.deepEqual(stateA.players,stateB.players);assert.equal(stateA.players[1].id,'makanaky');
   a.send({type:'ping',sent:123});const pong=await a.receive('pong');assert.equal(pong.sent,123);assert.equal(pong.snapshotMs,40);app.tick();assert((await a.receive('state')).elapsed>stateA.elapsed,'Transmitir cada tick de 40 ms, sin saltar uno');await b.receive('state');
