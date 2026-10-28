@@ -702,9 +702,9 @@ La audiencia es una arena física de 920 × 600 unidades: traslada temporalmente
 - Los eventos dibujan hasta cinco señales y un marcador con primitivas, sin añadir enemigos ni partículas persistentes, para cuidar los FPS.
 - Cooperativo y las pruebas de desarrollo permanecen temporalmente en Partida rápida para conservar el protocolo autoritativo actual.
 
-### Evento mayor futuro · Extinción
+### Evento mayor · Extinción
 
-El impacto cinematográfico del meteorito será la entrada de un evento mayor de Supervivencia del Caos. Esta ampliación está diseñada y pendiente de implementación; no sustituye al minievento de meteoritos que ya existe.
+El impacto cinematográfico del meteorito puede iniciar un evento mayor de Supervivencia del Caos. No sustituye al minievento de meteoritos que ya existe y puede forzarse desde **Laboratorio → Ambiente y eventos → Extinción completa**.
 
 1. **Impacto:** el meteorito cae cerca de uno de los jugadores vivos, elimina los minions dentro del área inmediata y deja un cráter grande con fuego, ceniza y terreno destruido. El ambiente se oscurece durante el evento.
 2. **Invasión prehistórica:** huevos y grietas del meteorito generan dinosaurios pequeños, veloces y voladores. Sus nacimientos se concentran alrededor del cráter para mantener el conflicto cerca del impacto.
@@ -712,7 +712,7 @@ El impacto cinematográfico del meteorito será la entrada de un evento mayor de
 4. **Jefe obligatorio:** al romper el último fragmento emerge una criatura prehistórica mutada. Una arena temporal contiene el enfrentamiento; el jefe usa saltos, embestidas y ataques a distancia para impedir que un mapa grande permita ignorarlo. Vencerlo reanuda la progresión normal.
 5. **Portal prehistórico opcional:** la victoria abre una entrada a una mazmorra corta de dinosaurios con enemigos, escenario y recompensa exclusivos. Rechazarla permite continuar la partida sin alargar obligatoriamente el recorrido.
 
-La recompensa de la mazmorra ofrece una elección entre **Corazón fósil** (vida y regeneración), **Colmillo del depredador** (daño y velocidad tras derrotar enemigos) y **Fragmento celeste** (posibilidad de invocar meteoritos pequeños al atacar). La implementación se divide en tres entregas: primero cráter, invasión y fragmentos; después el jefe y su arena; finalmente el portal, la mazmorra y las reliquias.
+La recompensa de la mazmorra ofrece una elección entre **Corazón fósil** (+35 de vida máxima y regeneración), **Colmillo del depredador** (+25 % de daño y +18 % de velocidad durante cinco segundos después de derrotar un enemigo) y **Fragmento celeste** (un meteorito pequeño golpea a los enemigos cercanos cada pocos segundos). El evento detiene el reloj de la etapa hasta vencer al Tirano del Cráter; el portal posterior sí puede rechazarse para continuar la partida.
 
 El HUD superior agrupa nombre, nivel, XP y vida en una sola tarjeta izquierda; tiempo, rivales y etapa ocupan el centro. El contador de ElZeein aparece al comenzar cada etapa y durante el último minuto, sin repetir nivel o experiencia. Los portales no publican su horario exacto: diez segundos antes anuncian una anomalía y, al abrir, una flecha de borde señala dirección y distancia hasta acercarse. El jefe se revela al cruzar y recibe una barra superior propia con nombre, fase, PV reales y aviso de reloj pausado. En móvil el panel de audio se abre como una bandeja inferior y los controles conservan áreas táctiles separadas.
 
