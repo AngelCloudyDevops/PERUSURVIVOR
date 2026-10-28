@@ -12,7 +12,7 @@ P.AbilityCards={
   'domain-nature':{family:'domain',visual:'fire',futureVisual:'nature'}
  },
  entries:{
-  kingteka:{kind:'ultimate',frame:'fire',art:'assets/cards/kingteka-gallinazo-ultimate-fullart-v2.webp'},
+  kingteka:{kind:'ultimate',frame:'fire',art:'assets/cards/kingteka-gallinazo-ultimate-fullart-v2.webp',variants:[{id:'cerdito-vtuber',edition:'Skin Cerdito VTuber',art:'assets/cards/cerdito-vtuber-ultimate-fullart-v1.webp'}]},
   kingtekaDomain:{characterId:'kingteka',kind:'domain',frame:'domain-nature',state:'kingtekaDomain',label:'SANTUARIO',title:'Santuario del Reino Animal',art:'assets/cards/kingteka-nature-domain-fullart-v1.webp'},
   alberto:{kind:'ultimate',frame:'fire',art:'assets/cards/alberto-tribunal-ultimate-fullart-v1.webp'},
   cristorata:{kind:'ultimate',frame:'fire',art:'assets/cards/cristorata-dragon-ultimate-fullart-v1.webp'},
@@ -25,14 +25,15 @@ P.AbilityCards={
  },
  frame(name){return this.frames[name]||this.frames.none},
  definition(id,kind){const direct=this.entries[id],entry=kind==='domain'&&this.entries[id+'Domain']||direct;return entry&&(!kind||entry.kind===kind)?entry:null},
+ art(id,kind,character=P.state.player){const entry=this.definition(id,kind);if(!entry)return null;const skin=kind==='ultimate'&&P.CharacterSkins?.equipped?.(character);return skin?.ultimateArt||entry.art},
  syncReadyFx(){
   for(const [kind,id] of [['ultimate','ultimate'],['domain','domain-ability']]){const button=P.$('#'+id),slot=P.$('#'+kind+'-ability-slot');if(!slot)continue;const ready=!!button&&!button.hidden&&button.classList.contains('ability-ready'),wasReady=slot.classList.contains('is-ready'),theme=button?.dataset.frameTheme||'none',frame=this.frame(theme);slot.dataset.frameTheme=theme;slot.dataset.frameVisual=frame.visual;if(ready&&!wasReady){slot.classList.remove('is-extinguishing');slot.classList.add('is-ready','is-igniting')}else if(!ready&&wasReady){slot.classList.remove('is-ready','is-igniting');slot.classList.add('is-extinguishing')}}
  },
  apply(button,id,kind,charge,ready=false,active=false){
-  if(!button)return;const entry=this.definition(id,kind),empty=id==='empty'||!entry;
-  const theme=empty?'none':entry.frame;button.dataset.cardArt=empty?'empty':id;button.dataset.abilityKind=kind;button.dataset.frameTheme=theme;button.dataset.frameVisual=this.frame(theme).visual;
+  if(!button)return;const entry=this.definition(id,kind),empty=id==='empty'||!entry,skin=!empty&&kind==='ultimate'&&P.CharacterSkins?.equipped?.(P.state.player),art=entry&&this.art(id,kind);
+  const theme=empty?'none':entry.frame;button.dataset.cardArt=empty?'empty':skin?.id||id;button.dataset.abilityKind=kind;button.dataset.frameTheme=theme;button.dataset.frameVisual=this.frame(theme).visual;
   button.style?.setProperty?.('--charge-progress',Math.max(0,Math.min(100,charge||0))+'%');
-  button.style?.setProperty?.('--ability-card-art',entry?'url("/'+entry.art+'")':'none');
+  button.style?.setProperty?.('--ability-card-art',art?'url("/'+art+'")':'none');
   button.classList.toggle('ability-ready',!!ready);button.classList.toggle('ability-active',!!active);
   if(button.id==='ultimate'||button.id==='domain-ability')this.syncReadyFx();
  },
