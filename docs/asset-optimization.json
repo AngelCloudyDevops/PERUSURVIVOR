@@ -234,6 +234,18 @@
       "quality": 60
     },
     {
+      "source": "assets/cards/sideral-character-fullart-v1.png",
+      "output": "assets/cards/sideral-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2875413,
+      "optimizedBytes": 519640,
+      "sourceSha256": "103d9a225519eb8a93fc3f6d1750bbf8caa5650b07a0983e7cd070114a598ada",
+      "outputSha256": "3d7ab49f0c14f418fac081f9b64c13c590be01761ce00a70cae757d11a0a0fe9",
+      "rgbaSha256": "910b80a19955050f3ea932a704fb106cf57f923ecb983997fb576471eb00c6e7",
+      "quality": 90
+    },
+    {
       "source": "assets/cards/sideral-domain-fullart-v1.png",
       "output": "assets/cards/sideral-domain-fullart-v1.webp",
       "width": 512,
@@ -517,6 +529,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 81984409,
-  "optimizedBytes": 41960220
+  "originalBytes": 84859822,
+  "optimizedBytes": 42479860
 }
