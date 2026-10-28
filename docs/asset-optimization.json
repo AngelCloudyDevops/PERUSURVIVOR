@@ -114,6 +114,18 @@
       "quality": 60
     },
     {
+      "source": "assets/cards/chamelin-character-fullart-v1.png",
+      "output": "assets/cards/chamelin-character-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 249138,
+      "optimizedBytes": 122556,
+      "sourceSha256": "93f61da317a02f79c57266e8a2f5f65301a4438e178106709e9cb3f8d1dd3ae1",
+      "outputSha256": "283af9c4518b904e896202462712f48127731d444c55ec61d13c150a9343d592",
+      "rgbaSha256": "1b7a8c4dd9a96ebcd9cca1855c0efd5e4e244291331782783244db3fee914c95",
+      "quality": 76
+    },
+    {
       "source": "assets/cards/chamelin-domain-fullart-v1.png",
       "output": "assets/cards/chamelin-domain-fullart-v1.webp",
       "width": 512,
@@ -166,12 +178,12 @@
       "output": "assets/cards/cuy-character-fullart-v1.webp",
       "width": 1024,
       "height": 1536,
-      "originalBytes": 630035,
-      "optimizedBytes": 220108,
-      "sourceSha256": "18b022989b24879cdc589b118945a024d0ef065607ae6f73d49961abb31aa1e3",
-      "outputSha256": "c766f7d0bb035612063e16c825a6269a61a3b0dfca413d94dc5a7205e9510d8e",
-      "rgbaSha256": "3aa49cf7c72ef6094a256b0e92d6fbad52a8de1b0d9428cf7300a48896b3789f",
-      "quality": 88
+      "originalBytes": 580589,
+      "optimizedBytes": 175182,
+      "sourceSha256": "8fcea484090fa01778e75f98af79a781e0e643d19bd6359d2d5655f443a307b1",
+      "outputSha256": "101310b5a3a87ad20928a7d2a1473a86cd830a7a627fed062d79bb38fdc139b3",
+      "rgbaSha256": "8120d0aa82d0ba78cb6461d21016925f42d0fcd1fc59fe8b87bbd5af71b7e53b",
+      "quality": 76
     },
     {
       "source": "assets/cards/cuy-stampede-ultimate-fullart-v1.png",
@@ -274,12 +286,12 @@
       "output": "assets/cards/paloma-character-fullart-v1.webp",
       "width": 1024,
       "height": 1536,
-      "originalBytes": 625517,
-      "optimizedBytes": 262616,
-      "sourceSha256": "c65c14dc67eed0a05c3481707d42da87fd3570416a13ed488b280725bd3d867e",
-      "outputSha256": "e8136e8ed68652b10d5019941d56fad863c31cc3c475b7b0519042d0a781c1e3",
-      "rgbaSha256": "4da1b7738c3869ae40d8287d97a37d39082237e30b2d408065228bde9e013c5d",
-      "quality": 88
+      "originalBytes": 706030,
+      "optimizedBytes": 186878,
+      "sourceSha256": "b3568fe317460b119d4a5caa8fa0dc0c93047c134ef2b49bd86bd6b4ad0921b2",
+      "outputSha256": "7390c1b93fa4260519f49d9e0030fff806cf566ff81768d8678bfd8592e64155",
+      "rgbaSha256": "bbb22e8ad6e5eeb2ee2ebb71a8c1f8819c4e303ea21fe427676d22c402077e65",
+      "quality": 76
     },
     {
       "source": "assets/cards/sideral-character-fullart-v1.png",
@@ -577,7 +589,7 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 89440874,
-  "optimizedBytes": 43683200
+  "originalBytes": 89721079,
+  "optimizedBytes": 43685092
 }
 
