@@ -126,6 +126,18 @@
       "quality": 60
     },
     {
+      "source": "assets/cards/cirilo-character-fullart-v1.png",
+      "output": "assets/cards/cirilo-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2674939,
+      "optimizedBytes": 439220,
+      "sourceSha256": "a9e2682df8237c855c49f26a7b63d43f3bc732de0a4c9d641c4216dc6bf53850",
+      "outputSha256": "48b6ce566d7424af017825a374780142f5af3cf10daeced00c5b363ac85c3fc9",
+      "rgbaSha256": "ce5286be56e651b26c4b96f14cfecbe32cfeadaac6e43d251ee32f323b187709",
+      "quality": 90
+    },
+    {
       "source": "assets/cards/cristorata-dragon-ultimate-fullart-v1.png",
       "output": "assets/cards/cristorata-dragon-ultimate-fullart-v1.webp",
       "width": 512,
@@ -198,6 +210,18 @@
       "quality": 88
     },
     {
+      "source": "assets/cards/makanaky-character-fullart-v1.png",
+      "output": "assets/cards/makanaky-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2675614,
+      "optimizedBytes": 471272,
+      "sourceSha256": "fb21980df8e4a1e43d7b3f29dc28791d328981f8d4349743daf74858c263be95",
+      "outputSha256": "604a9e545b4225c0be8607f4de8b3d7d5f201252e8a89516780f10afe91d7277",
+      "rgbaSha256": "0a48f6aff6aa9a2cf70296071342473246dc77c164ebf9dfb34647799d554525",
+      "quality": 90
+    },
+    {
       "source": "assets/cards/makanaky-domain-fullart-v1.png",
       "output": "assets/cards/makanaky-domain-fullart-v1.webp",
       "width": 512,
@@ -220,6 +244,18 @@
       "outputSha256": "60b9899bcd1b6c3fbe08d92f558cf48a2d323926302ec653637b224359d73e03",
       "rgbaSha256": "c4bf3cd3d04f887a7e2e7129c2ec2da5ad49546fb8882a5ecc00ce72138ea70a",
       "quality": 60
+    },
+    {
+      "source": "assets/cards/sideral-character-fullart-v1.png",
+      "output": "assets/cards/sideral-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2875413,
+      "optimizedBytes": 519640,
+      "sourceSha256": "103d9a225519eb8a93fc3f6d1750bbf8caa5650b07a0983e7cd070114a598ada",
+      "outputSha256": "3d7ab49f0c14f418fac081f9b64c13c590be01761ce00a70cae757d11a0a0fe9",
+      "rgbaSha256": "910b80a19955050f3ea932a704fb106cf57f923ecb983997fb576471eb00c6e7",
+      "quality": 90
     },
     {
       "source": "assets/cards/sideral-domain-fullart-v1.png",
@@ -505,6 +541,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 79308795,
-  "optimizedBytes": 41488948
+  "originalBytes": 87534761,
+  "optimizedBytes": 42919080
 }
