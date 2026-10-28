@@ -11,10 +11,10 @@ function ready(duo=false,map='campo'){
 
 test('Impacto del cielo: una cinemática garantizada congela combate y crea un cráter persistente',()=>{
  const {P,s}=ready(),M=P.MapEvents,p=s.player;const before={x:p.x,y:p.y,time:s.mapTime};
- assert(M.tick(.04));assert(M.cinematic());assert.equal(M.event.world,true);assert.equal(M.worldPlayed,true);assert.equal(M.impacts.length,0);
+ assert(M.tick(.04));assert(M.cinematic());assert.equal(M.event.world,true);assert.equal(M.worldPlayed,true);assert(Math.hypot(M.event.x-p.x,M.event.y-p.y)>300,'El impacto queda lejos del jugador');assert.equal(M.impacts.length,0);
  const frame=M.camera(p,1280,720,1.3);assert(frame&&frame.zoom>0);
  for(let i=0;i<122;i++){s.mapTime+=.04;assert(M.tick(.04))}
- assert.equal(M.impacts.length,1);assert(M.impacts[0].radius>=200);assert(P.Terrain.props.some(o=>o.meteorImpact));assert(P.Terrain.props.some(o=>o.meteorImpact&&o.solid));
+ assert.equal(M.impacts.length,1);assert(M.impacts[0].radius>=300);assert(P.Terrain.props.filter(o=>o.meteorImpact).length>=10);assert(P.Terrain.props.some(o=>o.meteorImpact&&o.solid));
  while(M.cinematic()){s.mapTime+=.04;M.tick(.04)}assert.equal(M.event.phase,'active');assert.equal(M.event.points.length,5);assert.deepEqual({x:p.x,y:p.y},{x:before.x,y:before.y});assert(Math.abs(s.mapTime-before.time)<.08,'La cinemática no consume tiempo de supervivencia');
  const impact=JSON.stringify(M.impacts);P.Chunks.signature='';P.Chunks.sync();M.ensureTerrain();assert.equal(JSON.stringify(M.impacts),impact);assert(P.Terrain.props.some(o=>o.meteorImpact));
 });
@@ -28,7 +28,7 @@ test('Impacto cooperativo: el servidor elige un jugador vivo, sincroniza el terr
 
 test('Eventos: el impacto tiene 65 % de probabilidad, momento variable, arte propio y minieventos sin repetición',()=>{
  const {P,s}=ready(),M=P.MapEvents,fs=require('node:fs'),path=require('node:path');M.reset(.64,.5);assert.equal(M.worldPlanned,true);assert(M.worldAt>=420&&M.worldAt<=1080);M.reset(.65,.5);assert.equal(M.worldPlanned,false);assert.equal(M.worldDue(),Infinity);
- M.worldPlayed=true;s.mapTime=1;assert(M.start(false,null,.99));const first=M.event.kind;M.event=null;assert(M.start(false,null,.99));assert.notEqual(M.event.kind,first);const art=path.resolve(__dirname,'../public/assets/environment/meteor-cinematic-v1.webp'),source=fs.readFileSync(path.resolve(__dirname,'../src/systems/map-events.js'),'utf8');assert(fs.existsSync(art));assert(fs.statSync(art).size>20000);assert(source.includes('meteor-cinematic-v1.webp'));assert(source.includes('ctx.drawImage(this.meteorArt'));
+ M.worldPlayed=true;s.mapTime=1;assert(M.start(false,null,.99));const first=M.event.kind;M.event=null;assert(M.start(false,null,.99));assert.notEqual(M.event.kind,first);const source=fs.readFileSync(path.resolve(__dirname,'../src/systems/map-events.js'),'utf8');for(const file of ['meteor-cinematic-far-v1.webp','meteor-cinematic-mid-v1.webp','meteor-cinematic-v1.webp']){const art=path.resolve(__dirname,'../public/assets/environment/'+file);assert(fs.existsSync(art));assert(fs.statSync(art).size>20000);assert(source.includes(file))}assert(source.includes('ctx.drawImage(image'));assert(source.includes('Math.pow(q,1.7)'));
 });
 
 test('Laboratorio de ambiente: permite forzar cada hora, clima y evento sin alterar el reloj',()=>{
