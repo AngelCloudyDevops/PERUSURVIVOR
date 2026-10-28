@@ -44,11 +44,13 @@ test('El vestíbulo completo conecta las siete áreas y conserva enlaces sociale
  assert.match(css,/\.hub-social/);assert.match(css,/\.period-missions/);assert.match(css,/\.prepare-grid/);
 });
 test('La selección de causa, mapa y modo permanece en el flujo moderno hasta iniciar directamente',()=>{
- const complete=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),reference=fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8'),game=fs.readFileSync(path.join(root,'src/scenes/game.js'),'utf8'),screens=fs.readFileSync(path.join(root,'src/ui/screens.js'),'utf8');
+ const complete=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),reference=fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8'),game=fs.readFileSync(path.join(root,'src/scenes/game.js'),'utf8'),screens=fs.readFileSync(path.join(root,'src/ui/screens.js'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');
  assert.match(complete,/retireLegacyPickers\(\)/);assert.match(complete,/if\(route==='characters'\)return owner\.chooseCause\(\)/);assert.match(complete,/if\(route==='play'\)return owner\.prepare\(\)/);assert.match(complete,/reference\.open\('dex'\)/);
  assert.match(complete,/P\.Maps\.select\(id\)/);assert.match(complete,/P\.RunMode\.selected=id/);assert.match(complete,/startPreparedRun\(\)\{this\.reference\.hide\(\);return P\.Game\.start\(\)\}/);assert.doesNotMatch(complete,/\(\)=>P\.Lobby\.show\('play'\)/);
  assert.match(reference,/openCharacterViewer\(character\)/);assert.match(reference,/this\.closeCharacterViewer\(\);P\.Lobby\.show\('play'\)/);assert.match(reference,/ELEGIR A /);
  assert.match(reference,/role','dialog'/);assert.match(reference,/character-viewer-strip/);assert.match(reference,/ArrowLeft/);assert.match(reference,/ArrowRight/);
+ assert.match(reference,/characterFrame\(c\)/);assert.match(reference,/cause-collectible-card/);assert.match(reference,/cause-card-shell cause-card-large/);assert.match(reference,/ARTE PROVISIONAL/);
+ for(const selector of ['.cause-card-shell','.cause-card-art','.cause-card-frame','.cause-card-large'])assert(css.includes(selector),selector);
  assert.match(game,/LobbyComplete\?\.chooseCause\?\.\(\)/);assert.match(screens,/LobbyComplete\?\.chooseCause\?\.\(\)/);
  assert.doesNotMatch(game,/Elegir otro causa/);assert.doesNotMatch(screens,/Elegir otro personaje/);
 });
