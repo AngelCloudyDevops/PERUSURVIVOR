@@ -50,7 +50,9 @@ test('La selección de causa, mapa y modo permanece en el flujo moderno hasta in
  assert.match(reference,/openCharacterViewer\(character\)/);assert.match(reference,/this\.closeCharacterViewer\(\);P\.Lobby\.show\('play'\)/);assert.match(reference,/ELEGIR A /);
  assert.match(reference,/role','dialog'/);assert.match(reference,/character-viewer-strip/);assert.match(reference,/ArrowLeft/);assert.match(reference,/ArrowRight/);
  assert.match(reference,/characterFrame\(c\)/);assert.match(reference,/cause-collectible-card/);assert.match(reference,/cause-card-shell cause-card-large/);assert.match(reference,/ARTE PROVISIONAL/);
+ assert.match(reference,/cause-card-inner/);assert.match(reference,/ILUSTRACIÓN/);assert.match(reference,/PASA EL MOUSE/);assert.match(reference,/PIXEL/);
  for(const selector of ['.cause-card-shell','.cause-card-art','.cause-card-frame','.cause-card-large'])assert(css.includes(selector),selector);
+ assert.match(css,/\.cause-collectible-card:hover \.cause-card-inner/);assert.match(css,/rotateY\(180deg\)/);assert.match(css,/prefers-reduced-motion:reduce[^}]*\{\.cause-card-inner/);
  assert.match(game,/LobbyComplete\?\.chooseCause\?\.\(\)/);assert.match(screens,/LobbyComplete\?\.chooseCause\?\.\(\)/);
  assert.doesNotMatch(game,/Elegir otro causa/);assert.doesNotMatch(screens,/Elegir otro personaje/);
 });
