@@ -1,8 +1,9 @@
 'use strict';
-// El clima cambia cada 90 s. Cada tramo húmedo queda separado por uno despejado
-// y alterna garúa con niebla para que diez minutos no se conviertan en lluvia continua.
+// El clima cambia cada 90 s con un orden aleatorio estable por partida.
+// Una ventana móvil evita que garúa o niebla dominen los primeros diez minutos.
 P.Weather={
- kind(slot,seed=0){const value=Number(seed)>>>0,position=Math.max(0,Math.floor(slot))+(value&1);if((position&1)===0)return 'clear';const wet=Math.floor(position/2)+((value>>>1)&1);return (wet&1)===0?'garua':'fog'},
+ hash(seed,slot,salt=0){let x=(Number(seed)>>>0)^Math.imul(slot+1,2654435761)^Math.imul(salt+1,2246822507);x^=x>>>16;x=Math.imul(x,3266489909);x^=x>>>13;return x>>>0},
+ kind(slot,seed=0){const end=Math.max(0,Math.floor(slot)),states=['clear','garua','fog'],history=[];for(let i=0;i<=end;i++){const start=this.hash(seed,i)%3,direction=(this.hash(seed,i,17)&1)?1:-1,order=[0,1,2].map(step=>(start+direction*step+3)%3);let chosen='clear';for(const index of order){const candidate=states[index],last=history[history.length-1],before=history[history.length-2];if(candidate===last&&candidate===before)continue;if(candidate!=='clear'&&last&&before&&last!=='clear'&&before!=='clear')continue;if(candidate!=='clear'&&history.slice(-6).filter(kind=>kind===candidate).length>=2)continue;chosen=candidate;break}history.push(chosen)}return history[end]},
  values(kind){return kind==='garua'?{rain:1,fog:0}:kind==='fog'?{rain:0,fog:.9}:{rain:0,fog:0}},
  sample(t,seed=P.state.weatherSeed||0){t=Math.max(0,Number(t)||0);const slot=Math.floor(t/90),local=t-slot*90,a=this.values(this.kind(slot,seed)),b=this.values(this.kind(slot+1,seed)),x=Math.max(0,Math.min(1,(local-78)/12)),q=x*x*(3-2*x),rain=a.rain+(b.rain-a.rain)*q,fog=a.fog+(b.fog-a.fog)*q;return {intensity:Math.max(rain,fog),rain,fog,kind:q<.5?this.kind(slot,seed):this.kind(slot+1,seed)}},
 active(){const s=P.state;return (!!P.Maps.current?.()||['campo','plaza','machu','halloween','navidad'].includes(P.Maps.selected))&&s.mode!=='menu'&&!s.encounter&&(!s.devRun||s.balanceTest||P.TestBench?.active)},
