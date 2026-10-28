@@ -607,6 +607,10 @@ body[data-lobby-panel=codex] #game{opacity:.08;filter:blur(8px) saturate(.45)}bo
 .collection-card-art{overflow:visible}
 .collection-card-art:after{display:none}
 .collection-card-crop{position:absolute;inset:0;z-index:1;display:block;border-radius:8px;overflow:hidden}
+.collection-card-crop:has(.card-art-loading),.collectible-card-front:has(.card-art-loading){background:linear-gradient(110deg,#120d19 18%,#2a1d35 38%,#120d19 58%);background-size:240% 100%;animation:card-art-skeleton 1.15s linear infinite}
+.card-art-loading{opacity:0;transition:opacity .22s ease}.collection-card-art img:not(.card-art-loading),.collectible-card-front>img:not(.card-art-loading){opacity:1;transition:opacity .22s ease}
+@keyframes card-art-skeleton{to{background-position:-140% 0}}
+@media(prefers-reduced-motion:reduce){.collection-card-crop:has(.card-art-loading),.collectible-card-front:has(.card-art-loading){animation:none}}
 .collection-card-crop:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 20%,#fff4 38%,transparent 53%);transform:translateX(-120%);transition:transform .55s ease}
 .collection-card-thumb:hover .collection-card-crop:after,.collection-card-thumb:focus-visible .collection-card-crop:after{transform:translateX(120%)}
 .collection-card-frame{position:absolute;z-index:3;left:50%;top:50%;width:calc(100% + 10px);height:calc(100% + 14px);box-sizing:border-box;border-radius:12px;pointer-events:none;transform:translate(-50%,-50%);background-position:center;background-size:100% 100%;background-repeat:no-repeat}
