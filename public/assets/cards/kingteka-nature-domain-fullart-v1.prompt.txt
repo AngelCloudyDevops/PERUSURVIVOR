@@ -1,0 +1,7 @@
+Use case: identity-preserve
+Asset type: vertical full-art card for Kingteka's UR domain expansion
+Primary request: Kingteka opens "Santuario del Reino Animal", preserving his face, stocky build, black T-shirt, dark blue jeans and white sneakers. He touches the earth while a golden-green supernatural Peruvian wildlife sanctuary forms around him.
+Scene: cloud forest at golden twilight, Andes and Machu Picchu in the distance, glowing vines forming a dome; protective condor, spectacled bear, puma, capybaras/guinea pigs and small birds.
+Style: high-detail crisp illustrated pixel-art card matching the existing Kingteka full arts.
+Palette: emerald, forest green, warm gold and dusk blue.
+Constraints: one Kingteka; animals protected and unharmed; no shotgun, Gallinazo swarm, Cerdito skin, text, UI, border, watermark or logo.

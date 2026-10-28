@@ -1,0 +1,11 @@
+Generator: image_gen (integrated)
+Use: Kingteka · Amor a los animales base character full art, UR collection card.
+
+Reference order required by README:
+1. Approved Makanaky full art fixes the album artist and UR finish.
+2. Current Kingteka walk sprite fixes identity, clothes, silhouette and palette.
+3. User photo fixes only the relaxed seated pose and closed-mouth smile.
+
+Final direction: strict 2D exaggerated human caricature with a large simplified head, large readable hands and white sneakers, uniform black contour, grouped hard-edged cel shading and fine pixel texture. Kingteka wears the sprite's swept black hair, black T-shirt, tattooed forearms and loose navy pants. He sits on a park bench in neon Lima at sunset. His left hand offers one pellet to one guinea pig with five clear digits; his right hand, also with five clear digits, rests openly on a friendly dog's head. The food bag rests on the bench. A pigeon and a black gallinazo complete the animal theme. Saturated magenta, violet, electric-blue and gold UR lighting. Exact 2:3 composition; head, hands and shoes fully visible.
+
+Exclude: text, logos, UI, frame, stars, rarity label, watermark, headset, weapon, photographic skin, pores, realistic teeth or muscles, 3D rendering, soft airbrush, cropped feet, twisted wrists, fused/extra fingers, duplicated animals and pig transformation.

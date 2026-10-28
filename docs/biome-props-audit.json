@@ -1,0 +1,221 @@
+{
+  "method": "Built-in image_gen; reviewed crop boundaries; Lanczos packing into six isolated cells.",
+  "atlases": [
+    {
+      "biome": "terminal",
+      "source": "public/assets/environment/terminal-props-v1.png",
+      "runtime": "public/assets/environment/terminal-props-v1.webp",
+      "source_sha256": "a3fc93445978c69b45d6cbacdbff7eabf31c7d4cffd646745ba22671ca938850",
+      "runtime_sha256": "331c021fea6b03ed2c49ed3b7c772215dd27d908739ccb5d676ca4fb5b202489",
+      "bytes": 39650,
+      "width": 480,
+      "height": 320,
+      "cells": [
+        {
+          "id": "bus-stop",
+          "x": 6,
+          "y": 34,
+          "w": 148,
+          "h": 120
+        },
+        {
+          "id": "road-barrier",
+          "x": 166,
+          "y": 68,
+          "w": 148,
+          "h": 86
+        },
+        {
+          "id": "tire-stack",
+          "x": 326,
+          "y": 32,
+          "w": 148,
+          "h": 122
+        },
+        {
+          "id": "ticket-booth",
+          "x": 6,
+          "y": 167,
+          "w": 148,
+          "h": 147
+        },
+        {
+          "id": "traffic-cones",
+          "x": 166,
+          "y": 191,
+          "w": 148,
+          "h": 123
+        },
+        {
+          "id": "vendor-cart",
+          "x": 339,
+          "y": 166,
+          "w": 121,
+          "h": 148
+        }
+      ]
+    },
+    {
+      "biome": "rooftop",
+      "source": "public/assets/environment/rooftop-props-v1.png",
+      "runtime": "public/assets/environment/rooftop-props-v1.webp",
+      "source_sha256": "0d47d44655349da3828d135836c1943f36ac0f5bb42f8f0508beb80d068263a6",
+      "runtime_sha256": "3a926be84d1557d8ab3b603c4e9b9f6c69ca89c9a0d7bf19675ecf9fa9589c22",
+      "bytes": 31044,
+      "width": 480,
+      "height": 320,
+      "cells": [
+        {
+          "id": "parapet",
+          "x": 6,
+          "y": 26,
+          "w": 148,
+          "h": 128
+        },
+        {
+          "id": "water-tank",
+          "x": 181,
+          "y": 6,
+          "w": 118,
+          "h": 148
+        },
+        {
+          "id": "antenna",
+          "x": 343,
+          "y": 6,
+          "w": 113,
+          "h": 148
+        },
+        {
+          "id": "roof-vent",
+          "x": 6,
+          "y": 167,
+          "w": 148,
+          "h": 147
+        },
+        {
+          "id": "rebar-columns",
+          "x": 188,
+          "y": 166,
+          "w": 104,
+          "h": 148
+        },
+        {
+          "id": "roof-bridge",
+          "x": 326,
+          "y": 202,
+          "w": 148,
+          "h": 112
+        }
+      ]
+    },
+    {
+      "biome": "cabinet",
+      "source": "public/assets/environment/cabinet-props-v1.png",
+      "runtime": "public/assets/environment/cabinet-props-v1.webp",
+      "source_sha256": "79db12e638eb68bdd707cdd1aa8304a4b768b6069ad3f30a6463e1f8baccb856",
+      "runtime_sha256": "c0ab320a227788c9050e217004a02740b4b8de52e09ce0d2a20f29b9d4a6603d",
+      "bytes": 27336,
+      "width": 480,
+      "height": 320,
+      "cells": [
+        {
+          "id": "office-planter",
+          "x": 6,
+          "y": 61,
+          "w": 148,
+          "h": 93
+        },
+        {
+          "id": "filing-cabinet",
+          "x": 194,
+          "y": 6,
+          "w": 91,
+          "h": 148
+        },
+        {
+          "id": "security-desk",
+          "x": 326,
+          "y": 66,
+          "w": 148,
+          "h": 88
+        },
+        {
+          "id": "queue-barrier",
+          "x": 6,
+          "y": 200,
+          "w": 148,
+          "h": 114
+        },
+        {
+          "id": "civic-bench",
+          "x": 166,
+          "y": 205,
+          "w": 148,
+          "h": 109
+        },
+        {
+          "id": "civic-lamp",
+          "x": 363,
+          "y": 166,
+          "w": 73,
+          "h": 148
+        }
+      ]
+    },
+    {
+      "biome": "archive",
+      "source": "public/assets/environment/archive-props-v1.png",
+      "runtime": "public/assets/environment/archive-props-v1.webp",
+      "source_sha256": "c667f31eb755f0c0980d22e65f316c4830010bf7eabecc4af25f71616fa679f5",
+      "runtime_sha256": "4818fa2221ce39eaa598d543bb1002b3135c754cf2d7d8e3bae87f9b44ac90a9",
+      "bytes": 33636,
+      "width": 480,
+      "height": 320,
+      "cells": [
+        {
+          "id": "archive-shelf",
+          "x": 7,
+          "y": 6,
+          "w": 146,
+          "h": 148
+        },
+        {
+          "id": "archive-boxes",
+          "x": 166,
+          "y": 37,
+          "w": 148,
+          "h": 117
+        },
+        {
+          "id": "archive-cabinet",
+          "x": 342,
+          "y": 6,
+          "w": 116,
+          "h": 148
+        },
+        {
+          "id": "warning-light",
+          "x": 43,
+          "y": 166,
+          "w": 74,
+          "h": 148
+        },
+        {
+          "id": "archive-ladder",
+          "x": 176,
+          "y": 166,
+          "w": 128,
+          "h": 148
+        },
+        {
+          "id": "evidence-cage",
+          "x": 326,
+          "y": 166,
+          "w": 147,
+          "h": 148
+        }
+      ]
+    }
+  ]
+}

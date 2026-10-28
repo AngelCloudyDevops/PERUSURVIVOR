@@ -114,6 +114,18 @@
       "quality": 60
     },
     {
+      "source": "assets/cards/chamelin-character-fullart-v1.png",
+      "output": "assets/cards/chamelin-character-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 249138,
+      "optimizedBytes": 122556,
+      "sourceSha256": "93f61da317a02f79c57266e8a2f5f65301a4438e178106709e9cb3f8d1dd3ae1",
+      "outputSha256": "283af9c4518b904e896202462712f48127731d444c55ec61d13c150a9343d592",
+      "rgbaSha256": "1b7a8c4dd9a96ebcd9cca1855c0efd5e4e244291331782783244db3fee914c95",
+      "quality": 76
+    },
+    {
       "source": "assets/cards/chamelin-domain-fullart-v1.png",
       "output": "assets/cards/chamelin-domain-fullart-v1.webp",
       "width": 512,
@@ -138,6 +150,18 @@
       "quality": 90
     },
     {
+      "source": "assets/cards/cristorata-character-fullart-v1.png",
+      "output": "assets/cards/cristorata-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 650561,
+      "optimizedBytes": 281396,
+      "sourceSha256": "e8965ab9942bb149dfcec82a362aa8500377efcf9be47b97cadd191e8380a837",
+      "outputSha256": "f6abef5f6f04ce8d6bbe398706cb6e0e65ec966a521c33161f389b16137d22b4",
+      "rgbaSha256": "4e88cb05f663ed382e4c6db6e53aaace8dba6eb210590ecb766721619783e2b7",
+      "quality": 88
+    },
+    {
       "source": "assets/cards/cristorata-dragon-ultimate-fullart-v1.png",
       "output": "assets/cards/cristorata-dragon-ultimate-fullart-v1.webp",
       "width": 512,
@@ -150,6 +174,18 @@
       "quality": 60
     },
     {
+      "source": "assets/cards/cuy-character-fullart-v1.png",
+      "output": "assets/cards/cuy-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 580589,
+      "optimizedBytes": 175182,
+      "sourceSha256": "8fcea484090fa01778e75f98af79a781e0e643d19bd6359d2d5655f443a307b1",
+      "outputSha256": "101310b5a3a87ad20928a7d2a1473a86cd830a7a627fed062d79bb38fdc139b3",
+      "rgbaSha256": "8120d0aa82d0ba78cb6461d21016925f42d0fcd1fc59fe8b87bbd5af71b7e53b",
+      "quality": 76
+    },
+    {
       "source": "assets/cards/cuy-stampede-ultimate-fullart-v1.png",
       "output": "assets/cards/cuy-stampede-ultimate-fullart-v1.webp",
       "width": 512,
@@ -160,6 +196,18 @@
       "outputSha256": "81fcae5674bb03c166eee7b8c75be572474d92e44a4fcc9b506d04f27242550d",
       "rgbaSha256": "3e28189321a8b43eb5a44f4377caf0b9d28878c60537109f703a6bd347fc6734",
       "quality": 60
+    },
+    {
+      "source": "assets/cards/kingteka-character-fullart-v1.png",
+      "output": "assets/cards/kingteka-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2831179,
+      "optimizedBytes": 442354,
+      "sourceSha256": "031b8ac47c56ee0a7ae5621d35ab727eb904c75384d7b33a2abce37db87fff0e",
+      "outputSha256": "9d5e5b3fc9396a966d553c721b1924a208b4ee6d48b0c8043e26e9beddde1929",
+      "rgbaSha256": "324680560eb24c811ce7315b3d982a6de5eb39e622bc115d440e374a830f904a",
+      "quality": 88
     },
     {
       "source": "assets/cards/kingteka-gallinazo-fullart-v1.png",
@@ -244,6 +292,18 @@
       "outputSha256": "60b9899bcd1b6c3fbe08d92f558cf48a2d323926302ec653637b224359d73e03",
       "rgbaSha256": "c4bf3cd3d04f887a7e2e7129c2ec2da5ad49546fb8882a5ecc00ce72138ea70a",
       "quality": 60
+    },
+    {
+      "source": "assets/cards/paloma-character-fullart-v1.png",
+      "output": "assets/cards/paloma-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 706030,
+      "optimizedBytes": 186878,
+      "sourceSha256": "b3568fe317460b119d4a5caa8fa0dc0c93047c134ef2b49bd86bd6b4ad0921b2",
+      "outputSha256": "7390c1b93fa4260519f49d9e0030fff806cf566ff81768d8678bfd8592e64155",
+      "rgbaSha256": "bbb22e8ad6e5eeb2ee2ebb71a8c1f8819c4e303ea21fe427676d22c402077e65",
+      "quality": 76
     },
     {
       "source": "assets/cards/sideral-character-fullart-v1.png",
@@ -541,6 +601,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 87534761,
-  "optimizedBytes": 42919080
+  "originalBytes": 92552258,
+  "optimizedBytes": 44127446
 }

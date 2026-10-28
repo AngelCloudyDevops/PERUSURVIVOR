@@ -757,3 +757,15 @@ MinionComboArt selecciona una lámina de seis cuerpos completos por familia/rang
 
 ### Guía de minions
 `src/ui/minion-codex.js` adapta las definiciones compartidas de MinionTactics, MinionProfessions, Difficulty y MinionEvolution a fichas de consulta. Los retratos dibujan los cuadros completos del atlas de caminata; el selector de rango solo cambia estado de UI y carga de imágenes, sin insertar actores ni amenazas en el mundo. Lobby conserva las fichas y prácticas de jefes/minijefes y añade el filtro Minions.
+
+## Identidad, versiones y skins
+
+Un personaje se modela en tres niveles. La **identidad** es el nombre estable de la persona o figura (`kingteka`). Una **versión jugable** define su kit, estadísticas, progresión y rareza de causa (`kingteka-animals`, mostrado como **Kingteka · Amor a los animales**). Una **skin** es una apariencia compatible con una versión concreta y tiene su propia rareza cosmética.
+
+`P.CharacterSkins` registra versiones y compatibilidades. Equipar una skin solo cambia arte, arma visible, proyectiles, impactos, textos y presentación de la ulti; conserva vida, poder, velocidad, cadencia, alcance, estrellas, mejoras y balance de la versión. La skin **Cerdito VTuber** es legendaria y únicamente admite `kingteka-animals`. Sus perdigones se representan como cerditos, su Gallinazo como cerditos voladores y `ultimateArt` permite que `P.AbilityCards` sustituya la carta Q mientras la skin está equipada.
+
+Cerdito dejó de ocupar un espacio independiente del roster. Al leer un guardado anterior, `Meta.normalize` convierte su desbloqueo, estrellas, recibos e historial a Kingteka; combina mejoras por máximo, suma partidas/victorias/bajas y conserva los mejores récords. También desbloquea y equipa `cerdito-vtuber`, por lo que el usuario mantiene lo que había conseguido.
+
+## Dominio de Kingteka
+
+`src/systems/kingteka-domain.js` mantiene Santuario del Reino Animal separado de la ulti Gallinazo. En individual recibe R desde `runtime.js`; en cooperativo la petición viaja al servidor y `backend/simulation.cjs` ejecuta y serializa el mismo estado autoritativo. Ambas habilidades comparten la carga de ulti, así que solo una puede activarse por ciclo.

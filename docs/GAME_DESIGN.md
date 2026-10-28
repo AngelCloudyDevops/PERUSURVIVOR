@@ -613,8 +613,10 @@ Tres cartas automáticas y conservables, sin azar: Aguante impone 45 s de combat
 
 Perfil de jugador: monedas, colección con bloqueos, partidas, victorias, bajas, mejor nivel, mejor tiempo y mejor racha. Invitado nuevo conserva cuatro causas iniciales (Cristorata, Cuy, Paloma y Makanaky); las ganancias anteriores no se borran. Admin es una cuenta de pruebas: todos los personajes a 5★, mejoras a rango 5, objetos disponibles y saldo mínimo de 1.000.000. No se inventan victorias ni partidas. Laboratorio y prácticas completas se ocultan a invitados/jugadores. Estas ventajas no añaden permisos para ver o modificar cuentas ajenas.
 
-### Rareza UR de Makanaky
-Makanaky pasa a UR · Supremo, por encima de SSR, sin cambiar sus estadísticas ni su desbloqueo gratuito. La colección permite filtrar UR y la coloca primero al ordenar por rareza (después de los listos para ascender). Probabilidades base: C 60 %, R 27 %, SR 9 %, SSR 3 %, UR 1 %. UR reinicia ambas garantías; la garantía de 30 asegura SSR o superior y nunca rebaja un UR natural. Los recibos antiguos conservan su rareza histórica.
+### Rareza UR y lenguaje visual de colección
+Makanaky, Sideral, Chamelín Trovo y CiriloTV pertenecen oficialmente a UR · Supremo, por encima de SSR. CiriloTV se declara directamente en el catálogo UR; su sistema propio ya no cambia su rareza durante la carga. La colección permite filtrar UR y la coloca primero al ordenar por rareza (después de los listos para ascender). Probabilidades base: C 60 %, R 27 %, SR 9 %, SSR 3 %, UR 1 %. UR reinicia ambas garantías; la garantía de 30 asegura SSR o superior y nunca rebaja un UR natural. Los recibos antiguos conservan su rareza histórica.
+
+Las full arts comparten dibujo caricaturesco, contorno oscuro, sombreado en bloques y textura de píxel fino. La espectacularidad progresa por rareza: C usa gris acero y una escena simple; R, verde esmeralda y acentos leves; SR, azul eléctrico, pose dinámica y efectos visibles; SSR, amarillo dorado, fondo elaborado y contraste fuerte; UR, magenta/violeta neón y el máximo nivel de detalle y efectos. La identidad del personaje conserva sus colores propios; el color de rareza guía la luz, el ambiente y el marco sin teñir toda la imagen.
 
 
 ### Makanaky cuerpo a cuerpo
@@ -822,7 +824,7 @@ Las horas anteriores son reglas internas, no información permanente del HUD. Di
 
 Jerarquía del HUD: tarjeta izquierda con personaje, nivel, XP y vida; reloj, bajas y etapa en el centro; controles agrupados de sonido y pausa a la derecha. El contador de ElZeein se muestra durante los primeros 12 s de cada etapa y durante el último minuto. En la arena, una barra central sustituye esos avisos y muestra nombre, fase, vida real y «Reloj del mapa pausado». El panel de sonido reúne pista, música, efectos y enemigos; en móvil se convierte en bandeja inferior. Flecha y avisos respetan movimiento reducido y no realizan búsquedas adicionales de entidades.
 
-Desde la segunda etapa, el director intenta una sola vez crear un obstáculo destructible a distancia segura del jugador. Rechaza colisiones y un radio de 150 u alrededor del portal. El máximo total es cinco, por lo que navegación y dibujo no crecen sin control ni cierran corredores completos. Cada etapa tiene un ambiente reconocible: mañana, mediodía, tarde, atardecer, noche y tormenta final. La transición empieza 18 s antes del límite de cinco minutos; el HUD muestra emoji, nombre, clima activo y tiempo hasta el siguiente cambio. Garúa, niebla, bruma y nieve permanecen visibles con movimiento reducido, pero con menos elementos y sin deriva intensa.
+Desde la segunda etapa, el director intenta una sola vez crear un obstáculo destructible a distancia segura del jugador. Rechaza colisiones y un radio de 150 u alrededor del portal. El máximo total es cinco, por lo que navegación y dibujo no crecen sin control ni cierran corredores completos. Al comenzar Supervivencia se elige una hora inicial entre mañana gris y fría, mediodía claro, tarde cálida, atardecer naranja y noche azul oscura. Las cinco horas rotan desde ese punto de partida, de modo que cada partida puede abrir con un ambiente distinto; la tormenta final gris azulada siempre ocupa los últimos cinco minutos. La transición visual empieza 18 s antes del límite, pero el nombre cambia exactamente al cumplir cada bloque de cinco minutos. El HUD muestra emoji, nombre, clima activo y tiempo hasta el siguiente cambio. La tormenta final mantiene lluvia fuerte; en Machu combina niebla y lluvia. Garúa, niebla, bruma y nieve permanecen visibles con movimiento reducido, pero con menos elementos y sin deriva intensa.
 
 La presión de enemigos conserva el tope de 80 en Partida rápida. En Supervivencia, desde la segunda etapa el presupuesto añade cuatro rivales por etapa hasta un máximo de 100. Un minijefe reserva solo 15 % de ese presupuesto (85 rivales en la etapa final) y retrasa cada aparición 45 %, evitando el recorte anterior de 56 sin convertir la pantalla en una acumulación sin control.
 
@@ -915,3 +917,40 @@ La comparación reproducible de 20 pares de partidas está en minion-combo-balan
 
 ### Causapedia de minions
 El archivo de amenazas incluye 13 fichas de minions: seis diseños base y siete profesiones. Cada ficha explica su patrón de exploración, cómo esquivarlo y sus tres rangos; los rangos se consultan aunque aún no aparezcan en la partida. Los multiplicadores de vida, velocidad y daño son relativos al mismo enemigo y no sustituyen sus estadísticas variables por tiempo, peso o rol. El alcance mostrado es de activación, no el área de impacto. Las fichas no inician partidas de laboratorio.
+
+
+
+## Mundos heredados de los jefes
+
+En Supervivencia del Caos, vencer a un jefe de portal transforma el mundo de exploración. El jugador reaparece en un escenario infinito inspirado en la arena derrotada y conserva nivel, experiencia, vida, poder, equipo, monedas, llaves, tiempo y progreso de portales. Los enemigos, proyectiles, gemas y obstáculos del mundo anterior se retiran para evitar mezclar coordenadas entre escenarios. El cofre del jefe nace en el nuevo mundo.
+
+Los destinos son: Última Parada para El Chosicano, Distrito del Gabinete para El Gabinete Infinito, Santuario de la Niebla para el Guardián, Azoteas de Lima para el Gallinazo y Archivo del Expediente para Fujimori. Son mapas de descubrimiento y no aparecen para jugadores normales en la selección previa a la partida. Los administradores pueden abrirlos desde el selector Escenario de Preparar partida para jugar una partida completa, o desde el Laboratorio para iniciar una prueba sin premios ni récords. Conservan clima, eventos, minijefes, botín, rutas y los portales posteriores. Partida rápida mantiene el retorno al mapa elegido.
+
+Cada destino usa una gramática ambiental propia. Última Parada forma avenidas con paraderos, barreras y llantas; Distrito del Gabinete combina patios rígidos, archivadores y puestos de control; Santuario de la Niebla reutiliza la piedra tallada y las terrazas de Machu Picchu bajo un perfil de viento más frío; Azoteas de Lima construye recorridos con parapetos, antenas, ventilación y tanques; Archivo del Expediente genera corredores entre estantes, gabinetes, cajas y luces de alerta. Sus trazados, paletas y ambientes sonoros también son distintos.
+Última Parada, Distrito del Gabinete, Azoteas de Lima y Archivo del Expediente tienen atlas ilustrados independientes de seis piezas. El recorrido procedural mezcla las seis siluetas propias de cada destino y conserva un respaldo geométrico únicamente durante la carga. Santuario de la Niebla comparte deliberadamente el atlas de piedra y terrazas de Machu Picchu.
+
+## Evento mayor · Extinción
+
+Extinción amplía el impacto cinematográfico del meteorito en Supervivencia del Caos. El minievento de meteoritos existente conserva su comportamiento y frecuencia; **Extinción completa** puede iniciarse sin espera desde los controles de ambiente del Laboratorio.
+
+La secuencia jugable es **impacto → invasión prehistórica → tres fragmentos → jefe obligatorio → portal opcional**. El impacto se elige cerca de un jugador vivo, limpia únicamente los minions dentro de su radio inmediato y crea un cráter persistente con fuego, ceniza y terreno destruido. En cooperativo se elige al azar uno de los jugadores vivos como referencia visual, sin causar una muerte inevitable durante la cinemática.
+
+Desde el cráter nacen dinosaurios terrestres pequeños, perseguidores veloces y criaturas voladoras. Los nacimientos deben mantenerse cerca del área transformada y respetar el presupuesto global de enemigos. Tres fragmentos rodean el cráter: cada uno fortalece la invasión mientras permanece activo y los tres bloquean el avance de la etapa. Destruirlos es un objetivo obligatorio, con señales de borde y distancia para impedir que el jugador pierda el punto de impacto.
+
+El último fragmento libera una criatura prehistórica mutada. El combate ocurre en una arena temporal alrededor del cráter; saltos, embestidas y proyectiles permiten que el jefe recupere presión si el jugador intenta mantenerse lejos. La arena debe conservar espacio para esquivar y no cerrarse sobre el personaje. La progresión y el reloj del evento se reanudan solamente después de derrotarlo.
+
+La victoria abre un portal opcional a una mazmorra prehistórica corta. Entrar transporta a los jugadores vivos a un mapa de dinosaurios con enemigos y recompensa propios; rechazarlo continúa la partida normal. La recompensa permite elegir una reliquia: **Corazón fósil**, que aumenta vida y regeneración; **Colmillo del depredador**, que concede daño y velocidad temporal después de derrotar enemigos; o **Fragmento celeste**, que puede añadir meteoritos pequeños a los ataques.
+
+La implementación contiene las tres fases verificables: (1) cráter, invasión y fragmentos; (2) jefe, arena y condición obligatoria de victoria; (3) portal, mazmorra y reliquias. En cooperativo se sincronizan el impacto, la invasión, los fragmentos y el jefe desde el servidor; al vencer se acredita la recompensa conjunta y la partida continúa. La mazmorra y sus reliquias permanecen como elección individual para evitar que un jugador decida el desvío por todo el equipo.
+
+## Identidades, versiones y apariencias
+
+Los nombres se presentan como **Identidad · Versión**: Makanaky · La Realeza, Sideral · Espantaminions, Chamelín · Trovo y Kingteka · Amor a los animales. Cada versión puede tener estadísticas, arma, evolución y rareza de causa propias. Una identidad futura puede recibir otra versión sin mezclar su progreso ni sus skins compatibles.
+
+Las skins forman una colección cosmética aparte. Sus rarezas son Común, Rara, Épica, Legendaria y Especial, y no aumentan estadísticas. Cada skin declara con qué versión puede usarse. La apariencia Base siempre viene equipada; una skin solo puede seleccionarse después de obtenerla en el gacha de skins. **Cerdito VTuber** es una skin legendaria exclusiva de Kingteka · Amor a los animales y no se entrega automáticamente. Al equiparla cambia al personaje y su escopeta, representa las balas como cerditos, colorea los impactos, transforma visualmente la bandada de la ulti en pequeños cerditos voladores con alas y reemplaza la carta Q por su ilustración porcina. La cantidad de proyectiles, daño, cadencia, alcance y duración permanecen iguales a los de Kingteka.
+
+## Kingteka · Amor a los animales (UR)
+
+Kingteka pasa a rareza **UR · Supremo** y conserva la ulti Gallinazo en Q. Su Expansión de Dominio se activa por separado con R usando la misma carga, por lo que el jugador elige cuál de las dos habilidades consumir.
+
+**Santuario del Reino Animal** dura nueve segundos tras una entrada de 2,6 s. El escenario recibe un círculo de bosque andino verde y dorado. Cóndores, pumas, osos de anteojos y cuyes espirituales cruzan el área en oleadas: dañan y empujan a los enemigos dentro del santuario, mientras recuperan una fracción moderada de la vida de los aliados vivos. El cierre produce una última oleada más intensa. La expansión no modifica permanentemente daño, vida, velocidad, arma ni estadísticas de Kingteka; la rareza UR sí aplica el crecimiento normal de colección ×1,12.

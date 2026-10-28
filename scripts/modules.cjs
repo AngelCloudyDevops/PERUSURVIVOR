@@ -7,6 +7,7 @@ module.exports = [
     "source": "src/data/powers.js",
     "output": "js/powers.js"
   },
+  {"source":"src/systems/character-skins.js","output":"js/character-skins.js"},
   {"source":"src/data/attributes.js","output":"js/attributes.js"},
   {"source":"src/data/stats.js","output":"js/stats.js"},
   {
@@ -180,6 +181,7 @@ module.exports = [
     "source": "src/rendering/cover-art.js",
     "output": "js/cover-art.js"
   },
+  {"source":"src/rendering/biome-art.js","output":"js/biome-art.js"},
   {
     "source": "src/systems/terrain.js",
     "output": "js/terrain.js"
@@ -313,6 +315,7 @@ module.exports = [
     "source": "src/systems/ability-cards.js",
     "output": "js/ability-cards.js"
   },
+  {"source":"src/systems/kingteka-domain.js","output":"js/kingteka-domain.js"},
   {
     "source": "src/ui/card-gallery.js",
     "output": "js/card-gallery.js"
