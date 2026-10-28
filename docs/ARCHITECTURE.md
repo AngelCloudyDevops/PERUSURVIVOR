@@ -765,3 +765,7 @@ Un personaje se modela en tres niveles. La **identidad** es el nombre estable de
 `P.CharacterSkins` registra versiones y compatibilidades. Equipar una skin solo cambia arte, arma visible, proyectiles, impactos, textos y presentación de la ulti; conserva vida, poder, velocidad, cadencia, alcance, estrellas, mejoras y balance de la versión. La skin **Cerdito VTuber** es legendaria y únicamente admite `kingteka-animals`. Sus perdigones se representan como cerditos y su Gallinazo como cerditos voladores.
 
 Cerdito dejó de ocupar un espacio independiente del roster. Al leer un guardado anterior, `Meta.normalize` convierte su desbloqueo, estrellas, recibos e historial a Kingteka; combina mejoras por máximo, suma partidas/victorias/bajas y conserva los mejores récords. También desbloquea y equipa `cerdito-vtuber`, por lo que el usuario mantiene lo que había conseguido.
+
+## Dominio de Kingteka
+
+`src/systems/kingteka-domain.js` mantiene Santuario del Reino Animal separado de la ulti Gallinazo. En individual recibe R desde `runtime.js`; en cooperativo la petición viaja al servidor y `backend/simulation.cjs` ejecuta y serializa el mismo estado autoritativo. Ambas habilidades comparten la carga de ulti, así que solo una puede activarse por ciclo.

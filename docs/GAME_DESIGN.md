@@ -934,3 +934,9 @@ Cada destino usa una gramática ambiental propia. Última Parada forma avenidas 
 Los nombres se presentan como **Identidad · Versión**: Makanaky · La Realeza, Sideral · Espantaminions, Chamelín · Trovo y Kingteka · Amor a los animales. Cada versión puede tener estadísticas, arma, evolución y rareza de causa propias. Una identidad futura puede recibir otra versión sin mezclar su progreso ni sus skins compatibles.
 
 Las skins forman una colección cosmética aparte. Sus rarezas son Común, Rara, Épica, Legendaria y Especial, y no aumentan estadísticas. Cada skin declara con qué versión puede usarse. **Cerdito VTuber** es una skin legendaria exclusiva de Kingteka · Amor a los animales: cambia al personaje y su escopeta, representa las balas como cerditos, colorea los impactos y transforma visualmente la bandada de la ulti en cerditos voladores. La cantidad de proyectiles, daño, cadencia, alcance y duración permanecen iguales a los de Kingteka.
+
+## Kingteka · Amor a los animales (UR)
+
+Kingteka pasa a rareza **UR · Supremo** y conserva la ulti Gallinazo en Q. Su Expansión de Dominio se activa por separado con R usando la misma carga, por lo que el jugador elige cuál de las dos habilidades consumir.
+
+**Santuario del Reino Animal** dura nueve segundos tras una entrada de 2,6 s. El escenario recibe un círculo de bosque andino verde y dorado. Cóndores, pumas, osos de anteojos y cuyes espirituales cruzan el área en oleadas: dañan y empujan a los enemigos dentro del santuario, mientras recuperan una fracción moderada de la vida de los aliados vivos. El cierre produce una última oleada más intensa. La expansión no modifica permanentemente daño, vida, velocidad, arma ni estadísticas de Kingteka; la rareza UR sí aplica el crecimiento normal de colección ×1,12.

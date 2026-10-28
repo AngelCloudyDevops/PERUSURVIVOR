@@ -364,6 +364,7 @@ body.menu #combat-dock{display:none}
 .ability-ready-embers{position:absolute;z-index:5;left:31%;top:20%;width:4px;height:4px;border-radius:50%;background:#fff8d7;box-shadow:-25px 18px 0 0 #ffcb58,58px 8px 0 -1px #fff0a0,-42px 48px 0 -1px #ff8b38,78px 42px 0 -1px #ff6b30,4px -18px 0 -1px #fff4b8;filter:drop-shadow(0 0 3px #ff8a32);opacity:0;pointer-events:none}
 .ability-card-shell[data-frame-visual="none"] .ability-fire-back,.ability-card-shell[data-frame-visual="none"] .ability-fire-front,.ability-card-shell[data-frame-visual="none"] .ability-ignite-base,.ability-card-shell[data-frame-visual="none"] .ability-ready-embers{display:none}
 .ability-card-shell[data-frame-visual="fire"].is-ready .ability-fire-back,.ability-card-shell[data-frame-visual="fire"].is-ready .ability-fire-front{opacity:.94;transform:scale(1) translateY(0);animation:ultimate-fire-sway 1.42s ease-in-out infinite alternate}
+.ability-card-shell[data-frame-theme="domain-nature"] .ability-fire-back,.ability-card-shell[data-frame-theme="domain-nature"] .ability-fire-front,.ability-card-shell[data-frame-theme="domain-nature"] .ability-ready-embers{filter:hue-rotate(72deg) saturate(.92) brightness(1.12) drop-shadow(0 0 5px #7cff68)}
 .ability-card-shell.is-ready:not(.is-igniting) .ability-ready-embers{animation:ultimate-embers-rise 1.65s ease-out infinite}
 .ability-card-shell[data-frame-visual="fire"].is-ready.is-igniting .ability-fire-back,.ability-card-shell[data-frame-visual="fire"].is-ready.is-igniting .ability-fire-front{animation:ability-fire-ignite .84s cubic-bezier(.16,.7,.22,1) both}
 .ability-card-shell[data-frame-visual="fire"].is-igniting .ability-ignite-base{animation:ability-ignite-base .58s ease-out both}
@@ -604,6 +605,7 @@ body[data-lobby-panel=codex] #game{opacity:.08;filter:blur(8px) saturate(.45)}bo
 .collectible-card-front[data-frame-visual=royal] .collectible-frame{border:5px double #ffdf78;outline:2px solid #7a4519;outline-offset:3px;background:linear-gradient(135deg,#fff3a2 0 5%,transparent 5% 45%,#a86520 45% 50%,transparent 50% 95%,#fff3a2 95%);box-shadow:0 0 0 2px #271408,0 0 20px #f4b83c8f,inset 0 0 13px #ffcf6366}
 .collectible-card-front[data-frame-visual=cosmic] .collectible-frame{border:4px solid #ad7dff;outline:2px solid #58e5ff;outline-offset:3px;background:radial-gradient(circle at 12% 16%,#fff 0 2px,transparent 3px),radial-gradient(circle at 88% 74%,#72efff 0 2px,transparent 3px);box-shadow:0 0 0 2px #291558,0 0 23px #8e4cffaa,inset 0 0 17px #66e4ff66}
 .collectible-card-front[data-frame-visual=steam] .collectible-frame{border:5px ridge #b98a54;outline:2px solid #55d4d8;outline-offset:3px;background:linear-gradient(90deg,#d3a96c 0 5px,transparent 5px calc(100% - 5px),#d3a96c calc(100% - 5px)),linear-gradient(#55d4d8 0 4px,transparent 4px calc(100% - 4px),#55d4d8 calc(100% - 4px));box-shadow:0 0 0 2px #241b19,0 0 19px #54dbe177,inset 0 0 15px #d9b47a55}
+.collectible-card-front[data-frame-visual=nature] .collectible-frame{border:5px double #dfff79;outline:2px solid #287d4d;outline-offset:3px;background:radial-gradient(ellipse at 8% 12%,#e9ff91 0 3px,transparent 4px),radial-gradient(ellipse at 92% 78%,#9fe85e 0 4px,transparent 5px);box-shadow:0 0 0 2px #0c2b1c,0 0 23px #80ef69a0,inset 0 0 17px #d9ff7455}
 
 .collection-card-art{overflow:visible}
 .collection-card-art:after{display:none}
@@ -616,6 +618,7 @@ body[data-lobby-panel=codex] #game{opacity:.08;filter:blur(8px) saturate(.45)}bo
 .collection-card-art[data-frame-visual=royal] .collection-card-frame{border:3px double #ffdc70;outline:1px solid #7a4519;outline-offset:2px;box-shadow:0 0 10px #f4b83c8f,inset 0 0 7px #ffcf6366}
 .collection-card-art[data-frame-visual=cosmic] .collection-card-frame{border:3px solid #ae7cff;outline:1px solid #59e5ff;outline-offset:2px;box-shadow:0 0 11px #8e4cffaa,inset 0 0 8px #66e4ff66}
 .collection-card-art[data-frame-visual=steam] .collection-card-frame{border:3px ridge #c29a66;outline:1px solid #55d4d8;outline-offset:2px;box-shadow:0 0 10px #54dbe177,inset 0 0 7px #d9b47a55}
+.collection-card-art[data-frame-visual=nature] .collection-card-frame{border:3px double #dfff79;outline:1px solid #287d4d;outline-offset:2px;box-shadow:0 0 11px #80ef69a0,inset 0 0 8px #d9ff7455}
 .collection-card-key,.collection-card-edition{z-index:4}
 .card-strip-thumb .collection-card-frame{display:none}
 
@@ -648,6 +651,7 @@ body[data-lobby-panel=codex] #game{opacity:.08;filter:blur(8px) saturate(.45)}bo
 .cause-card-art[data-frame-visual=demon] .cause-card-frame{inset:-12px -10px;background:url('/assets/ui/cirilo-domain-demon-frame-v1.webp') center/100% 100% no-repeat;border:0;filter:drop-shadow(0 0 5px #ff493caa)}
 .cause-card-art[data-frame-visual=royal] .cause-card-frame{border:3px double #ffdc70;outline:1px solid #7a4519;outline-offset:2px;box-shadow:0 0 12px #f4b83c8f,inset 0 0 9px #ffcf6366}
 .cause-card-art[data-frame-visual=cosmic] .cause-card-frame{border:3px solid #ae7cff;outline:1px solid #59e5ff;outline-offset:2px;box-shadow:0 0 13px #8e4cffaa,inset 0 0 10px #66e4ff66}
+.cause-card-art[data-frame-visual=nature] .cause-card-frame{border:3px double #dfff79;outline:1px solid #287d4d;outline-offset:2px;box-shadow:0 0 13px #80ef69aa,inset 0 0 10px #d9ff7466}
 .cause-card-rarity,.cause-card-edition{position:absolute;z-index:5;border:1px solid #e6ca84;background:#10101be8;color:#fff0bc;font:900 7px monospace;letter-spacing:.5px}
 .cause-card-rarity{top:7px;left:7px;display:grid;place-items:center;width:28px;height:28px}
 .cause-card-edition{right:7px;bottom:7px;padding:4px 6px;color:var(--accent)}
@@ -744,6 +748,7 @@ body[data-lobby-panel=home] #menu .home-banner .home-play{display:none!important
 [data-frame-visual=royal] .collection-card-frame,[data-frame-visual=royal] .collectible-frame{--frame-a:#fff1a0;--frame-b:#e9a72f;--frame-c:#6f3a13}
 [data-frame-visual=cosmic] .collection-card-frame,[data-frame-visual=cosmic] .collectible-frame{--frame-a:#71efff;--frame-b:#a66cff;--frame-c:#291469}
 [data-frame-visual=steam] .collection-card-frame,[data-frame-visual=steam] .collectible-frame{--frame-a:#8ffcff;--frame-b:#bd8a59;--frame-c:#205d68}
+[data-frame-visual=nature] .collection-card-frame,[data-frame-visual=nature] .collectible-frame{--frame-a:#efff91;--frame-b:#71d75d;--frame-c:#165438}
 @keyframes card-frame-flow{0%{background-position:0 0;filter:drop-shadow(0 0 2px var(--frame-b));opacity:.76}100%{background-position:100% 0;filter:drop-shadow(0 0 7px var(--frame-b));opacity:1}}
 @keyframes card-frame-sparks{0%{opacity:.42;transform:scale(.985)}100%{opacity:1;transform:scale(1.02)}}
 @media(prefers-reduced-motion:reduce){.collection-card-frame:before,.collectible-frame:before,.collection-card-frame:after,.collectible-frame:after{animation:none}}

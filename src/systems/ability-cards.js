@@ -8,10 +8,12 @@ P.AbilityCards={
   'domain-demon':{family:'domain',visual:'demon'},
   'domain-royal':{family:'domain',visual:'fire',futureVisual:'royal'},
   'domain-cosmic':{family:'domain',visual:'fire',futureVisual:'cosmic'},
-  'domain-steam':{family:'domain',visual:'fire',futureVisual:'steam'}
+  'domain-steam':{family:'domain',visual:'fire',futureVisual:'steam'},
+  'domain-nature':{family:'domain',visual:'fire',futureVisual:'nature'}
  },
  entries:{
   kingteka:{kind:'ultimate',frame:'fire',art:'assets/cards/kingteka-gallinazo-ultimate-fullart-v2.webp'},
+  kingtekaDomain:{characterId:'kingteka',kind:'domain',frame:'domain-nature',state:'kingtekaDomain',label:'SANTUARIO',title:'Santuario del Reino Animal',art:'assets/cards/kingteka-nature-domain-fullart-v1.webp'},
   alberto:{kind:'ultimate',frame:'fire',art:'assets/cards/alberto-tribunal-ultimate-fullart-v1.webp'},
   cristorata:{kind:'ultimate',frame:'fire',art:'assets/cards/cristorata-dragon-ultimate-fullart-v1.webp'},
   cuy:{kind:'ultimate',frame:'fire',art:'assets/cards/cuy-stampede-ultimate-fullart-v1.webp'},
@@ -22,7 +24,7 @@ P.AbilityCards={
   chamelin:{kind:'domain',frame:'domain-steam',state:'chamelinDomain',label:'BAÑO DE TROVO',art:'assets/cards/chamelin-domain-fullart-v1.webp'}
  },
  frame(name){return this.frames[name]||this.frames.none},
- definition(id,kind){const entry=this.entries[id];return entry&&(!kind||entry.kind===kind)?entry:null},
+ definition(id,kind){const direct=this.entries[id],entry=kind==='domain'&&this.entries[id+'Domain']||direct;return entry&&(!kind||entry.kind===kind)?entry:null},
  syncReadyFx(){
   for(const [kind,id] of [['ultimate','ultimate'],['domain','domain-ability']]){const button=P.$('#'+id),slot=P.$('#'+kind+'-ability-slot');if(!slot)continue;const ready=!!button&&!button.hidden&&button.classList.contains('ability-ready'),wasReady=slot.classList.contains('is-ready'),theme=button?.dataset.frameTheme||'none',frame=this.frame(theme);slot.dataset.frameTheme=theme;slot.dataset.frameVisual=frame.visual;if(ready&&!wasReady){slot.classList.remove('is-extinguishing');slot.classList.add('is-ready','is-igniting')}else if(!ready&&wasReady){slot.classList.remove('is-ready','is-igniting');slot.classList.add('is-extinguishing')}}
  },
