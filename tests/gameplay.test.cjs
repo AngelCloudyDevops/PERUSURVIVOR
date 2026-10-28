@@ -9,7 +9,7 @@ const context={console,Math,innerWidth:1280,innerHeight:800,devicePixelRatio:1,r
 context.window=context;vm.createContext(context);
 for(const m of modules)vm.runInContext(fs.readFileSync(path.join(root,m.source),'utf8'),context,{filename:m.source});
 const P=context.P,s=P.state;
-assert.equal(P.Data.characters.length,21);assert.equal(elements.get('#characters').children.length,21);
+assert.equal(P.Data.characters.length,20);assert.equal(elements.get('#characters').children.length,20);
 function target(x,y,hp=2000){return {x,y,hp,max:hp,r:13,speed:0,hit:0,boss:false,heavy:false}}
 const practiceRecord=storage['causas-best'];P.Practice.start();assert.equal(s.player.id,'kingteka');assert(s.practice);assert.equal(s.ultimate.charge,100);assert.equal(s.enemies.length,8);assert(P.Ultimate.activate());P.Practice.recharge();assert.equal(s.ultimate.left,8);assert.equal(P.Ultimate.activate(),false);const practiceMapTime=s.mapTime;for(let n=0;n<250;n++)P.Game.update(.04);assert.equal(s.mapTime,practiceMapTime);assert.equal(s.player.hp,s.player.maxHp);assert.equal(s.enemies.length,8);assert.equal(storage['causas-best'],practiceRecord);assert.equal(s.ultimate.left,0);assert.equal(s.ultimate.charge,100);assert(P.Ultimate.activate());P.Practice.targets();assert.equal(s.enemies.length,8);P.UI.menu();assert(!s.practice);P.Game.start();assert(!s.practice);assert(!s.devRun);assert.equal(s.ultimate.charge,0);console.log('OK práctica: carga gratis, recarga sin interrumpir remate, objetivos, invencibilidad, sin tiempo ni récord y salida limpia');
 for(let i=0;i<P.Data.characters.length;i++){
@@ -136,7 +136,7 @@ function usePower(id){P.UI.menu();P.UI.select(P.Data.characters.findIndex(c=>c.i
 function enemyAtAngle(deg,distance=100){const a=deg*Math.PI/180;return target(Math.cos(a)*distance,Math.sin(a)*distance,2000)}
 let fighter=usePower('g5');s.enemies=[target(45,0),enemyAtAngle(72),enemyAtAngle(73),target(-95,0),target(170,0)];const victims=[...s.enemies];P.Combat.cast();assert.equal(s.shots.length,0);assert(victims[0].hp<2000);assert(victims[1].hp<2000);assert.equal(victims[2].hp,2000);assert.equal(victims[3].hp,2000);assert.equal(victims[4].hp,2000);assert(Math.abs(s.effects.find(e=>e.kind==='kick').arc-145*Math.PI/180)<1e-9);
 fighter=usePower('g5');s.enemies=[target(500,0)];assert.equal(P.Combat.cast(),false);assert.equal(s.effects.length,0);
-for(const [id,count,glyph] of [['kingteka',4,'BULLET'],['cerdito',7,'BULLET'],['najasor',3,'FISH'],['cevichero',2,'ROACH'],['sustento',1,'ROACH'],['shaka',2,'BANANA']]){
+for(const [id,count,glyph] of [['kingteka',4,'BULLET'],['najasor',3,'FISH'],['cevichero',2,'ROACH'],['sustento',1,'ROACH'],['shaka',2,'BANANA']]){
  usePower(id);s.enemies=[target(id==='kingteka'?150:400,0)];assert(P.Combat.cast());assert.equal(s.shots.length,count);assert(s.shots.every(shot=>shot.glyph===glyph));if(id==='najasor'){assert.equal(s.effects.filter(e=>e.kind==='shout'&&e.text==='CPEZ').length,1);P.Combat.cast();assert.equal(s.effects.filter(e=>e.kind==='shout').length,2)}
  if(id==='cevichero'||id==='sustento'){const shot=s.shots[0],oldY=shot.y,vy=shot.vy;P.Combat.tick(.08);assert(Math.abs(shot.y-oldY-vy*.08)>1,'Las cucarachas deben zigzaguear')}
 }
