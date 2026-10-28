@@ -1,0 +1,7 @@
+Use case: identity-preserve
+Asset type: vertical full-art ultimate card for the Cerdito VTuber skin
+Primary request: preserve the approved pink pig mascot head, black T-shirt, tattooed tan arms, dark blue jeans, white sneakers and short black-and-orange shotgun.
+Scene: rear three-quarter hero pose above the Lima coast at orange-purple sunset; a large formation of cute pink winged pig spirits crosses the sky while enemies transform into glowing pig silhouettes through curling pink magic.
+Style: high-detail crisp illustrated pixel-art card matching the existing Gallinazo ultimate full art.
+Palette: hot pink, coral, sunset orange and dusk blue.
+Constraints: one main Cerdito VTuber; small flying pig spirits; no vultures, ordinary birds, text, UI, border, logo or watermark.

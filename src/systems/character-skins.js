@@ -9,7 +9,7 @@ P.CharacterSkins={
   'chamelin-trovo':{id:'chamelin-trovo',characterId:'chamelin',baseName:'Chamelín',title:'Trovo'}
  },
  catalog:{
-  'cerdito-vtuber':{id:'cerdito-vtuber',name:'Cerdito VTuber',rarity:'legendary',characterId:'kingteka',compatibleVersions:['kingteka-animals'],artId:'cerdito',color:'#f0a8c9',atlas:'powers',spriteRow:1,look:'cuy',skinTone:'#edb49c',description:'Transformación completa con arma, cerditos proyectil, impactos rosados y bandada porcina.'}
+  'cerdito-vtuber':{id:'cerdito-vtuber',name:'Cerdito VTuber',rarity:'legendary',characterId:'kingteka',compatibleVersions:['kingteka-animals'],artId:'cerdito',color:'#f0a8c9',atlas:'powers',spriteRow:1,look:'cuy',skinTone:'#edb49c',ultimateArt:'assets/cards/cerdito-vtuber-ultimate-fullart-v1.webp',description:'Transformación completa con arma, cerditos proyectil, impactos rosados, carta propia y bandada porcina.'}
  },
  init(){for(const version of Object.values(this.versions)){const c=P.Data.characters.find(c=>c.id===version.characterId);if(!c)continue;c.baseName=version.baseName;c.versionId=version.id;c.versionName=version.title;c.name=version.baseName+' · '+version.title}for(const c of P.Data.characters)if(c.skinTone===undefined&&c.skin!==undefined){c.skinTone=c.skin;delete c.skin}},
  version(character){return this.versions[typeof character==='string'?character:character?.versionId]||Object.values(this.versions).find(v=>v.characterId===(typeof character==='string'?character:character?.id))||null},

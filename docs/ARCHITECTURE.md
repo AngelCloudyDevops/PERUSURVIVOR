@@ -762,7 +762,7 @@ MinionComboArt selecciona una lámina de seis cuerpos completos por familia/rang
 
 Un personaje se modela en tres niveles. La **identidad** es el nombre estable de la persona o figura (`kingteka`). Una **versión jugable** define su kit, estadísticas, progresión y rareza de causa (`kingteka-animals`, mostrado como **Kingteka · Amor a los animales**). Una **skin** es una apariencia compatible con una versión concreta y tiene su propia rareza cosmética.
 
-`P.CharacterSkins` registra versiones y compatibilidades. Equipar una skin solo cambia arte, arma visible, proyectiles, impactos, textos y presentación de la ulti; conserva vida, poder, velocidad, cadencia, alcance, estrellas, mejoras y balance de la versión. La skin **Cerdito VTuber** es legendaria y únicamente admite `kingteka-animals`. Sus perdigones se representan como cerditos y su Gallinazo como cerditos voladores.
+`P.CharacterSkins` registra versiones y compatibilidades. Equipar una skin solo cambia arte, arma visible, proyectiles, impactos, textos y presentación de la ulti; conserva vida, poder, velocidad, cadencia, alcance, estrellas, mejoras y balance de la versión. La skin **Cerdito VTuber** es legendaria y únicamente admite `kingteka-animals`. Sus perdigones se representan como cerditos, su Gallinazo como cerditos voladores y `ultimateArt` permite que `P.AbilityCards` sustituya la carta Q mientras la skin está equipada.
 
 Cerdito dejó de ocupar un espacio independiente del roster. Al leer un guardado anterior, `Meta.normalize` convierte su desbloqueo, estrellas, recibos e historial a Kingteka; combina mejoras por máximo, suma partidas/victorias/bajas y conserva los mejores récords. También desbloquea y equipa `cerdito-vtuber`, por lo que el usuario mantiene lo que había conseguido.
 
