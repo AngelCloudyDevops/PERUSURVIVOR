@@ -53,6 +53,11 @@ test('Laboratorio: cambiar causa, mapa y jefe, repetir y salir limpia ultis y no
  bench.exit();assert(!bench.active);assert(!P.state.devRun);assert(!P.state.practice);assert.equal(P.state.mode,'menu');assert.equal(P.Lobby.route,'settings');assert.equal(JSON.stringify(P.Meta.data),before);
  P.Game.start({preview:true});assert(!bench.active);assert(!P.state.devRun);assert.equal(P.state.ultimate.charge,0);
 });
+test('Laboratorio admin: permite inspeccionar los cinco escenarios secretos sin mostrarlos en el menú público',()=>{
+ const {P}=new Simulation('campo',[0,1]),bench=P.TestBench;P.WalkArt.readyForStart=()=>true;P.Account.user={role:'admin'};bench.character='cristorata';bench.kind='survival';
+ for(const map of P.Maps.biomes){bench.map=map.id;bench.run();assert.equal(P.Maps.selected,map.id);assert.equal(P.Maps.current(),map);assert(P.state.devRun);assert(P.state.balanceTest)}
+ P.UI.menu();P.Maps.select('campo');P.Account.user={role:'player'};P.Maps.select('azoteas-lima');assert.equal(P.Maps.selected,'campo');
+});
 test('Laboratorio: minions comunes pueden reaparecer o quedar inmortales sin proteger jefes',()=>{
  const {P}=new Simulation('campo',[0,1]),bench=P.TestBench,s=P.state;P.WalkArt.readyForStart=()=>true;P.Terrain.active=()=>[];bench.active=true;s.devRun=true;s.mode='play';
  const immortal=P.Entities.enemy();immortal.hp=immortal.max=20;s.enemies=[immortal];bench.minionMode='immortal';P.Entities.hurt(immortal,999);assert.equal(immortal.hp,1);assert.equal(s.kills,0);assert.equal(bench.respawns.length,0);
