@@ -270,6 +270,18 @@
       "quality": 60
     },
     {
+      "source": "assets/cards/paloma-character-fullart-v1.png",
+      "output": "assets/cards/paloma-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 625517,
+      "optimizedBytes": 262616,
+      "sourceSha256": "c65c14dc67eed0a05c3481707d42da87fd3570416a13ed488b280725bd3d867e",
+      "outputSha256": "e8136e8ed68652b10d5019941d56fad863c31cc3c475b7b0519042d0a781c1e3",
+      "rgbaSha256": "4da1b7738c3869ae40d8287d97a37d39082237e30b2d408065228bde9e013c5d",
+      "quality": 88
+    },
+    {
       "source": "assets/cards/sideral-character-fullart-v1.png",
       "output": "assets/cards/sideral-character-fullart-v1.webp",
       "width": 1024,
@@ -565,7 +577,7 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 88815357,
-  "optimizedBytes": 43420584
+  "originalBytes": 89440874,
+  "optimizedBytes": 43683200
 }
 
