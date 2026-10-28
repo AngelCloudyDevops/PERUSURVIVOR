@@ -28,7 +28,7 @@ test('Impacto cooperativo: el servidor elige un jugador vivo, sincroniza el terr
 
 test('Laboratorio de ambiente: permite forzar cada hora, clima y evento sin alterar el reloj',()=>{
  const {P,s}=ready(),bench=P.TestBench,M=P.MapEvents;bench.active=true;s.devRun=true;s.balanceTest=true;s.mode='play';s.mapTime=42;M.worldPlayed=true;P.Terrain.hit=()=>null;
- assert(P.$('#bench-environment'));assert(P.$('#bench-climate'));assert(P.$('#bench-weather'));assert(P.$('#bench-event'));
+ assert(P.$('#bench-environment'));assert.notEqual(P.$('#bench-environment').hidden,true);assert(P.$('#bench-climate'));assert(P.$('#bench-weather'));assert(P.$('#bench-event'));
  bench.climate='4';bench.weather='storm';assert.equal(P.DayNight.current().label,'NOCHE');assert.equal(P.Weather.current().storm,true);assert.equal(P.Weather.current().intensity,1);assert.equal(s.mapTime,42);
  bench.weather='clear';assert.equal(P.Weather.current().intensity,0);bench.eventChoice='garua';assert(bench.startEvent());assert.equal(M.event.kind,'garua');assert.equal(M.event.phase,'warning');
  for(let i=0;i<180;i++)M.tick(.04);assert.equal(M.event.phase,'active');bench.stopEvent();assert.equal(M.event,null);assert.equal(M.impacts.length,0);
