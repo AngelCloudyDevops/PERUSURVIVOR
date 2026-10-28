@@ -51,6 +51,9 @@ Para añadir una imagen sin regenerar los demás recursos, ejecutar `python scri
 ## Cartas full art de Kingteka
 `public/assets/cards/` conserva las ilustraciones full art PNG maestras y sus copias WebP a calidad 88 para las cartas de escopeta, Gallinazo y golpe de cuerpo. La compresión con pérdida moderada mantiene el tamaño del paquete dentro del límite de despliegue; el arte llena el frente de la carta y una placa inferior mantiene legibles el nombre y el efecto. Generar o verificar estos recursos con `python scripts/optimize-assets.py --quality 88 --only public/assets/cards/kingteka-shotgun-fullart-v1.png public/assets/cards/kingteka-gallinazo-fullart-v1.png public/assets/cards/kingteka-golpe-fullart-v1.png` y añadir `--check` para verificar hashes y dimensiones. Prompts y poses: `docs/kingteka-card-art-prompts.json`.
 
+## Full arts de personajes
+Las cartas de Causa usan fuentes PNG verticales 1024×1536 y copias WebP a calidad 88. Cristorata conserva la pose de paso al frente y mano al pecho de la referencia aportada, pero mantiene la identidad vigente del sprite: cabello negro, camiseta negra, cadena, pantalón gris, zapatillas y micrófono. Como carta C · Común, su escena navideña usa luz cálida, gris acero y pocos efectos, sin el neón intenso reservado para UR. El navegador carga `cristorata-character-fullart-v1.webp`; `docs/asset-optimization.json` registra fuente, salida, calidad, dimensiones y hashes.
+
 ### Cartas de ulti y dominio
 Las cartas HUD Q/R reutilizan el patrón de `src/systems/ability-cards.js`: ilustración vertical, placa inferior del botón, progreso dorado y marco temático cuando está lista. Artes propias (PNG fuente 512×768 y WebP registrado a calidad 60): Alberto/Tribunal, Cristorata/Dragón, Cuy/Estampida, Paloma/Bandada, Makanaky/Dominio, Sideral/Dominio y Chamelín/Baño de Trovo. Kingteka conserva su arte full art existente. Cirilo añade `assets/ui/cirilo-domain-demon-frame-v1`: fuente PNG transparente 256×384, WebP de ejecución calidad 88 y prompt versionado; el centro conserva alfa cero y las capas CSS recortan cuernos, alas y base sin duplicar descargas. Para sumar una ulti futura, registra personaje y ruta WebP en `P.AbilityCards.entries` y conecta su HUD a `apply`; para un dominio, registra también `state`, `label` y un tema en `P.AbilityCards.frames`. Todas las fuentes y optimizaciones constan en `docs/asset-optimization.json`.
 
@@ -61,3 +64,4 @@ Gallinazo del Caos: public/assets/bosses/gallinazo-atlas-v1.png, seis poses en t
 
 ## Minijefes de superficie
 `public/assets/minibosses/{fiscalizador,paloma,huaco}-v1.png`: cuatro poses transparentes por personaje, generadas con la herramienta integrada image_gen. Prompts completos y procedencia en `public/assets/minibosses/prompts.json`. El motor aísla cada figura por alfa; conserva el sprite entero para reposo, marcha, ataque y derrota.
+

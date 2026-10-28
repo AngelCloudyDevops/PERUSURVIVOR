@@ -613,8 +613,10 @@ Tres cartas automáticas y conservables, sin azar: Aguante impone 45 s de combat
 
 Perfil de jugador: monedas, colección con bloqueos, partidas, victorias, bajas, mejor nivel, mejor tiempo y mejor racha. Invitado nuevo conserva cuatro causas iniciales (Cristorata, Cuy, Paloma y Makanaky); las ganancias anteriores no se borran. Admin es una cuenta de pruebas: todos los personajes a 5★, mejoras a rango 5, objetos disponibles y saldo mínimo de 1.000.000. No se inventan victorias ni partidas. Laboratorio y prácticas completas se ocultan a invitados/jugadores. Estas ventajas no añaden permisos para ver o modificar cuentas ajenas.
 
-### Rareza UR de Makanaky
-Makanaky pasa a UR · Supremo, por encima de SSR, sin cambiar sus estadísticas ni su desbloqueo gratuito. La colección permite filtrar UR y la coloca primero al ordenar por rareza (después de los listos para ascender). Probabilidades base: C 60 %, R 27 %, SR 9 %, SSR 3 %, UR 1 %. UR reinicia ambas garantías; la garantía de 30 asegura SSR o superior y nunca rebaja un UR natural. Los recibos antiguos conservan su rareza histórica.
+### Rareza UR y lenguaje visual de colección
+Makanaky, Sideral, Chamelín Trovo y CiriloTV pertenecen oficialmente a UR · Supremo, por encima de SSR. CiriloTV se declara directamente en el catálogo UR; su sistema propio ya no cambia su rareza durante la carga. La colección permite filtrar UR y la coloca primero al ordenar por rareza (después de los listos para ascender). Probabilidades base: C 60 %, R 27 %, SR 9 %, SSR 3 %, UR 1 %. UR reinicia ambas garantías; la garantía de 30 asegura SSR o superior y nunca rebaja un UR natural. Los recibos antiguos conservan su rareza histórica.
+
+Las full arts comparten dibujo caricaturesco, contorno oscuro, sombreado en bloques y textura de píxel fino. La espectacularidad progresa por rareza: C usa gris acero y una escena simple; R, verde esmeralda y acentos leves; SR, azul eléctrico, pose dinámica y efectos visibles; SSR, amarillo dorado, fondo elaborado y contraste fuerte; UR, magenta/violeta neón y el máximo nivel de detalle y efectos. La identidad del personaje conserva sus colores propios; el color de rareza guía la luz, el ambiente y el marco sin teñir toda la imagen.
 
 
 ### Makanaky cuerpo a cuerpo
@@ -915,3 +917,4 @@ La comparación reproducible de 20 pares de partidas está en minion-combo-balan
 
 ### Causapedia de minions
 El archivo de amenazas incluye 13 fichas de minions: seis diseños base y siete profesiones. Cada ficha explica su patrón de exploración, cómo esquivarlo y sus tres rangos; los rangos se consultan aunque aún no aparezcan en la partida. Los multiplicadores de vida, velocidad y daño son relativos al mismo enemigo y no sustituyen sus estadísticas variables por tiempo, peso o rol. El alcance mostrado es de activación, no el área de impacto. Las fichas no inician partidas de laboratorio.
+

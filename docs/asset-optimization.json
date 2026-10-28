@@ -138,6 +138,18 @@
       "quality": 90
     },
     {
+      "source": "assets/cards/cristorata-character-fullart-v1.png",
+      "output": "assets/cards/cristorata-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 650561,
+      "optimizedBytes": 281396,
+      "sourceSha256": "e8965ab9942bb149dfcec82a362aa8500377efcf9be47b97cadd191e8380a837",
+      "outputSha256": "f6abef5f6f04ce8d6bbe398706cb6e0e65ec966a521c33161f389b16137d22b4",
+      "rgbaSha256": "4e88cb05f663ed382e4c6db6e53aaace8dba6eb210590ecb766721619783e2b7",
+      "quality": 88
+    },
+    {
       "source": "assets/cards/cristorata-dragon-ultimate-fullart-v1.png",
       "output": "assets/cards/cristorata-dragon-ultimate-fullart-v1.webp",
       "width": 512,
@@ -541,6 +553,7 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 87534761,
-  "optimizedBytes": 42919080
+  "originalBytes": 88185322,
+  "optimizedBytes": 43200476
 }
+
