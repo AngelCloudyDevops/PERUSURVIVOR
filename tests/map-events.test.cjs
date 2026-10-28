@@ -32,5 +32,6 @@ test('Laboratorio de ambiente: permite forzar cada hora, clima y evento sin alte
  bench.climate='4';bench.weather='storm';assert.equal(P.DayNight.current().label,'NOCHE');assert.equal(P.Weather.current().storm,true);assert.equal(P.Weather.current().intensity,1);assert.equal(s.mapTime,42);
  bench.weather='clear';assert.equal(P.Weather.current().intensity,0);bench.eventChoice='garua';assert(bench.startEvent());assert.equal(M.event.kind,'garua');assert.equal(M.event.phase,'warning');
  for(let i=0;i<180;i++)M.tick(.04);assert.equal(M.event.phase,'active');bench.stopEvent();assert.equal(M.event,null);assert.equal(M.impacts.length,0);
+ s.mode='upgrade';bench.eventChoice='world';bench.hud();assert.notEqual(P.$('#bench-event-start').disabled,true);assert(bench.startEvent());assert(M.cinematic(),'El evento queda preparado durante una mejora');s.mode='play';assert(M.tick(.04));bench.stopEvent();
  bench.climate='auto';bench.weather='auto';assert.equal(bench.climatePreview(),null);assert.equal(bench.weatherPreview(),null);
 });
