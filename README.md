@@ -522,6 +522,14 @@ La colección permite combinar rareza, estrellas exactas (1–5) y Solo listos p
 
 Etiquetas de colección: C · Común, R · Raro, SR · Súper raro, SSR · Ultra raro y UR · Supremo. SR corresponde al antiguo Épico y SSR al antiguo Legendario. Las estrellas siguen siendo progreso separado, pero su ganancia usa el multiplicador de crecimiento de la rareza.
 
+### Personajes base y versiones
+
+La colección distingue entre una **causa base** y sus **versiones o skins**. Una versión puede conservar sprites, ataques y evoluciones propios, pero no ocupa otra entrada del gacha: comparte desbloqueo, rareza, copias y estrellas con su causa base. La identidad canónica se registra en `P.Gacha.variants`; los menús nuevos deben consultar `P.Gacha.canonical(id)` en vez de contar una versión como otro personaje.
+
+- **Kingteka · Amor a los animales** es una causa **UR · Supremo**.
+- **Cerdito VTuber** (`cerdito`) es una versión/skin jugable de Kingteka (`kingteka`). Mantiene su presentación y habilidades propias, pero comparte con Kingteka el desbloqueo y la progresión permanente.
+- Los guardados antiguos que contengan `cerdito` siguen siendo reconocidos mediante la resolución canónica; no se elimina su progreso.
+
 ## Ultis del Cuy y la Paloma
 Cuy Supremo: Estampida Suprema (5 s, daño de área y coraza del 50 %). Paloma del Centro: Bandada del Centro (6 s, espiral de palomas y remate de área). Carga con 20 bajas; pulsa Q o el botón. En Ajustes están las dos prácticas gratuitas, con recarga y cambio directo de personaje. Conservan los sprites cartoon pixel art actuales.
 
