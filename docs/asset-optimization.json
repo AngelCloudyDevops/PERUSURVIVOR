@@ -198,6 +198,18 @@
       "quality": 60
     },
     {
+      "source": "assets/cards/kingteka-character-fullart-v1.png",
+      "output": "assets/cards/kingteka-character-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2831179,
+      "optimizedBytes": 442354,
+      "sourceSha256": "031b8ac47c56ee0a7ae5621d35ab727eb904c75384d7b33a2abce37db87fff0e",
+      "outputSha256": "9d5e5b3fc9396a966d553c721b1924a208b4ee6d48b0c8043e26e9beddde1929",
+      "rgbaSha256": "324680560eb24c811ce7315b3d982a6de5eb39e622bc115d440e374a830f904a",
+      "quality": 88
+    },
+    {
       "source": "assets/cards/kingteka-gallinazo-fullart-v1.png",
       "output": "assets/cards/kingteka-gallinazo-fullart-v1.webp",
       "width": 1024,
@@ -589,7 +601,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 89721079,
-  "optimizedBytes": 43685092
+  "originalBytes": 92552258,
+  "optimizedBytes": 44127446
 }
-
