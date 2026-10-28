@@ -929,6 +929,20 @@ Los destinos son: Última Parada para El Chosicano, Distrito del Gabinete para E
 Cada destino usa una gramática ambiental propia. Última Parada forma avenidas con paraderos, barreras y llantas; Distrito del Gabinete combina patios rígidos, archivadores y puestos de control; Santuario de la Niebla reutiliza la piedra tallada y las terrazas de Machu Picchu bajo un perfil de viento más frío; Azoteas de Lima construye recorridos con parapetos, antenas, ventilación y tanques; Archivo del Expediente genera corredores entre estantes, gabinetes, cajas y luces de alerta. Sus trazados, paletas y ambientes sonoros también son distintos.
 Última Parada, Distrito del Gabinete, Azoteas de Lima y Archivo del Expediente tienen atlas ilustrados independientes de seis piezas. El recorrido procedural mezcla las seis siluetas propias de cada destino y conserva un respaldo geométrico únicamente durante la carga. Santuario de la Niebla comparte deliberadamente el atlas de piedra y terrazas de Machu Picchu.
 
+## Evento mayor futuro · Extinción
+
+Extinción amplía el impacto cinematográfico del meteorito en Supervivencia del Caos. Es un diseño aprobado y pendiente de implementación; el minievento de meteoritos existente conserva por ahora su comportamiento y frecuencia.
+
+La secuencia jugable es **impacto → invasión prehistórica → tres fragmentos → jefe obligatorio → portal opcional**. El impacto se elige cerca de un jugador vivo, limpia únicamente los minions dentro de su radio inmediato y crea un cráter persistente con fuego, ceniza y terreno destruido. En cooperativo se elige al azar uno de los jugadores vivos como referencia visual, sin causar una muerte inevitable durante la cinemática.
+
+Desde el cráter nacen dinosaurios terrestres pequeños, perseguidores veloces y criaturas voladoras. Los nacimientos deben mantenerse cerca del área transformada y respetar el presupuesto global de enemigos. Tres fragmentos rodean el cráter: cada uno fortalece la invasión mientras permanece activo y los tres bloquean el avance de la etapa. Destruirlos es un objetivo obligatorio, con señales de borde y distancia para impedir que el jugador pierda el punto de impacto.
+
+El último fragmento libera una criatura prehistórica mutada. El combate ocurre en una arena temporal alrededor del cráter; saltos, embestidas y proyectiles permiten que el jefe recupere presión si el jugador intenta mantenerse lejos. La arena debe conservar espacio para esquivar y no cerrarse sobre el personaje. La progresión y el reloj del evento se reanudan solamente después de derrotarlo.
+
+La victoria abre un portal opcional a una mazmorra prehistórica corta. Entrar transporta a los jugadores vivos a un mapa de dinosaurios con enemigos y recompensa propios; rechazarlo continúa la partida normal. La recompensa permite elegir una reliquia: **Corazón fósil**, que aumenta vida y regeneración; **Colmillo del depredador**, que concede daño y velocidad temporal después de derrotar enemigos; o **Fragmento celeste**, que puede añadir meteoritos pequeños a los ataques.
+
+La entrega se separa en tres fases verificables: (1) cráter, invasión y fragmentos; (2) jefe, arena y condición obligatoria de victoria; (3) portal, mazmorra y reliquias. Cada fase debe incluir una entrada del Laboratorio para probarla sin esperar su aparición aleatoria ni guardar premios o récords.
+
 ## Identidades, versiones y apariencias
 
 Los nombres se presentan como **Identidad · Versión**: Makanaky · La Realeza, Sideral · Espantaminions, Chamelín · Trovo y Kingteka · Amor a los animales. Cada versión puede tener estadísticas, arma, evolución y rareza de causa propias. Una identidad futura puede recibir otra versión sin mezclar su progreso ni sus skins compatibles.
