@@ -33,5 +33,6 @@ test('Laboratorio de ambiente: permite forzar cada hora, clima y evento sin alte
  bench.weather='clear';assert.equal(P.Weather.current().intensity,0);bench.eventChoice='garua';assert(bench.startEvent());assert.equal(M.event.kind,'garua');assert.equal(M.event.phase,'warning');
  for(let i=0;i<180;i++)M.tick(.04);assert.equal(M.event.phase,'active');bench.stopEvent();assert.equal(M.event,null);assert.equal(M.impacts.length,0);
  s.mode='upgrade';bench.eventChoice='world';bench.hud();assert.notEqual(P.$('#bench-event-start').disabled,true);assert(bench.startEvent());assert(M.cinematic(),'El evento queda preparado durante una mejora');s.mode='play';assert(M.tick(.04));bench.stopEvent();
+ s.balanceTest=false;s.practice=true;bench.climate='5';bench.weather='auto';bench.eventChoice='kite';bench.hud();assert.notEqual(P.$('#bench-event-start').disabled,true,'El botón funciona también en Práctica');assert.equal(P.DayNight.current().label,'TORMENTA FINAL');assert.equal(P.Weather.current().storm,true);assert(bench.startEvent());assert.equal(M.event.kind,'kite');M.tick(.04);assert.equal(M.event.phase,'warning');bench.stopEvent();
  bench.climate='auto';bench.weather='auto';assert.equal(bench.climatePreview(),null);assert.equal(bench.weatherPreview(),null);
 });

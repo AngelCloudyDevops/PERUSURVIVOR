@@ -74,10 +74,10 @@ P.MapEvents={
   },
   tick(dt){
     const s=P.state;
-    if(s.mode!=='play'||s.devRun&&!s.balanceTest||P.Performance?.active)return false;
+    if(s.mode!=='play'||s.devRun&&!s.balanceTest&&!P.TestBench?.active||P.Performance?.active)return false;
     if(this.event?.world)return this.tickWorld(dt);
     if(!this.worldPlayed&&s.mapTime>=this.worldDue()&&!this.blocked()&&!s.miniWarning){if(this.startWorld())return true}
-    if(!P.RunMode?.isChaos()&&!s.balanceTest)return false;
+    if(!P.RunMode?.isChaos()&&!s.balanceTest&&!P.TestBench?.active)return false;
     let e=this.event;
     if(!e){if(this.blocked()||s.miniWarning)return;if(!this.miniPlayed&&s.mapTime>=this.miniDue){this.start(true);return}if(s.mapTime<this.nextAt)return;this.start();return}
     // Los portales pausan el reto; el jefe final cancela cualquier actividad pendiente.
