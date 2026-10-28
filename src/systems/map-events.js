@@ -24,7 +24,7 @@ P.MapEvents={
   blocked(){const s=P.state;return s.mode!=='play'||s.encounter||s.bossSpawned||s.mapTime>=P.Data.arena.duration||s.portal?.open||P.RunMode.portalWarning(s.mapTime)>=0||P.Market?.shopping||P.Market?.available?.()||P.Exploration?.station?.phase==='active'||P.Performance?.active||P.Progression?.cinematicOnly?.()||s.enemies.some(e=>e.hp>0&&(e.miniboss||e.mapBoss||e.boss))},
   safePoint(x,y){return !P.Terrain.hit(x,y,44)&&Math.hypot(x-P.Encounters.definition().portal.x,y-P.Encounters.definition().portal.y)>180},
   start(miniGame=false){
-    const s=P.state,map=P.Maps.current().id,options=this.catalog[map]||this.catalog.campo;
+    const s=P.state,map=P.Maps.current().eventBase||P.Maps.current().id,options=this.catalog[map]||this.catalog.campo;
     let definition=options[this.serial%options.length];const angle=(this.serial*2.399+P.Chunks.hash(Math.floor(s.player.x/768),Math.floor(s.player.y/768),this.serial)*Math.PI*2);
     let point=null;
     for(let i=0;i<10;i++){const a=angle+i*2.399,d=260+(i%3)*48,x=Math.round(s.player.x+Math.cos(a)*d),y=Math.round(s.player.y+Math.sin(a)*d*.7);if(this.safePoint(x,y)){point={x,y};break}}

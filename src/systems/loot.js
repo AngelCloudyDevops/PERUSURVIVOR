@@ -12,6 +12,7 @@ battery:{name:'Batería externa',description:'Reduce un 15% la recarga entre ata
 },
 // Seeded per run: revisiting a sector never rerolls its chest or reward.
 reset(){this.chests=[];this.debris=[];this.pending=null;this.opened=new Set();this.signature='';this.seed=Math.floor(Math.random()*4294967296)>>>0;this.spawn={x:P.state.player.x,y:P.state.player.y};this.bossDropped=false;this.message='';this.messageTime=0;P.state.coins=0;P.state.keys={rare:0,legendary:0};this.nextKeeper={rare:30,legendary:90};this.lockedChest=null;const p=P.state.player;p.equipment=null;p.equipmentReduction=0;this.sync()},
+relocate(){this.chests=[];this.debris=[];this.pending=null;this.signature='';this.spawn={x:P.state.player.x,y:P.state.player.y};this.bossDropped=false;this.lockedChest=null},
 roll(x,y,salt){return P.Chunks.hash(x,y,(this.seed+salt)|0)/4294967296},
 chooseRarity(roll,distance){return roll>=.98&&distance>=1800?'legendary':roll>=.72?'rare':'common'},
 safe(x,y){const cx=Math.floor(x/512),cy=Math.floor(y/512),props=[...P.Terrain.originProps];for(let yy=cy-1;yy<=cy+1;yy++)for(let xx=cx-1;xx<=cx+1;xx++)props.push(...P.Chunks.get(xx,yy).props);if(props.some(o=>(o.solid||o.kind==='crate')&&Math.abs(x-o.x)<o.w/2+30&&Math.abs(y-o.y)<o.h/2+30))return false;const f=P.Maps.current().fountain;if(f&&Math.hypot((x-f.x)/(f.rx+30),(y-f.y)/(f.ry+30))<1)return false;const portal=P.Encounters.definition().portal;return Math.hypot(x-portal.x,y-portal.y)>140},

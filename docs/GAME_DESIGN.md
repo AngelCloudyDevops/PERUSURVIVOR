@@ -918,3 +918,10 @@ La comparación reproducible de 20 pares de partidas está en minion-combo-balan
 ### Causapedia de minions
 El archivo de amenazas incluye 13 fichas de minions: seis diseños base y siete profesiones. Cada ficha explica su patrón de exploración, cómo esquivarlo y sus tres rangos; los rangos se consultan aunque aún no aparezcan en la partida. Los multiplicadores de vida, velocidad y daño son relativos al mismo enemigo y no sustituyen sus estadísticas variables por tiempo, peso o rol. El alcance mostrado es de activación, no el área de impacto. Las fichas no inician partidas de laboratorio.
 
+
+
+## Mundos heredados de los jefes
+
+En Supervivencia del Caos, vencer a un jefe de portal transforma el mundo de exploración. El jugador reaparece en un escenario infinito inspirado en la arena derrotada y conserva nivel, experiencia, vida, poder, equipo, monedas, llaves, tiempo y progreso de portales. Los enemigos, proyectiles, gemas y obstáculos del mundo anterior se retiran para evitar mezclar coordenadas entre escenarios. El cofre del jefe nace en el nuevo mundo.
+
+Los destinos son: Última Parada para El Chosicano, Distrito del Gabinete para El Gabinete Infinito, Santuario de la Niebla para el Guardián, Azoteas de Lima para el Gallinazo y Archivo del Expediente para Fujimori. Son mapas de descubrimiento y no aparecen en la selección previa a la partida. Conservan clima, eventos, minijefes, botín, rutas y los portales posteriores. Partida rápida mantiene el retorno al mapa elegido.
