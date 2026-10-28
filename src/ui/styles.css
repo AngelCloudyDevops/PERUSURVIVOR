@@ -807,3 +807,8 @@ body[data-lobby-panel=home] #menu .home-banner .home-play{display:none!important
 @keyframes cirilo-horns-glow{0%{opacity:.18;transform:scale(.992) translateY(1px)}100%{opacity:.62;transform:scale(1.018) translateY(-2px)}}
 @keyframes cirilo-frame-embers{0%{opacity:.38;transform:translateY(3px) scale(.98)}100%{opacity:1;transform:translateY(-4px) scale(1.025)}}
 @media(prefers-reduced-motion:reduce){[data-frame-visual=demon] .collection-card-frame,[data-frame-visual=demon] .collectible-frame,[data-frame-visual=demon] .collection-card-frame:before,[data-frame-visual=demon] .collectible-frame:before,[data-frame-visual=demon] .collection-card-frame:after,[data-frame-visual=demon] .collectible-frame:after{animation:none!important}}
+
+/* El estado ambiental debe leerse de un vistazo durante los 30 minutos. */
+#hud #time-of-day{top:91px;padding:4px 8px;border:1px solid #d9c98a66;border-radius:999px;background:#111c2bd9;color:#fff0bd;font-size:9px;font-weight:800;white-space:nowrap;text-shadow:1px 1px #07101d}
+#hud #boss-countdown{top:119px}
+@media(max-width:760px){#hud #time-of-day{top:82px;max-width:64vw;overflow:hidden;padding:3px 6px;font-size:7px;text-overflow:ellipsis}#hud #boss-countdown{top:108px}}

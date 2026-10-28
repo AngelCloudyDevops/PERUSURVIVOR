@@ -68,7 +68,7 @@ test('Motivos sintetizados distintos y silencio respetado',()=>{
 });
 
 test('Legibilidad: spawn reducido, exclusión, conservación y retorno normal',()=>{
- const {P}=new Simulation('campo',[0,6]),M=P.Minibosses,s=P.state;const normal=M.spawnPolicy(),e=M.create('campo',{x:0,y:0});s.enemies=[e];const reduced=M.spawnPolicy();assert.equal(reduced.interval,P.Difficulty.current().interval*1.6);assert(reduced.cap<normal.cap);assert(!M.spawnSafe({x:100,y:0,r:13}));assert(M.spawnSafe({x:500,y:0,r:13}));
+ const {P}=new Simulation('campo',[0,6]),M=P.Minibosses,s=P.state;const normal=M.spawnPolicy(),e=M.create('campo',{x:0,y:0});s.enemies=[e];const reduced=M.spawnPolicy();assert.equal(reduced.interval,P.Difficulty.current().interval*1.45);assert.equal(reduced.cap,Math.floor(normal.cap*.85));assert(!M.spawnSafe({x:100,y:0,r:13}));assert(M.spawnSafe({x:500,y:0,r:13}));
  s.devRun=false;s.spawn=0;s.enemies.push(...Array.from({length:normal.cap},()=>({hp:100,x:10,y:10})));const count=s.enemies.length;M.tick=()=>{};P.Systems.spawn(.04);assert.equal(s.enemies.length,count);e.hp=0;assert.equal(M.spawnPolicy().interval,normal.interval);
 });
 test('Premio y resumen: una vez por ventana, mitigación real y sin premio de práctica',()=>{
