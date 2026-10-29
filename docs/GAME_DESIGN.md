@@ -939,9 +939,9 @@ Desde el cráter nacen dinosaurios terrestres pequeños, perseguidores veloces y
 
 El último fragmento libera una criatura prehistórica mutada. El combate ocurre en una arena temporal alrededor del cráter; saltos, embestidas y proyectiles permiten que el jefe recupere presión si el jugador intenta mantenerse lejos. La arena debe conservar espacio para esquivar y no cerrarse sobre el personaje. La progresión y el reloj del evento se reanudan solamente después de derrotarlo.
 
-La victoria abre un portal opcional a una mazmorra prehistórica corta. Entrar transporta a los jugadores vivos a un mapa de dinosaurios con enemigos y recompensa propios; rechazarlo continúa la partida normal. La recompensa permite elegir una reliquia: **Corazón fósil**, que aumenta vida y regeneración; **Colmillo del depredador**, que concede daño y velocidad temporal después de derrotar enemigos; o **Fragmento celeste**, que puede añadir meteoritos pequeños a los ataques.
+La victoria abre un portal opcional a una mazmorra prehistórica corta. Entrar transporta a los jugadores a un mapa de dinosaurios con enemigos y recompensa propios; rechazarlo continúa la partida normal. La recompensa permite elegir una reliquia: **Corazón fósil**, que aumenta vida y regeneración; **Colmillo del depredador**, que concede daño y velocidad temporal después de derrotar enemigos; o **Fragmento celeste**, que puede añadir meteoritos pequeños a los ataques.
 
-La implementación contiene las tres fases verificables: (1) cráter, invasión y fragmentos; (2) jefe, arena y condición obligatoria de victoria; (3) portal, mazmorra y reliquias. En cooperativo se sincronizan el impacto, la invasión, los fragmentos y el jefe desde el servidor; al vencer se acredita la recompensa conjunta y la partida continúa. La mazmorra y sus reliquias permanecen como elección individual para evitar que un jugador decida el desvío por todo el equipo.
+La implementación contiene las tres fases verificables: (1) cráter, invasión y fragmentos; (2) jefe, arena y condición obligatoria de victoria; (3) portal, mazmorra y reliquias. En cooperativo el servidor sincroniza toda la secuencia. Al tocar el portal, la sala se pausa y ambos jugadores votan: solo entran si los dos aceptan; un rechazo cierra el portal. Al completar la mazmorra ambos votan una reliquia compartida; si eligen opciones distintas, prevalece el voto del anfitrión. La misma reliquia se aplica a los dos jugadores y sus efectos se calculan de forma independiente por propietario.
 
 ## Identidades, versiones y apariencias
 
@@ -954,3 +954,27 @@ Las skins forman una colección cosmética aparte. Sus rarezas son Común, Rara,
 Kingteka pasa a rareza **UR · Supremo** y conserva la ulti Gallinazo en Q. Su Expansión de Dominio se activa por separado con R usando la misma carga, por lo que el jugador elige cuál de las dos habilidades consumir.
 
 **Santuario del Reino Animal** dura nueve segundos tras una entrada de 2,6 s. El escenario recibe un círculo de bosque andino verde y dorado. Cóndores, pumas, osos de anteojos y cuyes espirituales cruzan el área en oleadas: dañan y empujan a los enemigos dentro del santuario, mientras recuperan una fracción moderada de la vida de los aliados vivos. El cierre produce una última oleada más intensa. La expansión no modifica permanentemente daño, vida, velocidad, arma ni estadísticas de Kingteka; la rareza UR sí aplica el crecimiento normal de colección ×1,12.
+
+## Evento mundial Extinción: oleadas, jefes y mazmorra
+
+Extinción reemplaza temporalmente la presión normal de la partida por una secuencia cerrada y legible:
+
+1. La cinemática del meteorito pausa el reloj. El impacto elimina todos los minions comunes presentes, transforma el terreno y sella los cofres hasta terminar o rechazar el evento.
+2. La invasión tiene tres oleadas fijas de tres dinosaurios. No se añaden minions ordinarios mientras esté activa.
+   - Oleada 1: Anquilosaurio tanque y dos Velociraptores de daño.
+   - Oleada 2: Pterosaurio de apoyo, Dilofosaurio debilitador y Velociraptor.
+   - Oleada 3: Anquilosaurio, Parasaurolophus sanador y Velociraptor.
+3. Los jugadores que se alejan demasiado del cráter reciben meteoritos telegrafiados. El centro inflige daño y el borde aplica ralentización; nunca hay más de tres avisos simultáneos.
+4. Tras destruir los tres fragmentos aparece el **Tirano del Cráter**, un T-Rex de gran escala. Alterna embestida, rugido radial y salto/meteorito. Al 50 % de vida entra en fase II y acelera sus patrones.
+5. Al derrotarlo se abre el portal prehistórico. En cooperativo, el contacto de cualquiera inicia la decisión compartida; ambos deben aceptar.
+6. La Era Perdida contiene 15 dinosaurios. Al terminar aparece el **Triceratops Fósil**, jefe final obligatorio de la mazmorra. La reliquia solo se ofrece después de derrotarlo.
+
+Roles de los dinosaurios:
+
+- Tanque: armadura frontal fuerte, daño extra al atacarlo por la espalda y embestida que choca con el terreno.
+- Daño: salto/embestida rápida con aviso corto y recuperación.
+- Apoyo: acelera a la manada y ejecuta un picado.
+- Debilitador: dispara veneno y aplica ralentización temporal.
+- Sanador: restaura un 12 % de vida a aliados cercanos; los impactos retrasan su siguiente pulso.
+
+El T-Rex es el jefe del mundo exterior. El Triceratops Fósil es el jefe final de la mazmorra; separar ambos encuentros conserva un clímax antes del portal y otro antes de la recompensa.
