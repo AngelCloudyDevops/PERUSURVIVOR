@@ -35,6 +35,10 @@ test('Música opcional: carga diferida, un reproductor, pausa, volumen, persiste
  select.value='tema1';select.onchange();b.pause();await Promise.resolve();assert(player.paused,'Una promesa tardía no continúa tras pausar');deny=true;b.sync(true);await Promise.resolve();await Promise.resolve();const plays=player.plays;b.sync(true);assert.equal(player.plays,plays,'No reintentar autoplay bloqueado cada fotograma');deny=false;b.gesture();b.sync(true);await Promise.resolve();player.events.error();assert(b.useSynth(),'Error de pista recupera música original');assert(player.paused);assert.match(P.$('#music-status').textContent,/original/);
 });
 test('El HTML incluye los controles que el mercado necesita al iniciar',()=>{const html=fs.readFileSync(path.join(root,'src/index.html'),'utf8');for(const id of ['market-open','market-status'])assert(html.includes('id="'+id+'"'),id)});
+test('El buzón aparece en el menú moderno y sincroniza su contador de no leídos',()=>{
+ const lobby=fs.readFileSync(path.join(root,'src/ui/lobby.js'),'utf8'),inbox=fs.readFileSync(path.join(root,'src/ui/inbox.js'),'utf8');
+ assert.match(lobby,/hub-inbox-open/);assert.match(lobby,/Buzón/);assert.match(inbox,/this\.buttons=\[this\.button,this\.hubButton\]/);assert.match(inbox,/for\(const badge of this\.badges\)/);
+});
 test('El vestíbulo completo conecta las siete áreas y conserva enlaces sociales seguros',()=>{
  const source=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');
  for(const route of ['gacha-hub','coop-hub','growth','prepare','profile-hub','help'])assert(source.includes("panel('"+route+"'"),route);
