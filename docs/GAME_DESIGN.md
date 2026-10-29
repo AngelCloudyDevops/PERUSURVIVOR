@@ -18,6 +18,19 @@ La estructura canónica de cada personaje está documentada en [README — Contr
 
 Una pasiva debe tener condición, efecto, límite, reinicio e indicador visibles. No se aceptan aumentos permanentes sin condición ni estadísticas decorativas. Poder estimado es un resumen de progreso del mismo personaje y no una estadística de combate. Rareza regula colección y crecimiento, no poder directo.
 
+### Taxonomía obligatoria de personajes
+
+`P.CharacterProfiles.taxonomies` es la única fuente de nombres para raza/especie, roles, alcance, clase de daño, etiquetas funcionales y dificultad. Cada personaje declara una entrada explícita en `P.CharacterProfiles.identities`; la interfaz traduce los identificadores centrales y no escribe nombres de rol ad hoc.
+
+- Razas/especies: Humano, Animal, Criatura / meme, Sobrenatural y Constructo.
+- Roles: Vanguardia, Tirador, Hostigador, Controlador, Guardián, Apoyo y Especialista.
+- Alcances: Cuerpo a cuerpo, Corto, Medio, Largo y Variable.
+- Clases del kit: Físico, Especial e Híbrido.
+- Etiquetas: Ráfaga, Daño sostenido, Área, Perforación, Retorno, Control, Movilidad, Curación, Resistencia, Invocación, Evolución, Alto riesgo, Daño fijo, Arsenal intercambiable y Daño continuo.
+- Dificultades: Fácil, Intermedia y Avanzada.
+
+La raza describe la forma base; skins, evoluciones y transformaciones no la reemplazan. El atributo Fuerza/Técnica/Ingenio y el canal principal Físico/Especial son campos independientes. Daño fijo identifica una habilidad que omite la fórmula de ATQ, DEF y atributo, aunque puede seguir recibiendo escudos y modificadores externos de fase.
+
 El contrato `P.Stats` es universal para jugables, minions, minijefes y jefes. Los stats avanzados parten de valores neutrales para mantener el balance histórico y se normalizan también en cooperativo. Los snapshots antiguos de Balance se migran completando los campos nuevos con esos valores; una partida en curso conserva sus primitivas y copias de `combatStats`.
 
 Makanaky es el primer contrato completo. Su pasiva propuesta, **Racha de la Realeza**, acumula hasta cuatro impactos básicos consecutivos, aumenta temporalmente cadencia y alcance, y convierte el remate en Golpe Real antes de reiniciar. Sigue marcada como diseño pendiente hasta contar con implementación, HUD, autoridad cooperativa y las pruebas indicadas en el README.
