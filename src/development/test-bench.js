@@ -4,6 +4,7 @@ P.TestBench={
 active:false,switching:false,kind:'targets',dragon:'random',character:'kingteka',map:'campo',boss:'campo',attack:'1',minionMode:'normal',respawns:[],support1:'none',supportRank1:'1',support2:'none',supportRank2:'1',supportCombos:false,climate:'auto',weather:'auto',eventChoice:'world',
 balanceKey:'causas-admin-balance-profile-v1',balanceProfile:{mode:'base',applyToNormal:false,multipliers:{health:1,power:1,speed:1,cadence:1,magnet:1,reach:1,physicalAttack:1,specialAttack:1,physicalDefense:1,specialDefense:1}},
  isAdmin(){return P.Account?.user?.role==='admin'},
+ hasAccess(){return this.isAdmin()||!!P.Account?.user?.entitlements?.laboratory},
  normalizeBalanceProfile(raw={}){raw=raw||{};const keys=Object.keys(this.balanceProfile.multipliers),multipliers={};for(const key of keys){const value=Number(raw.multipliers?.[key]??1);multipliers[key]=Math.round(Math.max(.5,Math.min(10,Number.isFinite(value)?value:1))*2)/2}return{mode:raw.mode==='custom'?'custom':'base',applyToNormal:!!raw.applyToNormal,multipliers}},
  loadBalanceProfile(){try{this.balanceProfile=this.normalizeBalanceProfile(JSON.parse(localStorage.getItem(this.balanceKey)||'{}'))}catch{this.balanceProfile=this.normalizeBalanceProfile()}},
  saveBalanceProfile(){if(!this.isAdmin())return false;this.balanceProfile=this.normalizeBalanceProfile(this.balanceProfile);try{localStorage.setItem(this.balanceKey,JSON.stringify(this.balanceProfile));return true}catch{return false}},
@@ -39,7 +40,7 @@ P.$('#bench-kind').onchange=()=>{this.kind=P.$('#bench-kind').value;this.control
  const perf=document.createElement('details');perf.className='bench-performance';const summary=document.createElement('summary');summary.textContent='Rendimiento y FPS';perf.append(summary,P.$('.performance-settings'));settings.append(perf);
  this.initSupports();this.renderBalanceProfile();this.controls();this.access();this.hud();
 },
-access(){if(!this.panel)return;this.panel.hidden=!this.isAdmin();this.renderBalanceProfile()},
+access(){if(!this.panel)return;this.panel.hidden=!this.hasAccess();this.renderBalanceProfile()},
 controls(){if(!this.panel)return;this.dragonControls();this.describeAttack();this.describeSupports();P.$('#bench-map-label').hidden=this.kind==='boss';P.$('#bench-boss-label').hidden=this.kind!=='boss';P.$('#bench-invincible').disabled=this.kind==='targets';P.$('#bench-options').hidden=false;P.$('#bench-collapse').textContent='Minimizar';P.$('#bench-collapse').setAttribute('aria-expanded','true');const environment=P.$('#bench-environment');if(!this.active)environment.open=this.kind!=='boss';P.UI.write(P.$('#bench-environment-status'),this.kind==='boss'?'Las arenas de jefe conservan su ambiente propio.':'Configura el ambiente y entra a la prueba; dentro podrás cambiar el clima y lanzar cualquier evento.')},
 dragonControls(busy=false){const label=P.$('#bench-dragon-label');if(!label)return;label.hidden=(this.active&&P.state.devRun?P.state.player?.id:this.character)!=='cristorata';P.$('#bench-dragon').disabled=busy},
 run(){

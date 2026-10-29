@@ -53,6 +53,7 @@ test('La selección de causa, mapa y modo permanece en el flujo moderno hasta in
  assert.match(reference,/bindCharacterCardInspection\(stage,flip,move\)/);assert.match(reference,/VOLTEAR CARTA/);assert.match(reference,/CENTRAR/);assert.match(reference,/character-card-inspection-back/);assert.match(reference,/dataset\.flipped/);assert.match(reference,/setPointerCapture/);assert.match(reference,/Math\.abs\(dx\)>55/);
  assert.match(reference,/characterFrame\(c\)/);assert.match(reference,/cause-collectible-card/);assert.match(reference,/cause-card-shell cause-card-large/);assert.match(reference,/ARTE PROVISIONAL/);
  assert.match(reference,/cause-card-inner/);assert.match(reference,/ILUSTRACIÓN/);assert.match(reference,/PASA EL MOUSE/);assert.match(reference,/PIXEL/);assert.match(reference,/cristorata-character-fullart-v1\.webp/);assert.match(reference,/cuy-character-fullart-v1\.webp/);assert.match(reference,/paloma-character-fullart-v1\.webp/);assert.match(reference,/kingteka-character-fullart-v1\.webp/);assert.match(reference,/chamelin-character-fullart-v1\.webp/);assert.match(reference,/makanaky-character-fullart-v1\.webp/);assert.match(reference,/sideral-character-fullart-v1\.webp/);assert.match(reference,/cirilo-character-fullart-v1\.webp/);assert.match(reference,/characterIllustration\(c\)/);assert.match(reference,/characterArtPosition\(c\)/);assert.match(reference,/--art-y/);
+ assert.match(reference,/scheduleCharacterArtPreload\(\)/);assert.match(reference,/preloadCharacterArtQueue\(sources,2\)/);assert.match(reference,/requestIdleCallback\(later,\{timeout:4500\}\)/);assert.match(reference,/navigator\?\.connection\?\.saveData/);assert.match(reference,/P\.CardGallery\?\.preload/);
  for(const selector of ['.cause-card-shell','.cause-card-art','.cause-card-frame','.cause-card-large'])assert(css.includes(selector),selector);
  for(const selector of ['.character-card-inspection-tilt','.character-card-inspection-inner','.character-card-inspection-glare','.character-card-inspection-back','.character-inspection-controls'])assert(css.includes(selector),selector);
  assert.match(css,/\.cause-collectible-card:hover \.cause-card-inner/);assert.match(css,/rotateY\(180deg\)/);assert.match(css,/prefers-reduced-motion:reduce[^}]*\{\.cause-card-inner/);assert.match(css,/\.cause-card-placeholder\.has-art/);assert.match(css,/\.character-viewer-illustration/);assert.match(css,/object-position:center var\(--art-y,50%\)/);
@@ -65,7 +66,13 @@ test('Laboratorio, Balance y Admin comparten la estructura visual del lobby sin 
  for(const control of ['bench-character','bench-kind','bench-map','bench-boss','bench-attack','bench-minion-mode','bench-start','bench-recharge','bench-cast','bench-targets','bench-heal'])assert(bench.includes("id=\""+control+"\"")||bench.includes("id='"+control+"'"),control);
  assert.match(bench,/P\.Maps\.biomes\.map\(m=>\[m\.id,'🔒 '/,'El laboratorio administrador debe listar los escenarios secretos');
  assert.match(source,/styleToolDialog\('admin-dialog'/);assert.match(source,/styleToolDialog\('balance-dialog'/);
- assert.match(css,/#reference-laboratory #test-bench\.bench-reference/);assert.doesNotMatch(css,/(?:^|\n)#test-bench\.bench-reference\{/,'El estilo de pantalla completa no debe seguir al laboratorio durante una partida');assert.match(css,/#admin-dialog,#balance-dialog/);assert.match(css,/\.tool-dialog-head/);
+ assert.match(css,/#reference-laboratory #test-bench\.bench-reference/);
+ assert.doesNotMatch(css,/(?:^|\n)#test-bench\.bench-reference\{/,'El estilo de pantalla completa no debe seguir al laboratorio durante una partida');
+ assert.match(css,/#admin-dialog,#balance-dialog/);
+ assert.match(css,/\.tool-dialog-head/);
+ assert.match(css,/\.lobby-back::before,#menu \.ui-back-button::before\{content:'←'/);
+ assert.match(fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),/close\.textContent='×'/);
+ assert.match(fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8'),/'←','ui-back-button'/);
 });
 test('El laboratorio en vivo conserva la barra compacta y no queda debajo de los controles de Cirilo',()=>{
  const css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8'),cirilo=fs.readFileSync(path.join(root,'src/systems/cirilo-arena.js'),'utf8');

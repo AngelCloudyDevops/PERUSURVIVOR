@@ -767,6 +767,8 @@ Un personaje se modela en tres niveles. La **identidad** es el nombre estable de
 
 Cerdito dejó de ocupar un espacio independiente del roster. Al leer un guardado anterior, `Meta.normalize` convierte su desbloqueo, estrellas, recibos e historial a Kingteka; combina mejoras por máximo, suma partidas/victorias/bajas y conserva los mejores récords. También desbloquea y equipa `cerdito-vtuber`, por lo que el usuario mantiene lo que había conseguido.
 
+Las ilustraciones full art de **Causas** comparten la caché de imágenes de `CardGallery`. Tras cargar el vestíbulo se prioriza la causa seleccionada y las ilustraciones desbloqueadas restantes se descargan durante tiempo ocioso, con un máximo de dos solicitudes simultáneas. La precarga usa prioridad baja, no bloquea el arranque y, si el navegador activa ahorro de datos, se limita a la causa seleccionada; abrir la colección conserva la carga diferida normal para el resto.
+
 ## Dominio de Kingteka
 
 `src/systems/kingteka-domain.js` mantiene Santuario del Reino Animal separado de la ulti Gallinazo. En individual recibe R desde `runtime.js`; en cooperativo la petición viaja al servidor y `backend/simulation.cjs` ejecuta y serializa el mismo estado autoritativo. Ambas habilidades comparten la carga de ulti, así que solo una puede activarse por ciclo.
