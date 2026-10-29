@@ -66,6 +66,21 @@ PROGRESIÓN Y PRUEBAS
 Estrellas · mejoras permanentes · rangos de partida · casos de balance
 ```
 
+### Vocabulario cerrado de identidad y combate
+
+Cada causa debe usar los identificadores centrales de `P.CharacterProfiles`; no se crean roles o etiquetas nuevos directamente en la interfaz. La identidad se compone de **raza/especie**, **atributo**, rol principal, rol secundario opcional, alcance, clase de daño, etiquetas funcionales y dificultad.
+
+- **Raza/especie:** Humano, Animal, Criatura / meme, Sobrenatural o Constructo. Una transformación, evolución o skin no cambia la raza base salvo que su diseño lo declare expresamente.
+- **Roles:** Vanguardia, Tirador, Hostigador, Controlador, Guardián, Apoyo y Especialista.
+- **Alcance:** Cuerpo a cuerpo, Corto, Medio, Largo o Variable.
+- **Clase de daño del kit:** Físico, Especial o Híbrido. `Daño fijo` es una etiqueta de una habilidad concreta, no un tercer canal de ataque.
+- **Etiquetas funcionales:** Ráfaga, Daño sostenido, Área, Perforación, Retorno, Control, Movilidad, Curación, Resistencia, Invocación, Evolución, Alto riesgo, Daño fijo, Arsenal intercambiable y Daño continuo.
+- **Dificultad:** Fácil, Intermedia o Avanzada.
+
+El atributo siempre se muestra aparte del rol: Fuerza vence a Técnica, Técnica vence a Ingenio e Ingenio vence a Fuerza. El daño fijo omite ATQ/DEF físico y especial y el ciclo de atributos, pero todavía puede recibir modificadores externos como escudos o reducciones de una fase. Por eso la interfaz debe llamarlo **daño fijo**, no daño puro absoluto.
+
+Kingteka es la referencia del formato: **Humano · Fuerza · Vanguardia / Controlador · alcance variable · daño híbrido**. Sus etiquetas son Arsenal intercambiable, Ráfaga, Control, Movilidad, Curación y Daño fijo. Escopeta y golpe son físicos, Gallinazo es especial, Q conserva el canal del arma equipada y R usa daño fijo.
+
 ## Primera ficha completa: Makanaky · La Realeza
 
 **Estado:** ficha activa. Los stats, ataque, evolución, dominio y la pasiva descritos abajo funcionan tanto en individual como bajo autoridad del servidor cooperativo. La variante minijefe conserva su propio balance y no hereda esta pasiva.
