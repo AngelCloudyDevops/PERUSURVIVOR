@@ -380,6 +380,7 @@ module.exports = [
   {"source":"src/systems/domain-aftermath.js","output":"js/domain-aftermath.js"},
   {"source":"src/rendering/domain-finale.js","output":"js/domain-finale.js"},
   {"source":"src/rendering/domain-intro.js","output":"js/domain-intro.js"},
+  {"source":"src/systems/domain-return.js","output":"js/domain-return.js"},
   {"source":"src/systems/sideral-domain.js","output":"js/sideral-domain.js"},
   {"source":"src/network/live-gifts.js","output":"js/live-gifts.js"}
 , {"source":"src/ui/inbox.js","output":"js/inbox.js"}
