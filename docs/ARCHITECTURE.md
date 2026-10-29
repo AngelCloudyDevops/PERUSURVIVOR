@@ -813,7 +813,7 @@ Las ilustraciones full art de **Causas** comparten la caché de imágenes de `Ca
 
 ### Proyección visual de estados del jugador
 
-Intocable añade una proyección de corona, aura violeta, chip y borde de vida a partir de `makanakyUltimateUntil`. Como los demás estados visuales, no altera el actor ni mantiene un temporizador local.
+Intocable añade una proyección de corona, aura violeta, chip y borde de vida a partir de `makanakyUltimateUntil`. Como los demás estados visuales, no altera el actor ni mantiene un temporizador local. La Q de Makanaky conserva en el actor los campos autoritativos `makanakyUltimateStarted`, `makanakyUltimateNext`, `makanakyUltimateVisited` y `makanakyUltimateHits`; el servidor los incluye en la instantánea del jugador. `P.MakanakyUltimate.tick` elige objetivos vivos a 500 unidades, alterna lados libres del terreno y aplica el combo triple directamente en la simulación. El render solo proyecta impactos, texto y el estado Intocable.
 
 `P.PlayerStatus` vive en `src/rendering/player-status.js` y se carga inmediatamente antes de `P.World`. Consume los temporizadores autoritativos ya existentes para veneno, ralentización, escudos y mejoras, y observa aumentos de `hp` mediante un `WeakMap` exclusivamente local para producir la señal de curación. No escribe en el actor, no se serializa y no participa en cálculos de daño o movimiento. `P.World` reutiliza la proyección para los actores y la barra compacta cooperativa; `P.UI.hud` usa la misma lista para los chips y el color de la barra principal. Así cualquier fuente presente o futura de curación queda visible sin duplicar reglas en objetos, reliquias, dominios o pasivas.
 
