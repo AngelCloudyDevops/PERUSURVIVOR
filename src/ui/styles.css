@@ -793,6 +793,11 @@ body[data-lobby-panel=home] #menu .home-feature h2{margin:10px 0 2px;font-size:3
 @media(max-width:1050px){#hub-top{left:14px;right:14px}#hub-left{left:12px}#hub-right{right:12px}body[data-lobby-panel=home] #menu .home-banner{inset:92px 150px 88px}#hub-tools{right:12px}}
 @media(max-width:760px){#hub-top{left:8px;right:8px;padding:5px}#hub-left,#hub-right{bottom:92px;padding:5px;border-radius:10px;flex-direction:row}#hub-left{left:8px}#hub-right{right:8px}body[data-lobby-panel=home] #menu .home-banner{inset:66px 7px 146px;padding-top:5vh}body[data-lobby-panel=home] #menu .home-feature{width:min(390px,92vw);padding:7px}#hub-bottom{bottom:14px;width:94%;padding:4px}.hub-social{display:none}#hub-tools{right:8px;bottom:143px}#hub-tools-toggle strong{display:none}.hub-tools-menu{min-width:165px}}
 
+/* Cooperativo vive dentro de la interfaz moderna; nunca vuelve al panel lateral heredado. */
+.reference-body>#coop-panel.coop-reference{width:100%;margin:14px 0 0;padding:18px;border-color:#496176;background:linear-gradient(180deg,#142a3d,#0d2031);box-sizing:border-box}
+.reference-body>#coop-panel.coop-reference #coop-social{scroll-margin-top:12px}
+@media(max-width:760px){.reference-body>#coop-panel.coop-reference{padding:14px}.reference-body>#coop-panel.coop-reference .coop-actions{display:grid;grid-template-columns:1fr}.reference-body>#coop-panel.coop-reference button,.reference-body>#coop-panel.coop-reference input{min-height:44px;font-size:14px}.reference-body>#coop-panel.coop-reference input{width:100%;box-sizing:border-box}}
+
 /* Marcos vivos del álbum: la energía sigue la proporción de cada carta sin estirar bitmaps. */
 .collection-card-frame,.collectible-frame{--frame-a:#ffcf54;--frame-b:#ff5a24;--frame-c:#7d160d;background:none!important;background-image:none!important;filter:none!important;isolation:isolate}
 .collection-card-frame{width:calc(100% + 8px)!important;height:calc(100% + 8px)!important;border-radius:12px}
