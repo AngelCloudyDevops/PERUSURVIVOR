@@ -1,16 +1,18 @@
 'use strict';
-// Kingteka keeps his Gallinazo ultimate on Q. This domain shares the same
-// charge and offers a protective, nature-themed alternative on R.
+// Kingteka keeps his Gallinazo ultimate on Q. Adapted attacks charge this
+// independent protective, nature-themed alternative on R.
 P.KingtekaDomain={
- entry:2.6,duration:9,exit:.85,serial:0,radius:620,waveGap:1.25,
+ entry:2.6,duration:9,exit:.85,serial:0,radius:520,waveGap:1.25,adaptationGain:8,
  eligible(p){return p?.id==='kingteka'&&P.Gacha.tier(p.id)==='ultra'},
  owner(d=P.state.kingtekaDomain){return (P.Court?.players?.()||[P.state.player]).find(p=>(p.slot??0)===(d?.slot??0))||P.state.player},
  active(){return !!P.state.kingtekaDomain},
+ charge(p=P.state.player){const u=p===P.state.player?P.state.ultimate:p?.ultimate;return Math.max(0,Math.min(100,u?.domainCharge||0))},
+ gainAdaptation(p){const s=P.state,u=p===s.player?s.ultimate:p?.ultimate;if(!u||p?.id!=='kingteka'||s.mode!=='play'||s.kingtekaDomain)return 0;const before=u.domainCharge||0;u.domainCharge=Math.min(100,before+this.adaptationGain);return u.domainCharge-before},
  activate(){
   if(P.Coop?.active)return P.Coop.requestDomain();
   const s=P.state,p=s.player,u=s.ultimate;
-  if(s.mode!=='play'||!this.eligible(p)||p.hp<=0||!u||u.charge<100||u.left>0||u.paper>0||P.Progression?.domainActive?.()||s.encounter?.defeat)return false;
-  u.charge=0;s.kingtekaDomain={id:++this.serial,slot:p.slot??0,age:0,x:p.x,y:p.y,wave:-1,flash:0,final:false,spirits:[],leaves:[],hits:0,healed:0,exit:0};
+  if(s.mode!=='play'||!this.eligible(p)||p.hp<=0||!u||this.charge(p)<100||u.left>0||u.paper>0||P.Progression?.domainActive?.()||s.encounter?.defeat)return false;
+  u.domainCharge=0;s.kingtekaDomain={id:++this.serial,slot:p.slot??0,age:0,x:p.x,y:p.y,wave:-1,flash:0,final:false,spirits:[],leaves:[],hits:0,healed:0,exit:0};
   p.inv=Math.max(p.inv||0,this.entry+.15);P.Audio.unlock();P.Audio.tone?.(92,.45,.14,'sine',0,40);P.Core.clear();return true
  },
  source(p){return {...P.Attributes.source(p,'special'),glyph:'FAUNA',fixedDamage:true}},
@@ -19,7 +21,7 @@ P.KingtekaDomain={
   const targets=s.enemies.filter(e=>e.hp>0&&Math.hypot(e.x-d.x,e.y-d.y)<=this.radius+120);
   const kinds=['condor','puma','bear','cuy'];d.flash=final?.7:.32;
   targets.forEach((e,i)=>{
-   const special=!!(e.boss||e.mapBoss||e.miniboss),damage=final?(special?p.power*1.15:Math.max(p.power*.8,e.max*.14)):(special?p.power*.58:Math.max(p.power*.42,e.max*.075)),before=e.hp;
+   const special=!!(e.boss||e.mapBoss||e.miniboss),resistant=!special&&!!e.heavy,damage=final?(special?p.power*1.15:resistant?Math.max(p.power*.8,e.max*.14):p.power*.8):(special?p.power*.58:resistant?Math.max(p.power*.42,e.max*.075):p.power*.42),before=e.hp;
    P.Entities.hurt(e,damage,final?30:14,this.source(p));if(e.hp<before)d.hits++;
    const angle=Math.atan2(e.y-d.y,e.x-d.x)+(i%3-1)*.18;d.spirits.push({kind:kinds[(d.wave+i)%kinds.length],age:0,max:final?.9:.7,fromX:d.x+Math.cos(angle)*this.radius,fromY:d.y+Math.sin(angle)*this.radius,toX:e.x,toY:e.y,flip:Math.cos(angle)<0})
   });
@@ -38,9 +40,9 @@ P.KingtekaDomain={
  },
  end(){const s=P.state,d=s.kingtekaDomain;if(!d)return;for(const p of P.Court?.players?.()||[s.player])if(p?.hp>0)p.inv=Math.max(p.inv||0,.65);s.kingtekaDomain=null;P.Core.canvas?.setAttribute('aria-label','Arena: '+P.Maps.current().name);P.Core.clear()},
  hud(){
-  if(!this.eligible(P.state.player))return false;const s=P.state,b=P.$('#domain-ability'),charge=Math.max(0,Math.min(100,s.ultimate?.charge||0)),d=s.kingtekaDomain,active=!!d;
+  if(!this.eligible(P.state.player))return false;const s=P.state,b=P.$('#domain-ability'),charge=this.charge(),d=s.kingtekaDomain,active=!!d;
   if(!b)return true;b.hidden=s.mode!=='play';b.disabled=active||charge<100||(s.ultimate?.left||0)>0;P.AbilityCards?.apply(b,'kingteka','domain',charge,charge>=100&&!active&&!s.ultimate?.left,active);b.setAttribute('aria-label','Expansión de dominio Santuario del Reino Animal · tecla R');
-  const left=d?Math.max(0,this.duration-(d.age-this.entry)):0;P.UI.write(b,active?'R · SANTUARIO '+left.toFixed(1)+'s':'R · SANTUARIO '+Math.floor(charge)+'%');return true
+  const left=d?Math.max(0,this.duration-(d.age-this.entry)):0;P.UI.write(b,active?'R · SANTUARIO '+left.toFixed(1)+'s':'R · VÍNCULO ANIMAL '+Math.floor(charge)+'%');return true
  },
  animal(c,kind,x,y,size=40,flip=false,alpha=1){
   c.save();c.translate(x,y);if(flip)c.scale(-1,1);c.globalAlpha=alpha;c.lineWidth=Math.max(2,size*.07);c.strokeStyle='#e8ff9b';c.fillStyle='#2b7d4f';c.shadowColor='#b8ff72';c.shadowBlur=12;

@@ -95,13 +95,19 @@ Evolución: Marcha del comando. Rango 5 y nivel 8.
 
 ## Kingteka
 
-Fortaleza: Descarga contra grupos cercanos.
+Rol: Especialista de arsenal / Controlador.
 
-Debilidad: Pierde daño lejos y al concentrar perdigones.
+Fortaleza: adapta tres armas a la distancia y controla grupos cercanos.
 
-Daño cercano del primer perdigón. Impactos extra: 35%, después 15%. A distancia baja hasta el 35%.
+Debilidad: cada arma progresa por separado y el cambio incorrecto reduce su eficacia.
 
-Evolución: Escopeta Contra. Rango 5 y nivel 8.
+Escopeta causa: cuatro perdigones físicos, alcance base 260. Daño cercano del primer perdigón; impactos extra: 35%, después 15%. A distancia baja hasta el 35%.
+
+Gallinazo: dos plumas guiadas de daño especial. Golpe de cuerpo: cono físico cercano con empuje.
+
+Evoluciones independientes en rango 5 y nivel 14: Escopeta Contra, Gallinazo de Expedición y Golpe de Supervivencia.
+
+Pasiva, Instinto de expedición: tras cambiar de arma, el siguiente ataque adaptado recibe +12 % de daño; si conecta, carga 8 % del Vínculo Animal de R. La activación se reconoce por el aura giratoria y el indicador sobre Kingteka.
 
 ## Shakadoto
 

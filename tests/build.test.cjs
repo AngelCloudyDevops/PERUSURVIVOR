@@ -311,7 +311,7 @@ test('Tormenta final: clima constante, lluvia reforzada y etiqueta propia',()=>{
 });
 
 test('HUD superior: vida consolidada, jefe legible, guía de portal y audio agrupado',()=>{
- const html=fs.readFileSync(path.join(root,'src/index.html'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');for(const id of ['hud-vitals','boss-countdown','boss-panel','boss-health-track','portal-alert','portal-guide','audio-toggle','enemy-audio-volume'])assert.match(html,new RegExp('id="'+id+'"'));assert.match(html,/class="game-controls"/);assert.match(html,/class="music-control audio-panel"/);assert.doesNotMatch(html,/class="enemy-audio-control"/);assert.match(css,/#portal-guide/);assert.match(css,/#boss-panel/);assert.match(css,/max-width:760px/);
+ const html=fs.readFileSync(path.join(root,'src/index.html'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');for(const id of ['hud-vitals','player-statuses','boss-countdown','boss-panel','boss-health-track','portal-alert','portal-guide','audio-toggle','enemy-audio-volume'])assert.match(html,new RegExp('id="'+id+'"'));assert.match(html,/class="game-controls"/);assert.match(html,/class="music-control audio-panel"/);assert.doesNotMatch(html,/class="enemy-audio-control"/);assert.match(css,/#player-statuses/);assert.match(css,/#portal-guide/);assert.match(css,/#boss-panel/);assert.match(css,/max-width:760px/);
 });
 
 

@@ -10,6 +10,8 @@ module.exports = [
   {"source":"src/systems/character-skins.js","output":"js/character-skins.js"},
   {"source":"src/data/attributes.js","output":"js/attributes.js"},
   {"source":"src/data/stats.js","output":"js/stats.js"},
+  {"source":"src/data/enemy-contract.js","output":"js/enemy-contract.js"},
+  {"source":"src/data/character-contract.js","output":"js/character-contract.js"},
   {
     "source": "src/data/muzzle-anchors.js",
     "output": "js/muzzle-anchors.js"
@@ -244,6 +246,10 @@ module.exports = [
     "output": "js/reactive-background.js"
   },
   {
+    "source": "src/rendering/player-status.js",
+    "output": "js/player-status.js"
+  },
+  {
     "source": "src/rendering/world.js",
     "output": "js/world.js"
   },
@@ -378,6 +384,8 @@ module.exports = [
     "output": "js/domain-art.js"
   },
   {"source":"src/systems/domain-aftermath.js","output":"js/domain-aftermath.js"},
+  {"source":"src/systems/makanaky-arsenal.js","output":"js/makanaky-arsenal.js"},
+  {"source":"src/systems/makanaky-ultimate.js","output":"js/makanaky-ultimate.js"},
   {"source":"src/rendering/domain-finale.js","output":"js/domain-finale.js"},
   {"source":"src/rendering/domain-intro.js","output":"js/domain-intro.js"},
   {"source":"src/systems/domain-return.js","output":"js/domain-return.js"},

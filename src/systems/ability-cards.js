@@ -18,13 +18,14 @@ P.AbilityCards={
   cristorata:{kind:'ultimate',frame:'fire',art:'assets/cards/cristorata-dragon-ultimate-fullart-v1.webp'},
   cuy:{kind:'ultimate',frame:'fire',art:'assets/cards/cuy-stampede-ultimate-fullart-v1.webp'},
   paloma:{kind:'ultimate',frame:'fire',art:'assets/cards/paloma-bandada-ultimate-fullart-v1.webp'},
+  makanakyUltimate:{characterId:'makanaky',kind:'ultimate',frame:'fire',title:'Los Tres de la Realeza',art:'assets/cards/makanaky-character-fullart-v1.webp'},
   makanaky:{kind:'domain',frame:'domain-royal',state:'domain',label:'DOMINIO',art:'assets/cards/makanaky-domain-fullart-v1.webp'},
   sideral:{kind:'domain',frame:'domain-cosmic',state:'sideralDomain',label:'DOMINIO',art:'assets/cards/sideral-domain-fullart-v1.webp'},
   cirilo:{kind:'domain',frame:'domain-demon',state:'ciriloDomain',label:'AUDIENCIA',art:'assets/cards/cirilo-audiencia-domain-fullart-v1.webp'},
   chamelin:{kind:'domain',frame:'domain-steam',state:'chamelinDomain',label:'BAÑO DE TROVO',art:'assets/cards/chamelin-domain-fullart-v1.webp'}
  },
  frame(name){return this.frames[name]||this.frames.none},
- definition(id,kind){const direct=this.entries[id],entry=kind==='domain'&&this.entries[id+'Domain']||direct;return entry&&(!kind||entry.kind===kind)?entry:null},
+ definition(id,kind){const direct=this.entries[id],entry=kind==='ultimate'&&this.entries[id+'Ultimate']||kind==='domain'&&this.entries[id+'Domain']||direct;return entry&&(!kind||entry.kind===kind)?entry:null},
  art(id,kind,character=P.state.player){const entry=this.definition(id,kind);if(!entry)return null;const skin=kind==='ultimate'&&P.CharacterSkins?.equipped?.(character);return skin?.ultimateArt||entry.art},
  syncReadyFx(){
   for(const [kind,id] of [['ultimate','ultimate'],['domain','domain-ability']]){const button=P.$('#'+id),slot=P.$('#'+kind+'-ability-slot');if(!slot)continue;const ready=!!button&&!button.hidden&&button.classList.contains('ability-ready'),wasReady=slot.classList.contains('is-ready'),theme=button?.dataset.frameTheme||'none',frame=this.frame(theme);slot.dataset.frameTheme=theme;slot.dataset.frameVisual=frame.visual;if(ready&&!wasReady){slot.classList.remove('is-extinguishing');slot.classList.add('is-ready','is-igniting')}else if(!ready&&wasReady){slot.classList.remove('is-ready','is-igniting');slot.classList.add('is-extinguishing')}}

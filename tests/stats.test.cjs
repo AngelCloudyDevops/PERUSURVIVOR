@@ -40,17 +40,17 @@ test('Causas prioriza cinco stats y conserva el contrato completo desplegable',(
  assert(source.includes("this.statSection('STATS PRINCIPALES',stats.rows.slice(0,5),true)"));
 });
 
-test('Makanaky encadena tres marcas y convierte el cuarto impacto en Golpe Real',()=>{
- const {P,s}=setup(),c=P.Data.characters.find(c=>c.id==='makanaky'),p=P.Entities.player(c),enemy=P.Attributes.init({x:60,y:0,r:12,hp:1000,max:1000,combatStats:P.Attributes.stats('force','physical')});s.player=p;s.mode='play';s.elapsed=0;s.effects=[];s.enemies=[enemy];p.x=0;p.y=0;p.aim=0;
- const damage=[];for(let i=0;i<4;i++){enemy.x=60;enemy.y=0;const before=enemy.hp;assert(P.Combat.cast());damage.push(before-enemy.hp);s.elapsed+=.5}
- assert.deepEqual(damage.map(n=>Math.round(n*10)/10),[32,32,32,43.2]);close(enemy.x,93.6);assert.equal(p.passive.stacks,0);assert.equal(p.passive.royalSerial,1);assert(s.effects.some(e=>e.text==='♛ GOLPE REAL'));
+test('Makanaky encadena diez marcas y convierte el siguiente impacto en Golpe Real',()=>{
+ const {P,s}=setup(),c=P.Data.characters.find(c=>c.id==='makanaky'),p=P.Entities.player(c),enemy=P.Attributes.init({x:60,y:0,r:12,hp:1000,max:1000,combatStats:P.Attributes.stats('force','physical')});s.player=p;s.mode='play';s.elapsed=0;s.effects=[];s.enemies=[enemy];p.x=0;p.y=0;p.aim=0;p.combatStats.criticalChance=0;
+ const damage=[];for(let i=0;i<11;i++){enemy.x=60;enemy.y=0;const before=enemy.hp;assert(P.Combat.cast());damage.push(before-enemy.hp);s.elapsed+=.2}
+ for(let i=1;i<10;i++)close(damage[i],damage[0]);close(damage[10],damage[0]*1.35);assert.equal(p.passive.stacks,0);assert.equal(p.passive.royalSerial,1);assert(s.effects.some(e=>e.text==='♛ GOLPE REAL'));
 });
 
-test('Racha de la Realeza modifica cadencia y alcance, expira y excluye al minijefe',()=>{
- const {P,s}=setup(),c=P.Data.characters.find(c=>c.id==='makanaky'),p=P.Entities.player(c),attack=P.Data.attacks.royalEcho;s.player=p;s.elapsed=0;P.Passives.afterCast(p,attack,1,{});P.Passives.afterCast(p,attack,1,{});assert.equal(p.passive.stacks,2);close(P.Passives.cooldownMultiplier(p),.9);close(P.Passives.beforeCast(p,attack).range,1.06);P.Passives.afterCast(p,attack,0,{});assert.equal(p.passive.stacks,0);P.Passives.afterCast(p,attack,1,{});s.elapsed=1.81;P.Passives.tick(p);assert.equal(p.passive.stacks,0);
+test('Racha de la Realeza pierde dos al fallar, decae gradualmente y excluye al minijefe',()=>{
+ const {P,s}=setup(),c=P.Data.characters.find(c=>c.id==='makanaky'),p=P.Entities.player(c),attack={...P.Data.attacks.royalEcho,arsenalId:'royalEcho'};s.player=p;s.mode='play';s.elapsed=0;P.Passives.afterCast(p,attack,1,{});P.Passives.afterCast(p,attack,1,{});P.Passives.afterCast(p,attack,1,{});assert.equal(p.passive.stacks,3);close(P.Passives.cooldownMultiplier(p),1);P.Passives.afterCast(p,attack,0,{});assert.equal(p.passive.stacks,1);s.elapsed=2.51;P.Passives.tick(p);assert.equal(p.passive.stacks,0);
  const mini={...p,miniboss:true,passive:undefined};assert.equal(P.Passives.eligible(mini,attack),false);assert.equal(P.Passives.state(mini),null);assert.equal(Object.keys(P.Passives.beforeCast(mini,attack)).length,0);
 });
 
 test('Las fichas muestran las mismas pasivas que usa el combate',()=>{
- const {P}=setup(),makanaky=P.Passives.rows('makanaky'),kingteka=P.Passives.rows('kingteka'),source=fs.readFileSync('src/ui/reference-menus.js','utf8');assert.equal(makanaky[0][1],'Racha de la Realeza');assert(makanaky.some(row=>row[1].includes('+35 % daño')));assert.equal(kingteka[0][1],'Instinto de manada');assert(kingteka.some(row=>row[1].includes('+12 % daño')));assert(source.includes("label:'PASIVA ÚNICA'"));assert(source.includes("c.id==='kingteka'?'↻':'◆'"));assert(source.includes('owner.idleFrame(time)'));
+ const {P}=setup(),makanaky=P.Passives.rows('makanaky'),kingteka=P.Passives.rows('kingteka'),source=fs.readFileSync('src/ui/reference-menus.js','utf8');assert.equal(makanaky[0][1],'Racha de la Realeza');assert(makanaky.some(row=>row[1].includes('+35 % daño')));assert.equal(kingteka[0][1],'Instinto de expedición');assert(kingteka.some(row=>row[1].includes('+12 % daño')));assert(source.includes("label:'PASIVA ÚNICA'"));assert(source.includes("c.id==='kingteka'?'↻':'◆'"));assert(source.includes('owner.idleFrame(time)'));
 });

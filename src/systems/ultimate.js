@@ -1,6 +1,6 @@
 'use strict';
 P.Ultimate={
-reset(){P.state.ultimate={charge:0,left:0,paper:0,age:0,particles:[],trails:[],seen:new WeakSet(),trailClock:0,recoil:0,impacts:[],stampHit:false}},
+reset(){P.state.ultimate={charge:0,domainCharge:0,left:0,paper:0,age:0,particles:[],trails:[],seen:new WeakSet(),trailClock:0,recoil:0,impacts:[],stampHit:false}},
 active(){return P.state.player?.id==='kingteka'&&(P.state.ultimate?.left||0)>0},
 // Shared by solo movement and the authoritative cooperative simulation.
 normal(e){return !!e&&e.hp>0&&!e.boss&&!e.mapBoss&&!e.miniboss&&!e.mimic},
