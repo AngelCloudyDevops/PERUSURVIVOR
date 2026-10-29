@@ -6,6 +6,12 @@ Cooperativo sin barrera de separación: cada jugador puede explorar libremente; 
 
 Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcionales y objetos de Dota 2 adaptados como cartas de equipo evolutivo durante cada partida.
 
+## Punto actual de desarrollo
+
+La última tarea terminada es la presentación dinámica de la ulti de **Cristorata**. Después de la tarjeta, la máquina cae y permanece fija en el punto de invocación; Cristorata conserva movimiento, ataques y cámara. El jugador debe acercarse a 86 unidades y accionar la palanca con Espacio, clic o toque. El acercamiento muestra tres rodillos con imágenes de dragones que se detienen de izquierda a derecha: tres iguales conceden Jade, Brasa o Trueno, mientras Jade + Brasa + Trueno revela al Tricéfalo. El dragón elegido emerge desde la máquina, vuela hasta la posición actual de Cristorata y comienza los ocho segundos completos de montura. No hay giro automático ni invulnerabilidad durante la espera. El servidor valida la distancia y replica el ancla, la palanca y el resultado en cooperativo.
+
+Este flujo ya está implementado, probado y publicado. El siguiente paso es probar su lectura y ritmo en una partida real; cualquier ajuste posterior debe conservar la máquina fija, los tres rodillos, la interacción cercana y el combate continuo. La especificación completa permanece en `docs/GAME_DESIGN.md`.
+
 ## Regla general de continuidad de los dominios
 
 Una Expansión de Dominio dinámica sigue el patrón de Kingteka: aparece sobre el combate existente y nunca toma control de la cámara, cambia el zoom ni recoloca actores. El escenario se construye y destruye en coordenadas del mapa mientras jugador, enemigos y proyectiles continúan su recorrido. Los elementos del mapa cubiertos por su huella —incluidos cofres— se hunden durante la construcción, quedan temporalmente fuera de interacción y reaparecen intactos al disolverse el dominio; los sólidos dejan una sombra tenue para no crear colisiones invisibles. El dominio conserva su propio mobiliario, personajes secundarios y sprites distintivos como decoración visual sin colisión. Una presentación cinematográfica sí puede usar una arena separada; en ese caso su salida mezcla posiciones, cámara y zoom con el mapa original sin un corte visible. Los efectos de humo, fragmentos o luz no pueden ocultar avisos peligrosos. Esta regla es obligatoria para todos los dominios actuales y futuros, tanto en individual como en cooperativo.
