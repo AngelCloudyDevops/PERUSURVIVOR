@@ -49,7 +49,7 @@ Transformación de seis segundos con figura reptiliana completa, auriculares y c
 
 Carga Q separada `ultimate.sideralCharge`: normal +5, pesado +10, minijefe +20, jefe +35 por baja propia; no recarga durante la transformación. R conserva exactamente su depósito anterior `ultimate.charge`. Q no consume ni rellena R y no puede iniciarse dentro de dominios. Los huevos lanzados previamente pueden completar su ataque. Al finalizar vuelve a la técnica anterior sin perder rangos ni evolución.
 
-La carta Q reutiliza explícitamente la ilustración existente de personaje; una ilustración exclusiva de la transformación sigue pendiente. Las animaciones nuevas de combate son pixel art dibujado en canvas, sin fragmentar ni estirar el atlas humano: cola conectada a la cadera, huevo visible, vuelo parabólico, apertura, embestida, onda y figura reptiliana completa con seis fases de paso. Movimiento reducido elimina la oscilación visual del barrido y del aliento sin cambiar daño ni tiempos.
+La carta Q usa ilustración exclusiva de la transformación: `assets/cards/sideral-lagarto-ultimate-fullart-v1.webp` (1024×1536, WebP de 428332 bytes). Conserva el marco `fire` de las otras ultis; muestra cuerpo reptiliano, cola, auriculares y camiseta roja, aliento verde y Lima nocturna. El PNG fuente y el prompt están versionados junto al WebP; solo este último se distribuye. Las animaciones nuevas de combate son pixel art dibujado en canvas, sin fragmentar ni estirar el atlas humano: cola conectada a la cadera, huevo visible, vuelo parabólico, apertura, embestida, onda y figura reptiliana completa con seis fases de paso. Movimiento reducido elimina la oscilación visual del barrido y del aliento sin cambiar daño ni tiempos.
 
 ## Validación
 

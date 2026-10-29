@@ -50,7 +50,7 @@ Resumen: 20 causas, 26 ataques personales funcionales, sin conceptos en estado p
 - Cuy Supremo: estampida.
 - Paloma del Centro: bandada.
 - Makanaky: Los Tres de la Realeza.
-- Sideral: Despertar del Lagarto (carta con arte de personaje reutilizado).
+- Sideral: Despertar del Lagarto (ilustración exclusiva del Lagarto).
 
 ### Expansiones R implementadas con carta full art
 
@@ -85,4 +85,4 @@ Kingteka, Makanaky y Sideral son kits cerrados de extremo a extremo: tres ataque
 5. Probar cada kit a nivel base y máximo contra minions, minijefes y jefe antes de marcarlo como completo.
 
 
-Sideral está 9/9: tres técnicas, tres evoluciones, Sangre fría, Q y dominio existente. Su Q reutiliza la ilustración de personaje; arte exclusivo y afinación en partidas completas siguen pendientes.
+Sideral está 9/9: tres técnicas, tres evoluciones, Sangre fría, Q y dominio existente. Su Q ya tiene ilustración exclusiva del Lagarto; la afinación en partidas completas sigue pendiente.

@@ -8,7 +8,7 @@ Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcional
 
 ## Punto actual de desarrollo
 
-La última tarea terminada es el **kit 9/9 de Sideral · El Lagarto**: Mirada, Colazo y Huevo, tres evoluciones, Sangre fría y Despertar del Lagarto Q. Conserva UR, 120 PV, velocidad 195 y poder 27; sus ATQ son 95 físico / 105 especial. Q tiene carga independiente y el dominio R no cambia. El siguiente paso es medir su balance en partidas completas; la carta Q reutiliza el arte de personaje hasta crear una ilustración exclusiva. Especificación y pruebas: [Kit de Sideral](docs/SIDERAL_KIT.md).
+La última tarea terminada es el **kit 9/9 de Sideral · El Lagarto**: Mirada, Colazo y Huevo, tres evoluciones, Sangre fría y Despertar del Lagarto Q. Conserva UR, 120 PV, velocidad 195 y poder 27; sus ATQ son 95 físico / 105 especial. Q tiene carga independiente y el dominio R no cambia. El siguiente paso es medir su balance en partidas completas; la carta Q ya tiene ilustración exclusiva de Sideral transformado en el Lagarto. Especificación y pruebas: [Kit de Sideral](docs/SIDERAL_KIT.md).
 
 ### Cristorata · revisión anterior conservada
 
@@ -864,4 +864,4 @@ En cualquier combate se puede hacer clic izquierdo sobre un enemigo, jefe o frag
 
 ### Sideral · kit del Lagarto completo
 
-Tres técnicas intercambiables con rangos y evoluciones propios, Sangre fría y Q de transformación con aliento dirigido. UR, 120 PV, velocidad 195, poder 27, ATQ físico/especial 95/105, DEF 100/105. Q usa una reserva independiente; el dominio R conserva mecánicas y carga. Especificación, animaciones y límites: [docs/SIDERAL_KIT.md](docs/SIDERAL_KIT.md). Falta afinar balance en partidas completas y crear ilustración exclusiva de Q; la carta reutiliza el full art existente del personaje.
+Tres técnicas intercambiables con rangos y evoluciones propios, Sangre fría y Q de transformación con aliento dirigido. UR, 120 PV, velocidad 195, poder 27, ATQ físico/especial 95/105, DEF 100/105. Q usa una reserva independiente; el dominio R conserva mecánicas y carga. Especificación, animaciones y límites: [docs/SIDERAL_KIT.md](docs/SIDERAL_KIT.md). Falta afinar balance en partidas completas. La carta Q usa arte exclusivo del Lagarto, con auriculares, camiseta roja y aliento verde, conservando el marco de las otras ultis.

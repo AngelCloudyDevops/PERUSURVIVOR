@@ -57,7 +57,7 @@ P.CharacterProfiles.weaponKits.sideral=P.SideralArsenal.order.map(id=>({id,name:
 Object.assign(P.CharacterProfiles.identities.sideral,{damage:'hybrid',tags:['arsenal','control','area','summon','risk']});
 P.CharacterProfiles.roles.sideral=['Controlador del Lagarto','Separa hordas, prepara huevos y potencia una técnica con Sangre fría.','Colazo lento, daño retrasado y Q vulnerable; exige colocación.'];
 P.CharacterContract.specialNames.sideral.ultimate='Despertar del Lagarto';
-P.AbilityCards.entries.sideralUltimate={characterId:'sideral',kind:'ultimate',frame:'fire',title:'Despertar del Lagarto',chargeField:'sideralCharge',art:'assets/cards/sideral-character-fullart-v1.webp'};
+P.AbilityCards.entries.sideralUltimate={characterId:'sideral',kind:'ultimate',frame:'fire',title:'Despertar del Lagarto',chargeField:'sideralCharge',art:'assets/cards/sideral-lagarto-ultimate-fullart-v1.webp'};
 P.Passives.definitions.sideral={name:'Sangre fría',short:'Cada 2 s cerca de rivales sin recibir daño gana una escama; tres potencian la siguiente técnica.',trigger:'Rival vivo a 300 u, fuera de Q y dominios',reset:'Daño recibido resta una escama y reinicia el progreso',max:3};
 {
  const attack=P.Evolutions.attack,profile=P.Evolutions.profile,cast=P.Combat.cast,tick=P.Combat.tick,gain=P.Ultimate.gain,activate=P.Ultimate.activate,ultimateHud=P.Ultimate.hud,hud=P.UI.hud,hit=P.PlayerFeedback.hit,state=P.Passives.state,rows=P.Passives.rows;
