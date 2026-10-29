@@ -150,6 +150,8 @@ Ya están funcionales y fuera de esta lista: impacto y cráter, invasión y form
 
 Todos los enemigos declaran rol, atributo, canal de daño, debilidad de atributo, ataques, habilidades de rol, pasivas y fases. Las categorías limitan la complejidad para que una amenaza no acumule mecánicas sin una señal visual clara:
 
+La Wiki aplica ahora el mismo criterio de sinceridad que las fichas de personajes: cada espacio aparece como `Implementado` o `Por definir`, muestra el porcentaje cubierto y nunca convierte un hueco en una habilidad genérica. La auditoría boss por boss, incluidos minijefes, jefes de portal y Extinción, vive en [BOSS_KIT_AUDIT.md](docs/BOSS_KIT_AUDIT.md). Esta primera pasada documenta faltantes; no cambia daño, vida, colisiones ni patrones.
+
 | Categoría | Ataques | Habilidades de rol | Pasivas | Fases |
 |---|---:|---:|---:|---:|
 | Minion | 1 | 0 | 1 | 1 |
