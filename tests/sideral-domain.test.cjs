@@ -46,9 +46,10 @@ test('Sideral dinámico: construye sobre el mapa sin mover actores ni tomar la c
 });
 
 test('Dominios dinámicos sumergen objetos y cofres sin borrar su estado',()=>{
- const {P,s,p}=setup(),D=P.SideralDomain;s.devRun=true;D.practicePresentation='dynamic';p.ultimate.charge=100;assert(D.activate());const d=s.sideralDomain,inside={id:'inside',x:d.x+20,y:d.y+15,progress:0,opened:false,rarity:'common'},outside={id:'outside',x:d.x+D.roomWidth,y:d.y,progress:0,opened:false,rarity:'common'};P.Loot.chests=[inside,outside];d.age=D.entryFor(d);D.enter(d);
+ const {P,s,p}=setup(),D=P.SideralDomain;s.devRun=true;D.practicePresentation='dynamic';p.ultimate.charge=100;assert(D.activate());const d=s.sideralDomain,inside={id:'inside',x:d.x+20,y:d.y+15,progress:0,opened:false,rarity:'common'},outside={id:'outside',x:d.x+D.roomWidth,y:d.y,progress:0,opened:false,rarity:'common'},prop={id:'domain-prop',kind:'bench',x:d.x+60,y:d.y+40,w:80,h:32,solid:true,hp:Infinity};P.Loot.chests=[inside,outside];P.Terrain.props.push(prop);P.Terrain.indexProps();d.age=D.entryFor(d)*.5;assert.equal(P.Terrain.hit(prop.x,prop.y),prop);d.age=D.entryFor(d);D.enter(d);
  assert(P.DomainScenery.inside(inside));assert(!P.DomainScenery.inside(outside));assert(P.DomainScenery.hideChest(inside));assert(!P.Loot.active().includes(inside));assert(P.Loot.active().includes(outside));assert.equal(P.Loot.canOpen(inside),false);assert.equal(inside.opened,false);
- d.exit=d.exitTotal=1.35;assert(P.Loot.active().includes(inside));assert.equal(P.DomainScenery.progress(),1);d.exit=.01;assert(P.DomainScenery.progress()<.01);assert.equal(inside.opened,false);
+ assert.equal(P.DomainScenery.hideProp(prop),true);assert.equal(P.Terrain.hit(prop.x,prop.y),undefined);const body={x:prop.x,y:prop.y};P.Terrain.resolve(body,{x:prop.x-100,y:prop.y});assert.deepEqual(body,{x:prop.x,y:prop.y});
+ d.exit=d.exitTotal=1.35;assert(P.Loot.active().includes(inside));assert.equal(P.DomainScenery.progress(),1);d.exit=.01;assert(P.DomainScenery.progress()<.01);assert.equal(P.Terrain.hit(prop.x,prop.y),prop);assert.equal(inside.opened,false);
 });
 
 test('Sideral dinámico: el servidor cooperativo conserva la presentación solicitada',()=>{
