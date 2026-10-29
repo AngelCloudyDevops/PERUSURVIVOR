@@ -25,6 +25,11 @@ test('Sideral: choque daña, rebota y al terminar restaura coordenadas',()=>{
  P.SideralDomain.end();assert.equal(s.sideralDomain,null);assert.equal(e.x,640);assert.equal(e._sideralReturnX,undefined);assert.equal(p.x,120);assert.equal(p.y,90);
 });
 
+test('Sideral: la destrucción mezcla actores, cámara y zoom sin salto final',()=>{
+ const {P,s,p}=setup(),D=P.SideralDomain,e={x:920,y:610,hp:100,max:100,r:14,speed:0,boss:false,hit:0};P.Attributes.init(e);s.enemies=[e];p.ultimate.charge=100;assert(D.activate());const d=s.sideralDomain;d.age=D.entry;D.enter(d);const inside={x:e.x,y:e.y},home={x:e._sideralReturnX,y:e._sideralReturnY};assert.notDeepEqual(inside,home);
+ d.exit=d.exitTotal=1.35;P.DomainReturn.begin(D.returnObjects(),'sideral');const arena={x:d.x,y:d.y-70},map={x:home.x,y:home.y},initialCamera=P.DomainReturn.frame(d,arena,map);assert.equal(initialCamera.x,arena.x);assert.equal(initialCamera.y,arena.y);D.tick(.7);assert(Math.hypot(e.x-home.x,e.y-home.y)<Math.hypot(inside.x-home.x,inside.y-home.y));assert(Math.hypot(e.x-home.x,e.y-home.y)>0);const camera=P.DomainReturn.frame(d,arena,map);assert.notDeepEqual(camera,arena);assert.notDeepEqual(camera,map);D.tick(.66);assert.equal(s.sideralDomain,null);assert.deepEqual({x:e.x,y:e.y},home);assert.equal(JSON.stringify({player:p,enemies:s.enemies}).includes('_sideralExit'),false)
+});
+
 test('Sideral: el dominio entra directamente y cada pulso nace desde el personaje',()=>{
  const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true},{}]);const d=s.sideralDomain;
  sim.tick(.4,[{},{}]);assert(d.age>0);assert.equal(d.card,undefined);assert(sim.players[1].inv>0);
