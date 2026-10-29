@@ -43,8 +43,9 @@ jobs:
           ref: ${{ steps.version.outputs.release_sha }}
           path: published-source
           persist-credentials: false
-      - name: Play three private two-player rooms
+      - name: Play one complete private two-player load run
         env:
+          COOP_FULL_RUN: '1'
           COOP_SOURCE_ROOT: ${{ github.workspace }}/published-source
           COOP_EXPECTED_RELEASE: ${{ steps.version.outputs.release_sha }}
           COOP_REPORT_PATH: ${{ github.workspace }}/cooperative-live-report.json

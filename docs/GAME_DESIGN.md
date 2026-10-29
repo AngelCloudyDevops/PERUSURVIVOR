@@ -997,3 +997,6 @@ Roles de los dinosaurios:
 - Sanador: restaura un 12 % de vida a aliados cercanos; los impactos retrasan su siguiente pulso.
 
 El T-Rex es el jefe del mundo exterior. El Triceratops Fósil es el jefe final de la mazmorra; separar ambos encuentros conserva un clímax antes del portal y otro antes de la recompensa.
+
+### Fluidez del cooperativo
+La simulación cooperativa mantiene pasos de 40 ms. Las conexiones lentas descartan estados visuales intermedios en lugar de acumularlos; la siguiente actualización contiene el mundo actual completo. Se conservan enemigos, ataques, avisos, animaciones y resultados. Estos ajustes de transporte no se aplican al modo solitario.
