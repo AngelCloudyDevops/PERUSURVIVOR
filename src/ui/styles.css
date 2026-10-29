@@ -916,3 +916,6 @@ body[data-lobby-panel=home] #menu .home-feature h2{margin:10px 0 2px;font-size:3
  body.menu[data-lobby-panel=home] #hub-tools-toggle strong{display:inline}
  body.menu[data-lobby-panel=home] .hub-tools-menu{min-width:0;box-shadow:none}
 }
+
+/* Los avisos de carga y error deben quedar por encima de los paneles modernos. */
+body.reference-open #overlay:not([hidden]){z-index:80}
