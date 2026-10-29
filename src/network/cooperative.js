@@ -25,11 +25,12 @@ connect(type,invite=null){if(P.Gacha?.ready&&!P.Gacha.owns(P.Data.characters[P.s
  this.open({type,protocol:2,guest:!P.Account?.user,character:P.state.chosen,map:P.Maps.selected,code,...(invite?{inviteId:invite.id}:{})});
 },
 open(message){
+ this.net=null;this.lastPing=0;
  this.status(message.type==='resume'?'Reconectando…':'Conectando a la sala…');P.Audio.unlock();const url=new URL('/coop',location.href);url.protocol=location.protocol==='https:'?'wss:':'ws:';
  const ws=new WebSocket(url);this.ws=ws;let accepted=false;
  ws.onopen=()=>{if(this.ws===ws){this.lastPacket=performance.now();this.send(message)}};
  ws.onmessage=e=>{if(this.ws!==ws)return;this.lastPacket=performance.now();const m=JSON.parse(e.data);
-  if(m.type==='pong'){const rtt=performance.now()-m.sent;if(rtt>=0&&rtt<10000)this.net={rtt:Math.round(rtt),tickMs:m.tickMs||0,serializeMs:m.serializeMs||0,stateBytes:m.stateBytes||0,snapshotMs:m.snapshotMs||40};return}
+  if(m.type==='pong'){const rtt=performance.now()-m.sent;if(rtt>=0&&rtt<10000)this.net={at:performance.now(),rtt:Math.round(rtt),tickMs:m.tickMs||0,serializeMs:m.serializeMs||0,stateBytes:m.stateBytes||0,snapshotMs:m.snapshotMs||40};return}
   if(m.type==='error'){this.joinReject?.(Error(m.message));this.joinResolve=this.joinReject=null;this.status(m.message);if(this.active)P.$('#hint').textContent=m.message;if(!accepted){if(message.type==='resume'&&performance.now()<(this.reconnectDeadline||0)&&m.message==='No se pudo recuperar la sala'){ws.close();return}this.leave();this.status(m.message)}return}
   if(m.type==='joined'){if(m.hostChanged)this.hostNotice=true;if(this.reconnecting)this.paused=false;accepted=true;this.session={code:m.code,token:m.token,slot:m.slot,guest:message.type==='resume'?message.guest:!P.Account?.user};this.persistSession();this.joinResolve?.(m);this.joinResolve=null;this.reconnecting=false}
   if(m.type==='joined'||m.type==='room'){if(!m.started&&this.active)this.backToRoom();this.roomRender(m);if(m.finished&&this.resultVisible)this.showResult();if(m.hostChanged)this.status('SALA '+m.code+' · El grupo sigue aquí. '+(this.session.slot===0?'Ahora eres el anfitrión: puedes invitar a otro amigo.':'Cambió el anfitrión.'));if(this.active&&!m.players.every(p=>p.connected)){this.cancelIntent();P.$('#hint').textContent='Tu compañero se desconectó. Partida detenida durante 30 s.';}}

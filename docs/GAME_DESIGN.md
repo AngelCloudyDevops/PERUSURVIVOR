@@ -1000,3 +1000,6 @@ El T-Rex es el jefe del mundo exterior. El Triceratops Fósil es el jefe final d
 
 ### Fluidez del cooperativo
 La simulación cooperativa mantiene pasos de 40 ms. Las conexiones lentas descartan estados visuales intermedios en lugar de acumularlos; la siguiente actualización contiene el mundo actual completo. Se conservan enemigos, ataques, avisos, animaciones y resultados. Estos ajustes de transporte no se aplican al modo solitario.
+
+### Indicador de FPS y ping
+Opciones → Gráficos → FPS y ping activa el cuadro durante la partida y conserva la preferencia en este navegador. En cooperativo muestra el último RTT real en ms, medido cada dos segundos; durante la conexión o con una muestra de más de seis segundos muestra «midiendo», y durante reconexión lo indica. En solitario el ping no aplica.
