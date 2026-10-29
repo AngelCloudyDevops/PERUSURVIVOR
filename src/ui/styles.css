@@ -576,8 +576,8 @@ body[data-lobby-panel=codex] #game{opacity:.08;filter:blur(8px) saturate(.45)}bo
 
 /* Navegación compacta y consistente: cerrar diálogos con ×, volver a paneles con flecha. */
 .tool-dialog-head .tool-dialog-close{display:grid!important;place-items:center;width:42px!important;height:42px!important;padding:0!important;border-radius:50%!important;font:400 27px/1 sans-serif!important}
-#menu .lobby-pane>.lobby-back{display:grid;place-items:center;width:42px!important;height:42px!important;padding:0!important;font-size:0!important;line-height:1!important}
-#menu .lobby-pane>.lobby-back::before{content:'←';font:800 21px/1 sans-serif}
+#menu .lobby-back,#menu .ui-back-button{display:grid!important;place-items:center;width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;padding:0!important;font-size:0!important;line-height:1!important;float:right}
+#menu .lobby-back::before,#menu .ui-back-button::before{content:'←';font:800 21px/1 sans-serif}
 
 /* Fichas de combate: resumen visible y estadísticas avanzadas desplegables. */
 .reference-stat-section{margin:12px 0;padding-top:9px;border-top:1px solid #3d354e}
