@@ -883,3 +883,36 @@ body[data-lobby-panel=home] #menu .home-feature h2{margin:10px 0 2px;font-size:3
 .character-skins{margin-top:14px;padding-top:14px;border-top:1px solid #6f604e}.character-skins>p{font:10px/1.55 monospace;color:#bfc8cf}.skin-choice{display:block;width:100%;margin:8px 0 0;padding:10px;text-align:left;background:#20252a;border:1px solid #756654;color:#f8ead0}.skin-choice[data-selected=true]{border-color:#f3ca61;box-shadow:inset 4px 0 #f3ca61}.skin-choice:disabled{opacity:.6;cursor:not-allowed}.skin-choice strong,.skin-choice small,.skin-choice span{display:block}.skin-choice small{margin-top:4px;color:#c5b899;font:9px/1.4 monospace}.skin-choice span{margin-top:7px;color:#b7c1c9;font:9px/1.45 monospace}
 
 @media(min-width:761px){body:not(.menu) #performance-panel{right:152px}}
+
+/* Mobile home uses document flow: desktop top/bottom anchors must not stretch its cards. */
+@media(max-width:760px){
+ body.menu[data-lobby-panel=home] #menu{inset:56px 0 0;height:auto;min-height:0;max-width:none;width:auto;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-rows:max-content;align-content:start;gap:10px;padding:10px 12px calc(16px + env(safe-area-inset-bottom,0px));overflow-x:hidden;overflow-y:auto;box-sizing:border-box}
+ body.menu[data-lobby-panel=home] #lobby-hub{display:contents}
+ body.menu[data-lobby-panel=home] #lobby-hub:before{display:none}
+ body.menu[data-lobby-panel=home] #hub-top{position:static;inset:auto;order:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:5px;width:auto;min-width:0;pointer-events:auto}
+ body.menu[data-lobby-panel=home] #hub-profile{width:100%;min-width:0;gap:7px;padding:4px;text-overflow:ellipsis;overflow:hidden}
+ body.menu[data-lobby-panel=home] #hub-profile-copy{min-width:0}
+ body.menu[data-lobby-panel=home] #hub-profile-copy strong{font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ body.menu[data-lobby-panel=home] #hub-avatar{width:40px;height:40px;flex-shrink:0}
+ body.menu[data-lobby-panel=home] #hub-wallet{gap:5px}
+ body.menu[data-lobby-panel=home] #hub-wallet span{padding:8px;font-size:10px}
+ body.menu[data-lobby-panel=home] #menu .home-banner{position:static;inset:auto;order:1;width:auto;min-width:0;height:auto;min-height:0;margin:0;padding:0;gap:8px;box-sizing:border-box;align-items:center}
+ body.menu[data-lobby-panel=home] #menu .home-copy h1{margin:0;font-size:27px;letter-spacing:1px;line-height:1.1}
+ body.menu[data-lobby-panel=home] #menu .home-feature{width:min(100%,360px);box-sizing:border-box;margin:0;padding:6px 10px 10px}
+ body.menu[data-lobby-panel=home] #menu .home-feature canvas{width:100%;height:140px;aspect-ratio:auto;margin:3px 0}
+ body.menu[data-lobby-panel=home] #menu .home-feature h2{font-size:22px;margin:3px 0}
+ body.menu[data-lobby-panel=home] #menu .home-feature p{font-size:11px;line-height:1.3}
+ body.menu[data-lobby-panel=home] #menu .home-feature small{font-size:9px}
+ body.menu[data-lobby-panel=home] #hub-left,body.menu[data-lobby-panel=home] #hub-right{position:static;inset:auto;width:auto;min-width:0;min-height:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:5px;align-items:stretch;pointer-events:auto}
+ body.menu[data-lobby-panel=home] #hub-left{order:2}
+ body.menu[data-lobby-panel=home] #hub-right{order:3}
+ body.menu[data-lobby-panel=home] #hub-left button,body.menu[data-lobby-panel=home] #hub-right button{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;min-width:0;min-height:72px;padding:5px 2px;text-align:center}
+ body.menu[data-lobby-panel=home] #hub-left button span,body.menu[data-lobby-panel=home] #hub-right button span{width:36px;height:36px;margin:0;font-size:19px}
+ body.menu[data-lobby-panel=home] #hub-left button strong,body.menu[data-lobby-panel=home] #hub-right button strong{display:block;max-width:100%;font-size:9px;line-height:1.2;letter-spacing:0;white-space:normal;overflow-wrap:anywhere}
+ body.menu[data-lobby-panel=home] #hub-bottom{position:static;inset:auto;order:4;transform:none;width:auto;display:block;margin:0;padding:4px;pointer-events:auto}
+ body.menu[data-lobby-panel=home] #hub-bottom #hub-play{width:100%;min-width:0;min-height:50px;padding:10px;font-size:20px}
+ body.menu[data-lobby-panel=home] #hub-tools{position:static;inset:auto;order:5;display:grid;justify-items:stretch;width:auto;gap:7px}
+ body.menu[data-lobby-panel=home] #hub-tools-toggle{justify-content:center;min-height:44px;font-size:11px}
+ body.menu[data-lobby-panel=home] #hub-tools-toggle strong{display:inline}
+ body.menu[data-lobby-panel=home] .hub-tools-menu{min-width:0;box-shadow:none}
+}

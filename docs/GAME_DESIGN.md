@@ -1003,3 +1003,6 @@ La simulación cooperativa mantiene pasos de 40 ms. Las conexiones lentas descar
 
 ### Indicador de FPS y ping
 Opciones → Gráficos → FPS y ping activa el cuadro durante la partida y conserva la preferencia en este navegador. En cooperativo muestra el último RTT real en ms, medido cada dos segundos; durante la conexión o con una muestra de más de seis segundos muestra «midiendo», y durante reconexión lo indica. En solitario el ping no aplica.
+
+### Vestíbulo en celular
+Hasta 760 px, el menú principal organiza perfil, presentación del causa, dos filas de accesos con nombres, preparación de partida y herramientas en filas de altura natural. En pantallas bajas se desplaza verticalmente, sin estirar ni superponer tarjetas ni desbordar a los lados. Las rutas y acciones de los botones se conservan.
