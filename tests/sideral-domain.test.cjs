@@ -37,6 +37,7 @@ test('Sideral dinámico: construye durante el combate y activa la habitación a 
  assert(D.activate());const d=s.sideralDomain,startX=p.x,startElapsed=s.elapsed;assert(D.dynamic(d));assert.equal(D.entryFor(d),2.6);assert.equal(P.Progression.cinematicOnly(),false);assert.equal(d.arena,false);assert.equal(D.frozen(boss),false);assert(p.inv<1);
  sim.tick(.1,[{x:1},{}]);assert(p.x>startX);assert(s.elapsed>startElapsed);assert.equal(d.arena,false);
  d.age=2.55;sim.tick(.06,[{},{}]);assert.equal(d.arena,true);assert.equal(D.frozen(boss),true);assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,4);
+ d.age=D.entryFor(d)+D.duration-.01;sim.tick(.04,[{},{}]);assert.equal(d.exitTotal,1.35);
 });
 
 test('Sideral dinámico: el servidor cooperativo conserva la presentación solicitada',()=>{
@@ -46,7 +47,7 @@ test('Sideral dinámico: el servidor cooperativo conserva la presentación solic
 
 test('Sideral dinámico: conserva construcción, título y accesos de laboratorio',()=>{
  const fs=require('node:fs'),source=fs.readFileSync('src/systems/sideral-domain.js','utf8'),options=fs.readFileSync('src/ui/reference-menus.js','utf8');
- for(const token of ['construction(c,d,time)','dynamicIntro(c,w,h,d)','HABITACIÓN DEL LAGARTO','sideral-domain-dynamic-practice','bench-sideral-cinematic','bench-sideral-dynamic',"P.state.mode==='play'"])assert(source.includes(token),token);
+ for(const token of ['construction(c,d,time)','dynamicTitle(c,text,x,y,size','dynamicIntro(c,w,h,d)',"'EXPANSIÓN DE DOMINIO'","'HABITACIÓN DEL'","'LAGARTO'",'sideral-domain-dynamic-practice','bench-sideral-cinematic','bench-sideral-dynamic',"P.state.mode==='play'"])assert(source.includes(token),token);
  assert(options.includes("'Dominios dinámicos'"));assert(options.includes("'domain-dynamic'"));
 });
 
