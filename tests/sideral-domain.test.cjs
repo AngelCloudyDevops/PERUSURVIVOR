@@ -45,6 +45,12 @@ test('Sideral dinámico: construye sobre el mapa sin mover actores ni tomar la c
  d.age=D.entryFor(d)+D.duration-.01;sim.tick(.04,[{},{}]);assert.equal(d.exitTotal,1.35);
 });
 
+test('Dominios dinámicos sumergen objetos y cofres sin borrar su estado',()=>{
+ const {P,s,p}=setup(),D=P.SideralDomain;s.devRun=true;D.practicePresentation='dynamic';p.ultimate.charge=100;assert(D.activate());const d=s.sideralDomain,inside={id:'inside',x:d.x+20,y:d.y+15,progress:0,opened:false,rarity:'common'},outside={id:'outside',x:d.x+D.roomWidth,y:d.y,progress:0,opened:false,rarity:'common'};P.Loot.chests=[inside,outside];d.age=D.entryFor(d);D.enter(d);
+ assert(P.DomainScenery.inside(inside));assert(!P.DomainScenery.inside(outside));assert(P.DomainScenery.hideChest(inside));assert(!P.Loot.active().includes(inside));assert(P.Loot.active().includes(outside));assert.equal(P.Loot.canOpen(inside),false);assert.equal(inside.opened,false);
+ d.exit=d.exitTotal=1.35;assert(P.Loot.active().includes(inside));assert.equal(P.DomainScenery.progress(),1);d.exit=.01;assert(P.DomainScenery.progress()<.01);assert.equal(inside.opened,false);
+});
+
 test('Sideral dinámico: el servidor cooperativo conserva la presentación solicitada',()=>{
  const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true,domainPresentation:'dynamic'},{}]);const d=s.sideralDomain;
  assert(d);assert.equal(d.presentationOverride,'dynamic');assert.equal(P.SideralDomain.entryFor(d),2.6);assert.equal(sim.snapshot().sideralDomain.presentationOverride,'dynamic');
