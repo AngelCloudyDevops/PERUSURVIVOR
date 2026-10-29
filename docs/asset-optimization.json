@@ -18,10 +18,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 3007482,
-      "optimizedBytes": 2155324,
+      "optimizedBytes": 897014,
       "sourceSha256": "f2c27437d3043b03c4c68c34aa446a13f3f0af663b9682355012bdd0139297c4",
-      "outputSha256": "405ef8fd8ec2eb9578a6046f43b5f8200069a6c266bacc90991f599631bce746",
-      "rgbaSha256": "8b30d4308284d01bc349c2aae2de826bda9d54f686c0646e306d48cef1859a0f"
+      "outputSha256": "62b5567cc5e7f7a2bbdd5a0ff9d66a62f12e688a6f0ed84f28ec32ea797baed8",
+      "rgbaSha256": "8b30d4308284d01bc349c2aae2de826bda9d54f686c0646e306d48cef1859a0f",
+      "quality": 100
     },
     {
       "source": "assets/arenas/combi-v1.png",
@@ -614,5 +615,5 @@
     }
   ],
   "originalBytes": 92963652,
-  "optimizedBytes": 44226284
+  "optimizedBytes": 42967974
 }
