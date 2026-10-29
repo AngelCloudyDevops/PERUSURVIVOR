@@ -150,18 +150,29 @@ Esta lista contiene solo trabajo que aún falta; las mecánicas ya funcionales n
 
 Ya están funcionales y fuera de esta lista: impacto y cráter, invasión y formaciones, tres fragmentos, Tirano obligatorio, tormenta y meteoritos de presión, portal opcional, tres salas de Era Perdida, decisiones entre salas, Triceratops Fósil, reliquia compartida, Wiki/Balance y cargas independientes Q/R de Makanaky y Kingteka.
 
-## Contrato general de enemigos
+## Plantilla obligatoria para todos los enemigos
 
-Todos los enemigos declaran rol, atributo, canal de daño, debilidad de atributo, ataques, habilidades de rol, pasivas y fases. Las categorías limitan la complejidad para que una amenaza no acumule mecánicas sin una señal visual clara:
+`P.EnemyContract` es la única plantilla válida para minions, dinosaurios, minijefes y jefes. No se crea una ficha paralela ni se completa un espacio solo con texto: cada pieza marcada como implementada debe existir en combate, tener señal visual, recuperación, pruebas y fuente de datos compartida con Wiki y Balance.
+
+Toda amenaza declara identidad (`id`, nombre, categoría y rol), estadísticas base (vida, velocidad y tamaño), atributo, canal de daño, ATQ/DEF físico y especial y los nueve stats avanzados universales: perforación, resistencia de estado, regeneración, crítico, daño crítico, resistencia crítica, defensa crítica, recuperación y robo de vida. También declara debilidad, ataques, habilidad de rol cuando corresponda, pasivas, fases, ulti y expansión según su categoría. Un valor neutral se escribe explícitamente; no se omite. Un hueco sin mecánica real queda como **Por definir**.
 
 La Wiki aplica ahora el mismo criterio de sinceridad que las fichas de personajes: cada espacio aparece como `Implementado` o `Por definir`, muestra el porcentaje cubierto y nunca convierte un hueco en una habilidad genérica. La auditoría boss por boss, incluidos minijefes, jefes de portal y Extinción, vive en [BOSS_KIT_AUDIT.md](docs/BOSS_KIT_AUDIT.md). Esta primera pasada documenta faltantes; no cambia daño, vida, colisiones ni patrones.
 
-| Categoría | Ataques | Habilidades de rol | Pasivas | Fases |
-|---|---:|---:|---:|---:|
-| Minion | 1 | 0 | 1 | 1 |
-| Dinosaurio | 1 | 1 | 1 | 1 |
-| Minijefe | hasta 3 | 0 | 1 | 2 |
-| Jefe | hasta 4 | 0 | hasta 2 | 2 |
+| Categoría | Ataques | Habilidades de rol | Pasivas | Fases | Ulti | Expansión |
+|---|---:|---:|---:|---:|---:|---:|
+| Minion | 1 | 0 | 1 | 1 | No aplica | No aplica |
+| Dinosaurio | 1 | 1 | 1 | 1 | No aplica | No aplica |
+| Minijefe | hasta 3 | 0 | 1 | 2 | 1 | No aplica |
+| Jefe | hasta 4 | 0 | hasta 2 | 2 | 1 | 1 |
+
+Checklist para aprobar una pieza nueva:
+
+1. La mecánica existe en individual y, si corresponde, bajo autoridad cooperativa.
+2. Aviso, área efectiva, cobertura, daño, duración y recuperación coinciden con lo dibujado.
+3. Pausa, movimiento reducido, muerte, reinicio y reconexión limpian su estado.
+4. Wiki, Balance, laboratorio y tests leen el mismo registro; no copian cifras manualmente.
+5. La ulti es un remate extraordinario y la expansión transforma temporalmente las reglas o el escenario; no son alias de un ataque normal.
+6. La auditoría en `docs/BOSS_KIT_AUDIT.md` se actualiza y cualquier faltante permanece visible.
 
 Una habilidad de rol es la acción de equipo que distingue a un dinosaurio —interceptar, rescatar, curar, debilitar o romper la formación— y no cuenta como un segundo ataque. Varias frases que describen una misma regla se agrupan como una sola pasiva. Fuerza, Técnica e Ingenio determinan la debilidad mecánica; las ventanas de espalda, agotamiento, placas o cobertura se documentan además como mecánicas particulares.
 

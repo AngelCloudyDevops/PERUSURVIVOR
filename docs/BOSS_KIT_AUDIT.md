@@ -4,42 +4,42 @@ Esta auditoría aplica a las amenazas mayores el mismo principio usado en las ca
 
 ## Contrato común
 
-| Categoría | Ataques | Habilidades de rol | Pasivas | Fases |
-|---|---:|---:|---:|---:|
-| Minijefe | 3 | 0 | 1 | 2 |
-| Jefe | 4 | 0 | 2 | 2 |
+| Categoría | Ataques | Habilidades de rol | Pasivas | Fases | Ulti | Expansión |
+|---|---:|---:|---:|---:|---:|---:|
+| Minijefe | 3 | 0 | 1 | 2 | 1 | No aplica |
+| Jefe | 4 | 0 | 2 | 2 | 1 | 1 |
 
-Además del kit, cada ficha debe declarar rol, atributo, canal de daño y debilidad. Esos campos se mantienen como **Por definir** o **Desconocido** mientras no exista una fuente mecánica real.
+Además del kit, cada ficha debe declarar rol, atributo, canal de daño, debilidad y el contrato estadístico universal completo. Esos campos se mantienen como **Por definir** o **Desconocido** mientras no exista una fuente mecánica real. La ulti y la expansión son piezas separadas: una fase, pasiva o ataque no puede rellenar ambos espacios con otro nombre.
 
 ## Jefes de portal
 
-| Boss | Ataques implementados | Pasivas | Fases | Falta definir |
-|---|---|---|---|---|
-| El Chosicano · Última Parada | Embestida de ruta; Bocinazo; Lluvia de boletos; La familia es primero | La familia es primero; Frenazo expuesto | 2/2 | Kit 100 % cubierto. Validar ritmo, lectura de cobertura y balance en partidas completas |
-| El Gabinete Infinito | Abanico ministerial; Embestida de gabinete | Fase II al 50 % | 2/2 | Ataques 3–4; segunda pasiva; rol, atributo y canal |
-| El Guardián de la Niebla | Anillo de niebla; Golpe pétreo | Fase II al 50 % | 2/2 | Ataques 3–4; segunda pasiva; rol, atributo y canal |
-| La Procesión de Medianoche | Anillo de niebla; Golpe pétreo | Fase II al 50 % | 2/2 | Identidad mecánica propia o declaración explícita de variante; ataques 3–4; segunda pasiva; rol, atributo y canal |
-| El Grinch del Cercado | Abanico ministerial; Embestida de gabinete | Fase II al 50 % | 2/2 | Identidad mecánica propia o declaración explícita de variante; ataques 3–4; segunda pasiva; rol, atributo y canal |
-| Gallinazo · Techo de Lima | Picada desde el cielo; Aleteo; Lluvia de plumas; Luna oscura | Fase II al 50 % | 2/2 | Segunda pasiva; rol, atributo y canal explícitos |
-| Alberto Fujimori · El Expediente Final | Sello celeste; Archivo reservado; Sentencia legendaria | Fase II al 50 % | 2/2 | Ataque 4; segunda pasiva; rol, atributo y canal explícitos |
+| Boss | Ataques implementados | Pasivas | Ulti / Expansión | Fases | Falta definir |
+|---|---|---|---|---|---|
+| El Chosicano · Última Parada | Embestida de ruta; Bocinazo; Lluvia de boletos | La familia es primero; Frenazo expuesto | Hora punta / Última Parada · La familia es primero | 2/2 | Ataque 4. Validar ritmo, lectura de cobertura y balance en partidas completas |
+| El Gabinete Infinito | Abanico ministerial; Embestida de gabinete | Fase II al 50 % | Por definir / Por definir | 2/2 | Ataques 3–4; segunda pasiva; rol, atributo y canal |
+| El Guardián de la Niebla | Anillo de niebla; Golpe pétreo | Fase II al 50 % | Por definir / Por definir | 2/2 | Ataques 3–4; segunda pasiva; rol, atributo y canal |
+| La Procesión de Medianoche | Anillo de niebla; Golpe pétreo | Fase II al 50 % | Por definir / Por definir | 2/2 | Identidad propia; ataques 3–4; segunda pasiva; rol, atributo y canal |
+| El Grinch del Cercado | Abanico ministerial; Embestida de gabinete | Fase II al 50 % | Por definir / Por definir | 2/2 | Identidad propia; ataques 3–4; segunda pasiva; rol, atributo y canal |
+| Gallinazo · Techo de Lima | Picada desde el cielo; Aleteo; Lluvia de plumas; Luna oscura | Fase II al 50 % | Por definir / Por definir | 2/2 | Segunda pasiva; rol, atributo y canal explícitos |
+| Alberto Fujimori · El Expediente Final | Sello celeste; Archivo reservado; Sentencia legendaria | Fase II al 50 % | Por definir / Por definir | 2/2 | Ataque 4; segunda pasiva; rol, atributo y canal explícitos |
 
 ## Jefes de Extinción
 
-| Boss | Ataques implementados | Pasivas | Fases | Falta definir |
-|---|---|---|---|---|
-| Tirano del Cráter | Embestida obligatoria; Rugido de choque; Pisotón sísmico; Lluvia de meteoritos | Agotamiento tras tres ataques; tormenta obligatoria | 2/2 | Rol textual definitivo; comprobar que atributo y canal mostrados coincidan con el daño real |
-| Triceratops Fósil | Embestida fósil; Rugido ancestral; Pisotón de cámara; Carga contra pilares | Dos placas fósiles; cristal vulnerable durante aturdimiento | 2/2 | Rol textual definitivo; comprobar que atributo y canal mostrados coincidan con el daño real |
+| Boss | Ataques implementados | Pasivas | Ulti / Expansión | Fases | Falta definir |
+|---|---|---|---|---|---|
+| Tirano del Cráter | Embestida obligatoria; Rugido de choque; Pisotón sísmico; Lluvia de meteoritos | Agotamiento tras tres ataques; tormenta obligatoria | Por definir / Por definir | 2/2 | Rol textual definitivo; separar remate y expansión reales |
+| Triceratops Fósil | Embestida fósil; Rugido ancestral; Pisotón de cámara; Carga contra pilares | Dos placas fósiles; cristal vulnerable durante aturdimiento | Por definir / Por definir | 2/2 | Rol textual definitivo; separar remate y expansión reales |
 
-Los dos jefes de Extinción cubren el presupuesto completo de kit. El trabajo pendiente allí es validación de identidad, lectura visual y balance con partidas completas, no añadir más acciones.
+Los dos jefes de Extinción cubren ataques, pasivas y fases, pero la plantilla ampliada deja visibles sus espacios separados de ulti y expansión. No se reutilizará automáticamente meteoritos, tormenta, placas o mazmorra para llenarlos: primero debe decidirse si son realmente una pieza distinta y comprobarse en combate.
 
 ## Minijefes
 
-| Minijefe | Ataques implementados | Pasiva/fase | Falta definir |
-|---|---|---|---|
-| Makanaky · La Realeza | Grito real; Flash de la realeza | Fase II al 50 % | Ataque 3; rol, atributo y canal explícitos |
-| El Fiscalizador | Embestida fiscal; Cerco de conos | Fase II al 50 % | Ataque 3; rol, atributo y canal explícitos |
-| La Paloma Brava | Aleteo de plumas; Picotazo doble | Fase II al 50 % | Ataque 3; rol, atributo y canal explícitos |
-| El Huaco Renegado | Golpe del huaco; Fragmentos de cerámica | Fase II al 50 % | Ataque 3; rol, atributo y canal explícitos |
+| Minijefe | Ataques implementados | Pasiva/fase | Ulti | Falta definir |
+|---|---|---|---|---|
+| Makanaky · La Realeza | Grito real; Flash de la realeza | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
+| El Fiscalizador | Embestida fiscal; Cerco de conos | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
+| La Paloma Brava | Aleteo de plumas; Picotazo doble | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
+| El Huaco Renegado | Golpe del huaco; Fragmentos de cerámica | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
 
 ## Orden recomendado
 
