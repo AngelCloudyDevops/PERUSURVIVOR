@@ -1,7 +1,7 @@
 'use strict';
 function createGifts({db,session,reply}){
  const streams=new Set();
- function after(id,cursor,limit){return db.prepare("SELECT id,kind,amount,character_id AS characterId,json_extract(result,'$.entitlement') AS entitlement,json_extract(result,'$.enabled') AS enabled FROM admin_actions WHERE target_id=? AND id>? ORDER BY id LIMIT ?").all(id,cursor,limit).map(row=>({...row,enabled:row.enabled===null?null:!!row.enabled}))}
+ function after(id,cursor,limit){return db.prepare("SELECT id,kind,amount,character_id AS characterId,json_extract(result,'$.entitlement') AS entitlement,json_extract(result,'$.roleName') AS roleName,json_extract(result,'$.enabled') AS enabled FROM admin_actions WHERE target_id=? AND id>? ORDER BY id LIMIT ?").all(id,cursor,limit).map(row=>({...row,enabled:row.enabled===null?null:!!row.enabled}))}
  function latest(id){return db.prepare('SELECT COALESCE(MAX(id),0) AS n FROM admin_actions WHERE target_id=?').get(id).n}
  function onlyGrants(id,from,to){if(from===to)return true;if(from>to)return false;const n=db.prepare("SELECT COUNT(*) AS n FROM admin_actions WHERE target_id=? AND json_extract(result,'$.revision')>? AND json_extract(result,'$.revision')<=?").get(id,from,to).n;return n===to-from}
  function apply(progress,rows){for(const r of rows){if(r.id<=(progress.adminCursor||0))continue;if(r.kind==='coins')progress.wallet=Math.min(10000000,progress.wallet+r.amount);else if(r.kind==='character'&&!progress.unlocked.includes(r.characterId))progress.unlocked.push(r.characterId);progress.adminCursor=r.id}return progress}

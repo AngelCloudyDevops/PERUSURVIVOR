@@ -568,6 +568,12 @@ body[data-lobby-panel=codex] #game{opacity:.08;filter:blur(8px) saturate(.45)}bo
 #balance-preview{background:linear-gradient(145deg,#111625,#090d17);color:#eee8df;border:1px solid #4b5b70;border-top:3px solid #ff725c;border-radius:12px}#balance-preview h2,#balance-preview summary{color:#f4ece1}#balance-preview button{border-color:#53657a;background:#1b2738;color:#e9efee;border-radius:7px}#balance-preview [role=status]{border-left-color:#72d8cf;background:#0b111c;color:#8edbd3}
 @media(max-width:760px){#admin-dialog,#balance-dialog{width:100%;height:100dvh;max-height:100dvh;border-radius:0}.tool-dialog-head p{display:none}#admin-dialog .tool-dialog-content,#balance-dialog .tool-dialog-content{padding:12px}#admin-dialog .admin-content{grid-template-columns:1fr}#admin-dialog .admin-user-grid{grid-template-columns:1fr}#admin-dialog .admin-summary{grid-template-columns:repeat(3,1fr)}#admin-dialog .admin-toolbar{grid-template-columns:1fr}#admin-dialog .admin-history article{grid-template-columns:1fr}#balance-dialog .balance-roster,#balance-dialog .balance-editor{padding:10px}#reference-laboratory #test-bench.bench-reference{padding:14px}.tool-dialog-head .tool-dialog-close{padding:9px 11px!important}}
 
+/* Las cabeceras de cuenta no heredan la cabecera flotante del diálogo. */
+#admin-dialog .admin-user-head{position:static!important;inset:auto!important;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+#admin-dialog .admin-summary{grid-template-columns:repeat(4,minmax(0,1fr))}
+#admin-dialog .admin-action.role{border-color:#ff725c!important}
+@media(max-width:760px){#admin-dialog .admin-summary{grid-template-columns:repeat(2,1fr)}}
+
 /* Fichas de combate: resumen visible y estadísticas avanzadas desplegables. */
 .reference-stat-section{margin:12px 0;padding-top:9px;border-top:1px solid #3d354e}
 .reference-stat-section h4,.reference-stat-section summary{margin:0;color:#e9cf71;font:800 8px/1.4 monospace;letter-spacing:1px}
