@@ -703,6 +703,8 @@ chamelin-arena.js implementa la arena física temporal. Conserva _trovoHome de j
 
 SideralDomain.introShake deriva impulsos de los cuatro aterrizajes y la risa del reloj de escena; traslación de cámara entera, sin modificar el atlas. frozen/holdBoss comparten pausa de IA y contacto entre Systems.move y Simulation.tick; Entities.hurt y Minibosses.hurt bloquean daño a especiales mientras existe el dominio. drawHeldBoss usa los sprites completos existentes en reposo y una reacción pixel art de asco sobre ellos. Los temporizadores de ataque se conservan para reanudar al salir.
 
+SideralDomain fija `presentationOverride` al activar para que una preferencia cambiada a mitad de escena no altere tiempos ni colisión. La presentación `dynamic` conserva el bucle normal durante 2,6 s y dibuja construcción transitoria en `World.draw`; `enter` sigue siendo el único punto que activa paredes y recoloca entidades. En cooperativo `Coop.requestDomain` adjunta `domainPresentation`, `cooperative.cjs` la limita a `dynamic|cinematic` y `Simulation` la entrega al dominio antes de activarlo; el snapshot devuelve la misma elección a ambos clientes. Ningún cliente decide por separado la duración autoritativa.
+
 ### Director de partidas largas
 
 `RunMode` centraliza selección, duración, etapas, escala de luz y ventanas de portal. `Game.start` fija `state.runMode` y `Data.arena.duration` antes de reiniciar encuentros y minijefes; pruebas, laboratorio y cooperativo fuerzan `quick`. Los consumidores existentes conservan así una sola fuente de verdad.

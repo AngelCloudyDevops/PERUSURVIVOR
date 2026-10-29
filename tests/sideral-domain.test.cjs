@@ -32,6 +32,24 @@ test('Sideral: el dominio entra directamente y cada pulso nace desde el personaj
  p.x=333;p.y=222;P.SideralDomain.burst();assert.equal(d.waveX,333);assert.equal(d.waveY,222);
 });
 
+test('Sideral dinámico: construye durante el combate y activa la habitación a los 2,6 s',()=>{
+ const {sim,P,s,p}=setup(),D=P.SideralDomain,boss=P.Entities.enemy(true);s.devRun=true;D.practicePresentation='dynamic';Object.assign(boss,{x:p.x+180,y:p.y,attackT:1});s.enemies=[boss];p.ultimate.charge=100;
+ assert(D.activate());const d=s.sideralDomain,startX=p.x,startElapsed=s.elapsed;assert(D.dynamic(d));assert.equal(D.entryFor(d),2.6);assert.equal(P.Progression.cinematicOnly(),false);assert.equal(d.arena,false);assert.equal(D.frozen(boss),false);assert(p.inv<1);
+ sim.tick(.1,[{x:1},{}]);assert(p.x>startX);assert(s.elapsed>startElapsed);assert.equal(d.arena,false);
+ d.age=2.55;sim.tick(.06,[{},{}]);assert.equal(d.arena,true);assert.equal(D.frozen(boss),true);assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,4);
+});
+
+test('Sideral dinámico: el servidor cooperativo conserva la presentación solicitada',()=>{
+ const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true,domainPresentation:'dynamic'},{}]);const d=s.sideralDomain;
+ assert(d);assert.equal(d.presentationOverride,'dynamic');assert.equal(P.SideralDomain.entryFor(d),2.6);assert.equal(sim.snapshot().sideralDomain.presentationOverride,'dynamic');
+});
+
+test('Sideral dinámico: conserva construcción, título y accesos de laboratorio',()=>{
+ const fs=require('node:fs'),source=fs.readFileSync('src/systems/sideral-domain.js','utf8'),options=fs.readFileSync('src/ui/reference-menus.js','utf8');
+ for(const token of ['construction(c,d,time)','dynamicIntro(c,w,h,d)','HABITACIÓN DEL LAGARTO','sideral-domain-dynamic-practice','bench-sideral-dynamic'])assert(source.includes(token),token);
+ assert(options.includes("'Dominios dinámicos'"));assert(options.includes("'domain-dynamic'"));
+});
+
 test('Sideral: la cinemática compone una sola figura sobre una sola habitación',()=>{
  const {P}=setup(),D=P.SideralDomain,calls=[];D.room=()=>calls.push('room');D.lizardSeal=()=>calls.push('seal');D.manifest=()=>calls.push('manifest');D.figure=()=>calls.push('figure');D.companion=()=>calls.push('companion');
  const c={save(){},restore(){},fillRect(){},strokeRect(){},strokeText(){},fillText(){},beginPath(){},ellipse(){},stroke(){},translate(){},rotate(){},lineTo(){},moveTo(){},closePath(){}};
