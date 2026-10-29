@@ -65,7 +65,7 @@ test('Laboratorio, Balance y Admin comparten la estructura visual del lobby sin 
  for(const control of ['bench-character','bench-kind','bench-map','bench-boss','bench-attack','bench-minion-mode','bench-start','bench-recharge','bench-cast','bench-targets','bench-heal'])assert(bench.includes("id=\""+control+"\"")||bench.includes("id='"+control+"'"),control);
  assert.match(bench,/P\.Maps\.biomes\.map\(m=>\[m\.id,'🔒 '/,'El laboratorio administrador debe listar los escenarios secretos');
  assert.match(source,/styleToolDialog\('admin-dialog'/);assert.match(source,/styleToolDialog\('balance-dialog'/);
- assert.match(css,/#reference-laboratory #test-bench\.bench-reference/);assert.doesNotMatch(css,/(?:^|\n)#test-bench\.bench-reference\{/,'El estilo de pantalla completa no debe seguir al laboratorio durante una partida');assert.match(css,/#admin-dialog,#balance-dialog/);assert.match(css,/\.tool-dialog-head/);
+ assert.match(css,/#reference-laboratory #test-bench\.bench-reference/);assert.doesNotMatch(css,/(?:^|\n)#test-bench\.bench-reference\{/,'El estilo de pantalla completa no debe seguir al laboratorio durante una partida');assert.match(css,/#admin-dialog,#balance-dialog/);assert.match(css,/\.tool-dialog-head/);assert.match(css,/\.lobby-back::before\{content:'←'/);assert.match(fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),/close\.textContent='×'/);
 });
 test('El laboratorio en vivo conserva la barra compacta y no queda debajo de los controles de Cirilo',()=>{
  const css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8'),cirilo=fs.readFileSync(path.join(root,'src/systems/cirilo-arena.js'),'utf8');
