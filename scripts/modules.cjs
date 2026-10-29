@@ -412,4 +412,6 @@ module.exports = [
 , {source:"src/ui/lobby-complete.js",output:"js/lobby-complete.js"}
 , {source:"src/systems/stat-runtime.js",output:"js/stat-runtime.js"}
 , {source:"src/systems/passives.js",output:"js/passives.js"}
+,{source:"src/systems/sideral-kit.js",output:"js/sideral-kit.js"}
+,{source:"src/rendering/sideral-lagarto.js",output:"js/sideral-lagarto.js"}
 ];

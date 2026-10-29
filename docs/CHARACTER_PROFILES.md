@@ -208,3 +208,6 @@ Debilidad: Debe entrar a distancia cuerpo a cuerpo.
 El daño depende de los impactos que conecten y los enemigos alcanzados.
 
 Evolución: Huracán G5. Rango 5 y nivel 8.
+
+### Sideral · controlador híbrido UR
+Humano / Ingenio / Controlador y Especialista, dificultad avanzada. Base 120 PV, velocidad 195, poder 27, ATQ 95/105 y DEF 100/105. Tres técnicas, evoluciones, pasiva y Q se detallan en [SIDERAL_KIT.md](SIDERAL_KIT.md); el dominio existente conserva su comportamiento.

@@ -44,7 +44,7 @@ Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa.
 
 El objetivo final de cada causa es **9/9**, pero el contrato describe el estado real y permite desarrollar una pieza a la vez. `Planeado` significa que la mecánica y su función ya fueron aprobadas; `Por definir` reserva capacidad sin prometer comportamiento. Una skin, objeto, pacto o poder de apoyo no cuenta como pieza del kit.
 
-Estado actual calculado: **Kingteka y Makanaky están 9/9**. Makanaky ya posee tres técnicas intercambiables, tres evoluciones, pasiva, Q y dominio R. **Sideral 3/9** tiene Mirada Sideral, Rostro prohibido y Habitación del Lagarto, pero conserva por definir los ataques y evoluciones 2–3, la pasiva y la ulti Q.
+Estado actual calculado: **Kingteka, Makanaky y Sideral están 9/9**. Makanaky ya posee tres técnicas intercambiables, tres evoluciones, pasiva, Q y dominio R. **Sideral también está 9/9**: Colazo del Lagarto, Huevo sospechoso, sus evoluciones, Sangre fría y Despertar del Lagarto Q completan su identidad; Habitación del Lagarto R se conserva. Stats, límites y controles en [Kit de Sideral](docs/SIDERAL_KIT.md).
 
 ### Cómo se interpretan los stats
 
@@ -139,7 +139,7 @@ Esta lista contiene solo trabajo que aún falta; las mecánicas ya funcionales n
 
 1. **Validar y ajustar Extinción con partidas completas.** Medir en individual y cooperativo la duración de las tres oleadas, vida y daño de cada dinosaurio, Tirano del Cráter, Triceratops Fósil, tormenta, meteoritos y límites de 240/180 s. Los valores actuales son una base funcional y el siguiente cambio debe apoyarse en resultados de partidas, no solo en sensación aislada.
 2. **Segunda pasada visual de Extinción.** Dar más cuadros propios a desplazamientos, avisos, impactos y habilidades de cada dinosaurio; mejorar profundidad y partículas del meteorito; pulir cráter, tormenta y Era Perdida; revisar escala, nitidez y coherencia de los objetos ambientales sin alterar colisiones ni daño.
-3. **Cerrar el siguiente kit de personaje.** Sideral es el candidato inmediato porque ya tiene ataque 1, evolución y dominio: faltan ataques 2 y 3, sus evoluciones, pasiva y ulti Q. Después se repetirá el contrato 9/9, personaje por personaje, sin sustituir espacios reservados con habilidades genéricas.
+3. **Cerrar el siguiente kit de personaje.** Sideral ya tiene contrato 9/9; sigue validar su balance en partidas completas y elegir el siguiente causa. Repetir el contrato personaje por personaje sin sustituir espacios reservados con habilidades genéricas.
 4. **Completar el arte de habilidades.** Los Tres de la Realeza todavía reutiliza el full art general de Makanaky y los ataques personales, salvo el arsenal de Kingteka, usan composición procedural. Crear arte dedicado solo después de cerrar mecánica y balance de cada kit.
 5. **Aclarar los controles de cartas.** Hacer más evidente en HUD y móvil que una pulsación breve de Q/R activa y mantener la tecla solo revela la carta; comprobar que carga mostrada, estado habilitado y carga autoritativa siempre coincidan.
 6. **Cierre público de calidad.** Antes de considerar terminada Extinción, ejecutar recorridos prolongados con el flujo cooperativo público, revisar móvil, movimiento reducido, FPS, reconexión y regreso desde la mazmorra sin distribuir controles de QA.
@@ -857,3 +857,7 @@ La revisión mecánica organiza las oleadas como 3/4/5 rivales: tanque con dos a
 La Era Perdida se divide en tres salas de cinco y dispone de 180 s; al aparecer el jefe se garantizan 150 s. Entre las dos primeras se elige curación, +20 % de daño temporal o una sala más difícil con +35 % de recompensa. Allí aparece el Triceratops joven rompefilas, cuya carga causa 25 y queda aturdida al chocar. El Triceratops Fósil tiene dos placas que absorben daño; después expone el cristal y puede aturdirse al embestir los dos pilares de la arena. Al terminar o fallar, el regreso restaura terreno y posiciones y bloquea nuevas apariciones durante seis segundos para evitar una emboscada inmediata.
 
 En cualquier combate se puede hacer clic izquierdo sobre un enemigo, jefe o fragmento para fijarlo. El ataque automático lo prioriza mientras esté vivo, visible, con línea de tiro y dentro del alcance; hacer clic otra vez lo libera. En cooperativo cada jugador mantiene su propio objetivo y el servidor valida únicamente su identificador, nunca posiciones ni daño enviados por el cliente.
+
+### Sideral · kit del Lagarto completo
+
+Tres técnicas intercambiables con rangos y evoluciones propios, Sangre fría y Q de transformación con aliento dirigido. UR, 120 PV, velocidad 195, poder 27, ATQ físico/especial 95/105, DEF 100/105. Q usa una reserva independiente; el dominio R conserva mecánicas y carga. Especificación, animaciones y límites: [docs/SIDERAL_KIT.md](docs/SIDERAL_KIT.md). Falta afinar balance en partidas completas y crear ilustración exclusiva de Q; la carta reutiliza el full art existente del personaje.

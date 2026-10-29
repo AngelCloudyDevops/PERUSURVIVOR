@@ -43,7 +43,7 @@ El contrato `P.Stats` es universal para jugables, minions, minijefes y jefes. Lo
 
 P.CharacterContract proyecta el estado real de cada causa en nueve piezas: tres ataques personales, una evolución por ataque, una pasiva única, una ulti Q y un dominio R. `Implementado` exige una mecánica ejecutable; `Planeado` admite un concepto aprobado sin habilitarlo; `Por definir` mantiene visible el espacio vacío. Los dos poderes de apoyo se registran como capacidad de progresión compartida y no cuentan dentro del 9/9. Wiki, ficha extensa y Balance consumen esta misma proyección.
 
-Kingteka y Makanaky son referencias completas con 9/9. Sideral tiene 3/9 —ataque, evolución y dominio—; no se considera completo hasta implementar los ataques y evoluciones 2–3, una pasiva única y una ulti Q. El porcentaje comunica cobertura funcional, no poder ni rareza.
+Kingteka, Makanaky y Sideral son referencias completas con 9/9. Sideral añade Colazo, Huevo, sus evoluciones, Sangre fría y Despertar del Lagarto Q; el dominio R se conserva. El porcentaje comunica cobertura funcional, no poder ni rareza.
 
 Kingteka usa tres armas con rangos separados. Escopeta causa parte de 260 u y evoluciona a Escopeta Contra; Gallinazo evoluciona a Gallinazo de Expedición; Golpe de cuerpo evoluciona a Golpe de Supervivencia. Cada arma progresa de rango 1 a 5 y puede evolucionar independientemente en rango 5 y nivel 14. Balance expone un multiplicador de alcance por slot además del alcance general.
 
@@ -1071,3 +1071,6 @@ Opciones → Gráficos → FPS y ping activa el cuadro durante la partida y cons
 
 ### Vestíbulo en celular
 Hasta 760 px, el menú principal organiza perfil, presentación del causa, dos filas de accesos con nombres, preparación de partida y herramientas en filas de altura natural. En pantallas bajas se desplaza verticalmente, sin estirar ni superponer tarjetas ni desbordar a los lados. Las rutas y acciones de los botones se conservan.
+
+### Sideral · arsenal del Lagarto
+El kit 9/9 y su balance inicial están definidos en [SIDERAL_KIT.md](SIDERAL_KIT.md): Colazo, Huevo, evoluciones independientes, Sangre fría y Q de seis segundos con carga independiente. El dominio R no cambia.

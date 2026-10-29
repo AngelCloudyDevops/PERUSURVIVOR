@@ -35,10 +35,10 @@ El arsenal ejecutable vive en `P.CharacterProfiles.weaponKits` y `weaponSlots`; 
 | Cevichero | Enjambre azul | Reservado | Reservado | 1/3 |
 | La G5 | Patada G5 · 145° | Reservado | Reservado | 1/3 |
 | Makanaky · La Realeza | Puño de la Realeza | Mete cabezazos como yo | GAA | **3/3** |
-| Sideral · Espantaminions | Mirada Sideral | Reservado | Reservado | 1/3 |
+| Sideral · Espantaminions | Mirada Sideral | Colazo del Lagarto | Huevo sospechoso | **3/3** |
 | Chamelín · Trovo | Retaguardia de Trovo | Reservado | Reservado | 1/3 |
 
-Resumen: 20 causas, 24 ataques personales funcionales, sin conceptos en estado planeado y dos contratos 9/9 completos: Kingteka y Makanaky. Sideral está en 3/9: ataque, primera evolución y dominio implementados; dos ataques, sus evoluciones, pasiva y ulti por definir.
+Resumen: 20 causas, 26 ataques personales funcionales, sin conceptos en estado planeado y tres contratos 9/9 completos: Kingteka, Makanaky y Sideral. Detalle del nuevo kit: [SIDERAL_KIT.md](SIDERAL_KIT.md).
 
 ## Q, R y pasivas
 
@@ -50,6 +50,7 @@ Resumen: 20 causas, 24 ataques personales funcionales, sin conceptos en estado p
 - Cuy Supremo: estampida.
 - Paloma del Centro: bandada.
 - Makanaky: Los Tres de la Realeza.
+- Sideral: Despertar del Lagarto (carta con arte de personaje reutilizado).
 
 ### Expansiones R implementadas con carta full art
 
@@ -63,13 +64,14 @@ Resumen: 20 causas, 24 ataques personales funcionales, sin conceptos en estado p
 
 - Kingteka: Instinto de expedición.
 - Makanaky: Racha de la Realeza.
-- Los otros 18 espacios están reservados y no otorgan efectos.
+- Sideral: Sangre fría.
+- Los otros 17 espacios están reservados y no otorgan efectos.
 
-Kingteka y Makanaky son kits cerrados de extremo a extremo: tres ataques funcionales, tres evoluciones, Q, R y pasiva. Makanaky alterna puño, cabezazo y GAA; Respeto de Q y la carga del dominio son independientes.
+Kingteka, Makanaky y Sideral son kits cerrados de extremo a extremo: tres ataques funcionales, tres evoluciones, Q, R y pasiva. Makanaky alterna puño, cabezazo y GAA; Respeto de Q y la carga del dominio son independientes.
 
 ## Cobertura de ilustraciones
 
-- Los 11 poderes Q/R implementados ya tienen una ruta de carta full art registrada; Los Tres de la Realeza reutiliza temporalmente el full art de personaje de Makanaky.
+- Los 12 poderes Q/R implementados ya tienen una ruta de carta full art registrada; Los Tres de la Realeza reutiliza temporalmente el full art de personaje de Makanaky.
 - Las tres armas de Kingteka tienen full art propio para las cartas de subida de nivel.
 - Los ataques personales del resto todavía usan composición procedural con sprite e icono; no poseen full art dedicado.
 - Ocho causas tienen ilustración grande de personaje en Causapedia: Cristorata, Cuy, Paloma, Kingteka, Chamelín, Makanaky, Sideral y Cirilo.
@@ -82,3 +84,5 @@ Kingteka y Makanaky son kits cerrados de extremo a extremo: tres ataques funcion
 4. Diseñar pasivas solo después de cerrar los tres ataques, para evitar que tapen carencias del arsenal.
 5. Probar cada kit a nivel base y máximo contra minions, minijefes y jefe antes de marcarlo como completo.
 
+
+Sideral está 9/9: tres técnicas, tres evoluciones, Sangre fría, Q y dominio existente. Su Q reutiliza la ilustración de personaje; arte exclusivo y afinación en partidas completas siguen pendientes.
