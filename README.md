@@ -564,6 +564,8 @@ Validación integrada adicional: 54 partidas sobre b10eef1 (18 causas × 3 mapas
 
 Makanaky · La Realeza está disponible como causa jugable y conserva su aparición como minijefe en Plaza de Armas.
 
+Versiones oficiales del catálogo: **Cuy Supremo · El Oráculo de la Tómbola** (C), **Paloma del Centro · El Almuerzo del Pueblo** (C), **Alan García · Los Balconazos** (SR), **Alberto Fujimori · ¡Soy Inocente!** (SSR), **Keiko Fujimori · País Rico** (SSR) y **Ollanta Humala · Cosito en Campaña** (SR). Los años y lemas viven en la ficha y no alargan el título de la carta. El ID, progreso, estadísticas y rareza del personaje se conservan al asignarle una versión.
+
 ### Ajuste fino de G5, Fuzo y Cerdito
 G5 conserva vida, movilidad y arco: recarga 0,62 → 0,68 s y multiplicador evolucionado 0,65 → 0,58. Fuzo conserva alcance y perforación: impacto 0,85 → 0,80 y evolución 0,65 → 0,58. Cerdito mantiene siete perdigones y alcance 400: impacto 0,50 → 0,56, inicio de caída 140 → 165 u y evolución 0,65 → 0,70. Consulta [la comparación emparejada](docs/TRIO_BALANCE.md), con partidas antes/después en los mismos mapas y semillas. Las fichas se derivan de los valores nuevos.
 
