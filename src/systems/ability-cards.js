@@ -13,19 +13,20 @@ P.AbilityCards={
  },
  entries:{
   kingteka:{kind:'ultimate',frame:'fire',art:'assets/cards/kingteka-gallinazo-ultimate-fullart-v2.webp',variants:[{id:'cerdito-vtuber',edition:'Skin Cerdito VTuber',art:'assets/cards/cerdito-vtuber-ultimate-fullart-v1.webp'}]},
-  kingtekaDomain:{characterId:'kingteka',kind:'domain',frame:'domain-nature',state:'kingtekaDomain',label:'SANTUARIO',title:'Santuario del Reino Animal',art:'assets/cards/kingteka-nature-domain-fullart-v1.webp'},
+  kingtekaDomain:{characterId:'kingteka',kind:'domain',frame:'domain-nature',state:'kingtekaDomain',chargeField:'domainCharge',label:'SANTUARIO',title:'Santuario del Reino Animal',art:'assets/cards/kingteka-nature-domain-fullart-v1.webp'},
   alberto:{kind:'ultimate',frame:'fire',art:'assets/cards/alberto-tribunal-ultimate-fullart-v1.webp'},
   cristorata:{kind:'ultimate',frame:'fire',art:'assets/cards/cristorata-dragon-ultimate-fullart-v1.webp'},
   cuy:{kind:'ultimate',frame:'fire',art:'assets/cards/cuy-stampede-ultimate-fullart-v1.webp'},
   paloma:{kind:'ultimate',frame:'fire',art:'assets/cards/paloma-bandada-ultimate-fullart-v1.webp'},
   makanakyUltimate:{characterId:'makanaky',kind:'ultimate',frame:'fire',title:'Los Tres de la Realeza',art:'assets/cards/makanaky-character-fullart-v1.webp'},
-  makanaky:{kind:'domain',frame:'domain-royal',state:'domain',label:'DOMINIO',art:'assets/cards/makanaky-domain-fullart-v1.webp'},
+  makanaky:{kind:'domain',frame:'domain-royal',state:'domain',chargeField:'domainCharge',label:'DOMINIO',art:'assets/cards/makanaky-domain-fullart-v1.webp'},
   sideral:{kind:'domain',frame:'domain-cosmic',state:'sideralDomain',label:'DOMINIO',art:'assets/cards/sideral-domain-fullart-v1.webp'},
   cirilo:{kind:'domain',frame:'domain-demon',state:'ciriloDomain',label:'AUDIENCIA',art:'assets/cards/cirilo-audiencia-domain-fullart-v1.webp'},
   chamelin:{kind:'domain',frame:'domain-steam',state:'chamelinDomain',label:'BAÑO DE TROVO',art:'assets/cards/chamelin-domain-fullart-v1.webp'}
  },
  frame(name){return this.frames[name]||this.frames.none},
  definition(id,kind){const direct=this.entries[id],entry=kind==='ultimate'&&this.entries[id+'Ultimate']||kind==='domain'&&this.entries[id+'Domain']||direct;return entry&&(!kind||entry.kind===kind)?entry:null},
+ charge(id,kind,ultimate=P.state.ultimate){const entry=this.definition(id,kind),field=entry?.chargeField||'charge';return Math.max(0,Math.min(100,ultimate?.[field]||0))},
  art(id,kind,character=P.state.player){const entry=this.definition(id,kind);if(!entry)return null;const skin=kind==='ultimate'&&P.CharacterSkins?.equipped?.(character);return skin?.ultimateArt||entry.art},
  syncReadyFx(){
   for(const [kind,id] of [['ultimate','ultimate'],['domain','domain-ability']]){const button=P.$('#'+id),slot=P.$('#'+kind+'-ability-slot');if(!slot)continue;const ready=!!button&&!button.hidden&&button.classList.contains('ability-ready'),wasReady=slot.classList.contains('is-ready'),theme=button?.dataset.frameTheme||'none',frame=this.frame(theme);slot.dataset.frameTheme=theme;slot.dataset.frameVisual=frame.visual;if(ready&&!wasReady){slot.classList.remove('is-extinguishing');slot.classList.add('is-ready','is-igniting')}else if(!ready&&wasReady){slot.classList.remove('is-ready','is-igniting');slot.classList.add('is-extinguishing')}}
@@ -39,13 +40,13 @@ P.AbilityCards={
   if(button.id==='ultimate'||button.id==='domain-ability')this.syncReadyFx();
  },
  hud(){
-  const s=P.state,id=s.player?.id,ultimateCharge=Math.max(0,Math.min(100,s.ultimate?.charge||0));
+  const s=P.state,id=s.player?.id,ultimateCharge=this.charge(id,'ultimate');
   // Character-specific HUDs set disabled while charging; keep the controls
   // pointer-active so a hold can preview the reserved/full-art card on touch.
   const ultimate=P.$('#ultimate');
   if(ultimate){const entry=this.definition(id,'ultimate'),active=(s.ultimate?.left||0)>0;ultimate.disabled=false;ultimate.setAttribute('aria-disabled',String(!entry||!s.ultimate||active||ultimateCharge<100))}
   const b=P.$('#domain-ability'),entry=this.definition(id,'domain');if(!b)return;
-  const charge=Math.max(0,Math.min(100,s.ultimate?.charge||0)),active=!!(entry&&s[entry.state]);
+  const charge=this.charge(id,'domain'),active=!!(entry&&s[entry.state]);
   const waiting=!!entry&&(id==='makanaky'&&typeof Image!=='undefined'&&P.DomainIntro&&!P.DomainIntro.ready&&!P.DomainIntro.failed||id==='sideral'&&!P.SideralDomain?.artReady?.()&&!P.SideralDomain?.failed);
   b.hidden=s.mode!=='play';b.disabled=false;b.setAttribute('aria-disabled',String(!entry||active||charge<100||!!waiting));
   this.apply(b,entry?id:'empty','domain',charge,!!entry&&charge>=100&&!active&&!waiting,active);
