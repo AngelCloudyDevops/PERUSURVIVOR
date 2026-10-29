@@ -382,6 +382,7 @@ module.exports = [
   {"source":"src/rendering/domain-intro.js","output":"js/domain-intro.js"},
   {"source":"src/systems/sideral-domain.js","output":"js/sideral-domain.js"},
   {"source":"src/network/live-gifts.js","output":"js/live-gifts.js"}
+, {"source":"src/ui/inbox.js","output":"js/inbox.js"}
 , {source:"src/systems/dragon-ultimate.js",output:"js/dragon-ultimate.js"}
 , {source:"src/rendering/dragon-art.js",output:"js/dragon-art.js"}
 , {source:"src/rendering/dragon-epic.js",output:"js/dragon-epic.js"}, {source:"src/network/friends.js",output:"js/friends.js"}

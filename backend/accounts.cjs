@@ -12,6 +12,7 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
  CREATE TABLE IF NOT EXISTS user_roles(user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, role TEXT NOT NULL CHECK(role='admin'));
  CREATE TABLE IF NOT EXISTS user_entitlements(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, entitlement TEXT NOT NULL CHECK(entitlement IN ('laboratory')),enabled INTEGER NOT NULL CHECK(enabled IN (0,1)),updated_at INTEGER NOT NULL,PRIMARY KEY(user_id,entitlement));
  CREATE TABLE IF NOT EXISTS admin_actions(id INTEGER PRIMARY KEY AUTOINCREMENT,actor_id TEXT NOT NULL REFERENCES users(id),target_id TEXT NOT NULL REFERENCES users(id),request_id TEXT NOT NULL,fingerprint TEXT NOT NULL,result TEXT NOT NULL,kind TEXT NOT NULL,amount INTEGER,character_id TEXT,created_at INTEGER NOT NULL,UNIQUE(actor_id,request_id));
+ CREATE TABLE IF NOT EXISTS inbox_state(user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,last_read_id INTEGER NOT NULL DEFAULT 0);
  UPDATE saves SET payload=json_set(payload,'$.progress.adminCursor',COALESCE((SELECT MAX(id) FROM admin_actions WHERE target_id=saves.user_id),0)) WHERE json_valid(payload) AND json_type(payload,'$.progress.adminCursor') IS NULL;
  PRAGMA user_version=4;`);
  const attempts=new Map();let running=0;
@@ -57,6 +58,8 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
   if(req.headers['x-account-id']!==user.id){reply(res,409,{error:'La sesión cambió en otra pestaña. Recarga la página antes de guardar.'});return true}
   if(route==='/api/friends'||route.startsWith('/api/friends/')){await friends.handle(req,res,user,url);return true}
   if(route==='/api/gifts'&&req.method==='GET'){gifts.sync(req,res,user,url);return true}
+  if(route==='/api/inbox'&&req.method==='GET'){gifts.inbox(req,res,user,url);return true}
+  if(route==='/api/inbox/read'&&req.method==='POST'){gifts.readInbox(req,res,user,url);return true}
   if(route==='/api/admin/balance'){await balance.handle(req,res,user,url,()=>session(req));return true}
   if(route.startsWith('/api/admin/')){await admin.handle(req,res,user,url,()=>session(req));return true}
   if(route==='/api/logout'&&req.method==='POST'){db.prepare('DELETE FROM sessions WHERE user_id=?').run(user.id);cookie(res,'',0);reply(res,200,{ok:true});return true}
