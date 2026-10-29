@@ -679,9 +679,12 @@ body[data-lobby-panel=codex] #game{opacity:.08;filter:blur(8px) saturate(.45)}bo
 #menu .cause-card-copy>*{display:block}
 .cause-card-copy small{color:var(--accent);font:900 6px monospace;letter-spacing:1px;text-transform:uppercase}
 .cause-card-copy strong{margin-top:5px;color:#fff1d2;font:900 18px/.95 'Barlow Condensed',sans-serif;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cause-card-copy .cause-card-version{margin-top:3px;color:#e7d39f;font:800 11px/1.05 'Barlow Condensed',sans-serif;text-transform:uppercase;white-space:normal;overflow-wrap:anywhere}
 .cause-card-copy>span{margin-top:4px;color:#91869a;font:7px monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cause-card-copy em{margin-top:auto;padding-top:6px;color:#dec477;font:900 6px monospace;letter-spacing:.7px;font-style:normal;opacity:.75}
 .cause-collectible-card:hover .cause-card-copy em,.cause-collectible-card:focus-visible .cause-card-copy em{opacity:1}
+.cause-collectible-card .cause-card-copy{min-height:96px}
+.cause-collectible-card .cause-card-art{height:calc(100% - 96px);flex-basis:calc(100% - 96px)}
 .character-viewer{position:fixed;z-index:95;inset:0;display:grid;place-items:center;padding:2.5dvh 2.5vw;color:#f8f0dc}
 .character-viewer-shade{position:absolute;inset:0;width:100%;height:100%;border:0;background:#05040bdc;backdrop-filter:blur(10px)}
 .character-viewer-panel{position:relative;display:flex;flex-direction:column;width:min(1240px,95vw);height:min(860px,95dvh);min-height:0;overflow:hidden;border:1px solid #5a4a68;border-top:2px solid var(--accent);border-radius:18px;background:radial-gradient(circle at 28% 48%,color-mix(in srgb,var(--accent) 17%,transparent),transparent 34%),linear-gradient(145deg,#1a1425,#08070d 72%);box-shadow:0 35px 110px #000f,0 0 38px color-mix(in srgb,var(--accent) 18%,transparent)}
