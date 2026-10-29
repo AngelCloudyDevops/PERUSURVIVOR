@@ -174,6 +174,8 @@ Checklist para aprobar una pieza nueva:
 5. La ulti es un remate extraordinario y la expansión transforma temporalmente las reglas o el escenario; no son alias de un ataque normal.
 6. La auditoría en `docs/BOSS_KIT_AUDIT.md` se actualiza y cualquier faltante permanece visible.
 
+Primer jefe normalizado con esta plantilla: **El Chosicano · Última Parada**. Sus cuatro ataques son Embestida de ruta, Bocinazo, Lluvia de boletos y Control de paradero; conserva las pasivas La familia es primero y Frenazo expuesto, activa Hora punta como ulti única al 25 % y despliega Última Parada como expansión al 50 %. Control de paradero fija tres zonas durante 1,3 s y luego las impacta sin seguir al jugador. Su ficha se mantiene conectada al mismo catálogo, stats, Wiki, Balance y laboratorio.
+
 Una habilidad de rol es la acción de equipo que distingue a un dinosaurio —interceptar, rescatar, curar, debilitar o romper la formación— y no cuenta como un segundo ataque. Varias frases que describen una misma regla se agrupan como una sola pasiva. Fuerza, Técnica e Ingenio determinan la debilidad mecánica; las ventanas de espalda, agotamiento, placas o cobertura se documentan además como mecánicas particulares.
 
 Balance global conserva el escalado dinámico de cada aparición y permite multiplicar vida, daño, velocidad, defensas, recarga de habilidades, radio de áreas y duración de peligros/estados. Recarga ×2 significa que los temporizadores avanzan a la mitad de velocidad; radio y duración solo modifican peligros que nacen después de guardar. Los valores 1× reproducen exactamente el comportamiento base.
