@@ -81,6 +81,8 @@ El atributo siempre se muestra aparte del rol: Fuerza vence a Técnica, Técnica
 
 Kingteka es la referencia del formato: **Humano · Fuerza · Vanguardia / Controlador · alcance variable · daño híbrido**. Sus etiquetas son Arsenal intercambiable, Ráfaga, Control, Movilidad, Curación y Daño fijo. Escopeta y golpe son físicos, Gallinazo es especial, Q conserva el canal del arma equipada y R usa daño fijo.
 
+La cobertura real de los tres ataques, Q, R, pasivas e ilustraciones de cada causa se mantiene en [Auditoría de kits de personajes](docs/CHARACTER_KIT_AUDIT.md). La Causapedia diferencia `Implementado`, `Planeado` y `Reservado`: un concepto o espacio futuro nunca se presenta como una habilidad funcional.
+
 ## Primera ficha completa: Makanaky · La Realeza
 
 **Estado:** ficha activa. Los stats, ataque, evolución, dominio y la pasiva descritos abajo funcionan tanto en individual como bajo autoridad del servidor cooperativo. La variante minijefe conserva su propio balance y no hereda esta pasiva.

@@ -1,5 +1,9 @@
 # Arquitectura
 
+## Contrato de arsenal por personaje
+
+`P.CharacterProfiles.weaponKits` registra únicamente excepciones con ataques adicionales aprobados. `weaponSlots(c)` siempre devuelve tres posiciones con estado cerrado (`implemented`, `planned` o `reserved`) y `kitAudit(c)` cruza esos slots con los registros reales de Q, R y pasiva. La Causapedia consume este contrato: una evolución, una definitiva o un concepto todavía no programado no pueden ocupar visualmente el lugar de un ataque funcional. El ataque inicial de personajes sin arsenal explícito se deriva de `P.Data.attacks`; sus otros dos espacios quedan reservados.
+
 Cooperativo: R activa el dominio; G confirma el combo compartido (también disponible por botón). Las partidas activas no caducan a los 45 min; ese plazo limpia salas de espera/resultados inactivos. Se cancelan entradas pendientes al desconectar o recuperar un socket, y no se admiten entradas mientras falta un compañero. La misma pestaña conserva una credencial efímera de recuperación en sessionStorage, renovada durante la partida y pagehide; al recargar, espera la comprobación de cuenta y solicita recuperar el grupo dentro de los 30 s del servidor. Salir, vencer el plazo o cambiar de cuenta elimina la recuperación; no se guarda en localStorage ni se sincroniza entre pestañas.
 
 Cooperativo sin barrera de separación: cada jugador puede explorar libremente; el servidor conserva sectores y colisiones alrededor de ambos, alterna el foco de aparición sin duplicar enemigos y reutiliza dos mapas de navegación. Una flecha señala al compañero lejano. Los dominios de Makanaky, Sideral y Chamelín se solicitan al servidor sin activarse localmente. Las pulsaciones breves de dominio, ulti, golpe y salto se conservan entre mensajes hasta el siguiente paso de simulación y se consumen una vez.
