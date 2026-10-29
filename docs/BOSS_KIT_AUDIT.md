@@ -15,7 +15,7 @@ Además del kit, cada ficha debe declarar rol, atributo, canal de daño y debili
 
 | Boss | Ataques implementados | Pasivas | Fases | Falta definir |
 |---|---|---|---|---|
-| El Chosicano · Última Parada | Embestida de ruta; Bocinazo; Lluvia de boletos; La familia es primero | Fase II al 50 % | 2/2 | Segunda pasiva; rol, atributo y canal explícitos |
+| El Chosicano · Última Parada | Embestida de ruta; Bocinazo; Lluvia de boletos; La familia es primero | La familia es primero; Frenazo expuesto | 2/2 | Kit 100 % cubierto. Validar ritmo, lectura de cobertura y balance en partidas completas |
 | El Gabinete Infinito | Abanico ministerial; Embestida de gabinete | Fase II al 50 % | 2/2 | Ataques 3–4; segunda pasiva; rol, atributo y canal |
 | El Guardián de la Niebla | Anillo de niebla; Golpe pétreo | Fase II al 50 % | 2/2 | Ataques 3–4; segunda pasiva; rol, atributo y canal |
 | La Procesión de Medianoche | Anillo de niebla; Golpe pétreo | Fase II al 50 % | 2/2 | Identidad mecánica propia o declaración explícita de variante; ataques 3–4; segunda pasiva; rol, atributo y canal |
