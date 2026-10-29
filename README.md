@@ -569,7 +569,7 @@ El laboratorio de administrador incluye «Supervivencia · oleadas reales» para
 
 
 
-**Panel admin:** exclusivamente la cuenta `reysuperior` con rol admin puede consultar usuarios, entregar 1–100.000 monedas por operación y desbloquear personajes. Incluye búsqueda, paginación, confirmación e historial. No permite cambiar roles ni ver contraseñas.
+**Panel admin:** exclusivamente la cuenta `reysuperior` con rol admin puede consultar usuarios, entregar 1–100.000 monedas por operación, desbloquear personajes y conceder o retirar acceso al Laboratorio. El permiso de laboratorio se guarda en el servidor y no convierte al jugador en administrador: no habilita control de cuentas ni balance global. Incluye búsqueda, paginación, confirmación e historial auditable. No permite cambiar roles ni ver contraseñas.
 
 Las entregas administrativas se reciben en vivo durante la sesión: monedas y personajes se suman al guardado local sin reemplazar la partida. Un aviso confirma la recepción. Al reconectar se recuperan entregas pendientes sin duplicarlas.
 
