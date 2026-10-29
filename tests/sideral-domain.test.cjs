@@ -37,11 +37,11 @@ test('Sideral: el dominio entra directamente y cada pulso nace desde el personaj
  p.x=333;p.y=222;P.SideralDomain.burst();assert.equal(d.waveX,333);assert.equal(d.waveY,222);
 });
 
-test('Sideral dinámico: construye durante el combate y activa la habitación a los 2,6 s',()=>{
+test('Sideral dinámico: construye sobre el mapa sin mover actores ni tomar la cámara',()=>{
  const {sim,P,s,p}=setup(),D=P.SideralDomain,boss=P.Entities.enemy(true);s.devRun=true;D.practicePresentation='dynamic';Object.assign(boss,{x:p.x+180,y:p.y,attackT:1});s.enemies=[boss];p.ultimate.charge=100;
  assert(D.activate());const d=s.sideralDomain,startX=p.x,startElapsed=s.elapsed;assert(D.dynamic(d));assert.equal(D.entryFor(d),2.6);assert.equal(P.Progression.cinematicOnly(),false);assert.equal(d.arena,false);assert.equal(D.frozen(boss),false);assert(p.inv<1);
  sim.tick(.1,[{x:1},{}]);assert(p.x>startX);assert(s.elapsed>startElapsed);assert.equal(d.arena,false);
- d.age=2.55;sim.tick(.06,[{},{}]);assert.equal(d.arena,true);assert.equal(D.frozen(boss),true);assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,4);
+ const before={x:p.x,y:p.y},zoom=P.World.zoomFor(1280,720,true,false),camera=P.Maps.camera(p.x,p.y-55,1280/zoom,720/zoom);d.age=2.55;sim.tick(.06,[{},{}]);assert.equal(d.arena,true);assert.equal(D.frozen(boss),false);assert.deepEqual({x:p.x,y:p.y},before);assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,0);assert.equal(P.World.zoomFor(1280,720,true,false),zoom);const after=P.Maps.camera(p.x,p.y-55,1280/zoom,720/zoom);assert.equal(after.x,camera.x);assert.equal(after.y,camera.y);
  d.age=D.entryFor(d)+D.duration-.01;sim.tick(.04,[{},{}]);assert.equal(d.exitTotal,1.35);
 });
 
@@ -52,7 +52,7 @@ test('Sideral dinámico: el servidor cooperativo conserva la presentación solic
 
 test('Sideral dinámico: conserva construcción, título y accesos de laboratorio',()=>{
  const fs=require('node:fs'),source=fs.readFileSync('src/systems/sideral-domain.js','utf8'),options=fs.readFileSync('src/ui/reference-menus.js','utf8');
- for(const token of ['construction(c,d,time)','dynamicTitle(c,text,x,y,size','dynamicIntro(c,w,h,d)',"'EXPANSIÓN DE DOMINIO'","'HABITACIÓN DEL'","'LAGARTO'",'sideral-domain-dynamic-practice','bench-sideral-presentation','bench-sideral-dynamic',"labToggle.type='checkbox'","P.state.mode==='play'"])assert(source.includes(token),token);
+ for(const token of ['construction(c,d,time,opacity=1)','dynamicTitle(c,text,x,y,size','dynamicIntro(c,w,h,d)',"'EXPANSIÓN DE DOMINIO'","'HABITACIÓN DEL'","'LAGARTO'",'sideral-domain-dynamic-practice','bench-sideral-presentation','bench-sideral-dynamic',"labToggle.type='checkbox'","P.state.mode==='play'"])assert(source.includes(token),token);
  assert(options.includes("'Dominios dinámicos'"));assert(options.includes("'domain-dynamic'"));
 });
 
