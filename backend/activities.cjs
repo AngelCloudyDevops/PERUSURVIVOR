@@ -55,6 +55,8 @@ class Activities{
   const P=this.P,e=P.MapEvents?.event;if(this.pending||!e?.extinction)return;
   if(e.phase==='portal'&&!e.portalOffered&&this.sim.players.some(p=>p.hp>0&&Math.hypot(p.x-e.x,p.y-e.y)<125)){
    e.portalOffered=true;this.pending={id:++this.serial,kind:'extinction-portal',phase:'choice',applied:[false,false],choices:[null,null],eventSerial:e.serial};for(const p of this.sim.players)p.moving=false;this.notice('El portal prehistórico espera la decisión de los dos');
+  }else if(e.phase==='dungeonChoice'&&!e.choiceOffered){
+   e.choiceOffered=true;this.pending={id:++this.serial,kind:'extinction-room',phase:'choice',applied:[false,false],choices:[null,null],eventSerial:e.serial,room:e.dungeonRoom};for(const p of this.sim.players)p.moving=false;this.notice('Sala superada: el anfitrión desempata la ventaja del equipo');
   }else if(e.phase==='reward'){
    this.pending={id:++this.serial,kind:'extinction-reward',phase:'choice',applied:[false,false],choices:[null,null],eventSerial:e.serial};for(const p of this.sim.players)p.moving=false;this.notice('Elijan la reliquia que recibirá todo el equipo');
   }
@@ -65,6 +67,10 @@ class Activities{
   if(pending.kind==='extinction-portal'){
    if(choice<0||choice>1)return false;pending.choices[slot]=choice;pending.applied[slot]=true;
    if(pending.applied.every(Boolean)){const enter=pending.choices.every(value=>value===0),e=P.MapEvents.event;this.pending=null;if(e?.serial===pending.eventSerial){if(enter){P.MapEvents.beginDungeon(e);this.notice('Los dos entraron a la Era Perdida')}else{P.MapEvents.declinePortal(e);this.notice('El equipo decidió continuar la partida')}}}
+   return true;
+  }else if(pending.kind==='extinction-room'){
+   if(choice<0||choice>2)return false;pending.choices[slot]=choice;pending.applied[slot]=true;
+   if(pending.applied.every(Boolean)){const selected=pending.choices[0],e=P.MapEvents.event,boon=['heal','power','risk'][selected];this.pending=null;if(e?.serial===pending.eventSerial)P.MapEvents.applyRoomChoice(e,boon);this.notice('Ventaja de sala: '+({heal:'equipo recuperado',power:'instinto depredador',risk:'riesgo y botín aumentados'}[boon]||'continuar'))}
    return true;
   }else if(pending.kind==='extinction-reward'){
    if(choice<0||choice>2)return false;pending.choices[slot]=choice;pending.applied[slot]=true;

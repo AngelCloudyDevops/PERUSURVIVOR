@@ -973,14 +973,20 @@ Kingteka pasa a rareza **UR · Supremo** y conserva la ulti Gallinazo en Q. Su E
 Extinción reemplaza temporalmente la presión normal de la partida por una secuencia cerrada y legible:
 
 1. La cinemática del meteorito pausa el reloj. El impacto elimina todos los minions comunes presentes, transforma el terreno y sella los cofres hasta terminar o rechazar el evento.
-2. La invasión tiene tres oleadas fijas de tres dinosaurios. No se añaden minions ordinarios mientras esté activa.
+2. La invasión escala en tres oleadas de 3, 4 y 5 dinosaurios. La última reúne los cinco roles y no se añaden minions ordinarios mientras esté activa.
    - Oleada 1: Anquilosaurio tanque y dos Velociraptores de daño.
-   - Oleada 2: Pterosaurio de apoyo, Dilofosaurio debilitador y Velociraptor.
-   - Oleada 3: Anquilosaurio, Parasaurolophus sanador y Velociraptor.
+   - Oleada 2: Pterosaurio de apoyo, Dilofosaurio debilitador y dos Velociraptores.
+   - Oleada 3: Anquilosaurio, Velociraptor, Pterosaurio, Dilofosaurio y Parasaurolophus sanador.
 3. Los jugadores que se alejan demasiado del cráter reciben meteoritos telegrafiados. El centro inflige daño y el borde aplica ralentización; nunca hay más de tres avisos simultáneos.
-4. Tras destruir los tres fragmentos aparece el **Tirano del Cráter**, un T-Rex de gran escala. Alterna embestida, rugido radial y salto/meteorito. Al 50 % de vida entra en fase II y acelera sus patrones.
+4. Tras destruir los tres fragmentos aparece el **Tirano del Cráter**, un T-Rex de gran escala. Alterna embestida/mordida, rugido interruptor, onda de pisotón y meteorito que desactiva cobertura durante siete segundos. Al 50 % de vida acelera sus patrones; cada tercer ataque abre una ventana de agotamiento.
 5. Al derrotarlo se abre el portal prehistórico. En cooperativo, el contacto de cualquiera inicia la decisión compartida; ambos deben aceptar.
-6. La Era Perdida contiene 15 dinosaurios. Al terminar aparece el **Triceratops Fósil**, jefe final obligatorio de la mazmorra. La reliquia solo se ofrece después de derrotarlo.
+6. La Era Perdida contiene tres salas de cinco dinosaurios. Entre salas se elige curación, daño temporal o riesgo con mejor botín. Al terminar aparece el **Triceratops Fósil**: dos placas absorben golpes, después expone el cristal y sus cargas contra los pilares lo aturden. La reliquia solo se ofrece después de derrotarlo.
+
+El evento tiene reloj propio y falla cuando expira o cuando cae todo el equipo. El retorno restaura el terreno temporal y concede seis segundos sin nuevas apariciones. Las repeticiones aumentan vida y velocidad con un límite de tres grados, sin añadir más proyectiles.
+
+### Fijación manual de objetivo
+
+Clic izquierdo sobre una entidad hostil fija la prioridad del ataque automático. La fijación no ignora alcance, visibilidad ni cobertura; si el blanco queda temporalmente fuera de condiciones, el arma vuelve al objetivo válido más cercano y recupera la prioridad cuando reaparece. Un segundo clic sobre el mismo blanco, o su derrota, elimina la fijación. Sirve para minions, fragmentos, minijefes y jefes. Cada jugador cooperativo posee una fijación independiente.
 
 Roles de los dinosaurios:
 
@@ -994,3 +1000,6 @@ El T-Rex es el jefe del mundo exterior. El Triceratops Fósil es el jefe final d
 
 ### Fluidez del cooperativo
 La simulación cooperativa mantiene pasos de 40 ms. Las conexiones lentas descartan estados visuales intermedios en lugar de acumularlos; la siguiente actualización contiene el mundo actual completo. Se conservan enemigos, ataques, avisos, animaciones y resultados. Estos ajustes de transporte no se aplican al modo solitario.
+
+### Indicador de FPS y ping
+Opciones → Gráficos → FPS y ping activa el cuadro durante la partida y conserva la preferencia en este navegador. En cooperativo muestra el último RTT real en ms, medido cada dos segundos; durante la conexión o con una muestra de más de seis segundos muestra «midiendo», y durante reconexión lo indica. En solitario el ping no aplica.

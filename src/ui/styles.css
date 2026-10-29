@@ -881,3 +881,5 @@ body[data-lobby-panel=home] #menu .home-feature h2{margin:10px 0 2px;font-size:3
 @media(max-width:760px){#hud #time-of-day{top:82px;max-width:64vw;overflow:hidden;padding:3px 6px;font-size:7px;text-overflow:ellipsis}#hud #boss-countdown{top:108px}}
 
 .character-skins{margin-top:14px;padding-top:14px;border-top:1px solid #6f604e}.character-skins>p{font:10px/1.55 monospace;color:#bfc8cf}.skin-choice{display:block;width:100%;margin:8px 0 0;padding:10px;text-align:left;background:#20252a;border:1px solid #756654;color:#f8ead0}.skin-choice[data-selected=true]{border-color:#f3ca61;box-shadow:inset 4px 0 #f3ca61}.skin-choice:disabled{opacity:.6;cursor:not-allowed}.skin-choice strong,.skin-choice small,.skin-choice span{display:block}.skin-choice small{margin-top:4px;color:#c5b899;font:9px/1.4 monospace}.skin-choice span{margin-top:7px;color:#b7c1c9;font:9px/1.45 monospace}
+
+@media(min-width:761px){body:not(.menu) #performance-panel{right:152px}}
