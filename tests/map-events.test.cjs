@@ -37,6 +37,10 @@ test('Extinción: la manada se protege, aprovecha el veneno y rescata aliados he
  raptor.x=wing.x+50;raptor.y=wing.y;raptor.hp=raptor.max*.2;wing.roleCooldown=0;M.roleAction(wing,p,p.x-wing.x,p.y-wing.y,Math.hypot(p.x-wing.x,p.y-wing.y)||1);assert.equal(wing.extinctionAttack.kind,'rescueWarning');for(let i=0;i<35;i++)M.moveEnemy(wing,.04);assert.equal(wing.rescueUsed,true);assert(raptor.inv>0,'El aliado viaja protegido durante el rescate');
 });
 
+test('Extinción: la embestida termina exactamente donde concluye su aviso',()=>{
+ const {P,s}=ready(),M=P.MapEvents,p=s.player;M.startWorld();const e=M.event;M.activateWorld(e);s.enemies=[];const charger=M.spawnDinosaur(e,true,'triceratops'),spec=M.chargeSpec(charger);charger.x=0;charger.y=0;p.x=600;p.y=0;P.Terrain.resolve=()=>{};charger.extinctionAttack={kind:'warning',left:.01,x:1,y:0};M.moveEnemy(charger,.02);assert.equal(charger.extinctionAttack.kind,'charge');while(charger.extinctionAttack)M.moveEnemy(charger,.037);assert(Math.abs(charger.x-spec.distance)<.001,'El centro del sprite debe alcanzar el extremo anunciado');assert.equal(charger.y,0);
+});
+
 test('Extinción: la tormenta se cierra por fase y los meteoritos presionan incluso dentro de la zona',()=>{
  const {P,s}=ready(),M=P.MapEvents,p=s.player;M.startWorld();const e=M.event;M.activateWorld(e);p.x=e.x;p.y=e.y;e.meteorPressureIn=0;M.tickWorld(.04);assert.equal(e.stormRadius,650);assert(e.fallingMeteors.length>0,'La lluvia también cae dentro de la zona segura');e.phase='fragments';M.tickStorm(e,1);assert(e.stormRadius<650&&e.stormRadius>560);p.x=e.x+e.stormRadius+50;const hp=p.hp;M.tickStorm(e,1);assert(p.hp<hp);e.remaining=10;M.spawnBoss(e);assert.equal(e.remaining,90,'El T-Rex siempre conserva una ventana mínima de combate');
 });

@@ -995,6 +995,7 @@ Clic izquierdo sobre una entidad hostil fija la prioridad del ataque automático
 Roles de los dinosaurios:
 
 - **Anquilosaurio / tanque:** 175 PV, 45 u/s, Fuerza y daño físico; DEF 115/105 y 30 % de resistencia de estado. Recibe 48 % de frente y 130 % por la espalda. Si un aliado próximo cae bajo 55 % o es presionado, corre a interponerse y le concede 45 % de reducción durante 2,5 s; la reacción recarga en 7 s.
+- Los avisos lineales de embestida comparten velocidad y duración con el desplazamiento real. En terreno libre, el centro visual del dinosaurio termina exactamente en el extremo marcado; una colisión con cobertura puede detenerlo antes y activa la reacción de choque correspondiente.
 - **Velociraptor / daño:** 82 PV, 88 u/s, Técnica y daño físico; DEF 85/80. Su salto causa 17 de daño base, gana 20 % contra jugadores ralentizados y su contacto escala con el tiempo hasta 65 %.
 - **Pterosaurio / apoyo:** 68 PV, 94 u/s, Técnica y daño físico; DEF 75/90 y 10 % de resistencia. Acelera 24 % a aliados durante 2,8 s. Una vez por oleada puede canalizar 0,7 s y transportar durante 0,55 s a un aliado ligero bajo 25 % hacia el centro de la formación.
 - **Dilofosaurio / debilitador:** 88 PV, 70 u/s, Ingenio y daño especial; DEF 85/110 y 15 % de resistencia. Dispara dos venenos de 12, deja una nube de 8 y ralentiza 28 %; si atacan al sanador o apoyo, cubre su retirada.
