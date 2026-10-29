@@ -51,6 +51,6 @@ test('Racha de la Realeza modifica cadencia y alcance, expira y excluye al minij
  const mini={...p,miniboss:true,passive:undefined};assert.equal(P.Passives.eligible(mini,attack),false);assert.equal(P.Passives.state(mini),null);assert.equal(Object.keys(P.Passives.beforeCast(mini,attack)).length,0);
 });
 
-test('La ficha de Makanaky muestra la misma pasiva que usa el combate',()=>{
- const {P}=setup(),rows=P.Passives.rows('makanaky'),source=fs.readFileSync('src/ui/reference-menus.js','utf8');assert.equal(rows[0][1],'Racha de la Realeza');assert(rows.some(row=>row[1].includes('+35 % daño')));assert(source.includes("label:'PASIVA ÚNICA'"));assert(source.includes("icon:c.id==='makanaky'?'GA':'◆'"));assert(source.includes('owner.idleFrame(time)'));
+test('Las fichas muestran las mismas pasivas que usa el combate',()=>{
+ const {P}=setup(),makanaky=P.Passives.rows('makanaky'),kingteka=P.Passives.rows('kingteka'),source=fs.readFileSync('src/ui/reference-menus.js','utf8');assert.equal(makanaky[0][1],'Racha de la Realeza');assert(makanaky.some(row=>row[1].includes('+35 % daño')));assert.equal(kingteka[0][1],'Instinto de manada');assert(kingteka.some(row=>row[1].includes('+12 % daño')));assert(source.includes("label:'PASIVA ÚNICA'"));assert(source.includes("c.id==='kingteka'?'↻':'◆'"));assert(source.includes('owner.idleFrame(time)'));
 });
