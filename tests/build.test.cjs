@@ -60,6 +60,9 @@ test('La selección de causa, mapa y modo permanece en el flujo moderno hasta in
  assert.match(reference,/scheduleCharacterArtPreload\(\)/);assert.match(reference,/preloadCharacterArtQueue\(sources,2\)/);assert.match(reference,/requestIdleCallback\(later,\{timeout:4500\}\)/);assert.match(reference,/navigator\?\.connection\?\.saveData/);assert.match(reference,/P\.CardGallery\?\.preload/);
  for(const selector of ['.cause-card-shell','.cause-card-art','.cause-card-frame','.cause-card-large'])assert(css.includes(selector),selector);
  for(const selector of ['.character-card-inspection-tilt','.character-card-inspection-inner','.character-card-inspection-glare','.character-card-inspection-back','.character-inspection-controls'])assert(css.includes(selector),selector);
+ for(const selector of ['.character-identity-grid','.character-identity-item','.character-identity-tags'])assert(css.includes(selector),selector);
+ assert.match(reference,/IDENTIDAD DE COMBATE/);assert.match(reference,/ETIQUETAS DEL KIT/);assert.match(reference,/base '\+values\.get\('Canal principal'\)/);
+ assert.match(css,/\.character-viewer-info>\.reference-primary\{position:static/);assert.match(css,/\.character-viewer-info\{[^}]*overflow-x:hidden/);
  assert.match(css,/\.cause-collectible-card:hover \.cause-card-inner/);assert.match(css,/rotateY\(180deg\)/);assert.match(css,/prefers-reduced-motion:reduce[^}]*\{\.cause-card-inner/);assert.match(css,/\.cause-card-placeholder\.has-art/);assert.match(css,/\.character-viewer-illustration/);assert.match(css,/object-position:center var\(--art-y,50%\)/);
  assert.match(game,/LobbyComplete\?\.chooseCause\?\.\(\)/);assert.match(screens,/LobbyComplete\?\.chooseCause\?\.\(\)/);
  assert.doesNotMatch(game,/Elegir otro causa/);assert.doesNotMatch(screens,/Elegir otro personaje/);
