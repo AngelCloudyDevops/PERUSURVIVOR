@@ -981,12 +981,12 @@ Extinción reemplaza temporalmente la presión normal de la partida por una secu
    - Oleada 1: Anquilosaurio tanque y dos Velociraptores de daño.
    - Oleada 2: Pterosaurio de apoyo, Dilofosaurio debilitador y dos Velociraptores.
    - Oleada 3: Anquilosaurio, Velociraptor, Pterosaurio, Dilofosaurio y Parasaurolophus sanador.
-3. Los jugadores que se alejan demasiado del cráter reciben meteoritos telegrafiados. El centro inflige daño y el borde aplica ralentización; nunca hay más de tres avisos simultáneos.
+3. La tormenta se centra en el cráter y reduce su radio de 650 unidades durante las oleadas a 560 durante los fragmentos y 480 contra el Tirano. Salir no teletransporta: causa por segundo 1,5 %, 3 % o 5 % de la vida máxima según la distancia exterior. Los meteoritos telegrafiados caen también dentro de la zona cada 3,2 s, aceleran a 2,4 s en fase II y a 1,5 s fuera de la tormenta. El centro inflige daño, el borde ralentiza y nunca hay más de tres avisos simultáneos.
 4. Tras destruir los tres fragmentos aparece el **Tirano del Cráter**, un T-Rex de gran escala. Alterna embestida/mordida, rugido interruptor, onda de pisotón y meteorito que desactiva cobertura durante siete segundos. Al 50 % de vida acelera sus patrones; cada tercer ataque abre una ventana de agotamiento.
 5. Al derrotarlo se abre el portal prehistórico. En cooperativo, el contacto de cualquiera inicia la decisión compartida; ambos deben aceptar.
 6. La Era Perdida contiene tres salas de cinco dinosaurios. Entre salas se elige curación, daño temporal o riesgo con mejor botín. Al terminar aparece el **Triceratops Fósil**: dos placas absorben golpes, después expone el cristal y sus cargas contra los pilares lo aturden. La reliquia solo se ofrece después de derrotarlo.
 
-El evento tiene reloj propio y falla cuando expira o cuando cae todo el equipo. El retorno restaura el terreno temporal y concede seis segundos sin nuevas apariciones. Las repeticiones aumentan vida y velocidad con un límite de tres grados, sin añadir más proyectiles.
+El exterior comparte un reloj de 240 s desde la primera oleada hasta el Tirano; al aparecer el jefe se garantiza un mínimo de 90 s. Hay avisos a 60 y 30 s. La Era Perdida empieza con 180 s, pausa durante las decisiones y garantiza 150 s al aparecer el Triceratops Fósil. El evento falla cuando expira o cae todo el equipo. El retorno restaura el terreno temporal y concede seis segundos sin nuevas apariciones. Las repeticiones aumentan 12 % la vida y 3,5 % la velocidad por grado, con un límite de tres grados, sin añadir más proyectiles.
 
 ### Fijación manual de objetivo
 
@@ -994,11 +994,16 @@ Clic izquierdo sobre una entidad hostil fija la prioridad del ataque automático
 
 Roles de los dinosaurios:
 
-- Tanque: armadura frontal fuerte, daño extra al atacarlo por la espalda y embestida que choca con el terreno.
-- Daño: salto/embestida rápida con aviso corto y recuperación.
-- Apoyo: acelera a la manada y ejecuta un picado.
-- Debilitador: dispara veneno y aplica ralentización temporal.
-- Sanador: restaura un 12 % de vida a aliados cercanos; los impactos retrasan su siguiente pulso.
+- **Anquilosaurio / tanque:** 175 PV, 45 u/s, Fuerza y daño físico; DEF 115/105 y 30 % de resistencia de estado. Recibe 48 % de frente y 130 % por la espalda. Si un aliado próximo cae bajo 55 % o es presionado, corre a interponerse y le concede 45 % de reducción durante 2,5 s; la reacción recarga en 7 s.
+- **Velociraptor / daño:** 82 PV, 88 u/s, Técnica y daño físico; DEF 85/80. Su salto causa 17 de daño base, gana 20 % contra jugadores ralentizados y su contacto escala con el tiempo hasta 65 %.
+- **Pterosaurio / apoyo:** 68 PV, 94 u/s, Técnica y daño físico; DEF 75/90 y 10 % de resistencia. Acelera 24 % a aliados durante 2,8 s. Una vez por oleada puede canalizar 0,7 s y transportar durante 0,55 s a un aliado ligero bajo 25 % hacia el centro de la formación.
+- **Dilofosaurio / debilitador:** 88 PV, 70 u/s, Ingenio y daño especial; DEF 85/110 y 15 % de resistencia. Dispara dos venenos de 12, deja una nube de 8 y ralentiza 28 %; si atacan al sanador o apoyo, cubre su retirada.
+- **Parasaurolophus / sanador:** 105 PV, 61 u/s, Ingenio y daño especial; DEF 90/120 y 20 % de resistencia. Cura 12 % a aliados cercanos, solicita la interposición del tanque y puede reanimar una vez con 38 % de vida.
+- **Triceratops joven / rompefilas:** 122 PV, 55 u/s, Fuerza y daño físico; DEF 110/85 y 25 % de resistencia. Su carga causa 25, empuja al jugador y queda aturdido al chocar. Aparece en Era Perdida.
+
+La formación rota hacia el jugador: tanque al frente, raptores en los flancos, apoyo y debilitador en segunda línea y sanador atrás. Los apoyos regresan a su posición si se separan, el tanque no abandona al sanador y los atacantes pueden romper la formación durante sus habilidades. Sin tanque la manada se abre; sin sanador adopta presión ofensiva. En cooperativo los raptores se reparten objetivos y la protección se orienta al jugador que amenaza al sanador.
+
+El Tirano tiene Fuerza, 125/115 de ataque físico/especial, DEF 115/105 y 40 % de resistencia de estado. Mordida 22, embestida 24, pisotón físico 18, rugido especial 15 y meteorito 18/24. El Triceratops Fósil tiene Fuerza, DEF 120/110 y 55 % de resistencia; cada placa equivale al 14 % de su vida y el aturdimiento contra pilares multiplica por 1,6 el daño recibido.
 
 El T-Rex es el jefe del mundo exterior. El Triceratops Fósil es el jefe final de la mazmorra; separar ambos encuentros conserva un clímax antes del portal y otro antes de la recompensa.
 

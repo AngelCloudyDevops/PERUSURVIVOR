@@ -17,7 +17,7 @@ test('Impacto del cielo: una cinemática garantizada congela combate y crea un c
  assert.equal(M.impacts.length,1);assert(M.impacts[0].radius>=300);assert(P.Terrain.props.filter(o=>o.meteorImpact).length>=10);assert(P.Terrain.props.some(o=>o.meteorImpact&&o.solid));
  while(M.cinematic()){s.mapTime+=.04;M.tick(.04)}assert.equal(M.event.phase,'invasion');assert.equal(M.event.invasionTarget,12);assert.equal(P.Loot.canOpen({rarity:'common'}),false,'Los cofres quedan sellados durante Extinción');assert.deepEqual({x:p.x,y:p.y},{x:before.x,y:before.y});assert(Math.abs(s.mapTime-before.time)<.08,'La cinemática no consume tiempo de supervivencia');
  for(let i=0;i<M.event.invasionTarget;i++)M.defeated({extinctionDino:true});assert.equal(M.event.phase,'fragments');assert.equal(s.enemies.filter(e=>e.extinctionFragment).length,3);
- for(const fragment of s.enemies.filter(e=>e.extinctionFragment))M.defeated(fragment);assert.equal(M.event.phase,'boss');const boss=s.enemies.find(e=>e.extinctionBoss);assert(boss&&boss.max>=1500);p.x=M.event.x+700;p.y=M.event.y;M.tick(.04);assert(Math.hypot(p.x-M.event.x,p.y-M.event.y)<=520.01,'El jefe contiene al jugador dentro del cráter');M.defeated(boss);assert.equal(M.event.phase,'portal');assert(s.coins>=75);
+ for(const fragment of s.enemies.filter(e=>e.extinctionFragment))M.defeated(fragment);assert.equal(M.event.phase,'boss');const boss=s.enemies.find(e=>e.extinctionBoss);assert(boss&&boss.max>=1500);p.x=M.event.x+700;p.y=M.event.y;const hp=p.hp;M.tick(.5);assert(Math.hypot(p.x-M.event.x,p.y-M.event.y)>520,'La tormenta no teletransporta al jugador');assert(p.hp<hp,'Alejarse de la zona segura causa daño progresivo');M.defeated(boss);assert.equal(M.event.phase,'portal');assert(s.coins>=75);
  const impact=JSON.stringify(M.impacts);P.Chunks.signature='';P.Chunks.sync();M.ensureTerrain();assert.equal(JSON.stringify(M.impacts),impact);assert(P.Terrain.props.some(o=>o.meteorImpact));
 });
 
@@ -25,6 +25,20 @@ test('Extinción: las oleadas usan roles, el tanque tiene armadura direccional y
  const {P,s}=ready(),M=P.MapEvents,p=s.player;M.startWorld();const e=M.event;M.activateWorld(e);for(let i=0;i<30;i++)M.tickWorld(.1);const first=s.enemies.filter(q=>q.extinctionDino);assert.deepEqual(first.map(q=>q.dinoKind).sort(),['ankylosaur','raptor','raptor']);assert(first.every(q=>q.dinoRole));
  const tank=first.find(q=>q.dinoKind==='ankylosaur');tank.facing=1;assert.equal(M.incomingMultiplier(tank,{owner:{x:tank.x+20}}),.48);assert.equal(M.incomingMultiplier(tank,{owner:{x:tank.x-20}}),1.3);
  p.x=e.x+700;p.y=e.y;for(let i=0;i<80;i++)M.tickWorld(.04);assert((e.fallingMeteors||[]).length>0);assert((e.fallingMeteors||[]).length<=3);
+});
+
+test('Extinción: cada dinosaurio tiene atributo, canal, defensas y resistencia propios',()=>{
+ const {P}=ready(),M=P.MapEvents;M.startWorld();const e=M.event,kinds=['raptor','ankylosaur','pterosaur','dilophosaur','parasaur','triceratops'];for(const kind of kinds){const q=M.spawnDinosaur(e,true,kind);assert(P.Stats.validate(q),kind+' debe cumplir el contrato universal de stats');assert.equal(q.combatStats.attribute,M.dinosaurProfile(kind).attribute);assert.equal(q.damageType,M.dinosaurProfile(kind).damageType)}const tank=P.state.enemies.find(q=>q.dinoKind==='ankylosaur'),poison=P.state.enemies.find(q=>q.dinoKind==='dilophosaur');assert(tank.combatStats.physicalDefense>poison.combatStats.physicalDefense);assert(poison.combatStats.specialDefense>tank.combatStats.specialDefense);
+});
+
+test('Extinción: la manada se protege, aprovecha el veneno y rescata aliados heridos',()=>{
+ const {P,s}=ready(),M=P.MapEvents,p=s.player;M.startWorld();const e=M.event;M.activateWorld(e);s.enemies=[];const tank=M.spawnDinosaur(e,false,'ankylosaur'),healer=M.spawnDinosaur(e,false,'parasaur'),raptor=M.spawnDinosaur(e,false,'raptor'),wing=M.spawnDinosaur(e,false,'pterosaur');healer.x=tank.x+60;healer.y=tank.y;healer.hp=healer.max*.5;tank.roleCooldown=0;M.roleAction(tank,p,p.x-tank.x,p.y-tank.y,Math.hypot(p.x-tank.x,p.y-tank.y)||1);assert.equal(tank.guardTargetId,healer.targetId);assert.equal(M.incomingMultiplier(healer,{owner:p}),.55,'La interposición protege al aliado elegido');
+ p.extinctionSlowUntil=s.elapsed+2;raptor.roleCooldown=0;M.roleAction(raptor,p,p.x-raptor.x,p.y-raptor.y,Math.hypot(p.x-raptor.x,p.y-raptor.y)||1);assert.equal(raptor.synergyStrike,true,'El raptor aprovecha la ralentización del debilitador');
+ raptor.x=wing.x+50;raptor.y=wing.y;raptor.hp=raptor.max*.2;wing.roleCooldown=0;M.roleAction(wing,p,p.x-wing.x,p.y-wing.y,Math.hypot(p.x-wing.x,p.y-wing.y)||1);assert.equal(wing.extinctionAttack.kind,'rescueWarning');for(let i=0;i<35;i++)M.moveEnemy(wing,.04);assert.equal(wing.rescueUsed,true);assert(raptor.inv>0,'El aliado viaja protegido durante el rescate');
+});
+
+test('Extinción: la tormenta se cierra por fase y los meteoritos presionan incluso dentro de la zona',()=>{
+ const {P,s}=ready(),M=P.MapEvents,p=s.player;M.startWorld();const e=M.event;M.activateWorld(e);p.x=e.x;p.y=e.y;e.meteorPressureIn=0;M.tickWorld(.04);assert.equal(e.stormRadius,650);assert(e.fallingMeteors.length>0,'La lluvia también cae dentro de la zona segura');e.phase='fragments';M.tickStorm(e,1);assert(e.stormRadius<650&&e.stormRadius>560);p.x=e.x+e.stormRadius+50;const hp=p.hp;M.tickStorm(e,1);assert(p.hp<hp);e.remaining=10;M.spawnBoss(e);assert.equal(e.remaining,90,'El T-Rex siempre conserva una ventana mínima de combate');
 });
 
 test('Impacto cooperativo: el servidor elige un jugador vivo y sincroniza la invasión con ambos',()=>{
