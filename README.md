@@ -22,9 +22,23 @@ Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa.
 2. **Estadísticas base:** vida máxima, daño base por impacto, intervalo entre ataques, alcance, velocidad de movimiento y radio de recogida.
 3. **Índices de combate:** ATQ físico, ATQ especial, DEF física y DEF especial. Son índices para la fórmula de daño; un índice 100 no equivale a 100 puntos de daño.
 4. **Pasiva única:** nombre, condición, efecto, límite, reinicio y señal visual. Siempre debe cambiar una decisión de juego; no puede ser solamente un aumento permanente sin condición.
-5. **Kit:** ataque principal automático, habilidad especial si existe, ulti Q, Expansión de Dominio R si corresponde y evolución del ataque.
+5. **Kit personal de nueve piezas:** tres ataques, una evolución propia para cada ataque, una pasiva, una ulti Q y una Expansión de Dominio R. Un espacio todavía no implementado permanece visible como `Por definir`; nunca se rellena con un poder genérico para aparentar un kit completo.
 6. **Progresión:** estrellas y mejoras permanentes antes de jugar; rangos, evoluciones, pactos y objetos únicamente durante la partida.
 7. **Validación:** daño por impacto, daño por segundo de referencia, supervivencia, corto/medio alcance, grupos, jefe móvil, obstáculos y cooperativo.
+
+`P.CharacterContract` reúne esas fuentes en nueve piezas personales: tres ataques, una evolución por ataque, una pasiva, una ulti Q y un dominio R. Cada pieza conserva estado `Implementado`, `Planeado` o `Por definir`; los dos poderes de apoyo elegibles durante la partida se muestran aparte porque son progresión compartida y no rellenan huecos del kit personal. La Wiki, la ficha extensa y Balance leen el mismo contrato y muestran el avance real.
+
+| Pieza | Cantidad | Regla general |
+|---|---:|---|
+| Ataques | 3 | Cada uno declara función, tipo de daño, alcance, intervalo, geometría, objetivo y forma de esquivarlo o aprovecharlo. Pueden ser intercambiables, encadenados o contextuales según el personaje; no tienen que usar necesariamente tres botones. |
+| Evoluciones | 3 | Cada evolución pertenece a un ataque concreto, conserva su identidad y cambia una decisión real: patrón, alcance, control, riesgo o prioridad. No debe ser únicamente “más daño”. |
+| Pasiva | 1 | Tiene activación, beneficio, duración o acumulaciones, recuperación/reinicio y respuesta visual reconocible. |
+| Ulti Q | 1 | Habilidad de alto impacto con fuente de carga, coste, duración, límites contra jefes y presentación propia. |
+| Dominio R | 1 | Habilidad excepcional con carga y coste explícitos, reglas de cámara/escenario, interacción cooperativa y salida segura. Puede compartir carga con Q solamente si el diseño lo justifica y lo comunica. |
+
+El objetivo final de cada causa es **9/9**, pero el contrato describe el estado real y permite desarrollar una pieza a la vez. `Planeado` significa que la mecánica y su función ya fueron aprobadas; `Por definir` reserva capacidad sin prometer comportamiento. Una skin, objeto, pacto o poder de apoyo no cuenta como pieza del kit.
+
+Estado actual calculado: **Kingteka y Makanaky están 9/9**. Makanaky ya posee tres técnicas intercambiables, tres evoluciones, pasiva, Q y dominio R. **Sideral 3/9** tiene Mirada Sideral, Rostro prohibido y Habitación del Lagarto, pero conserva por definir los ataques y evoluciones 2–3, la pasiva y la ulti Q.
 
 ### Cómo se interpretan los stats
 
@@ -39,6 +53,26 @@ Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa.
 | Canales | ATQ/DEF Físico y Especial | Ajustan el daño del canal correspondiente mediante `2A/(A+D)`. |
 | Atributo | Fuerza/Técnica/Ingenio | Ciclo Fuerza → Técnica → Ingenio → Fuerza: +15% con ventaja y −10% con desventaja. |
 | Resumen | Poder estimado | Índice informativo de progreso del mismo personaje; no causa daño ni debe comparar roles diferentes. Base = 100. |
+
+### Datos obligatorios de cada ataque
+
+Cada uno de los tres ataques debe documentar y exponer, cuando corresponda: nombre, slot, estado, rango 1–5, canal físico/especial/fijo, daño o coeficiente, intervalo, alcance, área o arco, cantidad de proyectiles, perforación, empuje, duración de efectos, objetivo válido, condición de desbloqueo y evolución asociada. Si usa recursos especiales —cargas, munición, postura, combo o cambio de arma— también declara cómo se obtienen, consumen y reinician.
+
+Balance debe conservar controles comunes de vida, daño, velocidad, intervalo y alcance general, además de los índices y stats avanzados. Para un arsenal múltiple, el alcance de cada ataque se ajusta por separado; cualquier control futuro de daño, intervalo o área por slot debe leer este mismo contrato y no crear valores ocultos exclusivos de una pantalla.
+
+### Lenguaje visual obligatorio
+
+Toda mecánica que altere una decisión inmediata debe poder reconocerse sin abrir la Wiki:
+
+- Una pasiva preparada muestra aura, icono, marcas o cambio de pose, además de texto breve en el HUD.
+- Acumulaciones y cargas enseñan progreso actual y el momento exacto en que quedan listas.
+- Buffs, escudos, resistencias, vulnerabilidades y controles usan siluetas diferentes; el color solo no es suficiente.
+- Ataques peligrosos anuncian área, dirección y tiempo antes del impacto. El dibujo debe coincidir con su colisión real.
+- Una evolución cambia al menos un rasgo visible del ataque —proyectil, estela, impacto, postura o efecto— sin ocultar avisos enemigos.
+- Q y R poseen carta, tecla, carga y estado separados. Si comparten un recurso, ambos HUD deben mostrar claramente qué habilidad lo consumirá.
+- En cooperativo, cada señal se dibuja sobre su propietario correcto y el servidor conserva la autoridad de activación y daño.
+
+Los efectos visuales informan; nunca conceden daño, invulnerabilidad o carga por sí mismos. Movimiento reducido puede simplificar animación y partículas, pero debe conservar indicadores, áreas peligrosas y estado de la mecánica.
 
 El poder estimado actual pondera vida 30%, daño 35%, eficiencia de recarga 20%, velocidad 10% y recogida 5%. No incluye pasiva, alcance, defensas, forma del ataque, control, perforaciones múltiples, ulti ni dominio; por eso no es una “clase de combate” absoluta.
 
@@ -63,8 +97,14 @@ ATQ físico/especial · DEF física/especial · Poder estimado
 PASIVA ÚNICA
 Nombre · condición · acumulaciones o recarga · efecto · reinicio · indicador
 
-KIT
-Ataque principal · Habilidad especial · Ulti Q · Dominio R · Evolución
+KIT PERSONAL · 9 PIEZAS
+Ataque 1 → Evolución 1
+Ataque 2 → Evolución 2
+Ataque 3 → Evolución 3
+Pasiva única · Ulti Q · Dominio R
+
+LECTURA VISUAL
+Indicador de pasiva · cargas/acumulaciones · buffs/debuffs · avisos de impacto
 
 PROGRESIÓN Y PRUEBAS
 Estrellas · mejoras permanentes · rangos de partida · casos de balance
@@ -83,9 +123,26 @@ Cada causa debe usar los identificadores centrales de `P.CharacterProfiles`; no 
 
 El atributo siempre se muestra aparte del rol: Fuerza vence a Técnica, Técnica vence a Ingenio e Ingenio vence a Fuerza. El daño fijo omite ATQ/DEF físico y especial y el ciclo de atributos, pero todavía puede recibir modificadores externos como escudos o reducciones de una fase. Por eso la interfaz debe llamarlo **daño fijo**, no daño puro absoluto.
 
-Kingteka es la referencia del formato: **Humano · Fuerza · Vanguardia / Controlador · alcance variable · daño híbrido**. Sus etiquetas son Arsenal intercambiable, Ráfaga, Control, Movilidad, Curación y Daño fijo. Escopeta y golpe son físicos, Gallinazo es especial, Q conserva el canal del arma equipada y R usa daño fijo. Su pasiva **Instinto de manada** se activa al cambiar realmente entre armas desbloqueadas: recupera 2,5 % de vida máxima y prepara durante 4 s un único ataque con +12 % de daño; después entra en recuperación durante 7 s. Cambiar repetidamente durante esa recuperación no cura ni acumula daño.
+Kingteka es la referencia del formato: **Humano · Fuerza · Especialista / Controlador · alcance variable · daño híbrido**. Sus etiquetas son Arsenal intercambiable, Ráfaga, Control, Movilidad, Curación y Daño fijo. Escopeta y golpe son físicos, Gallinazo es especial. Su pasiva **Instinto de expedición** se activa al cambiar realmente entre armas desbloqueadas: recupera 2,5 % de vida máxima, prepara durante 4 s un único ataque con +12 % de daño y, si conecta, carga 8 % del Vínculo animal de R; después entra en recuperación durante 7 s. Un aro visible y el HUD muestran la ventana activa.
 
 La cobertura real de los tres ataques, Q, R, pasivas e ilustraciones de cada causa se mantiene en [Auditoría de kits de personajes](docs/CHARACTER_KIT_AUDIT.md). La Causapedia diferencia `Implementado`, `Planeado` y `Reservado`: un concepto o espacio futuro nunca se presenta como una habilidad funcional.
+
+## Contrato general de enemigos
+
+Todos los enemigos declaran rol, atributo, canal de daño, debilidad de atributo, ataques, habilidades de rol, pasivas y fases. Las categorías limitan la complejidad para que una amenaza no acumule mecánicas sin una señal visual clara:
+
+| Categoría | Ataques | Habilidades de rol | Pasivas | Fases |
+|---|---:|---:|---:|---:|
+| Minion | 1 | 0 | 1 | 1 |
+| Dinosaurio | 1 | 1 | 1 | 1 |
+| Minijefe | hasta 3 | 0 | 1 | 2 |
+| Jefe | hasta 4 | 0 | hasta 2 | 2 |
+
+Una habilidad de rol es la acción de equipo que distingue a un dinosaurio —interceptar, rescatar, curar, debilitar o romper la formación— y no cuenta como un segundo ataque. Varias frases que describen una misma regla se agrupan como una sola pasiva. Fuerza, Técnica e Ingenio determinan la debilidad mecánica; las ventanas de espalda, agotamiento, placas o cobertura se documentan además como mecánicas particulares.
+
+Balance global conserva el escalado dinámico de cada aparición y permite multiplicar vida, daño, velocidad, defensas, recarga de habilidades, radio de áreas y duración de peligros/estados. Recarga ×2 significa que los temporizadores avanzan a la mitad de velocidad; radio y duración solo modifican peligros que nacen después de guardar. Los valores 1× reproducen exactamente el comportamiento base.
+
+La Wiki nunca completa espacios con mecánicas genéricas: un rol o pieza de kit sin una definición real aparece como **Por definir**, y un atributo, canal o debilidad ausente aparece como **Desconocido**. Balance global no crea habilidades, pero sus multiplicadores guardados sí se leen en la Wiki: actualizan la vida, velocidad y defensas mostradas, el daño calculable de minions y una sección con los ocho multiplicadores vigentes.
 
 ## Primera ficha completa: Makanaky · La Realeza
 
@@ -93,40 +150,39 @@ La cobertura real de los tres ataques, Q, R, pasivas e ilustraciones de cada cau
 
 | Campo | Base actual |
 |---|---:|
-| Rareza / rol | UR · Supremo / Luchador de presión |
-| Atributo / canal | Fuerza / Físico |
-| Vida máxima | 125 |
-| Daño base por golpe | 32 |
-| Intervalo de ataque | 0,56 s |
+| Rareza / rol | UR · Supremo / Luchador ofensivo · Duelista |
+| Atributo / canal | Fuerza / Híbrido |
+| Vida máxima | 135 |
+| Daño base por golpe | 30 |
+| Intervalo de ataque | 0,60 s |
 | Alcance base | 100 u |
-| Velocidad | 200 u/s |
+| Velocidad | 190 u/s |
 | Recogida | 90 u |
-| ATQ físico / especial | 100 / 85 |
-| DEF física / especial | 105 / 95 |
+| ATQ físico / especial | 115 / 95 |
+| DEF física / especial | 110 / 90 |
 | Poder estimado base | 100 |
 
 Fortaleza: presión cuerpo a cuerpo, movilidad alta y golpes que cubren un arco. Debilidad: debe permanecer cerca y una falla rompe su ritmo.
 
-### Pasiva propuesta — Racha de la Realeza
+### Pasiva — Racha de la Realeza
 
-- Un ataque principal que dañe al menos a un rival concede una marca de **GA**, hasta cuatro.
-- Cada marca reduce 5% el intervalo del siguiente ataque y aumenta 3% su alcance. Máximo: 20% de cadencia y 12% de alcance.
-- Al conectar con cuatro marcas, ese impacto se convierte en **Golpe Real**: +35% de daño y +40% de empuje; después consume todas las marcas.
-- Fallar el ataque o pasar 1,8 s sin conectar elimina la racha. Recibir daño no la borra automáticamente.
-- Solo el ataque principal y su evolución generan marcas. Ulti, dominio, objetos y apoyos no las generan ni consumen.
-- La ficha de Causas muestra la pasiva como una pieza `ÚNICA` independiente con icono `GA`, descripción interactiva y cuatro marcas; el retrato tiene una animación de reposo sutil y respeta movimiento reducido.
-- El HUD de partida muestra cuatro segmentos `GA`; el cuarto enciende un contorno rosado y el Golpe Real muestra una corona breve sobre el impacto.
+- Puño o cabezazo guardan como máximo una **GA** por lanzamiento, hasta `GA ×10`.
+- El siguiente ataque elegible es Golpe Real. Puño: +35% daño y +40% empuje al arco; cabezazo: +60% daño y aturdimiento garantizado a normales.
+- Fallar resta 2 GA. Tras 2,5 s sin conectar pierde 1 GA por segundo. Recibir daño no las borra.
+- GAA, objetos, campos y dominio no generan GA. La Q completa concede exactamente una.
+- El HUD usa el contador compacto `GA ×n / 10`; la corona identifica el remate real.
 - En cooperativo la sala/servidor es autoritativa. La pasiva no debe ejecutar dos veces un impacto ni confiar en el contador visual del cliente.
 
-La intención es que Makanaky busque una ruta segura para mantenerse cerca, encadene cuatro golpes y decida si arriesgarse a buscar el remate. No es un bono permanente: apuntar mal o abandonar el combate corta la ventaja. Sus mejoras permanentes y estrellas escalan vida, daño y recarga mediante el sistema general; la pasiva multiplica el valor resultante sin crear una segunda progresión oculta.
+La intención es que Makanaky sostenga presión sin perder toda la preparación por una sola falla. El decaimiento gradual permite retirarse brevemente, mientras el Golpe Real premia elegir entre área y control individual.
 
 ### Kit de Makanaky
 
-- **Ataque principal — Puño de la Realeza:** arco físico de 120°, alcance 100, empuje 24 y recarga base de 0,56 s.
-- **Evolución — Combo de la Realeza:** arco de 150°, alcance 135, daño ×1,35 y empuje 42.
-- **Habilidad especial:** espacio reservado; no se mostrará como disponible hasta tener comportamiento y controles reales.
-- **Ulti Q:** espacio reservado actualmente.
-- **Dominio R — ¡BÓTAME TU GA!:** carga con 35 bajas; entrada de 3 s, combate de 9 s y salida de 1,35 s. Su combo interno y la racha del dominio son sistemas separados de la pasiva del ataque normal.
+- **1 — Puño de la Realeza:** arco físico de 120°, alcance 100, empuje 22, daño ×1 y recarga 0,60 s. **Combo de la Realeza:** 145°, alcance 125, ×1,25 y empuje 32.
+- **2 — Mete cabezazos como yo:** un objetivo, daño ×1,80, alcance 78, recarga 1,15 s y 10% de aturdir. **Cabeza de concreto:** ×2,15, alcance 90 y 18% de aturdir.
+- **3 — GAA:** proyectil especial individual sin perforación, ×1,15, alcance 380 y slow 30% por 2 s. **GAAAA sin escapatoria:** ×1,45, alcance 460, guía ligera, slow 40% y raíz al objetivo ya ralentizado.
+- **Progresión:** las tres técnicas tienen rango 1–5 independiente; los slots 2 y 3 aparecen desde nivel 2 y 4, y cada evolución exige rango 5 y nivel 14.
+- **Ulti Q — Los Tres de la Realeza:** carga Respeto propia. Se teletransporta de forma segura al costado de un objetivo a 500 u y ejecuta los tres ataques al 50%; cada componente puede hacer crítico.
+- **Dominio R — ¡BÓTAME TU GA!:** carga independiente de 100 puntos (normal 1, pesado/dinosaurio 2, minijefe 15, jefe 25); entrada de 3 s, combate de 9 s y salida de 1,35 s.
 
 La pasiva se valida con los mismos escenarios base y con la racha activa: enemigo cercano, grupo frontal, jefe móvil, falla deliberada, pérdida de objetivo, evolución, pausa, movimiento reducido y dos jugadores. El objetivo no es que Makanaky gane todas las pruebas, sino que su ventaja aparezca cuando mantiene el combo y desaparezca cuando no consigue conectar.
 
@@ -160,7 +216,7 @@ La alfombra se pinta en la capa del suelo; paredes y muebles usan capas separada
 El dominio de Makanaky encadena jab izquierdo, jab derecho, cruzado y uppercut con giro del cuerpo, pasos y avance del personaje. Los jabs conservan cada puño claramente en su propio lado, retraen la mano contraria y alternan el brazo delantero para que izquierda y derecha sean legibles. El ciclo completo dura 1,30 s; los jabs son rápidos y el uppercut conserva más anticipación y peso. La cámara cercana muestra a Makanaky grande y de espaldas, con el rival al frente, embestida corporal, retroceso y silueta de velocidad; la tercera persona abre el plano según la cantidad de rivales visibles y A/D desplaza a Makanaky mientras cambia la perspectiva. La expansión arrastra a todos los enemigos vivos reales del mapa, sin límite de distancia ni cupo, y los ordena en oleadas de siete; minijefes y jefes esperan al fondo y mantienen su daño limitado. Su fase de combate UR dura 9 s. Cada combo completo de cuatro golpes acelera temporalmente la siguiente oleada, y desde GA×8 aparece la sobrecarga de neón morado. Mantén clic o Espacio para completar el repertorio; la racha continúa hasta `×99`. El objetivo válido queda fijado durante el golpe y el daño llega al conectar el puño. Cada impacto tiene microparada, destello, sacudida y reacción direccional; las eliminaciones de rachas altas salen despedidas con más fuerza. Los minions eliminados pierden la cabeza en pixel art y caen hacia el lado contrario, sin sangre; jefes y minijefes conservan el cuerpo. V o el botón cambia entre cámara cercana y tercera persona sin alterar el combate. La expansión tiene una cinemática a pantalla completa de 3 s: ocho poses de manos, «¡BÓTAME TU GAAAA!», grietas, postes, rejas y paredes que emergen del suelo. Ambos jugadores permanecen protegidos y el mapa no avanza durante la entrada. No usa tarjeta lateral. Prueba directa de administrador: /?practice=makanaky tras iniciar sesión; el parámetro se consume al cargar para que una recarga posterior vuelva al vestíbulo normal. Incluye Recargar dominio y oleadas infinitas de objetivos normales dentro de la expansión.
 
 ## Prototipo: dominio de Makanaky
-El UR usa Expansión de dominio con Q (35 bajas). Entra al callejón en primera persona: A/D o flechas para esquivar, ratón para apuntar, clic/Espacio para golpear. En cooperativo el compañero se refugia detrás y puede pulsar ¡GA!. En el laboratorio de administrador, elige Makanaky y activa recarga automática; conserva los permisos existentes. Daño a jefes y arte del callejón son provisionales.
+El UR usa la Expansión de dominio con R y una carga propia de 100 puntos. Entra al callejón en primera persona: A/D o flechas para esquivar, ratón para apuntar, clic/Espacio para golpear. En cooperativo el compañero se refugia detrás y puede pulsar ¡GA!. En el laboratorio de administrador, elige Makanaky y activa recarga automática; conserva los permisos existentes. Daño a jefes y arte del callejón son provisionales.
 
 ### Compañero cooperativo del dominio
 
@@ -423,12 +479,12 @@ Campo de Marte responde durante toda la partida, no solamente al desenlace de El
 
 
 ## Evoluciones propias y menú de habilidades
-Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución exclusiva, disponible mediante elección con rango 5 y nivel 8. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.
+Cada uno de los 18 personajes conserva su arma inicial y tiene al menos una evolución. La evolución principal se elige con rango 5 y nivel 8; Kingteka es la excepción de arsenal y puede evolucionar independientemente sus tres armas en rango 5 y nivel 14. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.
 
 ### Prototipo de arsenal de Kingteka
-Kingteka empieza con una escopeta corta de cuatro perdigones; su caída de daño mantiene el impacto cerca. En nivel 2 puede desbloquear Gallinazo, que lanza dos plumas especiales guiadas y perforantes; en nivel 4 puede desbloquear el golpe de cuerpo, físico y frontal, con empuje y cadencia pausada. `1`, `2` y `3` cambian de arma durante la partida, también desde los botones del HUD. Durante una subida de nivel, esas teclas siguen escogiendo tarjeta. Los rangos son independientes por arma, mejoran daño, alcance y cadencia y tienen requisitos escalonados; el arma activa recibe la tarjeta de arsenal cada dos niveles. La Escopeta Contra requiere rango 5 y nivel 14. El cambio funciona en cooperativo con autoridad del servidor. Las cartas de poderes y mejoras usan escenas con el sprite del personaje elegido y un motivo del poder o estadística. Las cartas de objetos muestran su icono oficial como arte central, sin el sprite del personaje. Solo las tres armas distintivas de Kingteka usan ilustraciones full art dedicadas. La cara ilustrada ocupa todo el marco al revelarse; categoría, efecto y comparación quedan en una placa inferior, y la rareza conserva su destello. El paquete usa WebP y conserva los PNG fuente; algunos recursos seleccionados tienen compresión con pérdida para caber en el límite de 64 MiB. El manifiesto registra calidad, tamaños y hashes en [asset-optimization.json](docs/asset-optimization.json); prompts de cartas: [Kingteka card art](docs/kingteka-card-art-prompts.json). Balance de las tres armas y partidas completas: [KINGTEKA_ARSENAL_BALANCE](docs/KINGTEKA_ARSENAL_BALANCE.md).
+Kingteka empieza con una escopeta corta de cuatro perdigones; su caída de daño mantiene el impacto cerca. En nivel 2 puede desbloquear Gallinazo, que lanza dos plumas especiales guiadas y perforantes; en nivel 4 puede desbloquear el golpe de cuerpo, físico y frontal, con empuje y cadencia pausada. `1`, `2` y `3` cambian de arma durante la partida, también desde los botones del HUD. Durante una subida de nivel, esas teclas siguen escogiendo tarjeta. Los rangos son independientes por arma, mejoran daño, alcance y cadencia y tienen requisitos escalonados; el arma activa recibe la tarjeta de arsenal cada dos niveles. En rango 5 y nivel 14 evolucionan por separado a Escopeta Contra, Gallinazo de Expedición y Golpe de Supervivencia. El cambio funciona en cooperativo con autoridad del servidor. Las cartas de poderes y mejoras usan escenas con el sprite del personaje elegido y un motivo del poder o estadística. Las cartas de objetos muestran su icono oficial como arte central, sin el sprite del personaje. Solo las tres armas distintivas de Kingteka usan ilustraciones full art dedicadas. La cara ilustrada ocupa todo el marco al revelarse; categoría, efecto y comparación quedan en una placa inferior, y la rareza conserva su destello. El paquete usa WebP y conserva los PNG fuente; algunos recursos seleccionados tienen compresión con pérdida para caber en el límite de 64 MiB. El manifiesto registra calidad, tamaños y hashes en [asset-optimization.json](docs/asset-optimization.json); prompts de cartas: [Kingteka card art](docs/kingteka-card-art-prompts.json). Balance de las tres armas y partidas completas: [KINGTEKA_ARSENAL_BALANCE](docs/KINGTEKA_ARSENAL_BALANCE.md).
 
-El kit de Kingteka se considera cerrado cuando conviven sus tres armas, la ulti Q, la expansión R y la pasiva **Instinto de manada**. La pasiva no sustituye ataques ni evoluciones: premia una decisión de arsenal y muestra su preparación y recuperación en un HUD compartido con las demás pasivas.
+El kit de Kingteka se considera cerrado cuando conviven sus tres armas, sus tres evoluciones, la ulti Q, la expansión R y la pasiva **Instinto de expedición**. Q usa el Combo del Causa; R tiene un Vínculo animal separado que solo crece al acertar ataques adaptados. La pasiva muestra su preparación mediante HUD, texto y aura sobre el personaje.
 
 - cristorata: **Directo encadenado** — Dos micrófonos de retorno enlazan hasta tres rivales con sonido.
 - cuy: **Terremoto del cuy** — Una onda completa empuja y deja una zona de temblor a tus pies.
@@ -584,7 +640,7 @@ La activación del backend requiere el volumen persistente y la ruta `/api/` del
 La pantalla de entrada ofrece **Iniciar sesión**, **Crear cuenta** o **Jugar como invitado**. El acceso utiliza los paneles azules y botones dorados del juego. Registro y recuperación tienen formularios separados; elegir invitado conserva su guardado local.
 
 ### Combo del Causa · carga de ultis
-Las ultis de Kingteka, Alberto, Cuy y Paloma requieren tres cartas automáticas: Caos, Aguante y Hazaña. Se completan en 45–52 s de combate; con la duración de la habilidad, el ciclo ronda 50–60 s. Q consume las tres y puedes guardarlas hasta necesitarlas. Las propias bajas, proyectiles tardíos y nubes de la ulti no recargan. Funciona contra un jefe solo y respeta pausa/cooperativo; práctica y laboratorio conservan recarga gratis. Consulta [reglas, mediciones y límites](docs/CAUSA_COMBO.md).
+Las ultis de Kingteka, Alberto, Cuy y Paloma requieren tres cartas automáticas: Caos, Aguante y Hazaña. Se completan en 55–60 s de combate; con la duración de la habilidad, el ciclo ronda 60–70 s. Q consume las tres y puedes guardarlas hasta necesitarlas. Kingteka carga R por separado al conectar ataques adaptados. Las propias bajas, proyectiles tardíos y nubes de la ulti no recargan. Funciona contra un jefe solo y respeta pausa/cooperativo; práctica y laboratorio conservan recarga gratis. Consulta [reglas, mediciones y límites](docs/CAUSA_COMBO.md).
 
 En el laboratorio, «Minions al morir» permite dejarlos normales, hacer que reaparezcan a los 0,8 s o volverlos inmortales con un mínimo de 1 PV. Estas reglas solo afectan minions comunes de la prueba; los jefes y objetivos especiales mantienen su funcionamiento.
 

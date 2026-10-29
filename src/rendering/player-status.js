@@ -1,0 +1,66 @@
+'use strict';
+// Proyección visual: observa cambios ya resueltos por la simulación y nunca altera el combate.
+P.PlayerStatus={
+ records:new WeakMap(),
+ now(){return Number(P.state?.elapsed)||0},
+ observe(actor){
+  let record=this.records.get(actor),hp=Number(actor?.hp);
+  if(!record){record={hp,healUntil:0,healAmount:0};this.records.set(actor,record);return record}
+  const now=this.now();
+  if(Number.isFinite(hp)&&Number.isFinite(record.hp)&&hp>record.hp+.01){
+   if(record.healUntil<=now)record.healAmount=0;
+   record.healAmount=Math.max(record.healAmount,hp-record.hp);
+   record.healUntil=now+1.05
+  }
+  record.hp=hp;
+  return record
+ },
+ states(actor){
+  if(!actor)return [];
+  const now=this.now(),record=this.observe(actor),slowUntil=Math.max(actor.tacticSlowUntil||0,actor.extinctionSlowUntil||0,actor.extinctionChargeSlowUntil||0),states=[];
+  if(record.healUntil>now)states.push({id:'heal',icon:'+',label:'CURACIÓN',color:'#8ff0a4',until:record.healUntil,amount:record.healAmount});
+  if((actor.poisonVisualUntil||0)>now)states.push({id:'poison',icon:'☠',label:'VENENO',color:'#a9ef52',until:actor.poisonVisualUntil});
+  if((actor.courtShieldUntil||0)>now)states.push({id:'shield',icon:'◆',label:'ESCUDO',color:'#ffe29b',until:actor.courtShieldUntil});
+  else if((actor.animalGuardUntil||0)>now)states.push({id:'guard',icon:'◈',label:'CORAZA',color:'#f3cf76',until:actor.animalGuardUntil});
+  if(slowUntil>now)states.push({id:'slow',icon:'▼',label:'RALENTIZADO',color:'#7ddcff',until:slowUntil});
+  if((actor.predatorUntil||0)>now)states.push({id:'power',icon:'↑',label:'DEPREDADOR',color:'#ffaf67',until:actor.predatorUntil});
+  if((actor.makanakyUltimateUntil||0)>now)states.push({id:'intocable',icon:'♛',label:'INTOCABLE',color:'#e7a6ff',until:actor.makanakyUltimateUntil});
+  return states
+ },
+ hud(actor){
+  if(typeof document==='undefined')return;
+  const node=P.$?.('#player-statuses'),track=P.$?.('#health-track');if(!node||!track)return;
+  const states=this.states(actor);node.innerHTML=states.map(state=>'<span class="player-status-chip" data-status="'+state.id+'"><b>'+state.icon+'</b>'+state.label+'</span>').join('');
+  const priority=['poison','heal','intocable','shield','guard','slow','power'].find(id=>states.some(state=>state.id===id))||'';
+  track.dataset.status=priority;node.setAttribute('aria-label',states.length?'Estados activos: '+states.map(state=>state.label).join(', '):'Sin estados activos')
+ },
+ cross(ctx,x,y,size,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x-size/3),Math.round(y-size),Math.round(size*2/3),Math.round(size*2));ctx.fillRect(Math.round(x-size),Math.round(y-size/3),Math.round(size*2),Math.round(size*2/3))},
+ draw(ctx,actor){
+  if(!actor||actor.hp<=0)return;
+  const states=this.states(actor),now=this.now(),reduced=!!P.Ambient?.reduced?.matches;if(!states.length)return;
+  ctx.save();ctx.translate(actor.x,actor.y);
+  for(const state of states){
+   const left=Math.max(0,state.until-now),pulse=reduced?0:Math.sin(now*7)*2;
+   if(state.id==='heal'){
+    ctx.globalAlpha=Math.min(1,left*1.8);for(let i=0;i<3;i++){const x=-18+i*18,y=-29-(reduced?i*5:(1.05-left)*18+i*4);this.cross(ctx,x,y,4,state.color)}
+   }else if(state.id==='poison'){
+    ctx.strokeStyle=state.color;ctx.fillStyle='#6fb63f';ctx.lineWidth=2;ctx.globalAlpha=.82;ctx.beginPath();ctx.ellipse(0,7,27,11,0,0,Math.PI*2);ctx.stroke();for(let i=0;i<4;i++){ctx.beginPath();ctx.arc(-18+i*12,-22-i*4-(reduced?0:Math.sin(now*7+i)*3),3+i%2,0,Math.PI*2);ctx.fill()}
+   }else if(state.id==='slow'){
+    ctx.strokeStyle=state.color;ctx.lineWidth=3;ctx.globalAlpha=.85;for(const x of [-11,11]){ctx.beginPath();ctx.moveTo(x-5,-34+pulse);ctx.lineTo(x,-27+pulse);ctx.lineTo(x+5,-34+pulse);ctx.stroke()}
+   }else if(state.id==='shield'||state.id==='guard'){
+    ctx.strokeStyle=state.color;ctx.fillStyle=state.color+'22';ctx.lineWidth=2;ctx.globalAlpha=.8;ctx.beginPath();ctx.moveTo(0,-48-pulse);ctx.lineTo(27,-23);ctx.lineTo(23,14);ctx.lineTo(0,26);ctx.lineTo(-23,14);ctx.lineTo(-27,-23);ctx.closePath();ctx.fill();ctx.stroke()
+   }else if(state.id==='power'){
+    ctx.fillStyle=state.color;ctx.globalAlpha=.85;for(const x of [-8,8]){const y=-37-pulse;ctx.beginPath();ctx.moveTo(x,y-8);ctx.lineTo(x-6,y);ctx.lineTo(x-2,y);ctx.lineTo(x-2,y+8);ctx.lineTo(x+2,y+8);ctx.lineTo(x+2,y);ctx.lineTo(x+6,y);ctx.closePath();ctx.fill()}
+   }else if(state.id==='intocable'){
+    ctx.strokeStyle=state.color;ctx.fillStyle=state.color+'22';ctx.lineWidth=3;ctx.globalAlpha=.9;ctx.beginPath();ctx.ellipse(0,-7,34+pulse,43+pulse,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle=state.color;ctx.font='900 16px serif';ctx.textAlign='center';ctx.fillText('♛',0,-50-pulse)
+   }
+  }
+  ctx.restore()
+ },
+ allyBar(ctx,actor){
+  if(!actor)return;const max=Math.max(1,Number(actor.maxHp)||Number(actor.max)||1),life=Math.max(0,Math.min(max,Number(actor.hp)||0));
+  ctx.save();ctx.translate(actor.x,actor.y);ctx.fillStyle='#101827dd';ctx.fillRect(-25,29,50,6);ctx.fillStyle=life/max>.35?'#66d8df':'#ff7d78';ctx.fillRect(-24,30,48*life/max,4);
+  if(life<=0){ctx.fillStyle='#ff9a90';ctx.font='bold 9px monospace';ctx.textAlign='center';ctx.fillText('CAÍDO',0,47)}
+  ctx.restore()
+ }
+};

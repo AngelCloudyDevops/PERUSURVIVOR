@@ -4,11 +4,13 @@ Las tres cartas se reúnen automáticamente durante el combate. Al completar las
 
 ## Carga y ritmo
 
-- **Aguante:** 45 segundos acumulados de combate visible. Impone el mínimo, aunque se maten cientos de enemigos.
+- **Aguante:** 55 segundos acumulados de combate visible. Impone el mínimo, aunque se maten cientos de enemigos.
 - **Caos:** avanza con el combate; las bajas normales aportan una pequeña reserva con tope de 1 punto y consumo máximo de 0,5 puntos por segundo. No hay +5 % instantáneo por baja.
 - **Hazaña:** avanza con el combate normal y acelera ligeramente al causar daño efectivo, especialmente a pesados, minijefes y jefes. Golpear fases invulnerables no cuenta. No depende del daño bruto ni del número de perdigones.
 
-Sin bajas ni golpes, Caos y Hazaña se completan en 52 segundos de combate visible: es posible cargar contra un jefe solo o con armas lentas. Con actividad, el tiempo de carga queda entre 45 y 52 segundos. Durante la ulti se detiene la carga; al añadir sus 5–8 s de duración, el ciclo queda aproximadamente en 50–60 s. El Tribunal pausa su reloj de partida durante la escena: sus 4,7 s de presentación no aparecen en el intervalo de tiempo de juego. La pausa, las pantallas de mejora, la muerte y los ratos sin enemigos visibles no aportan tiempo. No es una recarga fija por tiempo de pared.
+Sin bajas ni golpes, Caos y Hazaña se completan en 60 segundos de combate visible: es posible cargar contra un jefe solo o con armas lentas. Con actividad, el tiempo de carga queda entre 55 y 60 segundos. Durante la ulti se detiene la carga; al añadir sus 5–8 s de duración, el ciclo queda aproximadamente en 60–70 s. El Tribunal pausa su reloj de partida durante la escena: sus 4,7 s de presentación no aparecen en el intervalo de tiempo de juego. La pausa, las pantallas de mejora, la muerte y los ratos sin enemigos visibles no aportan tiempo. No es una recarga fija por tiempo de pared.
+
+Kingteka tiene además una segunda progresión exclusiva: el **Vínculo Animal de R**. Un ataque adaptado que conecta concede 8 % de carga, con una señal visual alrededor del personaje. Esta barra no usa ni consume las cartas de Q; activar el Santuario reinicia únicamente el Vínculo.
 
 ## Evitar la autorrecarga
 
@@ -20,7 +22,7 @@ La barra porcentual existente se deriva de las cartas y solo llega a 100 cuando 
 
 Pruebas controladas de las cuatro ultis: horda masiva, combate lento, jefe solo, cartas guardadas, pausa, ausencia de enemigos, muerte, reinicio, fuentes tardías, apoyos, Tribunal y manos cooperativas independientes. Se conservan las pruebas anteriores de daño y animaciones; se actualiza la expectativa antigua de veinte bajas.
 
-Además se ejecutaron doce partidas locales completas del motor normal (cuatro personajes por tres mapas), semilla 707, 30 Hz, con el mismo bot de movimiento/mejoras y activación de cada ulti cuando está lista. Sin modificar enemigos, daño, XP ni otorgar poderes. Base del motor antes del cambio: `a0e3b032b59a66df462a908b9ae2f3199edb15f8`. La evidencia guarda cada preparación y uso en causa-combo-runs.json.
+Antes del ajuste a 55–60 s se ejecutaron doce partidas locales completas del motor normal (cuatro personajes por tres mapas), semilla 707, 30 Hz, con el mismo bot de movimiento/mejoras y activación de cada ulti cuando está lista. Sin modificar enemigos, daño, XP ni otorgar poderes. Base del motor de esa medición: `a0e3b032b59a66df462a908b9ae2f3199edb15f8`. La evidencia histórica guarda cada preparación y uso en causa-combo-runs.json; la tabla siguiente no representa el ritmo nuevo.
 
 | Personaje | Primera preparación, segundos de partida | Preparaciones medidas | Intervalo desde el uso previo hasta estar lista, reloj de partida | Victorias |
 |---|---:|---:|---:|---:|
@@ -29,7 +31,7 @@ Además se ejecutaron doce partidas locales completas del motor normal (cuatro p
 | cuy | 48.73–49.80 | 18 | 50.00–54.57 s | 3/3 |
 | paloma | 47.97–51.30 | 18 | 51.00–57.50 s | 3/3 |
 
-Los intervalos incluyen el tiempo de combate en que la ulti está activa, pero no las escenas que detienen el reloj de partida. El redondeo y el orden del tick explican valores de 44,96–44,97 s alrededor del mínimo de 45. Estas partidas verifican la mecánica y el ritmo con una estrategia automatizada; no son una tasa de victoria humana ni una prueba de FPS.
+Los intervalos incluyen el tiempo de combate en que la ulti está activa, pero no las escenas que detienen el reloj de partida. El redondeo y el orden del tick explican valores de 44,96–44,97 s alrededor del mínimo anterior de 45. Estas partidas verificaron la mecánica anterior con una estrategia automatizada; no son una tasa de victoria humana ni una prueba de FPS.
 
 ## Interfaz y rendimiento
 
