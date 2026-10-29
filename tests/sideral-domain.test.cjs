@@ -8,7 +8,7 @@ function setup(){
 }
 
 test('Sideral: reemplaza el mapa por una habitación física y la serializa en cooperativo',()=>{
- const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true},{}]);for(let i=0;i<142;i++)sim.tick(.04,[{},{}]);
+ const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true},{}]);for(let i=0;i<160&&!s.sideralDomain?.arena;i++)sim.tick(.04,[{},{}]);
  assert.equal(s.sideralDomain.arena,true);assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,4);
  assert.equal(s.sideralDomain.waves,1);assert.equal(s.sideralDomain.pulse,0);
  assert(P.Terrain.active().some(o=>o.kind==='sideral-desk'));assert(P.Terrain.active().some(o=>o.kind==='sideral-library'));
