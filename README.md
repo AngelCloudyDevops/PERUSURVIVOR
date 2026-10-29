@@ -8,7 +8,11 @@ Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcional
 
 ## Punto actual de desarrollo
 
-La última tarea terminada es la presentación dinámica de la ulti de **Cristorata**. Después de la tarjeta, la máquina cae y permanece fija en el punto de invocación; Cristorata conserva movimiento, ataques y cámara. El jugador debe acercarse a 86 unidades y accionar la palanca con Espacio, clic o toque. El acercamiento muestra tres rodillos con imágenes de dragones que se detienen de izquierda a derecha: tres iguales conceden Jade, Brasa o Trueno, mientras Jade + Brasa + Trueno revela al Tricéfalo. El dragón elegido emerge desde la máquina, vuela hasta la posición actual de Cristorata y comienza los ocho segundos completos de montura. No hay giro automático ni invulnerabilidad durante la espera. El servidor valida la distancia y replica el ancla, la palanca y el resultado en cooperativo.
+La última tarea terminada es el **kit 9/9 de Sideral · El Lagarto**: Mirada, Colazo y Huevo, tres evoluciones, Sangre fría y Despertar del Lagarto Q. Conserva UR, 120 PV, velocidad 195 y poder 27; sus ATQ son 95 físico / 105 especial. Q tiene carga independiente y el dominio R no cambia. El siguiente paso es medir su balance en partidas completas; la carta Q reutiliza el arte de personaje hasta crear una ilustración exclusiva. Especificación y pruebas: [Kit de Sideral](docs/SIDERAL_KIT.md).
+
+### Cristorata · revisión anterior conservada
+
+También está terminada la presentación dinámica de la ulti de **Cristorata**. Después de la tarjeta, la máquina cae y permanece fija en el punto de invocación; Cristorata conserva movimiento, ataques y cámara. El jugador debe acercarse a 86 unidades y accionar la palanca con Espacio, clic o toque. El acercamiento muestra tres rodillos con imágenes de dragones que se detienen de izquierda a derecha: tres iguales conceden Jade, Brasa o Trueno, mientras Jade + Brasa + Trueno revela al Tricéfalo. El dragón elegido emerge desde la máquina, vuela hasta la posición actual de Cristorata y comienza los ocho segundos completos de montura. No hay giro automático ni invulnerabilidad durante la espera. El servidor valida la distancia y replica el ancla, la palanca y el resultado en cooperativo.
 
 Este flujo ya está implementado, probado y publicado. El siguiente paso es probar su lectura y ritmo en una partida real; cualquier ajuste posterior debe conservar la máquina fija, los tres rodillos, la interacción cercana y el combate continuo. La especificación completa permanece en `docs/GAME_DESIGN.md`.
 
