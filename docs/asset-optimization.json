@@ -387,6 +387,18 @@
       "quality": 90
     },
     {
+      "source": "assets/enemies/extinction-dinosaurs-v4.png",
+      "output": "assets/enemies/extinction-dinosaurs-v4.webp",
+      "width": 800,
+      "height": 400,
+      "originalBytes": 411394,
+      "optimizedBytes": 98838,
+      "sourceSha256": "e0881b718264360b0c95701002a9dc317a4fabb43f97ae76db89bf9541fb606c",
+      "outputSha256": "b7e6286e62b18bb54b5209205f087fbf4c2a099cd44400fa0a7e479989f94857",
+      "rgbaSha256": "4c0be7d4f969158ea845c515d977acca003ce7abfd4a78412ee65b56004502bd",
+      "quality": 70
+    },
+    {
       "source": "assets/enemies/gallinazos-atlas-v1.png",
       "output": "assets/enemies/gallinazos-atlas-v1.webp",
       "width": 2172,
@@ -601,6 +613,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 92552258,
-  "optimizedBytes": 44127446
+  "originalBytes": 92963652,
+  "optimizedBytes": 44226284
 }
