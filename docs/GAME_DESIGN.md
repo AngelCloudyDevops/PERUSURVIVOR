@@ -990,6 +990,8 @@ Extinción reemplaza temporalmente la presión normal de la partida por una secu
 
 El exterior comparte un reloj de 240 s desde la primera oleada hasta el Tirano; al aparecer el jefe se garantiza un mínimo de 90 s. Hay avisos a 60 y 30 s. La Era Perdida empieza con 180 s, pausa durante las decisiones y garantiza 150 s al aparecer el Triceratops Fósil. El evento falla cuando expira o cae todo el equipo. El retorno restaura el terreno temporal y concede seis segundos sin nuevas apariciones. Las repeticiones aumentan 12 % la vida y 3,5 % la velocidad por grado, con un límite de tres grados, sin añadir más proyectiles.
 
+El balance de grupo no duplica la vida: con dos jugadores, los dinosaurios y fragmentos reciben +40 %, el Tirano +60 % y el Triceratops Fósil +50 %. Así el equipo conserva una ventaja real sin convertir los objetivos en papel. Para que el desgaste de una fase no decida automáticamente la siguiente, superar las dos primeras oleadas recupera 8 % de vida, cada fragmento 4 % y la aparición del Tirano 12 %. Estas recuperaciones solo alcanzan la vida máxima y no resucitan jugadores.
+
 ### Fijación manual de objetivo
 
 Clic izquierdo sobre una entidad hostil fija la prioridad del ataque automático. La fijación no ignora alcance, visibilidad ni cobertura; si el blanco queda temporalmente fuera de condiciones, el arma vuelve al objetivo válido más cercano y recupera la prioridad cuando reaparece. Un segundo clic sobre el mismo blanco, o su derrota, elimina la fijación. Sirve para minions, fragmentos, minijefes y jefes. Cada jugador cooperativo posee una fijación independiente.
