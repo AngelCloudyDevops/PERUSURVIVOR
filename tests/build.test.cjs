@@ -75,6 +75,8 @@ test('Laboratorio, Balance y Admin comparten la estructura visual del lobby sin 
  assert.match(bench,/P\.Maps\.biomes\.map\(m=>\[m\.id,'🔒 '/,'El laboratorio administrador debe listar los escenarios secretos');
  assert.match(source,/styleToolDialog\('admin-dialog'/);assert.match(source,/styleToolDialog\('balance-dialog'/);
  assert.match(css,/#reference-laboratory #test-bench\.bench-reference/);
+ assert.match(css,/#test-bench\[hidden\]\{display:none!important\}/,'El panel respeta su permiso propio');
+ assert.doesNotMatch(css,/data-account-admin="false"\]\s+#test-bench/,'Una concesión de laboratorio no debe exigir rol administrador');
  assert.doesNotMatch(css,/(?:^|\n)#test-bench\.bench-reference\{/,'El estilo de pantalla completa no debe seguir al laboratorio durante una partida');
  assert.match(css,/#admin-dialog,#balance-dialog/);
  assert.match(css,/#hub-tools/);assert.match(css,/\.hub-tools-menu/);
