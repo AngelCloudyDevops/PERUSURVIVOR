@@ -3,7 +3,24 @@
 P.ReferenceMenus={
  route:null,characterFilter:'all',characterId:null,characterViewer:null,characterViewerIds:[],objectFilter:'all',objectId:null,bossId:null,optionTab:'sound',panels:{},characterArtPreloaded:new Map(),characterArtPreloadScheduled:false,
  make(tag,text,className){const node=document.createElement(tag);if(text!==undefined&&text!==null)node.textContent=text;if(className)node.className=className;return node},
- panel(id,title,kicker,description){const panel=this.make('section',null,'reference-panel');panel.id='reference-'+id;panel.hidden=true;const head=this.make('header',null,'reference-head'),copy=this.make('div');copy.append(this.make('small',kicker),this.make('h2',title),this.make('p',description));const back=this.make('button','←','reference-back');back.type='button';back.className='ui-back-button';back.setAttribute('aria-label','Volver al menú principal');back.title='Volver';back.onclick=()=>this.back();head.append(copy,back);const body=this.make('div',null,'reference-body');panel.append(head,body);P.$('#menu').append(panel);this.panels[id]={panel,body};return body},
+ panel(id,title,kicker,description){
+  const panel=this.make('section',null,'reference-panel');
+  panel.id='reference-'+id;
+  panel.hidden=true;
+  const head=this.make('header',null,'reference-head'),copy=this.make('div');
+  copy.append(this.make('small',kicker),this.make('h2',title),this.make('p',description));
+  const back=this.make('button','←','ui-back-button');
+  back.type='button';
+  back.setAttribute('aria-label','Volver al menú principal');
+  back.title='Volver';
+  back.onclick=()=>this.back();
+  head.append(copy,back);
+  const body=this.make('div',null,'reference-body');
+  panel.append(head,body);
+  P.$('#menu').append(panel);
+  this.panels[id]={panel,body};
+  return body
+ },
  init(){if(typeof document==='undefined'||!P.Lobby?.ready||this.ready)return;this.ready=true;this.legacyShow=P.Lobby.show.bind(P.Lobby);const owner=this,lobbyFrame=P.Lobby.frame?.bind(P.Lobby);P.Lobby.show=function(route,focus=true){owner.hide();return owner.legacyShow(route,focus)};if(lobbyFrame)P.Lobby.frame=function(time){lobbyFrame(time);owner.idleFrame(time)};this.panel('dex','Causas','COLECCIÓN · EDICIÓN PERÚ','Personajes, rarezas, atributos y causas todavía bloqueados.');this.panel('objects','Objetos','ARCHIVO DE OBJETOS','Suministros permanentes y botín que puede aparecer durante una partida.');this.panel('bosses','Jefes','AMENAZAS DE PORTAL','Fases, ataques, arenas, práctica y récords guardados en este navegador.');this.panel('options','Opciones','AJUSTA TU PARTIDA','Sonido, gráficos, juego, controles y accesibilidad en un solo lugar.');this.panel('progress','Progreso','HISTORIAL DEL CAOS','Misiones, colección, récords y porcentaje general completado.');this.bindHub();this.restoreOptions();this.recordBosses();this.polishCodex();this.scheduleCharacterArtPreload()},
  bindHub(){const find=label=>[...P.$('#lobby-hub').querySelectorAll('button')].find(button=>button.textContent.toLowerCase().includes(label));const causes=find('causapedia'),store=find('tienda'),progress=find('progreso'),options=find('opciones'),bosses=find('probar jefes'),profile=P.$('#hub-profile');if(causes){causes.querySelector('strong').textContent='Causas';causes.onclick=()=>this.open('dex')}if(profile)profile.onclick=()=>this.open('dex');if(store){store.querySelector('strong').textContent='Objetos';store.onclick=()=>this.open('objects')}if(progress)progress.onclick=()=>this.open('progress');if(options)options.onclick=()=>this.open('options');if(bosses){bosses.querySelector('strong').textContent='Jefes';bosses.onclick=()=>this.open('bosses')}const bottom=P.$('#hub-bottom-codex');if(bottom){bottom.textContent='▣ CAUSAPEDIA';bottom.onclick=()=>P.Lobby.show('codex')}},
  hide(){this.closeCharacterViewer();for(const {panel} of Object.values(this.panels))panel.hidden=true;this.idlePortrait=null;if(this.route){this.route=null;document.body.classList.remove('reference-open')}},
