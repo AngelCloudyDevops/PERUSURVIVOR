@@ -60,7 +60,7 @@ test('Sideral dinámico: el servidor cooperativo conserva la presentación solic
 test('Sideral dinámico: conserva construcción, título y accesos de laboratorio',()=>{
  const fs=require('node:fs'),source=fs.readFileSync('src/systems/sideral-domain.js','utf8'),options=fs.readFileSync('src/ui/reference-menus.js','utf8');
  for(const token of ['construction(c,d,time,opacity=1)','dynamicTitle(c,text,x,y,size','dynamicIntro(c,w,h,d)',"'EXPANSIÓN DE DOMINIO'","'HABITACIÓN DEL'","'LAGARTO'",'sideral-domain-dynamic-practice','bench-sideral-presentation','bench-sideral-dynamic',"labToggle.type='checkbox'","P.state.mode==='play'"])assert(source.includes(token),token);
- assert(options.includes("'Dominios dinámicos'"));assert(options.includes("'domain-dynamic'"));
+ assert(options.includes("'Presentaciones dinámicas'"));assert(options.includes("'domain-dynamic'"));
 });
 
 test('Sideral: la cinemática compone una sola figura sobre una sola habitación',()=>{
