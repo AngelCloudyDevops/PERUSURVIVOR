@@ -916,3 +916,6 @@ body[data-lobby-panel=home] #menu .home-feature h2{margin:10px 0 2px;font-size:3
  body.menu[data-lobby-panel=home] #hub-tools-toggle strong{display:inline}
  body.menu[data-lobby-panel=home] .hub-tools-menu{min-width:0;box-shadow:none}
 }
+/* Las pasivas pueden mostrar una cantidad distinta de marcas sin duplicar el HUD. */
+.passive-ga-preview{grid-template-columns:repeat(var(--passive-preview-columns,4),1fr)}
+#passive-hud div{grid-template-columns:repeat(var(--passive-columns,4),1fr)}

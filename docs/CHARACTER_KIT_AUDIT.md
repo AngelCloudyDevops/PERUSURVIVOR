@@ -60,8 +60,11 @@ Resumen: 20 causas, 22 ataques personales funcionales, dos conceptos planeados y
 
 ### Pasivas únicas
 
+- Kingteka: Instinto de manada.
 - Makanaky: Racha de la Realeza.
-- Los otros 19 espacios están reservados y no otorgan efectos.
+- Los otros 18 espacios están reservados y no otorgan efectos.
+
+Kingteka es el primer kit cerrado de extremo a extremo: tres ataques funcionales, Q, R, pasiva y arte propio para las cinco cartas de combate. Instinto de manada recupera 2,5 % de vida máxima al cambiar de arma, prepara un único ataque con +12 % de daño durante 4 s y tiene 7 s de recuperación.
 
 ## Cobertura de ilustraciones
 
