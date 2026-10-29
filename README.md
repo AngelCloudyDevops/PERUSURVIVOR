@@ -127,6 +127,19 @@ Kingteka es la referencia del formato: **Humano · Fuerza · Especialista / Cont
 
 La cobertura real de los tres ataques, Q, R, pasivas e ilustraciones de cada causa se mantiene en [Auditoría de kits de personajes](docs/CHARACTER_KIT_AUDIT.md). La Causapedia diferencia `Implementado`, `Planeado` y `Reservado`: un concepto o espacio futuro nunca se presenta como una habilidad funcional.
 
+## Pendiente priorizado
+
+Esta lista contiene solo trabajo que aún falta; las mecánicas ya funcionales no deben reabrirse sin detectar una regresión.
+
+1. **Validar y ajustar Extinción con partidas completas.** Medir en individual y cooperativo la duración de las tres oleadas, vida y daño de cada dinosaurio, Tirano del Cráter, Triceratops Fósil, tormenta, meteoritos y límites de 240/180 s. Los valores actuales son una base funcional y el siguiente cambio debe apoyarse en resultados de partidas, no solo en sensación aislada.
+2. **Segunda pasada visual de Extinción.** Dar más cuadros propios a desplazamientos, avisos, impactos y habilidades de cada dinosaurio; mejorar profundidad y partículas del meteorito; pulir cráter, tormenta y Era Perdida; revisar escala, nitidez y coherencia de los objetos ambientales sin alterar colisiones ni daño.
+3. **Cerrar el siguiente kit de personaje.** Sideral es el candidato inmediato porque ya tiene ataque 1, evolución y dominio: faltan ataques 2 y 3, sus evoluciones, pasiva y ulti Q. Después se repetirá el contrato 9/9, personaje por personaje, sin sustituir espacios reservados con habilidades genéricas.
+4. **Completar el arte de habilidades.** Los Tres de la Realeza todavía reutiliza el full art general de Makanaky y los ataques personales, salvo el arsenal de Kingteka, usan composición procedural. Crear arte dedicado solo después de cerrar mecánica y balance de cada kit.
+5. **Aclarar los controles de cartas.** Hacer más evidente en HUD y móvil que una pulsación breve de Q/R activa y mantener la tecla solo revela la carta; comprobar que carga mostrada, estado habilitado y carga autoritativa siempre coincidan.
+6. **Cierre público de calidad.** Antes de considerar terminada Extinción, ejecutar recorridos prolongados con el flujo cooperativo público, revisar móvil, movimiento reducido, FPS, reconexión y regreso desde la mazmorra sin distribuir controles de QA.
+
+Ya están funcionales y fuera de esta lista: impacto y cráter, invasión y formaciones, tres fragmentos, Tirano obligatorio, tormenta y meteoritos de presión, portal opcional, tres salas de Era Perdida, decisiones entre salas, Triceratops Fósil, reliquia compartida, Wiki/Balance y cargas independientes Q/R de Makanaky y Kingteka.
+
 ## Contrato general de enemigos
 
 Todos los enemigos declaran rol, atributo, canal de daño, debilidad de atributo, ataques, habilidades de rol, pasivas y fases. Las categorías limitan la complejidad para que una amenaza no acumule mecánicas sin una señal visual clara:
