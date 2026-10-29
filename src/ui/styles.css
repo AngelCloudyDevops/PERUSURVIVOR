@@ -936,6 +936,18 @@ body.reference-open #overlay:not([hidden]){z-index:80}
 .passive-ga-preview{grid-template-columns:repeat(var(--passive-preview-columns,4),1fr)}
 #passive-hud div{grid-template-columns:repeat(var(--passive-columns,4),1fr)}
 
+/* Centro de balance: lectura rápida, navegación por tipo y catálogo enemigo. */
+.balance-dashboard{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:12px;padding:13px 15px;border:1px solid #35495d;border-radius:10px;background:linear-gradient(110deg,#172435,#101722)}
+.balance-dashboard>div:first-child{display:grid;gap:3px}.balance-dashboard>div:first-child strong{font:900 16px monospace;color:#f6eee2;text-transform:uppercase}.balance-dashboard>div:first-child small{color:#8fa6b7}
+.balance-summary{display:grid;grid-template-columns:repeat(3,minmax(95px,1fr));gap:7px}.balance-summary span{display:grid;min-width:95px;padding:7px 10px;border:1px solid #3e5368;border-radius:7px;background:#0b131f;text-align:center}.balance-summary b{color:#72d8cf;font:900 18px monospace}.balance-summary small{font-size:8px!important;text-transform:uppercase}
+.balance-tabs{display:flex;gap:7px;margin-bottom:11px;border-bottom:1px solid #35495d}#balance-dialog .balance-tabs button{margin:0 5px -1px 0;border-radius:7px 7px 0 0;border-bottom-color:#35495d;background:#111a27;color:#93a7b6}#balance-dialog .balance-tabs button[aria-pressed=true]{border-color:#ff725c;border-bottom-color:#101722;background:#2d1d24;color:#fff0e6}
+#balance-dialog .balance-content{display:grid;grid-template-rows:auto auto minmax(0,1fr);overflow:hidden}#balance-dialog .balance-content>.balance-layout{height:auto;min-height:0}
+.balance-groups{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 10px}#balance-dialog .balance-groups button{min-height:30px;margin:0;padding:6px 9px;border-radius:999px;font-size:8px}#balance-dialog .balance-groups button[aria-pressed=true]{border-color:#72d8cf;background:#183d42;color:#d9fffa}
+#balance-dialog .balance-cards{grid-template-columns:repeat(3,minmax(0,1fr));align-content:start}#balance-dialog .balance-card{min-height:174px;padding:0 0 8px!important;overflow:hidden;justify-content:flex-start}#balance-dialog .balance-card[aria-pressed=true]{padding:0 0 7px!important}.balance-card canvas{width:100%;height:105px;max-height:105px;padding:4px;background:radial-gradient(circle,#354158 0,#121a27 72%)}.balance-card-copy{display:grid;width:100%;gap:2px;padding:7px 8px 0;box-sizing:border-box}.balance-card-copy .is-adjusted{color:#72d8cf!important;font-weight:800}.balance-editor-head>div>small:first-child{color:#72d8cf!important;font:800 8px monospace;letter-spacing:1px}.balance-enemy-notice{padding:9px 11px;border:1px solid #3a645f;border-left:3px solid #72d8cf;border-radius:5px;background:#102326;color:#bde9e4;font-size:10px}
+@media(max-width:900px){.balance-dashboard{align-items:stretch;flex-direction:column}.balance-summary{width:100%}#balance-dialog .balance-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:800px){#balance-dialog .balance-content{display:block;overflow:auto}}
+@media(max-width:520px){.balance-summary{grid-template-columns:1fr}.balance-summary span{grid-template-columns:auto 1fr;align-items:center;text-align:left}.balance-layout #balance-dialog .balance-cards,#balance-dialog .balance-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 /* Portada Wiki: cuatro categorías principales y tres colecciones centradas. */
 .codex-home{grid-template-columns:repeat(8,minmax(0,1fr));gap:18px;width:min(1420px,97%);padding:2px 8px 16px;overflow:auto;align-content:start}
 .codex-section-card{grid-column:span 2;grid-template-rows:minmax(170px,1fr) auto;min-height:285px}
