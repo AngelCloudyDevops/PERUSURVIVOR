@@ -705,6 +705,8 @@ SideralDomain.introShake deriva impulsos de los cuatro aterrizajes y la risa del
 
 SideralDomain fija `presentationOverride` al activar para que una preferencia cambiada a mitad de escena no altere tiempos ni colisión. La presentación `dynamic` conserva el bucle normal durante 2,6 s y dibuja construcción transitoria en `World.draw`; `enter` sigue siendo el único punto que activa paredes y recoloca entidades. En cooperativo `Coop.requestDomain` adjunta `domainPresentation`, `cooperative.cjs` la limita a `dynamic|cinematic` y `Simulation` la entrega al dominio antes de activarlo; el snapshot devuelve la misma elección a ambos clientes. Ningún cliente decide por separado la duración autoritativa.
 
+CiriloUR reutiliza el mismo `domainPresentation` y fija `presentationOverride` al activar. `entryFor` conserva 10,2 s para la cinemática y usa 3,2 s para la construcción dinámica; durante esta última `Progression.cinematicOnly` permanece falso. `CiriloArena.construction` dibuja únicamente la obra transitoria sobre el mapa y `CiriloArena.enter` continúa siendo el límite autoritativo que crea paredes, guarda posiciones y traslada entidades. El servidor avanza `ciriloDomain`, publica su elección sin serializar referencias locales de arena y ambos clientes reciben el mismo reloj. La salida y restauración usan el flujo común de 1,55 s en las dos presentaciones.
+
 ### Director de partidas largas
 
 `RunMode` centraliza selección, duración, etapas, escala de luz y ventanas de portal. `Game.start` fija `state.runMode` y `Data.arena.duration` antes de reiniciar encuentros y minijefes; pruebas, laboratorio y cooperativo fuerzan `quick`. Los consumidores existentes conservan así una sola fuente de verdad.
