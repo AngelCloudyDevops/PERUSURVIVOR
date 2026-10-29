@@ -1,7 +1,7 @@
 'use strict';
 // Un único panel para cambiar de prueba sin navegar por el vestíbulo.
 P.TestBench={
-active:false,switching:false,kind:'targets',dragon:'random',character:'kingteka',map:'campo',boss:'campo',attack:'1',minionMode:'normal',respawns:[],support1:'none',supportRank1:'1',support2:'none',supportRank2:'1',supportCombos:false,climate:'auto',weather:'auto',eventChoice:'world',
+active:false,switching:false,starting:false,kind:'targets',dragon:'random',character:'kingteka',map:'campo',boss:'campo',attack:'1',minionMode:'normal',respawns:[],support1:'none',supportRank1:'1',support2:'none',supportRank2:'1',supportCombos:false,climate:'auto',weather:'auto',eventChoice:'world',
 balanceKey:'causas-admin-balance-profile-v1',balanceProfile:{mode:'base',applyToNormal:false,multipliers:{health:1,power:1,speed:1,cadence:1,magnet:1,reach:1,physicalAttack:1,specialAttack:1,physicalDefense:1,specialDefense:1}},
  isAdmin(){return P.Account?.user?.role==='admin'},
  hasAccess(){return this.isAdmin()||!!P.Account?.user?.entitlements?.laboratory},
@@ -44,15 +44,24 @@ access(){if(!this.panel)return;this.panel.hidden=!this.hasAccess();this.renderBa
 controls(){if(!this.panel)return;this.dragonControls();this.describeAttack();this.describeSupports();P.$('#bench-map-label').hidden=this.kind==='boss';P.$('#bench-boss-label').hidden=this.kind!=='boss';P.$('#bench-invincible').disabled=this.kind==='targets';P.$('#bench-options').hidden=false;P.$('#bench-collapse').textContent='Minimizar';P.$('#bench-collapse').setAttribute('aria-expanded','true');const environment=P.$('#bench-environment');if(!this.active)environment.open=this.kind!=='boss';P.UI.write(P.$('#bench-environment-status'),this.kind==='boss'?'Las arenas de jefe conservan su ambiente propio.':'Configura el ambiente y entra a la prueba; dentro podrás cambiar el clima y lanzar cualquier evento.')},
 dragonControls(busy=false){const label=P.$('#bench-dragon-label');if(!label)return;label.hidden=(this.active&&P.state.devRun?P.state.player?.id:this.character)!=='cristorata';P.$('#bench-dragon').disabled=busy},
 run(){
- if(P.WalkArt&&!P.WalkArt.readyForStart()){P.WalkArt.waitForStart(()=>this.run());return}
- this.active=true;this.switching=true;this.respawns=[];
+ if(this.starting)return false;
+ const button=P.$('#bench-start'),status=P.$('#bench-status');
+ if(P.WalkArt&&!P.WalkArt.readyForStart()){
+  if(button){button.disabled=true;button.textContent='Preparando sprites…'}
+  if(status)P.UI.write(status,'Cargando los sprites necesarios. La prueba comenzará automáticamente.');
+  P.WalkArt.waitForStart(()=>{if(button)button.disabled=false;this.run()});return false
+ }
+ this.active=true;this.switching=true;this.starting=true;this.respawns=[];
+ if(button){button.disabled=true;button.textContent='Entrando…'}
  try{P.$('#lab-invincible').checked=this.panel?P.$('#bench-invincible').checked:true;
   if(this.kind==='targets'){P.UI.menu();P.Maps.select(this.map);P.Practice.start(this.character)}
   else if(this.kind==='survival'){if(!this.isAdmin()){this.active=false;return}this.attack='1';this.support1=this.support2='none';this.supportRank1=this.supportRank2='1';this.supportCombos=false;P.$('#bench-attack').value='1';P.$('#bench-support1').value=P.$('#bench-support2').value='none';P.$('#bench-support-combos').checked=false;this.controls();P.UI.menu();document.body.classList.remove('kingteka-practice','fujimori-practice');P.Maps.select(this.map);P.UI.select(P.Data.characters.findIndex(c=>c.id===this.character));P.$('#bench-invincible').checked=false;P.$('#lab-invincible').checked=false;P.$('#bench-auto').checked=false;P.Game.start({preview:true});P.state.devRun=true;P.state.practice=false;P.state.balanceTest=true}
   else{P.UI.select(P.Data.characters.findIndex(c=>c.id===this.character));P.$('#lab-boss').value=this.boss;P.Lab.run()}
- }finally{this.switching=false}
+ }catch(error){this.active=false;console.error('No se pudo iniciar el laboratorio',error);P.UI.menu();P.ReferenceMenus?.open?.('laboratory');if(status)P.UI.write(status,'No se pudo abrir la prueba. Inténtalo otra vez; si continúa, recarga la página.');return false
+ }finally{this.switching=false;this.starting=false;if(button)button.disabled=false}
  if(this.panel){document.body.append(this.panel);this.panel.classList.add('bench-live');document.body.classList.add('test-bench-live')}
  this.appliedPlayer=null;this.balanceBase=null;this.applyAttack();this.applyBalanceProfile();P.UI.hud();if(!P.state.encounter)P.UI.write(P.$('#bench-environment-status'),'Los cambios de hora y clima son inmediatos. Elige un evento y pulsa Probar evento.');
+ return true
 },
 initSupports(){
  const slots=P.$('#bench-support-slots');
@@ -107,7 +116,7 @@ applyAttack(){
  this.appliedPlayer=p;this.appliedAttack=signature;this.balanceBase=null;
 },
 exit(){this.active=false;P.UI.menu();P.Lobby?.show('settings');this.hud()},
-stop(){if(this.switching)return;this.active=false;P.state.balanceTest=false;this.respawns=[];if(this.panel){this.home.append(this.panel);this.panel.classList.remove('bench-live');document.body.classList.remove('test-bench-live')}this.hud()},
+stop(){if(this.switching)return;this.active=false;this.starting=false;P.state.balanceTest=false;this.respawns=[];const button=P.$('#bench-start');if(button)button.disabled=false;if(this.panel){this.home.append(this.panel);this.panel.classList.remove('bench-live');document.body.classList.remove('test-bench-live')}this.hud()},
 minion(e){return !!(this.active&&P.state.devRun&&e&&!e.boss&&!e.mapBoss&&!e.miniboss&&!e.mimic&&!e.practiceBoss)},
 immortal(e){return this.minionMode==='immortal'&&this.minion(e)},
 defeated(e){if(this.minionMode==='respawn'&&this.minion(e)&&!this.respawns.some(q=>q.enemy===e))this.respawns.push({enemy:e,left:.8})},
@@ -116,7 +125,7 @@ revive(e,index){const s=P.state,p=s.player,angle=((e.minionId||index)*2.399963)%
 hud(){if(!this.panel)return;const s=P.state,live=this.active&&s.devRun,supported=(['kingteka','alberto','cristorata'].includes(s.player?.id)||!!P.AnimalUltimate?.definition()||!!P.Domain?.eligible(s.player)||!!P.SideralDomain?.eligible(s.player)||P.Chamelin?.eligible(s.player)),busy=!!(s.ultimate?.left||s.ultimate?.paper||s.ultimate?.animal?.finish||s.court||s.domain||s.kingtekaDomain||s.sideralDomain||s.chamelinDomain);
  this.dragonControls(live&&busy);if(live){P.$('#lab-tools').hidden=true;P.$('#practice-tools').hidden=true}
  this.panel.hidden=live&&s.mode==='pause';P.$('#bench-collapse').hidden=!live;
- P.$('#bench-start').textContent=live?'↻ Repetir prueba':'Entrar a la prueba ↗';
+ P.$('#bench-start').textContent=this.starting?'Entrando…':live?'↻ Repetir prueba':'Entrar a la prueba ↗';
  P.$('#bench-recharge').hidden=!live||!s.practice||!(P.KingtekaDomain?.eligible(s.player)||P.Domain?.eligible(s.player)||P.SideralDomain?.eligible(s.player)||P.Chamelin?.eligible(s.player)||s.player?.id==='cristorata');P.$('#bench-recharge').textContent=s.player?.id==='cristorata'?'Recargar dragón':'Recargar dominio';P.$('#bench-recharge').disabled=busy||s.mode!=='play';P.$('#bench-cast').textContent=(P.KingtekaDomain?.eligible(s.player)||P.Domain?.eligible(s.player)||P.SideralDomain?.eligible(s.player)||P.Chamelin?.eligible(s.player))?'Activar dominio · R':'Lanzar ulti · Q';for(const id of ['cast','targets','heal','boss-ulti','exit'])P.$('#bench-'+id).hidden=!live;
  P.$('#bench-cast').hidden=!live||!supported;P.$('#bench-cast').disabled=s.mode!=='play'||busy||(s.ultimate?.charge||0)<100;
  P.$('#bench-targets').hidden=!live||!s.practice;P.$('#bench-targets').disabled=s.mode!=='play'||busy;

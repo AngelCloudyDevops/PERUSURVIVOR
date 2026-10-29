@@ -1,5 +1,12 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),{Simulation}=require('../backend/simulation.cjs');
+test('Laboratorio: el primer toque móvil muestra la carga y entra al quedar listos los sprites',()=>{
+ const {P}=new Simulation('campo',[0,1]),bench=P.TestBench;let resume=null;
+ bench.kind='targets';bench.character='kingteka';P.Terrain.active=()=>[];P.WalkArt.readyForStart=()=>false;P.WalkArt.waitForStart=action=>{resume=action};
+ assert.equal(bench.run(),false);assert.equal(P.$('#bench-start').disabled,true);assert.match(P.$('#bench-start').textContent,/Preparando/);assert.match(P.$('#bench-status').textContent,/Cargando/);assert.equal(typeof resume,'function');
+ P.WalkArt.readyForStart=()=>true;resume();assert(P.state.devRun);assert.equal(bench.active,true);assert.equal(P.$('#bench-start').disabled,false);assert.equal(bench.starting,false);
+ const css=require('node:fs').readFileSync('src/ui/styles.css','utf8');assert(css.includes('body.reference-open #overlay:not([hidden]){z-index:80}'));
+});
 test('Laboratorio: apoyos reales en los 18 causas, rangos, evoluciones y máximo dos distintos',()=>{
  const {P}=new Simulation('campo',[0,1]),bench=P.TestBench,s=P.state,meta=JSON.stringify(P.Meta.data);P.WalkArt.readyForStart=()=>true;P.Terrain.active=()=>[];
  for(const c of P.Data.characters){bench.character=c.id;bench.kind='targets';bench.attack='evolved';bench.run();
