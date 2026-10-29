@@ -649,6 +649,8 @@ El Tricéfalo del Caos tiene un 5 % de probabilidad (el 95 % restante se reparte
 ## Cooperativo con amigos
 Inicia sesión, abre Cooperativo y agrega a tu amigo por su nombre exacto de usuario. Debe aceptar la solicitud. Invitar crea una sala si hace falta; el destinatario acepta desde Invitaciones para jugar o el aviso del vestíbulo. Cada uno elige un causa desbloqueado, el anfitrión elige mapa y ambos pulsan Estoy listo. Al cargar sus sprites, el anfitrión puede comenzar. Cambiar mapa/personaje o desconectarse borra los listos. Invitaciones válidas durante un minuto. Como invitado se mantiene la entrada por código; no se necesita compartir un enlace.
 
+El acceso Cooperativo del vestíbulo abre siempre la interfaz moderna: los controles reales de sala, código, amigos e invitaciones se montan dentro de esa vista, y cualquier llamada antigua a `Lobby.show('coop')` se redirige a `coop-hub`. Así no reaparecen el panel lateral ni el menú heredado; en móvil, los controles se reorganizan en una sola columna. Mejoras también compra y reinicia rangos dentro de su panel moderno, mientras que Ajustes tiene una única entrada y abre la vista moderna desde el engranaje superior.
+
 La revelación secreta encadena un falso resultado Jade, un último giro, vapor y un seguro que salta al dorarse la máquina. Los ojos preceden a cada cabeza con desplazamientos propios; Cristorata retrocede y extiende el brazo durante su frase. El dragón se inclina para la subida y el aleteo final levanta polvo. Todo deriva de la edad autoritativa de la ulti, conserva los 6,4 s y la pausa compartida; movimiento reducido omite sacudidas, vapor y ráfagas. No añade daño ni entidades.
 
 
