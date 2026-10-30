@@ -41,6 +41,14 @@ test('Cobertura: plumas no atraviesan muros finos y onda del huaco es radial',()
  e.attack='quake';M.fire(e);assert.equal(P.state.danger.at(-1).groundWave,true);
 });
 
+test('Fiscalizador: contrato completo, papeletas fijas y operativo con salida',()=>{
+ const {P}=new Simulation('campo',[0,6]),M=P.Minibosses,s=P.state,e=M.create('campo',{x:0,y:0});s.enemies=[e];s.player.x=140;s.player.y=20;P.Terrain.clear=()=>true;
+ const entry=P.Lobby.codexEntries().find(q=>q.id==='mini:campo'),contract=P.EnemyContract.describe(entry);assert.equal(contract.completion,100);assert.equal(contract.reserved,0);assert.equal(contract.role,'Controlador / Perseguidor');assert.equal(contract.attribute,'force');assert.equal(contract.damageType,'physical');assert.equal(contract.attacks.join('|'),'Embestida fiscal|Cerco de conos|Papeletas de clausura');assert.equal(contract.ultimate,'Operativo de clausura');assert.equal(contract.passives.length,1);
+ M.warn(e,'citations');assert.equal(e.windup,.95);const targets=JSON.stringify(e.citationTargets);s.player.x=400;s.player.y=300;M.move(e,.96);assert.equal(e.phase,'mini-recover');assert.equal(s.danger.length,3);assert.equal(JSON.stringify(s.danger.map(q=>({x:q.x,y:q.y}))),targets);assert(s.danger.every(q=>q.kind==='stomp'&&q.radius===46&&q.damage===14&&q.miniId===e.miniId&&!q.groundWave));
+ e.enraged=false;e.attackIndex=0;assert.equal([M.nextAttack(e),M.nextAttack(e),M.nextAttack(e),M.nextAttack(e)].join('|'),'charge|cones|citations|charge');e.enraged=true;e.attackIndex=0;assert.equal([M.nextAttack(e),M.nextAttack(e),M.nextAttack(e),M.nextAttack(e)].join('|'),'charge|cones|citations|shutdown');
+ s.danger=[];s.player.x=180;s.player.y=0;M.warn(e,'shutdown');assert.equal(e.windup,1.2);const plan={...e.shutdown};M.move(e,1.21);assert.equal(e.phase,'mini-recover');assert.equal(s.danger.length,7);assert(s.danger.every(q=>q.glyph==='CONE'&&q.damage===16&&q.ultimate&&q.miniId===e.miniId));for(const q of s.danger)assert((q.x-plan.x)*q.vx+(q.y-plan.y)*q.vy<0);const present=new Set(s.danger.map(q=>Math.round(Math.atan2(q.y-plan.y,q.x-plan.x)/(Math.PI*2/8)+8)%8));assert(!present.has(plan.gap));assert.doesNotThrow(()=>JSON.stringify(e));
+});
+
 test('Derrotas propias: cuerpo, fragmentos, pausa y resultado diferido',()=>{
  for(const map of ['campo','plaza','machu']){
   const {P}=new Simulation(map,[0,6]),M=P.Minibosses,s=P.state,e=M.create(map,{x:200,y:0});s.enemies=[e];s.miniLab=map;const kills=s.kills;M.hurt(e,99999,0);M.hurt(e,99999,0);assert.equal(s.kills,kills+1);

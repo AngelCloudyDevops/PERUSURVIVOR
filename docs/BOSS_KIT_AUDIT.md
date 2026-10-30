@@ -37,7 +37,7 @@ Los dos jefes ya separan sus piezas finales de los patrones existentes. El Tiran
 | Minijefe | Ataques implementados | Pasiva/fase | Ulti | Falta definir |
 |---|---|---|---|---|
 | Makanaky · La Realeza | Grito real; Flash de la realeza | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
-| El Fiscalizador | Embestida fiscal; Cerco de conos | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
+| El Fiscalizador | Embestida fiscal; Cerco de conos; Papeletas de clausura | Fiscalización insistente; fase II al 50 % | Operativo de clausura | Kit 100 % cubierto. Validar cadencia, salida del anillo y balance en partidas completas |
 | La Paloma Brava | Aleteo de plumas; Picotazo doble | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
 | El Huaco Renegado | Golpe del huaco; Fragmentos de cerámica | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
 
@@ -46,6 +46,6 @@ Los dos jefes ya separan sus piezas finales de los patrones existentes. El Tiran
 1. Definir identidad mecánica —rol, atributo y canal— desde el daño que ya ejecuta cada boss.
 2. Separar las variantes estacionales de sus patrones heredados antes de diseñar ataques nuevos.
 3. Completar primero los huecos de jefes de portal de dos ataques; cada ataque nuevo debe incluir aviso, geometría, cobertura y recuperación reales.
-4. Diseñar el tercer ataque de los cuatro minijefes sin aumentar su frecuencia total: el nuevo patrón reemplaza turnos, no los añade.
+4. Diseñar el tercer ataque de los minijefes pendientes sin aumentar su frecuencia total: el nuevo patrón reemplaza turnos, no los añade. El Fiscalizador ya cumple esta regla.
 5. Definir segundas pasivas solo cuando cambien una decisión del jugador y tengan lectura visual propia.
 6. Validar daño, duración, móvil, movimiento reducido y cooperativo antes de marcar cualquier espacio como implementado.
