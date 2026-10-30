@@ -1,3 +1,9 @@
+# Normalización de Kingteka y Cerdito VTuber — 2026-10-28
+- Kingteka queda registrado como `UR · Supremo`, de acuerdo con la ficha publicada.
+- Cerdito VTuber se declara como versión/skin de Kingteka y deja de ocupar una invocación SR independiente.
+- Desbloqueo, rareza, copias y estrellas se resuelven mediante la identidad canónica de Kingteka sin invalidar guardados antiguos.
+- El README documenta esta regla para futuras versiones de personajes.
+
 # Ajuste del frente de las cartas ilustradas — 2026-10-26
 - La cara de la carta vuelve a ocupar todo el marco al revelarse; la ilustración y los datos ya no quedan comprimidos arriba.
 - Conserva el giro, el arte completo y las placas de información.

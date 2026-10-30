@@ -1,5 +1,4 @@
 'use strict';
-// Arte de jefes y escenas del portal: nunca se dibuja el mapa de origen debajo.
 P.BossArt={
 image:null,frames:[],rowHeights:[],ready:false,images:{},
 scenes:{

@@ -5,12 +5,12 @@ Base de rango 1 sin mejoras permanentes ni mochila. La rareza de colección no a
 | Personaje | Rareza | Rol | Vida | Velocidad u/s | Daño/impacto | Recarga s | Alcance nominal u | Proyectiles/bandas | Objetivos/proyectil |
 |---|---|---|---:|---:|---:|---:|---:|---:|---|
 | Cristorata | Común | Hostigador móvil | 95 | 205 | 18 | 0.9 | 520 | 1 | Sin límite por trayecto |
-| Cuy Supremo | Común | Tanque de área | 150 | 155 | 34 | 1 | 145 | Área | Área |
-| Paloma del Centro | Común | Exploradora | 85 | 225 | 17 | 0.8 | 650 | 5 | 1 |
-| Alan García | Épico | Control frontal | 130 | 160 | 31 | 0.85 | 230 | Área | Área |
-| Alberto Fujimori | Legendario | Defensa orbital | 120 | 175 | 28 | 0.42 | 100 | 3 | Área |
-| Keiko Fujimori | Legendario | Hostigadora de retorno | 110 | 185 | 23 | 1.05 | 540 | 1 | Sin límite por trayecto |
-| Ollanta Humala | Épico | Vanguardia | 135 | 170 | 30 | 0.9 | 250 | Área | Área |
+| Cuy Supremo · El Oráculo de la Tómbola | C · Común | Tanque de área | 150 | 155 | 34 | 1 | 145 | Área | Área |
+| Paloma del Centro · El Almuerzo del Pueblo | C · Común | Exploradora | 85 | 225 | 17 | 0.8 | 650 | 5 | 1 |
+| Alan García · Los Balconazos | SR · Súper raro | Control frontal | 130 | 160 | 31 | 0.85 | 230 | Área | Área |
+| Alberto Fujimori · ¡Soy Inocente! | SSR · Ultra raro | Defensa orbital | 120 | 175 | 28 | 0.42 | 100 | 3 | Área |
+| Keiko Fujimori · País Rico | SSR · Ultra raro | Hostigadora de retorno | 110 | 185 | 23 | 1.05 | 540 | 1 | Sin límite por trayecto |
+| Ollanta Humala · Cosito en Campaña | SR · Súper raro | Vanguardia | 135 | 170 | 30 | 0.9 | 250 | Área | Área |
 | Kingteka | Épico | Escopetero cercano | 125 | 175 | 16.8 | 0.78 | 480 | 5 | 1 |
 | Shakadoto | Épico | Control de pasillos | 140 | 160 | 17.5 | 0.95 | 550 | 2 | Sin límite por trayecto |
 | Najasor | Raro | Tirador móvil | 95 | 215 | 17 | 0.85 | 650 | 3 | 1 |
@@ -33,7 +33,7 @@ El retorno puede volver a golpear. Alcance nominal: regresa tras 0,55 s; no gara
 
 Evolución: Directo encadenado. Rango 5 y nivel 8.
 
-## Cuy Supremo
+## Cuy Supremo · El Oráculo de la Tómbola
 
 Fortaleza: Mucha vida y empuje circular.
 
@@ -43,7 +43,7 @@ El daño depende de los impactos que conecten y los enemigos alcanzados.
 
 Evolución: Terremoto del cuy. Rango 5 y nivel 8.
 
-## Paloma del Centro
+## Paloma del Centro · El Almuerzo del Pueblo
 
 Fortaleza: Gran movilidad y abanico amplio.
 
@@ -53,7 +53,7 @@ El daño depende de los impactos que conecten y los enemigos alcanzados.
 
 Evolución: Corona de plumas. Rango 5 y nivel 8.
 
-## Alan García
+## Alan García · Los Balconazos
 
 Fortaleza: Cono contra grupos.
 
@@ -63,7 +63,7 @@ El daño depende de los impactos que conecten y los enemigos alcanzados.
 
 Evolución: Eco de la plaza. Rango 5 y nivel 8.
 
-## Alberto Fujimori
+## Alberto Fujimori · ¡Soy Inocente!
 
 Fortaleza: Bandas que cubren el entorno.
 
@@ -73,7 +73,7 @@ Solo causa daño si una banda toca al enemigo.
 
 Evolución: Órbita presidencial. Rango 5 y nivel 8.
 
-## Keiko Fujimori
+## Keiko Fujimori · País Rico
 
 Fortaleza: Abanico que atraviesa y regresa.
 
@@ -83,7 +83,7 @@ El retorno puede volver a golpear. Alcance nominal: regresa tras 0,55 s; no gara
 
 Evolución: Abanico solar. Rango 5 y nivel 8.
 
-## Ollanta Humala
+## Ollanta Humala · Cosito en Campaña
 
 Fortaleza: Buena vida y cono frontal.
 
@@ -95,13 +95,19 @@ Evolución: Marcha del comando. Rango 5 y nivel 8.
 
 ## Kingteka
 
-Fortaleza: Descarga contra grupos cercanos.
+Rol: Especialista de arsenal / Controlador.
 
-Debilidad: Pierde daño lejos y al concentrar perdigones.
+Fortaleza: adapta tres armas a la distancia y controla grupos cercanos.
 
-Daño cercano del primer perdigón. Impactos extra: 35%, después 15%. A distancia baja hasta el 35%.
+Debilidad: cada arma progresa por separado y el cambio incorrecto reduce su eficacia.
 
-Evolución: Escopeta Contra. Rango 5 y nivel 8.
+Escopeta causa: cuatro perdigones físicos, alcance base 260. Daño cercano del primer perdigón; impactos extra: 35%, después 15%. A distancia baja hasta el 35%.
+
+Gallinazo: dos plumas guiadas de daño especial. Golpe de cuerpo: cono físico cercano con empuje.
+
+Evoluciones independientes en rango 5 y nivel 14: Escopeta Contra, Gallinazo de Expedición y Golpe de Supervivencia.
+
+Pasiva, Instinto de expedición: tras cambiar de arma, el siguiente ataque adaptado recibe +12 % de daño; si conecta, carga 8 % del Vínculo Animal de R. La activación se reconoce por el aura giratoria y el indicador sobre Kingteka.
 
 ## Shakadoto
 
@@ -202,3 +208,15 @@ Debilidad: Debe entrar a distancia cuerpo a cuerpo.
 El daño depende de los impactos que conecten y los enemigos alcanzados.
 
 Evolución: Huracán G5. Rango 5 y nivel 8.
+
+### Sideral · controlador híbrido UR
+Humano / Ingenio / Controlador y Especialista, dificultad avanzada. Base 120 PV, velocidad 195, poder 27, ATQ 95/105 y DEF 100/105. Tres técnicas, evoluciones, pasiva y Q se detallan en [SIDERAL_KIT.md](SIDERAL_KIT.md); el dominio existente conserva su comportamiento.
+
+### CiriloTV · riesgo y maldiciones
+UR, Humano/Ingenio, Especialista/Controlador híbrido. Conserva 135 PV, velocidad 165 y poder 24. Kit completo en [CIRILO_KIT.md](CIRILO_KIT.md): vómito y forma infernal originales, taxi, eco, tres evoluciones, pasiva registrada, Q y Audiencia sin cambios.
+
+### Chamelín · kit completo
+Retaguardia, Pegote y Pichi son tres técnicas reales con rangos/evoluciones propios. Presión acumulada y ¡SE TAPÓ TODO! Q completan el contrato; Baño de Trovo R se conserva. Se mantienen base y rareza. Probabilidades, duración y límites en [CHAMELIN_KIT.md](CHAMELIN_KIT.md).
+
+### Cristorata · kit completo
+Clip, Derrape y Garra tienen progreso/evolución propios; De ida y de vuelta y El Coliseo del Dragón completan el contrato, manteniendo Q original y stats base. [Detalles de ataques, pasiva, dominio y pruebas](CRISTORATA_KIT.md).

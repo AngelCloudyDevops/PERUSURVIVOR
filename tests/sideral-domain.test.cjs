@@ -8,7 +8,7 @@ function setup(){
 }
 
 test('Sideral: reemplaza el mapa por una habitación física y la serializa en cooperativo',()=>{
- const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true},{}]);for(let i=0;i<142;i++)sim.tick(.04,[{},{}]);
+ const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true},{}]);for(let i=0;i<160&&!s.sideralDomain?.arena;i++)sim.tick(.04,[{},{}]);
  assert.equal(s.sideralDomain.arena,true);assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,4);
  assert.equal(s.sideralDomain.waves,1);assert.equal(s.sideralDomain.pulse,0);
  assert(P.Terrain.active().some(o=>o.kind==='sideral-desk'));assert(P.Terrain.active().some(o=>o.kind==='sideral-library'));
@@ -25,11 +25,42 @@ test('Sideral: choque daña, rebota y al terminar restaura coordenadas',()=>{
  P.SideralDomain.end();assert.equal(s.sideralDomain,null);assert.equal(e.x,640);assert.equal(e._sideralReturnX,undefined);assert.equal(p.x,120);assert.equal(p.y,90);
 });
 
+test('Sideral: la destrucción mezcla actores, cámara y zoom sin salto final',()=>{
+ const {P,s,p}=setup(),D=P.SideralDomain,e={x:920,y:610,hp:100,max:100,r:14,speed:0,boss:false,hit:0};P.Attributes.init(e);s.enemies=[e];p.ultimate.charge=100;assert(D.activate());const d=s.sideralDomain;d.age=D.entry;D.enter(d);const inside={x:e.x,y:e.y},home={x:e._sideralReturnX,y:e._sideralReturnY};assert.notDeepEqual(inside,home);
+ d.exit=d.exitTotal=1.35;P.DomainReturn.begin(D.returnObjects(),'sideral');const arena={x:d.x,y:d.y-70},map={x:home.x,y:home.y},initialCamera=P.DomainReturn.frame(d,arena,map);assert.equal(initialCamera.x,arena.x);assert.equal(initialCamera.y,arena.y);D.tick(.7);assert(Math.hypot(e.x-home.x,e.y-home.y)<Math.hypot(inside.x-home.x,inside.y-home.y));assert(Math.hypot(e.x-home.x,e.y-home.y)>0);const camera=P.DomainReturn.frame(d,arena,map);assert.notDeepEqual(camera,arena);assert.notDeepEqual(camera,map);D.tick(.66);assert.equal(s.sideralDomain,null);assert.deepEqual({x:e.x,y:e.y},home);assert.equal(JSON.stringify({player:p,enemies:s.enemies}).includes('_sideralExit'),false)
+});
+
 test('Sideral: el dominio entra directamente y cada pulso nace desde el personaje',()=>{
  const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true},{}]);const d=s.sideralDomain;
  sim.tick(.4,[{},{}]);assert(d.age>0);assert.equal(d.card,undefined);assert(sim.players[1].inv>0);
  assert.equal(P.SideralDomain.pose(P.SideralDomain.entry*.7).hop,0);assert(P.SideralDomain.pose(P.SideralDomain.entry*.88).hop>0);assert(P.SideralDomain.pose(P.SideralDomain.entry*.98).laugh>0);
  p.x=333;p.y=222;P.SideralDomain.burst();assert.equal(d.waveX,333);assert.equal(d.waveY,222);
+});
+
+test('Sideral dinámico: construye sobre el mapa sin mover actores ni tomar la cámara',()=>{
+ const {sim,P,s,p}=setup(),D=P.SideralDomain,boss=P.Entities.enemy(true);s.devRun=true;D.practicePresentation='dynamic';Object.assign(boss,{x:p.x+180,y:p.y,attackT:1});s.enemies=[boss];p.ultimate.charge=100;
+ assert(D.activate());const d=s.sideralDomain,startX=p.x,startElapsed=s.elapsed;assert(D.dynamic(d));assert.equal(D.entryFor(d),2.6);assert.equal(P.Progression.cinematicOnly(),false);assert.equal(d.arena,false);assert.equal(D.frozen(boss),false);assert(p.inv<1);
+ sim.tick(.1,[{x:1},{}]);assert(p.x>startX);assert(s.elapsed>startElapsed);assert.equal(d.arena,false);
+ const before={x:p.x,y:p.y},zoom=P.World.zoomFor(1280,720,true,false),camera=P.Maps.camera(p.x,p.y-55,1280/zoom,720/zoom);d.age=2.55;sim.tick(.06,[{},{}]);assert.equal(d.arena,true);assert.equal(D.frozen(boss),false);assert.deepEqual({x:p.x,y:p.y},before);assert(d.roomProps.some(o=>o.kind==='sideral-desk'));assert(d.roomProps.some(o=>o.kind==='sideral-library'));assert.equal(P.Terrain.active().filter(o=>o.kind==='sideral-wall').length,0);assert.equal(P.World.zoomFor(1280,720,true,false),zoom);const after=P.Maps.camera(p.x,p.y-55,1280/zoom,720/zoom);assert.equal(after.x,camera.x);assert.equal(after.y,camera.y);
+ d.age=D.entryFor(d)+D.duration-.01;sim.tick(.04,[{},{}]);assert.equal(d.exitTotal,1.35);
+});
+
+test('Dominios dinámicos sumergen objetos y cofres sin borrar su estado',()=>{
+ const {P,s,p}=setup(),D=P.SideralDomain;s.devRun=true;D.practicePresentation='dynamic';p.ultimate.charge=100;assert(D.activate());const d=s.sideralDomain,inside={id:'inside',x:d.x+20,y:d.y+15,progress:0,opened:false,rarity:'common'},outside={id:'outside',x:d.x+D.roomWidth,y:d.y,progress:0,opened:false,rarity:'common'},prop={id:'domain-prop',kind:'bench',x:d.x+60,y:d.y+40,w:80,h:32,solid:true,hp:Infinity};P.Loot.chests=[inside,outside];P.Terrain.props.push(prop);P.Terrain.indexProps();d.age=D.entryFor(d)*.5;assert.equal(P.Terrain.hit(prop.x,prop.y),prop);d.age=D.entryFor(d);D.enter(d);
+ assert(P.DomainScenery.inside(inside));assert(!P.DomainScenery.inside(outside));assert(P.DomainScenery.hideChest(inside));assert(!P.Loot.active().includes(inside));assert(P.Loot.active().includes(outside));assert.equal(P.Loot.canOpen(inside),false);assert.equal(inside.opened,false);
+ assert.equal(P.DomainScenery.hideProp(prop),true);assert.equal(P.Terrain.hit(prop.x,prop.y),undefined);const body={x:prop.x,y:prop.y};P.Terrain.resolve(body,{x:prop.x-100,y:prop.y});assert.deepEqual(body,{x:prop.x,y:prop.y});
+ d.exit=d.exitTotal=1.35;assert(P.Loot.active().includes(inside));assert.equal(P.DomainScenery.progress(),1);d.exit=.01;assert(P.DomainScenery.progress()<.01);assert.equal(P.Terrain.hit(prop.x,prop.y),prop);assert.equal(inside.opened,false);
+});
+
+test('Sideral dinámico: el servidor cooperativo conserva la presentación solicitada',()=>{
+ const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true,domainPresentation:'dynamic'},{}]);const d=s.sideralDomain;
+ assert(d);assert.equal(d.presentationOverride,'dynamic');assert.equal(P.SideralDomain.entryFor(d),2.6);assert.equal(sim.snapshot().sideralDomain.presentationOverride,'dynamic');
+});
+
+test('Sideral dinámico: conserva construcción, título y accesos de laboratorio',()=>{
+ const fs=require('node:fs'),source=fs.readFileSync('src/systems/sideral-domain.js','utf8'),options=fs.readFileSync('src/ui/reference-menus.js','utf8');
+ for(const token of ['construction(c,d,time,opacity=1)','dynamicTitle(c,text,x,y,size','dynamicIntro(c,w,h,d)',"'EXPANSIÓN DE DOMINIO'","'HABITACIÓN DEL'","'LAGARTO'",'sideral-domain-dynamic-practice','bench-sideral-presentation','bench-sideral-dynamic',"labToggle.type='checkbox'","P.state.mode==='play'"])assert(source.includes(token),token);
+ assert(options.includes("'Presentaciones dinámicas'"));assert(options.includes("'domain-dynamic'"));
 });
 
 test('Sideral: la cinemática compone una sola figura sobre una sola habitación',()=>{

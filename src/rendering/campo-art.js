@@ -1,5 +1,4 @@
 'use strict';
-// Monumento y picnic comparten textura; el terreno conserva toda su física.
 P.CampoArt={
 ready:false,
 cells:[{x:12,y:90,w:232,h:158},{x:277,y:8,w:214,h:112},{x:296,y:136,w:176,h:112}],

@@ -1,5 +1,4 @@
 'use strict';
-// Utilería propia de los mundos de jefe. Mantiene las colisiones en Terrain y sólo cambia su lectura visual.
 P.BiomeArt={
  kinds:new Set(['bus-stop','road-barrier','tire-stack','ticket-booth','traffic-cones','vendor-cart','parapet','water-tank','antenna','roof-vent','rebar-columns','roof-bridge','office-planter','filing-cabinet','security-desk','queue-barrier','civic-bench','civic-lamp','archive-shelf','archive-boxes','archive-cabinet','warning-light','archive-ladder','evidence-cage']),
  catalogs:{

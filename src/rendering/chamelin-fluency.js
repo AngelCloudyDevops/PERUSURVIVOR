@@ -1,5 +1,4 @@
 'use strict';
-// Presentation only: every motion is derived from the simulation clock.
 P.TrovoFluency={id:null,origin:null,arena:null,captured:false,
 clamp(v){return Math.max(0,Math.min(1,v))},
 smooth(v){v=this.clamp(v);return v*v*(3-2*v)},

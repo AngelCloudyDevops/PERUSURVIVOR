@@ -1,5 +1,4 @@
 'use strict';
-// State lives in each player's ultimate, including authoritative cooperative snapshots.
 P.AnimalUltimate={routeSerial:0,activationSerial:0,feedbackState:new Map(),
 defs:{cuy:{name:'¡ESTAMPIDA SUPREMA!',duration:5,radius:200,interval:.5,scale:.8,color:'#ffd47c'},paloma:{name:'¡BANDADA DEL CENTRO!',duration:6,radius:270,interval:.6,scale:.65,color:'#b8eaff'}},
 definition(p=P.state.player){return this.defs[p?.id]},

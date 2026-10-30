@@ -6,6 +6,29 @@ Cooperativo sin barrera de separación: cada jugador puede explorar libremente; 
 
 Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcionales y objetos de Dota 2 adaptados como cartas de equipo evolutivo durante cada partida.
 
+## Punto actual de desarrollo
+
+El **Grinch del Cercado** ya tiene su contrato mecánico completo: cuatro ataques propios, Lista negra, Espíritu navideño robado, la expansión Cercado sin Navidad y la ulti Noche del gran robo. Su segunda fase añade un cuarto objetivo y acelera los robos según los fallos. Pendientes: dirección de arte, animación, audio y balance en partidas completas.
+
+Cristorata ya tiene **kit 9/9**: Clip/Directo encadenado, Derrape/Derrape encendido, Garra/Doble garra, pasiva De ida y de vuelta y R El Coliseo del Dragón con tres sellos. La Q original conserva variantes, montura y controles. [Reglas y verificación](docs/CRISTORATA_KIT.md). Pendientes: balance de partidas completas y arte exclusivo de R.
+
+Chamelín ya tiene **kit 9/9**: Retaguardia/Desastre de Trovo, Escupitajo pegajoso con 10 % de Pegote, Pichi con 15 % de resbalón, evoluciones, Presión acumulada y Q ¡SE TAPÓ TODO! con carga independiente. Baño de Trovo conserva su funcionamiento. [Reglas, animaciones y pruebas](docs/CHAMELIN_KIT.md). La Q ya tiene arte exclusivo de ondas de presión. Pendiente: balance en partidas completas.
+
+CiriloTV ya tiene **kit 9/9**: Taxi de Cirilo y regreso con 40 % de resistencia, Carrera de ida y vuelta, Eco maldito/Maldad contagiosa, Persistencia maldita y Q ¡FULL MALDAD! con carga independiente y arte exclusivo. Audiencia y las transformaciones existentes se conservan. [Especificación del kit](docs/CIRILO_KIT.md). [Balance medido](docs/CIRILO_BALANCE.md): 60 simulaciones de partidas y 40 duelos, anticipación de Taxi/Eco/Q, explosión de Eco tras una baja y ajuste de Q. Hay cierres en ambos modos, pero la supervivencia del estilo adaptativo sigue siendo mixta; falta validación humana.
+
+
+El **kit 9/9 de Sideral · El Lagarto** incluye Mirada, Colazo y Huevo, tres evoluciones, Sangre fría y Despertar del Lagarto Q. Conserva UR, 120 PV, velocidad 195 y poder 27; sus ATQ son 95 físico / 105 especial. Q tiene carga independiente y el dominio R no cambia. El balance ya tiene [mediciones automatizadas en partidas y duelos](docs/SIDERAL_BALANCE.md): huevos que apuntan al abrir y Q que crece con el arsenal, sin cambiar R. La supervivencia individual sigue requiriendo validación con jugadores; la carta Q ya tiene ilustración exclusiva del Lagarto. Especificación y pruebas: [Kit de Sideral](docs/SIDERAL_KIT.md).
+
+### Cristorata · revisión anterior conservada
+
+También está terminada la presentación dinámica de la ulti de **Cristorata**. Después de la tarjeta, la máquina cae y permanece fija en el punto de invocación; Cristorata conserva movimiento, ataques y cámara. El jugador debe acercarse a 86 unidades y accionar la palanca con Espacio, clic o toque. El acercamiento muestra tres rodillos con imágenes de dragones que se detienen de izquierda a derecha: tres iguales conceden Jade, Brasa o Trueno, mientras Jade + Brasa + Trueno revela al Tricéfalo. El dragón elegido emerge desde la máquina, vuela hasta la posición actual de Cristorata y comienza los ocho segundos completos de montura. No hay giro automático ni invulnerabilidad durante la espera. El servidor valida la distancia y replica el ancla, la palanca y el resultado en cooperativo.
+
+Este flujo ya está implementado, probado y publicado. El siguiente paso es probar su lectura y ritmo en una partida real; cualquier ajuste posterior debe conservar la máquina fija, los tres rodillos, la interacción cercana y el combate continuo. La especificación completa permanece en `docs/GAME_DESIGN.md`.
+
+## Regla general de continuidad de los dominios
+
+Una Expansión de Dominio dinámica sigue el patrón de Kingteka: aparece sobre el combate existente y nunca toma control de la cámara, cambia el zoom ni recoloca actores. El escenario se construye y destruye en coordenadas del mapa mientras jugador, enemigos y proyectiles continúan su recorrido. Los elementos del mapa cubiertos por su huella —incluidos cofres— se hunden durante la construcción, quedan temporalmente fuera de interacción y reaparecen intactos al disolverse el dominio; los sólidos dejan una sombra tenue para no crear colisiones invisibles. El dominio conserva su propio mobiliario, personajes secundarios y sprites distintivos como decoración visual sin colisión. Una presentación cinematográfica sí puede usar una arena separada; en ese caso su salida mezcla posiciones, cámara y zoom con el mapa original sin un corte visible. Los efectos de humo, fragmentos o luz no pueden ocultar avisos peligrosos. Esta regla es obligatoria para todos los dominios actuales y futuros, tanto en individual como en cooperativo.
+
 Estabilidad cooperativa: paquetes WebSocket de más de 1 KiB usan compresión rápida negociada, sin retener contexto, con dos tareas concurrentes como máximo; el límite de entrada de 2 KiB sigue aplicándose tras descomprimir. una excepción se limita a su sala y queda registrada; salud muestra errores y coste de tick/serialización agregados. Reconectar con el token válido sustituye la conexión anterior sin perder el grupo. El cliente procesa el último estado por fotograma, conserva el resultado final y evita recargarse automáticamente mientras tiene sala. Scripts VM compilados se reutilizan, manteniendo una VM independiente por sala. Las publicaciones solicitan reinicio al quedar el servidor sin salas: las partidas existentes no se cierran por cambiar de release (un reinicio forzado del contenedor sigue interrumpiéndolas). El backend puede permanecer temporalmente en la release anterior hasta quedar libre.
 
 Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posición validada por servidor, 5 s de duración, una por jugador y recarga de 2 s. Ayuda funciona al estar caído. La escolta de la combi se desbloquea a los 90 s: acérquense y pulsen Iniciar escolta. Ambos vivos a 200 unidades; dos paradas de 6 s despejadas de enemigos. Vida 150, límite 100 s, reintento 20 s; premio único +50 monedas compartidas y 25% de vida a cada superviviente. Se suspende durante arenas, escenas, mejoras y desconexiones; no coincide con la defensa doble. Backend Escort/Signals serializados en activities; CoopExtras dibuja vehículo, avisos y controles sin autoridad sobre premios.
@@ -18,9 +41,23 @@ Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa.
 2. **Estadísticas base:** vida máxima, daño base por impacto, intervalo entre ataques, alcance, velocidad de movimiento y radio de recogida.
 3. **Índices de combate:** ATQ físico, ATQ especial, DEF física y DEF especial. Son índices para la fórmula de daño; un índice 100 no equivale a 100 puntos de daño.
 4. **Pasiva única:** nombre, condición, efecto, límite, reinicio y señal visual. Siempre debe cambiar una decisión de juego; no puede ser solamente un aumento permanente sin condición.
-5. **Kit:** ataque principal automático, habilidad especial si existe, ulti Q, Expansión de Dominio R si corresponde y evolución del ataque.
+5. **Kit personal de nueve piezas:** tres ataques, una evolución propia para cada ataque, una pasiva, una ulti Q y una Expansión de Dominio R. Un espacio todavía no implementado permanece visible como `Por definir`; nunca se rellena con un poder genérico para aparentar un kit completo.
 6. **Progresión:** estrellas y mejoras permanentes antes de jugar; rangos, evoluciones, pactos y objetos únicamente durante la partida.
 7. **Validación:** daño por impacto, daño por segundo de referencia, supervivencia, corto/medio alcance, grupos, jefe móvil, obstáculos y cooperativo.
+
+`P.CharacterContract` reúne esas fuentes en nueve piezas personales: tres ataques, una evolución por ataque, una pasiva, una ulti Q y un dominio R. Cada pieza conserva estado `Implementado`, `Planeado` o `Por definir`; los dos poderes de apoyo elegibles durante la partida se muestran aparte porque son progresión compartida y no rellenan huecos del kit personal. La Wiki, la ficha extensa y Balance leen el mismo contrato y muestran el avance real.
+
+| Pieza | Cantidad | Regla general |
+|---|---:|---|
+| Ataques | 3 | Cada uno declara función, tipo de daño, alcance, intervalo, geometría, objetivo y forma de esquivarlo o aprovecharlo. Pueden ser intercambiables, encadenados o contextuales según el personaje; no tienen que usar necesariamente tres botones. |
+| Evoluciones | 3 | Cada evolución pertenece a un ataque concreto, conserva su identidad y cambia una decisión real: patrón, alcance, control, riesgo o prioridad. No debe ser únicamente “más daño”. |
+| Pasiva | 1 | Tiene activación, beneficio, duración o acumulaciones, recuperación/reinicio y respuesta visual reconocible. |
+| Ulti Q | 1 | Habilidad de alto impacto con fuente de carga, coste, duración, límites contra jefes y presentación propia. |
+| Dominio R | 1 | Habilidad excepcional con carga y coste explícitos, reglas de cámara/escenario, interacción cooperativa y salida segura. Puede compartir carga con Q solamente si el diseño lo justifica y lo comunica. |
+
+El objetivo final de cada causa es **9/9**, pero el contrato describe el estado real y permite desarrollar una pieza a la vez. `Planeado` significa que la mecánica y su función ya fueron aprobadas; `Por definir` reserva capacidad sin prometer comportamiento. Una skin, objeto, pacto o poder de apoyo no cuenta como pieza del kit.
+
+Estado actual calculado: **Kingteka, Makanaky, Sideral, CiriloTV, Chamelín y Cristorata están 9/9**. Makanaky ya posee tres técnicas intercambiables, tres evoluciones, pasiva, Q y dominio R. **Sideral también está 9/9**: Colazo del Lagarto, Huevo sospechoso, sus evoluciones, Sangre fría y Despertar del Lagarto Q completan su identidad; Habitación del Lagarto R se conserva. Stats, límites y controles en [Kit de Sideral](docs/SIDERAL_KIT.md).
 
 ### Cómo se interpretan los stats
 
@@ -35,6 +72,26 @@ Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa.
 | Canales | ATQ/DEF Físico y Especial | Ajustan el daño del canal correspondiente mediante `2A/(A+D)`. |
 | Atributo | Fuerza/Técnica/Ingenio | Ciclo Fuerza → Técnica → Ingenio → Fuerza: +15% con ventaja y −10% con desventaja. |
 | Resumen | Poder estimado | Índice informativo de progreso del mismo personaje; no causa daño ni debe comparar roles diferentes. Base = 100. |
+
+### Datos obligatorios de cada ataque
+
+Cada uno de los tres ataques debe documentar y exponer, cuando corresponda: nombre, slot, estado, rango 1–5, canal físico/especial/fijo, daño o coeficiente, intervalo, alcance, área o arco, cantidad de proyectiles, perforación, empuje, duración de efectos, objetivo válido, condición de desbloqueo y evolución asociada. Si usa recursos especiales —cargas, munición, postura, combo o cambio de arma— también declara cómo se obtienen, consumen y reinician.
+
+Balance debe conservar controles comunes de vida, daño, velocidad, intervalo y alcance general, además de los índices y stats avanzados. Para un arsenal múltiple, el alcance de cada ataque se ajusta por separado; cualquier control futuro de daño, intervalo o área por slot debe leer este mismo contrato y no crear valores ocultos exclusivos de una pantalla.
+
+### Lenguaje visual obligatorio
+
+Toda mecánica que altere una decisión inmediata debe poder reconocerse sin abrir la Wiki:
+
+- Una pasiva preparada muestra aura, icono, marcas o cambio de pose, además de texto breve en el HUD.
+- Acumulaciones y cargas enseñan progreso actual y el momento exacto en que quedan listas.
+- Buffs, escudos, resistencias, vulnerabilidades y controles usan siluetas diferentes; el color solo no es suficiente.
+- Ataques peligrosos anuncian área, dirección y tiempo antes del impacto. El dibujo debe coincidir con su colisión real.
+- Una evolución cambia al menos un rasgo visible del ataque —proyectil, estela, impacto, postura o efecto— sin ocultar avisos enemigos.
+- Q y R poseen carta, tecla, carga y estado separados. Si comparten un recurso, ambos HUD deben mostrar claramente qué habilidad lo consumirá.
+- En cooperativo, cada señal se dibuja sobre su propietario correcto y el servidor conserva la autoridad de activación y daño.
+
+Los efectos visuales informan; nunca conceden daño, invulnerabilidad o carga por sí mismos. Movimiento reducido puede simplificar animación y partículas, pero debe conservar indicadores, áreas peligrosas y estado de la mecánica.
 
 El poder estimado actual pondera vida 30%, daño 35%, eficiencia de recarga 20%, velocidad 10% y recogida 5%. No incluye pasiva, alcance, defensas, forma del ataque, control, perforaciones múltiples, ulti ni dominio; por eso no es una “clase de combate” absoluta.
 
@@ -59,12 +116,90 @@ ATQ físico/especial · DEF física/especial · Poder estimado
 PASIVA ÚNICA
 Nombre · condición · acumulaciones o recarga · efecto · reinicio · indicador
 
-KIT
-Ataque principal · Habilidad especial · Ulti Q · Dominio R · Evolución
+KIT PERSONAL · 9 PIEZAS
+Ataque 1 → Evolución 1
+Ataque 2 → Evolución 2
+Ataque 3 → Evolución 3
+Pasiva única · Ulti Q · Dominio R
+
+LECTURA VISUAL
+Indicador de pasiva · cargas/acumulaciones · buffs/debuffs · avisos de impacto
 
 PROGRESIÓN Y PRUEBAS
 Estrellas · mejoras permanentes · rangos de partida · casos de balance
 ```
+
+### Vocabulario cerrado de identidad y combate
+
+Cada causa debe usar los identificadores centrales de `P.CharacterProfiles`; no se crean roles o etiquetas nuevos directamente en la interfaz. La identidad se compone de **raza/especie**, **atributo**, rol principal, rol secundario opcional, alcance, clase de daño, etiquetas funcionales y dificultad.
+
+- **Raza/especie:** Humano, Animal, Criatura / meme, Sobrenatural o Constructo. Una transformación, evolución o skin no cambia la raza base salvo que su diseño lo declare expresamente.
+- **Roles:** Vanguardia, Tirador, Hostigador, Controlador, Guardián, Apoyo y Especialista.
+- **Alcance:** Cuerpo a cuerpo, Corto, Medio, Largo o Variable.
+- **Clase de daño del kit:** Físico, Especial o Híbrido. `Daño fijo` es una etiqueta de una habilidad concreta, no un tercer canal de ataque.
+- **Etiquetas funcionales:** Ráfaga, Daño sostenido, Área, Perforación, Retorno, Control, Movilidad, Curación, Resistencia, Invocación, Evolución, Alto riesgo, Daño fijo, Arsenal intercambiable y Daño continuo.
+- **Dificultad:** Fácil, Intermedia o Avanzada.
+
+El atributo siempre se muestra aparte del rol: Fuerza vence a Técnica, Técnica vence a Ingenio e Ingenio vence a Fuerza. El daño fijo omite ATQ/DEF físico y especial y el ciclo de atributos, pero todavía puede recibir modificadores externos como escudos o reducciones de una fase. Por eso la interfaz debe llamarlo **daño fijo**, no daño puro absoluto.
+
+Kingteka es la referencia del formato: **Humano · Fuerza · Especialista / Controlador · alcance variable · daño híbrido**. Sus etiquetas son Arsenal intercambiable, Ráfaga, Control, Movilidad, Curación y Daño fijo. Escopeta y golpe son físicos, Gallinazo es especial. Su pasiva **Instinto de expedición** se activa al cambiar realmente entre armas desbloqueadas: recupera 2,5 % de vida máxima, prepara durante 4 s un único ataque con +12 % de daño y, si conecta, carga 8 % del Vínculo animal de R; después entra en recuperación durante 7 s. Un aro visible y el HUD muestran la ventana activa.
+
+La cobertura real de los tres ataques, Q, R, pasivas e ilustraciones de cada causa se mantiene en [Auditoría de kits de personajes](docs/CHARACTER_KIT_AUDIT.md). La Causapedia diferencia `Implementado`, `Planeado` y `Reservado`: un concepto o espacio futuro nunca se presenta como una habilidad funcional.
+
+## Pendiente priorizado
+
+Esta lista contiene solo trabajo que aún falta; las mecánicas ya funcionales no deben reabrirse sin detectar una regresión.
+
+1. **Validar y ajustar Extinción con partidas completas.** Medir en individual y cooperativo la duración de las tres oleadas, vida y daño de cada dinosaurio, Tirano del Cráter, Triceratops Fósil, tormenta, meteoritos y límites de 240/180 s. Los valores actuales son una base funcional y el siguiente cambio debe apoyarse en resultados de partidas, no solo en sensación aislada.
+2. **Segunda pasada visual de Extinción.** Dar más cuadros propios a desplazamientos, avisos, impactos y habilidades de cada dinosaurio; mejorar profundidad y partículas del meteorito; pulir cráter, tormenta y Era Perdida; revisar escala, nitidez y coherencia de los objetos ambientales sin alterar colisiones ni daño.
+3. **Cerrar el siguiente kit de personaje.** Sideral ya tiene contrato 9/9; sigue validar su balance en partidas completas y elegir el siguiente causa. Repetir el contrato personaje por personaje sin sustituir espacios reservados con habilidades genéricas.
+4. **Completar el arte de habilidades.** Los Tres de la Realeza todavía reutiliza el full art general de Makanaky y los ataques personales, salvo el arsenal de Kingteka, usan composición procedural. Crear arte dedicado solo después de cerrar mecánica y balance de cada kit.
+5. **Aclarar los controles de cartas.** Hacer más evidente en HUD y móvil que una pulsación breve de Q/R activa y mantener la tecla solo revela la carta; comprobar que carga mostrada, estado habilitado y carga autoritativa siempre coincidan.
+6. **Cierre público de calidad.** Antes de considerar terminada Extinción, ejecutar recorridos prolongados con el flujo cooperativo público, revisar móvil, movimiento reducido, FPS, reconexión y regreso desde la mazmorra sin distribuir controles de QA.
+
+Ya están funcionales y fuera de esta lista: impacto y cráter, invasión y formaciones, tres fragmentos, Tirano obligatorio, tormenta y meteoritos de presión, portal opcional, tres salas de Era Perdida, decisiones entre salas, Triceratops Fósil, reliquia compartida, Wiki/Balance y cargas independientes Q/R de Makanaky y Kingteka.
+
+## Plantilla obligatoria para todos los enemigos
+
+`P.EnemyContract` es la única plantilla válida para minions, dinosaurios, minijefes y jefes. No se crea una ficha paralela ni se completa un espacio solo con texto: cada pieza marcada como implementada debe existir en combate, tener señal visual, recuperación, pruebas y fuente de datos compartida con Wiki y Balance.
+
+Toda amenaza declara identidad (`id`, nombre, categoría y rol), estadísticas base (vida, velocidad y tamaño), atributo, canal de daño, ATQ/DEF físico y especial y los nueve stats avanzados universales: perforación, resistencia de estado, regeneración, crítico, daño crítico, resistencia crítica, defensa crítica, recuperación y robo de vida. También declara debilidad, ataques, habilidad de rol cuando corresponda, pasivas, fases, ulti y expansión según su categoría. Un valor neutral se escribe explícitamente; no se omite. Un hueco sin mecánica real queda como **Por definir**.
+
+La Wiki aplica ahora el mismo criterio de sinceridad que las fichas de personajes: cada espacio aparece como `Implementado` o `Por definir`, muestra el porcentaje cubierto y nunca convierte un hueco en una habilidad genérica. La auditoría boss por boss, incluidos minijefes, jefes de portal y Extinción, vive en [BOSS_KIT_AUDIT.md](docs/BOSS_KIT_AUDIT.md). Esta primera pasada documenta faltantes; no cambia daño, vida, colisiones ni patrones.
+
+| Categoría | Ataques | Habilidades de rol | Pasivas | Fases | Ulti | Expansión |
+|---|---:|---:|---:|---:|---:|---:|
+| Minion | 1 | 0 | 1 | 1 | No aplica | No aplica |
+| Dinosaurio | 1 | 1 | 1 | 1 | No aplica | No aplica |
+| Minijefe | hasta 3 | 0 | 1 | 2 | 1 | No aplica |
+| Jefe | hasta 4 | 0 | hasta 2 | 2 | 1 | 1 |
+
+Checklist para aprobar una pieza nueva:
+
+1. La mecánica existe en individual y, si corresponde, bajo autoridad cooperativa.
+2. Aviso, área efectiva, cobertura, daño, duración y recuperación coinciden con lo dibujado.
+3. Pausa, movimiento reducido, muerte, reinicio y reconexión limpian su estado.
+4. Wiki, Balance, laboratorio y tests leen el mismo registro; no copian cifras manualmente.
+5. La ulti es un remate extraordinario y la expansión transforma temporalmente las reglas o el escenario; no son alias de un ataque normal.
+6. La auditoría en `docs/BOSS_KIT_AUDIT.md` se actualiza y cualquier faltante permanece visible.
+
+Primer jefe normalizado con esta plantilla: **El Chosicano · Última Parada**. Sus cuatro ataques son Embestida de ruta, Bocinazo, Lluvia de boletos y Control de paradero; conserva las pasivas La familia es primero y Frenazo expuesto, activa Hora punta como ulti única al 25 % y despliega Última Parada como expansión al 50 %. Control de paradero fija tres zonas durante 1,3 s y luego las impacta sin seguir al jugador. Su ficha se mantiene conectada al mismo catálogo, stats, Wiki, Balance y laboratorio.
+
+Segundo jefe normalizado mecánicamente: **El Gabinete Infinito**. No persigue ni copia las cargas territoriales de otros jefes: altera las reglas mediante Abanico ministerial, Pleno descontrolado, Proyecto de ley e Interpelación. Sus leyes obligan a elegir beneficios con costos temporales; sus tres interpelaciones piden salir de una marca, recorrer expedientes en orden o sostener una zona. Gabinete inestable cambia la cartera a Economía, Transporte, Salud e Interior según la vida. Al 50 % activa Estado de emergencia, donde movilidad, defensa y ataque son recursos de un solo uso; al 25 % Cuestión de confianza permite conservar la cartera y volverlo vulnerable o censurarla a cambio de ataques más rápidos. La presentación actual es funcional y provisional: arte, animación y audio quedan como la siguiente capa.
+
+Tercer jefe normalizado mecánicamente: **El Guardián de la Niebla**. Su Velo quebrado reduce el daño recibido desde lejos y obliga a entrar en la niebla; Memoria de piedra castiga permanecer demasiado tiempo en el mismo cuadrante. Sus cuatro patrones son Anillo de niebla, Refugios falsos, Terrazas del santuario y Eco del camino, que registra la ruta del jugador y luego la convierte en peligro. Al 50 % despliega Ciudad Perdida, un recorrido de tres hitos con límite de tiempo; al 25 % Juicio del Apu obliga a identificar la sombra verdadera. La lógica ya queda separada de la estética definitiva.
+
+Cuarto jefe normalizado mecánicamente: **La Procesión de Medianoche**. Combate mediante Campanas invertidas, Faroles del duelo, Paso de ánimas y Ofrenda marcada. Deuda de vela reduce el daño mientras el jugador no conserve una llama, y Cortejo interminable acelera los ritos por cada prueba fallida. Al 50 % abre Plaza sin amanecer, un relevo entre tres altares; al 25 % Último responso exige repetir una secuencia de faroles. Su identidad se basa en ritmo, memoria y recorrido, no en reutilizar la niebla del Guardián.
+
+Primer jefe de Extinción normalizado mecánicamente: **Tirano del Cráter**. Conserva Embestida obligatoria, Rugido de choque, Pisotón sísmico, Lluvia de meteoritos y su agotamiento cada tres ataques. Al 50 % abre Cráter del Depredador: cuatro pulsos obligan a rotar hacia un refugio angular señalado, sin convertir la tormenta existente en una falsa expansión. Al 25 % usa Cacería del Último Rey, tres carriles consecutivos fijados antes del impacto; después del tercero queda expuesto. Durante ambas pruebas resiste el daño para que no puedan omitirse con fuerza bruta. Mecánicas y cooperación están implementadas; arte, audio y balance de partidas completas quedan para la siguiente capa.
+
+Segundo jefe de Extinción normalizado mecánicamente: **Triceratops Fósil**. Conserva sus dos placas, el cristal vulnerable y la carga contra pilares. Al 50 % abre Cámara de Ámbar, cuatro pulsos que alternan entre tres sellos seguros y obligan a desplazarse por la cámara. Al 25 % ejecuta Juicio de los Tres Cuernos: tres barridos frontales telegrafiados que se evitan flanqueándolo. Al superar cada prueba queda aturdido con el cristal expuesto, pero las placas solo se rompen mediante su sistema original. Mecánicas y cooperación están implementadas; arte, audio y balance de partidas completas quedan pendientes.
+
+Una habilidad de rol es la acción de equipo que distingue a un dinosaurio —interceptar, rescatar, curar, debilitar o romper la formación— y no cuenta como un segundo ataque. Varias frases que describen una misma regla se agrupan como una sola pasiva. Fuerza, Técnica e Ingenio determinan la debilidad mecánica; las ventanas de espalda, agotamiento, placas o cobertura se documentan además como mecánicas particulares.
+
+Balance global conserva el escalado dinámico de cada aparición y permite multiplicar vida, daño, velocidad, defensas, recarga de habilidades, radio de áreas y duración de peligros/estados. Recarga ×2 significa que los temporizadores avanzan a la mitad de velocidad; radio y duración solo modifican peligros que nacen después de guardar. Los valores 1× reproducen exactamente el comportamiento base.
+
+La Wiki nunca completa espacios con mecánicas genéricas: un rol o pieza de kit sin una definición real aparece como **Por definir**, y un atributo, canal o debilidad ausente aparece como **Desconocido**. Balance global no crea habilidades, pero sus multiplicadores guardados sí se leen en la Wiki: actualizan la vida, velocidad y defensas mostradas, el daño calculable de minions y una sección con los ocho multiplicadores vigentes.
 
 ## Primera ficha completa: Makanaky · La Realeza
 
@@ -72,40 +207,39 @@ Estrellas · mejoras permanentes · rangos de partida · casos de balance
 
 | Campo | Base actual |
 |---|---:|
-| Rareza / rol | UR · Supremo / Luchador de presión |
-| Atributo / canal | Fuerza / Físico |
-| Vida máxima | 125 |
-| Daño base por golpe | 32 |
-| Intervalo de ataque | 0,56 s |
+| Rareza / rol | UR · Supremo / Luchador ofensivo · Duelista |
+| Atributo / canal | Fuerza / Híbrido |
+| Vida máxima | 135 |
+| Daño base por golpe | 30 |
+| Intervalo de ataque | 0,60 s |
 | Alcance base | 100 u |
-| Velocidad | 200 u/s |
+| Velocidad | 190 u/s |
 | Recogida | 90 u |
-| ATQ físico / especial | 100 / 85 |
-| DEF física / especial | 105 / 95 |
+| ATQ físico / especial | 115 / 95 |
+| DEF física / especial | 110 / 90 |
 | Poder estimado base | 100 |
 
 Fortaleza: presión cuerpo a cuerpo, movilidad alta y golpes que cubren un arco. Debilidad: debe permanecer cerca y una falla rompe su ritmo.
 
-### Pasiva propuesta — Racha de la Realeza
+### Pasiva — Racha de la Realeza
 
-- Un ataque principal que dañe al menos a un rival concede una marca de **GA**, hasta cuatro.
-- Cada marca reduce 5% el intervalo del siguiente ataque y aumenta 3% su alcance. Máximo: 20% de cadencia y 12% de alcance.
-- Al conectar con cuatro marcas, ese impacto se convierte en **Golpe Real**: +35% de daño y +40% de empuje; después consume todas las marcas.
-- Fallar el ataque o pasar 1,8 s sin conectar elimina la racha. Recibir daño no la borra automáticamente.
-- Solo el ataque principal y su evolución generan marcas. Ulti, dominio, objetos y apoyos no las generan ni consumen.
-- La ficha de Causas muestra la pasiva como una pieza `ÚNICA` independiente con icono `GA`, descripción interactiva y cuatro marcas; el retrato tiene una animación de reposo sutil y respeta movimiento reducido.
-- El HUD de partida muestra cuatro segmentos `GA`; el cuarto enciende un contorno rosado y el Golpe Real muestra una corona breve sobre el impacto.
+- Puño o cabezazo guardan como máximo una **GA** por lanzamiento, hasta `GA ×10`.
+- El siguiente ataque elegible es Golpe Real. Puño: +35% daño y +40% empuje al arco; cabezazo: +60% daño y aturdimiento garantizado a normales.
+- Fallar resta 2 GA. Tras 2,5 s sin conectar pierde 1 GA por segundo. Recibir daño no las borra.
+- GAA, objetos, campos y dominio no generan GA. La Q completa concede exactamente una.
+- El HUD usa el contador compacto `GA ×n / 10`; la corona identifica el remate real.
 - En cooperativo la sala/servidor es autoritativa. La pasiva no debe ejecutar dos veces un impacto ni confiar en el contador visual del cliente.
 
-La intención es que Makanaky busque una ruta segura para mantenerse cerca, encadene cuatro golpes y decida si arriesgarse a buscar el remate. No es un bono permanente: apuntar mal o abandonar el combate corta la ventaja. Sus mejoras permanentes y estrellas escalan vida, daño y recarga mediante el sistema general; la pasiva multiplica el valor resultante sin crear una segunda progresión oculta.
+La intención es que Makanaky sostenga presión sin perder toda la preparación por una sola falla. El decaimiento gradual permite retirarse brevemente, mientras el Golpe Real premia elegir entre área y control individual.
 
 ### Kit de Makanaky
 
-- **Ataque principal — Puño de la Realeza:** arco físico de 120°, alcance 100, empuje 24 y recarga base de 0,56 s.
-- **Evolución — Combo de la Realeza:** arco de 150°, alcance 135, daño ×1,35 y empuje 42.
-- **Habilidad especial:** espacio reservado; no se mostrará como disponible hasta tener comportamiento y controles reales.
-- **Ulti Q:** espacio reservado actualmente.
-- **Dominio R — ¡BÓTAME TU GA!:** carga con 35 bajas; entrada de 3 s, combate de 9 s y salida de 1,35 s. Su combo interno y la racha del dominio son sistemas separados de la pasiva del ataque normal.
+- **1 — Puño de la Realeza:** arco físico de 120°, alcance 100, empuje 22, daño ×1 y recarga 0,60 s. **Combo de la Realeza:** 145°, alcance 125, ×1,25 y empuje 32.
+- **2 — Mete cabezazos como yo:** un objetivo, daño ×1,80, alcance 78, recarga 1,15 s y 10% de aturdir. **Cabeza de concreto:** ×2,15, alcance 90 y 18% de aturdir.
+- **3 — GAA:** proyectil especial individual sin perforación, ×1,15, alcance 380 y slow 30% por 2 s. **GAAAA sin escapatoria:** ×1,45, alcance 460, guía ligera, slow 40% y raíz al objetivo ya ralentizado.
+- **Progresión:** las tres técnicas tienen rango 1–5 independiente; los slots 2 y 3 aparecen desde nivel 2 y 4, y cada evolución exige rango 5 y nivel 14.
+- **Ulti Q — Los Tres de la Realeza:** carga Respeto propia. Se teletransporta de forma segura al costado de un objetivo a 500 u y ejecuta los tres ataques al 50%; cada componente puede hacer crítico.
+- **Dominio R — ¡BÓTAME TU GA!:** carga independiente de 100 puntos (normal 1, pesado/dinosaurio 2, minijefe 15, jefe 25); entrada de 3 s, combate de 9 s y salida de 1,35 s.
 
 La pasiva se valida con los mismos escenarios base y con la racha activa: enemigo cercano, grupo frontal, jefe móvil, falla deliberada, pérdida de objetivo, evolución, pausa, movimiento reducido y dos jugadores. El objetivo no es que Makanaky gane todas las pruebas, sino que su ventaja aparezca cuando mantiene el combo y desaparezca cuando no consigue conectar.
 
@@ -139,7 +273,7 @@ La alfombra se pinta en la capa del suelo; paredes y muebles usan capas separada
 El dominio de Makanaky encadena jab izquierdo, jab derecho, cruzado y uppercut con giro del cuerpo, pasos y avance del personaje. Los jabs conservan cada puño claramente en su propio lado, retraen la mano contraria y alternan el brazo delantero para que izquierda y derecha sean legibles. El ciclo completo dura 1,30 s; los jabs son rápidos y el uppercut conserva más anticipación y peso. La cámara cercana muestra a Makanaky grande y de espaldas, con el rival al frente, embestida corporal, retroceso y silueta de velocidad; la tercera persona abre el plano según la cantidad de rivales visibles y A/D desplaza a Makanaky mientras cambia la perspectiva. La expansión arrastra a todos los enemigos vivos reales del mapa, sin límite de distancia ni cupo, y los ordena en oleadas de siete; minijefes y jefes esperan al fondo y mantienen su daño limitado. Su fase de combate UR dura 9 s. Cada combo completo de cuatro golpes acelera temporalmente la siguiente oleada, y desde GA×8 aparece la sobrecarga de neón morado. Mantén clic o Espacio para completar el repertorio; la racha continúa hasta `×99`. El objetivo válido queda fijado durante el golpe y el daño llega al conectar el puño. Cada impacto tiene microparada, destello, sacudida y reacción direccional; las eliminaciones de rachas altas salen despedidas con más fuerza. Los minions eliminados pierden la cabeza en pixel art y caen hacia el lado contrario, sin sangre; jefes y minijefes conservan el cuerpo. V o el botón cambia entre cámara cercana y tercera persona sin alterar el combate. La expansión tiene una cinemática a pantalla completa de 3 s: ocho poses de manos, «¡BÓTAME TU GAAAA!», grietas, postes, rejas y paredes que emergen del suelo. Ambos jugadores permanecen protegidos y el mapa no avanza durante la entrada. No usa tarjeta lateral. Prueba directa de administrador: /?practice=makanaky tras iniciar sesión; el parámetro se consume al cargar para que una recarga posterior vuelva al vestíbulo normal. Incluye Recargar dominio y oleadas infinitas de objetivos normales dentro de la expansión.
 
 ## Prototipo: dominio de Makanaky
-El UR usa Expansión de dominio con Q (35 bajas). Entra al callejón en primera persona: A/D o flechas para esquivar, ratón para apuntar, clic/Espacio para golpear. En cooperativo el compañero se refugia detrás y puede pulsar ¡GA!. En el laboratorio de administrador, elige Makanaky y activa recarga automática; conserva los permisos existentes. Daño a jefes y arte del callejón son provisionales.
+El UR usa la Expansión de dominio con R y una carga propia de 100 puntos. Entra al callejón en primera persona: A/D o flechas para esquivar, ratón para apuntar, clic/Espacio para golpear. En cooperativo el compañero se refugia detrás y puede pulsar ¡GA!. En el laboratorio de administrador, elige Makanaky y activa recarga automática; conserva los permisos existentes. Daño a jefes y arte del callejón son provisionales.
 
 ### Compañero cooperativo del dominio
 
@@ -320,13 +454,16 @@ Reglas implementadas: el portal opcional abre a los **3:00**. Su jefe permanece 
 | Jefe | Patrones de ataque | Fases y ulti |
 | --- | --- | --- |
 | Combi Final · Campo de Marte | 1: trayectoria avisada y embestida | Sin segunda fase ni ulti propia. |
-| Gabinete Infinito · Plaza de Armas | 1: abanico de 9 proyectiles | Ataca más seguido bajo el 50%; sin ulti. |
-| Guardián de la Niebla · Machu Picchu | 1: anillo de 12 proyectiles con orientación alterna | Ataca más seguido bajo el 50%; sin ulti. |
-| Fujimori · El Expediente Final | 2: abanico de expedientes y sello sobre marca fija | Al 50% aumenta de 5 a 7 expedientes y amplía el sello. No tiene ulti de jefe; la ulti del Alberto jugable es independiente. |
+| Gabinete Infinito · Plaza de Armas | Abanico; Pleno descontrolado; Proyecto de ley; tres pruebas de Interpelación | Cambia de cartera al 75/50/25%; Estado de emergencia al 50%; Cuestión de confianza al 25%. |
+| Guardián de la Niebla · Machu Picchu | Anillo de niebla; Refugios falsos; Terrazas del santuario; Eco del camino | Velo quebrado y Memoria de piedra; Ciudad Perdida al 50%; Juicio del Apu al 25%. |
+| Procesión de Medianoche · Halloween | Campanas invertidas; Faroles del duelo; Paso de ánimas; Ofrenda marcada | Deuda de vela y Cortejo interminable; Plaza sin amanecer al 50%; Último responso al 25%. |
+| Fujimori · El Expediente Final | 4: sello celeste, archivo reservado, sentencia legendaria y cadena de custodia | Al 50 % abre el Archivo de la Nación; al 25 % dicta Sentencia final. La ulti del Alberto jugable sigue siendo independiente. |
 | Gallinazo del Caos · Techos de Lima | 3 en fase 1 y 3 en fase 2 | Furia bajo el 50%; ulti única al 30% y transformación permanente. |
 | ElZeein · final obligatorio | 1: persecución y abanico de 5 proyectiles cada 2,7 s | Sin segunda fase ni ulti propia diferenciada. |
 
 **Gallinazo:** fase 1 alterna picada, abanico de plumas e invocación de pequeños gallinazos. En furia encadena dos picadas y aumenta plumas/invocaciones. Al 30% activa una vez: tarjeta base → despegue → transformación lunar → caída sobre la posición fijada del jugador → impacto → dos ráfagas rápidas y una pesada. En fase 2 conserva la picada y sustituye los otros ataques por dos abanicos de plumas serpiente y tormenta de tres impactos marcados. El ala carga plumas visibles antes de las ráfagas; la tormenta muestra plumas grandes cargadas que caen, se clavan y levantan polvo. Sus objetos visuales no añaden daño ni alteran los avisos.
+
+Su identidad contractual es **Técnica · Hostigador / Controlador · canal principal especial**. **Hambre de carroña** acelera el siguiente ataque por cada gallinazo invocado que siga vivo, de modo que limpiar la bandada es una decisión real. Al 50 % activa la expansión separada **Techos sin salida**: el viento empuja al jugador mientras debe encender tres puntos de azotea en el orden 1–3–2; completarla expone y daña al jefe, fallarla causa daño. La transformación cinematográfica existente queda reconocida como la ulti **Eclipse Carroñero**, sin reutilizarla como expansión.
 
 La cámara de Techos de Lima encuadra al jugador y la silueta completa del Gallinazo con reserva superior para el reloj y el HUD. La forma II usa un tamaño de arena 15 % menor y poses separadas de reposo, vuelo, carga y disparo. La tarjeta presenta **ECLIPSE CARROÑERO**, oculta la copia de la arena durante su entrada y hace cruzar plumas por el marco. Los avisos usan sectores estrechos con carriles legibles y rótulos apartados del panel derecho; las plumas rotan, dejan una estela morada acotada y explotan al tocar el piso. Partículas, estelas, escombros y polvo tienen cupos reducidos para evitar picos de render.
 
@@ -402,10 +539,15 @@ Campo de Marte responde durante toda la partida, no solamente al desenlace de El
 
 
 ## Evoluciones propias y menú de habilidades
-Cada uno de los 18 personajes conserva su arma inicial y tiene una evolución exclusiva, disponible mediante elección con rango 5 y nivel 8. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.
+Cada uno de los 18 personajes conserva su arma inicial y tiene al menos una evolución. La evolución principal se elige con rango 5 y nivel 8; Kingteka es la excepción de arsenal y puede evolucionar independientemente sus tres armas en rango 5 y nivel 14. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.
+
+### Regla global de fichas y cartas
+Cada causa se diseña con tres ataques, tres evoluciones, una pasiva única y dos espacios especiales: ulti `Q` y expansión de dominio `R`. Un espacio sin mecánica terminada debe mostrarse como **por definir** y nunca inventar un efecto. Toda habilidad especial implementada registra en `src/systems/ability-cards.js` un título, una descripción funcional y filas técnicas (tecla, duración, tipo de daño, alcance, control y valores relevantes). Ese registro es la fuente única para la ficha de Causas y el álbum de cartas. Los ataques toman descripción y valores de su perfil de combate; las pasivas los toman de `src/systems/passives.js`. Al agregar o ajustar una habilidad, se actualiza esa fuente y sus pruebas para que escritorio y móvil expliquen exactamente la misma mecánica.
 
 ### Prototipo de arsenal de Kingteka
-Kingteka empieza con una escopeta corta de cuatro perdigones; su caída de daño mantiene el impacto cerca. En nivel 2 puede desbloquear Gallinazo, que lanza dos plumas especiales guiadas y perforantes; en nivel 4 puede desbloquear el golpe de cuerpo, físico y frontal, con empuje y cadencia pausada. `1`, `2` y `3` cambian de arma durante la partida, también desde los botones del HUD. Durante una subida de nivel, esas teclas siguen escogiendo tarjeta. Los rangos son independientes por arma, mejoran daño, alcance y cadencia y tienen requisitos escalonados; el arma activa recibe la tarjeta de arsenal cada dos niveles. La Escopeta Contra requiere rango 5 y nivel 14. El cambio funciona en cooperativo con autoridad del servidor. Las cartas de poderes y mejoras usan escenas con el sprite del personaje elegido y un motivo del poder o estadística. Las cartas de objetos muestran su icono oficial como arte central, sin el sprite del personaje. Solo las tres armas distintivas de Kingteka usan ilustraciones full art dedicadas. La cara ilustrada ocupa todo el marco al revelarse; categoría, efecto y comparación quedan en una placa inferior, y la rareza conserva su destello. El paquete usa WebP y conserva los PNG fuente; algunos recursos seleccionados tienen compresión con pérdida para caber en el límite de 64 MiB. El manifiesto registra calidad, tamaños y hashes en [asset-optimization.json](docs/asset-optimization.json); prompts de cartas: [Kingteka card art](docs/kingteka-card-art-prompts.json). Balance de las tres armas y partidas completas: [KINGTEKA_ARSENAL_BALANCE](docs/KINGTEKA_ARSENAL_BALANCE.md).
+Kingteka empieza con una escopeta corta de cuatro perdigones; su caída de daño mantiene el impacto cerca. En nivel 2 puede desbloquear Gallinazo, que lanza dos plumas especiales guiadas y perforantes; en nivel 4 puede desbloquear el golpe de cuerpo, físico y frontal, con empuje y cadencia pausada. `1`, `2` y `3` cambian de arma durante la partida, también desde los botones del HUD. Durante una subida de nivel, esas teclas siguen escogiendo tarjeta. Los rangos son independientes por arma, mejoran daño, alcance y cadencia y tienen requisitos escalonados; el arma activa recibe la tarjeta de arsenal cada dos niveles. En rango 5 y nivel 14 evolucionan por separado a Escopeta Contra, Gallinazo de Expedición y Golpe de Supervivencia. El cambio funciona en cooperativo con autoridad del servidor. Las cartas de poderes y mejoras usan escenas con el sprite del personaje elegido y un motivo del poder o estadística. Las cartas de objetos muestran su icono oficial como arte central, sin el sprite del personaje. Solo las tres armas distintivas de Kingteka usan ilustraciones full art dedicadas. La cara ilustrada ocupa todo el marco al revelarse; categoría, efecto y comparación quedan en una placa inferior, y la rareza conserva su destello. El paquete usa WebP y conserva los PNG fuente; algunos recursos seleccionados tienen compresión con pérdida para caber en el límite de 64 MiB. El manifiesto registra calidad, tamaños y hashes en [asset-optimization.json](docs/asset-optimization.json); prompts de cartas: [Kingteka card art](docs/kingteka-card-art-prompts.json). Balance de las tres armas y partidas completas: [KINGTEKA_ARSENAL_BALANCE](docs/KINGTEKA_ARSENAL_BALANCE.md).
+
+El kit de Kingteka se considera cerrado cuando conviven sus tres armas, sus tres evoluciones, la ulti Q, la expansión R y la pasiva **Instinto de expedición**. Q usa el Combo del Causa; R tiene un Vínculo animal separado que solo crece al acertar ataques adaptados. La pasiva muestra su preparación mediante HUD, texto y aura sobre el personaje.
 
 - cristorata: **Directo encadenado** — Dos micrófonos de retorno enlazan hasta tres rivales con sonido.
 - cuy: **Terremoto del cuy** — Una onda completa empuja y deja una zona de temblor a tus pies.
@@ -527,6 +669,14 @@ La colección permite combinar rareza, estrellas exactas (1–5) y Solo listos p
 
 Etiquetas de colección: C · Común, R · Raro, SR · Súper raro, SSR · Ultra raro y UR · Supremo. SR corresponde al antiguo Épico y SSR al antiguo Legendario. Las estrellas siguen siendo progreso separado, pero su ganancia usa el multiplicador de crecimiento de la rareza.
 
+### Personajes base y versiones
+
+La colección distingue entre una **causa base** y sus **versiones o skins**. Una versión puede conservar sprites, ataques y evoluciones propios, pero no ocupa otra entrada del gacha: comparte desbloqueo, rareza, copias y estrellas con su causa base. La identidad canónica se registra en `P.Gacha.variants`; los menús nuevos deben consultar `P.Gacha.canonical(id)` en vez de contar una versión como otro personaje.
+
+- **Kingteka · Amor a los animales** es una causa **UR · Supremo**.
+- **Cerdito VTuber** (`cerdito`) es una versión/skin jugable de Kingteka (`kingteka`). Mantiene su presentación y habilidades propias, pero comparte con Kingteka el desbloqueo y la progresión permanente.
+- Los guardados antiguos que contengan `cerdito` siguen siendo reconocidos mediante la resolución canónica; no se elimina su progreso.
+
 ## Ultis del Cuy y la Paloma
 Cuy Supremo: Estampida Suprema (5 s, daño de área y coraza del 50 %). Paloma del Centro: Bandada del Centro (6 s, espiral de palomas y remate de área). Carga con 20 bajas; pulsa Q o el botón. En Ajustes están las dos prácticas gratuitas, con recarga y cambio directo de personaje. Conservan los sprites cartoon pixel art actuales.
 
@@ -536,6 +686,8 @@ Validación integrada adicional: 54 partidas sobre b10eef1 (18 causas × 3 mapas
 
 
 Makanaky · La Realeza está disponible como causa jugable y conserva su aparición como minijefe en Plaza de Armas.
+
+Versiones oficiales del catálogo: **Cuy Supremo · El Oráculo de la Tómbola** (C), **Paloma del Centro · El Almuerzo del Pueblo** (C), **Alan García · Los Balconazos** (SR), **Alberto Fujimori · ¡Soy Inocente!** (SSR), **Keiko Fujimori · País Rico** (SSR) y **Ollanta Humala · Cosito en Campaña** (SR). Los años y lemas viven en la ficha y no alargan el título de la carta. El ID, progreso, estadísticas y rareza del personaje se conservan al asignarle una versión.
 
 ### Ajuste fino de G5, Fuzo y Cerdito
 G5 conserva vida, movilidad y arco: recarga 0,62 → 0,68 s y multiplicador evolucionado 0,65 → 0,58. Fuzo conserva alcance y perforación: impacto 0,85 → 0,80 y evolución 0,65 → 0,58. Cerdito mantiene siete perdigones y alcance 400: impacto 0,50 → 0,56, inicio de caída 140 → 165 u y evolución 0,65 → 0,70. Consulta [la comparación emparejada](docs/TRIO_BALANCE.md), con partidas antes/después en los mismos mapas y semillas. Las fichas se derivan de los valores nuevos.
@@ -551,9 +703,11 @@ La activación del backend requiere el volumen persistente y la ruta `/api/` del
 La pantalla de entrada ofrece **Iniciar sesión**, **Crear cuenta** o **Jugar como invitado**. El acceso utiliza los paneles azules y botones dorados del juego. Registro y recuperación tienen formularios separados; elegir invitado conserva su guardado local.
 
 ### Combo del Causa · carga de ultis
-Las ultis de Kingteka, Alberto, Cuy y Paloma requieren tres cartas automáticas: Caos, Aguante y Hazaña. Se completan en 45–52 s de combate; con la duración de la habilidad, el ciclo ronda 50–60 s. Q consume las tres y puedes guardarlas hasta necesitarlas. Las propias bajas, proyectiles tardíos y nubes de la ulti no recargan. Funciona contra un jefe solo y respeta pausa/cooperativo; práctica y laboratorio conservan recarga gratis. Consulta [reglas, mediciones y límites](docs/CAUSA_COMBO.md).
+Las ultis de Kingteka, Alberto, Cuy y Paloma requieren tres cartas automáticas: Caos, Aguante y Hazaña. Se completan en 55–60 s de combate; con la duración de la habilidad, el ciclo ronda 60–70 s. Q consume las tres y puedes guardarlas hasta necesitarlas. Kingteka carga R por separado al conectar ataques adaptados. Las propias bajas, proyectiles tardíos y nubes de la ulti no recargan. Funciona contra un jefe solo y respeta pausa/cooperativo; práctica y laboratorio conservan recarga gratis. Consulta [reglas, mediciones y límites](docs/CAUSA_COMBO.md).
 
 En el laboratorio, «Minions al morir» permite dejarlos normales, hacer que reaparezcan a los 0,8 s o volverlos inmortales con un mínimo de 1 PV. Estas reglas solo afectan minions comunes de la prueba; los jefes y objetivos especiales mantienen su funcionamiento.
+
+En móvil, «Entrar a la prueba» responde desde el primer toque. Si todavía faltan sprites de caminata, el botón muestra «Preparando sprites…», bloquea dobles pulsaciones y abre la prueba automáticamente cuando termina la carga. El aviso de carga o error se dibuja por encima del panel moderno. «Probar evento» permanece desactivado antes de entrar porque los eventos necesitan una partida de laboratorio activa; se habilita dentro de la prueba.
 
 El laboratorio de administrador incluye «Supervivencia · oleadas reales» para jugar con un personaje nivel 1 y su arma base, sin estrellas ni mejoras permanentes. El ascenso de nivel dentro de esa partida sigue habilitado. El perfil local permite volver a Base o configurar multiplicadores de vida, daño, velocidad, cadencia, imán, alcance y atributos físicos/especiales (×0,5 a ×10), con un botón de buff global ×2. La casilla «Aplicar también al modo de juego normal» activa ese perfil al iniciar desde Jugar, con oleadas y niveles habituales; la sesión no guarda récords ni premios permanentes. Los ajustes se guardan en el navegador, separados del progreso de cuenta.
 
@@ -561,7 +715,7 @@ El laboratorio de administrador incluye «Supervivencia · oleadas reales» para
 
 
 
-**Panel admin:** exclusivamente la cuenta `reysuperior` con rol admin puede consultar usuarios, entregar 1–100.000 monedas por operación y desbloquear personajes. Incluye búsqueda, paginación, confirmación e historial. No permite cambiar roles ni ver contraseñas.
+**Panel admin:** exclusivamente la cuenta `reysuperior` con rol admin puede consultar usuarios, entregar 1–100.000 monedas por operación, desbloquear personajes y conceder o retirar acceso al Laboratorio. El permiso de laboratorio se guarda en el servidor y no convierte al jugador en administrador: no habilita control de cuentas ni balance global. Incluye búsqueda, paginación, confirmación e historial auditable. No permite cambiar roles ni ver contraseñas.
 
 Las entregas administrativas se reciben en vivo durante la sesión: monedas y personajes se suman al guardado local sin reemplazar la partida. Un aviso confirma la recepción. Al reconectar se recuperan entregas pendientes sin duplicarlas.
 
@@ -619,6 +773,8 @@ El Tricéfalo del Caos tiene un 5 % de probabilidad (el 95 % restante se reparte
 
 ## Cooperativo con amigos
 Inicia sesión, abre Cooperativo y agrega a tu amigo por su nombre exacto de usuario. Debe aceptar la solicitud. Invitar crea una sala si hace falta; el destinatario acepta desde Invitaciones para jugar o el aviso del vestíbulo. Cada uno elige un causa desbloqueado, el anfitrión elige mapa y ambos pulsan Estoy listo. Al cargar sus sprites, el anfitrión puede comenzar. Cambiar mapa/personaje o desconectarse borra los listos. Invitaciones válidas durante un minuto. Como invitado se mantiene la entrada por código; no se necesita compartir un enlace.
+
+El acceso Cooperativo del vestíbulo abre siempre la interfaz moderna: los controles reales de sala, código, amigos e invitaciones se montan dentro de esa vista, y cualquier llamada antigua a `Lobby.show('coop')` se redirige a `coop-hub`. Así no reaparecen el panel lateral ni el menú heredado; en móvil, los controles se reorganizan en una sola columna. Mejoras también compra y reinicia rangos dentro de su panel moderno, mientras que Ajustes tiene una única entrada y abre la vista moderna desde el engranaje superior.
 
 La revelación secreta encadena un falso resultado Jade, un último giro, vapor y un seguro que salta al dorarse la máquina. Los ojos preceden a cada cabeza con desplazamientos propios; Cristorata retrocede y extiende el brazo durante su frase. El dragón se inclina para la subida y el aleteo final levanta polvo. Todo deriva de la edad autoritativa de la ulti, conserva los 6,4 s y la pausa compartida; movimiento reducido omite sacudidas, vapor y ráfagas. No añade daño ni entidades.
 
@@ -702,6 +858,26 @@ La audiencia es una arena física de 920 × 600 unidades: traslada temporalmente
 - Los eventos dibujan hasta cinco señales y un marcador con primitivas, sin añadir enemigos ni partículas persistentes, para cuidar los FPS.
 - Cooperativo y las pruebas de desarrollo permanecen temporalmente en Partida rápida para conservar el protocolo autoritativo actual.
 
+### Zonas dinámicas del terreno
+
+Durante el combate normal puede aparecer una zona ambiental cada **32–45 segundos**, siempre con **1 segundo de aviso** y durante **10 segundos**. Se genera lejos del jugador y únicamente sobre terreno transitable; se suspende durante jefes, portales, dominios, cinemáticas y eventos mayores. Al cambiar de mapa tras derrotar a un jefe, las zonas anteriores se eliminan para no arrastrar efectos entre escenarios.
+
+- **Curación verde:** restaura 1,5 % de vida máxima por segundo a causas y enemigos dentro del área.
+- **Charco venenoso:** causa 1 % de vida máxima por segundo; minijefes y jefes reciben 0,5 % para evitar eliminaciones injustas.
+- **Zona azul debilitante:** reduce 25 % la velocidad y aumenta 12 % el daño físico y especial recibido. Los jefes resisten el control y solo pierden 10 % de velocidad.
+- El nombre se adapta al escenario: emoliente/barro/césped en Campo de Marte, pileta/aceite/adoquines en Plaza de Armas y hierbas/niebla en Machu Picchu.
+- Las tres clases afectan a aliados y rivales, aparecen en el minimapa y muestran los estados activos junto a la barra de vida. El servidor cooperativo es la autoridad y sincroniza el mismo resultado para ambos jugadores.
+- Presupuesto visual: máximo **4 zonas en escritorio y 2 en móvil**, elipses de canvas sin partículas ni entidades nuevas y solo dos rectángulos por señal del minimapa.
+
+#### Barriles de dinamita
+
+Durante el recorrido aparecen barriles tácticos a partir de los primeros 38 segundos. Se colocan lejos de los jugadores y fuera de obstáculos o zonas ambientales; después pueden surgir cada **48–66 segundos**, con un máximo simultáneo de **3 en escritorio y 2 en móvil**. No aparecen durante jefes, dominios, cinemáticas, eventos mayores ni pruebas de rendimiento.
+
+- Los disparos, golpes cuerpo a cuerpo y armas orbitales pueden romperlos. La explosión alcanza 132 unidades, quita 45 % de vida a minions normales, 6 % a minijefes, 2,5 % a jefes y 8 % a una causa que permanezca demasiado cerca.
+- La detonación deja fuego durante 4 segundos. Causa 3 % de vida máxima por segundo a minions, 0,8 % a jefes/minijefes y 0,8 % a jugadores. Dos fuegos superpuestos nunca acumulan pulsos sobre el mismo objetivo.
+- Los barriles cercanos producen una reacción en cadena con una mecha visible de 0,28 segundos. El barril, la explosión y el fuego se dibujan directamente en canvas y los barriles aparecen en el minimapa.
+- El servidor cooperativo controla aparición, daño, fuego y reacciones en cadena; los clientes reciben el mismo estado. Al cambiar de mapa tras un jefe se eliminan todos los barriles y fuegos anteriores.
+
 ### Evento mayor · Extinción
 
 El impacto cinematográfico del meteorito puede iniciar un evento mayor de Supervivencia del Caos. No sustituye al minievento de meteoritos que ya existe y puede forzarse desde **Laboratorio → Ambiente y eventos → Extinción completa**.
@@ -711,6 +887,8 @@ El impacto cinematográfico del meteorito puede iniciar un evento mayor de Super
 3. **Tres fragmentos:** aparecen tres núcleos alrededor del cráter. Mientras quede alguno, fortalecen la invasión y bloquean el avance de la etapa. El jugador debe regresar al impacto y destruirlos.
 4. **Jefe obligatorio:** al romper el último fragmento emerge una criatura prehistórica mutada. Una arena temporal contiene el enfrentamiento; el jefe usa saltos, embestidas y ataques a distancia para impedir que un mapa grande permita ignorarlo. Vencerlo reanuda la progresión normal.
 5. **Portal prehistórico opcional:** la victoria abre una entrada a una mazmorra corta de dinosaurios con enemigos, escenario y recompensa exclusivos. Rechazarla permite continuar la partida sin alargar obligatoriamente el recorrido.
+
+En cooperativo, tocar el portal pausa la sala y muestra la decisión a ambos jugadores. Los dos deben aceptar para entrar juntos; si cualquiera elige continuar, el portal se cierra y la partida sigue. Al completar la mazmorra ambos votan una reliquia compartida; si los votos difieren, decide el anfitrión y el mismo efecto se aplica a todo el equipo.
 
 La recompensa de la mazmorra ofrece una elección entre **Corazón fósil** (+35 de vida máxima y regeneración), **Colmillo del depredador** (+25 % de daño y +18 % de velocidad durante cinco segundos después de derrotar un enemigo) y **Fragmento celeste** (un meteorito pequeño golpea a los enemigos cercanos cada pocos segundos). El evento detiene el reloj de la etapa hasta vencer al Tirano del Cráter; el portal posterior sí puede rechazarse para continuar la partida.
 
@@ -729,3 +907,19 @@ Las imágenes originales de objetos Dota en cartas se reducen 28 %, se centran c
 El editor de balance usa tarjetas con sprites y rareza como Causas: selector con búsqueda a la izquierda y ficha compacta editable a la derecha. Cambiar de tarjeta solo renueva la ficha, conservando el desplazamiento de la colección. En móvil la ficha aparece debajo.
 
 Balance incluye «Probar en el muñeco»: un visor visual de cálculo con los valores sin guardar del formulario. Muestra referencia por proyectil/contacto, cadencia, alcance, caída por distancia y defensa configurable del muñeco; Chamelín incluye referencia del charco. Volver conserva exactamente el formulario. No inicia ni modifica partidas, no publica valores y no guarda progreso. El cálculo no sustituye una medición de combate completo: excluye colisiones, críticos, objetos, estrellas, ultis y efectos secundarios.
+
+### Extinción: versión completa
+
+El evento mundial de Extinción sigue esta ruta: meteorito → tres oleadas con roles → fragmentos → T-Rex **Tirano del Cráter** → portal cooperativo → Era Perdida → **Triceratops Fósil** → reliquia compartida. Durante el evento se detienen los minions normales y los cofres quedan sellados. La tormenta centrada en el cráter se cierra de 650 a 560 y 480 unidades; salir causa 1,5 %, 3 % o 5 % de vida máxima por segundo según la distancia, sin teletransportar al jugador. Meteoritos con 1,2 s de aviso caen dentro y fuera de la zona, con máximo de tres señales; el T-Rex entra en fase II al 50 % de vida.
+
+El bestiario del evento incluye Velociraptor (daño), Anquilosaurio (tanque), Pterosaurio (apoyo), Dilofosaurio (debilitador) y Parasaurolophus (sanador). El atlas visual versionado está en `public/assets/enemies/extinction-dinosaurs-v4.webp`.
+
+La revisión mecánica organiza las oleadas como 3/4/5 rivales: tanque con dos atacantes, apoyo/debilitador con dos atacantes y, finalmente, los cinco roles juntos. Cada especie posee atributo, canal, defensas y resistencia propios. El Anquilosaurio corre a interponerse ante aliados heridos; el Pterosaurio acelera y puede rescatar una vez a un aliado ligero; el Dilofosaurio cubre apoyos con veneno; el Velociraptor aprovecha la ralentización; el Parasaurolophus cura, solicita protección y puede reanimar una vez. La formación mantiene tanque al frente, raptores en flancos y sanador atrás, pero se rompe temporalmente durante habilidades. El exterior dispone de 240 s y garantiza 90 s al T-Rex. El evento falla si cae todo el equipo o vence su reloj. El T‑Rex combina mordida/embestida lateral, rugido interruptor, onda de pisotón y meteoritos que inutilizan coberturas durante siete segundos; después de tres ataques queda agotado y recibe daño adicional.
+
+La Era Perdida se divide en tres salas de cinco y dispone de 180 s; al aparecer el jefe se garantizan 150 s. Entre las dos primeras se elige curación, +20 % de daño temporal o una sala más difícil con +35 % de recompensa. Allí aparece el Triceratops joven rompefilas, cuya carga causa 25 y queda aturdida al chocar. El Triceratops Fósil tiene dos placas que absorben daño; después expone el cristal y puede aturdirse al embestir los dos pilares de la arena. Al terminar o fallar, el regreso restaura terreno y posiciones y bloquea nuevas apariciones durante seis segundos para evitar una emboscada inmediata.
+
+En cualquier combate se puede hacer clic izquierdo sobre un enemigo, jefe o fragmento para fijarlo. El ataque automático lo prioriza mientras esté vivo, visible, con línea de tiro y dentro del alcance; hacer clic otra vez lo libera. En cooperativo cada jugador mantiene su propio objetivo y el servidor valida únicamente su identificador, nunca posiciones ni daño enviados por el cliente.
+
+### Sideral · kit del Lagarto completo
+
+Tres técnicas intercambiables con rangos y evoluciones propios, Sangre fría y Q de transformación con aliento dirigido. UR, 120 PV, velocidad 195, poder 27, ATQ físico/especial 95/105, DEF 100/105. Q usa una reserva independiente; el dominio R conserva mecánicas y carga. Especificación, animaciones y límites: [docs/SIDERAL_KIT.md](docs/SIDERAL_KIT.md). El [informe de balance](docs/SIDERAL_BALANCE.md) registra 56 ejecuciones automáticas, resultados mixtos y cierres con victoria en ambos modos; falta validación con jugadores. La carta Q usa arte exclusivo del Lagarto, con auriculares, camiseta roja y aliento verde, conservando el marco de las otras ultis.

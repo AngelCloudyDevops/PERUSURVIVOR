@@ -1,0 +1,181 @@
+{
+  "scope": "Controlled empty-terrain DPS, no enemy attacks; not full-run win rate. Attack rank obtained with real progression; Q precharged only in this controlled comparison.",
+  "results": [
+    {
+      "attack": "sideralFear",
+      "rank": 1,
+      "moving": false,
+      "duration": 20,
+      "damage": 381.69,
+      "dps": 19.08,
+      "hits": 12,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "sideralFear",
+      "rank": 1,
+      "moving": true,
+      "duration": 20,
+      "damage": 477.11,
+      "dps": 23.86,
+      "hits": 15,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "sideralFear",
+      "rank": 5,
+      "moving": false,
+      "duration": 20,
+      "damage": 893.15,
+      "dps": 44.66,
+      "hits": 18,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "sideralFear",
+      "rank": 5,
+      "moving": true,
+      "duration": 20,
+      "damage": 893.15,
+      "dps": 44.66,
+      "hits": 18,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "sideralTail",
+      "rank": 1,
+      "moving": false,
+      "duration": 20,
+      "damage": 75.63,
+      "dps": 3.78,
+      "hits": 2,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "sideralTail",
+      "rank": 1,
+      "moving": true,
+      "duration": 20,
+      "damage": 453.81,
+      "dps": 22.69,
+      "hits": 12,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "sideralTail",
+      "rank": 5,
+      "moving": false,
+      "duration": 20,
+      "damage": 176.98,
+      "dps": 8.85,
+      "hits": 3,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "sideralTail",
+      "rank": 5,
+      "moving": true,
+      "duration": 20,
+      "damage": 825.93,
+      "dps": 41.3,
+      "hits": 14,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "sideralEgg",
+      "rank": 1,
+      "moving": false,
+      "duration": 20,
+      "damage": 524.82,
+      "dps": 26.24,
+      "hits": 10,
+      "eggs": 10,
+      "missed": 0
+    },
+    {
+      "attack": "sideralEgg",
+      "rank": 1,
+      "moving": true,
+      "duration": 20,
+      "damage": 0,
+      "dps": 0,
+      "hits": 0,
+      "eggs": 10,
+      "missed": 9
+    },
+    {
+      "attack": "sideralEgg",
+      "rank": 5,
+      "moving": false,
+      "duration": 20,
+      "damage": 900.59,
+      "dps": 45.03,
+      "hits": 11,
+      "eggs": 12,
+      "missed": 0
+    },
+    {
+      "attack": "sideralEgg",
+      "rank": 5,
+      "moving": true,
+      "duration": 20,
+      "damage": 0,
+      "dps": 0,
+      "hits": 0,
+      "eggs": 12,
+      "missed": 11
+    },
+    {
+      "attack": "Q",
+      "rank": 1,
+      "moving": false,
+      "duration": 6,
+      "damage": 263.36,
+      "dps": 43.89,
+      "hits": 23,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "Q",
+      "rank": 1,
+      "moving": true,
+      "duration": 6,
+      "damage": 263.36,
+      "dps": 43.89,
+      "hits": 23,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "Q",
+      "rank": 5,
+      "moving": false,
+      "duration": 6,
+      "damage": 263.36,
+      "dps": 43.89,
+      "hits": 23,
+      "eggs": 0,
+      "missed": 0
+    },
+    {
+      "attack": "Q",
+      "rank": 5,
+      "moving": true,
+      "duration": 6,
+      "damage": 263.36,
+      "dps": 43.89,
+      "hits": 23,
+      "eggs": 0,
+      "missed": 0
+    }
+  ]
+}

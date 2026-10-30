@@ -15,6 +15,14 @@ test('Gabinete y Guardián: aviso y disparo comparten cantidad, ángulos y alcan
  }
 });
 
+test('Gabinete: Pleno descontrolado es exclusivo, físico y rebota dos veces',()=>{
+ const {P,s}=setup(),gabinete={kind:'cabinet',cabinetKit:'gabinete',attack:'congress',x:0,y:0,aim:.2,attackIndex:3,color:'#cc7f9d'};
+ const plan=P.Encounters.projectilePlan(gabinete);assert.equal(plan.kind,'congress');assert.equal(plan.count,5);assert.equal(plan.speed,175);
+ P.Encounters.fire(gabinete);assert.equal(s.danger.length,5);assert(s.danger.every(shot=>shot.congress&&shot.damage===12&&shot.damageType==='physical'&&shot.congressBounces===2));
+ const shot=s.danger[0],vx=shot.vx,vy=shot.vy;shot.x=20;shot.y=30;shot.history.push({x:1,y:1});assert(P.Combat.bounceDanger(shot,4,5));assert.deepEqual([shot.x,shot.y,shot.vx,shot.vy,shot.congressBounces,shot.history.length],[4,5,-vx,-vy,1,0]);assert(P.Combat.bounceDanger(shot,4,5));assert.equal(shot.congressBounces,0);assert.equal(P.Combat.bounceDanger(shot,4,5),false);
+ const grinch={...gabinete,cabinetKit:undefined};assert.equal(P.Encounters.projectilePlan(grinch).kind,'cabinet','Los jefes estacionales que comparten render no heredan el ataque');
+});
+
 test('Los avisos de proyectil terminan en la primera cobertura o en el borde real',()=>{
  const {P,s}=setup(),hit=P.Terrain.hit;s.encounter={scene:{bounds:{left:-500,right:500,top:-300,bottom:300}}};
  P.Terrain.hit=(x,y,r)=>x+r>=180?{}:null;const blocked=P.Encounters.projectilePath(0,0,0,570,7);assert(blocked>=168&&blocked<180);

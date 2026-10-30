@@ -1,5 +1,4 @@
 'use strict';
-// Cada arena conserva el mismo combate; los límites protegen los bordes decorativos.
 P.Maps={
 selected:'campo',images:{},ready:{},pending:{},
 catalog:[
@@ -9,7 +8,6 @@ catalog:[
 {id:'halloween',name:'Noche de Halloween',region:'Lima · Parque encantado',description:'Bruma, calabazas y momias entre senderos.',color:'#51385f',base:'campo',miniboss:'campo',bounds:{left:-940,right:940,top:-430,bottom:620},spawn:{x:0,y:-60}},
 {id:'navidad',name:'Navidad Peruana',region:'Lima · Parque navideño',description:'Duendes, regalos y luces entre pinos nevados.',color:'#547b72',base:'campo',miniboss:'plaza',bounds:{left:-940,right:940,top:-430,bottom:620},spawn:{x:0,y:-60}}
 ],
-// Mundos que sólo se descubren al vencer al jefe correspondiente. No aparecen en el selector inicial.
 biomes:[
 {id:'ruta-chosicano',bossKind:'combi',name:'Última Parada',region:'Lima · Ruta del Chosicano',description:'Una avenida interminable tomada por combis y paraderos.',color:'#9b7751',asset:'assets/arenas/combi-packed-v2.webp',surface:'terminal',climate:'plaza',ambience:'terminal',encounterBase:'campo',eventBase:'plaza',miniboss:'plaza',spawn:{x:0,y:80}},
 {id:'distrito-gabinete',bossKind:'cabinet',name:'Distrito del Gabinete',region:'Lima · Centro cívico alterado',description:'Oficinas, jardines rígidos y expedientes que invadieron la ciudad.',color:'#9b707d',asset:'assets/arenas/cabinet-v1.webp',surface:'cabinet',climate:'plaza',ambience:'cabinet',encounterBase:'plaza',eventBase:'plaza',miniboss:'plaza',spawn:{x:0,y:80}},
@@ -34,6 +32,5 @@ reset(){const map=this.current();P.state.player.x=map.spawn.x;P.state.player.y=m
 collide(p,old){if(P.state.encounter){const b=P.state.encounter.scene.bounds;p.x=Math.max(b.left,Math.min(b.right,p.x));p.y=Math.max(b.top,Math.min(b.bottom,p.y));P.Terrain.resolve(p,old,14);return}const map=this.current();if(map.fountain){const f=map.fountain,dx=(p.x-f.x)/f.rx,dy=(p.y-f.y)/f.ry,d=Math.hypot(dx,dy);if(d<1){if(d<.001){p.x=old.x;p.y=old.y}else{p.x=f.x+dx/d*f.rx;p.y=f.y+dy/d*f.ry}}}P.Terrain.resolve(p,old,14)},
 camera(x,y,w,h){return P.state.encounter?{x:Math.max(-1200+w/2,Math.min(1200-w/2,x)),y:Math.max(-800+h/2,Math.min(800-h/2,y))}:{x,y}},
 draw(ctx,cx,cy,w,h,time){if(P.state.mode!=='menu'&&!P.state.encounter){P.Chunks.draw(ctx,cx,cy,w,h);return}const map=this.current();ctx.fillStyle='#17232b';ctx.fillRect(cx-w,cy-h,w*2,h*2);ctx.fillStyle=map.color;ctx.fillRect(-1200,-800,2400,1600);const image=this.images[map.id];if(image){ctx.imageSmoothingEnabled=false;ctx.drawImage(image,-1200,-800,2400,1600)}else{ctx.fillStyle=map.id==='plaza'?'#ac9f8e':'#7e9e61';ctx.fillRect(-1200,-800,2400,1600);ctx.fillStyle=map.id==='plaza'?'#c5bbaa':'#d8c4a0';ctx.fillRect(-55,-800,110,1600);ctx.fillRect(-1200,-55,2400,110);if(map.fountain)P.Entities.circle(ctx,0,0,map.fountain.rx,'#608f99')}
-// Ambiente ligero, sin tapar la lectura del combate.
 ctx.save();for(let i=0;i<13;i++){const x=Math.sin(i*48.3)*1050+Math.sin(time/6000+i)*25,y=Math.cos(i*21.8)*600+Math.sin(time/2100+i)*9;ctx.globalAlpha=.12;ctx.fillStyle=map.id==='machu'?'#e3f3e8':map.id==='halloween'?'#c58bdc':map.id==='navidad'?'#f4fbff':map.id==='campo'?'#d8e7a8':'#f5dab4';ctx.fillRect(Math.round(x),Math.round(y),map.id==='machu'?22:3,map.id==='machu'?3:3)}ctx.restore()}
 };

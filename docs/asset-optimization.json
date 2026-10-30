@@ -18,10 +18,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 3007482,
-      "optimizedBytes": 2155324,
+      "optimizedBytes": 897014,
       "sourceSha256": "f2c27437d3043b03c4c68c34aa446a13f3f0af663b9682355012bdd0139297c4",
-      "outputSha256": "405ef8fd8ec2eb9578a6046f43b5f8200069a6c266bacc90991f599631bce746",
-      "rgbaSha256": "8b30d4308284d01bc349c2aae2de826bda9d54f686c0646e306d48cef1859a0f"
+      "outputSha256": "62b5567cc5e7f7a2bbdd5a0ff9d66a62f12e688a6f0ed84f28ec32ea797baed8",
+      "rgbaSha256": "8b30d4308284d01bc349c2aae2de826bda9d54f686c0646e306d48cef1859a0f",
+      "quality": 100
     },
     {
       "source": "assets/arenas/combi-v1.png",
@@ -56,6 +57,66 @@
       "sourceSha256": "3555a88c8a958ae8f9ec8c9ce5bceab6a08ecfad96e0a93aa81a0c2a13d406c5",
       "outputSha256": "486efa4e1f9356f273ec33d4ddcec77751733e5457962442024a0d5bffd5a77f",
       "rgbaSha256": "e4e864c0ab67e8ab41b7132bbb62a07cc9cb2b096dc68b5a5f576264ddbc2ac9"
+    },
+    {
+      "source": "assets/attacks/cerdito-gallinazo-attack-v1.png",
+      "output": "assets/attacks/cerdito-gallinazo-attack-v1.webp",
+      "width": 176,
+      "height": 176,
+      "originalBytes": 49770,
+      "optimizedBytes": 15480,
+      "sourceSha256": "2cd74d4d15e31604bbf33e54b17d566f18922e88f9cc85e216abed77e7f49be6",
+      "outputSha256": "d31d160a451bbe82d813ac26f0556dcaeb1d3f3ba739a84134edffff003da06a",
+      "rgbaSha256": "85db6864c7981d458fb20fa99060384853876a15756c728b0ee9a9c4eb32f030",
+      "quality": 62
+    },
+    {
+      "source": "assets/attacks/cerdito-golpe-attack-v1.png",
+      "output": "assets/attacks/cerdito-golpe-attack-v1.webp",
+      "width": 176,
+      "height": 176,
+      "originalBytes": 43976,
+      "optimizedBytes": 13718,
+      "sourceSha256": "b222ed8ea6fdbbf2526f1eb926d4e2242165bf71f72c26a6a44d3980eab99e8b",
+      "outputSha256": "1cde44058734057a0c512790ed880f0671e02bf807e19335bb2a95e328c42d92",
+      "rgbaSha256": "604fd28ab634daf9c72aae56b6ff8c4c7322038c7e3642ba47652270ddb16cd1",
+      "quality": 62
+    },
+    {
+      "source": "assets/attacks/kingteka-gallinazo-attack-v1.png",
+      "output": "assets/attacks/kingteka-gallinazo-attack-v1.webp",
+      "width": 176,
+      "height": 176,
+      "originalBytes": 47027,
+      "optimizedBytes": 14556,
+      "sourceSha256": "e07a78dfab014547f1d57261b33502db215a90cd7cca85b9f96ee3df7914b9ba",
+      "outputSha256": "40a198fa80384304e575e7ea27eb3b402afc627acf01222075d190ef52fbd04c",
+      "rgbaSha256": "6143a56f28f828649c2cd7f257407397fc0a77754270433f9b60111419ff0e11",
+      "quality": 62
+    },
+    {
+      "source": "assets/attacks/kingteka-gallinazo-attack-v2.png",
+      "output": "assets/attacks/kingteka-gallinazo-attack-v2.webp",
+      "width": 1254,
+      "height": 1254,
+      "originalBytes": 1525417,
+      "optimizedBytes": 328754,
+      "sourceSha256": "a88b310e886edcc9dfa870943d278339df03d2fd6f6e12e86baf2971eb36b92d",
+      "outputSha256": "e8ece36e616b6b6d3fa094f6ef9f0cfb4d9adb91def9578276cb39db2cc48220",
+      "rgbaSha256": "c4a7c5bfbda162a3e9055d82021cba4baa3ac0e66e47cc1bed1ecdec75e9b7c4",
+      "quality": 88
+    },
+    {
+      "source": "assets/attacks/kingteka-golpe-attack-v1.png",
+      "output": "assets/attacks/kingteka-golpe-attack-v1.webp",
+      "width": 384,
+      "height": 384,
+      "originalBytes": 162040,
+      "optimizedBytes": 36542,
+      "sourceSha256": "b24255187f647a203f4ac61b76b9d91ab8a6f46e6560ccfc7616c46b2d8cff85",
+      "outputSha256": "366d2e1f83d703560d8c78f324707844c6f73e968cab7ceb8df0c8973e968640",
+      "rgbaSha256": "d4d8e265364603facb91cf05e328c10e5c2a8a86593cbe6c1c00c35bd4c4bf11",
+      "quality": 75
     },
     {
       "source": "assets/bosses/boss-atlas-v1.png",
@@ -96,10 +157,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 2359965,
-      "optimizedBytes": 1678634,
+      "optimizedBytes": 647788,
       "sourceSha256": "7aa7bb806d0c1375c6011d8ce88332b494b12aa642c7654dc04127636e80ebe9",
-      "outputSha256": "90b1ae8b0464ed20911ea64326f12b9d4577d2741d598be95b736d8753dcfdd5",
-      "rgbaSha256": "cda9580092e6bcb0e01bf880e90c3145145bf6272ca0487244295a9ca43af99a"
+      "outputSha256": "bd7e4e71bf7062c4365c42c506cfd6e640160a4cc8775e8e7c0eb1f5280970a7",
+      "rgbaSha256": "cda9580092e6bcb0e01bf880e90c3145145bf6272ca0487244295a9ca43af99a",
+      "quality": 100
     },
     {
       "source": "assets/cards/alberto-tribunal-ultimate-fullart-v1.png",
@@ -387,6 +449,18 @@
       "quality": 90
     },
     {
+      "source": "assets/enemies/extinction-dinosaurs-v4.png",
+      "output": "assets/enemies/extinction-dinosaurs-v4.webp",
+      "width": 800,
+      "height": 400,
+      "originalBytes": 411394,
+      "optimizedBytes": 98838,
+      "sourceSha256": "e0881b718264360b0c95701002a9dc317a4fabb43f97ae76db89bf9541fb606c",
+      "outputSha256": "b7e6286e62b18bb54b5209205f087fbf4c2a099cd44400fa0a7e479989f94857",
+      "rgbaSha256": "4c0be7d4f969158ea845c515d977acca003ce7abfd4a78412ee65b56004502bd",
+      "quality": 70
+    },
+    {
       "source": "assets/enemies/gallinazos-atlas-v1.png",
       "output": "assets/enemies/gallinazos-atlas-v1.webp",
       "width": 2172,
@@ -492,10 +566,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 3553375,
-      "optimizedBytes": 2627792,
+      "optimizedBytes": 1018728,
       "sourceSha256": "744421b181c2920b43e923b42c6c2091ad6fa4b810915c084249e7aec63d476f",
-      "outputSha256": "940872b295268d2b35104dc4c0402e31f39b6bb6a3150b7ee4edf4d4150f40e6",
-      "rgbaSha256": "0c99ba5ba38da04abdd5c10c29f079f4007b87c35d9139b6fc12b12a25c724d1"
+      "outputSha256": "9013d210a63d50d9f19ea9fe28277e664dc3032c2ad69bb2a405db2dd29bd35e",
+      "rgbaSha256": "32228da365500014d4d5a01c465658731b1d232fc0bbe784d364619b5c992be4",
+      "quality": 98
     },
     {
       "source": "assets/maps/plaza-v1.png",
@@ -503,10 +578,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 3690059,
-      "optimizedBytes": 2650912,
+      "optimizedBytes": 1042796,
       "sourceSha256": "328b1fb1bedf835ad6a2aff4880aa9d1c5576ef75b2e046369b28ca0997d6802",
-      "outputSha256": "2262aeeeaf30b3a9b22025231da5994320d615db60bac323ebf5a08c2a5f2d21",
-      "rgbaSha256": "d2e90d6067cd80c14ac79e3f4526f048738ce29a48febb1c59de1f51c74cf029"
+      "outputSha256": "ad30e47ae0748f01885a70eb735fc9eab351c575498b8399093f25c7733768a8",
+      "rgbaSha256": "7a9d04c604967750b0a11ee3bca82e4f2d9f1dcc26f361ec3e71cf1ffad6b91d",
+      "quality": 98
     },
     {
       "source": "assets/minibosses/fiscalizador-v1.png",
@@ -540,6 +616,18 @@
       "sourceSha256": "c8041f9e84791d61de747820cfe29b5be188a3fab2a4d3528f9966c018fb2858",
       "outputSha256": "f9036d9db80ff2e1a4b93c367683df0c02eafcf970c8f583937a90c57e129192",
       "rgbaSha256": "b4055e5f8dbe9b3c4bdf1abd09eb5ba03add597b3a306e7c556793b316ff34c2"
+    },
+    {
+      "source": "assets/reactions/kingteka-reaction-v1.png",
+      "output": "assets/reactions/kingteka-reaction-v1.webp",
+      "width": 384,
+      "height": 384,
+      "originalBytes": 157459,
+      "optimizedBytes": 32236,
+      "sourceSha256": "5ba165b7243fab5d60bb7a8139a599b168e32e4d0f59a0008c5e5a12a6021a77",
+      "outputSha256": "f38b73a809074ec63f85104bdd87598219f2366e7dbd66fe7ec7e52828760d12",
+      "rgbaSha256": "c00bd3e1dd3384dbf5c357d2a5bfa07e39e40ae13bb79923b7291e1f6fa9804d",
+      "quality": 75
     },
     {
       "source": "assets/scenarios/cirilo-midnight-court-v1.png",
@@ -601,6 +689,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 92552258,
-  "optimizedBytes": 44127446
+  "originalBytes": 94949341,
+  "optimizedBytes": 39161234
 }

@@ -3,6 +3,12 @@
 P.CharacterSkins={
  rarities:{common:{name:'Común',color:'#aeb7c2'},rare:{name:'Rara',color:'#5fd17a'},epic:{name:'Épica',color:'#a979ff'},legendary:{name:'Legendaria',color:'#f4c84a'},special:{name:'Especial',color:'#ff5bd8'}},
  versions:{
+  'cuy-oracle':{id:'cuy-oracle',characterId:'cuy',baseName:'Cuy Supremo',title:'El Oráculo de la Tómbola'},
+  'paloma-lunch':{id:'paloma-lunch',characterId:'paloma',baseName:'Paloma del Centro',title:'El Almuerzo del Pueblo'},
+  'alan-balconazos':{id:'alan-balconazos',characterId:'alan',baseName:'Alan García',title:'Los Balconazos',period:'1985–1990'},
+  'alberto-innocent':{id:'alberto-innocent',characterId:'alberto',baseName:'Alberto Fujimori',title:'¡Soy Inocente!',period:'2007'},
+  'keiko-rich-country':{id:'keiko-rich-country',characterId:'keiko',baseName:'Keiko Fujimori',title:'País Rico',period:'2021',tagline:'No más pobres en un país rico'},
+  'ollanta-campaign':{id:'ollanta-campaign',characterId:'ollanta',baseName:'Ollanta Humala',title:'Cosito en Campaña',period:'2011'},
   'kingteka-animals':{id:'kingteka-animals',characterId:'kingteka',baseName:'Kingteka',title:'Amor a los animales'},
   'makanaky-royal':{id:'makanaky-royal',characterId:'makanaky',baseName:'Makanaky',title:'La Realeza'},
   'sideral-minion-scare':{id:'sideral-minion-scare',characterId:'sideral',baseName:'Sideral',title:'Espantaminions'},

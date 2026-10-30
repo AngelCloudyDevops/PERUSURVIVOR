@@ -1,0 +1,4 @@
+Use case: precise-object-edit
+Asset type: transparent 3x2 game attack sprite sheet, six complete full-body poses
+Primary request: Kingteka grabs a small black gallinazo with both hands, squeezes it comically at chest height, releases a forward burst of feathers and recovers while still holding the bird.
+Constraints: preserve Kingteka's identity, clothing and tattoos; the gallinazo remains visible and intact in every frame; transparent background; no shotgun, gun, text or watermark.

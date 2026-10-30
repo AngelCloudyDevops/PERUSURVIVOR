@@ -10,6 +10,8 @@ module.exports = [
   {"source":"src/systems/character-skins.js","output":"js/character-skins.js"},
   {"source":"src/data/attributes.js","output":"js/attributes.js"},
   {"source":"src/data/stats.js","output":"js/stats.js"},
+  {"source":"src/data/enemy-contract.js","output":"js/enemy-contract.js"},
+  {"source":"src/data/character-contract.js","output":"js/character-contract.js"},
   {
     "source": "src/data/muzzle-anchors.js",
     "output": "js/muzzle-anchors.js"
@@ -49,6 +51,10 @@ module.exports = [
   {
     "source": "src/rendering/player-attack-art.js",
     "output": "js/player-attack-art.js"
+  },
+  {
+    "source": "src/rendering/player-reaction-art.js",
+    "output": "js/player-reaction-art.js"
   },
   {
     "source": "src/systems/muzzle.js",
@@ -155,6 +161,7 @@ module.exports = [
     "source": "src/systems/vulture-moon.js",
     "output": "js/vulture-moon.js"
   },
+  {"source":"src/systems/vulture-domain.js","output":"js/vulture-domain.js"},
   {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
@@ -164,6 +171,7 @@ module.exports = [
     "output": "js/fujimori-boss.js"
   },
   {"source":"src/systems/fujimori-archives.js","output":"js/fujimori-archives.js"},
+  {"source":"src/systems/fujimori-contract.js","output":"js/fujimori-contract.js"},
   {"source":"src/rendering/fujimori-boss-art.js","output":"js/fujimori-boss-art.js"},
   {
     "source": "src/rendering/path-details.js",
@@ -244,6 +252,10 @@ module.exports = [
     "output": "js/reactive-background.js"
   },
   {
+    "source": "src/rendering/player-status.js",
+    "output": "js/player-status.js"
+  },
+  {
     "source": "src/rendering/world.js",
     "output": "js/world.js"
   },
@@ -315,6 +327,24 @@ module.exports = [
     "source": "src/systems/ability-cards.js",
     "output": "js/ability-cards.js"
   },
+  {"source":"src/systems/dynamic-zones.js","output":"js/dynamic-zones.js"},
+  {"source":"src/systems/explosive-barrels.js","output":"js/explosive-barrels.js"},
+  {
+    "source": "src/systems/cabinet-boss.js",
+    "output": "js/cabinet-boss.js"
+  },
+  {
+    "source": "src/systems/guardian-boss.js",
+    "output": "js/guardian-boss.js"
+  },
+  {
+    "source": "src/systems/procession-boss.js",
+    "output": "js/procession-boss.js"
+  },
+  {
+    "source": "src/systems/holiday-boss.js",
+    "output": "js/holiday-boss.js"
+  },
   {"source":"src/systems/kingteka-domain.js","output":"js/kingteka-domain.js"},
   {
     "source": "src/ui/card-gallery.js",
@@ -378,10 +408,14 @@ module.exports = [
     "output": "js/domain-art.js"
   },
   {"source":"src/systems/domain-aftermath.js","output":"js/domain-aftermath.js"},
+  {"source":"src/systems/makanaky-arsenal.js","output":"js/makanaky-arsenal.js"},
+  {"source":"src/systems/makanaky-ultimate.js","output":"js/makanaky-ultimate.js"},
   {"source":"src/rendering/domain-finale.js","output":"js/domain-finale.js"},
   {"source":"src/rendering/domain-intro.js","output":"js/domain-intro.js"},
+  {"source":"src/systems/domain-return.js","output":"js/domain-return.js"},
   {"source":"src/systems/sideral-domain.js","output":"js/sideral-domain.js"},
   {"source":"src/network/live-gifts.js","output":"js/live-gifts.js"}
+, {"source":"src/ui/inbox.js","output":"js/inbox.js"}
 , {source:"src/systems/dragon-ultimate.js",output:"js/dragon-ultimate.js"}
 , {source:"src/rendering/dragon-art.js",output:"js/dragon-art.js"}
 , {source:"src/rendering/dragon-epic.js",output:"js/dragon-epic.js"}, {source:"src/network/friends.js",output:"js/friends.js"}
@@ -402,4 +436,12 @@ module.exports = [
 , {source:"src/ui/lobby-complete.js",output:"js/lobby-complete.js"}
 , {source:"src/systems/stat-runtime.js",output:"js/stat-runtime.js"}
 , {source:"src/systems/passives.js",output:"js/passives.js"}
+,{source:"src/systems/sideral-kit.js",output:"js/sideral-kit.js"}
+,{source:"src/rendering/sideral-lagarto.js",output:"js/sideral-lagarto.js"}
+,{source:"src/systems/cirilo-kit.js",output:"js/cirilo-kit.js"}
+,{source:"src/rendering/cirilo-kit-art.js",output:"js/cirilo-kit-art.js"}
+,{source:"src/systems/chamelin-kit.js",output:"js/chamelin-kit.js"}
+,{source:"src/rendering/chamelin-kit-art.js",output:"js/chamelin-kit-art.js"}
+,{source:"src/systems/cristorata-kit.js",output:"js/cristorata-kit.js"}
+,{source:"src/rendering/cristorata-kit-art.js",output:"js/cristorata-kit-art.js"}
 ];

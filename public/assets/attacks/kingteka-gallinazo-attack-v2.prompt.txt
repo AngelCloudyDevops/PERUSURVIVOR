@@ -1,0 +1,6 @@
+Use case: style-transfer
+Asset type: production sprite sheet for a top-down 2D survivor game
+Primary request: Kingteka Gallinazo attack sprite sheet using the identity and proportions of the Golpe de cuerpo atlas and the action sequence of Gallinazo v1.
+Composition: exactly six complete full-body poses in a 3×2 grid: guard, wind-up, gather feathers, release, strongest gallinazo release, recovery. Same scale and baseline, transparent separation, no cropped limbs.
+Style: polished chibi game sprite, dark outline, cel shading, fine pixel-like texture; black T-shirt, blue jeans, white sneakers, tattooed forearms and spiky black hair.
+Constraints: transparent background, no scenery, no text, no borders, no shotgun, no detached effects; feathers and gallinazo energy touch the hands so each pose remains one extractable figure.

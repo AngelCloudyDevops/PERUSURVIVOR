@@ -1,7 +1,7 @@
 'use strict';
 // Encuentro de azotea, separado de los enemigos transformados por la ulti.
 P.Vulture={
-definition:{name:'El Gallinazo del Caos',kind:'vulture',color:'#efc76e',hp:1800,r:62,speed:62},
+definition:{name:'El Gallinazo del Caos',kind:'vulture',color:'#efc76e',hp:1800,r:62,speed:62,role:'Hostigador / Controlador',damageProfile:'Daño híbrido · canal principal especial',combatStats:{attribute:'technique',damageType:'special',physicalAttack:100,specialAttack:112,physicalDefense:95,specialDefense:105,penetration:0,statusResistance:0,healthRegen:0,criticalChance:0,criticalDamage:1.5,criticalResistance:0,criticalDefense:0,recoveryRate:1,lifeSteal:0},ultimate:'Eclipse Carroñero',domain:'Techos sin salida',passives:['Furia de altura: al bajar de 50 % transforma sus patrones y encadena picadas.','Hambre de carroña: cada gallinazo invocado que siga vivo acelera el siguiente ataque.']},
 ready:false,started:false,failed:false,cells:[],
 defeatDuration:2.8,
 defeat(e){const s=P.state;if(!s.encounter||s.encounter.defeat)return;e.hp=0;e.phase='vulture-defeat';e.attack='';e.hit=0;e.wingPulse=0;e.landPulse=0;e.diveFx=[];e.dx=P.state.player.x<e.x?-1:1;e.dy=0;s.encounter.defeat={actor:e,time:0,landed:false};s.enemies=[];s.shots=[];s.danger=[];s.fields=[];s.gems=[];s.effects=[];P.Core.clear();P.Audio.play('vulture-death');P.UI.hud()},
