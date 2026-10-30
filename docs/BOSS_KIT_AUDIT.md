@@ -27,10 +27,10 @@ Además del kit, cada ficha debe declarar rol, atributo, canal de daño, debilid
 
 | Boss | Ataques implementados | Pasivas | Ulti / Expansión | Fases | Falta definir |
 |---|---|---|---|---|---|
-| Tirano del Cráter | Embestida obligatoria; Rugido de choque; Pisotón sísmico; Lluvia de meteoritos | Agotamiento tras tres ataques; tormenta obligatoria | Por definir / Por definir | 2/2 | Rol textual definitivo; separar remate y expansión reales |
+| Tirano del Cráter | Embestida obligatoria; Rugido de choque; Pisotón sísmico; Lluvia de meteoritos | Agotamiento tras tres ataques; tormenta obligatoria | Cacería del Último Rey / Cráter del Depredador | 2/2 | Mecánicas completas; falta dirección de arte, audio y balance con partidas completas |
 | Triceratops Fósil | Embestida fósil; Rugido ancestral; Pisotón de cámara; Carga contra pilares | Dos placas fósiles; cristal vulnerable durante aturdimiento | Por definir / Por definir | 2/2 | Rol textual definitivo; separar remate y expansión reales |
 
-Los dos jefes de Extinción cubren ataques, pasivas y fases, pero la plantilla ampliada deja visibles sus espacios separados de ulti y expansión. No se reutilizará automáticamente meteoritos, tormenta, placas o mazmorra para llenarlos: primero debe decidirse si son realmente una pieza distinta y comprobarse en combate.
+El Tirano ya separa sus piezas finales de la tormenta y los meteoritos: Cráter del Depredador exige rotar entre cuatro refugios angulares y Cacería del Último Rey encadena tres carriles fijados antes de dejarlo expuesto. El Triceratops todavía conserva visibles sus espacios separados de ulti y expansión. No se reutilizarán automáticamente placas o mazmorra para llenarlos.
 
 ## Minijefes
 
