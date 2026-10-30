@@ -8,6 +8,8 @@ Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcional
 
 ## Punto actual de desarrollo
 
+El **Grinch del Cercado** ya tiene su contrato mecánico completo: cuatro ataques propios, Lista negra, Espíritu navideño robado, la expansión Cercado sin Navidad y la ulti Noche del gran robo. Su segunda fase añade un cuarto objetivo y acelera los robos según los fallos. Pendientes: dirección de arte, animación, audio y balance en partidas completas.
+
 Cristorata ya tiene **kit 9/9**: Clip/Directo encadenado, Derrape/Derrape encendido, Garra/Doble garra, pasiva De ida y de vuelta y R El Coliseo del Dragón con tres sellos. La Q original conserva variantes, montura y controles. [Reglas y verificación](docs/CRISTORATA_KIT.md). Pendientes: balance de partidas completas y arte exclusivo de R.
 
 Chamelín ya tiene **kit 9/9**: Retaguardia/Desastre de Trovo, Escupitajo pegajoso con 10 % de Pegote, Pichi con 15 % de resbalón, evoluciones, Presión acumulada y Q ¡SE TAPÓ TODO! con carga independiente. Baño de Trovo conserva su funcionamiento. [Reglas, animaciones y pruebas](docs/CHAMELIN_KIT.md). La Q ya tiene arte exclusivo de ondas de presión. Pendiente: balance en partidas completas.

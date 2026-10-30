@@ -55,8 +55,8 @@ for(const map of P.Maps.catalog){
  P.Encounters.offer();assert.equal(s.mode,'portal');elements.get('#overlay').children.find(c=>c.tag==='button'&&c.textContent==='Seguir explorando').onclick();assert.equal(s.mode,'play');assert(s.portal.open);
  P.Encounters.offer();elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert(s.encounter);assert(s.enemies[0].mapBoss);assert.equal(s.enemies.length,1);
  const clock=s.mapTime,normalX=normal.x;P.Game.update(.04);assert.equal(s.mapTime,clock);assert.equal(normal.x,normalX);assert(!s.bossSpawned);
- const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
- if(map.id==='campo')assert.equal(localBoss.phase,'charge');else assert(s.danger.length>0);
+ const localBoss=s.enemies[0];localBoss.attackT=0;P.Encounters.bossMove(localBoss,.01);if(map.id==='navidad')assert.equal(localBoss.phase,'holiday-gifts');else assert.equal(localBoss.phase,'warning');P.Encounters.bossMove(localBoss,1.2);
+ if(map.id==='campo')assert.equal(localBoss.phase,'charge');else if(map.id==='navidad')assert(localBoss.holidayState.nodes.length>=3);else assert(s.danger.length>0);
  s.player.x=9999;s.player.y=-9999;P.World.collide(s.player,{x:0,y:220});assert(s.player.x<=s.encounter.scene.bounds.right&&s.player.y>=s.encounter.scene.bounds.top);
  P.World.render(500);P.Entities.hurt(localBoss,99999);if(map.id==='campo'){assert(s.encounter.defeat);P.Game.update(3)}assert.equal(s.mode,'play');P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Loot.advance(.7);assert.equal(s.mode,'reward');assert(!s.encounter);assert.equal(s.enemies[0],normal);assert.equal(s.player.x,pos.x);assert.equal(s.player.y,pos.y);assert(s.portal.cleared);assert(!s.bossSpawned);
  const power=s.player.power;elements.get('#overlay').children.find(c=>c.tag==='button').onclick();assert.equal(s.mode,'play');assert.equal(s.player.power,power*1.3);P.Encounters.reward(()=>s.player.power=0);assert(s.player.power>0,'No repetir recompensa');
@@ -96,7 +96,7 @@ for(const map of P.Maps.catalog){
  const originalMapDraw=P.Maps.draw;let originDraws=0;P.Maps.draw=()=>originDraws++;P.World.render(700);P.Maps.draw=originalMapDraw;assert.equal(originDraws,0,'No se debe dibujar el mapa de origen detrás de la arena');
  assert.equal(P.Terrain.active().length,4);
  const local=s.enemies[0];local.phase='warning';assert.equal(P.BossArt.frame(local),3);local.phase='charge';assert.equal(P.BossArt.frame(local),4);local.phase='recover';local.attackUntil=0;assert.equal(P.BossArt.frame(local),5);
- local.phase='warning';local.windup=.01;P.Encounters.bossMove(local,.02);if(local.kind!=='combi'){assert.equal(local.phase,'recover');assert.equal(P.BossArt.frame(local),4);s.elapsed+=.3;assert.equal(P.BossArt.frame(local),5)}
+ local.phase='warning';local.windup=.01;P.Encounters.bossMove(local,.02);if(local.kind!=='combi'&&!P.HolidayBoss.eligible(local)){assert.equal(local.phase,'recover');assert.equal(P.BossArt.frame(local),4);s.elapsed+=.3;assert.equal(P.BossArt.frame(local),5)}
  const png=fs.readFileSync(path.join(root,'public/assets/arenas/'+s.encounter.scene.asset+'-v1.png'));assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a');
  P.Entities.hurt(local,99999);if(local.kind==='combi')P.Game.update(3);assert(!s.encounter);assert.equal(P.BossArt.sceneId(),map.id);P.Loot.open(P.Loot.chests.find(c=>c.gold));P.Loot.advance(.7);P.Encounters.reward(()=>{});console.log('OK arte y escena: '+map.name)
 }

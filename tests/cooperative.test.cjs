@@ -25,7 +25,7 @@ test('Actividades cooperativas: portales de cinco mapas, retorno de ambos y prem
   const positions=sim.players.map(p=>({x:p.x,y:p.y})),worldEnemy={x:20,y:30,hp:50,max:50,r:13,speed:0};s.enemies=[worldEnemy];
   sim.tick(.04,[{},{}]);assert(s.encounter,'Un contacto transporta al dúo sin confirmaciones');const clock=s.mapTime;
   sim.tick(.04,[{},{}]);assert.equal(s.mapTime,clock,'El reloj del mapa no avanza en arena');assert.equal(s.enemies.filter(e=>e.mapBoss).length,1);
-  const boss=s.enemies[0];boss.attackT=0;sim.tick(.04,[{},{}]);assert.equal(boss.phase,'warning');assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));
+  const boss=s.enemies[0];boss.attackT=0;sim.tick(.04,[{},{}]);if(map==='navidad')assert.equal(boss.phase,'holiday-gifts');else assert.equal(boss.phase,'warning');assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));
   P.Entities.hurt(boss,999999);if(map==='campo'){assert(s.encounter.defeat);assert.equal(sim.snapshot().encounter.defeat.actor.phase,'chosicano-defeat');assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));for(let i=0;i<76;i++)sim.tick(.04,[{},{}])}else sim.tick(.04,[{},{}]);assert(!s.encounter);assert(s.portal.cleared);assert.equal(s.enemies[0],worldEnemy);
   for(let i=0;i<2;i++){assert.equal(sim.players[i].x,positions[i].x);assert.equal(sim.players[i].y,positions[i].y)}
   const gold=P.Loot.chests.find(c=>c.gold);assert(gold);assert(a.open(gold));for(let i=0;i<17;i++)sim.tick(.04,[{},{}]);const id=a.pending.id,power=sim.players[0].power,max=sim.players[1].maxHp;

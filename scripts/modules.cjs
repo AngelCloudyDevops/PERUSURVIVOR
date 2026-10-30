@@ -333,6 +333,10 @@ module.exports = [
     "source": "src/systems/procession-boss.js",
     "output": "js/procession-boss.js"
   },
+  {
+    "source": "src/systems/holiday-boss.js",
+    "output": "js/holiday-boss.js"
+  },
   {"source":"src/systems/kingteka-domain.js","output":"js/kingteka-domain.js"},
   {
     "source": "src/ui/card-gallery.js",
