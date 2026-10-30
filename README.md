@@ -869,6 +869,15 @@ Durante el combate normal puede aparecer una zona ambiental cada **32–45 segun
 - Las tres clases afectan a aliados y rivales, aparecen en el minimapa y muestran los estados activos junto a la barra de vida. El servidor cooperativo es la autoridad y sincroniza el mismo resultado para ambos jugadores.
 - Presupuesto visual: máximo **4 zonas en escritorio y 2 en móvil**, elipses de canvas sin partículas ni entidades nuevas y solo dos rectángulos por señal del minimapa.
 
+#### Barriles de dinamita
+
+Durante el recorrido aparecen barriles tácticos a partir de los primeros 38 segundos. Se colocan lejos de los jugadores y fuera de obstáculos o zonas ambientales; después pueden surgir cada **48–66 segundos**, con un máximo simultáneo de **3 en escritorio y 2 en móvil**. No aparecen durante jefes, dominios, cinemáticas, eventos mayores ni pruebas de rendimiento.
+
+- Los disparos, golpes cuerpo a cuerpo y armas orbitales pueden romperlos. La explosión alcanza 132 unidades, quita 45 % de vida a minions normales, 6 % a minijefes, 2,5 % a jefes y 8 % a una causa que permanezca demasiado cerca.
+- La detonación deja fuego durante 4 segundos. Causa 3 % de vida máxima por segundo a minions, 0,8 % a jefes/minijefes y 0,8 % a jugadores. Dos fuegos superpuestos nunca acumulan pulsos sobre el mismo objetivo.
+- Los barriles cercanos producen una reacción en cadena con una mecha visible de 0,28 segundos. El barril, la explosión y el fuego se dibujan directamente en canvas y los barriles aparecen en el minimapa.
+- El servidor cooperativo controla aparición, daño, fuego y reacciones en cadena; los clientes reciben el mismo estado. Al cambiar de mapa tras un jefe se eliminan todos los barriles y fuegos anteriores.
+
 ### Evento mayor · Extinción
 
 El impacto cinematográfico del meteorito puede iniciar un evento mayor de Supervivencia del Caos. No sustituye al minievento de meteoritos que ya existe y puede forzarse desde **Laboratorio → Ambiente y eventos → Extinción completa**.

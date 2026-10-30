@@ -328,6 +328,7 @@ module.exports = [
     "output": "js/ability-cards.js"
   },
   {"source":"src/systems/dynamic-zones.js","output":"js/dynamic-zones.js"},
+  {"source":"src/systems/explosive-barrels.js","output":"js/explosive-barrels.js"},
   {
     "source": "src/systems/cabinet-boss.js",
     "output": "js/cabinet-boss.js"
