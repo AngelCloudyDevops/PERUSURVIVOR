@@ -16,7 +16,7 @@ function gallery(){
   AbilityCards:{
    entries:{
     cirilo:{kind:'domain',frame:'domain-demon',art:'cirilo.webp',variants:[{id:'nocturna',edition:'Edición nocturna',art:'cirilo-night.webp'}]},
-    kingteka:{kind:'ultimate',frame:'fire',art:'kingteka.webp'},
+    kingteka:{kind:'ultimate',frame:'fire',title:'Título oficial',description:'Descripción técnica oficial.',art:'kingteka.webp'},
     makanaky:{kind:'domain',frame:'domain-royal',art:'makanaky.webp'}
    },
    frame(name){return name==='domain-demon'?{visual:'demon'}:name==='domain-royal'?{visual:'fire',futureVisual:'royal'}:{visual:'fire'}}
@@ -37,9 +37,25 @@ test('la colección se genera desde el registro y expande variantes futuras',()=
  assert.equal(cards[0].visual,'demon');
  assert.equal(cards[1].edition,'Edición nocturna');
  assert.equal(cards[2].visual,'fire');
+ assert.equal(cards[2].title,'Título oficial');
+ assert.equal(cards[2].description,'Descripción técnica oficial.');
  assert.equal(cards[3].visual,'royal');
  assert.equal(cards[4].kind,'skin');
  assert.equal(cards[4].edition,'Legendaria · Skin');
+});
+
+test('todas las habilidades implementadas comparten descripción y ficha técnica',()=>{
+ const source=fs.readFileSync(path.join(root,'src/systems/ability-cards.js'),'utf8'),P={UI:{hud(){}},state:{}};
+ vm.runInNewContext(source,{P,console});
+ for(const [id,entry] of Object.entries(P.AbilityCards.entries)){
+  assert(entry.title,`${id}: falta título`);
+  assert(entry.description?.length>30,`${id}: falta descripción funcional`);
+  assert(entry.details?.length>=3,`${id}: falta ficha técnica`);
+ }
+ const reference=fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8');
+ assert.match(reference,/entry\?\.description/);
+ assert.match(reference,/entry\?\.details/);
+ assert.match(reference,/character-skill-detail-grid/);
 });
 
 test('la galería ofrece inclinación, giro y controles accesibles sin bucle permanente',()=>{
