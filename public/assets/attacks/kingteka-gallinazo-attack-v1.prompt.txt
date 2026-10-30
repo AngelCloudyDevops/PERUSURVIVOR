@@ -1,4 +1,4 @@
-Use case: identity-preserve
-Asset type: six-frame production game attack sprite sheet for PERUSURVIVOR
-Reference: public/assets/walks/kingteka-walk-v2.webp
-Create exactly six complete Kingteka sprites in a uniform 3 × 2 transparent grid. Preserve face, hair, muscular build, black T-shirt, jeans, white sneakers, tattoo sleeves, palette and detailed pixel-cartoon finish. Show one continuous Gallinazo release: alert stance, reach back, forearm forward, open palm thrust, strong release and controlled recovery. Do not draw shotgun, weapon, bird or feathers; the engine draws the directional projectile separately. No text, grid, background, shadow, extra limbs, detached parts or watermark.
+Use case: precise-object-edit
+Asset type: transparent 3x2 game attack sprite sheet, six complete full-body poses
+Primary request: Kingteka grabs a small black gallinazo with both hands, squeezes it comically at chest height, releases a forward burst of feathers and recovers while still holding the bird.
+Constraints: preserve Kingteka's identity, clothing and tattoos; the gallinazo remains visible and intact in every frame; transparent background; no shotgun, gun, text or watermark.

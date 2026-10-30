@@ -59,16 +59,40 @@
       "rgbaSha256": "e4e864c0ab67e8ab41b7132bbb62a07cc9cb2b096dc68b5a5f576264ddbc2ac9"
     },
     {
+      "source": "assets/attacks/cerdito-gallinazo-attack-v1.png",
+      "output": "assets/attacks/cerdito-gallinazo-attack-v1.webp",
+      "width": 176,
+      "height": 176,
+      "originalBytes": 49770,
+      "optimizedBytes": 15480,
+      "sourceSha256": "2cd74d4d15e31604bbf33e54b17d566f18922e88f9cc85e216abed77e7f49be6",
+      "outputSha256": "d31d160a451bbe82d813ac26f0556dcaeb1d3f3ba739a84134edffff003da06a",
+      "rgbaSha256": "85db6864c7981d458fb20fa99060384853876a15756c728b0ee9a9c4eb32f030",
+      "quality": 62
+    },
+    {
+      "source": "assets/attacks/cerdito-golpe-attack-v1.png",
+      "output": "assets/attacks/cerdito-golpe-attack-v1.webp",
+      "width": 176,
+      "height": 176,
+      "originalBytes": 43976,
+      "optimizedBytes": 13718,
+      "sourceSha256": "b222ed8ea6fdbbf2526f1eb926d4e2242165bf71f72c26a6a44d3980eab99e8b",
+      "outputSha256": "1cde44058734057a0c512790ed880f0671e02bf807e19335bb2a95e328c42d92",
+      "rgbaSha256": "604fd28ab634daf9c72aae56b6ff8c4c7322038c7e3642ba47652270ddb16cd1",
+      "quality": 62
+    },
+    {
       "source": "assets/attacks/kingteka-gallinazo-attack-v1.png",
       "output": "assets/attacks/kingteka-gallinazo-attack-v1.webp",
-      "width": 384,
-      "height": 384,
-      "originalBytes": 159581,
-      "optimizedBytes": 35312,
-      "sourceSha256": "d2781bae45ceee24f73b46c28c6809f2dab21122531e3d187f7f0fbea3ede629",
-      "outputSha256": "b0e657783ee0f358ca203fa243edb75e0218e1e497b4622884b3ba413b9462a9",
-      "rgbaSha256": "4ad3cfd7495b9630d7a122494f530ef60f75f8a8d5a27a07f6b1f211eebd5a0d",
-      "quality": 75
+      "width": 176,
+      "height": 176,
+      "originalBytes": 47027,
+      "optimizedBytes": 14556,
+      "sourceSha256": "e07a78dfab014547f1d57261b33502db215a90cd7cca85b9f96ee3df7914b9ba",
+      "outputSha256": "40a198fa80384304e575e7ea27eb3b402afc627acf01222075d190ef52fbd04c",
+      "rgbaSha256": "6143a56f28f828649c2cd7f257407397fc0a77754270433f9b60111419ff0e11",
+      "quality": 62
     },
     {
       "source": "assets/attacks/kingteka-golpe-attack-v1.png",
@@ -650,6 +674,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 93442732,
-  "optimizedBytes": 43072064
+  "originalBytes": 93423924,
+  "optimizedBytes": 43080506
 }

@@ -1,0 +1,4 @@
+Use case: identity-preserve
+Asset type: transparent 3x2 game attack sprite sheet, six complete full-body poses
+Primary request: Convert only Kingteka's head in every punching pose into the exact pink Cerdito VTuber mascot mask while preserving the six-frame windup, punch, follow-through and recovery.
+Constraints: keep the mask complete in all six frames; preserve clothing, tattoos and fists; transparent background; no weapon, text or watermark.
