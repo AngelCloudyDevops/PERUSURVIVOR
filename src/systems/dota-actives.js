@@ -54,7 +54,7 @@
     case 'glimmer-cape':{const ally=this.target(p,aim,180,()=>true,this.allies())||p;if(!this.specialShield(ally,.06,3))return false;break}
     case 'pipe-insight':{used=false;for(const q of this.allies())if(q.hp>0&&Math.hypot(q.x-p.x,q.y-p.y)<=180)used=this.specialShield(q,.06,4)||used;break}
     case 'black-king-bar':r.bkbUntil=now+4;r.controlSeen={};for(const k of this.slowFields)p[k]=now;break;
-    case 'hand-midas':{const e=this.target(p,aim,240,e=>!e.boss&&!e.mapBoss&&!e.miniboss&&!e.heavy&&!e.elite&&!(e.evolution>0)&&!e.summoned&&!e.vultureMinion&&!e.mimic&&!e.practiceBoss);if(!e||P.state.practice||P.state.devRun)return false;this.secondary(p,e,Math.max(1,e.hp)*1000,'physical',true);if(e.hp>0)return false;P.state.coins=(P.state.coins||0)+8;P.Loot.notify('+8 monedas');break}
+    case 'hand-midas':{const e=this.target(p,aim,240,e=>!e.boss&&!e.mapBoss&&!e.miniboss&&!e.heavy&&!e.elite&&!(e.evolution>0)&&!e.summoned&&!e.vultureMinion&&!e.mimic&&!e.practiceBoss);if(!e||(P.state.practice||P.state.devRun)&&!P.TestBench?.equipmentAllowed?.())return false;this.secondary(p,e,Math.max(1,e.hp)*1000,'physical',true);if(e.hp>0)return false;P.state.coins=(P.state.coins||0)+8;P.Loot.notify('+8 monedas');break}
     case 'abyssal-blade':{const e=this.target(p,aim,180);if(!e)return false;if(e.boss||e.mapBoss||e.miniboss){if(P.BossHealth.transitioning(e)||['mini-entry','mini-fury','mini-shutdown'].includes(e.phase))return false;e.makanakySlow=.1;e.makanakySlowUntil=Math.max(e.makanakySlowUntil||0,now+.5)}else e.makanakyStunUntil=Math.max(e.makanakyStunUntil||0,now+P.Stats.statusDuration(e,.55));this.secondary(p,e,p.power*.25,'physical');break}
     case 'mjollnir':r.lightningUntil=now+4;break;
     default:return false;
