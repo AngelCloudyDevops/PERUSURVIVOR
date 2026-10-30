@@ -607,6 +607,17 @@
       "rgbaSha256": "136a7ac42dcd6c660ed8bc4f767f5b1cbdb50b2b5b734a6e967c46823a7f0d7e"
     },
     {
+      "source": "assets/minibosses/huaco-v2.png",
+      "output": "assets/minibosses/huaco-v2.webp",
+      "width": 2172,
+      "height": 724,
+      "originalBytes": 1480317,
+      "optimizedBytes": 1092784,
+      "sourceSha256": "74eac8ecf96a9d95df9018c75805a3046e01dc27c2aa14be418df1e90695a290",
+      "outputSha256": "38dd89c85971160f9e95fdd319bd8548b9ddcce89ad33e37f310588732d04bd1",
+      "rgbaSha256": "9b14342dc4c5cb113cfeddccf0b60b4df58ef2068bb46acdeb0aa4c11012072c"
+    },
+    {
       "source": "assets/minibosses/paloma-v1.png",
       "output": "assets/minibosses/paloma-v1.webp",
       "width": 2172,
@@ -689,6 +700,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 94949341,
-  "optimizedBytes": 39161234
+  "originalBytes": 96429658,
+  "optimizedBytes": 40254018
 }
