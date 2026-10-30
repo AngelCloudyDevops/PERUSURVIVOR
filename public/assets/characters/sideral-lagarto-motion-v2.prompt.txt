@@ -1,0 +1,4 @@
+Use case: stylized-concept
+Asset type: production sprite sheet for the PERUSURVIVOR browser game
+References: sideral-lagarto-ultimate-fullart-v1.png defines the transformed design; sideral-ur-v1.webp defines the pose-grid presentation and polished outlined sprite style.
+Create a genuinely transparent 4x2 sheet with exactly eight complete, consistent poses of the same transformed Sideral Lagarto: idle; three walking phases; emergence from broken eggshell; breath wind-up; sustained short-mouth breath; hit reaction. Preserve a muscular green crocodile, yellow eyes, black spiky hair, red-and-black headphones, black sleeves, red shirt, dark blue pants, clawed feet and a complete thick tail. Detailed colorful pixel art, crisp outline, identical scale and pivot. No scenery, floor, grid, labels, UI, text, watermark, cropping or overlapping.

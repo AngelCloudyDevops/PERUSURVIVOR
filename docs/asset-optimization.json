@@ -672,6 +672,20 @@
       "rgbaSha256": "7fa95a7a4c38bbd3bd64bc29589be9a3b981b80cf78cfeb81c602e3132285e62"
     },
     {
+      "source": "assets/characters/sideral-lagarto-motion-v2.png",
+      "output": "assets/characters/sideral-lagarto-motion-v2.webp",
+      "width": 1774,
+      "height": 887,
+      "originalBytes": 2220508,
+      "optimizedBytes": 121068,
+      "sourceSha256": "8faacee3a5666a6a7499a9186c3efa81e2a22b94fc5f86ebde30e48ced6f8cd5",
+      "outputSha256": "ecc0433670dd951cad813adddf8e3cf5462e80a4a1a58c12678facd743491b4c",
+      "rgbaSha256": "2f5ec143625ec6a4b4492d3e3c732dd8994d402455e83ed6b1bf026383c7348a",
+      "quality": 82,
+      "runtimeWidth": 768,
+      "runtimeHeight": 384
+    },
+    {
       "source": "assets/characters/streamers-atlas-v1.png",
       "output": "assets/characters/streamers-atlas-v1.webp",
       "width": 949,
@@ -946,6 +960,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 147801652,
-  "optimizedBytes": 42243554
+  "originalBytes": 150022160,
+  "optimizedBytes": 42364622
 }
