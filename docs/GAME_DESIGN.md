@@ -1480,3 +1480,7 @@ Kit 9/9 en [CRISTORATA_KIT.md](CRISTORATA_KIT.md): dos ataques nuevos con evoluc
 ### Lectura visual de buffs y debuffs
 
 Todo estado temporal que altere al personaje debe indicar nombre, naturaleza positiva, negativa o mixta y duración restante en el HUD. Si afecta protección, velocidad, daño o control, también usa una señal pequeña anclada al cuerpo sin ocultar la silueta. Las ventajas permanentes de una partida —suministros, mejoras de estadísticas y pactos— se agrupan en fichas con acumulaciones y detalle, pero no mantienen partículas constantes. Pasivas, objetos de Dota y Q/R conservan sus paneles propios para evitar información duplicada. En móvil las fichas forman una sola fila desplazable.
+
+### Renovación estética de personajes
+
+La renovación empieza con Kingteka. Sus poses de daño y derrota son figuras completas dibujadas, no partes superpuestas ni deformaciones del cuadro de caminar. Los tres impactos conservan arma, tatuajes, rostro, ropa y escala; la secuencia de derrota pasa por rodillas vencidas, caída y cuerpo en el suelo con ojos en X. Esta presentación es exclusivamente cosmética: no alarga la invulnerabilidad ni retrasa el resultado de la partida. El mismo contrato de seis cuadros se reutilizará personaje por personaje para mantener coherencia visual.

@@ -53,6 +53,10 @@ module.exports = [
     "output": "js/player-attack-art.js"
   },
   {
+    "source": "src/rendering/player-reaction-art.js",
+    "output": "js/player-reaction-art.js"
+  },
+  {
     "source": "src/systems/muzzle.js",
     "output": "js/muzzle.js"
   },

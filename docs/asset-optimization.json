@@ -555,6 +555,18 @@
       "rgbaSha256": "b4055e5f8dbe9b3c4bdf1abd09eb5ba03add597b3a306e7c556793b316ff34c2"
     },
     {
+      "source": "assets/reactions/kingteka-reaction-v1.png",
+      "output": "assets/reactions/kingteka-reaction-v1.webp",
+      "width": 1024,
+      "height": 1024,
+      "originalBytes": 977886,
+      "optimizedBytes": 125874,
+      "sourceSha256": "3c087858b976dade484e9d342ec230af6bcf3129f4e8bf31a158eb36b554fbd7",
+      "outputSha256": "4b1c9c9a638a295893ad7de0f50d91de5c7fa7df9ba08f6c45ce27908322b054",
+      "rgbaSha256": "0e02e966cec85a22b17d37e6e73449d45e80be2535df43dd15dffb981599ab55",
+      "quality": 64
+    },
+    {
       "source": "assets/scenarios/cirilo-midnight-court-v1.png",
       "output": "assets/scenarios/cirilo-midnight-court-v1.webp",
       "width": 1672,
@@ -614,6 +626,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 92963652,
-  "optimizedBytes": 42967974
+  "originalBytes": 93941538,
+  "optimizedBytes": 43093848
 }

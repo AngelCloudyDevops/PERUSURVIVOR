@@ -1,0 +1,4 @@
+Use case: identity-preserve
+Asset type: production game sprite reaction sheet for PERUSURVIVOR
+Reference: public/assets/walks/kingteka-walk-v2.webp
+Create exactly six complete Kingteka sprites in a uniform 3 × 2 transparent grid. Preserve face, swept black hair, muscular build, black T-shirt, dark blue jeans, white sneakers, tattoo sleeves, compact black-and-orange shotgun, proportions, palette and detailed pixel-cartoon finish. Row one: light hit, medium hit, braced recovery. Row two: knees buckle, falling, defeated on the ground with X eyes. Keep every body and accessory complete and inside its cell. No text, grid, background, shadow, gore, extra limbs, detached pieces, duplicated weapons or watermark.
