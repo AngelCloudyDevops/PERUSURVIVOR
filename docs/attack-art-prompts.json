@@ -180,6 +180,16 @@
       "reference": "public/assets/characters/powers-atlas-v1.webp",
       "prompt": "Edit the FIRST reference sprite sheet into a matching attack sprite sheet for a pixel-art survivor game. Preserve the same character identity, detailed pixel art, colors, proportions, right-facing three-quarter view and 3 columns by 2 rows of SIX COMPLETE connected-body figures. Preserve each matching frame's leg and foot walking pose and grounded baseline, changing arms and torso to attack while walking. SECOND reference is original character atlas; use row 9 for character/prop identity. Action: SPECIAL MELEE EXCEPTION: create a full six-phase high-kick action, not a walking loop: 1 fighting guard and weight shift, 2 front knee chambered high, 3 leg extending forward, 4 fully extended high kick, 5 leg retracts bent, 6 foot plants and guard recovers. Keep whole connected body, head, boots, skirt, gloves and identity; balance arms, do not add extra legs. Transparent background, no text, no borders, no scenery, no shadows, no detached projectiles or effects. All figures fully inside their individual cells with ample margins. Keep head size consistent across all six figures.",
       "source": "public/assets/attacks/g5-attack-v1.png"
+    },
+    {
+      "id": "marciano",
+      "atlas": "standalone",
+      "row": 0,
+      "action": "Gather a harmless sparkling pinch between both green gloves, throw it forward and recover while keeping the complete mascot body connected.",
+      "walk": "public/assets/walks/marciano-walk-v1.png",
+      "reference": "public/assets/cards/marciano-character-fullart-v1.png",
+      "prompt": "Create a transparent 3 × 2 production attack atlas with exactly six complete poses of the same lime-green three-eyed alien mascot: ready, gather a harmless sparkling pinch, wind-up, forward throw, follow-through and recovery. Preserve identity, scale, baseline, connected hands and crisp outlined cartoon pixel finish. No scenery, text, grid, logos, extra limbs or cropped figures.",
+      "source": "public/assets/attacks/marciano-attack-v1.png"
     }
   ]
 }

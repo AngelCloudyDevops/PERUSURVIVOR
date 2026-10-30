@@ -1513,6 +1513,16 @@ Kit 9/9 en [CRISTORATA_KIT.md](CRISTORATA_KIT.md): dos ataques nuevos con evoluc
 
 Todo estado temporal que altere al personaje debe indicar nombre, naturaleza positiva, negativa o mixta y duración restante en el HUD. Si afecta protección, velocidad, daño o control, también usa una señal pequeña anclada al cuerpo sin ocultar la silueta. Las ventajas permanentes de una partida —suministros, mejoras de estadísticas y pactos— se agrupan en fichas con acumulaciones y detalle, pero no mantienen partículas constantes. Pasivas, objetos de Dota y Q/R conservan sus paneles propios para evitar información duplicada. En móvil las fichas forman una sola fila desplazable.
 
+### Marciano de SJL · El Polvito
+
+El roster incorpora al **Marciano de SJL** como personaje UR · Supremo de la categoría Memes. Su versión jugable se llama **El Polvito** y toma como referencia paródica el episodio viral limeño de 2021, sin reproducir marcas ni contenido explícito. Su full art muestra un disfraz alienígena fosforescente de tres ojos en una discoteca ficticia; caminar y atacar usan seis figuras completas propias.
+
+Su arsenal tiene tres técnicas independientes. **Polvito cósmico** evoluciona a **Nube fosforescente** y deja daño especial persistente; **Caja decomisada** evoluciona a **Carga a la comisaría**, duplica el búmeran físico y atraviesa cuatro rivales; **Reflector del operativo** evoluciona a **Toque de queda**, abre un cono mayor y rompe temporalmente la defensa física de los policías del dominio. Cada técnica conserva rango, rango de mejora y evolución propios.
+
+La pasiva **Expediente fosforescente** cuenta descargas, no proyectiles: cada diez lanzamientos válidos concede un acta y, con tres actas, el ataque siguiente activa **¡INTERVENIDO!** según la técnica equipada. Al obtener un acta existe exactamente 10 % de probabilidad de **Traslado a la comisaría**: dos policías escoltan al Marciano y le dan +15 % de velocidad durante 3 s; la tirada tiene 10 s de recuperación para evitar encadenamientos.
+
+La Q **Treinta intervenidos** ejecuta diez barridos móviles, con hasta tres objetivos por barrido y un máximo de treinta impactos. No congela, teletransporta ni vuelve invulnerable al personaje. La R **Disco-Bar Manhattan** emerge durante 10 s alrededor de la posición actual sin cambiar la cámara: los minions normales dentro de 440 u se vuelven policías, pierden 35 % de velocidad, ganan 60 % de defensa física y pierden 20 % de defensa especial. Jefes, minijefes y mímicos no se transforman. El reflector rompe el chaleco durante 4 s y deja la defensa física 15 % por debajo del valor original, de modo que un compañero físico conserve una respuesta. Al cerrar el dominio se restauran apariencia y estadísticas originales.
+
 ### Renovación estética de personajes
 
 La renovación empieza con Kingteka. Sus poses de daño y derrota son figuras completas dibujadas, no partes superpuestas ni deformaciones del cuadro de caminar. Los tres impactos conservan arma, tatuajes, rostro, ropa y escala; la secuencia de derrota pasa por rodillas vencidas, caída y cuerpo en el suelo con ojos en X. Esta presentación es exclusivamente cosmética: no alarga la invulnerabilidad ni retrasa el resultado de la partida. El mismo contrato de seis cuadros se reutilizará personaje por personaje para mantener coherencia visual.

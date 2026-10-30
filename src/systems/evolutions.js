@@ -21,7 +21,8 @@ axelbenba:{name:'Tormenta relámpago',description:'Dos clips buscan al enemigo v
 cerdito:{name:'Fiesta del cerdito',description:'Doce balas salen en círculo; una onda corta despeja el puesto.',kind:'spread',count:12,radial:true,powerScale:.7,extra:'center',shape:'snout',color:'#ffb4dc'},
 sustento:{name:'Infestación veloz',description:'Tres cucarachas perforantes avanzan en zigzag; una zona de enjambre queda junto al objetivo.',kind:'spread',count:3,spread:.1,pierce:4,motion:'zigzag',amplitude:35,frequency:22,extra:'swarm',shape:'swarm',color:'#b2e57c'},
 cevichero:{name:'Marea del enjambre',description:'Seis cucarachas salen en círculo y regresan como bumeranes.',kind:'boomerang',count:6,radial:true,glyph:'ROACH',shape:'shell',color:'#79b5ff'},
-g5:{name:'Huracán G5',description:'Tres barridos consecutivos cubren frente y flancos, con fuerte empuje.',kind:'melee',range:155,arc:145*Math.PI/180,push:55,extra:'kicks',shape:'kicks',color:'#b8eeff'}
+g5:{name:'Huracán G5',description:'Tres barridos consecutivos cubren frente y flancos, con fuerte empuje.',kind:'melee',range:155,arc:145*Math.PI/180,push:55,extra:'kicks',shape:'kicks',color:'#b8eeff'},
+marciano:{name:'Nube fosforescente',description:'Cinco motas perforan dos rivales y dejan una nube breve junto al objetivo.',kind:'spread',count:5,spread:.16,pierce:2,extra:'cloud',shape:'stardust',color:'#b6ff53'}
 },
 profile(p){if(p?.id==='kingteka'){const active=p.arsenal?.active||'shotgun';return P.KingtekaArsenal?.evolution?.(active)||this.profiles.kingteka}if(p?.id==='makanaky'){const active=p.makanakyArsenal?.active||'royalEcho';return P.MakanakyArsenal?.evolution?.(active)||this.profiles.makanaky}return this.profiles[p.id]},
 attack(p){const king=P.KingtekaArsenal?.attack(p);if(king)return king;const makanaky=P.MakanakyArsenal?.attack(p);if(makanaky)return makanaky;const base=P.Data.attacks[p.attack];return p.evolved?.primary&&this.profile(p)?{...base,...this.profile(p)}:base},

@@ -180,6 +180,16 @@
       "sourceSha256": "abe028903f88dfc23e6152c11dea8b52450643eee7c77d55c0f63206fbdfec6c",
       "sha256": "a31d7a7e63acf4281822fcf9e91f756cf164620a47d0c870470dd2ecbb933f69",
       "savedBytes": 319668
+    },
+    {
+      "id": "marciano",
+      "source": "marciano-walk-v1.webp",
+      "runtime": "marciano-walk-v2.webp",
+      "width": 900,
+      "height": 600,
+      "sourceSha256": "2e11029915297c1ffb8b6a2eea4ac6a1c54f2e75447fd632024d6d4384602807",
+      "sha256": "7db2206f09e33061a7e269c25525412346e8bc3666d4815d264bcf32ab254faa",
+      "savedBytes": 1255810
     }
   ]
 }
