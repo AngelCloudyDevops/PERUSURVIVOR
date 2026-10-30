@@ -162,6 +162,10 @@ module.exports = [
     "output": "js/vulture-moon.js"
   },
   {
+    "source": "src/systems/vulture-domain.js",
+    "output": "js/vulture-domain.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
   },
