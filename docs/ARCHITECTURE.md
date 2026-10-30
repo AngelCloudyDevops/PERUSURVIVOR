@@ -881,4 +881,10 @@ El arranque del laboratorio y las pruebas usa `WalkArt.criticalReady` y `preload
 
 El contador FPS descarta el intervalo de transición al cambiar de modo o recuperar visibilidad, para no mezclar menú, pausas y combate. `?profile=1` activa medición de CPU por llamada para lógica, dibujo, HUD, laboratorio, escenario, terreno y proyectiles. Los ámbitos pueden estar anidados: sus tiempos no se suman. La instrumentación conserva argumentos, receptor, retorno y excepciones, no modifica el estado del combate y permanece desactivada en el uso normal.
 
+## Fases comunes de vida
+
+`P.BossHealth`, junto a la autoridad de daño de `P.Entities`, define el número de barras, el corte de daño, la transición y la proyección segmentada para minijefes, jefes de portal y jefe final. `P.Minibosses.hurt` consulta el mismo contrato después de aplicar sus modificadores particulares. Los campos serializables `healthStage`, `healthGuardClock`, `healthGuardUntil` y `healthBreakSerial` viven en el actor; no existe un reloj visual paralelo. El dominio de Makanaky identifica su reloj jugable en la fuente de daño porque congela `state.elapsed`: así los 0,6 s avanzan con el boxeo sin depender del reloj detenido del mapa.
+
+Solo el daño de combate con una fuente identificada usa las compuertas de fase. Las resoluciones internas sin fuente —derrotas guionizadas, restauración y herramientas existentes— conservan su semántica directa. El render consulta `phase`, `label` y `draw`, pero no decide daño ni avanza fases.
+
 Los espíritus del Santuario de Kingteka reutilizan una caché de siluetas con brillo, separada de su movimiento y opacidad. Se indexa por tipo, tamaño y escala raster; conserva un máximo de 24 superficies y no almacena entidades. La ruta de dibujo vectorial queda como respaldo cuando no hay canvas. `scripts/benchmark-kingteka-spirits.cjs` mide 28 figuras con Canvas nativo opcional: en esta máquina la mediana aislada bajó de 12,2 a 3,2 ms; es coste de dibujo, no una promesa de FPS completos.

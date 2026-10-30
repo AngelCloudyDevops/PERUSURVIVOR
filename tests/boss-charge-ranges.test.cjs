@@ -44,7 +44,7 @@ test('Diagnóstico del laboratorio dibuja hitbox, ruta, destino y estado sin mut
 
 test('HUD de portal: sortea jefes misteriosos sin repetir y muestra vida/fase en la arena',()=>{
  const {P}=new Simulation('campo',[0]),s=P.state;s.runMode='chaos';P.Data.arena.duration=1800;const kinds=[0,1,2].map(index=>P.Encounters.portalDefinition(index).kind);assert.equal(new Set(kinds).size,3);assert(kinds.every(kind=>P.Encounters.portalPool().some(b=>b.kind===kind)));
- P.$('#lab-boss').value='campo';P.Lab.run();const boss=s.enemies[0];P.Encounters.bossHud();assert.equal(P.$('#boss-panel').hidden,false);assert.equal(P.$('#boss-name').textContent,boss.name);assert.equal(P.$('#boss-phase').textContent,'FASE 1');boss.hp=boss.max*.5;P.Encounters.bossHud();assert.match(P.$('#boss-phase').textContent,/FASE 2/);assert.equal(P.$('#boss-health').textContent,Math.ceil(boss.hp)+' / '+boss.max+' PV');s.encounter=null;P.Encounters.bossHud();assert.equal(P.$('#boss-panel').hidden,true);
+ P.$('#lab-boss').value='campo';P.Lab.run();const boss=s.enemies[0];P.Encounters.bossHud();assert.equal(P.$('#boss-panel').hidden,false);assert.equal(P.$('#boss-name').textContent,boss.name);assert.equal(P.$('#boss-phase').textContent,'FASE 1 / 3');boss.hp=boss.max*.5;P.Encounters.bossHud();assert.match(P.$('#boss-phase').textContent,/FASE 2 \/ 3/);assert.equal(P.$('#boss-health').textContent,Math.ceil(boss.hp)+' / '+boss.max+' PV');s.encounter=null;P.Encounters.bossHud();assert.equal(P.$('#boss-panel').hidden,true);
 });
 
 
