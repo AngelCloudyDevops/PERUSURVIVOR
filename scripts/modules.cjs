@@ -329,6 +329,10 @@ module.exports = [
     "source": "src/systems/guardian-boss.js",
     "output": "js/guardian-boss.js"
   },
+  {
+    "source": "src/systems/procession-boss.js",
+    "output": "js/procession-boss.js"
+  },
   {"source":"src/systems/kingteka-domain.js","output":"js/kingteka-domain.js"},
   {
     "source": "src/ui/card-gallery.js",

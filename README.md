@@ -185,6 +185,8 @@ Segundo jefe normalizado mecánicamente: **El Gabinete Infinito**. No persigue n
 
 Tercer jefe normalizado mecánicamente: **El Guardián de la Niebla**. Su Velo quebrado reduce el daño recibido desde lejos y obliga a entrar en la niebla; Memoria de piedra castiga permanecer demasiado tiempo en el mismo cuadrante. Sus cuatro patrones son Anillo de niebla, Refugios falsos, Terrazas del santuario y Eco del camino, que registra la ruta del jugador y luego la convierte en peligro. Al 50 % despliega Ciudad Perdida, un recorrido de tres hitos con límite de tiempo; al 25 % Juicio del Apu obliga a identificar la sombra verdadera. La lógica ya queda separada de la estética definitiva.
 
+Cuarto jefe normalizado mecánicamente: **La Procesión de Medianoche**. Combate mediante Campanas invertidas, Faroles del duelo, Paso de ánimas y Ofrenda marcada. Deuda de vela reduce el daño mientras el jugador no conserve una llama, y Cortejo interminable acelera los ritos por cada prueba fallida. Al 50 % abre Plaza sin amanecer, un relevo entre tres altares; al 25 % Último responso exige repetir una secuencia de faroles. Su identidad se basa en ritmo, memoria y recorrido, no en reutilizar la niebla del Guardián.
+
 Una habilidad de rol es la acción de equipo que distingue a un dinosaurio —interceptar, rescatar, curar, debilitar o romper la formación— y no cuenta como un segundo ataque. Varias frases que describen una misma regla se agrupan como una sola pasiva. Fuerza, Técnica e Ingenio determinan la debilidad mecánica; las ventanas de espalda, agotamiento, placas o cobertura se documentan además como mecánicas particulares.
 
 Balance global conserva el escalado dinámico de cada aparición y permite multiplicar vida, daño, velocidad, defensas, recarga de habilidades, radio de áreas y duración de peligros/estados. Recarga ×2 significa que los temporizadores avanzan a la mitad de velocidad; radio y duración solo modifican peligros que nacen después de guardar. Los valores 1× reproducen exactamente el comportamiento base.
@@ -446,6 +448,7 @@ Reglas implementadas: el portal opcional abre a los **3:00**. Su jefe permanece 
 | Combi Final · Campo de Marte | 1: trayectoria avisada y embestida | Sin segunda fase ni ulti propia. |
 | Gabinete Infinito · Plaza de Armas | Abanico; Pleno descontrolado; Proyecto de ley; tres pruebas de Interpelación | Cambia de cartera al 75/50/25%; Estado de emergencia al 50%; Cuestión de confianza al 25%. |
 | Guardián de la Niebla · Machu Picchu | Anillo de niebla; Refugios falsos; Terrazas del santuario; Eco del camino | Velo quebrado y Memoria de piedra; Ciudad Perdida al 50%; Juicio del Apu al 25%. |
+| Procesión de Medianoche · Halloween | Campanas invertidas; Faroles del duelo; Paso de ánimas; Ofrenda marcada | Deuda de vela y Cortejo interminable; Plaza sin amanecer al 50%; Último responso al 25%. |
 | Fujimori · El Expediente Final | 2: abanico de expedientes y sello sobre marca fija | Al 50% aumenta de 5 a 7 expedientes y amplía el sello. No tiene ulti de jefe; la ulti del Alberto jugable es independiente. |
 | Gallinazo del Caos · Techos de Lima | 3 en fase 1 y 3 en fase 2 | Furia bajo el 50%; ulti única al 30% y transformación permanente. |
 | ElZeein · final obligatorio | 1: persecución y abanico de 5 proyectiles cada 2,7 s | Sin segunda fase ni ulti propia diferenciada. |
