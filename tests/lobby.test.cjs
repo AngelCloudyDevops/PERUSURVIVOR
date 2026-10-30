@@ -1,6 +1,6 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),{Simulation}=require('../backend/simulation.cjs');
-function primaryArsenal(P,p){return p.id==='cristorata'?P.CristorataArsenal:p.id==='chamelin'?P.ChamelinArsenal:p.id==='cirilo'?P.CiriloArsenal:p.id==='sideral'?P.SideralArsenal:p.id==='kingteka'?P.KingtekaArsenal:p.id==='makanaky'?P.MakanakyArsenal:null}
+function primaryArsenal(P,p){return p.id==='marciano'?P.MarcianoArsenal:p.id==='cristorata'?P.CristorataArsenal:p.id==='chamelin'?P.ChamelinArsenal:p.id==='cirilo'?P.CiriloArsenal:p.id==='sideral'?P.SideralArsenal:p.id==='kingteka'?P.KingtekaArsenal:p.id==='makanaky'?P.MakanakyArsenal:null}
 function configurePrimary(P,p,stage){P.Progression.init(p);const rank=stage==='evolved'?5:Number(stage),system=primaryArsenal(P,p),id=system?.order?.[0],state=id&&system.init(p);if(state){state.active=id;state.ranks[id]=rank;state.evolved[id]=stage==='evolved';p.powerRanks.primary=rank;delete p.evolved.primary;p.rate=system.attack(p).cooldown;return}for(let i=1;i<rank;i++)P.Progression.apply(p,'primary');if(stage==='evolved')P.Progression.apply(p,'evolve:primary')}
 function primaryEvolved(P,p){const system=primaryArsenal(P,p),id=system?.order?.[0],state=id&&system.init(p);return state?!!state.evolved[id]:!!p.evolved.primary}
 test('Laboratorio: el primer toque móvil muestra la carga y entra al quedar listos los sprites',()=>{
