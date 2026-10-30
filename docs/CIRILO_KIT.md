@@ -52,7 +52,9 @@ Q usa `ultimate.ciriloCharge`, separado del depósito `ultimate.charge` que cons
 
 Durante 1,95 s reemplaza al ataque personal por tres abanicos a los 0 / 0,65 / 1,30 s. Cada uno lanza tres proyectiles con separación angular de 0,16 rad, velocidad 600 u/s, alcance base 450 u, un impacto por proyectil y coeficiente 0,75. La escala se fija al activar: 1 + 0,14 por cada rango sobre 1 de su técnica más avanzada; no suma los tres rangos.
 
-Permite caminar, sigue las colisiones y utiliza descarga verde en humano o fuego cálido en demonio. No modifica poder, vida, forma, resurrección, duración ni multiplicadores de Audiencia. No cura ni vuelve invulnerable, y no se inicia durante taxi o dominios. La carta Q utiliza por ahora el full art existente de personaje de Cirilo; no reutiliza el arte del tribunal. Una ilustración exclusiva para Q es trabajo visual posterior, no una habilidad pendiente.
+Permite caminar, sigue las colisiones y utiliza descarga verde en humano o fuego cálido en demonio. No modifica poder, vida, forma, resurrección, duración ni multiplicadores de Audiencia. No cura ni vuelve invulnerable, y no se inicia durante taxi o dominios.
+
+La carta Q usa el arte exclusivo `assets/cards/cirilo-full-maldad-ultimate-fullart-v1.webp`: Cirilo con su aspecto demoníaco existente, traje negro, camisa roja y tres descargas verdes con bordes de fuego, sobre una calle limeña nocturna. Comparte el pixel art detallado, luces violetas y composición vertical 2:3 de las otras cartas. Es una representación visual de ¡FULL MALDAD!, no activa una transformación al pulsar Q. Conserva el marco de fuego y el arte independiente de Audiencia. Se guardan la fuente PNG y el prompt junto al WebP optimizado; el prompt queda fuera de la distribución.
 
 ## Integración y verificación
 

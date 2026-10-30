@@ -47,7 +47,7 @@ P.CiriloKit={serial:0,taxiResistance:.4,qDuration:1.95,
 for(const id of ['ciriloTaxi','ciriloEcho'])P.Data.attacks[id]={...P.CiriloArsenal.profiles[id]};
 P.CharacterProfiles.weaponKits.cirilo=P.CiriloArsenal.order.map(id=>({id,name:P.CiriloArsenal.names[id],damageType:P.CiriloArsenal.profiles[id].damageType,status:'implemented'}));
 P.Passives.definitions.cirilo={name:'Persistencia maldita',short:'Conserva deterioros, +10 % daño recibido y resurrección demoníaca única desde nivel 20.',trigger:'Progresión original a niveles 10 y 20',reset:'Una resurrección propia por partida; el dominio no la consume',max:1};
-P.AbilityCards.entries.ciriloUltimate={characterId:'cirilo',kind:'ultimate',frame:'fire',title:'¡FULL MALDAD!',chargeField:'ciriloCharge',art:'assets/cards/cirilo-character-fullart-v1.webp'};
+P.AbilityCards.entries.ciriloUltimate={characterId:'cirilo',kind:'ultimate',frame:'fire',title:'¡FULL MALDAD!',chargeField:'ciriloCharge',art:'assets/cards/cirilo-full-maldad-ultimate-fullart-v1.webp'};
 P.CharacterContract.specialNames.cirilo.ultimate='¡FULL MALDAD!';
 {
  const attack=P.Evolutions.attack,profile=P.Evolutions.profile,cast=P.Combat.cast,tick=P.Combat.tick,move=P.Systems.move,hit=P.PlayerFeedback.hit,hurt=P.Entities.hurt,gain=P.Ultimate.gain,activate=P.Ultimate.activate,ultimateHud=P.Ultimate.hud,hud=P.UI.hud,state=P.Passives.state,rows=P.Passives.rows,domain=P.CiriloUR.activate,dodge=P.MapEvents.tryDodge;
