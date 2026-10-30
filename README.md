@@ -179,7 +179,7 @@ Checklist para aprobar una pieza nueva:
 
 Primer jefe normalizado con esta plantilla: **El Chosicano · Última Parada**. Sus cuatro ataques son Embestida de ruta, Bocinazo, Lluvia de boletos y Control de paradero; conserva las pasivas La familia es primero y Frenazo expuesto, activa Hora punta como ulti única al 25 % y despliega Última Parada como expansión al 50 %. Control de paradero fija tres zonas durante 1,3 s y luego las impacta sin seguir al jugador. Su ficha se mantiene conectada al mismo catálogo, stats, Wiki, Balance y laboratorio.
 
-Segundo jefe en normalización: **El Gabinete Infinito**. Ya tiene identidad de Controlador/Invocador, atributo Ingenio y canal especial. Sus ataques reales visibles son Abanico ministerial y Pleno descontrolado: este último avisa cinco trayectorias, lanza congresistas ficticios con daño físico y permite dos rebotes contra cobertura. La antigua “Embestida de gabinete” se retiró de la ficha porque todavía no existía como patrón independiente; quedan pendientes dos ataques, la segunda pasiva, la ulti y la expansión.
+Segundo jefe normalizado mecánicamente: **El Gabinete Infinito**. No persigue ni copia las cargas territoriales de otros jefes: altera las reglas mediante Abanico ministerial, Pleno descontrolado, Proyecto de ley e Interpelación. Sus leyes obligan a elegir beneficios con costos temporales; sus tres interpelaciones piden salir de una marca, recorrer expedientes en orden o sostener una zona. Gabinete inestable cambia la cartera a Economía, Transporte, Salud e Interior según la vida. Al 50 % activa Estado de emergencia, donde movilidad, defensa y ataque son recursos de un solo uso; al 25 % Cuestión de confianza permite conservar la cartera y volverlo vulnerable o censurarla a cambio de ataques más rápidos. La presentación actual es funcional y provisional: arte, animación y audio quedan como la siguiente capa.
 
 Una habilidad de rol es la acción de equipo que distingue a un dinosaurio —interceptar, rescatar, curar, debilitar o romper la formación— y no cuenta como un segundo ataque. Varias frases que describen una misma regla se agrupan como una sola pasiva. Fuerza, Técnica e Ingenio determinan la debilidad mecánica; las ventanas de espalda, agotamiento, placas o cobertura se documentan además como mecánicas particulares.
 
@@ -440,7 +440,7 @@ Reglas implementadas: el portal opcional abre a los **3:00**. Su jefe permanece 
 | Jefe | Patrones de ataque | Fases y ulti |
 | --- | --- | --- |
 | Combi Final · Campo de Marte | 1: trayectoria avisada y embestida | Sin segunda fase ni ulti propia. |
-| Gabinete Infinito · Plaza de Armas | 1: abanico de 9 proyectiles; 2: Pleno descontrolado, cinco congresistas ficticios con dos rebotes | Ataca más seguido bajo el 50%; sin ulti ni expansión todavía. |
+| Gabinete Infinito · Plaza de Armas | Abanico; Pleno descontrolado; Proyecto de ley; tres pruebas de Interpelación | Cambia de cartera al 75/50/25%; Estado de emergencia al 50%; Cuestión de confianza al 25%. |
 | Guardián de la Niebla · Machu Picchu | 1: anillo de 12 proyectiles con orientación alterna | Ataca más seguido bajo el 50%; sin ulti. |
 | Fujimori · El Expediente Final | 2: abanico de expedientes y sello sobre marca fija | Al 50% aumenta de 5 a 7 expedientes y amplía el sello. No tiene ulti de jefe; la ulti del Alberto jugable es independiente. |
 | Gallinazo del Caos · Techos de Lima | 3 en fase 1 y 3 en fase 2 | Furia bajo el 50%; ulti única al 30% y transformación permanente. |
