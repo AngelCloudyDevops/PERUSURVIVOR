@@ -77,6 +77,9 @@ initSupports(){
  P.$('#bench-support-combos').checked=this.supportCombos;P.$('#bench-support-combos').onchange=()=>{this.supportCombos=P.$('#bench-support-combos').checked;this.describeSupports();if(this.active)this.run()};
 },
 supports(){const chosen=[];for(const slot of [1,2]){const id=this['support'+slot],stage=this['supportRank'+slot];if(P.Progression.names[id]&&!chosen.some(([other])=>other===id))chosen.push([id,stage==='evolved'?'evolved':String(Math.max(1,Math.min(5,Math.floor(Number(stage)||1))))])}return chosen},
+primaryArsenal(p){return p?.id==='cristorata'?P.CristorataArsenal:p?.id==='chamelin'?P.ChamelinArsenal:p?.id==='cirilo'?P.CiriloArsenal:p?.id==='sideral'?P.SideralArsenal:p?.id==='kingteka'?P.KingtekaArsenal:p?.id==='makanaky'?P.MakanakyArsenal:null},
+primaryStage(p){const system=this.primaryArsenal(p),id=system?.order?.[0],state=id&&system.init(p);return system&&state?{system,id,state,evolved:!!state.evolved[id]}:null},
+configurePrimary(p){const rank=this.attack==='evolved'?5:Math.max(1,Math.min(5,Number(this.attack)||1)),special=this.primaryStage(p);if(special){special.state.active=special.id;special.state.unlocked[special.id]=true;special.state.ranks[special.id]=rank;special.state.evolved[special.id]=this.attack==='evolved';p.powerRanks.primary=rank;delete p.evolved.primary;p.rate=special.system.attack(p).cooldown;return}for(let i=1;i<rank;i++)P.Progression.apply(p,'primary');if(this.attack==='evolved')P.Progression.apply(p,'evolve:primary')},
 describeSupports(){
  const chosen=this.supports(),fixture=this.attackFixture();
  for(const slot of [1,2]){P.$('#bench-supportRank'+slot).disabled=this['support'+slot]==='none';for(const o of P.$('#bench-support'+slot).options)o.disabled=o.value!=='none'&&o.value===this['support'+(3-slot)]}
@@ -89,15 +92,13 @@ describeSupports(){
 },
 attackFixture(){
  const c=P.Data.characters.find(c=>c.id===this.character),p=P.Entities.player(c);P.Progression.init(p);
- const rank=this.attack==='evolved'?5:Math.max(1,Math.min(5,Number(this.attack)||1));
- for(let i=1;i<rank;i++)P.Progression.apply(p,'primary');
- if(this.attack==='evolved')P.Progression.apply(p,'evolve:primary');
+ this.configurePrimary(p);
  for(const [id,stage] of this.supports()){const rank=stage==='evolved'?5:Number(stage);for(let i=0;i<rank;i++)P.Progression.apply(p,id);if(stage==='evolved')P.Progression.apply(p,'evolve:'+id)}
  if(this.supportCombos){if(p.powerRanks.pulse)P.Progression.apply(p,'combo:direct');if(p.powerRanks.cards&&p.powerRanks.orbit)P.Progression.apply(p,'combo:press')}
  return p;
 },
 describeAttack(){
- const p=this.attackFixture(),evolved=!!p.evolved.primary,v=P.Evolutions.profile(p),a=P.Data.attacks[p.attack];
+ const p=this.attackFixture(),stage=this.primaryStage(p),evolved=stage?.evolved||!!p.evolved.primary,v=stage?.system.evolution(stage.id)||P.Evolutions.profile(p),a=P.Evolutions.attack(p);
  P.$('#bench-attack option[value="evolved"]').textContent='★ '+v.name+' · Evolución';
  const stats=P.Stats.normalize(p.combatStats),advanced=P.Stats.advancedRows(p).map(([name,value])=>name+' '+value).join(' · ');
  P.UI.write(P.$('#bench-attack-info'),(evolved?v.name:a.name)+' · '+(evolved?'Evolución':('Rango '+p.powerRanks.primary+'/5'))+(p.id==='chamelin'?' · Impacto '+(p.power*(a.damageScale||1)).toFixed(2)+' · Charco '+(p.power*.30).toFixed(2)+'/s · Lento 20% (jefes 10%)':' · Daño '+Math.round(p.power*100)/100)+' · Ataque cada '+p.rate.toFixed(2)+' s · Alcance ×'+p.reach.toFixed(2)+'\nATQ '+stats.physicalAttack+'/'+stats.specialAttack+' · DEF '+stats.physicalDefense+'/'+stats.specialDefense+' · '+advanced+'\n'+(evolved?v.description:'Mejoras reales del arma. Cambia de rango para comparar; no necesitas subir de nivel.'));
@@ -111,6 +112,7 @@ applyAttack(){
  // Reconstruir desde la base evita acumular multiplicadores al volver de evolución a base.
  for(const key of ['power','reach','rate','projectileBonus','primaryPierce','evolutionBaseBonus']){if(fixture[key]===undefined)delete p[key];else p[key]=fixture[key]}
  P.Progression.init(p);p.powerRanks.primary=fixture.powerRanks.primary;p.evolved.primary=!!fixture.evolved.primary;
+ const fixtureStage=this.primaryStage(fixture),liveStage=this.primaryStage(p);if(fixtureStage&&liveStage){liveStage.state.active=fixtureStage.id;liveStage.state.unlocked[fixtureStage.id]=true;liveStage.state.ranks[fixtureStage.id]=fixtureStage.state.ranks[fixtureStage.id];liveStage.state.evolved[fixtureStage.id]=fixtureStage.evolved}
  for(const id of Object.keys(P.Progression.names)){delete p.powerRanks[id];delete p.evolved[id];if(fixture.powerRanks[id]){p.powerRanks[id]=fixture.powerRanks[id];p.evolved[id]=!!fixture.evolved[id]}}
  p.powerTimers={};p.combos={...fixture.combos};
  this.appliedPlayer=p;this.appliedAttack=signature;this.balanceBase=null;

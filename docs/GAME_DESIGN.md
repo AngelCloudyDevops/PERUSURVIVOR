@@ -47,6 +47,8 @@ Kingteka, Makanaky y Sideral son referencias completas con 9/9. Sideral añade C
 
 Kingteka usa tres armas con rangos separados. Escopeta causa parte de 260 u y evoluciona a Escopeta Contra: cinco esferas rojas de energía en abanico, velocidad 720, escala individual ×0,75 y dos impactos máximos por esfera. Conserva la caída de daño y el alcance corto/medio; el número de esferas no aumenta con bonificaciones de rango. Gallinazo evoluciona a Gallinazo de Expedición; Golpe de cuerpo evoluciona a Golpe de Supervivencia. Cada arma progresa de rango 1 a 5 y puede evolucionar independientemente en rango 5 y nivel 14. Balance expone un multiplicador de alcance por slot además del alcance general.
 
+El selector **Arma principal** del Laboratorio equipa el primer slot real de los personajes con arsenal propio. Elegir Evolución debe cambiar tanto la ficha como el HUD y el ataque ejecutado; no puede simularla únicamente con los multiplicadores genéricos de poder.
+
 Q y R no comparten recurso. Gallinazos reúne Caos, Aguante y Hazaña durante aproximadamente 55–60 s de combate. Santuario reúne Vínculo animal: cada ataque potenciado por Instinto de expedición que conecta otorga 8 %. El Santuario tiene radio 520; el daño porcentual de vida solo se aplica a minions pesados y los normales reciben daño basado en el poder. Activar una habilidad no consume la carga de la otra.
 
 ### Contrato de amenazas
