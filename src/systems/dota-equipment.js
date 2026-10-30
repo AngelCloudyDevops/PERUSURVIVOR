@@ -66,7 +66,7 @@
  const cast=P.Combat.cast;P.Combat.cast=function(...args){const p=P.state.player;if(p)p.dotaCast=(p.dotaCast||0)+1;return cast.apply(this,args)};
  const hurt=P.Entities.hurt;P.Entities.hurt=function(e,amount,push=0,source=null){const before=Math.max(0,e?.hp||0),result=hurt.call(this,e,amount,push,source);D.damageEvent(e,Math.max(0,before-Math.max(0,e?.hp||0)),source,before>0&&e.hp<=0);return result};
  const damage=P.Loot.damage;P.Loot.damage=function(p,amount,source){return D.mitigate(p,damage.call(this,p,amount),source)};
- const hit=P.PlayerFeedback.hit;P.PlayerFeedback.hit=function(p,amount,source){const dealt=hit.call(this,p,amount,source);D.received(p,source,dealt);return dealt};
+ const hit=P.PlayerFeedback.hit;P.PlayerFeedback.hit=function(p,amount,source){const before=p.hp,dealt=hit.call(this,p,amount,source);D.received(p,source,Math.min(before,dealt));return dealt};
  const tick=D.tick;D.tick=function(dt,regenStats=true){tick.call(this,dt,regenStats);this.equipmentTick(P.state.player)};
  const collect=P.Loot.collect;P.Loot.collect=function(g){if(g.kind==='coin'){const value=g.value+ D.coinBonus(P.state.player,g.value);P.state.coins+=value;this.notify('+'+value+' monedas');return true}return collect.call(this,g)};
  const cooldown=P.Passives.cooldownMultiplier;P.Passives.cooldownMultiplier=function(p=P.state.player){return cooldown.call(this,p)*(p?.dotaRuntime?.madUntil>D.now()?.85:1)};
