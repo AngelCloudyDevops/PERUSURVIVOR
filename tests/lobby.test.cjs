@@ -1,5 +1,8 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),{Simulation}=require('../backend/simulation.cjs');
+function primaryArsenal(P,p){return p.id==='cristorata'?P.CristorataArsenal:p.id==='chamelin'?P.ChamelinArsenal:p.id==='cirilo'?P.CiriloArsenal:p.id==='sideral'?P.SideralArsenal:p.id==='kingteka'?P.KingtekaArsenal:p.id==='makanaky'?P.MakanakyArsenal:null}
+function configurePrimary(P,p,stage){P.Progression.init(p);const rank=stage==='evolved'?5:Number(stage),system=primaryArsenal(P,p),id=system?.order?.[0],state=id&&system.init(p);if(state){state.active=id;state.ranks[id]=rank;state.evolved[id]=stage==='evolved';p.powerRanks.primary=rank;delete p.evolved.primary;p.rate=system.attack(p).cooldown;return}for(let i=1;i<rank;i++)P.Progression.apply(p,'primary');if(stage==='evolved')P.Progression.apply(p,'evolve:primary')}
+function primaryEvolved(P,p){const system=primaryArsenal(P,p),id=system?.order?.[0],state=id&&system.init(p);return state?!!state.evolved[id]:!!p.evolved.primary}
 test('Laboratorio: el primer toque móvil muestra la carga y entra al quedar listos los sprites',()=>{
  const {P}=new Simulation('campo',[0,1]),bench=P.TestBench;let resume=null;
  bench.kind='targets';bench.character='kingteka';P.Terrain.active=()=>[];P.WalkArt.readyForStart=()=>false;P.WalkArt.waitForStart=action=>{resume=action};
@@ -12,7 +15,7 @@ test('Laboratorio: apoyos reales en los 18 causas, rangos, evoluciones y máximo
  for(const c of P.Data.characters){bench.character=c.id;bench.kind='targets';bench.attack='evolved';bench.run();
   for(const id of ['pulse','cards','orbit'])for(const stage of ['1','2','3','4','5','evolved']){
    bench.support1=id;bench.supportRank1=stage;bench.support2='none';bench.supportCombos=false;bench.applyAttack();const p=s.player;
-   assert.equal(p.powerRanks[id],stage==='evolved'?5:Number(stage));assert.equal(!!p.evolved[id],stage==='evolved');assert(p.evolved.primary);assert.equal(s.level,1);assert.equal(s.xp,0);
+   assert.equal(p.powerRanks[id],stage==='evolved'?5:Number(stage));assert.equal(!!p.evolved[id],stage==='evolved');assert(primaryEvolved(P,p));assert.equal(s.level,1);assert.equal(s.xp,0);
    assert.equal(Object.keys(p.powerRanks).length,2);const e={x:p.x+30,y:p.y,r:12,hp:999999,max:999999,speed:0};s.enemies=[e];s.shots=[];s.fields=[];s.effects=[];
    P.Progression.tick(.01);if(id==='cards'){assert.equal(s.shots.filter(q=>q.glyph==='BCP').length,stage==='evolved'?3:1);for(let i=0;i<10;i++)P.Combat.tick(.04)}assert(e.hp<999999,c.id+' '+id+' '+stage+' daño real');
   }
@@ -34,10 +37,9 @@ test('Laboratorio: seis estados de las 18 armas, combate real, sin niveles ni ac
  for(const c of P.Data.characters){
   bench.character=c.id;bench.kind='targets';bench.attack='1';bench.run();
   for(const stage of ['1','2','3','4','5','evolved','1']){
-   bench.attack=stage;bench.applyAttack();const p=s.player,expected=P.Entities.player(c);P.Progression.init(expected);const rank=stage==='evolved'?5:Number(stage);
-   for(let i=1;i<rank;i++)P.Progression.apply(expected,'primary');if(stage==='evolved')P.Progression.apply(expected,'evolve:primary');
+   bench.attack=stage;bench.applyAttack();const p=s.player,expected=P.Entities.player(c);configurePrimary(P,expected,stage);const rank=stage==='evolved'?5:Number(stage);
    for(const key of ['power','rate','reach','projectileBonus','primaryPierce','evolutionBaseBonus'])assert.equal(p[key],expected[key],c.id+' '+stage+' '+key);
-   assert.equal(p.powerRanks.primary,rank);assert.equal(!!p.evolved.primary,stage==='evolved');assert.equal(s.level,1);assert.equal(s.xp,0);
+   assert.equal(p.powerRanks.primary,rank);assert.equal(primaryEvolved(P,p),stage==='evolved');assert.equal(s.level,1);assert.equal(s.xp,0);
    const a=P.Evolutions.attack(p),e={x:p.x+(a.kind==='orbit'?100:50),y:p.y,r:16,hp:99999,max:99999,speed:0};s.enemies=[e];s.shots=[];s.effects=[];s.fields=[];s.fire=0;assert(P.Combat.cast(),c.id+' '+stage+' ataque');
    if(stage==='evolved')assert(s.effects.some(e=>e.kind==='evolution'&&e.evolution===c.id));else assert(!s.effects.some(e=>e.kind==='evolution'));
    for(let i=0;i<20;i++)P.Combat.tick(.04);assert(e.hp<99999,c.id+' '+stage+' daño');
@@ -45,11 +47,18 @@ test('Laboratorio: seis estados de las 18 armas, combate real, sin niveles ni ac
   }
  }
  assert.equal(JSON.stringify(P.Data.attacks),catalog);assert.equal(JSON.stringify(P.Meta.data),meta);
- bench.attack='evolved';bench.kind='boss';bench.boss='campo';bench.run();assert(s.encounter);assert(s.player.evolved.primary);assert.equal(s.level,1);
+ bench.attack='evolved';bench.kind='boss';bench.boss='campo';bench.run();assert(s.encounter);assert(primaryEvolved(P,s.player));assert.equal(s.level,1);
  // Una carga asíncrona puede reemplazar al jugador después de run().
- s.player=P.Entities.player(P.Data.characters.find(c=>c.id===bench.character));bench.tick();assert(s.player.evolved.primary);
- bench.attack='1';bench.run();assert(!s.player.evolved.primary);assert.equal(s.fields.length,0);assert.equal(s.shots.length,0);
+ s.player=P.Entities.player(P.Data.characters.find(c=>c.id===bench.character));bench.tick();assert(primaryEvolved(P,s.player));
+ bench.attack='1';bench.run();assert(!primaryEvolved(P,s.player));assert.equal(s.fields.length,0);assert.equal(s.shots.length,0);
  bench.exit();P.Game.start({preview:true});assert(!s.player.evolved?.primary);assert.equal(s.player.power,P.Data.characters[s.chosen].power);assert(!s.devRun);
+});
+test('Laboratorio: Escopeta Contra seleccionada equipa y dispara la evolución real',()=>{
+ const {P}=new Simulation('campo',[0,1]),bench=P.TestBench,s=P.state;P.WalkArt.readyForStart=()=>true;P.Terrain.active=()=>[];P.Terrain.clear=()=>true;P.Muzzle.blocker=()=>null;
+ bench.character='kingteka';bench.kind='targets';bench.attack='evolved';bench.run();const p=s.player,state=P.KingtekaArsenal.init(p),attack=P.Evolutions.attack(p);
+ assert.equal(state.ranks.shotgun,5);assert.equal(state.evolved.shotgun,true);assert.equal(attack.name,'Escopeta Contra');assert.equal(P.AttackHud.slots(p)[0].name,'Escopeta Contra');
+ s.enemies=[{x:p.x+100,y:p.y,r:16,hp:99999,max:99999,speed:0}];s.shots=[];s.fire=0;assert(P.Combat.cast());assert.equal(s.shots.length,5);assert(s.shots.every(shot=>shot.contra&&shot.glyph==='CONTRA_ORB'&&shot.remaining===2));
+ bench.attack='1';bench.applyAttack();assert.equal(P.KingtekaArsenal.init(p).evolved.shotgun,false);assert.equal(P.Evolutions.attack(p).name,'Escopeta causa');
 });
 test('Laboratorio: cambiar causa, mapa y jefe, repetir y salir limpia ultis y no consume inventario',()=>{
  const {P}=new Simulation('campo',[0,1]),bench=P.TestBench;const before=JSON.stringify(P.Meta.data);P.WalkArt.readyForStart=()=>true;
