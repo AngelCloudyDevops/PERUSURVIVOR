@@ -8,7 +8,7 @@ P.AttackHud={
   if(!p)return[];
   if(['kingteka','makanaky','sideral','cirilo','chamelin','cristorata'].includes(p.id)){
    const arsenal=p.id==='cristorata'?P.CristorataArsenal:p.id==='chamelin'?P.ChamelinArsenal:p.id==='cirilo'?P.CiriloArsenal:p.id==='sideral'?P.SideralArsenal:p.id==='kingteka'?P.KingtekaArsenal:P.MakanakyArsenal,state=arsenal.init(p);
-   return arsenal.order.map((id,i)=>({id,name:arsenal.names[id],rank:state.ranks[id]||0,active:state.active===id,locked:!state.unlocked[id],switchable:true,key:i+1,evolved:!!state.evolved[id]}));
+   return arsenal.order.map((id,i)=>({id,name:state.evolved[id]&&arsenal.evolution?.(id)?.name||arsenal.names[id],rank:state.ranks[id]||0,active:state.active===id,locked:!state.unlocked[id],switchable:true,key:i+1,evolved:!!state.evolved[id]}));
   }
   const character=P.Data.characters.find(c=>c.id===p.id)||p,profile=P.Data.attacks[p.attack||character.attack],evolved=!!p.evolved?.primary,name=evolved?(P.Evolutions?.profile?.(character)?.name||profile?.name):profile?.name;
   return [

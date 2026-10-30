@@ -308,6 +308,18 @@
       "quality": 88
     },
     {
+      "source": "assets/cards/kingteka-contra-fullart-v1.png",
+      "output": "assets/cards/kingteka-contra-fullart-v1.webp",
+      "width": 971,
+      "height": 1619,
+      "originalBytes": 2292735,
+      "optimizedBytes": 332566,
+      "sourceSha256": "6c4e3061b3edb01f44255a0f7cfd1baa48c42d5e058977ce091f8f03e586d43c",
+      "outputSha256": "432114826a45e97e0503478c35245d1e4f76a94cd7f80d10a02c352a4e77d557",
+      "rgbaSha256": "d21cf7ac9bf69b1f111bd3833fa8783992b0a2e3a58cb4dcba94f93616114ddf",
+      "quality": 88
+    },
+    {
       "source": "assets/cards/kingteka-gallinazo-fullart-v1.png",
       "output": "assets/cards/kingteka-gallinazo-fullart-v1.webp",
       "width": 1024,
@@ -736,6 +748,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 101712929,
-  "optimizedBytes": 41147878
+  "originalBytes": 104005664,
+  "optimizedBytes": 41480444
 }

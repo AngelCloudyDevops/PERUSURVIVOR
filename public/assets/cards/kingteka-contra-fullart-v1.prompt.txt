@@ -1,0 +1,10 @@
+Use case: precise-object-edit
+Asset type: vertical full-art collectible card for the evolved weapon “Escopeta Contra” in the PERUSURVIVOR game
+Primary request: edit the supplied Kingteka shotgun full-art so the shotgun fires exactly five large red-orange arcade energy spheres in a clearly readable fan, replacing the ordinary pellets and orange muzzle blast.
+Input image: kingteka-shotgun-fullart-v1.png is the edit target and identity/style reference.
+Subject: preserve Kingteka exactly: same face, black hair, black shirt, tattooed arms, dark blue jeans, white shoes, double-barrel shotgun, powerful wide stance, Lima plaza backdrop.
+Style/medium: preserve the existing high-detail cartoon pixel-art illustration and black pixel outlines.
+Composition/framing: keep the same vertical composition. Show one central sphere and two symmetric spheres on each side, all traveling toward the right. Give each sphere a bright yellow-white core, thick red ring and short stepped pixel trail. Add a stronger red-white muzzle flash and visible recoil while keeping both hands connected to the shotgun.
+Lighting/mood: energetic red arcade glow reflected subtly on Kingteka, the shotgun and nearby smoke.
+Constraints: exactly five energy spheres; preserve character identity, clothing, anatomy, shotgun, pose, setting, dimensions and pixel-art finish; no text, logos, watermark or interface; no copied game assets.
+Avoid: ordinary bullets, realistic rendering, extra limbs, detached hands, weapon deformation, blue or green projectiles, more or fewer than five spheres.

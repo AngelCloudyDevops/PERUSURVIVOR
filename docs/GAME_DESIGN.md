@@ -45,7 +45,7 @@ P.CharacterContract proyecta el estado real de cada causa en nueve piezas: tres 
 
 Kingteka, Makanaky y Sideral son referencias completas con 9/9. Sideral añade Colazo, Huevo, sus evoluciones, Sangre fría y Despertar del Lagarto Q; el dominio R se conserva. El porcentaje comunica cobertura funcional, no poder ni rareza.
 
-Kingteka usa tres armas con rangos separados. Escopeta causa parte de 260 u y evoluciona a Escopeta Contra; Gallinazo evoluciona a Gallinazo de Expedición; Golpe de cuerpo evoluciona a Golpe de Supervivencia. Cada arma progresa de rango 1 a 5 y puede evolucionar independientemente en rango 5 y nivel 14. Balance expone un multiplicador de alcance por slot además del alcance general.
+Kingteka usa tres armas con rangos separados. Escopeta causa parte de 260 u y evoluciona a Escopeta Contra: cinco esferas rojas de energía en abanico, velocidad 720, escala individual ×0,75 y dos impactos máximos por esfera. Conserva la caída de daño y el alcance corto/medio; el número de esferas no aumenta con bonificaciones de rango. Gallinazo evoluciona a Gallinazo de Expedición; Golpe de cuerpo evoluciona a Golpe de Supervivencia. Cada arma progresa de rango 1 a 5 y puede evolucionar independientemente en rango 5 y nivel 14. Balance expone un multiplicador de alcance por slot además del alcance general.
 
 Q y R no comparten recurso. Gallinazos reúne Caos, Aguante y Hazaña durante aproximadamente 55–60 s de combate. Santuario reúne Vínculo animal: cada ataque potenciado por Instinto de expedición que conecta otorga 8 %. El Santuario tiene radio 520; el daño porcentual de vida solo se aplica a minions pesados y los normales reciben daño basado en el poder. Activar una habilidad no consume la carga de la otra.
 
@@ -440,7 +440,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene al menos una evol
 - alberto: **Órbita presidencial** — Seis bandas giran alrededor y una onda golpea el centro.
 - keiko: **Abanico solar** — Cuatro abanicos salen en cruz, regresan y dejan un remolino junto al objetivo.
 - ollanta: **Marcha del comando** — Un cono largo y estrecho empuja; dos ondas laterales cubren los flancos.
-- kingteka: **Escopeta Contra** — Tres disparos concentrados, tres penetraciones base y pérdida de fuerza a distancia.
+- kingteka: **Escopeta Contra** — Cinco esferas rojas de energía en abanico, dos impactos máximos por esfera y pérdida de fuerza a distancia. El daño individual se reduce para conservar el presupuesto de la evolución.
 - shaka: **Tornado bananero** — Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.
 - najasor: **Marea CPEZ** — Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.

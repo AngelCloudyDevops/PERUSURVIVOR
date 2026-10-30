@@ -8,7 +8,7 @@ Los minions solo comienzan ataques a distancia cuando están visibles para el ju
 
 Kingteka: alcance base 860 → 480, intervalo 0,65 → 0,78 s y escala por perdigón 0,65 → 0,60. Conserva cinco perdigones y el abanico. Daño completo hasta 180 unidades, descenso gradual hasta el 35 % en el alcance máximo. Las mejoras de alcance amplían ambas distancias.
 
-Escopeta Contra: tres tiros, penetración base 8 → 3 (más bonificaciones), velocidad 1150 → 900, dispersión 0,055 → 0,09 y escala 1 → 0,9. Conserva su identidad de disparo concentrado perforante.
+Escopeta Contra: cinco esferas arcade rojas, dos impactos máximos por esfera, velocidad 720, dispersión 0,17 y escala individual 0,75. La descarga completa mantiene un presupuesto cercano al diseño anterior gracias al rendimiento decreciente de perdigones sobre un mismo blanco, pero cubre un abanico mayor y sacrifica penetración profunda. Conserva caída de daño y alcance corto/medio.
 
 Cerdito: mantiene el daño cercano, siete perdigones y cadencia. Alcance 760 → 400; daño completo hasta 140 y descenso gradual al 35 %. Así las dos escopetas comparten la regla de corta distancia.
 
