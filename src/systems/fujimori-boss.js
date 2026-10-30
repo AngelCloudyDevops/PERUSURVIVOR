@@ -1,7 +1,7 @@
 'use strict';
 // Optional parody boss, separate from Alberto's playable ultimate.
 P.FujimoriBoss={
- definition:{name:'Alberto Fujimori · El Expediente Final',kind:'fujimori',color:'#ffbd70',hp:1600,r:43,speed:48},
+ definition:{name:'Alberto Fujimori · El Expediente Final',kind:'fujimori',color:'#ffbd70',hp:1600,r:43,speed:48,role:'Estratega / Controlador',damageProfile:'Daño híbrido · canal principal especial',combatStats:{attribute:'wit',damageType:'special',physicalAttack:95,specialAttack:112,physicalDefense:100,specialDefense:110,penetration:0,statusResistance:0,healthRegen:0,criticalChance:0,criticalDamage:1.5,criticalResistance:0,criticalDefense:0,recoveryRate:1,lifeSteal:0},ultimate:'Sentencia final',domain:'Archivo de la Nación',passives:['Expediente abierto: al bajar de 50 % amplía sellos y abanicos de documentos.','Caso reabierto: fallar sus pruebas acumula presión y acorta sus recuperaciones.']},
  paperPlan(e){const count=e.fury?7:5,step=.21,speed=190,life=3,offset=e.aim-(count-1)*step/2;return {count,step,speed,life,maxRange:speed*life,angles:Array.from({length:count},(_,i)=>offset+i*step)}},
  move(e,dt){const s=P.state,p=s.player;P.FujimoriArchives.tick(e);e.hit=Math.max(0,e.hit-dt);e.fury=e.hp<=e.max*.5;
   if(e.phase==='archive-fall'){if(P.FujimoriArchives.list().every(q=>q.landed)){e.phase='recover';e.recovery=1.1}return}

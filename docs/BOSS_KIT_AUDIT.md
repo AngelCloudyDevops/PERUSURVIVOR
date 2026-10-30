@@ -20,8 +20,8 @@ Además del kit, cada ficha debe declarar rol, atributo, canal de daño, debilid
 | El Guardián de la Niebla | Anillo de niebla; Refugios falsos; Terrazas del santuario; Eco del camino | Velo quebrado; Memoria de piedra | Juicio del Apu / Ciudad Perdida | 3/3 | Mecánicas completas; falta dirección de arte, animación, audio y balance con partidas completas |
 | La Procesión de Medianoche | Campanas invertidas; Faroles del duelo; Paso de ánimas; Ofrenda marcada | Deuda de vela; Cortejo interminable | Último responso / Plaza sin amanecer | 3/3 | Mecánicas completas; falta dirección de arte, animación, audio y balance con partidas completas |
 | El Grinch del Cercado | Robo de regalos; Trineo rasante; Carbón caliente; Guirnalda trampa | Lista negra; Espíritu navideño robado | Noche del gran robo / Cercado sin Navidad | 3/3 | Mecánicas completas; falta dirección de arte, animación, audio y balance con partidas completas |
-| Gallinazo · Techo de Lima | Picada desde el cielo; Aleteo; Lluvia de plumas; Luna oscura | Fase II al 50 % | Por definir / Por definir | 2/2 | Segunda pasiva; rol, atributo y canal explícitos |
-| Alberto Fujimori · El Expediente Final | Sello celeste; Archivo reservado; Sentencia legendaria | Fase II al 50 % | Por definir / Por definir | 2/2 | Ataque 4; segunda pasiva; rol, atributo y canal explícitos |
+| Gallinazo · Techo de Lima | Picada desde el cielo; Aleteo; Lluvia de plumas; Luna oscura | Furia de altura; Hambre de carroña | Eclipse Carroñero / Techos sin salida | 2/2 | Mecánicas completas; falta validar ritmo del viento, cooperativo y balance en partidas completas |
+| Alberto Fujimori · El Expediente Final | Sello celeste; Archivo reservado; Sentencia legendaria; Cadena de custodia | Expediente abierto; Caso reabierto | Sentencia final / Archivo de la Nación | 2/2 | Mecánicas completas; falta dirección de arte, audio y balance con partidas completas |
 
 ## Jefes de Extinción
 

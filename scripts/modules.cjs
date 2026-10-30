@@ -162,6 +162,10 @@ module.exports = [
     "output": "js/vulture-moon.js"
   },
   {
+    "source": "src/systems/vulture-domain.js",
+    "output": "js/vulture-domain.js"
+  },
+  {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
   },
@@ -170,6 +174,7 @@ module.exports = [
     "output": "js/fujimori-boss.js"
   },
   {"source":"src/systems/fujimori-archives.js","output":"js/fujimori-archives.js"},
+  {"source":"src/systems/fujimori-contract.js","output":"js/fujimori-contract.js"},
   {"source":"src/rendering/fujimori-boss-art.js","output":"js/fujimori-boss-art.js"},
   {
     "source": "src/rendering/path-details.js",
