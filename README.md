@@ -475,7 +475,7 @@ Los cuatro jefes de portal mantienen una ruta corta alrededor de las coberturas,
 
 | Minijefe | Patrones normales |
 | --- | --- |
-| Fiscalizador | Embestida, cerco municipal destructible y Papeleta pagada con multa aleatoria. Recaudación coactiva devuelve parte de lo cobrado al contraatacar. En fase II, Operativo de clausura sustituye cada cuarto turno: encierra un área amplia y numera las salidas verdes de la primera oleada y las celestes de la segunda antes de la embestida final. |
+| Fiscalizador | Embestida, cerco municipal destructible y Papeleta pagada con multa aleatoria. Recaudación coactiva devuelve parte de lo cobrado al contraatacar. En fase II, Operativo de clausura sustituye cada cuarto turno: encierra un área amplia con conos y cinta municipal, y numera las salidas verdes de la primera oleada y las celestes del cerco interior antes de la embestida final. |
 | Paloma Brava | Aleteo, picotazo y bombardeo marcado. En fase II, Bandada del Centro cruza ocho carriles con un corredor seguro. |
 | Huaco Renegado | Golpe de suelo, fragmentos radiales y estelas quebradas. En fase II, Derrumbe del Santuario converge dejando dos salidas. |
 | Makanaky · La Realeza | Gritos/pulsos y explosión cercana. |
