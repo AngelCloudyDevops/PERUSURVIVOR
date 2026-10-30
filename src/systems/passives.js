@@ -42,7 +42,7 @@ P.Passives={
   if(cast.royal){state.stacks=0;state.expires=0;state.royalSerial=(state.royalSerial||0)+1;return}
   state.stacks=Math.min(def.max,state.stacks+1);state.expires=this.now()+def.grace;P.MakanakyUltimate?.gain?.(actor,attack.arsenalId==='makanakyHeadbutt'?10:6)
  },
- impact(actor,attack,target,cast={}){if(!cast.royal||!this.eligible(actor,attack)||!target)return;const effects=P.state.effects;if(effects?.length<300){effects.push({kind:'shout',text:'♛ GOLPE REAL',x:target.x,y:target.y-(target.r||18)-24,life:.7,maxLife:.7,color:'#f3a2ff'});for(let i=0;i<5;i++){const a=i*Math.PI*2/5;effects.push({kind:'spark',x:target.x,y:target.y,vx:Math.cos(a)*95,vy:Math.sin(a)*95,life:.35,maxLife:.35,color:i%2?'#ef92cf':'#ffe58f'})}}},
+ impact(actor,attack,target,cast={}){if(!cast.royal||!this.eligible(actor,attack)||!target)return;const effects=P.state.effects;if(effects?.length<290){effects.push({kind:'shout',text:'♛ GOLPE REAL',x:target.x,y:target.y-(target.r||18)-24,life:.7,maxLife:.7,color:'#f3a2ff'});effects.push({kind:'makanaky-royal-impact',x:target.x,y:target.y,angle:actor.aim||0,headbutt:attack.arsenalId==='makanakyHeadbutt',life:.52,maxLife:.52,color:'#ffe58f'});for(let i=0;i<5;i++){const a=i*Math.PI*2/5;effects.push({kind:'spark',x:target.x,y:target.y,vx:Math.cos(a)*95,vy:Math.sin(a)*95,life:.35,maxLife:.35,color:i%2?'#ef92cf':'#ffe58f'})}}},
  cooldownMultiplier(){return 1},
  rows(id){
   const def=this.definitions[id];if(!def)return [];

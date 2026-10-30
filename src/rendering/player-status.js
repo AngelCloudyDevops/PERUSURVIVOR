@@ -35,6 +35,11 @@ P.PlayerStatus={
   if(slowUntil>now){const factor=Math.min((actor.tacticSlowUntil||0)>now?.75:1,(actor.extinctionSlowUntil||0)>now?.72:1,(actor.dynamicZoneSlowUntil||0)>now?.75:1,(actor.fiscalSlowUntil||0)>now?(actor.fiscalSlowFactor||.82):1,(actor.extinctionChargeSlowUntil||0)>now?.82:1);states.push({id:'slow',icon:'▼',label:'LENTITUD '+Math.round((1-factor)*100)+'%',detail:'Velocidad de movimiento reducida',color:'#7ddcff',until:slowUntil,kind:'debuff'})}
   if((actor.dynamicZoneDefenseUntil||0)>now)states.push({id:'exposed',icon:'◇',label:'DEFENSAS −12%',detail:'Daño físico y especial recibido aumentado',color:'#76d9ef',until:actor.dynamicZoneDefenseUntil,kind:'debuff'});
   if((actor.predatorUntil||0)>now)states.push({id:'power',icon:'↑',label:'DEPREDADOR',detail:'+25 % daño · +18 % velocidad',color:'#ffaf67',until:actor.predatorUntil,kind:'buff'});
+  if(actor.id==='makanaky'&&P.Passives?.definition?.(actor)){
+   const passive=P.Passives.expire(actor),maximum=P.Passives.definition(actor).max,stacks=passive?.stacks||0;
+   if(stacks>=maximum)states.push({id:'royal-ready',icon:'♛',label:'GOLPE REAL',detail:'El siguiente puño o cabezazo consume la racha',color:'#ffe58f',until:passive.expires,kind:'buff',body:false});
+   else if(stacks>0)states.push({id:'ga-chain',icon:'GA',label:'RACHA '+stacks+'/'+maximum,detail:'Conecta otro puño o cabezazo antes de que decaiga',color:'#ef92cf',until:passive.expires,kind:'buff',body:false})
+  }
   if((actor.makanakyUltimateUntil||0)>now)states.push({id:'intocable',icon:'♛',label:'INTOCABLE',detail:'Los Tres de la Realeza activo',color:'#e7a6ff',until:actor.makanakyUltimateUntil,kind:'buff'});
   if((actor.dotaHaste||0)>0)states.push({id:'haste',icon:'»',label:'VELOCIDAD 20%',detail:'Swift Blink: +20 % velocidad',color:'#8fdcff',left:actor.dotaHaste,kind:'buff'});
   if(actor.extinctionDodge)states.push({id:'dodge',icon:'◇',label:'ESQUIVA',detail:'Desplazamiento protegido',color:'#baffff',left:Math.max(0,actor.extinctionDodge.duration-actor.extinctionDodge.age),kind:'buff'});
@@ -49,7 +54,7 @@ P.PlayerStatus={
   const node=P.$?.('#player-statuses'),track=P.$?.('#health-track');if(!node||!track)return;
   const states=this.states(actor),signature=states.map(state=>[state.id,state.label,state.persistent?'∞':Math.ceil(this.remaining(state)*10)].join(':')).join('|');
   if(node.dataset.signature!==signature){node.dataset.signature=signature;node.replaceChildren(...states.map(state=>{const chip=document.createElement('span'),icon=document.createElement('b'),label=document.createElement('span'),time=document.createElement('em');chip.className='player-status-chip';chip.dataset.status=state.id;chip.dataset.kind=state.kind||'buff';chip.title=state.label+(state.detail?' · '+state.detail:'');icon.textContent=state.icon;label.textContent=state.label;time.textContent=state.persistent?'∞':this.remaining(state).toFixed(1)+'s';chip.append(icon,label,time);return chip}))}
-  const priority=['poison','heal','intocable','shield','guard','slow','power'].find(id=>states.some(state=>state.id===id))||'';
+  const priority=['poison','heal','intocable','royal-ready','shield','guard','slow','power'].find(id=>states.some(state=>state.id===id))||'';
   track.dataset.status=priority;node.setAttribute('aria-label',states.length?'Estados activos: '+states.map(state=>state.label+(state.persistent?' permanente':' '+this.remaining(state).toFixed(1)+' segundos')).join(', '):'Sin estados activos')
  },
  cross(ctx,x,y,size,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x-size/3),Math.round(y-size),Math.round(size*2/3),Math.round(size*2));ctx.fillRect(Math.round(x-size),Math.round(y-size/3),Math.round(size*2),Math.round(size*2/3))},
