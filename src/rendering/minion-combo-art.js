@@ -13,5 +13,5 @@ P.MinionComboArt={
   if(key==='sweep'){if(index===1)return local<.25?4:5;return local<.25?1:2;}
   return local<.2?(index===0?1:4):(index===0?2:5);
  },
- sprite(e,dead){if(dead)return null;const index=this.frame(e),id=this.key(e),sheet=id&&P.WalkArt.sheets[id];if(index===null||!sheet?.ready)return null;const frame=sheet.frames[index];return frame?{sheet,frame,index,renderScale:e.profession?[.92,1,1.08][P.MinionEvolution.rank(e)]:1}:null}
+ sprite(e,dead){if(dead)return null;const index=this.frame(e),id=this.key(e),sheet=id&&P.WalkArt.sheets[id];if(id&&!sheet?.ready)P.WalkArt.load(id,true);if(index===null||!sheet?.ready)return null;const frame=sheet.frames[index];return frame?{sheet,frame,index,renderScale:e.profession?[.92,1,1.08][P.MinionEvolution.rank(e)]:1}:null}
 };

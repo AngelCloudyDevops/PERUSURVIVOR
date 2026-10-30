@@ -863,7 +863,7 @@ Sideral admite dos presentaciones elegibles en Opciones. **Cinemática** conserv
 
 ## Supervivencia del Caos
 
-El lobby ofrece dos reglas independientes. La partida rápida conserva 300 s y una arena opcional. Supervivencia del Caos dura 1800 s en un único mapa, con ElZeein como cierre al minuto 30. Sus etapas exactas de 300 s son Calma sospechosa, Primer desorden, El mapa responde, Crisis nacional, Caos desatado y Preludio de ElZeein.
+La experiencia pública usa **Supervivencia del Caos** como regla única: dura 1800 s en un mapa sorteado y oculto hasta iniciar, con ElZeein como cierre al minuto 30. El sorteo evita el último escenario jugado cuando hay alternativas. Sus etapas exactas de 300 s son Calma sospechosa, Primer desorden, El mapa responde, Crisis nacional, Caos desatado y Preludio de ElZeein. La antigua Partida rápida queda como regla técnica para previsualizaciones y pruebas de desarrollo, no como elección del jugador.
 
 Los minijefes conservan su IA, con intervalo aleatorio de 240–360 s. Hay tres ventanas de portal: Campo usa 06:00–09:00, 13:00–17:00 y 21:00–25:00; Plaza desplaza cada ventana 35 s y Machu Picchu 70 s. Cada victoria cuenta por ventana, devuelve al mismo punto y permite otra recompensa. El reloj no avanza dentro de la arena.
 

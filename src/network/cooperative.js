@@ -22,6 +22,7 @@ restoreSaved(){if(this.session||this.ws||P.state.mode!=='menu')return false;let 
 status(text){P.$('#coop-status').textContent=text},
 send(message){if(this.ws?.readyState===1)this.ws.send(JSON.stringify(message))},
 connect(type,invite=null){if(P.Gacha?.ready&&!P.Gacha.owns(P.Data.characters[P.state.chosen]?.id)){this.status('Desbloquea este causa en Gacha antes de crear o unirte a una sala.');P.Gacha.open();return}
+ if(type==='create'&&P.LobbyComplete?.randomPublicMap){P.Maps.selected=P.LobbyComplete.randomPublicMap();P.Maps.load(P.Maps.selected);P.LobbyComplete.rememberRandomMap(P.Maps.selected)}P.RunMode.selected='chaos';
  if(this.ws)this.leave(false);const code=invite?.code||P.$('#coop-code').value.trim().toUpperCase();if(type==='join'&&!/^[A-F0-9]{8}$/.test(code)){this.status('Escribe el código de 8 caracteres de tu amigo.');return}
  this.open({type,protocol:2,guest:!P.Account?.user,character:P.state.chosen,map:P.Maps.selected,code,...(invite?{inviteId:invite.id}:{})});
 },

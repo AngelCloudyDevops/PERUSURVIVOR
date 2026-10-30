@@ -19,6 +19,15 @@ test('Carga acotada, caché, reintento y cancelación antes de iniciar la partid
  const failed=w.load('enemy-2');started.at(-1).onerror();assert.equal(await failed,null);assert(w.sheets['enemy-2'].failed);const retry=w.load('enemy-2',true,true);started.at(-1).done=true;started.at(-1).onload();assert(await retry);assert(!w.sheets['enemy-2'].failed);
  let actions=0,buttons;P.UI.show=(title,text,b)=>buttons=b;w.waitForStart(()=>actions++);assert(!w.readyForStart());buttons[0].action();for(let guard=0;w.active&&guard<w.needed().length+4;guard++){const image=started.find(i=>!i.done&&i!==started[3]);assert(image);image.done=true;image.onload()}await new Promise(resolve=>setImmediate(resolve));assert.equal(actions,0,'Cancelar no debe iniciar una partida retrasada');assert(w.readyForStart());
 });
+test('Carga adaptativa: celular prioriza la causa y rivales básicos sin descargar todos los oficios',()=>{
+ const {P,started}=engine(true),w=P.WalkArt,queued=[];P.AssetPolicy={constrained:()=>true,concurrentImages:()=>1,queue:tasks=>queued.push(...tasks)};w.measure=s=>{s.frames=[];s.height=10};w.init();
+ assert.equal(started.length,1,'Una sola decodificación simultánea en equipos limitados');
+ for(const id of ['cristorata','attack-cristorata','enemy-0','enemy-1','enemy-2','enemy-3','enemy-4','enemy-5'])assert(w.sheets[id],id+' queda priorizado');
+ assert.equal(queued.length,6,'Los minions integrados posteriores se difieren');assert(!w.sheets['profession-chef'],'Los oficios se cargan cuando aparecen');
+});
+test('Precarga crítica: confirma personaje y seis rivales antes de permitir iniciar',async()=>{
+ const {P,started}=engine(true),w=P.WalkArt;P.AssetPolicy={concurrentImages:()=>20};w.measure=s=>{s.frames=[];s.height=10};const loading=w.preloadCritical();assert.equal(w.criticalNeeded().length,8);assert(!w.criticalReady());for(const image of started)image.onload();assert.equal(await loading,true);assert(w.criticalReady());
+});
 test('Separación por figura: conserva extremidades que cruzan una celda nominal',()=>{
  const width=300,height=220,raw=new Uint8ClampedArray(width*height*4),captured=[];function box(l,t,r,b,color){for(let y=t;y<=b;y++)for(let x=l;x<=r;x++){const i=(y*width+x)*4;raw[i]=color;raw[i+3]=255}}
  for(let row=0;row<2;row++)for(let col=0;col<3;col++){const x=col*100,y=row*110;box(x+20,y+15,x+65,y+90,60+col+row*3);if(col===0)box(x+55,y+40,x+108,y+50,60+row*3)}
