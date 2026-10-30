@@ -448,4 +448,5 @@ module.exports = [
 ,{source:"src/rendering/marciano-kit-art.js",output:"js/marciano-kit-art.js"}
 ,{source:"src/systems/dota-equipment.js",output:"js/dota-equipment.js"}
 ,{source:"src/ui/loot-choices.js",output:"js/loot-choices.js"}
+,{source:"src/systems/dota-actives.js",output:"js/dota-actives.js"}
 ];

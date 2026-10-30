@@ -13,7 +13,7 @@ class Activities{
   if(action==='escort')return this.escort.start(slot);
   if(action==='duo-event')return this.duo.start(slot);
   if(action==='market-buy')return P.Market.buy(id);
-  if(action==='dota-active'){if(!id||!Number.isFinite(id.x)||!Number.isFinite(id.y)||Math.hypot(id.x,id.y)<.001||Math.hypot(id.x,id.y)>1.01)return false;const used=P.DotaItems.activate(id);sim.save(p);return used}
+  if(action==='dota-active'){if(!id||!Number.isFinite(id.x)||!Number.isFinite(id.y)||Math.hypot(id.x,id.y)<.001||Math.hypot(id.x,id.y)>1.01)return false;if(id.item!==undefined&&(typeof id.item!=='string'||!p.dotaItems?.includes(id.item)))return false;const item=id.item||P.DotaItems.current(p,'blink');if(!item)return false;const used=P.DotaItems.activate(id,item);sim.save(p);return used}
   if(action==='portal'){
    if(!P.Encounters.near())return false;
    if(this.votes.has(slot))this.votes.delete(slot);else this.votes.add(slot);
