@@ -1027,3 +1027,6 @@ body.menu[data-lobby-panel=home] #menu .home-feature p{margin:1px 0;font-size:11
 .character-viewer-strip{justify-content:flex-start}
 .character-viewer-info .character-skill-card span{font-size:11px;line-height:1.35}
 .character-viewer-info .character-skill-info p{font-size:12px;line-height:1.6}
+
+/* El catálogo conserva iconos y nombres completos al aumentar el equipo disponible. */
+#menu .object-card{height:auto;min-height:176px;justify-content:flex-start;gap:4px}#menu .object-card canvas{flex:0 0 72px;height:72px}#menu .object-card strong{flex:0 0 auto;min-height:2.4em;line-height:1.2;overflow:visible;white-space:normal;overflow-wrap:anywhere}#menu .object-card small,#menu .object-card span{flex:0 0 auto}
