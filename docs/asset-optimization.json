@@ -59,6 +59,30 @@
       "rgbaSha256": "e4e864c0ab67e8ab41b7132bbb62a07cc9cb2b096dc68b5a5f576264ddbc2ac9"
     },
     {
+      "source": "assets/attacks/kingteka-gallinazo-attack-v1.png",
+      "output": "assets/attacks/kingteka-gallinazo-attack-v1.webp",
+      "width": 384,
+      "height": 384,
+      "originalBytes": 159581,
+      "optimizedBytes": 35312,
+      "sourceSha256": "d2781bae45ceee24f73b46c28c6809f2dab21122531e3d187f7f0fbea3ede629",
+      "outputSha256": "b0e657783ee0f358ca203fa243edb75e0218e1e497b4622884b3ba413b9462a9",
+      "rgbaSha256": "4ad3cfd7495b9630d7a122494f530ef60f75f8a8d5a27a07f6b1f211eebd5a0d",
+      "quality": 75
+    },
+    {
+      "source": "assets/attacks/kingteka-golpe-attack-v1.png",
+      "output": "assets/attacks/kingteka-golpe-attack-v1.webp",
+      "width": 384,
+      "height": 384,
+      "originalBytes": 162040,
+      "optimizedBytes": 36542,
+      "sourceSha256": "b24255187f647a203f4ac61b76b9d91ab8a6f46e6560ccfc7616c46b2d8cff85",
+      "outputSha256": "366d2e1f83d703560d8c78f324707844c6f73e968cab7ceb8df0c8973e968640",
+      "rgbaSha256": "d4d8e265364603facb91cf05e328c10e5c2a8a86593cbe6c1c00c35bd4c4bf11",
+      "quality": 75
+    },
+    {
       "source": "assets/bosses/boss-atlas-v1.png",
       "output": "assets/bosses/boss-atlas-v1.webp",
       "width": 1774,
@@ -557,14 +581,14 @@
     {
       "source": "assets/reactions/kingteka-reaction-v1.png",
       "output": "assets/reactions/kingteka-reaction-v1.webp",
-      "width": 768,
-      "height": 768,
-      "originalBytes": 569033,
-      "optimizedBytes": 85106,
-      "sourceSha256": "838537bd5b4e25ec7425d125f110458b32fefe8187e45c0a41c49d1b6c5be4ad",
-      "outputSha256": "c286a2cf30f17f978ed87f8c9eb3a30e3bf5daafeffe4bbbad8ec9be644e648a",
-      "rgbaSha256": "44319ea949108030b7870675ba2d28bfe6be090ba122ac052ac755efd0200fc7",
-      "quality": 70
+      "width": 384,
+      "height": 384,
+      "originalBytes": 157459,
+      "optimizedBytes": 32236,
+      "sourceSha256": "5ba165b7243fab5d60bb7a8139a599b168e32e4d0f59a0008c5e5a12a6021a77",
+      "outputSha256": "f38b73a809074ec63f85104bdd87598219f2366e7dbd66fe7ec7e52828760d12",
+      "rgbaSha256": "c00bd3e1dd3384dbf5c357d2a5bfa07e39e40ae13bb79923b7291e1f6fa9804d",
+      "quality": 75
     },
     {
       "source": "assets/scenarios/cirilo-midnight-court-v1.png",
@@ -626,6 +650,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 93532685,
-  "optimizedBytes": 43053080
+  "originalBytes": 93442732,
+  "optimizedBytes": 43072064
 }

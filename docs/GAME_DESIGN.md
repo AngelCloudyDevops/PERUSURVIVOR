@@ -1484,3 +1484,5 @@ Todo estado temporal que altere al personaje debe indicar nombre, naturaleza pos
 ### Renovación estética de personajes
 
 La renovación empieza con Kingteka. Sus poses de daño y derrota son figuras completas dibujadas, no partes superpuestas ni deformaciones del cuadro de caminar. Los tres impactos conservan arma, tatuajes, rostro, ropa y escala; la secuencia de derrota pasa por rodillas vencidas, caída y cuerpo en el suelo con ojos en X. Esta presentación es exclusivamente cosmética: no alarga la invulnerabilidad ni retrasa el resultado de la partida. El mismo contrato de seis cuadros se reutilizará personaje por personaje para mantener coherencia visual.
+
+Sus tres armas también deben distinguirse por silueta: Escopeta usa el arma visible y retroceso opuesto al disparo; Gallinazo guarda la escopeta, prepara el brazo y libera con la palma abierta; Golpe guarda el arma, carga el peso y completa un puñetazo con recuperación. Plumas, ave, fogonazo y arco de impacto siguen la dirección real por separado, evitando deformar o girar el cuerpo completo.

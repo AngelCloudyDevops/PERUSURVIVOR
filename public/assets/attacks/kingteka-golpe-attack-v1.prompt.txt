@@ -1,0 +1,4 @@
+Use case: identity-preserve
+Asset type: six-frame production game melee attack sprite sheet for PERUSURVIVOR
+Reference: public/assets/walks/kingteka-walk-v2.webp
+Create exactly six complete Kingteka sprites in a uniform 3 × 2 transparent grid. Preserve face, hair, muscular build, black T-shirt, jeans, white sneakers, tattoo sleeves, palette and detailed pixel-cartoon finish. Show one continuous heavy body punch: guard, crouched wind-up, weight shift, straight punch, extended follow-through and guarded recovery. Do not draw shotgun, weapon, target or impact; the engine draws the directional arc separately. No text, grid, background, shadow, extra limbs, detached parts or watermark.
