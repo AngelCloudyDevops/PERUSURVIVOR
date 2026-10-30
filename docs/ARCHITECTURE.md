@@ -845,3 +845,6 @@ La anticipación de Cirilo muestrea posiciones de enemigos una vez por instante 
 
 ### Arsenal de Chamelín
 `chamelin-kit.js` extiende el contrato, arsenal, estados probabilísticos, presión y Q; `chamelin-kit-art.js` utiliza figuras completas del atlas existente y dibuja efectos sin decidir daño. Los campos personales y estados del enemigo viajan en snapshots normales. El servidor comparte un registro de tiradas entre chorros del mismo lanzamiento, limita charcos y calcula su mayor daño por propietario/pulso. `chamelinCharge` no sustituye `charge` de R. Los archivos originales de Chamelín y TrovoArena no se editan; adaptadores de entrada/salida conservan el perfil y cadencia del dominio al cambiar de arma.
+
+### Kit de Cristorata
+`cristorata-kit.js` resuelve arsenal, parejas de impactos, derrape con subpasos, estela por máximo, segunda garra y sellos del Coliseo. `cristorata-kit-art.js` dibuja efectos sobre figuras completas existentes, delegando la montura y feedback de daño/muerte. Se conserva el código de DragonUltimate; un adaptador restaura su perfil/cadencia durante Q. R usa cristorataDomainCharge y un estado compartido cristorataDomain con propietario, tres sellos, reloj y escena; snapshots/input domain incluyen ese estado y el servidor agrega descargas al conjunto de proyectiles correcto. Los controles 1/2/3 y R funcionan en escritorio y móvil.

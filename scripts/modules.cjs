@@ -430,4 +430,6 @@ module.exports = [
 ,{source:"src/rendering/cirilo-kit-art.js",output:"js/cirilo-kit-art.js"}
 ,{source:"src/systems/chamelin-kit.js",output:"js/chamelin-kit.js"}
 ,{source:"src/rendering/chamelin-kit-art.js",output:"js/chamelin-kit-art.js"}
+,{source:"src/systems/cristorata-kit.js",output:"js/cristorata-kit.js"}
+,{source:"src/rendering/cristorata-kit-art.js",output:"js/cristorata-kit-art.js"}
 ];

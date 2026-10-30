@@ -217,3 +217,6 @@ UR, Humano/Ingenio, Especialista/Controlador híbrido. Conserva 135 PV, velocida
 
 ### Chamelín · kit completo
 Retaguardia, Pegote y Pichi son tres técnicas reales con rangos/evoluciones propios. Presión acumulada y ¡SE TAPÓ TODO! Q completan el contrato; Baño de Trovo R se conserva. Se mantienen base y rareza. Probabilidades, duración y límites en [CHAMELIN_KIT.md](CHAMELIN_KIT.md).
+
+### Cristorata · kit completo
+Clip, Derrape y Garra tienen progreso/evolución propios; De ida y de vuelta y El Coliseo del Dragón completan el contrato, manteniendo Q original y stats base. [Detalles de ataques, pasiva, dominio y pruebas](CRISTORATA_KIT.md).

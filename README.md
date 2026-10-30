@@ -8,6 +8,8 @@ Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcional
 
 ## Punto actual de desarrollo
 
+Cristorata ya tiene **kit 9/9**: Clip/Directo encadenado, Derrape/Derrape encendido, Garra/Doble garra, pasiva De ida y de vuelta y R El Coliseo del Dragón con tres sellos. La Q original conserva variantes, montura y controles. [Reglas y verificación](docs/CRISTORATA_KIT.md). Pendientes: balance de partidas completas y arte exclusivo de R.
+
 Chamelín ya tiene **kit 9/9**: Retaguardia/Desastre de Trovo, Escupitajo pegajoso con 10 % de Pegote, Pichi con 15 % de resbalón, evoluciones, Presión acumulada y Q ¡SE TAPÓ TODO! con carga independiente. Baño de Trovo conserva su funcionamiento. [Reglas, animaciones y pruebas](docs/CHAMELIN_KIT.md). La Q ya tiene arte exclusivo de ondas de presión. Pendiente: balance en partidas completas.
 
 CiriloTV ya tiene **kit 9/9**: Taxi de Cirilo y regreso con 40 % de resistencia, Carrera de ida y vuelta, Eco maldito/Maldad contagiosa, Persistencia maldita y Q ¡FULL MALDAD! con carga independiente y arte exclusivo. Audiencia y las transformaciones existentes se conservan. [Especificación del kit](docs/CIRILO_KIT.md). [Balance medido](docs/CIRILO_BALANCE.md): 60 simulaciones de partidas y 40 duelos, anticipación de Taxi/Eco/Q, explosión de Eco tras una baja y ajuste de Q. Hay cierres en ambos modos, pero la supervivencia del estilo adaptativo sigue siendo mixta; falta validación humana.
@@ -53,7 +55,7 @@ Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa.
 
 El objetivo final de cada causa es **9/9**, pero el contrato describe el estado real y permite desarrollar una pieza a la vez. `Planeado` significa que la mecánica y su función ya fueron aprobadas; `Por definir` reserva capacidad sin prometer comportamiento. Una skin, objeto, pacto o poder de apoyo no cuenta como pieza del kit.
 
-Estado actual calculado: **Kingteka, Makanaky, Sideral, CiriloTV y Chamelín están 9/9**. Makanaky ya posee tres técnicas intercambiables, tres evoluciones, pasiva, Q y dominio R. **Sideral también está 9/9**: Colazo del Lagarto, Huevo sospechoso, sus evoluciones, Sangre fría y Despertar del Lagarto Q completan su identidad; Habitación del Lagarto R se conserva. Stats, límites y controles en [Kit de Sideral](docs/SIDERAL_KIT.md).
+Estado actual calculado: **Kingteka, Makanaky, Sideral, CiriloTV, Chamelín y Cristorata están 9/9**. Makanaky ya posee tres técnicas intercambiables, tres evoluciones, pasiva, Q y dominio R. **Sideral también está 9/9**: Colazo del Lagarto, Huevo sospechoso, sus evoluciones, Sangre fría y Despertar del Lagarto Q completan su identidad; Habitación del Lagarto R se conserva. Stats, límites y controles en [Kit de Sideral](docs/SIDERAL_KIT.md).
 
 ### Cómo se interpretan los stats
 

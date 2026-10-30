@@ -1085,3 +1085,6 @@ Balance de Cirilo: Taxi/Eco/Q eligen una dirección anticipada limitada, sin seg
 
 ### Chamelín · Pegote, resbalón y presión
 Kit 9/9 en [CHAMELIN_KIT.md](CHAMELIN_KIT.md). Pegote tiene 10 % de lento temporal; Pichi, 15 % de resbalón con inmunidad posterior y lentitud alternativa en jefes. Una tirada por rival y lanzamiento, compartida por chorros evolucionados. Presión acumula tres cargas con daño de charcos para ampliar el siguiente ataque; Q ejecuta tres ondas móviles con depósito independiente de R. Baño de Trovo conserva sus efectos, arena y presentación.
+
+### Cristorata · retornos, derrape y sellos
+Kit 9/9 en [CRISTORATA_KIT.md](CRISTORATA_KIT.md): dos ataques nuevos con evolución, preparación por acertar al mismo enemigo en ida/regreso del micrófono y Coliseo de ocho segundos con tres sellos que requieren cruzarlos de nuevo. R tiene carga independiente y no encierra ni teletransporta; no concede invulnerabilidad. La Q y sus cuatro variantes originales conservan implementación y controles.
