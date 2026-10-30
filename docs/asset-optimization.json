@@ -83,6 +83,18 @@
       "quality": 88
     },
     {
+      "source": "assets/attacks/cerdito-gallinazo-walk-v1.png",
+      "output": "assets/attacks/cerdito-gallinazo-walk-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "originalBytes": 1430308,
+      "optimizedBytes": 275636,
+      "sourceSha256": "47a6b108f19254f74cb119be20c2415bfa5a98fc0aa6e9d2e95b9849cdcdac53",
+      "outputSha256": "63afdab1c6432be1ede7d2a2c68a2d6c5d85d44f54e7887b5098025409ff3fcd",
+      "rgbaSha256": "a55bdfda71e0adce16454032eddfeb77724337b90afc8761e54233b296996004",
+      "quality": 88
+    },
+    {
       "source": "assets/attacks/cerdito-golpe-attack-v1.png",
       "output": "assets/attacks/cerdito-golpe-attack-v1.webp",
       "width": 176,
@@ -116,6 +128,18 @@
       "sourceSha256": "a88b310e886edcc9dfa870943d278339df03d2fd6f6e12e86baf2971eb36b92d",
       "outputSha256": "e8ece36e616b6b6d3fa094f6ef9f0cfb4d9adb91def9578276cb39db2cc48220",
       "rgbaSha256": "c4a7c5bfbda162a3e9055d82021cba4baa3ac0e66e47cc1bed1ecdec75e9b7c4",
+      "quality": 88
+    },
+    {
+      "source": "assets/attacks/kingteka-gallinazo-walk-v1.png",
+      "output": "assets/attacks/kingteka-gallinazo-walk-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "originalBytes": 1427074,
+      "optimizedBytes": 268174,
+      "sourceSha256": "549bace3c11496278ba325d7eb2cbf6b76946dbe00e03542307a905c472935a5",
+      "outputSha256": "2176f534579575981d7f4082f29fd5ebde537e140a8ed902691c17e08f3ee44f",
+      "rgbaSha256": "ca1737ac18df3fc595940d4d6789def2e210046f7c41f3c8941c2c2bccca62be",
       "quality": 88
     },
     {
@@ -712,6 +736,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 98855547,
-  "optimizedBytes": 40604068
+  "originalBytes": 101712929,
+  "optimizedBytes": 41147878
 }

@@ -1,0 +1,3 @@
+Built-in ImageGen, identity-preserve sprite generation with transparent output.
+
+References: Kingteka walk v2 for identity and the exact six-step leg cycle, Gallinazo attack v1 for the equipped concept, and Gallinazo attack v2 for the black-feather style. Produce exactly six complete walking figures in a 3x2 grid, with alternating feet and stable body scale. Replace the shotgun with a compact black-feather wreath connected to both hands. Movement only: no wind-up, launch, giant bird, projectile, detached feathers, text, ground, shadow, background, crop, or overlap.
