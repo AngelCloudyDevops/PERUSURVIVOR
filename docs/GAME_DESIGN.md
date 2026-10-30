@@ -379,6 +379,18 @@ Campo de Marte: El Fiscalizador (embestida, tres conos y papeletas marcadas; Ope
 El Fiscalizador es **Fuerza · Controlador / Perseguidor · daño físico**. Conserva Embestida fiscal y Cerco de conos; su tercer ataque, **Papeletas de clausura**, fija durante 0,95 s tres círculos de 46 unidades sobre la posición prevista del jugador y los sella simultáneamente con 14 de daño. Las posiciones no persiguen al jugador después del aviso y no atraviesan la lógica habitual de cobertura.
 
 Su pasiva **Fiscalización insistente** mantiene el doble de Embestida al entrar en fase II. Desde esa fase, cada cuarto turno sustituye el patrón normal por la ulti **Operativo de clausura**: durante 1,2 s marca un anillo de 185 unidades alrededor de la posición fijada del jugador, deja una salida explícita y hace converger siete conos con 16 de daño. Los conos son proyectiles físicos y la cobertura los bloquea. La ulti reemplaza un turno; no añade ataques ni acorta la recuperación. Los avisos, objetivos y hueco de salida son estado serializable compartido por individual y cooperativo. Movimiento reducido elimina partículas, pero conserva todas las marcas necesarias para esquivar.
+
+### Kit completo de Paloma Brava
+
+Paloma Brava es **Técnica · Hostigadora / Perseguidora · daño físico**. Conserva Aleteo de plumas y Picotazo doble. **Bombardeo de la plaza** fija durante 0,95 s tres impactos de 42 unidades alineados sobre la posición prevista del jugador; cada marca causa 12 de daño y deja de seguirlo al comenzar el aviso.
+
+Su pasiva **Vuelo rasante** conserva el doble aleteo con salto lateral de fase II. Cada cuarto turno de esa fase se sustituye por **Bandada del Centro**: durante 1,15 s anuncia ocho carriles paralelos que cruzan desde ambos lados de la posición fijada, con un corredor central libre. Las plumas causan 13 de daño físico y son bloqueables por cobertura. El patrón no pausa el combate, no añade frecuencia y mantiene estado serializable para cooperativo.
+
+### Kit completo del Huaco Renegado
+
+El Huaco Renegado es **Ingenio · Controlador / Artillero · daño especial**. Conserva Golpe del huaco y Fragmentos de cerámica. **Estelas quebradas** fija durante 0,95 s tres impactos en línea sobre la posición prevista; cada uno cubre 44 unidades y causa 15 de daño especial sin seguir al jugador.
+
+Su pasiva **Memoria de piedra** conserva el doble golpe de suelo de fase II. Cada cuarto turno de esa fase se sustituye por **Derrumbe del Santuario**: avisa durante 1,25 s un perímetro de 205 unidades y lanza diez fragmentos convergentes de 17 de daño, dejando dos salidas opuestas. La cobertura bloquea los fragmentos; la ulti reemplaza un turno, no pausa el combate y se serializa en cooperativo.
 La entrada del Gallinazo ocupa toda la pantalla durante 2 s. Se congela toda la simulación (jugador, jefe, proyectiles y relojes) mientras avanza exclusivamente el reloj de la cinemática; pausa manual también la detiene. Al volver hay 0,7 s para buscar cobertura antes de la primera ráfaga. HUD oculto durante la escena, movimiento reducido conserva imagen estática. Fuera de la escena el jefe sigue siendo vulnerable.
 Garúa solo en Campo de Marte: 1:00–1:25, 2:30–2:55 y 4:00–4:25, con transiciones de tres segundos. Es visual, tenue y por debajo del combate. Los demás mapas no cambian; movimiento reducido la desactiva.
 

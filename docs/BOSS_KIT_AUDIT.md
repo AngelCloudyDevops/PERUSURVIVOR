@@ -38,8 +38,8 @@ Los dos jefes ya separan sus piezas finales de los patrones existentes. El Tiran
 |---|---|---|---|---|
 | Makanaky · La Realeza | Grito real; Flash de la realeza | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
 | El Fiscalizador | Embestida fiscal; Cerco de conos; Papeletas de clausura | Fiscalización insistente; fase II al 50 % | Operativo de clausura | Kit 100 % cubierto. Validar cadencia, salida del anillo y balance en partidas completas |
-| La Paloma Brava | Aleteo de plumas; Picotazo doble | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
-| El Huaco Renegado | Golpe del huaco; Fragmentos de cerámica | Fase II al 50 % | Por definir | Ataque 3; rol, atributo y canal explícitos |
+| La Paloma Brava | Aleteo de plumas; Picotazo doble; Bombardeo de la plaza | Vuelo rasante; fase II al 50 % | Bandada del Centro | Kit 100 % cubierto. Validar corredor central, densidad y balance en partidas completas |
+| El Huaco Renegado | Golpe del huaco; Fragmentos de cerámica; Estelas quebradas | Memoria de piedra; fase II al 50 % | Derrumbe del Santuario | Kit 100 % cubierto. Validar dos salidas, densidad y balance en partidas completas |
 
 ## Orden recomendado
 
