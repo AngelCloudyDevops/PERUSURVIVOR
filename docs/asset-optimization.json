@@ -95,6 +95,18 @@
       "quality": 62
     },
     {
+      "source": "assets/attacks/kingteka-gallinazo-attack-v2.png",
+      "output": "assets/attacks/kingteka-gallinazo-attack-v2.webp",
+      "width": 1254,
+      "height": 1254,
+      "originalBytes": 1525417,
+      "optimizedBytes": 328754,
+      "sourceSha256": "a88b310e886edcc9dfa870943d278339df03d2fd6f6e12e86baf2971eb36b92d",
+      "outputSha256": "e8ece36e616b6b6d3fa094f6ef9f0cfb4d9adb91def9578276cb39db2cc48220",
+      "rgbaSha256": "c4a7c5bfbda162a3e9055d82021cba4baa3ac0e66e47cc1bed1ecdec75e9b7c4",
+      "quality": 88
+    },
+    {
       "source": "assets/attacks/kingteka-golpe-attack-v1.png",
       "output": "assets/attacks/kingteka-golpe-attack-v1.webp",
       "width": 384,
@@ -677,6 +689,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 93423924,
-  "optimizedBytes": 38832480
+  "originalBytes": 94949341,
+  "optimizedBytes": 39161234
 }
