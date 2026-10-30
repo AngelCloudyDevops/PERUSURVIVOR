@@ -40,9 +40,9 @@ test('Cofres cooperativos: llave compartida, apertura única, elecciones separad
  assert(!a.open(chest));assert.equal(s.keys.rare,0);s.keys.rare=1;assert(a.open(chest));assert.equal(s.keys.rare,0);assert(!a.open(chest));
  const elapsed=s.elapsed,x=sim.players[0].x,id=a.pending.id;assert(!a.action(0,'choose',id,0),'No elegir antes de abrir');
  for(let i=0;i<17;i++)sim.tick(.04,[{x:1,y:0},{}]);assert.equal(s.elapsed,elapsed);assert.equal(sim.players[0].x,x);
- const item=a.pending.item;sim.players[0].hp=40;assert(!a.action(1,'choose',id+1,0));assert(!a.action(1,'choose',id,99));assert(a.action(0,'choose',id,0));
- assert(P.Loot.items[item].consumable?sim.players[0].hp>40:sim.players[0].equipment===item);
- assert(a.action(1,'choose',id,1));assert(!a.pending);assert.equal(sim.players[1].equipment,undefined);assert(!a.action(0,'choose',id,0));
+ const item=a.pending.options[0][0].id;sim.players[0].hp=40;assert(!a.action(1,'choose',id+1,0));assert(!a.action(1,'choose',id,99));assert(a.action(0,'choose',id,0));
+ assert(sim.players[0].dotaItems.includes(item.split(':')[2]));
+ assert(a.action(1,'choose',id,1));assert(!a.pending);assert.equal(sim.players[1].equipment,undefined);assert.equal(sim.players[1].dotaItems.length,1);assert(!a.action(0,'choose',id,0));
  sim.tick(.04,[{},{}]);assert(s.elapsed>elapsed);assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));
 });
 test('Evento cooperativo: cualquiera inicia, defensa alternada, curación de ambos y premio irrepetible',()=>{
@@ -71,7 +71,7 @@ test('Salas reales: código privado, máximo dos, autoridad, reconexión, limpie
   a.send({type:'activity',action:'choose',id:rewardA.pending.id,choice:0});await stateUntil(a,m=>m.pending?.applied[0]);assert(sim.activities.pending);
   b.send({type:'activity',action:'choose',id:rewardB.pending.id,choice:1});await stateUntil(b,m=>m.pending===null);assert(!sim.activities.pending);
   a.send({type:'activity',action:'choose',id:rewardA.pending.id,choice:0});assert.equal((await a.receive('error')).type,'error');
-  a.send({type:'input',x:999,y:0});assert.match((await a.receive('error')).message,/Movimiento/);const before=sim.players[0].x;a.send({type:'input',x:1,y:0,hp:9999});await new Promise(r=>setImmediate(r));app.tick();assert(sim.players[0].x<=before+9);assert.equal(sim.players[0].hp,95);
+  a.send({type:'input',x:999,y:0});assert.match((await a.receive('error')).message,/Movimiento/);const before=sim.players[0].x;a.send({type:'input',x:1,y:0,hp:9999});await new Promise(r=>setImmediate(r));app.tick();assert(sim.players[0].x<=before+9);assert.equal(sim.players[0].hp,sim.players[0].maxHp);
   const disconnected=once(app.rooms.get(joined.code).members[1].ws,'close');b.ws.close();await disconnected;const time=sim.P.state.elapsed;app.tick();assert.equal(sim.P.state.elapsed,time,'Pausar sala con compañero desconectado');
   const resumed=await connect();resumed.send({type:'resume',protocol:2,code:joined.code,token:bj.token});assert.equal((await resumed.receive('joined')).slot,1);app.tick();assert(sim.P.state.elapsed>time);
   const intruder=await connect();intruder.send({type:'resume',protocol:2,code:joined.code,token:'bad'});assert.equal((await intruder.receive('error')).type,'error');

@@ -137,7 +137,7 @@ La fama recogida llena la barra de experiencia. El primer umbral es 6; los sigui
 - +50% de radio para recoger fama.
 - +20% de alcance de habilidad.
 
-Las mejoras de combate pertenecen a esa partida. No hay árbol permanente de mejoras, economía ni tienda implementados.
+Estas mejoras de combate pertenecen a esa partida. Las subidas de nivel ofrecen habilidades, sus evoluciones, combos y pasivas de estadísticas; no incluyen equipo Dota.
 
 ## Escenarios y terreno
 | Mapa | Aspecto | Encuentro opcional |
@@ -178,19 +178,19 @@ El suelo del combate usa texturas extraídas de los fondos originales y caminos 
 ## Cajas, cofres y objetos
 - Las cajas tienen 55 de vida y se pueden atacar incluso sin enemigos cercanos. Al romperse dejan curación de 18 puntos y 3 de fama; además tienen un 70% de probabilidad de dejar 5 monedas. Una caja rota no vuelve a dar botín.
 - Los cofres se distribuyen aleatoriamente por sectores durante la exploración. Se abren al permanecer quieto a menos de 75 unidades durante 1,8 segundos. Alejarse o moverse reinicia la apertura; las pantallas de pausa o selección detienen el progreso.
-- Un cofre común revela un objeto y ofrece usarlo/equiparlo o conservar lo que llevas. Solo se equipa un accesorio; el reemplazo retira el efecto anterior y conserva las mejoras de nivel.
+- Los cofres de exploración entregan monedas garantizadas y tres opciones personales; se elige una. El equipo Dota ocupa cuatro espacios, sin duplicar familias. Una evolución reemplaza su versión previa en el mismo espacio.
 - Emoliente: curación instantánea del 35% de vida máxima, sin superar el máximo. No ocupa el hueco de equipo.
-- Imán: +60% de radio de recogida. Chaleco: -20% de daño recibido por contacto, jefes y proyectiles. Batería externa: -15% de recarga entre ataques.
+- Imán, chaleco y batería antiguos dejan de aparecer en cofres y tiendas. Las mejoras sencillas de estadísticas pertenecen a las subidas de nivel. Las reliquias exclusivas de minijefes conservan su espacio y recompensa propios.
 - Al vencer al jefe del portal, se vuelve al mapa y aparece un único cofre dorado. Al abrirlo se elige la recompensa especial del jefe. El premio ya no aparece de forma inmediata al vencer. El reloj del mapa continúa hasta detenerse en la pantalla de elección.
-- La fama, monedas, equipo, estado de cajas y cofres pertenecen a la partida; se reinician al comenzar otra. Esta versión no incluye una tienda ni guardado permanente de monedas.
+- La fama, monedas, equipo, estado de cajas y cofres pertenecen a la partida; se reinician al comenzar otra. Las monedas de exploración se gastan en las tiendas de esa partida; no son el saldo permanente del menú ni se convierten en él.
 - El HUD muestra monedas, objeto equipado e icono, y avisos breves de recogida. Los cofres abiertos permanecen visibles, pero vacíos. No hay cofres ni obstáculos del mapa de origen dentro de la arena del portal.
 
 ## Objetos de Dota 2 durante la partida
-Los objetos aparecen como opciones entre las tres cartas reveladas al subir de nivel y duran solo esa partida. Inventario separado del accesorio de cofres: cuatro espacios, sin duplicados. Elegir una evolución reemplaza la versión base en el mismo espacio; los objetos no se compran ni se guardan entre partidas. Las cartas base comienzan desde nivel 2; Magic Wand puede aparecer desde nivel 4 y las evoluciones de botas y Blink Dagger desde nivel 5. La selección usa rareza para ponderar la aparición.
+El equipo Dota se obtiene de cofres y tiendas, nunca de las cartas de subida de nivel. Cuatro espacios por jugador; sin duplicados de familia. Las evoluciones sustituyen su requisito en el mismo espacio, no saltan pasos y conservan sus niveles mínimos: Magic Wand desde 4; botas, Blink y mejoras iniciales de anillo/arma desde 5; Heart of Tarrasque y Crystalys desde 8; Daedalus desde 11. Los básicos pueden salir del primer cofre desde nivel 1. Equipo, cargas y recargas se reinician en cada partida.
 
-Familias iniciales: Boots of Speed → Phase Boots, Power Treads, Tranquil Boots, Arcane Boots o Boots of Travel; Magic Stick → Magic Wand; Blink Dagger → Swift Blink, Arcane Blink u Overwhelming Blink. Las ramas son excluyentes dentro de cada familia. Efectos adaptados: botas mejoran velocidad, cadencia, curación fuera de combate o alcance de recogida; Magic Stick/Wand acumula cargas al recibir daño y las convierte automáticamente en curación al bajar de vida; Blink y sus evoluciones realizan un escape automático al sufrir un golpe fuerte con poca vida, con recarga. Son adaptaciones propias, no una reproducción exacta de las estadísticas de Dota 2. El inventario individual se muestra en el HUD; el cooperativo aún no incorpora estos objetos.
+Familias: botas y sus cinco ramas; Magic Stick → Magic Wand; Ring of Health → Ring of Tarrasque → Heart of Tarrasque; Blades of Attack → Broadsword → Crystalys → Daedalus; Blink Dagger → Swift Blink, Arcane Blink u Overwhelming Blink. Sus efectos son adaptaciones del juego. Blink es activo: apunta y pulsa E o su icono; respeta obstáculos y recarga. En cooperativo el servidor valida adquisición, compras, activación, regeneración y recarga para cada jugador.
 
-El catálogo se consulta desde **Habilidades → Objetos de Dota**. Muestra cada objeto base, sus ramas disponibles, efectos adaptados, rareza y nivel mínimo de aparición; no es necesario iniciar una partida para revisar las evoluciones. El catálogo y las cartas de subida de nivel presentan los iconos originales de Dota 2 desde el CDN oficial de Valve; si el recurso no carga, muestran el sprite pixel art propio correspondiente.
+El catálogo **Habilidades → Objetos de Dota** muestra requisitos y efectos. Las cartas de cofre utilizan los iconos de Valve con respaldo pixel art si la imagen no carga. Las pasivas sencillas del nivel no ocupan espacios de equipo.
 
 
 ## Poderes de personajes · primera versión
@@ -249,7 +249,11 @@ Plaza de Armas incorpora reflejos y gotas animadas en la fuente, palomas pequeñ
 Al terminar los 1,8 segundos de apertura, el mundo se detiene durante 0,65 segundos para mostrar la tapa abriéndose en cuatro poses y destellos. Después aparece la elección del objeto; el premio solo se concede una vez. Las cajas muestran grietas tras recibir daño y una animación breve de tablas rotas al destruirse. Los iconos del HUD y del premio comparten el atlas de objetos.
 
 ## Rarezas de cofres
-Los cofres comunes son de madera, los raros azules y los legendarios violetas/dorados. Se distribuyen por sectores según las reglas de exploración siguientes. Además del color se muestran símbolo y nombre. Cada cofre entrega solo objetos de su nivel. Emoliente cura 35/60/100% de vida máxima; imán aumenta alcance 60/100/160%; chaleco reduce daño 20/30/40%; batería reduce recarga 15/28/40%. Solo hay un accesorio equipado y reemplazarlo conserva mejoras de nivel. Los cofres de jefe siguen separados y mantienen su recompensa especial. Apertura animada y premio único en todas las rarezas.
+Los cofres de exploración entregan 15 monedas (común), 35 (raro) u 80 (legendario), una sola vez al abrirse, y tres opciones. Común admite equipo común; raro admite común/raro; legendario admite cualquier rareza, incluidas épica y legendaria. Se prioriza la mayor rareza compatible disponible, sin saltar inventario, familia, requisito previo ni nivel de evolución. Por eso un cofre de mayor rareza puede completar sus tres cartas con equipo menor si todavía no se cumplen requisitos superiores.
+
+Si faltan opciones de equipo, se completa con vender el botín (otro importe igual al garantizado), recuperar 35% de vida máxima, experiencia (8/20/40 según cofre cuando la vida ya está completa) o provisiones (mitad del importe y mitad de la experiencia, redondeadas hacia arriba). No se obliga a destruir un equipo ni se amplía el límite de cuatro espacios. El equipo existente puede evolucionar aun con el inventario lleno.
+
+En cooperativo las monedas garantizadas son de equipo y se suman una vez por cofre; cada jugador elige una de sus tres opciones. La sala espera a ambos y rechaza elecciones repetidas o fuera de rango. Los cofres dorados de portal y las reliquias exclusivas de minijefes mantienen sus recompensas especiales.
 
 
 ## Audio
@@ -365,7 +369,7 @@ El menú espera las caminatas necesarias antes de iniciar una partida individual
 La patada cuerpo a cuerpo de La G5 conserva su pose de ataque incluso en movimiento; los disparos mantienen la caminata y sus efectos de arma.
 
 ## Mercado y cofres impostores
-El vendedor aparece en los tres mapas desde el segundo 45, cada 90 segundos, durante 45 segundos de reloj del mapa. Se sitúa en un punto seguro cercano. El HUD indica su dirección, distancia y tiempo restante, y permite hablar a 110 unidades. No aparece en arenas, laboratorio ni durante el jefe final. Cada visita renueva ocho ofertas de una unidad: emoliente (20), imán/chaleco/batería comunes (35), imán/batería raros (70), llave rara (40) y legendaria (100). No se cobra con saldo insuficiente, fuera de rango, después de expirar, por stock agotado, equipo idéntico o curación con vida completa. Cerrar no compra nada. En individual el menú pausa el combate; en cooperativo el compañero y el servidor continúan, las monedas/stock son compartidos y el objeto equipa al comprador.
+El vendedor aparece en los tres mapas desde el segundo 45, cada 90 segundos, durante 45 segundos de reloj del mapa. Se sitúa en un punto seguro cercano. El HUD indica su dirección, distancia y tiempo restante, y permite hablar a 110 unidades. No aparece en arenas, laboratorio ni durante el jefe final. El ambulante ofrece cuatro productos de una unidad: emoliente (20), dos básicos Dota comunes rotativos (35 cada uno) y una llave rara (40). Cada tercera visita exitosa es El Hueco: una llave legendaria (100) y hasta tres objetos raros o evoluciones elegibles, con precios de 70/120/180 según rareza rara/épica/legendaria. Solo hay un puesto activo; El Hueco usa la misma duración y regla de proximidad. El catálogo se genera al llegar y no se renueva abriendo/cerrando la tienda. No se cobra con saldo insuficiente, fuera de rango, después de expirar, por stock agotado, familia ya equipada, falta de espacio, requisito de evolución no cumplido o curación con vida completa. Cerrar no compra nada. En individual el menú pausa el combate; en cooperativo el compañero y el servidor continúan, las monedas/stock son compartidos y el objeto equipa al comprador.
 
 El 12% de cofres no iniciales se determina como impostor mediante la semilla de la partida. Se despierta al acercarse a menos de 100 unidades, sin necesidad de llave, siempre dentro del límite de enemigos. Usa movimiento, daño y colisiones del combate y se conserva al alejarse. Al morir deja un cofre purificado de la misma rareza, con apertura gratuita y premio único; se conserva al salir de su sector. Los comunes iniciales y los cofres de jefe no son impostores. En cooperativo se despierta una sola vez para ambos y su premio permite la elección individual existente.
 
