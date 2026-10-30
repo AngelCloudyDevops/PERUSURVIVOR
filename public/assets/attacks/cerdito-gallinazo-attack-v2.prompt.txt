@@ -1,0 +1,3 @@
+Built-in ImageGen, identity-preserve edit with transparent output.
+
+References: Cerdito attack atlas v1 for identity and proportions, Cerdito Gallinazo v1 for the original action, and Kingteka Gallinazo v2 for the six-phase timing. Produce exactly six full-body Cerdito figures in a 3x2 grid: guard, feather gathering, compressed vortex, forward release, large black gallinazo climax, and recovery. Preserve the pink pig head, floppy ears, tattoos, black shirt, blue jeans, and white sneakers. Keep effects connected to the hands, remove detached feathers, and use genuine transparent alpha with no text, borders, ground, shadows, crop, or overlap.

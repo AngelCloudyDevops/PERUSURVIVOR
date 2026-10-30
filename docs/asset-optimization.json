@@ -71,6 +71,18 @@
       "quality": 62
     },
     {
+      "source": "assets/attacks/cerdito-gallinazo-attack-v2.png",
+      "output": "assets/attacks/cerdito-gallinazo-attack-v2.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 2425889,
+      "optimizedBytes": 350050,
+      "sourceSha256": "dd68d48f7b3fc3bfc0ab2fdf6c69b10ad71231cc41c62eecf30defd139690767",
+      "outputSha256": "e787298ea89df484f29b8767bf72125a3e62611e139e18120d569b6aa616d0f2",
+      "rgbaSha256": "bf90560a8482320d274ceb8bebecf6091b4ce68b929911f0619edc8160d6350b",
+      "quality": 88
+    },
+    {
       "source": "assets/attacks/cerdito-golpe-attack-v1.png",
       "output": "assets/attacks/cerdito-golpe-attack-v1.webp",
       "width": 176,
@@ -689,6 +701,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 94949341,
-  "optimizedBytes": 39161234
+  "originalBytes": 97375230,
+  "optimizedBytes": 39511284
 }
