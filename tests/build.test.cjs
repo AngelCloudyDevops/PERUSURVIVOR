@@ -60,7 +60,15 @@ test('La selección de causa, mapa y modo permanece en el flujo moderno hasta in
  assert.match(reference,/cause-card-inner/);assert.match(reference,/ILUSTRACIÓN/);assert.doesNotMatch(reference,/PASA EL MOUSE/);assert.match(reference,/cause-card-version/);assert.match(reference,/PIXEL/);assert.match(reference,/cristorata-character-fullart-v1\.webp/);assert.match(reference,/cuy-character-fullart-v1\.webp/);assert.match(reference,/paloma-character-fullart-v1\.webp/);assert.match(reference,/kingteka-character-fullart-v1\.webp/);assert.match(reference,/chamelin-character-fullart-v1\.webp/);assert.match(reference,/makanaky-character-fullart-v1\.webp/);assert.match(reference,/sideral-character-fullart-v1\.webp/);assert.match(reference,/cirilo-character-fullart-v1\.webp/);assert.match(reference,/characterIllustration\(c\)/);assert.match(reference,/characterArtPosition\(c\)/);assert.match(reference,/--art-y/);
  assert.match(reference,/scheduleCharacterArtPreload\(\)/);assert.match(reference,/preloadCharacterArtQueue\(sources,P\.AssetPolicy\.concurrentImages\(\)\)/);assert.match(reference,/P\.AssetPolicy\?\.allowBulkPreload/);assert.match(reference,/P\.AssetPolicy\.queue/);assert.match(reference,/P\.CardGallery\?\.preload/);
  for(const selector of ['.cause-card-shell','.cause-card-art','.cause-card-frame','.cause-card-large'])assert(css.includes(selector),selector);
- for(const selector of ['#hub-play-mode','.hub-character-arrow','#hub-quick-loadout','#hub-play-context'])assert(css.includes(selector),selector);
+ for(const selector of [
+  '#hub-play-mode',
+  '.hub-character-stage',
+  '.hub-character-change',
+  '#hub-quick-loadout',
+  '#hub-play-context',
+ ])assert(css.includes(selector),selector);
+ assert.match(complete,/this\.button\('',\(\)=>this\.chooseCause\(\),'hub-character-stage'\)/);
+ assert.doesNotMatch(complete,/hub-character-arrow|moveHubCause/);
  for(const selector of ['.character-card-inspection-tilt','.character-card-inspection-inner','.character-card-inspection-glare','.character-card-inspection-back','.character-inspection-controls'])assert(css.includes(selector),selector);
  for(const selector of ['.character-identity-grid','.character-identity-item','.character-identity-tags'])assert(css.includes(selector),selector);
  assert.match(reference,/IDENTIDAD DE COMBATE/);assert.match(reference,/ETIQUETAS DEL KIT/);assert.match(reference,/base '\+values\.get\('Canal principal'\)/);
