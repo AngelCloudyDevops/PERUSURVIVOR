@@ -53,6 +53,8 @@ Carga Q separada `ultimate.sideralCharge`: normal +5, pesado +10, minijefe +20, 
 
 La carta Q usa ilustración exclusiva de la transformación: `assets/cards/sideral-lagarto-ultimate-fullart-v1.webp` (1024×1536, WebP de 428332 bytes). Conserva el marco `fire` de las otras ultis; muestra cuerpo reptiliano, cola, auriculares y camiseta roja, aliento verde y Lima nocturna. El atlas jugable transparente `assets/characters/sideral-lagarto-motion-v2.webp` (768×384) traslada ese diseño a ocho poses completas; su PNG maestro y prompt reproducible quedan archivados pero no se distribuyen. Huevo, grietas, rodamiento, aliento, partículas e impactos se dibujan como capas reactivas para respetar dirección y movimiento, sin fragmentar ni estirar el atlas humano. Movimiento reducido elimina oscilación, giro cosmético y partículas secundarias sin cambiar daño ni tiempos.
 
+Durante el aliento, desplazarse conserva siempre los cuadros de caminata del Lagarto; la pose corporal completa de disparo se reserva para cuando está quieto. El cono y los impactos comunican el ataque mientras avanza, evitando congelar las patas y producir deslizamiento visual. La marcha alterna ambos apoyos mediante cuadros de contacto intermedios y completa un ciclo cada `3π` de fase recorrida, la misma cadencia por distancia del atlas general.
+
 ## Cobertura visual del arsenal
 
 Las cartas de subida de nivel ya no usan la composición genérica. `P.UI.upgradeArt` resuelve una ilustración vertical para cada técnica y cambia a la versión evolucionada únicamente en la carta de evolución:
