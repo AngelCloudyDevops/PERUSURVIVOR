@@ -769,3 +769,6 @@ Cerdito dejó de ocupar un espacio independiente del roster. Al leer un guardado
 ## Dominio de Kingteka
 
 `src/systems/kingteka-domain.js` mantiene Santuario del Reino Animal separado de la ulti Gallinazo. En individual recibe R desde `runtime.js`; en cooperativo la petición viaja al servidor y `backend/simulation.cjs` ejecuta y serializa el mismo estado autoritativo. Ambas habilidades comparten la carga de ulti, así que solo una puede activarse por ciclo.
+
+## Presentación del selector de causas
+`ReferenceMenus.openCharacterViewer` mantiene dos caras de la carta y separa las acciones en `character-viewer-actions`, fuera del panel desplazable. `idleFrame` reutiliza el ciclo del menú para dibujar únicamente la cara activa; `drawAttackPreview` utiliza Sprites y FX con un reloj visual local, sin entidades de combate ni escrituras sobre P.state. El cierre libera la referencia al canvas. La preferencia de movimiento reducido conserva una pose estática sin proyectiles animados.
