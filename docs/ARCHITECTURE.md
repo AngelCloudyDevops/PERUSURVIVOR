@@ -925,3 +925,8 @@ Los ataques visuales de Makanaky se resuelven en `MakanakyPlayerArt`, `PlayerAtt
 ## Presentación de ofertas del mercado
 
 `Market.offerDetails` deriva la ficha y motivos de bloqueo del catálogo, jugador, nivel, saldo y stock actuales; la compra usa `purchaseOffer` y conserva `Market.buy`/Activities como autoridad. `DotaItems.options` consulta sin crear inventario. `UI.show` limpia el modo visual `merchant-shop` al abrir otro diálogo. `Market.show` reconstruye tarjetas solo cuando cambian datos de compra, conserva despliegues de evolución y actualiza el reloj por separado; la regeneración parcial no invalida el render. En cooperativo se envía únicamente el ID de oferta y se espera el snapshot para reflejar la compra.
+
+
+## Vista breve de cofres
+
+`ui/loot-choices.js` se añade después del catálogo Dota y atiende únicamente `UI.show(..., choiceKind="loot")`. Resume efectos a partir de datos, deriva comparaciones del objeto previo y conserva la descripción completa en Info. Reutiliza la limpieza de diálogos de UI.show con un modo interno distinto, mantiene los botones en upgradeChoices y bloquea dobles selecciones antes de ejecutar la acción original. Loot y Coop pasan la recompensa estructurada para representar suministros sin analizar textos; la autoridad de adquisición permanece en Loot/Activities. Las cartas de nivel y las recompensas especiales conservan sus vistas.

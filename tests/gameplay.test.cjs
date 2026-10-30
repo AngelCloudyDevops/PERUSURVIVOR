@@ -113,7 +113,7 @@ for(const map of P.Maps.catalog){
  const crate=P.Terrain.props.find(o=>o.kind==='crate');P.Terrain.damage(crate,999);const drops=s.gems.length;assert(s.gems.some(g=>g.kind==='heal'));assert(s.gems.some(g=>!g.kind));P.Terrain.damage(crate,999);assert.equal(s.gems.length,drops,'No duplicar botín de una caja destruida');
  const chest=P.Loot.chests.find(c=>c.rarity==='common'&&!c.impostor);s.player.x=chest.x;s.player.y=chest.y;s.player.moving=true;P.Loot.tick(1);assert.equal(chest.progress,0);
  s.player.moving=false;P.Loot.tick(.9);assert(!chest.opened);s.player.x+=150;P.Loot.tick(.1);assert.equal(chest.progress,0);
- s.player.x=chest.x;s.player.y=chest.y;P.Loot.tick(1.81);assert.equal(s.mode,'loot-opening');P.Loot.advance(.7);assert(chest.opened);assert.equal(s.mode,'item');P.UI.skipUpgradeReveal();elements.get('#overlay').children.filter(c=>c.tag==='button')[0].onclick();assert.equal(s.mode,'play');assert.equal(s.player.dotaItems.length,1);assert(!s.player.equipment);P.Loot.open(chest);assert.equal(s.mode,'play','Un cofre abierto no vuelve a dar objetos');
+ s.player.x=chest.x;s.player.y=chest.y;P.Loot.tick(1.81);assert.equal(s.mode,'loot-opening');P.Loot.advance(.7);assert(chest.opened);assert.equal(s.mode,'item');assert.equal(P.UI.upgradeChoices.length,3);P.UI.upgradeChoices[0].onclick();assert.equal(s.mode,'play');assert.equal(s.player.dotaItems.length,1);assert(!s.player.equipment);P.Loot.open(chest);assert.equal(s.mode,'play','Un cofre abierto no vuelve a dar objetos');
  P.Game.start();assert(P.Loot.chests.every(c=>!c.opened));assert.equal(s.coins,0);
  console.log('OK botín de mapa: '+map.name)
 }

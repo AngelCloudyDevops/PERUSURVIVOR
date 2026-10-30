@@ -1,0 +1,41 @@
+'use strict';
+// Vista breve de recompensas; las reglas de adquisición siguen en Loot/DotaItems.
+P.LootChoices={
+ number(n){return String(Math.round(n*100)/100).replace('.',',')},
+ percent(n){return this.number(n*100)+'%'},
+ effect(item,family){
+  const mods=item.mods||{},parts=[];if(mods.power)parts.push('+'+this.percent(mods.power-1)+' daño');if(mods.speed)parts.push('+'+this.percent(mods.speed-1)+' velocidad');if(mods.rate)parts.push('−'+this.percent(1-mods.rate)+' recarga básica');if(mods.maxHp)parts.push('+'+this.percent(mods.maxHp-1)+' vida');if(mods.magnet)parts.push('+'+this.percent(mods.magnet-1)+' recolección');
+  if(item.regen)parts.push('+'+this.number(item.regen)+' vida/s');if(item.critChance)parts.push(this.percent(item.critChance)+' crítico ×'+this.number(item.critMultiplier));
+  if(family==='stick')return 'Con 4+ cargas y poca vida: cura '+this.percent(item.heal)+' por carga.';
+  if(family==='blink')return 'Salto '+item.distance+' u'+(item.haste?' + velocidad':item.arcane?' + adelanta ataque':item.blast?' + empuje':'')+' · E cada '+item.cooldown+' s.';
+  if(family==='boots'&&item.heal)parts.push('cura tras 5 s sin daño');
+  if(item.physical)parts.push('−'+this.percent(item.physical)+' daño físico recibido');if(item.special)parts.push('−'+this.percent(item.special)+' daño especial recibido');if(item.reflect)parts.push('devuelve '+this.percent(item.reflect));if(item.aura)parts.push('aura '+this.percent(item.aura)+' para aliados');
+  if(item.vamp){parts.push('roba '+this.percent(item.vamp)+' de vida');if(item.madness)parts.push('ráfaga rápida; recibes +10% daño');else if(item.emergency)parts.push('más robo con poca vida');else parts.push('máx. 0,5% de vida/s')}
+  if(item.echo)parts.push('golpe extra cada '+item.echo+' impactos');if(item.glimmer)parts.push('escudo con poca vida');if(item.pipe)parts.push('escudo para aliados');if(item.bkb)parts.push('limpia ralentizaciones');
+  if(item.pierceEvery)parts.push('golpe especial cada '+item.pierceEvery+' impactos');if(item.chain)parts.push('rayos a '+item.chain+' blancos cada 6 impactos');if(item.bash)parts.push('aturde '+this.number(item.bash)+' s (jefes: lentitud)');if(item.bashPower)parts.push('+'+this.percent(item.bashPower)+' daño extra');if(item.midas)parts.push('+10% monedas sueltas','fama extra por derrotas');return parts.join(' · ')
+ },
+ changes(old,item){
+  const percent=n=>this.percent(n),number=n=>this.number(n),specs=[['Daño',x=>(x.mods?.power||1)-1,percent],['Crítico',x=>x.critChance||0,percent],['Velocidad',x=>(x.mods?.speed||1)-1,percent],['Recarga',x=>(x.mods?.rate||1)-1,percent],['Vida',x=>(x.mods?.maxHp||1)-1,percent],['Regenera',x=>x.regen||0,n=>number(n)+'/s'],['Def. física',x=>x.physical||0,percent],['Def. especial',x=>x.special||0,percent],['Robo de vida',x=>x.vamp||0,percent],['Salto',x=>x.distance||0,n=>number(n)+' u'],['Espera',x=>x.cooldown||0,n=>number(n)+' s'],['Cargas',x=>x.charges||0,number],['Aturde',x=>x.bash||0,n=>number(n)+' s']];
+  return specs.filter(([,read])=>read(old)!==read(item)).slice(0,2).map(([label,read,format])=>label+' '+format(read(old))+' → '+format(read(item)))
+ },
+ model(option,p=P.state.player){
+  const reward=option.reward||option.card||{},id=reward.id||'',parts=id.split(':'),dota=parts[0]==='dota',family=dota?parts[2]:null,item=dota?P.DotaItems.data(parts[3]||family):null,evolution=dota&&parts[1]==='evolve',previous=evolution?P.DotaItems.data(item?.from||family):null,owned=dota?P.DotaItems.current(p,family):null,compatible=!dota||P.DotaItems.canAcquire(p,id),rarity=reward.rarity||'common';
+  let effect=item?this.effect(item,family):option.description||'',name=option.title,icon=reward.icon||'coin';
+  if(id==='chest:coins'){name='Monedas';effect=reward.amount?'+'+reward.amount+' monedas extra':effect}
+  if(id==='chest:recover'){name=reward.kind==='heal'?'Curación':'Fama';effect=reward.kind==='heal'?'Recupera '+this.percent(reward.amount)+' de vida':reward.amount?'+'+reward.amount+' de fama':effect;icon=reward.kind==='heal'?'heart':'star'}
+  if(id==='chest:provisions'){name='Provisiones';effect=reward.coins?'+'+reward.coins+' monedas · +'+reward.xp+' fama':effect;icon='provisions'}
+  return {id,name,effect,full:option.description||effect,icon,dota,rarity,evolution,compatible,label:evolution?(owned===previous?.id?'Mejora '+previous.name:'Requiere '+(previous?.name||'objeto previo')):dota?'Nuevo':'',changes:evolution&&previous?this.changes(previous,item):[],ready:evolution&&compatible}
+ },
+ icon(view){
+  const make=(tag)=>document.createElement(tag);if(view.dota){const image=make('img');image.src=P.DotaItems.iconUrl(view.icon);image.alt=view.name;image.width=88;image.height=88;image.decoding='async';image.onerror=()=>{const fallback=make('canvas');P.UI.pixelIcon(fallback,view.icon);fallback.setAttribute('aria-label',view.name);image.replaceWith(fallback)};return image}
+  const canvas=make('canvas');canvas.width=64;canvas.height=64;canvas.setAttribute('aria-label',view.name);const ctx=canvas.getContext('2d');if(view.icon==='heart')P.UI.pixelIcon(canvas,'heart');else{ctx.fillStyle='#122536';ctx.fillRect(8,8,48,48);ctx.fillStyle='#efc761';if(view.icon==='coin'){ctx.beginPath();ctx.arc(32,32,19,0,Math.PI*2);ctx.fill();ctx.fillStyle='#8b5f24';ctx.fillRect(29,20,6,24)}else if(view.icon==='provisions'){ctx.fillRect(13,20,38,31);ctx.fillStyle='#805d35';ctx.fillRect(29,20,6,31);ctx.fillStyle='#ffeab0';ctx.fillRect(25,29,14,5)}else{ctx.beginPath();for(let i=0;i<10;i++){const a=i*Math.PI/5-Math.PI/2,r=i%2?9:22;ctx.lineTo(32+Math.cos(a)*r,32+Math.sin(a)*r)}ctx.closePath();ctx.fill()}}return canvas
+ },
+ show(title,description,options){
+  P.UI.show(title,description,[],'loot-layout');P.UI.choiceKind='loot';const el=P.$('#overlay');el.classList.add('loot-choice');el.dataset.phase='choose';const make=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node},head=make('div',undefined,'loot-choice-head'),copy=make('div');copy.append(make('small','ELIGE 1','loot-choice-kicker'),make('h2',title));head.append(copy,make('strong',description,'loot-choice-coins'));const meta=make('p','Equipo '+(P.state.player.dotaItems||[]).length+'/'+P.DotaItems.capacity,'loot-choice-meta'),grid=make('div',undefined,'loot-choice-grid');el.replaceChildren();el.append(head,meta,grid);
+  for(const option of options.filter(o=>o.card)){const view=this.model(option),card=make('article',undefined,'loot-option'),rarity=({common:'Común',rare:'Raro',epic:'Épico',legendary:'Legendario'})[view.rarity]||view.rarity;card.dataset.rarity=view.rarity;card.dataset.evolution=String(view.ready);card.append(make('small',rarity,'loot-option-rarity'));const art=make('div',undefined,'loot-option-art');art.append(this.icon(view));card.append(art,make('h3',view.name),make('p',view.effect,'loot-option-effect'));if(view.label)card.append(make('p',view.label,'loot-option-replacement'));
+   if(view.changes.length){const deltas=make('div',undefined,'loot-option-changes');for(const change of view.changes)deltas.append(make('span',change));card.append(deltas)}
+   const info=make('details',undefined,'loot-option-info');info.append(make('summary','Info'),make('p',view.full));card.append(info);const pick=make('button',view.ready?'Evolucionar':'Elegir','upgrade-card loot-option-pick');pick.type='button';pick.disabled=!!option.disabled||!view.compatible;pick.dataset.revealed='true';pick.dataset.rarity=view.rarity;pick.setAttribute('aria-label','Elegir '+view.name+'. '+rarity+'. '+view.effect+'. '+view.label);pick.onclick=()=>{if(P.UI.upgradePicked||pick.disabled)return;P.UI.upgradePicked=true;for(const button of P.UI.upgradeChoices)button.disabled=true;card.dataset.chosen='true';P.Audio.fx(view.ready?'upgrade-evolve':'upgrade-pick');option.action()};P.UI.upgradeChoices.push(pick);P.UI.upgradeOptions.push(option);P.UI.revealedUpgrades.add(P.UI.upgradeChoices.length-1);card.append(pick);grid.append(card)
+  }
+  for(const option of options.filter(o=>!o.card)){const button=make('button',option.title,'loot-choice-leave');button.type='button';button.disabled=!!option.disabled;button.onclick=option.action;el.append(button)}el.hidden=false;P.UI.upgradeChoices.find(x=>!x.disabled)?.focus({preventScroll:true})
+ }
+};
