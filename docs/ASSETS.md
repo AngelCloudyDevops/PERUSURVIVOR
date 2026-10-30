@@ -37,6 +37,10 @@ La Combi, el Gabinete y el Guardián se dibujan mediante rectángulos en una ret
 ## Coberturas de jefe detalladas
 public/assets/arena-cover/cover-atlas-v1.png: atlas original generado con image_gen integrado, tres columnas por dos filas, versiones largas y cortas de barrera de concreto, jardinera colonial y muro inca. Prompt y distribución en prompts.json. El dibujo recorta la silueta alfa y conserva las colisiones anteriores.
 
+## Huaco Renegado v2
+
+`public/assets/minibosses/huaco-v2.png` toma de la fotografía aportada la estatua antropomorfa de cerámica rojiza: cabeza cilíndrica, rostro tallado, cuerpo sentado, base geométrica y objeto tubular frontal. Conserva el acabado cartoon/pixel del juego y las cuatro poses completas exigidas por `P.Minibosses` —reposo, movimiento, ataque y derrota— sobre transparencia real. El navegador carga `huaco-v2.webp`; `huaco-v1` permanece como respaldo histórico y el prompt reproducible está junto al atlas.
+
 ## Compresión de activos
 Los PNG originales se conservan como fuentes. El navegador y el build usan copias WebP; el build omite los PNG que tienen una copia WebP para evitar duplicar el paquete. scripts/optimize-assets.py (Pillow con soporte WebP) genera WebP sin pérdida por defecto; para artes seleccionados puede registrar compresión con pérdida mediante `--quality`. Ejecutar con `--check` verifica las copias y el manifiesto sin regenerarlas. docs/asset-optimization.json guarda dimensiones, calidad, tamaños y SHA-256 de fuentes, salidas y píxeles cuando aplica. Los mapas completos y atlas mantienen su resolución; Campo de Marte usa calidad 95 y los demás fondos conservan los píxeles exactos. Las miniaturas del selector se limitan a 384×256. Las ilustraciones de cartas y la secuencia cinematográfica de Kingteka usan calidad WebP registrada para conservar detalle y mantenerse dentro del límite de despliegue de 64 MiB.
 
