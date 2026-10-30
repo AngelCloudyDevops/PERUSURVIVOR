@@ -445,4 +445,5 @@ module.exports = [
 ,{source:"src/systems/cristorata-kit.js",output:"js/cristorata-kit.js"}
 ,{source:"src/rendering/cristorata-kit-art.js",output:"js/cristorata-kit-art.js"}
 ,{source:"src/systems/dota-equipment.js",output:"js/dota-equipment.js"}
+,{source:"src/ui/loot-choices.js",output:"js/loot-choices.js"}
 ];

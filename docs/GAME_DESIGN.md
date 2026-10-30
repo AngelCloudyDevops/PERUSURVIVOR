@@ -1540,3 +1540,8 @@ El menú Objetos combina categoría y rareza: los filtros actúan juntos, muestr
 ## Consulta de compras del Ambulante y El Hueco
 
 Cada oferta muestra icono, rareza, categoría, funcionamiento, efecto, precio en monedas de la partida y espacio que ocupa. Las evoluciones señalan objeto previo, nivel y sustitución en el mismo espacio; las siguientes ramas se consultan sin comprar. La tarjeta indica los motivos concretos de bloqueo: inventario lleno, familia ya equipada, objeto previo incorrecto, nivel insuficiente, vida completa, monedas faltantes o existencias agotadas. El botón Comprar/Evolucionar es la única acción que adquiere el producto y vuelve a validar la oferta. En cooperativo las monedas y el stock siguen compartidos y la compra se solicita al servidor por ID; la tienda muestra que el compañero sigue jugando. En solitario se conserva la pausa. El reloj visible se actualiza sin reconstruir las tarjetas; la regeneración de vida no recrea la tienda salvo al cambiar la disponibilidad de curación.
+
+
+## Comparación breve de recompensas de cofre
+
+Las tres opciones aparecen visibles tras abrir el cofre, con icono, rareza y efecto breve. Una evolución identifica el objeto equipado que reemplaza y compara hasta dos valores de su versión previa. El saldo garantizado y el número de espacios se muestran una sola vez; los detalles completos quedan en Info. Las recompensas de monedas, curación, fama y provisiones tienen iconos y etiquetas propios. Elegir se aplica una sola vez, sin un segundo revelado ni espera de animación; se mantienen las recompensas, elegibilidad, monedas compartidas y elecciones individuales del cooperativo.
