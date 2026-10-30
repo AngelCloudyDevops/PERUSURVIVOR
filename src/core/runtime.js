@@ -12,7 +12,7 @@ P.AssetPolicy={
 };
 P.Core=(()=>{
 const canvas=P.$('#game'),ctx=canvas.getContext('2d'),keys={};let width,height,touch=null,mouseAim=null,domainPeekTimer=null,domainPeekHeld=false;
-function resize(){width=innerWidth;height=innerHeight;const d=Math.min(devicePixelRatio||1,2);canvas.width=width*d;canvas.height=height*d;ctx.setTransform(d,0,0,d,0,0);ctx.imageSmoothingEnabled=false}
+function resize(){width=innerWidth;height=innerHeight;const d=Math.min(devicePixelRatio||1,P.AssetPolicy.constrained()?1.5:2);canvas.width=width*d;canvas.height=height*d;ctx.setTransform(d,0,0,d,0,0);ctx.imageSmoothingEnabled=false}
 function release(){touch=null;P.$('#stick').hidden=true}
 function direction(){if(touch)return {x:touch.dx,y:touch.dy};return {x:(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),y:(keys.s||keys.arrowdown?1:0)-(keys.w||keys.arrowup?1:0)}}
 function updateMouseAim(e){if(e.pointerType!=='mouse'||P.state.mode!=='play'||!P.state.player)return;const rect=canvas.getBoundingClientRect(),zoom=P.Terrain?.zoom||1,p=P.state.player,x=(p.x-(P.Terrain?.cameraX??p.x))*zoom+width/2,y=(p.y-(P.Terrain?.cameraY??p.y))*zoom+height/2,dx=(e.clientX-rect.left)*width/rect.width-x,dy=(e.clientY-rect.top)*height/rect.height-y,length=Math.hypot(dx,dy);if(length>12)mouseAim={x:dx/length,y:dy/length}}
