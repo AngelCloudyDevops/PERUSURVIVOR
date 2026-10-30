@@ -87,6 +87,8 @@ test('Laboratorio, Balance y Admin comparten la estructura visual del lobby sin 
  assert.match(css,/#reference-laboratory #test-bench\.bench-reference/);
  assert.match(css,/#test-bench\[hidden\]\{display:none!important\}/,'El panel respeta su permiso propio');
  assert.doesNotMatch(css,/data-account-admin="false"\]\s+#test-bench/,'Una concesión de laboratorio no debe exigir rol administrador');
+ assert.match(css,/#lab-tools\{[^}]*bottom:94px;[^}]*z-index:32/,'Los controles del laboratorio deben quedar sobre el dock de combate');
+ assert.match(css,/@media\(max-width:600px\)\{#lab-tools\{bottom:142px;/,'En móvil el laboratorio reserva el alto de las dos filas del dock');
  assert.doesNotMatch(css,/(?:^|\n)#test-bench\.bench-reference\{/,'El estilo de pantalla completa no debe seguir al laboratorio durante una partida');
  assert.match(css,/#admin-dialog,#balance-dialog/);
  assert.match(css,/#hub-tools/);assert.match(css,/\.hub-tools-menu/);

@@ -110,6 +110,8 @@ El laboratorio se monta como una pantalla propia de ReferenceMenus y conserva el
 
 `TestBench.run()` separa la espera de recursos (`WalkArt.readyForStart`) de la transición efectiva (`starting` y `switching`). Mientras espera deshabilita el botón y conserva una única continuación; cuando los sprites están listos ejecuta el mismo arranque sin exigir otro toque. `finally` restablece siempre el estado del botón y el bloque de error devuelve al panel con diagnóstico visible. El overlay global usa una capa superior a `reference-panel` para que estos avisos no queden ocultos en móvil.
 
+Durante una prueba, `#lab-tools` ocupa una franja propia por encima de `#combat-dock`: 94 px desde la base en escritorio y 142 px en móvil, con una capa superior a los controles de ataques. Así Reiniciar, Cambiar, Diagnóstico, Curar y Salir reciben el toque real sin tapar ni desactivar las armas del personaje.
+
 TestBench conserva `minionMode` únicamente durante las pruebas de desarrollo. Entities limita el golpe final de minions comunes cuando el modo es inmortal y notifica sus derrotas para programar una reaparición a los 0,8 s. La cola se limpia al repetir, salir o cambiar de modo; reutiliza la entidad con su diseño y atributos, restablece vida y estados de ataque, y la coloca de nuevo alrededor del jugador. Las comprobaciones excluyen jefes, minijefes, imitadores y objetivos especiales.
 src/development/lab.js se carga después de la UI y antes del arranque. El estado devRun separa las pruebas de la progresión: spawn omite las oleadas y los finales y victorias de arena delegan en Lab.finish, evitando el guardado del récord. La herramienta reutiliza el combate, el personaje y las escenas reales del juego.
 
