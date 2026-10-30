@@ -453,7 +453,7 @@ Reglas implementadas: el portal opcional abre a los **3:00**. Su jefe permanece 
 | Gabinete Infinito · Plaza de Armas | Abanico; Pleno descontrolado; Proyecto de ley; tres pruebas de Interpelación | Cambia de cartera al 75/50/25%; Estado de emergencia al 50%; Cuestión de confianza al 25%. |
 | Guardián de la Niebla · Machu Picchu | Anillo de niebla; Refugios falsos; Terrazas del santuario; Eco del camino | Velo quebrado y Memoria de piedra; Ciudad Perdida al 50%; Juicio del Apu al 25%. |
 | Procesión de Medianoche · Halloween | Campanas invertidas; Faroles del duelo; Paso de ánimas; Ofrenda marcada | Deuda de vela y Cortejo interminable; Plaza sin amanecer al 50%; Último responso al 25%. |
-| Fujimori · El Expediente Final | 2: abanico de expedientes y sello sobre marca fija | Al 50% aumenta de 5 a 7 expedientes y amplía el sello. No tiene ulti de jefe; la ulti del Alberto jugable es independiente. |
+| Fujimori · El Expediente Final | 4: sello celeste, archivo reservado, sentencia legendaria y cadena de custodia | Al 50 % abre el Archivo de la Nación; al 25 % dicta Sentencia final. La ulti del Alberto jugable sigue siendo independiente. |
 | Gallinazo del Caos · Techos de Lima | 3 en fase 1 y 3 en fase 2 | Furia bajo el 50%; ulti única al 30% y transformación permanente. |
 | ElZeein · final obligatorio | 1: persecución y abanico de 5 proyectiles cada 2,7 s | Sin segunda fase ni ulti propia diferenciada. |
 
