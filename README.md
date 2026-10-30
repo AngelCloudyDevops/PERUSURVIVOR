@@ -854,6 +854,17 @@ La audiencia es una arena física de 920 × 600 unidades: traslada temporalmente
 - Los eventos dibujan hasta cinco señales y un marcador con primitivas, sin añadir enemigos ni partículas persistentes, para cuidar los FPS.
 - Cooperativo y las pruebas de desarrollo permanecen temporalmente en Partida rápida para conservar el protocolo autoritativo actual.
 
+### Zonas dinámicas del terreno
+
+Durante el combate normal puede aparecer una zona ambiental cada **32–45 segundos**, siempre con **1 segundo de aviso** y durante **10 segundos**. Se genera lejos del jugador y únicamente sobre terreno transitable; se suspende durante jefes, portales, dominios, cinemáticas y eventos mayores. Al cambiar de mapa tras derrotar a un jefe, las zonas anteriores se eliminan para no arrastrar efectos entre escenarios.
+
+- **Curación verde:** restaura 1,5 % de vida máxima por segundo a causas y enemigos dentro del área.
+- **Charco venenoso:** causa 1 % de vida máxima por segundo; minijefes y jefes reciben 0,5 % para evitar eliminaciones injustas.
+- **Zona azul debilitante:** reduce 25 % la velocidad y aumenta 12 % el daño físico y especial recibido. Los jefes resisten el control y solo pierden 10 % de velocidad.
+- El nombre se adapta al escenario: emoliente/barro/césped en Campo de Marte, pileta/aceite/adoquines en Plaza de Armas y hierbas/niebla en Machu Picchu.
+- Las tres clases afectan a aliados y rivales, aparecen en el minimapa y muestran los estados activos junto a la barra de vida. El servidor cooperativo es la autoridad y sincroniza el mismo resultado para ambos jugadores.
+- Presupuesto visual: máximo **4 zonas en escritorio y 2 en móvil**, elipses de canvas sin partículas ni entidades nuevas y solo dos rectángulos por señal del minimapa.
+
 ### Evento mayor · Extinción
 
 El impacto cinematográfico del meteorito puede iniciar un evento mayor de Supervivencia del Caos. No sustituye al minievento de meteoritos que ya existe y puede forzarse desde **Laboratorio → Ambiente y eventos → Extinción completa**.

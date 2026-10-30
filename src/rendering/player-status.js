@@ -27,12 +27,13 @@ P.PlayerStatus={
  },
  states(actor){
   if(!actor)return [];
-  const now=this.now(),record=this.observe(actor),slowUntil=Math.max(actor.tacticSlowUntil||0,actor.extinctionSlowUntil||0,actor.extinctionChargeSlowUntil||0),states=[],cabinet=this.cabinet();
+  const now=this.now(),record=this.observe(actor),slowUntil=Math.max(actor.tacticSlowUntil||0,actor.extinctionSlowUntil||0,actor.extinctionChargeSlowUntil||0,actor.dynamicZoneSlowUntil||0),states=[],cabinet=this.cabinet();
   if(record.healUntil>now)states.push({id:'heal',icon:'+',label:'CURACIÓN',detail:'Vida recuperada: '+Math.ceil(record.healAmount),color:'#8ff0a4',until:record.healUntil,amount:record.healAmount,kind:'buff'});
-  if((actor.poisonVisualUntil||0)>now)states.push({id:'poison',icon:'☠',label:'VENENO',detail:'Daño recibido y movimiento reducido',color:'#a9ef52',until:actor.poisonVisualUntil,kind:'debuff'});
+  if((actor.poisonVisualUntil||0)>now)states.push({id:'poison',icon:'☠',label:'VENENO',detail:(actor.dynamicZonePoisonUntil||0)>now?'Pierde vida mientras permanezca en el charco':'Daño recibido y movimiento reducido',color:'#a9ef52',until:actor.poisonVisualUntil,kind:'debuff'});
   if((actor.courtShieldUntil||0)>now)states.push({id:'shield',icon:'◆',label:'ESCUDO',detail:'Bloquea el daño mientras esté activo',color:'#ffe29b',until:actor.courtShieldUntil,kind:'buff'});
   else if((actor.animalGuardUntil||0)>now)states.push({id:'guard',icon:'◈',label:'CORAZA 50%',detail:'Recibe 50 % menos daño',color:'#f3cf76',until:actor.animalGuardUntil,kind:'buff'});
-  if(slowUntil>now){const factor=(actor.tacticSlowUntil||0)>now?.75:(actor.extinctionSlowUntil||0)>now?.72:.82;states.push({id:'slow',icon:'▼',label:'LENTITUD '+Math.round((1-factor)*100)+'%',detail:'Velocidad de movimiento reducida',color:'#7ddcff',until:slowUntil,kind:'debuff'})}
+  if(slowUntil>now){const factor=(actor.tacticSlowUntil||0)>now?.75:(actor.extinctionSlowUntil||0)>now?.72:(actor.dynamicZoneSlowUntil||0)>now?.75:.82;states.push({id:'slow',icon:'▼',label:'LENTITUD '+Math.round((1-factor)*100)+'%',detail:'Velocidad de movimiento reducida',color:'#7ddcff',until:slowUntil,kind:'debuff'})}
+  if((actor.dynamicZoneDefenseUntil||0)>now)states.push({id:'exposed',icon:'◇',label:'DEFENSAS −12%',detail:'Daño físico y especial recibido aumentado',color:'#76d9ef',until:actor.dynamicZoneDefenseUntil,kind:'debuff'});
   if((actor.predatorUntil||0)>now)states.push({id:'power',icon:'↑',label:'DEPREDADOR',detail:'+25 % daño · +18 % velocidad',color:'#ffaf67',until:actor.predatorUntil,kind:'buff'});
   if((actor.makanakyUltimateUntil||0)>now)states.push({id:'intocable',icon:'♛',label:'INTOCABLE',detail:'Los Tres de la Realeza activo',color:'#e7a6ff',until:actor.makanakyUltimateUntil,kind:'buff'});
   if((actor.dotaHaste||0)>0)states.push({id:'haste',icon:'»',label:'VELOCIDAD 20%',detail:'Swift Blink: +20 % velocidad',color:'#8fdcff',left:actor.dotaHaste,kind:'buff'});
@@ -64,6 +65,8 @@ P.PlayerStatus={
     ctx.strokeStyle=state.color;ctx.fillStyle='#6fb63f';ctx.lineWidth=2;ctx.globalAlpha=.82;ctx.beginPath();ctx.ellipse(0,7,27,11,0,0,Math.PI*2);ctx.stroke();for(let i=0;i<4;i++){ctx.beginPath();ctx.arc(-18+i*12,-22-i*4-(reduced?0:Math.sin(now*7+i)*3),3+i%2,0,Math.PI*2);ctx.fill()}
    }else if(state.id==='slow'||state.id==='cabinet-law-force'){
     ctx.strokeStyle=state.color;ctx.lineWidth=3;ctx.globalAlpha=.85;for(const x of [-11,11]){ctx.beginPath();ctx.moveTo(x-5,-34+pulse);ctx.lineTo(x,-27+pulse);ctx.lineTo(x+5,-34+pulse);ctx.stroke()}
+   }else if(state.id==='exposed'){
+    ctx.strokeStyle=state.color;ctx.lineWidth=2;ctx.globalAlpha=.9;ctx.beginPath();ctx.arc(0,-9,29+pulse*.3,-2.7,-.4);ctx.stroke();ctx.beginPath();ctx.moveTo(-20,-29);ctx.lineTo(-10,-17);ctx.lineTo(-16,-7);ctx.stroke();ctx.beginPath();ctx.moveTo(18,-30);ctx.lineTo(9,-18);ctx.lineTo(16,-9);ctx.stroke()
    }else if(state.id==='shield'||state.id==='guard'){
     ctx.strokeStyle=state.color;ctx.fillStyle=state.color+'22';ctx.lineWidth=2;ctx.globalAlpha=.8;ctx.beginPath();ctx.moveTo(0,-48-pulse);ctx.lineTo(27,-23);ctx.lineTo(23,14);ctx.lineTo(0,26);ctx.lineTo(-23,14);ctx.lineTo(-27,-23);ctx.closePath();ctx.fill();ctx.stroke()
    }else if(['power','haste','cabinet-speed','cabinet-law-mobility'].includes(state.id)){

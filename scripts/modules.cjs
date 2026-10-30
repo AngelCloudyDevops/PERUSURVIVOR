@@ -161,10 +161,7 @@ module.exports = [
     "source": "src/systems/vulture-moon.js",
     "output": "js/vulture-moon.js"
   },
-  {
-    "source": "src/systems/vulture-domain.js",
-    "output": "js/vulture-domain.js"
-  },
+  {"source":"src/systems/vulture-domain.js","output":"js/vulture-domain.js"},
   {
     "source": "src/systems/encounters.js",
     "output": "js/encounters.js"
@@ -330,6 +327,7 @@ module.exports = [
     "source": "src/systems/ability-cards.js",
     "output": "js/ability-cards.js"
   },
+  {"source":"src/systems/dynamic-zones.js","output":"js/dynamic-zones.js"},
   {
     "source": "src/systems/cabinet-boss.js",
     "output": "js/cabinet-boss.js"

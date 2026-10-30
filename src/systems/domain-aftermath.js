@@ -1,7 +1,7 @@
 'use strict';
 P.DomainAftermath={
 special(e){return !!(e.boss||e.mapBoss||e.miniboss)},
-slow(e){return !this.special(e)&&(e.domainSlowUntil||0)>(P.state.elapsed||0)?.7:1},
+slow(e){const now=P.state.elapsed||0;if((e.dynamicZoneSlowUntil||0)>now)return this.special(e) ? .9 : .75;return !this.special(e)&&(e.domainSlowUntil||0)>now ? .7 : 1},
 apply(d){const s=P.state,p=P.Domain.owner(d);if(!d.remateImpact||d.aftermathApplied||!p||p.hp<=0||d.mapWin||d.result!==undefined)return;d.aftermathApplied=true;const now=s.elapsed||0;s.domainAftermath={x:d.x,y:d.y,at:now,until:now+3.5,map:P.Maps.selected};
 for(const e of s.enemies){if(e.hp<=0)continue;let dx=e.x-d.x,dy=e.y-d.y,len=Math.hypot(dx,dy);if(len>420)continue;const special=this.special(e);e.hit=Math.max(e.hit||0,.18);if(!special)e.domainSlowUntil=now+2;if(special&&/warning|charge|dive|ultimate|moon|fury/.test(e.phase||''))continue;if(len<.01){dx=1;dy=0;len=1}const distance=special?12:48;for(let travelled=0;travelled<distance;travelled+=6){const old={x:e.x,y:e.y},x=e.x+dx/len*6,y=e.y+dy/len*6;if(!P.Terrain.clear(e.x,e.y,x,y,e.r||13)||P.Terrain.hit(x,y,e.r||13))break;e.x=x;e.y=y;P.Terrain.resolve(e,old,e.r||13);P.World.collide(e,old)}}},
 marker(c,e,now,reduced=false){if(e.hp<=0||this.slow(e)>=1)return;const left=Math.max(0,e.domainSlowUntil-now),fade=Math.min(1,left/.25),bob=reduced?0:Math.sin((2-left)*9)*1.2;c.save();c.globalAlpha=fade;c.translate(Math.round(e.x),Math.round(e.y+(e.r||13)*.65+bob));for(let i=0;i<2;i++){c.beginPath();c.moveTo(-7,i*5);c.lineTo(0,4+i*5);c.lineTo(7,i*5);c.strokeStyle='#341346';c.lineWidth=4;c.stroke();c.strokeStyle='#c184ff';c.lineWidth=2;c.stroke()}c.restore()},
