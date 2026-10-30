@@ -1,0 +1,2588 @@
+{
+  "version": 2,
+  "controller": "v2: normal offers; emergency heal below 60%; fear core, tail only inside enemy radius +62, eggs beyond 240; no portal requests; R before Q",
+  "sourceSha": "ce2ffb4a6722dbbc2a1e0d2951f4815cd8410bd3",
+  "seedPolicy": "mulberry32 per isolated worker/VM",
+  "hz": 30,
+  "scope": "Offline normal solo Game.update and authoritative cooperative Simulation; no portals requested; natural progression, damage and spawns; not human play or browser FPS",
+  "reports": [
+    {
+      "mode": "solo",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "sideralEgg",
+      "q": true,
+      "domain": true,
+      "limit": 360,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 23,
+          "damageTaken": 247,
+          "damageDuringQ": 67.3,
+          "downs": 1,
+          "qUses": [
+            21.97,
+            53.2,
+            77.43,
+            93.07,
+            120.6,
+            142.63,
+            175.43,
+            212.03
+          ],
+          "rUses": [
+            30.37,
+            62.77,
+            101.93,
+            148.83,
+            196.23
+          ],
+          "passiveGains": 34,
+          "passiveUses": 8,
+          "casts": {
+            "sideralFear": 25,
+            "sideralEgg": 74
+          },
+          "damage": {
+            "sideralFear": 1084.11,
+            "Q": 4914.89,
+            "sideralEgg": 5787.84
+          },
+          "damageToBosses": {
+            "Q": 510.95,
+            "sideralEgg": 68.86
+          },
+          "eggs": 74,
+          "eggHits": 150,
+          "missedEggs": 4,
+          "hp": 0,
+          "maxHp": 145,
+          "arsenal": {
+            "active": "sideralEgg",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 1,
+              "sideralTail": 1,
+              "sideralEgg": 3
+            },
+            "evolved": {},
+            "lastSwitch": 44.966666666666676
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            120
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            120
+          ],
+          "level": 3,
+          "kills": 34,
+          "enemies": 9,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            88
+          ],
+          "level": 5,
+          "kills": 75,
+          "enemies": 14,
+          "danger": 1
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            67.3
+          ],
+          "level": 6,
+          "kills": 102,
+          "enemies": 29,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            86.8
+          ],
+          "level": 7,
+          "kills": 142,
+          "enemies": 18,
+          "danger": 0
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            53.8
+          ],
+          "level": 8,
+          "kills": 179,
+          "enemies": 11,
+          "danger": 0
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            119.2
+          ],
+          "level": 8,
+          "kills": 208,
+          "enemies": 13,
+          "danger": 1
+        },
+        {
+          "at": 210,
+          "elapsed": 210,
+          "hp": [
+            13.8
+          ],
+          "level": 9,
+          "kills": 224,
+          "enemies": 30,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 16.6,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 24.5,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 44.97,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 56.7,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 77.37,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        },
+        {
+          "at": 93.47,
+          "slot": 0,
+          "id": "stat:health"
+        },
+        {
+          "at": 126.53,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        },
+        {
+          "at": 186.5,
+          "slot": 0,
+          "id": "stat:speed"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 216.73,
+      "mapTime": 216.73,
+      "kills": 234,
+      "level": 9,
+      "stalled": false
+    },
+    {
+      "mode": "solo",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "sideralTail",
+      "q": true,
+      "domain": true,
+      "limit": 360,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 17,
+          "damageTaken": 178,
+          "damageDuringQ": 92.32256097560975,
+          "downs": 1,
+          "qUses": [
+            21.17,
+            50.87,
+            74.87,
+            102.17,
+            117.33,
+            140.63,
+            166.43,
+            184.63,
+            211.63,
+            225.03,
+            249.03
+          ],
+          "rUses": [
+            28.97,
+            58.57,
+            87.47,
+            123.4,
+            151.83,
+            194.43,
+            231.23
+          ],
+          "passiveGains": 31,
+          "passiveUses": 7,
+          "casts": {
+            "sideralFear": 13,
+            "sideralTail": 95,
+            "sideralEgg": 1
+          },
+          "damage": {
+            "sideralFear": 380.54,
+            "sideralTail": 13204.89,
+            "Q": 7476.71,
+            "sideralEgg": 88.22
+          },
+          "damageToBosses": {
+            "Q": 857.63,
+            "sideralTail": 973.12
+          },
+          "eggs": 1,
+          "eggHits": 3,
+          "missedEggs": 0,
+          "hp": 0,
+          "maxHp": 145,
+          "arsenal": {
+            "active": "sideralTail",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 1,
+              "sideralTail": 4,
+              "sideralEgg": 1
+            },
+            "evolved": {},
+            "lastSwitch": 44.10000000000006
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            120
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            120
+          ],
+          "level": 3,
+          "kills": 36,
+          "enemies": 7,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            120
+          ],
+          "level": 5,
+          "kills": 75,
+          "enemies": 14,
+          "danger": 1
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            102
+          ],
+          "level": 7,
+          "kills": 124,
+          "enemies": 7,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            81.4
+          ],
+          "level": 8,
+          "kills": 157,
+          "enemies": 8,
+          "danger": 1
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            99.9
+          ],
+          "level": 9,
+          "kills": 200,
+          "enemies": 12,
+          "danger": 0
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            72.9
+          ],
+          "level": 10,
+          "kills": 234,
+          "enemies": 9,
+          "danger": 5
+        },
+        {
+          "at": 210,
+          "elapsed": 210,
+          "hp": [
+            81.4
+          ],
+          "level": 10,
+          "kills": 255,
+          "enemies": 22,
+          "danger": 1
+        },
+        {
+          "at": 240,
+          "elapsed": 240,
+          "hp": [
+            29.7
+          ],
+          "level": 11,
+          "kills": 299,
+          "enemies": 23,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 16.6,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 24.47,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 43.57,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 57.3,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 73.17,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 86.63,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 114,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 138,
+          "slot": 0,
+          "id": "stat:health"
+        },
+        {
+          "at": 169.73,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 225.7,
+          "slot": 0,
+          "id": "stat:rate"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 110.83
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 144.67,
+          "deadAt": 228.9
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 3,
+          "at": 231.93,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 256.63,
+      "mapTime": 256.63,
+      "kills": 328,
+      "level": 11,
+      "stalled": false
+    },
+    {
+      "mode": "solo",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "sideralFear",
+      "q": true,
+      "domain": true,
+      "limit": 360,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 25,
+          "damageTaken": 291.0670731707317,
+          "damageDuringQ": 107.69268292682928,
+          "downs": 0,
+          "qUses": [
+            21.97,
+            54.6,
+            78.13,
+            107.07,
+            121.3,
+            145.63,
+            156.03,
+            182.03,
+            192.43,
+            216.63,
+            232.83,
+            257.83,
+            268.03,
+            288.83,
+            299.03,
+            319.83,
+            330.83
+          ],
+          "rUses": [
+            30.37,
+            60.67,
+            92.37,
+            130.03,
+            162.23,
+            201.83,
+            239.03,
+            274.03,
+            305.23,
+            336.83
+          ],
+          "passiveGains": 39,
+          "passiveUses": 10,
+          "casts": {
+            "sideralFear": 200,
+            "sideralEgg": 1
+          },
+          "damage": {
+            "sideralFear": 29642.82,
+            "Q": 13474.14,
+            "sideralEgg": 22.04
+          },
+          "damageToBosses": {
+            "Q": 1487.41,
+            "sideralFear": 2139.04
+          },
+          "eggs": 1,
+          "eggHits": 1,
+          "missedEggs": 0,
+          "hp": 54.51,
+          "maxHp": 145,
+          "arsenal": {
+            "active": "sideralFear",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 5,
+              "sideralTail": 1,
+              "sideralEgg": 1
+            },
+            "evolved": {},
+            "lastSwitch": 45.49999999999998
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            120
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            120
+          ],
+          "level": 3,
+          "kills": 34,
+          "enemies": 9,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            111
+          ],
+          "level": 5,
+          "kills": 78,
+          "enemies": 11,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            92
+          ],
+          "level": 7,
+          "kills": 121,
+          "enemies": 10,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            63.2
+          ],
+          "level": 8,
+          "kills": 148,
+          "enemies": 12,
+          "danger": 3
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            103.2
+          ],
+          "level": 9,
+          "kills": 184,
+          "enemies": 23,
+          "danger": 0
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            109.7
+          ],
+          "level": 10,
+          "kills": 229,
+          "enemies": 17,
+          "danger": 1
+        },
+        {
+          "at": 210,
+          "elapsed": 210,
+          "hp": [
+            128.1
+          ],
+          "level": 10,
+          "kills": 267,
+          "enemies": 12,
+          "danger": 0
+        },
+        {
+          "at": 240,
+          "elapsed": 240,
+          "hp": [
+            93.4
+          ],
+          "level": 11,
+          "kills": 308,
+          "enemies": 11,
+          "danger": 0
+        },
+        {
+          "at": 270,
+          "elapsed": 270,
+          "hp": [
+            120.4
+          ],
+          "level": 12,
+          "kills": 350,
+          "enemies": 18,
+          "danger": 2
+        },
+        {
+          "at": 300,
+          "elapsed": 300,
+          "hp": [
+            145
+          ],
+          "level": 12,
+          "kills": 390,
+          "enemies": 26,
+          "danger": 0
+        },
+        {
+          "at": 330,
+          "elapsed": 330,
+          "hp": [
+            95.5
+          ],
+          "level": 13,
+          "kills": 446,
+          "enemies": 17,
+          "danger": 12
+        },
+        {
+          "at": 360,
+          "elapsed": 360,
+          "hp": [
+            54.5
+          ],
+          "level": 13,
+          "kills": 474,
+          "enemies": 37,
+          "danger": 13
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 16.6,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 24.5,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 44.97,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 58.83,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 75.27,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 86.33,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 118.57,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 148.27,
+          "slot": 0,
+          "id": "stat:health"
+        },
+        {
+          "at": 176.83,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 216.43,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 264.3,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 319.83,
+          "slot": 0,
+          "id": "stat:power"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 128.23
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 162.5,
+          "deadAt": 262.4
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 3,
+          "at": 265.4,
+          "deadAt": null
+        }
+      ],
+      "result": "timeout",
+      "elapsed": 360,
+      "mapTime": 360,
+      "kills": 474,
+      "level": 13,
+      "stalled": false
+    },
+    {
+      "mode": "coop",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "sideralTail",
+      "q": true,
+      "domain": true,
+      "limit": 360,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 13,
+          "damageTaken": 145,
+          "damageDuringQ": 48.36585365853658,
+          "downs": 1,
+          "qUses": [
+            35.5,
+            68.83,
+            104.07,
+            145.87,
+            180.27,
+            209.87
+          ],
+          "rUses": [
+            76.53,
+            153.87,
+            216.07
+          ],
+          "passiveGains": 41,
+          "passiveUses": 11,
+          "casts": {
+            "sideralFear": 8,
+            "sideralTail": 100
+          },
+          "damage": {
+            "sideralFear": 139.55,
+            "sideralTail": 7130.93,
+            "Q": 1649.65
+          },
+          "damageToBosses": {
+            "sideralTail": 1285.71,
+            "Q": 389.49
+          },
+          "eggs": 0,
+          "eggHits": 0,
+          "missedEggs": 0,
+          "hp": 0,
+          "maxHp": 145,
+          "arsenal": {
+            "active": "sideralTail",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 1,
+              "sideralTail": 4,
+              "sideralEgg": 1
+            },
+            "evolved": {},
+            "lastSwitch": 29.40000000000062
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 13,
+          "damageTaken": 145.00000000000003,
+          "damageDuringQ": 22.803658536585374,
+          "downs": 1,
+          "qUses": [
+            30,
+            67.67,
+            98.7,
+            132.07,
+            179.27,
+            230.87
+          ],
+          "rUses": [
+            49.5,
+            112.7,
+            185.47
+          ],
+          "passiveGains": 40,
+          "passiveUses": 11,
+          "casts": {
+            "sideralFear": 7,
+            "sideralTail": 95
+          },
+          "damage": {
+            "sideralFear": 55.77,
+            "sideralTail": 6466.73,
+            "Q": 1625.75
+          },
+          "damageToBosses": {
+            "Q": 167.23,
+            "sideralTail": 749.69
+          },
+          "eggs": 0,
+          "eggHits": 0,
+          "missedEggs": 0,
+          "hp": 0,
+          "maxHp": 145,
+          "arsenal": {
+            "active": "sideralTail",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 1,
+              "sideralTail": 4,
+              "sideralEgg": 1
+            },
+            "evolved": {},
+            "lastSwitch": 29.40000000000062
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 4,
+          "kills": 37,
+          "enemies": 6,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            145,
+            145
+          ],
+          "level": 5,
+          "kills": 77,
+          "enemies": 12,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            145,
+            145
+          ],
+          "level": 6,
+          "kills": 115,
+          "enemies": 17,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            145,
+            136
+          ],
+          "level": 8,
+          "kills": 151,
+          "enemies": 11,
+          "danger": 1
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            118.7,
+            125.9
+          ],
+          "level": 9,
+          "kills": 188,
+          "enemies": 8,
+          "danger": 0
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            118.7,
+            125.9
+          ],
+          "level": 10,
+          "kills": 220,
+          "enemies": 11,
+          "danger": 0
+        },
+        {
+          "at": 210,
+          "elapsed": 210,
+          "hp": [
+            47.4,
+            91.8
+          ],
+          "level": 10,
+          "kills": 253,
+          "enemies": 13,
+          "danger": 3
+        },
+        {
+          "at": 240,
+          "elapsed": 240,
+          "hp": [
+            0,
+            17.8
+          ],
+          "level": 11,
+          "kills": 291,
+          "enemies": 20,
+          "danger": 3
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 10.1,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 10.1,
+          "slot": 1,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 20.4,
+          "slot": 0,
+          "id": "pulse"
+        },
+        {
+          "at": 20.4,
+          "slot": 1,
+          "id": "stat:range"
+        },
+        {
+          "at": 28.93,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 28.93,
+          "slot": 1,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 41.37,
+          "slot": 0,
+          "id": "stat:health"
+        },
+        {
+          "at": 41.37,
+          "slot": 1,
+          "id": "stat:health"
+        },
+        {
+          "at": 64.07,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 64.07,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 91.1,
+          "slot": 0,
+          "id": "stat:range"
+        },
+        {
+          "at": 91.1,
+          "slot": 1,
+          "id": "orbit"
+        },
+        {
+          "at": 107.53,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 107.53,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 139.83,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 139.83,
+          "slot": 1,
+          "id": "stat:speed"
+        },
+        {
+          "at": 179.97,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 179.97,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 231.03,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 231.03,
+          "slot": 1,
+          "id": "pulse"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 139.57
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 154.97,
+          "deadAt": 230.67
+        }
+      ],
+      "result": "lose",
+      "elapsed": 241.03,
+      "mapTime": 241.03,
+      "kills": 292,
+      "level": 11,
+      "stalled": false
+    },
+    {
+      "mode": "solo",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "limit": 360,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 20,
+          "damageTaken": 219.99999999999997,
+          "damageDuringQ": 57.16585365853659,
+          "downs": 1,
+          "qUses": [
+            21.17,
+            51.1,
+            73.23,
+            86.77,
+            116.17,
+            146.63,
+            161.03,
+            184.83,
+            202.03,
+            232.23,
+            255.63,
+            269.83,
+            300.23
+          ],
+          "rUses": [
+            29.77,
+            58.57,
+            92.83,
+            132.03,
+            168.83,
+            209.43,
+            241.03,
+            275.83,
+            307.23
+          ],
+          "passiveGains": 39,
+          "passiveUses": 10,
+          "casts": {
+            "sideralFear": 64,
+            "sideralTail": 68,
+            "sideralEgg": 2
+          },
+          "damage": {
+            "sideralFear": 6054.29,
+            "sideralTail": 9694.01,
+            "Q": 9049.71,
+            "sideralEgg": 68.42
+          },
+          "damageToBosses": {
+            "sideralTail": 435.81,
+            "Q": 586.69,
+            "sideralFear": 427.16
+          },
+          "eggs": 2,
+          "eggHits": 3,
+          "missedEggs": 0,
+          "hp": 0,
+          "maxHp": 145,
+          "arsenal": {
+            "active": "sideralFear",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 3,
+              "sideralTail": 3,
+              "sideralEgg": 2
+            },
+            "evolved": {},
+            "lastSwitch": 314.0333333333675
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            120
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            120
+          ],
+          "level": 3,
+          "kills": 35,
+          "enemies": 8,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            108.5
+          ],
+          "level": 5,
+          "kills": 76,
+          "enemies": 13,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            89.6
+          ],
+          "level": 6,
+          "kills": 121,
+          "enemies": 10,
+          "danger": 1
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            48.6
+          ],
+          "level": 8,
+          "kills": 148,
+          "enemies": 12,
+          "danger": 0
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            48.6
+          ],
+          "level": 8,
+          "kills": 174,
+          "enemies": 18,
+          "danger": 1
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            47.7
+          ],
+          "level": 9,
+          "kills": 214,
+          "enemies": 14,
+          "danger": 0
+        },
+        {
+          "at": 210,
+          "elapsed": 210,
+          "hp": [
+            52.7
+          ],
+          "level": 10,
+          "kills": 249,
+          "enemies": 12,
+          "danger": 1
+        },
+        {
+          "at": 240,
+          "elapsed": 240,
+          "hp": [
+            42.7
+          ],
+          "level": 10,
+          "kills": 285,
+          "enemies": 16,
+          "danger": 1
+        },
+        {
+          "at": 270,
+          "elapsed": 270,
+          "hp": [
+            38.9
+          ],
+          "level": 11,
+          "kills": 319,
+          "enemies": 26,
+          "danger": 0
+        },
+        {
+          "at": 300,
+          "elapsed": 300,
+          "hp": [
+            16.7
+          ],
+          "level": 11,
+          "kills": 355,
+          "enemies": 38,
+          "danger": 4
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 16.6,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 24.4,
+          "slot": 0,
+          "id": "orbit"
+        },
+        {
+          "at": 44.37,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 57,
+          "slot": 0,
+          "id": "stat:speed"
+        },
+        {
+          "at": 73.17,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        },
+        {
+          "at": 90.33,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 115.27,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 150.37,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 188.7,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 255.63,
+          "slot": 0,
+          "id": "stat:health"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 150
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 159.13,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 314.2,
+      "mapTime": 314.2,
+      "kills": 382,
+      "level": 11,
+      "stalled": false
+    },
+    {
+      "mode": "coop",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "sideralFear",
+      "q": true,
+      "domain": true,
+      "limit": 360,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 16,
+          "damageTaken": 187.8945121951219,
+          "damageDuringQ": 85.0859756097561,
+          "downs": 0,
+          "qUses": [
+            32.23,
+            63.87,
+            103.13,
+            143.47,
+            171.07,
+            200.27,
+            246.87,
+            259.87,
+            289.27,
+            312.67,
+            344.07
+          ],
+          "rUses": [
+            49.27,
+            128.87,
+            206.47,
+            273.67,
+            329.47
+          ],
+          "passiveGains": 56,
+          "passiveUses": 17,
+          "casts": {
+            "sideralFear": 206
+          },
+          "damage": {
+            "sideralFear": 19330.51,
+            "Q": 3994.53
+          },
+          "damageToBosses": {
+            "sideralFear": 2830.51,
+            "Q": 643.38
+          },
+          "eggs": 0,
+          "eggHits": 0,
+          "missedEggs": 0,
+          "hp": 50.17,
+          "maxHp": 120,
+          "arsenal": {
+            "active": "sideralFear",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 5,
+              "sideralTail": 1,
+              "sideralEgg": 1
+            },
+            "evolved": {
+              "sideralFear": true
+            },
+            "lastSwitch": 30.40000000000067
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 17,
+          "damageTaken": 195.4585365853659,
+          "damageDuringQ": 50.585365853658544,
+          "downs": 1,
+          "qUses": [
+            35.97,
+            89.03,
+            124.37,
+            166.87,
+            192.47,
+            246.87,
+            269.47,
+            312.67,
+            344.07
+          ],
+          "rUses": [
+            74.43,
+            152.27,
+            232.27,
+            298.07,
+            353.07
+          ],
+          "passiveGains": 60,
+          "passiveUses": 18,
+          "casts": {
+            "sideralFear": 210
+          },
+          "damage": {
+            "sideralFear": 18187.43,
+            "Q": 3151.41
+          },
+          "damageToBosses": {
+            "Q": 772.63,
+            "sideralFear": 2098.04
+          },
+          "eggs": 0,
+          "eggHits": 0,
+          "missedEggs": 0,
+          "hp": 25.34,
+          "maxHp": 120,
+          "arsenal": {
+            "active": "sideralFear",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 5,
+              "sideralTail": 1,
+              "sideralEgg": 1
+            },
+            "evolved": {
+              "sideralFear": true
+            },
+            "lastSwitch": 30.40000000000067
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 4,
+          "kills": 35,
+          "enemies": 8,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 5,
+          "kills": 80,
+          "enemies": 9,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 7,
+          "kills": 112,
+          "enemies": 20,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 8,
+          "kills": 154,
+          "enemies": 8,
+          "danger": 0
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 9,
+          "kills": 189,
+          "enemies": 21,
+          "danger": 0
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 10,
+          "kills": 232,
+          "enemies": 14,
+          "danger": 0
+        },
+        {
+          "at": 210,
+          "elapsed": 210,
+          "hp": [
+            103.8,
+            120
+          ],
+          "level": 11,
+          "kills": 272,
+          "enemies": 9,
+          "danger": 0
+        },
+        {
+          "at": 240,
+          "elapsed": 240,
+          "hp": [
+            103.8,
+            89.7
+          ],
+          "level": 11,
+          "kills": 310,
+          "enemies": 16,
+          "danger": 0
+        },
+        {
+          "at": 270,
+          "elapsed": 270,
+          "hp": [
+            118.9,
+            85.2
+          ],
+          "level": 12,
+          "kills": 357,
+          "enemies": 13,
+          "danger": 3
+        },
+        {
+          "at": 300,
+          "elapsed": 300,
+          "hp": [
+            69.6,
+            48.1
+          ],
+          "level": 13,
+          "kills": 406,
+          "enemies": 14,
+          "danger": 6
+        },
+        {
+          "at": 330,
+          "elapsed": 330,
+          "hp": [
+            53.3,
+            0
+          ],
+          "level": 13,
+          "kills": 452,
+          "enemies": 17,
+          "danger": 8
+        },
+        {
+          "at": 360,
+          "elapsed": 360,
+          "hp": [
+            50.2,
+            25.3
+          ],
+          "level": 14,
+          "kills": 510,
+          "enemies": 34,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 10.1,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 10.1,
+          "slot": 1,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 20.87,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 20.87,
+          "slot": 1,
+          "id": "pulse"
+        },
+        {
+          "at": 29.93,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 29.93,
+          "slot": 1,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 37.4,
+          "slot": 0,
+          "id": "stat:speed"
+        },
+        {
+          "at": 37.4,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 63.83,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 63.83,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 89,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 89,
+          "slot": 1,
+          "id": "stat:magnet"
+        },
+        {
+          "at": 103.43,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 103.43,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 124.63,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 124.63,
+          "slot": 1,
+          "id": "pulse"
+        },
+        {
+          "at": 166.83,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 166.83,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 195.77,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 195.77,
+          "slot": 1,
+          "id": "pulse"
+        },
+        {
+          "at": 246.83,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 246.83,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 289.63,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 289.63,
+          "slot": 1,
+          "id": "stat:power"
+        },
+        {
+          "at": 344.03,
+          "slot": 0,
+          "id": "sideral-arsenal:evolve:sideralFear"
+        },
+        {
+          "at": 344.03,
+          "slot": 1,
+          "id": "sideral-arsenal:evolve:sideralFear"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 124.3
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 157.63,
+          "deadAt": 229.07
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 3,
+          "at": 235.27,
+          "deadAt": 328.03
+        }
+      ],
+      "result": "timeout",
+      "elapsed": 360,
+      "mapTime": 360,
+      "kills": 510,
+      "level": 14,
+      "stalled": false
+    },
+    {
+      "mode": "coop",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "sideralEgg",
+      "q": true,
+      "domain": true,
+      "limit": 360,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 15,
+          "damageTaken": 159.99999999999997,
+          "damageDuringQ": 36.7,
+          "downs": 1,
+          "qUses": [
+            32.23,
+            87.63,
+            119,
+            168.27
+          ],
+          "rUses": [
+            73.03,
+            125.07
+          ],
+          "passiveGains": 38,
+          "passiveUses": 9,
+          "casts": {
+            "sideralFear": 22,
+            "sideralEgg": 56
+          },
+          "damage": {
+            "sideralFear": 532.5,
+            "sideralEgg": 2420.89,
+            "Q": 1544.86
+          },
+          "damageToBosses": {
+            "Q": 282.2,
+            "sideralEgg": 203.41
+          },
+          "eggs": 56,
+          "eggHits": 69,
+          "missedEggs": 2,
+          "hp": 0,
+          "maxHp": 145,
+          "arsenal": {
+            "active": "sideralEgg",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 1,
+              "sideralTail": 1,
+              "sideralEgg": 4
+            },
+            "evolved": {},
+            "lastSwitch": 29.93333333333398
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 11,
+          "damageTaken": 120,
+          "damageDuringQ": 19.097560975609753,
+          "downs": 1,
+          "qUses": [
+            35.27,
+            71.4,
+            110.83,
+            167.07
+          ],
+          "rUses": [
+            51.37,
+            146.27
+          ],
+          "passiveGains": 40,
+          "passiveUses": 10,
+          "casts": {
+            "sideralFear": 21,
+            "sideralEgg": 63
+          },
+          "damage": {
+            "sideralFear": 498.83,
+            "sideralEgg": 3175.6,
+            "Q": 1383.03
+          },
+          "damageToBosses": {
+            "Q": 226.29,
+            "sideralEgg": 642.4
+          },
+          "eggs": 63,
+          "eggHits": 73,
+          "missedEggs": 4,
+          "hp": 0,
+          "maxHp": 120,
+          "arsenal": {
+            "active": "sideralEgg",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 1,
+              "sideralTail": 1,
+              "sideralEgg": 4
+            },
+            "evolved": {},
+            "lastSwitch": 29.93333333333398
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 4,
+          "kills": 35,
+          "enemies": 8,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 5,
+          "kills": 76,
+          "enemies": 13,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            96.5,
+            98
+          ],
+          "level": 7,
+          "kills": 110,
+          "enemies": 22,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            62.3,
+            62.3
+          ],
+          "level": 8,
+          "kills": 155,
+          "enemies": 7,
+          "danger": 3
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            102.3,
+            50.4
+          ],
+          "level": 9,
+          "kills": 180,
+          "enemies": 14,
+          "danger": 1
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            48.2,
+            15.1
+          ],
+          "level": 10,
+          "kills": 221,
+          "enemies": 8,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 10.1,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 10.1,
+          "slot": 1,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 20.87,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 20.87,
+          "slot": 1,
+          "id": "pulse"
+        },
+        {
+          "at": 29.93,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 29.93,
+          "slot": 1,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 37.33,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 37.33,
+          "slot": 1,
+          "id": "stat:power"
+        },
+        {
+          "at": 65.93,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        },
+        {
+          "at": 65.93,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        },
+        {
+          "at": 89.17,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 89.17,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 106.63,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        },
+        {
+          "at": 106.63,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        },
+        {
+          "at": 139.63,
+          "slot": 0,
+          "id": "stat:health"
+        },
+        {
+          "at": 139.63,
+          "slot": 1,
+          "id": "stat:speed"
+        },
+        {
+          "at": 173.23,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        },
+        {
+          "at": 173.23,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 144.33
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 154.27,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 193.9,
+      "mapTime": 193.9,
+      "kills": 232,
+      "level": 10,
+      "stalled": false
+    },
+    {
+      "mode": "coop",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "limit": 360,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 12,
+          "damageTaken": 120,
+          "damageDuringQ": 30.320731707317073,
+          "downs": 1,
+          "qUses": [
+            35.5,
+            83.9,
+            103.13,
+            139.9,
+            166.47,
+            201.07,
+            252.27,
+            282.87
+          ],
+          "rUses": [
+            69.3,
+            146.07,
+            237.67
+          ],
+          "passiveGains": 49,
+          "passiveUses": 14,
+          "casts": {
+            "sideralFear": 102,
+            "sideralTail": 44,
+            "sideralEgg": 6
+          },
+          "damage": {
+            "sideralFear": 5461.43,
+            "sideralTail": 4340.57,
+            "Q": 1764.57,
+            "sideralEgg": 9.43
+          },
+          "damageToBosses": {
+            "Q": 509.93,
+            "sideralFear": 637.59,
+            "sideralTail": 434.29
+          },
+          "eggs": 6,
+          "eggHits": 2,
+          "missedEggs": 4,
+          "hp": 0,
+          "maxHp": 120,
+          "arsenal": {
+            "active": "sideralTail",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 3,
+              "sideralTail": 5,
+              "sideralEgg": 1
+            },
+            "evolved": {},
+            "lastSwitch": 283.86666666667685
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 14,
+          "damageTaken": 160,
+          "damageDuringQ": 13.049999999999997,
+          "downs": 1,
+          "qUses": [
+            33.87,
+            63.97,
+            91.47,
+            139.9,
+            172.87,
+            216.47,
+            237.07,
+            276.87
+          ],
+          "rUses": [
+            47.63,
+            125.3,
+            201.87,
+            262.27
+          ],
+          "passiveGains": 52,
+          "passiveUses": 15,
+          "casts": {
+            "sideralFear": 81,
+            "sideralTail": 41,
+            "sideralEgg": 9
+          },
+          "damage": {
+            "sideralFear": 5111.16,
+            "sideralTail": 3993.89,
+            "Q": 2256.58,
+            "sideralEgg": 185.61
+          },
+          "damageToBosses": {
+            "sideralFear": 718.75,
+            "sideralTail": 410.66,
+            "Q": 111.49
+          },
+          "eggs": 9,
+          "eggHits": 8,
+          "missedEggs": 3,
+          "hp": 0,
+          "maxHp": 145,
+          "arsenal": {
+            "active": "sideralTail",
+            "unlocked": {
+              "sideralFear": true,
+              "sideralTail": true,
+              "sideralEgg": true
+            },
+            "ranks": {
+              "sideralFear": 3,
+              "sideralTail": 4,
+              "sideralEgg": 1
+            },
+            "evolved": {},
+            "lastSwitch": 282.2666666666756
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 4,
+          "kills": 35,
+          "enemies": 8,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 5,
+          "kills": 72,
+          "enemies": 17,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 7,
+          "kills": 115,
+          "enemies": 17,
+          "danger": 1
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 8,
+          "kills": 155,
+          "enemies": 10,
+          "danger": 0
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            120,
+            120
+          ],
+          "level": 8,
+          "kills": 198,
+          "enemies": 15,
+          "danger": 1
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            78.3,
+            72.7
+          ],
+          "level": 10,
+          "kills": 237,
+          "enemies": 8,
+          "danger": 0
+        },
+        {
+          "at": 210,
+          "elapsed": 210,
+          "hp": [
+            61.5,
+            72.7
+          ],
+          "level": 10,
+          "kills": 268,
+          "enemies": 12,
+          "danger": 0
+        },
+        {
+          "at": 240,
+          "elapsed": 240,
+          "hp": [
+            43.5,
+            51.9
+          ],
+          "level": 11,
+          "kills": 307,
+          "enemies": 15,
+          "danger": 1
+        },
+        {
+          "at": 270,
+          "elapsed": 270,
+          "hp": [
+            30.4,
+            67.5
+          ],
+          "level": 12,
+          "kills": 344,
+          "enemies": 23,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 10.1,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 10.1,
+          "slot": 1,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "at": 20.87,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 20.87,
+          "slot": 1,
+          "id": "pulse"
+        },
+        {
+          "at": 29.77,
+          "slot": 0,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 29.77,
+          "slot": 1,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "at": 37.1,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 37.1,
+          "slot": 1,
+          "id": "cards"
+        },
+        {
+          "at": 62.2,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 62.2,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 83.87,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 83.87,
+          "slot": 1,
+          "id": "stat:range"
+        },
+        {
+          "at": 96.23,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 96.23,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 160.63,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 160.63,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 160.63,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 160.63,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 216.43,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 216.43,
+          "slot": 1,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "at": 252.23,
+          "slot": 0,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "at": 252.23,
+          "slot": 1,
+          "id": "stat:health"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 110.23
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 143.53,
+          "deadAt": 237.47
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 3,
+          "at": 240.5,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 286.37,
+      "mapTime": 286.37,
+      "kills": 367,
+      "level": 12,
+      "stalled": false
+    }
+  ],
+  "fingerprints": {
+    "src/systems/sideral-kit.js": "0947ba228abffa21b4a881fe70476e6891c9f28ab036ee3afe89b011f0bfc27f",
+    "src/systems/progression.js": "6aba435d3ecf5a7c29849b1b5eba35eadccb930f197a4bcecc2a8e4419947597",
+    "src/systems/sideral-domain.js": "142b5385a195f44c493ece8ed28713e4864cef392937b26ab855d3ba67564695"
+  }
+}

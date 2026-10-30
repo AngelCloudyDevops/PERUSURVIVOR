@@ -1074,3 +1074,6 @@ Hasta 760 px, el menú principal organiza perfil, presentación del causa, dos f
 
 ### Sideral · arsenal del Lagarto
 El kit 9/9 y su balance inicial están definidos en [SIDERAL_KIT.md](SIDERAL_KIT.md): Colazo, Huevo, evoluciones independientes, Sangre fría y Q de seis segundos con carga independiente. El dominio R no cambia.
+
+### Ajuste medido de Sideral
+Los huevos eligen dirección al abrir y anticipan de forma limitada al rival, sin buscarlo después de lanzar la embestida. Q fija al activar el crecimiento del mayor rango del arsenal (+14 % por rango adicional, ×1,15 si existe evolución) y conserva 25 pulsos en seis segundos a 25/30 Hz. No cambian Mirada, Colazo, Sangre fría, stats base ni dominio R. [Método, evidencia y límites del balance](SIDERAL_BALANCE.md).

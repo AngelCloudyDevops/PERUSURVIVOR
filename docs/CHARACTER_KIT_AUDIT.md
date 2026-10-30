@@ -85,4 +85,4 @@ Kingteka, Makanaky y Sideral son kits cerrados de extremo a extremo: tres ataque
 5. Probar cada kit a nivel base y máximo contra minions, minijefes y jefe antes de marcarlo como completo.
 
 
-Sideral está 9/9: tres técnicas, tres evoluciones, Sangre fría, Q y dominio existente. Su Q ya tiene ilustración exclusiva del Lagarto; la afinación en partidas completas sigue pendiente.
+Sideral está 9/9: tres técnicas, tres evoluciones, Sangre fría, Q y dominio existente. Su Q ya tiene ilustración exclusiva del Lagarto; ya tiene medición automática y ajustes de huevo/Q en [SIDERAL_BALANCE.md](SIDERAL_BALANCE.md), con validación humana pendiente.
