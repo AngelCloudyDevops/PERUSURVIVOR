@@ -1,6 +1,6 @@
 'use strict';
 // Doce poses completas: seis pasos y seis cuadros de puñetazo.
-P.MakanakyPlayerArt={ready:false,promise:null,
+P.MakanakyPlayerArt={ready:false,promise:null,techniquePromises:{},techniqueSources:{makanakyHeadbutt:'assets/attacks/makanaky-headbutt-attack-v1.webp',makanakyGaaaa:'assets/attacks/makanaky-gaaaa-attack-v1.webp'},
  load(retry=false){
   if(this.ready){if(!P.WalkArt.sheets.makanaky?.ready||!P.WalkArt.sheets['attack-makanaky']?.ready)this.installSheets();return Promise.resolve(this)}
   if(typeof Image==='undefined')return Promise.resolve(null);
@@ -9,6 +9,10 @@ P.MakanakyPlayerArt={ready:false,promise:null,
    const cv=document.createElement('canvas');cv.width=image.width;cv.height=image.height;const ctx=cv.getContext('2d');ctx.drawImage(image,0,0);const pixels=ctx.getImageData(0,0,cv.width,cv.height).data;
    const frames=Array.from({length:12},(_,i)=>{const col=i%6,row=Math.floor(i/6),sx=Math.round(col*cv.width/6),sy=Math.round(row*cv.height/2),right=Math.round((col+1)*cv.width/6),bottom=Math.round((row+1)*cv.height/2),f=P.Sprites.bounds(pixels,cv.width,sx,sy,right-sx,bottom-sy);return {...f,localX:0,localY:0,anchorX:(sx+right)/2-f.sx,headX:(sx+right)/2-f.sx,anchorY:f.h}});this.image=image;this.frames=frames;this.height=Math.max(...frames.map(f=>f.h));this.installSheets();this.ready=true;P.UI.lastArt=0;resolve(this)
   }catch{fail()}};image.src=P.WalkArt.url('makanaky')});return this.promise
+ },
+ loadTechnique(id,retry=false){
+  const source=this.techniqueSources[id],sheetId='arsenal-makanaky-'+id,current=P.WalkArt.sheets[sheetId];if(!source)return Promise.resolve(null);if(current?.ready&&!retry)return Promise.resolve(current);if(typeof Image==='undefined')return Promise.resolve(null);if(this.techniquePromises[id]&&!retry)return this.techniquePromises[id];
+  this.techniquePromises[id]=new Promise(resolve=>{const image=new Image(),fail=()=>{P.WalkArt.sheets[sheetId]={id:sheetId,ready:false,failed:true};resolve(null)};image.onerror=fail;image.onload=()=>{try{const cv=document.createElement('canvas');cv.width=image.width;cv.height=image.height;const c=cv.getContext('2d');c.drawImage(image,0,0);const pixels=c.getImageData(0,0,cv.width,cv.height).data,frames=[];for(let i=0;i<6;i++){const sx=Math.round(i*cv.width/6),right=Math.round((i+1)*cv.width/6),f=P.Sprites.bounds(pixels,cv.width,sx,0,right-sx,cv.height);frames.push({...f,localX:0,localY:0,anchorX:(sx+right)/2-f.sx,headX:(sx+right)/2-f.sx,anchorY:f.h})}const sheet={id:sheetId,ready:true,failed:false,image,height:Math.max(...frames.map(f=>f.h)),sourceHeight:1,frames,used:++P.WalkArt.clock,promise:Promise.resolve(null)};sheet.promise=Promise.resolve(sheet);P.WalkArt.sheets[sheetId]=sheet;P.UI.lastArt=0;resolve(sheet)}catch{fail()}};image.src=source});return this.techniquePromises[id]
  },
  installSheets(){const w=P.WalkArt;for(const [id,indices] of [['makanaky',[0,1,2,3,4,5]],['attack-makanaky',[6,7,8,9,10,11]]])w.sheets[id]={id,ready:true,failed:false,image:this.image,height:this.height,sourceHeight:1,frames:indices.map(i=>this.frames[i]),used:++w.clock,promise:Promise.resolve(this)}},
  draw(ctx,x,y,r,frame,flip,gait){if(!this.ready){this.load();return false}if(!P.WalkArt.sheets.makanaky?.ready)this.installSheets();const index=gait?P.WalkArt.frame(gait.phase):frame===3?9:6,f=this.frames[index],height=r*2.5,scale=height/this.height;ctx.save();ctx.translate(Math.round(x),Math.round(y+r*.8));if(flip)ctx.scale(-1,1);ctx.imageSmoothingEnabled=false;ctx.drawImage(this.image,f.sx,f.sy,f.w,f.h,Math.round(-f.anchorX*scale),Math.round(-f.h*scale),Math.round(f.w*scale),Math.round(f.h*scale));ctx.restore();return true}

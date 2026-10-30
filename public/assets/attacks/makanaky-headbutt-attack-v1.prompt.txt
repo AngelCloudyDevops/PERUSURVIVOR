@@ -1,0 +1,5 @@
+Use case: stylized-concept
+Asset type: production game sprite sheet for a top-down/isometric survivor game
+Primary request: Create a six-frame horizontal attack animation sheet for Makanaky performing a heavy headbutt, using makanaky-motion-v2.png as the strict identity, costume, proportions, pixel-art rendering, outline, palette and scale reference.
+Frames: guarded anticipation; knees compress and torso pulls back; first forward step; head and shoulders drive forward; maximum headbutt extension with both feet grounded; recoil and recovery to guard.
+Constraints: one transparent horizontal row, six evenly spaced complete side-facing figures, consistent baseline and size, hard pixel edges, no effects, text, grid, shadows, extra characters, duplicate limbs, crops or watermark.

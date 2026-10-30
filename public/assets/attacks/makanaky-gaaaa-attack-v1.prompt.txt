@@ -1,0 +1,5 @@
+Use case: stylized-concept
+Asset type: production game sprite sheet for a top-down/isometric survivor game
+Primary request: Create a six-frame horizontal attack animation sheet for Makanaky shouting and launching GAA from his mouth, using makanaky-motion-v2.png as the strict identity, costume, proportions, pixel-art rendering, outline, palette and scale reference.
+Frames: guarded idle; deep inhale; cheeks tense and torso leans back; mouth opens while hands brace; maximum forward shout with body grounded; mouth closes and body recovers.
+Constraints: one transparent horizontal row, six evenly spaced complete side-facing figures, consistent baseline and size, hard pixel edges; do not draw the projectile or letters because game code adds them; no effects, grid, shadows, extra characters, duplicate limbs, crops or watermark.

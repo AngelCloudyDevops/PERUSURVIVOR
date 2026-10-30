@@ -1,7 +1,8 @@
 'use strict';
 P.PowerFX={
 projectile(ctx,s){const pixel=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(x,y,w,h)};
-if(s.glyph==='BULLET'){if(s.ultimate){pixel(-38,-3,42,6,'#f4b537');pixel(-32,-1,36,2,'#fff3a9')}pixel(-15,-2,24,4,'#ffdc8a');pixel(7,-3,6,6,'#fff4c6');pixel(-20,-1,8,2,'#ef9d50')}
+if(s.makanakyTechnique==='makanakyGaaaa'){ctx.shadowBlur=0;pixel(-17,-7,30,14,'#4b245f');pixel(-12,-9,24,18,'#8d48b7');pixel(-7,-7,18,14,'#bd78f0');pixel(8,-4,9,8,'#efd8ff');ctx.fillStyle='#fff3ff';ctx.font='900 8px monospace';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('GAA',0,1)}
+else if(s.glyph==='BULLET'){if(s.ultimate){pixel(-38,-3,42,6,'#f4b537');pixel(-32,-1,36,2,'#fff3a9')}pixel(-15,-2,24,4,'#ffdc8a');pixel(7,-3,6,6,'#fff4c6');pixel(-20,-1,8,2,'#ef9d50')}
 else if(s.glyph==='ROACH'){const step=Math.floor(s.age*22)%2?2:-2;for(let i=-1;i<=1;i++){pixel(i*5-3,-7+step,2,7,'#745344');pixel(i*5-3,1-step,2,7,'#745344')}pixel(-10,-4,17,8,'#7c4b31');pixel(-8,-3,12,6,'#a36d3d');pixel(4,-3,6,6,'#513d30');pixel(8,-7,9,1,'#b79268');pixel(8,6,9,1,'#b79268');pixel(-3,-4,1,8,'#c09656')}
 else if(s.glyph==='FISH'){pixel(-10,-5,17,10,'#8fc9d0');pixel(-6,-7,9,3,'#d4e5cc');pixel(-7,4,10,3,'#648fa8');pixel(-15,-7,5,14,'#66a8bb');pixel(6,-3,6,6,'#bedbdd');pixel(7,-2,2,2,'#20374c');pixel(-3,-9,4,3,'#dbb975')}
 else if(s.glyph==='BANANA'){pixel(-13,-8,4,10,'#a88239');pixel(-10,-2,5,9,'#f4cc4d');pixel(-6,4,8,6,'#ffe06c');pixel(1,3,7,6,'#f3cb4a');pixel(7,-2,5,8,'#e7b839');pixel(10,-8,4,8,'#f4d15a');pixel(11,-11,3,4,'#71553b');pixel(-5,5,13,2,'#fff09c')}
