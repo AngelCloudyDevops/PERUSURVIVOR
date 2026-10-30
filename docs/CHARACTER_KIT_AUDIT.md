@@ -36,9 +36,9 @@ El arsenal ejecutable vive en `P.CharacterProfiles.weaponKits` y `weaponSlots`; 
 | La G5 | Patada G5 · 145° | Reservado | Reservado | 1/3 |
 | Makanaky · La Realeza | Puño de la Realeza | Mete cabezazos como yo | GAA | **3/3** |
 | Sideral · Espantaminions | Mirada Sideral | Colazo del Lagarto | Huevo sospechoso | **3/3** |
-| Chamelín · Trovo | Retaguardia de Trovo | Reservado | Reservado | 1/3 |
+| Chamelín · Trovo | Retaguardia de Trovo | Escupitajo pegajoso | Pichi de Trovo | **3/3** |
 
-Resumen: 20 causas, 28 ataques personales funcionales, sin conceptos en estado planeado y cuatro contratos 9/9 completos: Kingteka, Makanaky, Sideral y CiriloTV. Detalle del nuevo kit: [SIDERAL_KIT.md](SIDERAL_KIT.md).
+Resumen: 20 causas, 30 ataques personales funcionales, sin conceptos en estado planeado y cinco contratos 9/9 completos: Kingteka, Makanaky, Sideral, CiriloTV y Chamelín. Detalle del nuevo kit: [SIDERAL_KIT.md](SIDERAL_KIT.md).
 
 ## Q, R y pasivas
 
@@ -51,7 +51,8 @@ Resumen: 20 causas, 28 ataques personales funcionales, sin conceptos en estado p
 - Paloma del Centro: bandada.
 - Makanaky: Los Tres de la Realeza.
 - Sideral: Despertar del Lagarto (ilustración exclusiva del Lagarto).
-- CiriloTV: ¡FULL MALDAD! (carta con full art de personaje existente).
+- CiriloTV: ¡FULL MALDAD! (ilustración exclusiva).
+- Chamelín: ¡SE TAPÓ TODO! (full art de personaje existente; ilustración Q exclusiva pendiente).
 
 ### Expansiones R implementadas con carta full art
 
@@ -67,13 +68,14 @@ Resumen: 20 causas, 28 ataques personales funcionales, sin conceptos en estado p
 - Makanaky: Racha de la Realeza.
 - Sideral: Sangre fría.
 - CiriloTV: Persistencia maldita (reglas de riesgo y resurrección existentes formalizadas).
-- Los otros 16 espacios están reservados y no otorgan efectos.
+- Chamelín: Presión acumulada.
+- Los otros 15 espacios están reservados y no otorgan efectos.
 
-Kingteka, Makanaky y Sideral son kits cerrados de extremo a extremo: tres ataques funcionales, tres evoluciones, Q, R y pasiva. Makanaky alterna puño, cabezazo y GAA; Respeto de Q y la carga del dominio son independientes.
+Kingteka, Makanaky, Sideral, CiriloTV y Chamelín son kits cerrados de extremo a extremo: tres ataques funcionales, tres evoluciones, Q, R y pasiva. Makanaky alterna puño, cabezazo y GAA; Respeto de Q y la carga del dominio son independientes.
 
 ## Cobertura de ilustraciones
 
-- Los 13 poderes Q/R implementados ya tienen una ruta de carta full art registrada; Los Tres de la Realeza reutiliza temporalmente el full art de personaje de Makanaky.
+- Los 14 poderes Q/R implementados ya tienen una ruta de carta full art registrada; Los Tres de la Realeza y ¡SE TAPÓ TODO! reutilizan temporalmente sus full arts de personaje.
 - Las tres armas de Kingteka tienen full art propio para las cartas de subida de nivel.
 - Los ataques personales del resto todavía usan composición procedural con sprite e icono; no poseen full art dedicado.
 - Ocho causas tienen ilustración grande de personaje en Causapedia: Cristorata, Cuy, Paloma, Kingteka, Chamelín, Makanaky, Sideral y Cirilo.

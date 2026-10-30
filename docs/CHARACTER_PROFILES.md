@@ -214,3 +214,6 @@ Humano / Ingenio / Controlador y Especialista, dificultad avanzada. Base 120 PV,
 
 ### CiriloTV · riesgo y maldiciones
 UR, Humano/Ingenio, Especialista/Controlador híbrido. Conserva 135 PV, velocidad 165 y poder 24. Kit completo en [CIRILO_KIT.md](CIRILO_KIT.md): vómito y forma infernal originales, taxi, eco, tres evoluciones, pasiva registrada, Q y Audiencia sin cambios.
+
+### Chamelín · kit completo
+Retaguardia, Pegote y Pichi son tres técnicas reales con rangos/evoluciones propios. Presión acumulada y ¡SE TAPÓ TODO! Q completan el contrato; Baño de Trovo R se conserva. Se mantienen base y rareza. Probabilidades, duración y límites en [CHAMELIN_KIT.md](CHAMELIN_KIT.md).

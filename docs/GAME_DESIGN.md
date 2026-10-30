@@ -1082,3 +1082,6 @@ Los huevos eligen dirección al abrir y anticipan de forma limitada al rival, si
 Kit 9/9 en [CIRILO_KIT.md](CIRILO_KIT.md): taxi con ida/regreso, resistencia parcial de 40 % y daño de reversa solo al evolucionar; eco y contagio acotado; pasiva de riesgo/resurrección existente formalizada; tres abanicos Q con carga propia. No se modifican cirilo-ur.js ni cirilo-arena.js.
 
 Balance de Cirilo: Taxi/Eco/Q eligen una dirección anticipada limitada, sin seguimiento posterior. Eco explota aunque su primer impacto elimine al blanco. Q usa coeficiente 1,05 y escala por mayor rango, con ×1,15 único si tiene evolución. Se conservan pasiva, stats, resistencia y dominio. [60 simulaciones, 40 duelos y límites de los resultados](CIRILO_BALANCE.md).
+
+### Chamelín · Pegote, resbalón y presión
+Kit 9/9 en [CHAMELIN_KIT.md](CHAMELIN_KIT.md). Pegote tiene 10 % de lento temporal; Pichi, 15 % de resbalón con inmunidad posterior y lentitud alternativa en jefes. Una tirada por rival y lanzamiento, compartida por chorros evolucionados. Presión acumula tres cargas con daño de charcos para ampliar el siguiente ataque; Q ejecuta tres ondas móviles con depósito independiente de R. Baño de Trovo conserva sus efectos, arena y presentación.

@@ -420,4 +420,6 @@ module.exports = [
 ,{source:"src/rendering/sideral-lagarto.js",output:"js/sideral-lagarto.js"}
 ,{source:"src/systems/cirilo-kit.js",output:"js/cirilo-kit.js"}
 ,{source:"src/rendering/cirilo-kit-art.js",output:"js/cirilo-kit-art.js"}
+,{source:"src/systems/chamelin-kit.js",output:"js/chamelin-kit.js"}
+,{source:"src/rendering/chamelin-kit-art.js",output:"js/chamelin-kit-art.js"}
 ];
