@@ -444,5 +444,7 @@ module.exports = [
 ,{source:"src/rendering/chamelin-kit-art.js",output:"js/chamelin-kit-art.js"}
 ,{source:"src/systems/cristorata-kit.js",output:"js/cristorata-kit.js"}
 ,{source:"src/rendering/cristorata-kit-art.js",output:"js/cristorata-kit-art.js"}
+,{source:"src/systems/marciano-kit.js",output:"js/marciano-kit.js"}
+,{source:"src/rendering/marciano-kit-art.js",output:"js/marciano-kit-art.js"}
 ,{source:"src/systems/dota-equipment.js",output:"js/dota-equipment.js"}
 ];

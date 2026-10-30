@@ -1515,9 +1515,13 @@ Todo estado temporal que altere al personaje debe indicar nombre, naturaleza pos
 
 ### Marciano de SJL · El Polvito
 
-El roster incorpora al **Marciano de SJL** como personaje R · Raro de la categoría Memes. Su versión jugable se llama **El Polvito** y toma como referencia paródica el episodio viral limeño de 2021, sin reproducir marcas ni contenido explícito. Su full art muestra un disfraz alienígena fosforescente de tres ojos en una discoteca ficticia; caminar y atacar usan seis figuras completas propias.
+El roster incorpora al **Marciano de SJL** como personaje UR · Supremo de la categoría Memes. Su versión jugable se llama **El Polvito** y toma como referencia paródica el episodio viral limeño de 2021, sin reproducir marcas ni contenido explícito. Su full art muestra un disfraz alienígena fosforescente de tres ojos en una discoteca ficticia; caminar y atacar usan seis figuras completas propias.
 
-Su ataque inicial, **Polvito cósmico**, lanza tres motas especiales en abanico. La evolución **Nube fosforescente** amplía la descarga a cinco, permite perforar dos rivales y deja una zona breve junto al objetivo. Los otros dos ataques, pasiva, ulti y dominio permanecen reservados hasta ser diseñados explícitamente; añadir el personaje no los da por implementados.
+Su arsenal tiene tres técnicas independientes. **Polvito cósmico** evoluciona a **Nube fosforescente** y deja daño especial persistente; **Caja decomisada** evoluciona a **Carga a la comisaría**, duplica el búmeran físico y atraviesa cuatro rivales; **Reflector del operativo** evoluciona a **Toque de queda**, abre un cono mayor y rompe temporalmente la defensa física de los policías del dominio. Cada técnica conserva rango, rango de mejora y evolución propios.
+
+La pasiva **Expediente fosforescente** cuenta descargas, no proyectiles: cada diez lanzamientos válidos concede un acta y, con tres actas, el ataque siguiente activa **¡INTERVENIDO!** según la técnica equipada. Al obtener un acta existe exactamente 10 % de probabilidad de **Traslado a la comisaría**: dos policías escoltan al Marciano y le dan +15 % de velocidad durante 3 s; la tirada tiene 10 s de recuperación para evitar encadenamientos.
+
+La Q **Treinta intervenidos** ejecuta diez barridos móviles, con hasta tres objetivos por barrido y un máximo de treinta impactos. No congela, teletransporta ni vuelve invulnerable al personaje. La R **Disco-Bar Manhattan** emerge durante 10 s alrededor de la posición actual sin cambiar la cámara: los minions normales dentro de 440 u se vuelven policías, pierden 35 % de velocidad, ganan 60 % de defensa física y pierden 20 % de defensa especial. Jefes, minijefes y mímicos no se transforman. El reflector rompe el chaleco durante 4 s y deja la defensa física 15 % por debajo del valor original, de modo que un compañero físico conserve una respuesta. Al cerrar el dominio se restauran apariencia y estadísticas originales.
 
 ### Renovación estética de personajes
 

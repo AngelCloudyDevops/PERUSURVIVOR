@@ -885,7 +885,9 @@ El contador FPS descarta el intervalo de transición al cambiar de modo o recupe
 
 ## Arte independiente del Marciano
 
-`marciano` entra al catálogo dinámico de personajes y al pool R del gacha. Conserva fuentes PNG y prompts junto a sus tres activos: full art WebP, caminata `v2` de seis cuadros y ataque de seis cuadros. `P.WalkArt` descubre las hojas mediante el registro de personajes, mientras `P.Entities.portrait` ofrece un respaldo vectorial de tres ojos si la imagen todavía no cargó. El contrato universal expone únicamente su ataque inicial y evolución; los demás espacios siguen reservados.
+`marciano` entra al catálogo dinámico de personajes y al pool UR del gacha. Conserva fuentes PNG y prompts junto a su full art WebP, caminata `v2`, ataque y hoja transparente de escolta policial. `P.WalkArt` descubre las hojas base mediante el registro de personajes, mientras `P.MarcianoKitArt` carga la escolta 3 × 2 sin añadir filas a los atlas históricos y ofrece dibujo independiente para los minions transformados. `P.Entities.portrait` mantiene el respaldo vectorial de tres ojos si una imagen todavía no cargó.
+
+`P.MarcianoArsenal`, `P.MarcianoKit` y `P.MarcianoDomain` completan el contrato 9/9. Arsenal y pasiva viven en el actor; las cargas Q/R usan campos separados en `ultimate`; el dominio vive en `state.marcianoDomain`. La transformación policial guarda velocidad y defensas originales dentro de cada minion y las restaura al cerrar, sin referencias de objetos ni estado visual paralelo. `Progression.domainActive` incluye el dominio para aplazar mejoras, pero movimiento, cámara, reloj y ataque continúan. La pasiva contabiliza una descarga por lanzamiento con intervalo mínimo de 0,3 s, independientemente del número de proyectiles.
 
 ## Fases comunes de vida
 
