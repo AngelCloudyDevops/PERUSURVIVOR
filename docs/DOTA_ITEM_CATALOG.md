@@ -151,3 +151,25 @@ BKB actúa sobre las ralentizaciones temporales de tácticas, extinción, zonas 
 - Probar si cadencia/críticos/robo de vida dominan a defensa/control; ajustar límites y porcentajes con resultados de partida.
 - Resolver si habrá más activos manuales. El catálogo conserva Blink como único activo manual y usa activaciones automáticas en los objetos nuevos.
 - Medir frecuencia de cofres, monedas y ofertas para que una partida permita completar combinaciones sin garantizar todos los legendarios.
+
+
+## Propuesta de activables — pendiente de aprobar
+Un objeto puede conservar su bono pasivo y añadir una acción manual. Actualmente solo la daga tiene activación manual; esta tabla no cambia los efectos jugables. Los tiempos son orientativos y requieren pruebas.
+
+| Objeto | Acción propuesta | Límite inicial |
+|---|---|---|
+| Daga | Salto hacia el cursor | Mantener alcance, terreno y recarga actuales |
+| Botas de viaje | Teletransportarse junto a un compañero vivo | Canalizar 2 s; daño cancela; llegada segura; 60 s. En solitario: regreso a un punto marcado seguro |
+| Botas de fase | Acelerón y atravesar enemigos | 3 s / 15 s; no atraviesa paredes |
+| Varita mágica | Gastar cargas para curarse | Sin sobrecuración; conservar límite de cargas |
+| Blade Mail | Devolver parte del daño recibido | 4 s / 25 s; límite contra jefes |
+| Satanic | Gran robo de vida temporal | 4 s / 30 s; requiere acertar golpes |
+| Pipe of Insight | Escudo para aliados cercanos | 4 s / 25 s; no acumular escudos |
+| Glimmer Cape | Protección breve propia o de un aliado | 3 s / 20 s; sin invisibilidad total |
+| Black King Bar | Reducir control y daño mágico | 4 s / 35 s; no anula mecánicas de jefe |
+| Mask of Madness | Más velocidad de ataque a cambio de recibir más daño | 4 s / 20 s |
+| Hand of Midas | Convertir un enemigo normal en monedas | 45 s; excluye élites, jefes e invocaciones |
+| Abyssal Blade | Golpe que aturde al objetivo | 20 s; duración reducida en jefes |
+| Mjollnir | Escudo que responde con rayos al recibir golpes | 4 s / 25 s; límite de descargas |
+
+Primera tanda recomendada: daga, botas de viaje, varita, Blade Mail y BKB. Seleccionar un activable para E y permitir usar los demás desde sus iconos; evitar una tecla nueva por objeto. No sumar una activación manual al disparo automático existente: al convertir un efecto, sustituir su disparador y revisar su equilibrio.

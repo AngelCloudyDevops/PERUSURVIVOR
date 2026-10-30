@@ -1555,3 +1555,7 @@ Cada oferta muestra icono, rareza, categoría, funcionamiento, efecto, precio en
 ## Comparación breve de recompensas de cofre
 
 Las tres opciones aparecen visibles tras abrir el cofre, con icono, rareza y efecto breve. Una evolución identifica el objeto equipado que reemplaza y compara hasta dos valores de su versión previa. El saldo garantizado y el número de espacios se muestran una sola vez; los detalles completos quedan en Info. Las recompensas de monedas, curación, fama y provisiones tienen iconos y etiquetas propios. Elegir se aplica una sola vez, sin un segundo revelado ni espera de animación; se mantienen las recompensas, elegibilidad, monedas compartidas y elecciones individuales del cooperativo.
+
+
+### Daga: dirección del cursor
+La daga recalcula la dirección al activarse usando la posición actual del jugador, la cámara, el zoom y el último cursor sobre el campo. Un clic en el campo también actualiza el cursor; pulsar el icono del objeto conserva el objetivo del campo. En táctil se mantiene la dirección del joystick. El alcance y las restricciones de terreno no cambian.
