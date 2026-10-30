@@ -48,13 +48,12 @@ options(p){this.init(p);const s=P.state,pool=[],primary=P.Data.attacks[p.attack]
  if(p.powerRanks.primary&&p.powerRanks.pulse&&!p.combos.direct)add('combo:direct','DIRECTO VIRAL','Cada onda lanza cuatro copias del ataque principal en todas direcciones.');
  if(p.powerRanks.cards&&p.powerRanks.orbit&&!p.combos.press)add('combo:press','PRENSA BLINDADA','Las tarjetas perforan un rival adicional y el escudo aumenta su alcance.');
  for(const u of P.Data.upgrades)if((p.powerRanks['stat:'+u.id]||0)<5)add('stat:'+u.id,u.title+' · '+((p.powerRanks['stat:'+u.id]||0)+1)+'/5',u.description);
- // Los objetos de Dota se mezclan en las tres cartas reveladas de la subida.
- if(P.DotaItems)pool.push(...P.DotaItems.options(p));
+ // El equipo se obtiene de cofres y tiendas; el nivel desarrolla habilidades y pasivas.
  // Conserva una opción para avanzar el arma y mezcla su posición con las demás cartas.
  // Los pactos entran al mazo, no añaden una cuarta carta.
  if(s.level>=4&&s.level%4===0)pool.push(s.level%8===0?{id:'sacrifice:tempo',title:'Pacto de la cabina',description:'Pierdes velocidad para atacar mucho más rápido.'}:{id:'sacrifice:power',title:'Todo por el rating',description:'Entregas vida máxima a cambio de una gran subida de daño.'});
- const guaranteed=['kingteka','makanaky','sideral','cirilo','chamelin','cristorata'].includes(p.id)?arsenal:pool.find(o=>o.id==='primary'||o.id==='evolve:primary');if(arsenal)pool.push(arsenal);const result=[];if(guaranteed){const index=Math.floor(Math.random()*3);result.splice(index,0,guaranteed);pool.splice(pool.indexOf(guaranteed),1)}const itemGuaranteed=(s.level===2||s.level>=6&&s.level%4===2)?pool.find(o=>o.id.startsWith('dota:evolve:'))||pool.find(o=>o.id.startsWith('dota:base:')):null;if(itemGuaranteed&&result.length<2){const index=result.length+Math.floor(Math.random()*(3-result.length));result.splice(index,0,itemGuaranteed);pool.splice(pool.indexOf(itemGuaranteed),1)}
- // Los combos ya desbloqueados no deben desaparecer entre las opciones de objetos.
+ const guaranteed=['kingteka','makanaky','sideral','cirilo','chamelin','cristorata'].includes(p.id)?arsenal:pool.find(o=>o.id==='primary'||o.id==='evolve:primary');if(arsenal)pool.push(arsenal);const result=[];if(guaranteed){const index=Math.floor(Math.random()*3);result.splice(index,0,guaranteed);pool.splice(pool.indexOf(guaranteed),1)}
+ // Los combos ya desbloqueados mantienen su prioridad entre habilidades y pasivas.
  for(const combo of pool.filter(o=>o.id.startsWith('combo:')).slice(0,3-result.length)){result.push(combo);pool.splice(pool.indexOf(combo),1)}
  const weighted=pool.slice(),rarityWeight={common:1,rare:.62,epic:.34,legendary:.18};while(result.length<3&&weighted.length){const weights=weighted.map(o=>rarityWeight[o.rarity||this.rarity(o,p)]||1),total=weights.reduce((a,b)=>a+b,0);let roll=Math.random()*total,index=0;for(;index<weights.length-1&&roll>=weights[index];index++)roll-=weights[index];result.push(weighted.splice(index,1)[0])}
  while(result.length<3)result.push({id:'recover:'+result.length,title:'Respiro del causa',description:'Recupera el 25% de vida máxima.'});return this.enrich(p,result)},

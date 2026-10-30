@@ -13,6 +13,7 @@ class Activities{
   if(action==='escort')return this.escort.start(slot);
   if(action==='duo-event')return this.duo.start(slot);
   if(action==='market-buy')return P.Market.buy(id);
+  if(action==='dota-active'){if(!id||!Number.isFinite(id.x)||!Number.isFinite(id.y)||Math.hypot(id.x,id.y)<.001||Math.hypot(id.x,id.y)>1.01)return false;const used=P.DotaItems.activate(id);sim.save(p);return used}
   if(action==='portal'){
    if(!P.Encounters.near())return false;
    if(this.votes.has(slot))this.votes.delete(slot);else this.votes.add(slot);
@@ -45,9 +46,9 @@ class Activities{
   if(chest.impostor&&!chest.purified)return P.Market.wake(chest);
   const tier=P.Loot.keyType(chest);if(tier)P.state.keys[tier]--;
   chest.opened=true;chest.progress=1.8;chest.openAge=0;P.Loot.opened.add(chest.id);
-  let item=chest.miniReward?P.Relics.ids[chest.miniReward]:null;if(!chest.gold&&!chest.miniReward){const ids=Object.keys(P.Loot.items).filter(id=>P.Loot.items[id].rarity===(chest.rarity||'common'));item=ids[Math.floor(P.Loot.roll(Math.floor(chest.x),Math.floor(chest.y),271)*ids.length)];chest.item=item}
-  this.pending={id:++this.serial,kind:chest.miniReward?'mini-reward':chest.gold?'portal-reward':'item',phase:'opening',age:0,item,rarity:chest.rarity||'common',applied:[false,false],chestId:chest.id};
-  for(const p of this.sim.players)p.moving=false;
+  const item=chest.miniReward?P.Relics.ids[chest.miniReward]:null,tierName=chest.rarity||'common',equipment=!chest.gold&&!chest.miniReward,coins=equipment?P.Loot.chestCoins(tierName):0;
+  if(equipment&&!chest.coinsGranted){P.state.coins+=coins;chest.coinsGranted=true}
+  this.pending={id:++this.serial,kind:chest.miniReward?'mini-reward':chest.gold?'portal-reward':'item',phase:'opening',age:0,item,rarity:tierName,coins,options:equipment?this.sim.players.map((p,slot)=>P.Loot.rewardOptions(p,chest,slot)):undefined,applied:[false,false],chestId:chest.id};
   return true;
  }
  levelup(){const P=this.P,s=P.state;if(this.pending||s.xp<s.need||P.Progression.blocksUpgrade(this.sim.players))return;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.22+1);this.pending={id:++this.serial,kind:'level',phase:'choice',applied:[false,false],options:this.sim.players.map(p=>P.Progression.options(p))};for(const p of this.sim.players)p.moving=false}
@@ -86,6 +87,8 @@ class Activities{
   }else if(pending.kind==='mini-reward'){
    if(choice<0||choice>1)return false;
    if(choice===0){if(p.equipment===pending.item)return false;P.Loot.use(pending.item)}else P.state.coins+=P.Relics.coins;
+  }else if(pending.kind==='item'&&pending.options){
+   if(!P.Loot.applyReward(p,pending.options[slot]?.[choice]))return false;
   }else{
    if(choice<0||choice>1)return false;
    if(choice===0)P.Loot.use(pending.item);

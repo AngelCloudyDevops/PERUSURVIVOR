@@ -220,6 +220,7 @@ body.domain-result #hud>.stats,body.domain-result #hud>#level{visibility:hidden}
 #overlay.level-up.card-reveal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:min(920px,96vw);max-width:96vw;padding:clamp(15px,2.5vw,28px);text-align:center}
 #overlay.level-up.card-reveal h2,#overlay.level-up.card-reveal>p{grid-column:1/-1}
 #overlay.level-up.card-reveal h2:after{content:'ELIGE UNA MEJORA'}
+#overlay.level-up.card-reveal.loot-choice h2:after{content:'ELIGE UNA RECOMPENSA'}
 #overlay.level-up.card-reveal .upgrade-card{position:relative;display:block;width:100%;height:clamp(260px,38vh,330px);min-height:0;margin:0;padding:0;overflow:visible;perspective:1000px;border:0;background:transparent!important;box-shadow:none;transform:none}
 .upgrade-flipper{position:absolute;inset:0;display:block;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.75,.25,1)}
 .upgrade-card[data-revealed=true] .upgrade-flipper{transform:rotateY(180deg)}
