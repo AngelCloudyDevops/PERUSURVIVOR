@@ -325,6 +325,10 @@ module.exports = [
     "source": "src/systems/cabinet-boss.js",
     "output": "js/cabinet-boss.js"
   },
+  {
+    "source": "src/systems/guardian-boss.js",
+    "output": "js/guardian-boss.js"
+  },
   {"source":"src/systems/kingteka-domain.js","output":"js/kingteka-domain.js"},
   {
     "source": "src/ui/card-gallery.js",
