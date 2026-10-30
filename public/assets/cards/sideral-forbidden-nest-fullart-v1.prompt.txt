@@ -1,0 +1,5 @@
+Mode: image generation
+Use case: evolved stylized concept art for an in-game upgrade card
+Reference: public/assets/cards/sideral-character-fullart-v1.png
+
+Create a portrait 2:3 full-bleed illustration of Nido prohibido. Preserve Sideral's exact identity and clothes. One large mottled reptile egg bursts open near the ground and exactly three small green lizards fan outward along three clearly diverging attack trails. Sideral directs the attack from behind. Neon Lima gamer-room at night, violet, cyan and acid-green lighting, polished detailed pixel-art finish. No extra eggs or lizards, frame, text, logo, watermark or gore.

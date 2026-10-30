@@ -51,6 +51,18 @@ Carga Q separada `ultimate.sideralCharge`: normal +5, pesado +10, minijefe +20, 
 
 La carta Q usa ilustración exclusiva de la transformación: `assets/cards/sideral-lagarto-ultimate-fullart-v1.webp` (1024×1536, WebP de 428332 bytes). Conserva el marco `fire` de las otras ultis; muestra cuerpo reptiliano, cola, auriculares y camiseta roja, aliento verde y Lima nocturna. El PNG fuente y el prompt están versionados junto al WebP; solo este último se distribuye. Las animaciones nuevas de combate son pixel art dibujado en canvas, sin fragmentar ni estirar el atlas humano: cola conectada a la cadera, huevo visible, vuelo parabólico, apertura, embestida, onda y figura reptiliana completa con seis fases de paso. Movimiento reducido elimina la oscilación visual del barrido y del aliento sin cambiar daño ni tiempos.
 
+## Cobertura visual del arsenal
+
+Las cartas de subida de nivel ya no usan la composición genérica. `P.UI.upgradeArt` resuelve una ilustración vertical para cada técnica y cambia a la versión evolucionada únicamente en la carta de evolución:
+
+| Técnica | Carta base | Carta evolucionada |
+|---|---|---|
+| Mirada Sideral | `sideral-fear-fullart-v1.webp` | `sideral-forbidden-face-fullart-v1.webp` |
+| Colazo del Lagarto | `sideral-tail-fullart-v1.webp` | `sideral-ancestral-tail-fullart-v1.webp` |
+| Huevo sospechoso | `sideral-egg-fullart-v1.webp` | `sideral-forbidden-nest-fullart-v1.webp` |
+
+Cada WebP tiene PNG maestro y `.prompt.txt` versionado. El arte conserva cabello negro corto, gafas oscuras, camiseta negra, jeans azules y Lima nocturna; la evolución se distingue por el patrón real —cono ampliado, onda larga o tres lagartitos— y no por un recolor. Conforme al [contrato visual](VISUAL_CONTRACT.md), quedan como mejora futura los seis cuadros exclusivos de reacción/derrota de Sideral.
+
 ## Validación
 
 `tests/sideral-kit.test.cjs` cubre contrato, stats, puertas de progresión, evoluciones independientes, arco frontal, cobertura, demora, límite de impactos y huevos, daño a la pasiva, Q/R independientes y snapshots cooperativos. Las pruebas existentes de `sideral-domain.test.cjs` siguen protegiendo R. La batería completa cubre los demás personajes y el modo solitario. La medición de 56 ejecuciones automáticas locales, los duelos, ajustes y límites se documentan en [SIDERAL_BALANCE.md](SIDERAL_BALANCE.md). Hay cierres con victoria en ambos modos; la muestra general no acredita equilibrio definitivo y necesita validación con jugadores.

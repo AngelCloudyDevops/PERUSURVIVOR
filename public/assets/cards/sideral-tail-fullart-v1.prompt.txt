@@ -1,0 +1,5 @@
+Mode: image generation
+Use case: stylized concept art for an in-game upgrade card
+Reference: public/assets/cards/sideral-character-fullart-v1.png
+
+Create a portrait 2:3 full-bleed illustration of Sideral using Colazo del Lagarto. Preserve his exact identity and clothes. Full-body twisting attack pose with exactly two arms, two legs and one large green scaled reptile tail visibly connected behind his waist. The tail performs a powerful close-range sweep with dust and magenta-green impact energy. Neon Lima gamer-room at night, polished detailed pixel-art finish. No extra limbs or tails, frame, text, logo, watermark or gore.

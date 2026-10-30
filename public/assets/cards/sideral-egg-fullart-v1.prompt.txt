@@ -1,0 +1,5 @@
+Mode: image generation
+Use case: stylized concept art for an in-game upgrade card
+Reference: public/assets/cards/sideral-character-fullart-v1.png
+
+Create a portrait 2:3 full-bleed illustration of Sideral using Huevo sospechoso. Preserve his exact identity and clothes. Show him throwing one large mottled green reptile egg in a clear parabolic trail; the same egg opens near the ground and exactly one small green lizard emerges to charge forward. Neon Lima gamer-room at night, violet, cyan and green lighting, polished detailed pixel-art finish. No extra eggs or lizards, frame, text, logo, watermark or gore.

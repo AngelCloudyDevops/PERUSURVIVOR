@@ -1,0 +1,5 @@
+Mode: image generation
+Use case: evolved stylized concept art for an in-game upgrade card
+Reference: public/assets/cards/sideral-character-fullart-v1.png
+
+Create a portrait 2:3 full-bleed illustration of Rostro prohibido, the evolved Mirada Sideral. Preserve Sideral's human body, identity and clothes. He lowers his sunglasses as an enormous spectral red reptile face appears behind him; a wider crimson-magenta fear cone dominates the scene and enemy silhouettes flee. Neon Lima gamer-room at night, violet and red lighting, polished detailed pixel-art finish. No bodily transformation, frame, text, logo, watermark or gore.

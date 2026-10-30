@@ -1,0 +1,5 @@
+Mode: image generation
+Use case: stylized concept art for an in-game upgrade card
+Reference: public/assets/cards/sideral-character-fullart-v1.png
+
+Create a portrait 2:3 full-bleed illustration of Sideral using Mirada Sideral. Preserve his short spiky black hair, black sunglasses, black T-shirt, blue jeans, black sneakers and stocky build. Full-body three-quarter action pose, one hand lowering the sunglasses, red glowing eyes and a broad red-magenta fear cone. Enemy silhouettes flee inside the cone. Neon Lima gamer-room at night, violet, cyan and hot-pink lighting, polished detailed pixel-art finish. No frame, text, logo, watermark or gore.

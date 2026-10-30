@@ -1525,6 +1525,8 @@ La Q **Treinta intervenidos** ejecuta diez barridos móviles, con hasta tres obj
 
 ### Renovación estética de personajes
 
+Toda renovación sigue `docs/VISUAL_CONTRACT.md`: un personaje necesita identidad estable, movimiento, lectura propia de tres ataques y evoluciones, señal de pasiva, Q, R, cartas conectadas, accesibilidad y entrega optimizada. El estado visual se registra separado del 9/9 mecánico. Un efecto procedural puede ser final si representa todas sus fases y coincide con la mecánica; un placeholder o recolor genérico no completa el punto.
+
 La renovación empieza con Kingteka. Sus poses de daño y derrota son figuras completas dibujadas, no partes superpuestas ni deformaciones del cuadro de caminar. Los tres impactos conservan arma, tatuajes, rostro, ropa y escala; la secuencia de derrota pasa por rodillas vencidas, caída y cuerpo en el suelo con ojos en X. Esta presentación es exclusivamente cosmética: no alarga la invulnerabilidad ni retrasa el resultado de la partida. El mismo contrato de seis cuadros se reutilizará personaje por personaje para mantener coherencia visual.
 
 Sus tres armas también deben distinguirse por silueta: Escopeta usa el arma visible y retroceso opuesto al disparo; Gallinazo guarda la escopeta, prepara el brazo y libera con la palma abierta; Golpe guarda el arma, carga el peso y completa un puñetazo con recuperación. Plumas, ave, fogonazo y arco de impacto siguen la dirección real por separado, evitando deformar o girar el cuerpo completo.

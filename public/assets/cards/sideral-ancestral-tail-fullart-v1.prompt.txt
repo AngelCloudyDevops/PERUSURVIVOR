@@ -1,0 +1,5 @@
+Mode: image generation
+Use case: evolved stylized concept art for an in-game upgrade card
+Reference: public/assets/cards/sideral-character-fullart-v1.png
+
+Create a portrait 2:3 full-bleed illustration of Latigazo ancestral. Preserve Sideral's exact identity and clothes. Show exactly one green reptile tail connected behind his waist sweeping at close range while a narrow luminous green shockwave continues far beyond the tail. Full-body action pose, exactly two arms, two legs and one tail. Neon Lima gamer-room at night, polished detailed pixel-art finish. No extra limbs or tails, frame, text, logo, watermark or gore.

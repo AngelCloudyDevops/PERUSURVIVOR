@@ -35,6 +35,8 @@ Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posici
 
 ## Contrato general de personajes: estadísticas, pasiva y habilidades
 
+El contrato mecánico se complementa con el [contrato visual de personajes](docs/VISUAL_CONTRACT.md). Kingteka es la referencia de cobertura: identidad, movimiento, tres ataques y evoluciones legibles, pasiva, Q, R, cartas propias, reacciones, accesibilidad y entrega optimizada. Un kit 9/9 no se declara visualmente completo si sus estados jugables todavía usan placeholders o no están conectados al flujo real.
+
 Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa. Una ficha no debe enseñar una estadística que todavía no tenga efecto real en el combate. Los valores base significan **rango 1, una estrella, sin mejoras permanentes, objetos ni bonificaciones de la partida**.
 
 1. **Identidad:** nombre, rareza de colección, rol, atributo (`Fuerza`, `Técnica` o `Ingenio`), canal principal (`Físico` o `Especial`), fortaleza y debilidad.

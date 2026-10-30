@@ -858,6 +858,8 @@ Public cooperative E2E usa `COOP_FULL_RUN=1` para una única sala privada hasta 
 ### Kit de Sideral
 `src/systems/sideral-kit.js` extiende el arsenal, contrato, progresión, pasiva y Q al terminar de cargar las pasivas comunes. Usa el mismo módulo en navegador y VM cooperativa. El estado `sideralArsenal`, `sideralPassive`, `sideralEggs` y temporizadores vive en cada jugador y viaja en snapshots; Q se carga en `ultimate.sideralCharge`, mientras R conserva `ultimate.charge`. El servidor valida cambio de técnica y ejecuta todos los impactos. `src/rendering/sideral-lagarto.js` dibuja las figuras y efectos sin autoridad de combate. No se modifica `sideral-domain.js`.
 
+La interfaz de mejoras resuelve artes por ID mediante `P.UI.upgradeArt(player, id)`. La tabla conserva las rutas de Kingteka y añade las seis de Sideral sin introducir lógica en progresión: `unlock` y `rank` usan la carta base; `evolve` usa la variante evolucionada. `show` trata cualquier `artPath` válido como full art, por lo que el patrón queda disponible para personajes futuros sin condicionar el render a un nombre concreto. PNG y prompts permanecen como fuentes archivadas; solo WebP llega a `dist`.
+
 La medición offline de Sideral usa `scripts/sideral-balance-audit.cjs` sobre Game.update/Simulation y `scripts/sideral-combat-measure.cjs` para duelos controlados; ambos quedan fuera de dist. El cargador de auditorías admite un sourceRoot separado y no ejecuta el worker de otro auditor al importarse. Cada huevo serializa targetKey y una muestra limitada de movimiento; Q serializa sideralBreathPower fijado al activar. No se añade autoridad del cliente ni cambia el protocolo.
 
 ### Arsenal de CiriloTV

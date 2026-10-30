@@ -416,6 +416,18 @@
       "quality": 76
     },
     {
+      "source": "assets/cards/sideral-ancestral-tail-fullart-v1.png",
+      "output": "assets/cards/sideral-ancestral-tail-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2969858,
+      "optimizedBytes": 109060,
+      "sourceSha256": "d448d777bd008d852382d977f11848b2d96827269b28754dd02683405ec4631d",
+      "outputSha256": "1b41b5f828f1ff1664b3925e91a5e0fdac4370fdd98524cbc04a0d44d153b34b",
+      "rgbaSha256": "0cc8789c6665759c027ea680600588e86c8706ab906ddaf4458432263c6fb1e0",
+      "quality": 10
+    },
+    {
       "source": "assets/cards/sideral-character-fullart-v1.png",
       "output": "assets/cards/sideral-character-fullart-v1.webp",
       "width": 1024,
@@ -438,6 +450,66 @@
       "outputSha256": "3738f3bcc9d2ddeb388aafaf658f25a004302a087b384ea7afdd52c3ccb1ac60",
       "rgbaSha256": "927bcda5d115800c135b9aead8cd28b5c9f545c8e6cb563559fc84baf494edb4",
       "quality": 60
+    },
+    {
+      "source": "assets/cards/sideral-egg-fullart-v1.png",
+      "output": "assets/cards/sideral-egg-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2737357,
+      "optimizedBytes": 95906,
+      "sourceSha256": "bc0827482e779b17f5c27d37133783c9aec4665be90d2211ac53c145c2b5a604",
+      "outputSha256": "bc437af619f88bf1ebc8ac5a5a55f5b9bbf8aee7f8deda57d5fd1fe11c4939e8",
+      "rgbaSha256": "1a3a6664603e540dab0be2529e7db9e880ce12e5fbfe2d4a7b7883bf619c29f6",
+      "quality": 10
+    },
+    {
+      "source": "assets/cards/sideral-fear-fullart-v1.png",
+      "output": "assets/cards/sideral-fear-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2676733,
+      "optimizedBytes": 86008,
+      "sourceSha256": "e2a66844c5421c32e54d659d44b12377a43ed9ff78154a05b6dec63e112ceebc",
+      "outputSha256": "19e3719ca4d4758de2e790a4b3944f9a21f84bec055eec1d95b8ebc5f02bd7f1",
+      "rgbaSha256": "d082941a215a5ca40b9d5c79d818ddee2f2c6ae58245d9c3861f34f5e5c48f9a",
+      "quality": 10
+    },
+    {
+      "source": "assets/cards/sideral-forbidden-face-fullart-v1.png",
+      "output": "assets/cards/sideral-forbidden-face-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2974965,
+      "optimizedBytes": 94436,
+      "sourceSha256": "55d0a4a3842111d82137a7b2c6e5728f5dd07e2fb2e2bd2576e07faff540dbbb",
+      "outputSha256": "ce7f2544932e7e3bc4394c670264ad7146fc7d5fcb5a0cd9ccac82a705cb054c",
+      "rgbaSha256": "5a865d2db165b845ecd4bcb28fa0cef66a1e0eed939dcb038e2c227c66fe6cf0",
+      "quality": 10
+    },
+    {
+      "source": "assets/cards/sideral-forbidden-nest-fullart-v1.png",
+      "output": "assets/cards/sideral-forbidden-nest-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 3104449,
+      "optimizedBytes": 125576,
+      "sourceSha256": "8b303480945b77481c5d4a961ae55bcb0e78f3e09f80e4b80346184fc4590714",
+      "outputSha256": "cae15dfde50423ef300f496f58da9ca82f8f05e44b07e6d475bd9908cb008016",
+      "rgbaSha256": "42dcd36e9b24da94ece2b93dd2047e1e5f823efd83756083aa865d5dff0a35ed",
+      "quality": 10
+    },
+    {
+      "source": "assets/cards/sideral-tail-fullart-v1.png",
+      "output": "assets/cards/sideral-tail-fullart-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 3083640,
+      "optimizedBytes": 124728,
+      "sourceSha256": "be6e9ba62697b2d7fec34ed7e141bd05d8cbfc5fd5b32145dc4f94b430fc02ab",
+      "outputSha256": "a211039092f4acfdb19f4d68c03d5f607016f41317f010eac489616767a3d0e9",
+      "rgbaSha256": "6201c2b192778e62373096da8e5719acb08306ee0958a0b2325c8c124dd40f18",
+      "quality": 10
     },
     {
       "source": "assets/characters/causas-atlas-v1.png",
@@ -748,6 +820,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 104005664,
-  "optimizedBytes": 41480444
+  "originalBytes": 121552666,
+  "optimizedBytes": 42116158
 }
