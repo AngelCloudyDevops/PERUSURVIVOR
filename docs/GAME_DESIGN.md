@@ -1555,3 +1555,17 @@ Cada oferta muestra icono, rareza, categoría, funcionamiento, efecto, precio en
 ## Comparación breve de recompensas de cofre
 
 Las tres opciones aparecen visibles tras abrir el cofre, con icono, rareza y efecto breve. Una evolución identifica el objeto equipado que reemplaza y compara hasta dos valores de su versión previa. El saldo garantizado y el número de espacios se muestran una sola vez; los detalles completos quedan en Info. Las recompensas de monedas, curación, fama y provisiones tienen iconos y etiquetas propios. Elegir se aplica una sola vez, sin un segundo revelado ni espera de animación; se mantienen las recompensas, elegibilidad, monedas compartidas y elecciones individuales del cooperativo.
+
+
+### Daga: dirección del cursor
+La daga recalcula la dirección al activarse usando la posición actual del jugador, la cámara, el zoom y el último cursor sobre el campo. Un clic en el campo también actualiza el cursor; pulsar el icono del objeto conserva el objetivo del campo. En táctil se mantiene la dirección del joystick. El alcance y las restricciones de terreno no cambian.
+
+
+### Equipo activable y canales de protección
+- E usa el activable seleccionado; F cambia entre los equipados. Clic/tocar un icono lo usa y lo selecciona. Se conservan cuatro espacios y los requisitos de evolución. La esquiva/evento urgente conserva prioridad sobre E.
+- Los efectos de varita, Blade Mail, Satanic, Mask of Madness, Glimmer, Pipe, BKB y Abyssal pasan a manuales; sus antiguos disparadores automáticos se deshabilitan. Bonos pasivos y cadenas de Mjollnir permanecen. Valores completos en `DOTA_ITEM_CATALOG.md`.
+- Glimmer protege a un individuo (aliado vivo a 180 u en dirección de apuntado; si no, al portador). Pipe protege a los aliados vivos a 180 u. Ambos escudos absorben solo especial, tras resistencias; el físico daña vida sin consumirlos. No se suman ni renuevan entre sí mientras estén vigentes. La cantidad se basa en la vida máxima del receptor.
+- BKB añade 20% de reducción especial durante 4 s, limpia lentitud temporal y reduce a la mitad las nuevas ralentizaciones. Conserva las mecánicas obligatorias de jefes. Blade Mail solo devuelve daño físico realmente perdido, con límite de jefe y sin recursión.
+- Botas de viaje: 2 s de canalización al compañero vivo, usando su posición al terminar. Daño recibido (incluso absorbido), muerte del objetivo, cambio de arena, dominio o falta de llegada segura cancela y aplica 5 s de espera. Éxito: 60 s de recarga, llegada sin terreno sólido ni enemigos encima y 0,7 s de protección. En solitario, primera activación marca un punto y la siguiente vuelve a sus proximidades. La marca no cruza mapas ni encuentros. No permite usar otros objetos durante la canalización.
+- Midas convierte únicamente enemigos normales no invocados ni élites (sin jefes ni pruebas) en 8 monedas de partida; mantiene sus recompensas normales al morir y el bono de monedas sueltas. Elimina la fama extra por contadores. Fase evita daño de contacto durante 3 s, no atraviesa terreno ni bloquea proyectiles distantes.
+- Todos los blancos dirigidos de equipo requieren una dirección válida y línea libre; Abyssal y Glimmer: 180 u; Midas: 240 u. Si no hay objetivo válido no se consume recarga.

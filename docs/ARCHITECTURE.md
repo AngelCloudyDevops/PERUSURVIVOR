@@ -922,3 +922,9 @@ Los ataques visuales de Makanaky se resuelven en `MakanakyPlayerArt`, `PlayerAtt
 ## Vista breve de cofres
 
 `ui/loot-choices.js` se añade después del catálogo Dota y atiende únicamente `UI.show(..., choiceKind="loot")`. Resume efectos a partir de datos, deriva comparaciones del objeto previo y conserva la descripción completa en Info. Reutiliza la limpieza de diálogos de UI.show con un modo interno distinto, mantiene los botones en upgradeChoices y bloquea dobles selecciones antes de ejecutar la acción original. Loot y Coop pasan la recompensa estructurada para representar suministros sin analizar textos; la autoridad de adquisición permanece en Loot/Activities. Las cartas de nivel y las recompensas especiales conservan sus vistas.
+
+
+### Activaciones de equipo
+`src/systems/dota-actives.js` se carga después de equipo y presentación de recompensas, conservando el orden previo y `P`. Centraliza metadatos de activación, selección local de E, ejecución manual, canalización de viaje y HUD. Reutiliza las primitivas de equipo para curación, daños secundarios y escudos, sin añadir recorridos de enemigos por fotograma. Los escudos serializan su canal (`general`, `physical`, `special`); la mitigación no consume escudos de otro canal.
+
+En cooperativo, `dota-active` envía solo `item` y vector de dirección normalizado. `backend/activities.cjs` valida inventario y vector; el motor vuelve a validar estado, recarga, objetivos, distancias, terreno y premios. No acepta coordenadas de destino, cantidades de escudo ni monedas del cliente. Mensajes antiguos sin `item` conservan compatibilidad con la daga equipada. Los temporizadores, cargas y viajes viven en cada jugador y viajan en snapshots; la selección de E es local y no modifica autoridad. El aterrizaje consulta también sectores deterministas del destino antes de mover, sin exigir precargar gráficos.
