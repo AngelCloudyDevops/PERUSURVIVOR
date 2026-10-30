@@ -53,7 +53,7 @@ receive(m){
  const broken=new Set(m.broken);P.Chunks.broken=new Set(m.broken.filter(id=>typeof id==='string'));for(const prop of P.Terrain.props)if(prop.kind==='crate'&&broken.has(prop.id)){prop.solid=false;prop.hp=0;if(prop.generated)P.Chunks.broken.add(prop.id)}
  P.Market.merchant=m.merchant||null;P.Loot.chests=m.chests||[];P.Loot.debris=m.debris||[];P.Loot.message=m.message||'';P.Loot.messageTime=m.message?1:0;P.Exploration.station=m.station;
  if(previousScene!==s.encounter?.scene?.id){if(s.encounter)P.PortalFX?.remoteTransfer(s.elapsed);P.Terrain.cameraX=s.player.x;P.Terrain.cameraY=s.player.y;P.Core.clear();P.Core.canvas.setAttribute('aria-label','Arena: '+(s.encounter?.scene?.name||P.Maps.current().name))}
- P.Chunks.sync();P.MapEvents.ensureTerrain();P.UI.hud();P.$('#coop-hud').textContent='SALA '+this.session.code+' · '+m.players.map(p=>p.name+': '+Math.ceil(p.hp)+' ♥'+(p.hp<=0?' · Reanimación '+Math.floor(p.revive||0)+'/4 s':'')).join(' / ');
+ P.Chunks.sync();P.MapEvents.ensureTerrain();P.UI.hudFrame();P.$('#coop-hud').textContent='SALA '+this.session.code+' · '+m.players.map(p=>p.name+': '+Math.ceil(p.hp)+' ♥'+(p.hp<=0?' · Reanimación '+Math.floor(p.revive||0)+'/4 s':'')).join(' / ');
  const votes=m.portal?.votes||[];if(m.portal?.open)P.$('#portal-status').textContent+=' · Toca el centro: entran los dos';P.$('#portal-enter').textContent=votes.includes(this.session.slot)?'Listo · E para cancelar':'Entrar juntos al portal · E';
  P.$('#hint').textContent=m.message||(s.player.hp<=0?'CAÍSTE · TU AMIGO PUEDE REANIMARTE ACERCÁNDOSE 4 S':'COOPERATIVO · EXPLORA COFRES, PORTALES Y EVENTOS CON TU AMIGO');
  this.showReward(m.pending);
