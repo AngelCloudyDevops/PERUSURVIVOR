@@ -28,9 +28,9 @@ Además del kit, cada ficha debe declarar rol, atributo, canal de daño, debilid
 | Boss | Ataques implementados | Pasivas | Ulti / Expansión | Fases | Falta definir |
 |---|---|---|---|---|---|
 | Tirano del Cráter | Embestida obligatoria; Rugido de choque; Pisotón sísmico; Lluvia de meteoritos | Agotamiento tras tres ataques; tormenta obligatoria | Cacería del Último Rey / Cráter del Depredador | 2/2 | Mecánicas completas; falta dirección de arte, audio y balance con partidas completas |
-| Triceratops Fósil | Embestida fósil; Rugido ancestral; Pisotón de cámara; Carga contra pilares | Dos placas fósiles; cristal vulnerable durante aturdimiento | Por definir / Por definir | 2/2 | Rol textual definitivo; separar remate y expansión reales |
+| Triceratops Fósil | Embestida fósil; Rugido ancestral; Pisotón de cámara; Carga contra pilares | Dos placas fósiles; cristal vulnerable durante aturdimiento | Juicio de los Tres Cuernos / Cámara de Ámbar | 2/2 | Mecánicas completas; falta dirección de arte, audio y balance con partidas completas |
 
-El Tirano ya separa sus piezas finales de la tormenta y los meteoritos: Cráter del Depredador exige rotar entre cuatro refugios angulares y Cacería del Último Rey encadena tres carriles fijados antes de dejarlo expuesto. El Triceratops todavía conserva visibles sus espacios separados de ulti y expansión. No se reutilizarán automáticamente placas o mazmorra para llenarlos.
+Los dos jefes ya separan sus piezas finales de los patrones existentes. El Tirano usa cuatro refugios angulares y tres carriles de cacería. El Triceratops alterna tres cámaras seguras de ámbar y ejecuta tres barridos frontales que exigen flanquearlo; superar cualquiera de sus pruebas expone el cristal sin fingir que se rompieron sus placas.
 
 ## Minijefes
 
