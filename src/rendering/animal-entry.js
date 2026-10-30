@@ -1,5 +1,4 @@
 'use strict';
-// Comic panels reuse the existing whole sprites; no mesh deformation or limb stretching.
 P.AnimalEntry={duration:1.3,
 smooth(t){t=Math.max(0,Math.min(1,t));return t*t*(3-2*t)},
 motion(id,age,reduced=false){const t=Math.max(0,Math.min(1,age/this.duration));if(reduced)return {t,lift:0,angle:0,wing:0,impact:0};if(id==='cuy'){const charge=this.smooth(t/.17),jump=Math.sin(this.smooth((t-.17)/.48)*Math.PI);return {t,lift:-jump*39+charge*3,angle:-jump*.06,wing:0,impact:this.smooth((t-.65)/.04)*(1-this.smooth((t-.73)/.2))}}return {t,lift:-this.smooth((t-.27)/.54)*39+Math.sin(t*Math.PI*5)*this.smooth((t-.27)/.2)*1.5,angle:-Math.sin(t*Math.PI)*.035,wing:Math.sin(t*Math.PI*6)*.65,impact:0}},

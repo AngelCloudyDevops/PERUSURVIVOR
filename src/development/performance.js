@@ -1,5 +1,4 @@
 'use strict';
-// Diagnóstico visible solicitado por el usuario; no modifica partidas normales.
 P.Performance={
 enabled:true,active:false,presets:[{enemies:80,shots:200},{enemies:80,shots:400},{enemies:160,shots:600}],recent:[],warmup:3000,duration:30000,
 setEnabled(value){this.enabled=!!value;try{localStorage.setItem('perusurvivor-option-fps',String(this.enabled))}catch{}if(this.toggle)this.toggle.checked=this.enabled;this.paint()},

@@ -4,7 +4,7 @@ test('Cooperativo: cinco mapas, 18 ataques, reanimación y mejoras compartidas',
  for(const map of ['campo','plaza','machu','halloween','navidad']){
   const sim=new Simulation(map,[0,6]);sim.tick(.04,[{x:1,y:0},{x:-1,y:0}]);assert.equal(sim.snapshot().map,map);assert.notEqual(sim.players[0].x,sim.players[1].x);
   const [a,b]=sim.players;b.hp=0;b.x=a.x;b.y=a.y;sim.P.Systems.spawn=()=>{};for(let i=0;i<101;i++)sim.tick(.04,[{},{}]);assert(b.hp>0,'Reanimar después de 4 segundos');
-  sim.P.state.xp=sim.P.state.need;sim.tick(.04,[{},{}]);assert.equal(sim.P.state.level,2);const levelChoice=sim.activities.pending;assert.equal(levelChoice.kind,'level');const pick=slot=>levelChoice.options[slot].findIndex(o=>o.id==='primary');sim.activities.choose(0,levelChoice.id,pick(0));sim.activities.choose(1,levelChoice.id,pick(1));assert(a.power>sim.P.Data.characters[0].power);assert(b.power>sim.P.Data.characters[6].power);
+  sim.P.state.xp=sim.P.state.need;sim.tick(.04,[{},{}]);assert.equal(sim.P.state.level,2);const levelChoice=sim.activities.pending;assert.equal(levelChoice.kind,'level');const pick=slot=>levelChoice.options[slot].findIndex(o=>o.id===(slot===0?'cristorata-arsenal:unlock:cristoDash':'primary'));sim.activities.choose(0,levelChoice.id,pick(0));sim.activities.choose(1,levelChoice.id,pick(1));assert(a.cristorataArsenal.unlocked.cristoDash);assert.equal(a.power,sim.P.Data.characters[0].power);assert(b.power>sim.P.Data.characters[6].power);
   a.hp=0;b.hp=0;sim.tick(.04,[{},{}]);assert.equal(sim.result,'lose');
  }
  for(let i=0;i<18;i++){

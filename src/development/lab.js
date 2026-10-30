@@ -1,5 +1,4 @@
 'use strict';
-// Laboratorio solicitado por el usuario. Las pruebas no guardan récords.
 P.Lab={
 boss:'campo',
 bindQuickEvent(){const button=P.$('#boss-qte');if(button&&!button.onclick)button.onclick=()=>P.Encounters.quickEvent()},

@@ -1,5 +1,4 @@
 'use strict';
-// Reacciones cooperativas exclusivas del dominio. Los atlas no sustituyen las poses normales.
 P.CompanionArt={
  catalogs:{
   classic:{url:'assets/companions/companions-classic-v1.webp',rows:['cristorata','cuy','paloma','alan','alberto','keiko','ollanta']},

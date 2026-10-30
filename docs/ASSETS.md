@@ -68,3 +68,6 @@ Gallinazo del Caos: public/assets/bosses/gallinazo-atlas-v1.png, seis poses en t
 
 
 
+
+### Sideral · Despertar del Lagarto Q
+Arte exclusivo `public/assets/cards/sideral-lagarto-ultimate-fullart-v1.webp`, con PNG fuente y `.prompt.txt` reproducible en la misma carpeta. Generado con imagegen integrado; estilo pixel art detallado, Lima nocturna, transformación reptiliana, auriculares, camiseta roja y aliento verde. Mantiene el marco y formato vertical de las otras cartas. El build excluye automáticamente el PNG cuando existe WebP y excluye los prompts.

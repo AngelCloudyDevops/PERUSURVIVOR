@@ -1,0 +1,811 @@
+{
+  "version": 2,
+  "controller": "v2: normal offers; emergency heal below 60%; vomit core, taxi inside 140, echo against groups of 3 within 100; no portal requests; R before Q",
+  "sourceSha": "ecb0ef74a6560a56987d470f549924d13a44c2f6",
+  "fingerprints": {
+    "src/systems/cirilo-kit.js": "89281311a25d13b0a94c07c6dc49c446c138f2df8a8279656a596a19def0ae35",
+    "src/systems/progression.js": "a1d7a762095b8b50b6b606515732e2da55081ee5369b2fd746a69f502a516ab8",
+    "src/systems/cirilo-ur.js": "2cf5d3f5bbf99347f3fdbff8760cff75f215e6ec5687f8f6fd9fffc5cdc20105",
+    "src/systems/cirilo-arena.js": "04c2801f465db98b8c8ddbba2bd4c633c8c1aac40a2f3c7ae6f680ed8a565364"
+  },
+  "seedPolicy": "mulberry32 per isolated worker/VM",
+  "hz": 30,
+  "scope": "Offline normal solo Game.update and authoritative cooperative Simulation; no portals requested; natural progression, damage and spawns; not human play or browser FPS",
+  "reports": [
+    {
+      "limit": 600,
+      "lockFinal": true,
+      "mode": "coop",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "ciriloEcho",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 10,
+          "damageTaken": 142.98900000000003,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 0,
+          "downs": 0,
+          "resurrections": 0,
+          "qUses": [
+            36.2,
+            74.67,
+            108.27,
+            139.27,
+            175.23,
+            195.67,
+            227.43,
+            252.67,
+            280.63,
+            296.47
+          ],
+          "rUses": [
+            39.23,
+            118.53,
+            164.67,
+            199.87,
+            257.47,
+            303.27
+          ],
+          "casts": {
+            "ciriloVomit": 39,
+            "ciriloTaxi": 1,
+            "ciriloEcho": 209
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 1768.22,
+            "ciriloEchoImpact": 1317.05,
+            "echoOrOtherSpecial": 13508.64,
+            "Q": 2015.95,
+            "primary:CIRILO_FIRE": 2581.77
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 2685.62,
+            "ciriloEchoImpact": 237.55,
+            "primary:CIRILO_VOMIT": 101.66,
+            "primary:CIRILO_FIRE": 929.53,
+            "Q": 272.52
+          },
+          "taxiStarts": 1,
+          "taxiReturns": 1,
+          "returnError": 0,
+          "hp": 9.83,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloEcho",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 1,
+              "ciriloEcho": 5
+            },
+            "evolved": {
+              "ciriloEcho": true
+            },
+            "lastSwitch": 34.40000000000061
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 10,
+          "damageTaken": 142.73600000000002,
+          "damageDuringQ": 17.819999999999993,
+          "damageDuringTaxi": 0,
+          "downs": 0,
+          "resurrections": 0,
+          "qUses": [
+            35.73,
+            64.97,
+            81.9,
+            115.73,
+            154.63,
+            187.67,
+            210.43,
+            238.47,
+            268.03,
+            291.07,
+            313.83
+          ],
+          "rUses": [
+            54.4,
+            86.57,
+            144.07,
+            216.87,
+            270.07
+          ],
+          "casts": {
+            "ciriloVomit": 39,
+            "ciriloTaxi": 1,
+            "ciriloEcho": 223
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 2257.23,
+            "ciriloTaxi": 29.46,
+            "ciriloEchoImpact": 1315.92,
+            "echoOrOtherSpecial": 14161.27,
+            "Q": 2367.5,
+            "primary:CIRILO_FIRE": 1595.56
+          },
+          "damageToBosses": {
+            "ciriloEchoImpact": 266.04,
+            "echoOrOtherSpecial": 2326.81,
+            "Q": 980.53,
+            "primary:CIRILO_VOMIT": 362.7,
+            "primary:CIRILO_FIRE": 172.28
+          },
+          "taxiStarts": 1,
+          "taxiReturns": 1,
+          "returnError": 0,
+          "hp": 10.26,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloEcho",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 1,
+              "ciriloEcho": 5
+            },
+            "evolved": {
+              "ciriloEcho": true
+            },
+            "lastSwitch": 34.40000000000061
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 3,
+          "kills": 26,
+          "enemies": 17,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 5,
+          "kills": 75,
+          "enemies": 14,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            117.2,
+            135
+          ],
+          "level": 7,
+          "kills": 125,
+          "enemies": 7,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 8,
+          "kills": 161,
+          "enemies": 6,
+          "danger": 0
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            123.6,
+            123.6
+          ],
+          "level": 9,
+          "kills": 204,
+          "enemies": 11,
+          "danger": 0
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            105.8,
+            95.9
+          ],
+          "level": 10,
+          "kills": 241,
+          "enemies": 8,
+          "danger": 0
+        },
+        {
+          "at": 210,
+          "elapsed": 210,
+          "hp": [
+            86.3,
+            95.9
+          ],
+          "level": 11,
+          "kills": 301,
+          "enemies": 6,
+          "danger": 1
+        },
+        {
+          "at": 240,
+          "elapsed": 240,
+          "hp": [
+            68.5,
+            96.1
+          ],
+          "level": 12,
+          "kills": 344,
+          "enemies": 9,
+          "danger": 0
+        },
+        {
+          "at": 270,
+          "elapsed": 270,
+          "hp": [
+            55.7,
+            96.1
+          ],
+          "level": 13,
+          "kills": 395,
+          "enemies": 25,
+          "danger": 1
+        },
+        {
+          "at": 300,
+          "elapsed": 300,
+          "hp": [
+            9.8,
+            40.6
+          ],
+          "level": 13,
+          "kills": 470,
+          "enemies": 12,
+          "danger": 4
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 9.03,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 9.03,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 22.4,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 22.4,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 34.4,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 34.4,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 49.77,
+          "slot": 0,
+          "id": "stat:range"
+        },
+        {
+          "at": 49.77,
+          "slot": 1,
+          "id": "stat:power"
+        },
+        {
+          "at": 64.93,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 64.93,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 78.2,
+          "slot": 0,
+          "id": "stat:range"
+        },
+        {
+          "at": 78.2,
+          "slot": 1,
+          "id": "pulse"
+        },
+        {
+          "at": 100.83,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 100.83,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 129.07,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 129.07,
+          "slot": 1,
+          "id": "stat:range"
+        },
+        {
+          "at": 157.67,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 157.67,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 187.8,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 187.8,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 227.4,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 227.4,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 268,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 268,
+          "slot": 1,
+          "id": "stat:magnet"
+        },
+        {
+          "at": 313.8,
+          "slot": 0,
+          "id": "cirilo-arsenal:evolve:ciriloEcho"
+        },
+        {
+          "at": 313.8,
+          "slot": 1,
+          "id": "cirilo-arsenal:evolve:ciriloEcho"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 108.03
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 145.83,
+          "deadAt": 175.27
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 3,
+          "at": 218.3,
+          "deadAt": 246.4
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 4,
+          "at": 282.63,
+          "deadAt": null
+        }
+      ],
+      "result": "win",
+      "elapsed": 315.3,
+      "mapTime": 315.3,
+      "kills": 492,
+      "level": 14,
+      "stalled": false
+    },
+    {
+      "limit": 600,
+      "lockFinal": true,
+      "mode": "solo",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "ciriloEcho",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 10,
+          "damageTaken": 135.41825,
+          "damageDuringQ": 12.839749999999995,
+          "damageDuringTaxi": 0,
+          "downs": 0,
+          "resurrections": 0,
+          "qUses": [
+            46.9,
+            69.97,
+            80.93,
+            104.73,
+            136.63,
+            165.63,
+            179.23,
+            203.03,
+            217.23,
+            243.03,
+            252.23,
+            277.23,
+            285.23,
+            308.03,
+            318.83,
+            342.43,
+            368.03,
+            377.03
+          ],
+          "rUses": [
+            49,
+            83.03,
+            115.7,
+            144.83,
+            182.23,
+            222.23,
+            255.03,
+            287.23,
+            321.63,
+            347.23,
+            379.03
+          ],
+          "casts": {
+            "ciriloVomit": 83,
+            "ciriloEcho": 264
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 861.77,
+            "Q": 4286.92,
+            "primary:CIRILO_FIRE": 9059.54,
+            "echoOrOtherSpecial": 48204.86,
+            "primary:CIRILO_BURN": 1282.92,
+            "ciriloEchoImpact": 1079.84
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 2431.7,
+            "Q": 1461.86,
+            "primary:CIRILO_FIRE": 1012.16,
+            "primary:CIRILO_BURN": 191.78,
+            "ciriloEchoImpact": 74.5
+          },
+          "taxiStarts": 0,
+          "taxiReturns": 0,
+          "returnError": 0,
+          "hp": 125.58,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloEcho",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 1,
+              "ciriloEcho": 5
+            },
+            "evolved": {
+              "ciriloEcho": true
+            },
+            "lastSwitch": 69.76666666666527
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            122.3
+          ],
+          "level": 2,
+          "kills": 13,
+          "enemies": 25,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            122.3
+          ],
+          "level": 3,
+          "kills": 40,
+          "enemies": 30,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            110.5
+          ],
+          "level": 6,
+          "kills": 100,
+          "enemies": 12,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            110.5
+          ],
+          "level": 8,
+          "kills": 136,
+          "enemies": 14,
+          "danger": 1
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            110.5
+          ],
+          "level": 9,
+          "kills": 182,
+          "enemies": 16,
+          "danger": 0
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            110.5
+          ],
+          "level": 10,
+          "kills": 230,
+          "enemies": 5,
+          "danger": 3
+        },
+        {
+          "at": 210,
+          "elapsed": 210,
+          "hp": [
+            110.5
+          ],
+          "level": 10,
+          "kills": 258,
+          "enemies": 11,
+          "danger": 0
+        },
+        {
+          "at": 240,
+          "elapsed": 240,
+          "hp": [
+            128.5
+          ],
+          "level": 11,
+          "kills": 296,
+          "enemies": 24,
+          "danger": 2
+        },
+        {
+          "at": 270,
+          "elapsed": 270,
+          "hp": [
+            102.5
+          ],
+          "level": 12,
+          "kills": 337,
+          "enemies": 27,
+          "danger": 7
+        },
+        {
+          "at": 300,
+          "elapsed": 300,
+          "hp": [
+            121.3
+          ],
+          "level": 12,
+          "kills": 379,
+          "enemies": 34,
+          "danger": 5
+        },
+        {
+          "at": 330,
+          "elapsed": 330,
+          "hp": [
+            111.2
+          ],
+          "level": 13,
+          "kills": 425,
+          "enemies": 61,
+          "danger": 9
+        },
+        {
+          "at": 360,
+          "elapsed": 360,
+          "hp": [
+            111.2
+          ],
+          "level": 13,
+          "kills": 492,
+          "enemies": 68,
+          "danger": 13
+        },
+        {
+          "at": 390,
+          "elapsed": 390,
+          "hp": [
+            107.6
+          ],
+          "level": 14,
+          "kills": 554,
+          "enemies": 80,
+          "danger": 10
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 24.47,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 42.73,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 69.77,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 69.77,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 78.7,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 103.8,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 107.03,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 139.77,
+          "slot": 0,
+          "id": "pulse"
+        },
+        {
+          "at": 166.93,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 211.67,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 251.27,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloEcho"
+        },
+        {
+          "at": 308.33,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 368.97,
+          "slot": 0,
+          "id": "cirilo-arsenal:evolve:ciriloEcho"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 105.47
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 159.2,
+          "deadAt": 216.8
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 3,
+          "at": 224.4,
+          "deadAt": 301.9
+        }
+      ],
+      "result": "win",
+      "elapsed": 393.13,
+      "mapTime": 393.13,
+      "kills": 561,
+      "level": 14,
+      "stalled": false
+    }
+  ]
+}

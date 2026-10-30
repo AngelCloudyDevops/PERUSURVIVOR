@@ -321,6 +321,18 @@ module.exports = [
     "source": "src/systems/ability-cards.js",
     "output": "js/ability-cards.js"
   },
+  {
+    "source": "src/systems/cabinet-boss.js",
+    "output": "js/cabinet-boss.js"
+  },
+  {
+    "source": "src/systems/guardian-boss.js",
+    "output": "js/guardian-boss.js"
+  },
+  {
+    "source": "src/systems/procession-boss.js",
+    "output": "js/procession-boss.js"
+  },
   {"source":"src/systems/kingteka-domain.js","output":"js/kingteka-domain.js"},
   {
     "source": "src/ui/card-gallery.js",
@@ -412,4 +424,12 @@ module.exports = [
 , {source:"src/ui/lobby-complete.js",output:"js/lobby-complete.js"}
 , {source:"src/systems/stat-runtime.js",output:"js/stat-runtime.js"}
 , {source:"src/systems/passives.js",output:"js/passives.js"}
+,{source:"src/systems/sideral-kit.js",output:"js/sideral-kit.js"}
+,{source:"src/rendering/sideral-lagarto.js",output:"js/sideral-lagarto.js"}
+,{source:"src/systems/cirilo-kit.js",output:"js/cirilo-kit.js"}
+,{source:"src/rendering/cirilo-kit-art.js",output:"js/cirilo-kit-art.js"}
+,{source:"src/systems/chamelin-kit.js",output:"js/chamelin-kit.js"}
+,{source:"src/rendering/chamelin-kit-art.js",output:"js/chamelin-kit-art.js"}
+,{source:"src/systems/cristorata-kit.js",output:"js/cristorata-kit.js"}
+,{source:"src/rendering/cristorata-kit-art.js",output:"js/cristorata-kit-art.js"}
 ];

@@ -8,7 +8,18 @@ Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcional
 
 ## Punto actual de desarrollo
 
-La última tarea terminada es la presentación dinámica de la ulti de **Cristorata**. Después de la tarjeta, la máquina cae y permanece fija en el punto de invocación; Cristorata conserva movimiento, ataques y cámara. El jugador debe acercarse a 86 unidades y accionar la palanca con Espacio, clic o toque. El acercamiento muestra tres rodillos con imágenes de dragones que se detienen de izquierda a derecha: tres iguales conceden Jade, Brasa o Trueno, mientras Jade + Brasa + Trueno revela al Tricéfalo. El dragón elegido emerge desde la máquina, vuela hasta la posición actual de Cristorata y comienza los ocho segundos completos de montura. No hay giro automático ni invulnerabilidad durante la espera. El servidor valida la distancia y replica el ancla, la palanca y el resultado en cooperativo.
+Cristorata ya tiene **kit 9/9**: Clip/Directo encadenado, Derrape/Derrape encendido, Garra/Doble garra, pasiva De ida y de vuelta y R El Coliseo del Dragón con tres sellos. La Q original conserva variantes, montura y controles. [Reglas y verificación](docs/CRISTORATA_KIT.md). Pendientes: balance de partidas completas y arte exclusivo de R.
+
+Chamelín ya tiene **kit 9/9**: Retaguardia/Desastre de Trovo, Escupitajo pegajoso con 10 % de Pegote, Pichi con 15 % de resbalón, evoluciones, Presión acumulada y Q ¡SE TAPÓ TODO! con carga independiente. Baño de Trovo conserva su funcionamiento. [Reglas, animaciones y pruebas](docs/CHAMELIN_KIT.md). La Q ya tiene arte exclusivo de ondas de presión. Pendiente: balance en partidas completas.
+
+CiriloTV ya tiene **kit 9/9**: Taxi de Cirilo y regreso con 40 % de resistencia, Carrera de ida y vuelta, Eco maldito/Maldad contagiosa, Persistencia maldita y Q ¡FULL MALDAD! con carga independiente y arte exclusivo. Audiencia y las transformaciones existentes se conservan. [Especificación del kit](docs/CIRILO_KIT.md). [Balance medido](docs/CIRILO_BALANCE.md): 60 simulaciones de partidas y 40 duelos, anticipación de Taxi/Eco/Q, explosión de Eco tras una baja y ajuste de Q. Hay cierres en ambos modos, pero la supervivencia del estilo adaptativo sigue siendo mixta; falta validación humana.
+
+
+El **kit 9/9 de Sideral · El Lagarto** incluye Mirada, Colazo y Huevo, tres evoluciones, Sangre fría y Despertar del Lagarto Q. Conserva UR, 120 PV, velocidad 195 y poder 27; sus ATQ son 95 físico / 105 especial. Q tiene carga independiente y el dominio R no cambia. El balance ya tiene [mediciones automatizadas en partidas y duelos](docs/SIDERAL_BALANCE.md): huevos que apuntan al abrir y Q que crece con el arsenal, sin cambiar R. La supervivencia individual sigue requiriendo validación con jugadores; la carta Q ya tiene ilustración exclusiva del Lagarto. Especificación y pruebas: [Kit de Sideral](docs/SIDERAL_KIT.md).
+
+### Cristorata · revisión anterior conservada
+
+También está terminada la presentación dinámica de la ulti de **Cristorata**. Después de la tarjeta, la máquina cae y permanece fija en el punto de invocación; Cristorata conserva movimiento, ataques y cámara. El jugador debe acercarse a 86 unidades y accionar la palanca con Espacio, clic o toque. El acercamiento muestra tres rodillos con imágenes de dragones que se detienen de izquierda a derecha: tres iguales conceden Jade, Brasa o Trueno, mientras Jade + Brasa + Trueno revela al Tricéfalo. El dragón elegido emerge desde la máquina, vuela hasta la posición actual de Cristorata y comienza los ocho segundos completos de montura. No hay giro automático ni invulnerabilidad durante la espera. El servidor valida la distancia y replica el ancla, la palanca y el resultado en cooperativo.
 
 Este flujo ya está implementado, probado y publicado. El siguiente paso es probar su lectura y ritmo en una partida real; cualquier ajuste posterior debe conservar la máquina fija, los tres rodillos, la interacción cercana y el combate continuo. La especificación completa permanece en `docs/GAME_DESIGN.md`.
 
@@ -44,7 +55,7 @@ Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa.
 
 El objetivo final de cada causa es **9/9**, pero el contrato describe el estado real y permite desarrollar una pieza a la vez. `Planeado` significa que la mecánica y su función ya fueron aprobadas; `Por definir` reserva capacidad sin prometer comportamiento. Una skin, objeto, pacto o poder de apoyo no cuenta como pieza del kit.
 
-Estado actual calculado: **Kingteka y Makanaky están 9/9**. Makanaky ya posee tres técnicas intercambiables, tres evoluciones, pasiva, Q y dominio R. **Sideral 3/9** tiene Mirada Sideral, Rostro prohibido y Habitación del Lagarto, pero conserva por definir los ataques y evoluciones 2–3, la pasiva y la ulti Q.
+Estado actual calculado: **Kingteka, Makanaky, Sideral, CiriloTV, Chamelín y Cristorata están 9/9**. Makanaky ya posee tres técnicas intercambiables, tres evoluciones, pasiva, Q y dominio R. **Sideral también está 9/9**: Colazo del Lagarto, Huevo sospechoso, sus evoluciones, Sangre fría y Despertar del Lagarto Q completan su identidad; Habitación del Lagarto R se conserva. Stats, límites y controles en [Kit de Sideral](docs/SIDERAL_KIT.md).
 
 ### Cómo se interpretan los stats
 
@@ -139,25 +150,44 @@ Esta lista contiene solo trabajo que aún falta; las mecánicas ya funcionales n
 
 1. **Validar y ajustar Extinción con partidas completas.** Medir en individual y cooperativo la duración de las tres oleadas, vida y daño de cada dinosaurio, Tirano del Cráter, Triceratops Fósil, tormenta, meteoritos y límites de 240/180 s. Los valores actuales son una base funcional y el siguiente cambio debe apoyarse en resultados de partidas, no solo en sensación aislada.
 2. **Segunda pasada visual de Extinción.** Dar más cuadros propios a desplazamientos, avisos, impactos y habilidades de cada dinosaurio; mejorar profundidad y partículas del meteorito; pulir cráter, tormenta y Era Perdida; revisar escala, nitidez y coherencia de los objetos ambientales sin alterar colisiones ni daño.
-3. **Cerrar el siguiente kit de personaje.** Sideral es el candidato inmediato porque ya tiene ataque 1, evolución y dominio: faltan ataques 2 y 3, sus evoluciones, pasiva y ulti Q. Después se repetirá el contrato 9/9, personaje por personaje, sin sustituir espacios reservados con habilidades genéricas.
+3. **Cerrar el siguiente kit de personaje.** Sideral ya tiene contrato 9/9; sigue validar su balance en partidas completas y elegir el siguiente causa. Repetir el contrato personaje por personaje sin sustituir espacios reservados con habilidades genéricas.
 4. **Completar el arte de habilidades.** Los Tres de la Realeza todavía reutiliza el full art general de Makanaky y los ataques personales, salvo el arsenal de Kingteka, usan composición procedural. Crear arte dedicado solo después de cerrar mecánica y balance de cada kit.
 5. **Aclarar los controles de cartas.** Hacer más evidente en HUD y móvil que una pulsación breve de Q/R activa y mantener la tecla solo revela la carta; comprobar que carga mostrada, estado habilitado y carga autoritativa siempre coincidan.
 6. **Cierre público de calidad.** Antes de considerar terminada Extinción, ejecutar recorridos prolongados con el flujo cooperativo público, revisar móvil, movimiento reducido, FPS, reconexión y regreso desde la mazmorra sin distribuir controles de QA.
 
 Ya están funcionales y fuera de esta lista: impacto y cráter, invasión y formaciones, tres fragmentos, Tirano obligatorio, tormenta y meteoritos de presión, portal opcional, tres salas de Era Perdida, decisiones entre salas, Triceratops Fósil, reliquia compartida, Wiki/Balance y cargas independientes Q/R de Makanaky y Kingteka.
 
-## Contrato general de enemigos
+## Plantilla obligatoria para todos los enemigos
 
-Todos los enemigos declaran rol, atributo, canal de daño, debilidad de atributo, ataques, habilidades de rol, pasivas y fases. Las categorías limitan la complejidad para que una amenaza no acumule mecánicas sin una señal visual clara:
+`P.EnemyContract` es la única plantilla válida para minions, dinosaurios, minijefes y jefes. No se crea una ficha paralela ni se completa un espacio solo con texto: cada pieza marcada como implementada debe existir en combate, tener señal visual, recuperación, pruebas y fuente de datos compartida con Wiki y Balance.
+
+Toda amenaza declara identidad (`id`, nombre, categoría y rol), estadísticas base (vida, velocidad y tamaño), atributo, canal de daño, ATQ/DEF físico y especial y los nueve stats avanzados universales: perforación, resistencia de estado, regeneración, crítico, daño crítico, resistencia crítica, defensa crítica, recuperación y robo de vida. También declara debilidad, ataques, habilidad de rol cuando corresponda, pasivas, fases, ulti y expansión según su categoría. Un valor neutral se escribe explícitamente; no se omite. Un hueco sin mecánica real queda como **Por definir**.
 
 La Wiki aplica ahora el mismo criterio de sinceridad que las fichas de personajes: cada espacio aparece como `Implementado` o `Por definir`, muestra el porcentaje cubierto y nunca convierte un hueco en una habilidad genérica. La auditoría boss por boss, incluidos minijefes, jefes de portal y Extinción, vive en [BOSS_KIT_AUDIT.md](docs/BOSS_KIT_AUDIT.md). Esta primera pasada documenta faltantes; no cambia daño, vida, colisiones ni patrones.
 
-| Categoría | Ataques | Habilidades de rol | Pasivas | Fases |
-|---|---:|---:|---:|---:|
-| Minion | 1 | 0 | 1 | 1 |
-| Dinosaurio | 1 | 1 | 1 | 1 |
-| Minijefe | hasta 3 | 0 | 1 | 2 |
-| Jefe | hasta 4 | 0 | hasta 2 | 2 |
+| Categoría | Ataques | Habilidades de rol | Pasivas | Fases | Ulti | Expansión |
+|---|---:|---:|---:|---:|---:|---:|
+| Minion | 1 | 0 | 1 | 1 | No aplica | No aplica |
+| Dinosaurio | 1 | 1 | 1 | 1 | No aplica | No aplica |
+| Minijefe | hasta 3 | 0 | 1 | 2 | 1 | No aplica |
+| Jefe | hasta 4 | 0 | hasta 2 | 2 | 1 | 1 |
+
+Checklist para aprobar una pieza nueva:
+
+1. La mecánica existe en individual y, si corresponde, bajo autoridad cooperativa.
+2. Aviso, área efectiva, cobertura, daño, duración y recuperación coinciden con lo dibujado.
+3. Pausa, movimiento reducido, muerte, reinicio y reconexión limpian su estado.
+4. Wiki, Balance, laboratorio y tests leen el mismo registro; no copian cifras manualmente.
+5. La ulti es un remate extraordinario y la expansión transforma temporalmente las reglas o el escenario; no son alias de un ataque normal.
+6. La auditoría en `docs/BOSS_KIT_AUDIT.md` se actualiza y cualquier faltante permanece visible.
+
+Primer jefe normalizado con esta plantilla: **El Chosicano · Última Parada**. Sus cuatro ataques son Embestida de ruta, Bocinazo, Lluvia de boletos y Control de paradero; conserva las pasivas La familia es primero y Frenazo expuesto, activa Hora punta como ulti única al 25 % y despliega Última Parada como expansión al 50 %. Control de paradero fija tres zonas durante 1,3 s y luego las impacta sin seguir al jugador. Su ficha se mantiene conectada al mismo catálogo, stats, Wiki, Balance y laboratorio.
+
+Segundo jefe normalizado mecánicamente: **El Gabinete Infinito**. No persigue ni copia las cargas territoriales de otros jefes: altera las reglas mediante Abanico ministerial, Pleno descontrolado, Proyecto de ley e Interpelación. Sus leyes obligan a elegir beneficios con costos temporales; sus tres interpelaciones piden salir de una marca, recorrer expedientes en orden o sostener una zona. Gabinete inestable cambia la cartera a Economía, Transporte, Salud e Interior según la vida. Al 50 % activa Estado de emergencia, donde movilidad, defensa y ataque son recursos de un solo uso; al 25 % Cuestión de confianza permite conservar la cartera y volverlo vulnerable o censurarla a cambio de ataques más rápidos. La presentación actual es funcional y provisional: arte, animación y audio quedan como la siguiente capa.
+
+Tercer jefe normalizado mecánicamente: **El Guardián de la Niebla**. Su Velo quebrado reduce el daño recibido desde lejos y obliga a entrar en la niebla; Memoria de piedra castiga permanecer demasiado tiempo en el mismo cuadrante. Sus cuatro patrones son Anillo de niebla, Refugios falsos, Terrazas del santuario y Eco del camino, que registra la ruta del jugador y luego la convierte en peligro. Al 50 % despliega Ciudad Perdida, un recorrido de tres hitos con límite de tiempo; al 25 % Juicio del Apu obliga a identificar la sombra verdadera. La lógica ya queda separada de la estética definitiva.
+
+Cuarto jefe normalizado mecánicamente: **La Procesión de Medianoche**. Combate mediante Campanas invertidas, Faroles del duelo, Paso de ánimas y Ofrenda marcada. Deuda de vela reduce el daño mientras el jugador no conserve una llama, y Cortejo interminable acelera los ritos por cada prueba fallida. Al 50 % abre Plaza sin amanecer, un relevo entre tres altares; al 25 % Último responso exige repetir una secuencia de faroles. Su identidad se basa en ritmo, memoria y recorrido, no en reutilizar la niebla del Guardián.
 
 Una habilidad de rol es la acción de equipo que distingue a un dinosaurio —interceptar, rescatar, curar, debilitar o romper la formación— y no cuenta como un segundo ataque. Varias frases que describen una misma regla se agrupan como una sola pasiva. Fuerza, Técnica e Ingenio determinan la debilidad mecánica; las ventanas de espalda, agotamiento, placas o cobertura se documentan además como mecánicas particulares.
 
@@ -418,8 +448,9 @@ Reglas implementadas: el portal opcional abre a los **3:00**. Su jefe permanece 
 | Jefe | Patrones de ataque | Fases y ulti |
 | --- | --- | --- |
 | Combi Final · Campo de Marte | 1: trayectoria avisada y embestida | Sin segunda fase ni ulti propia. |
-| Gabinete Infinito · Plaza de Armas | 1: abanico de 9 proyectiles | Ataca más seguido bajo el 50%; sin ulti. |
-| Guardián de la Niebla · Machu Picchu | 1: anillo de 12 proyectiles con orientación alterna | Ataca más seguido bajo el 50%; sin ulti. |
+| Gabinete Infinito · Plaza de Armas | Abanico; Pleno descontrolado; Proyecto de ley; tres pruebas de Interpelación | Cambia de cartera al 75/50/25%; Estado de emergencia al 50%; Cuestión de confianza al 25%. |
+| Guardián de la Niebla · Machu Picchu | Anillo de niebla; Refugios falsos; Terrazas del santuario; Eco del camino | Velo quebrado y Memoria de piedra; Ciudad Perdida al 50%; Juicio del Apu al 25%. |
+| Procesión de Medianoche · Halloween | Campanas invertidas; Faroles del duelo; Paso de ánimas; Ofrenda marcada | Deuda de vela y Cortejo interminable; Plaza sin amanecer al 50%; Último responso al 25%. |
 | Fujimori · El Expediente Final | 2: abanico de expedientes y sello sobre marca fija | Al 50% aumenta de 5 a 7 expedientes y amplía el sello. No tiene ulti de jefe; la ulti del Alberto jugable es independiente. |
 | Gallinazo del Caos · Techos de Lima | 3 en fase 1 y 3 en fase 2 | Furia bajo el 50%; ulti única al 30% y transformación permanente. |
 | ElZeein · final obligatorio | 1: persecución y abanico de 5 proyectiles cada 2,7 s | Sin segunda fase ni ulti propia diferenciada. |
@@ -857,3 +888,7 @@ La revisión mecánica organiza las oleadas como 3/4/5 rivales: tanque con dos a
 La Era Perdida se divide en tres salas de cinco y dispone de 180 s; al aparecer el jefe se garantizan 150 s. Entre las dos primeras se elige curación, +20 % de daño temporal o una sala más difícil con +35 % de recompensa. Allí aparece el Triceratops joven rompefilas, cuya carga causa 25 y queda aturdida al chocar. El Triceratops Fósil tiene dos placas que absorben daño; después expone el cristal y puede aturdirse al embestir los dos pilares de la arena. Al terminar o fallar, el regreso restaura terreno y posiciones y bloquea nuevas apariciones durante seis segundos para evitar una emboscada inmediata.
 
 En cualquier combate se puede hacer clic izquierdo sobre un enemigo, jefe o fragmento para fijarlo. El ataque automático lo prioriza mientras esté vivo, visible, con línea de tiro y dentro del alcance; hacer clic otra vez lo libera. En cooperativo cada jugador mantiene su propio objetivo y el servidor valida únicamente su identificador, nunca posiciones ni daño enviados por el cliente.
+
+### Sideral · kit del Lagarto completo
+
+Tres técnicas intercambiables con rangos y evoluciones propios, Sangre fría y Q de transformación con aliento dirigido. UR, 120 PV, velocidad 195, poder 27, ATQ físico/especial 95/105, DEF 100/105. Q usa una reserva independiente; el dominio R conserva mecánicas y carga. Especificación, animaciones y límites: [docs/SIDERAL_KIT.md](docs/SIDERAL_KIT.md). El [informe de balance](docs/SIDERAL_BALANCE.md) registra 56 ejecuciones automáticas, resultados mixtos y cierres con victoria en ambos modos; falta validación con jugadores. La carta Q usa arte exclusivo del Lagarto, con auriculares, camiseta roja y aliento verde, conservando el marco de las otras ultis.

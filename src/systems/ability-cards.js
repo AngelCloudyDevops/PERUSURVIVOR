@@ -1,6 +1,4 @@
 'use strict';
-// Registry for character-specific ability cards. Add a static art path here when
-// a new character receives a Q ultimate or R domain; unknown skills keep a grey slot.
 P.AbilityCards={
  frames:{
   none:{family:'empty',visual:'none'},
@@ -41,8 +39,6 @@ P.AbilityCards={
  },
  hud(){
   const s=P.state,id=s.player?.id,ultimateCharge=this.charge(id,'ultimate');
-  // Character-specific HUDs set disabled while charging; keep the controls
-  // pointer-active so a hold can preview the reserved/full-art card on touch.
   const ultimate=P.$('#ultimate');
   if(ultimate){const entry=this.definition(id,'ultimate'),active=(s.ultimate?.left||0)>0;ultimate.disabled=false;ultimate.setAttribute('aria-disabled',String(!entry||!s.ultimate||active||ultimateCharge<100))}
   const b=P.$('#domain-ability'),entry=this.definition(id,'domain');if(!b)return;

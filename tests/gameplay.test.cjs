@@ -127,7 +127,7 @@ P.Game.start();assert.equal(s.player.equipment,null);assert.equal(s.player.equip
 
 
 P.Game.start();s.enemies=[];const singleBox=P.Terrain.props.find(o=>o.kind==='crate');s.player.x=singleBox.x-70;s.player.y=singleBox.y;s.player.power=100;P.Combat.cast();assert(s.shots.length>0,'Se debe poder atacar cajas sin enemigos');s.fire=999;for(let i=0;i<7;i++)P.Combat.tick(.04);assert(!singleBox.solid);
-P.Game.start();s.enemies=[];s.player.attack='orbit';s.player.power=100;const orbitBox=P.Terrain.props.find(o=>o.kind==='crate');s.player.x=orbitBox.x-100;s.player.y=orbitBox.y;P.Combat.cast();assert(!orbitBox.solid,'Los ataques orbitales también rompen cajas');
+P.Game.start();s.player=P.Entities.player(P.Data.characters.find(c=>c.id==='alberto'));s.enemies=[];s.player.attack='orbit';s.player.power=100;const orbitBox=P.Terrain.props.find(o=>o.kind==='crate');s.player.x=orbitBox.x-100;s.player.y=orbitBox.y;P.Combat.cast();assert(!orbitBox.solid,'Los ataques orbitales también rompen cajas');
 P.Game.start();P.Loot.equip('vest');s.player.hp=100;s.player.inv=0;s.enemies=[target(s.player.x,s.player.y)];P.Systems.move(.01);assert.equal(s.player.hp,92,'El chaleco reduce daño real de contacto');console.log('OK: cajas sin enemigos, ataques orbitales y reducción real de daño');
 
 

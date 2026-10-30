@@ -1,5 +1,4 @@
 'use strict';
-// Poses visuales entre paquetes. Nunca avanza combate ni escribe posiciones del servidor.
 P.CoopMotion={
  reset(){this.poses=new Map();this.at=null;this.interval=40;this.scene=null;this.clock=null;this.local=null},
  key(e,player=false){return player?'p:'+e.slot:e.miniboss?'mini:'+e.miniId:e.mapBoss?'map:'+e.kind:e.boss?'boss:final':e.minionId!==undefined?'e:'+e.minionId:null},
