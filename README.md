@@ -8,7 +8,7 @@ Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcional
 
 ## Punto actual de desarrollo
 
-Chamelín ya tiene **kit 9/9**: Retaguardia/Desastre de Trovo, Escupitajo pegajoso con 10 % de Pegote, Pichi con 15 % de resbalón, evoluciones, Presión acumulada y Q ¡SE TAPÓ TODO! con carga independiente. Baño de Trovo conserva su funcionamiento. [Reglas, animaciones y pruebas](docs/CHAMELIN_KIT.md). Pendientes: balance en partidas completas y arte exclusivo de Q.
+Chamelín ya tiene **kit 9/9**: Retaguardia/Desastre de Trovo, Escupitajo pegajoso con 10 % de Pegote, Pichi con 15 % de resbalón, evoluciones, Presión acumulada y Q ¡SE TAPÓ TODO! con carga independiente. Baño de Trovo conserva su funcionamiento. [Reglas, animaciones y pruebas](docs/CHAMELIN_KIT.md). La Q ya tiene arte exclusivo de ondas de presión. Pendiente: balance en partidas completas.
 
 CiriloTV ya tiene **kit 9/9**: Taxi de Cirilo y regreso con 40 % de resistencia, Carrera de ida y vuelta, Eco maldito/Maldad contagiosa, Persistencia maldita y Q ¡FULL MALDAD! con carga independiente y arte exclusivo. Audiencia y las transformaciones existentes se conservan. [Especificación del kit](docs/CIRILO_KIT.md). [Balance medido](docs/CIRILO_BALANCE.md): 60 simulaciones de partidas y 40 duelos, anticipación de Taxi/Eco/Q, explosión de Eco tras una baja y ajuste de Q. Hay cierres en ambos modos, pero la supervivencia del estilo adaptativo sigue siendo mixta; falta validación humana.
 

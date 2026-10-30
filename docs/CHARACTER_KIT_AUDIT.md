@@ -52,7 +52,7 @@ Resumen: 20 causas, 30 ataques personales funcionales, sin conceptos en estado p
 - Makanaky: Los Tres de la Realeza.
 - Sideral: Despertar del Lagarto (ilustración exclusiva del Lagarto).
 - CiriloTV: ¡FULL MALDAD! (ilustración exclusiva).
-- Chamelín: ¡SE TAPÓ TODO! (full art de personaje existente; ilustración Q exclusiva pendiente).
+- Chamelín: ¡SE TAPÓ TODO! (ilustración exclusiva de ondas de presión).
 
 ### Expansiones R implementadas con carta full art
 
@@ -75,7 +75,7 @@ Kingteka, Makanaky, Sideral, CiriloTV y Chamelín son kits cerrados de extremo a
 
 ## Cobertura de ilustraciones
 
-- Los 14 poderes Q/R implementados ya tienen una ruta de carta full art registrada; Los Tres de la Realeza y ¡SE TAPÓ TODO! reutilizan temporalmente sus full arts de personaje.
+- Los 14 poderes Q/R implementados ya tienen una ruta de carta full art registrada; Los Tres de la Realeza reutiliza temporalmente el full art de personaje de Makanaky.
 - Las tres armas de Kingteka tienen full art propio para las cartas de subida de nivel.
 - Los ataques personales del resto todavía usan composición procedural con sprite e icono; no poseen full art dedicado.
 - Ocho causas tienen ilustración grande de personaje en Causapedia: Cristorata, Cuy, Paloma, Kingteka, Chamelín, Makanaky, Sideral y Cirilo.

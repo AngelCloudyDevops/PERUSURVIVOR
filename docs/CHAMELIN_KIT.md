@@ -42,7 +42,7 @@ Usa `ultimate.chamelinCharge`, separado de `ultimate.charge` de Baño de Trovo. 
 
 Duración 2 s, preparación 0,2 s y tres ondas circulares a 0,2 / 0,8 / 1,4 s. Puede caminar; suspende el ataque personal. Radio base 190 u multiplicado por alcance, máximo 270 u. Cada onda causa `0,8 × poder × escala` de daño especial y empuje corto de 12 u a minions, sin empujar jefes. Cobertura bloquea el daño. Un enemigo dentro de un charco original o propio de Pichi recibe ×1,25, una sola vez por onda; no se consumen los charcos ni se multiplican bonificaciones por superposición.
 
-La escala se fija al activar: `1 + 0,14 × (mayor rango personal − 1)`, y ×1,15 si existe alguna evolución personal; no se suman rangos/evoluciones. No cura, ejecuta, transforma ni vuelve invulnerable. No activa probabilidades de Pegote o resbalón. No se puede iniciar dentro de un dominio. La carta Q utiliza de momento el full art existente de Chamelín; una ilustración exclusiva es trabajo visual posterior.
+La escala se fija al activar: `1 + 0,14 × (mayor rango personal − 1)`, y ×1,15 si existe alguna evolución personal; no se suman rangos/evoluciones. No cura, ejecuta, transforma ni vuelve invulnerable. No activa probabilidades de Pegote o resbalón. No se puede iniciar dentro de un dominio. La carta Q usa el arte exclusivo `assets/cards/chamelin-se-tapo-todo-ultimate-fullart-v1.webp`: Chamelín con chullo y chaqueta andina, tres ondas turquesas y tuberías reventadas en un patio peruano nocturno. Comparte el pixel art detallado y la composición 2:3 de las otras cartas; mantiene el marco de fuego y la carta independiente de Baño de Trovo. Se conservan fuente PNG y prompt; el juego carga el WebP optimizado y no distribuye el prompt.
 
 ## Conservación de Baño de Trovo
 
@@ -56,4 +56,4 @@ Estados `chamelinArsenal`, `chamelinPassive`, `chamelinPools`, temporizadores Q 
 
 Pruebas: contrato 9/9 y catálogo/base intactos, probabilidades en sus umbrales exactos y una sola tirada, evoluciones, daño real/salpicadura/charcos/cobertura, pasiva limitada y consumo, tres ondas Q/cargas separadas, conservación del dominio, estado cooperativo y limpieza al morir. Se conservan además las pruebas existentes de `chamelin.test.cjs`.
 
-Pendiente: medición de partidas completas y balance con jugadores, compañeros/objetos diversos, revisión adicional en móvil y arte exclusivo para Q. Las pruebas de reglas no sustituyen esa validación.
+Pendiente: medición de partidas completas y balance con jugadores, compañeros/objetos diversos, y revisión adicional en móvil. Las pruebas de reglas no sustituyen esa validación.
