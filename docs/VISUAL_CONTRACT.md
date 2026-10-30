@@ -28,3 +28,5 @@ Este contrato define cuándo un personaje puede considerarse **visualmente compl
 Un personaje solo pasa a **visual completo** cuando la lista aplicable está conectada al flujo real y probada. `N/A` necesita una razón de diseño escrita; no sirve para ocultar trabajo pendiente. La revisión debe registrar qué está completo y qué falta en la ficha específica del personaje.
 
 Sideral cumple ahora identidad, movimiento, tres ataques y evoluciones con efectos propios, pasiva, Q, R y seis cartas de arsenal. Sus reacciones exclusivas de daño/derrota continúan como mejora visual futura y no se presentan como terminadas.
+
+Marciano cumple identidad estable entre reposo y caminata, artes diferenciados para sus tres técnicas y evoluciones, y cartas exclusivas para Q y R. El fallback de reposo debe seguir usando su lámina independiente; volver al retrato vectorial se considera una regresión. Daño y derrota exclusivos continúan como mejora visual futura y no se presentan como terminados.

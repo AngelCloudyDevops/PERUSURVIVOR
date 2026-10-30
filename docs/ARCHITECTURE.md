@@ -915,6 +915,12 @@ Los ataques visuales de Makanaky se resuelven en `MakanakyPlayerArt`, `PlayerAtt
 
 `player.dotaRuntime` contiene contadores, hasta 64 identidades recientes, presupuestos de curación, fracciones de monedas, recargas y escudos; es JSON serializable y aislado por jugador. Los secundarios marcan `dotaSecondary`, desactivan robo de vida genérico y no generan nuevos procs. Auras recorren solo la pareja; cadenas buscan hasta cuatro blancos únicamente al activarse. El servidor usa el tick Dota existente y los snapshots de jugador, sin confiar en efectos calculados por el cliente. El HUD proyecta escudos y estados temporales.
 
+## Respaldo de sprites independientes y cartas del Marciano
+
+`Sprites.draw` intenta primero la caminata independiente cuando recibe fase de paso. Si el personaje no tiene atlas listo o `spriteRow`, vuelve a intentar la misma `WalkArt` con fase cero antes de recurrir al dibujo vectorial; así reposo y marcha comparten identidad sin añadir filas ni depender de que el actor esté moviéndose. `CharacterSkins.artId` se resuelve antes de ambos intentos para conservar skins compatibles. Esta ruta solo decide pintura: no altera movimiento, colisiones ni autoridad.
+
+`UI.upgradeArt` resuelve el arsenal del Marciano por ID, igual que Sideral: desbloqueo/rango apunta a los tres artes base y evolución a tres variantes. `AbilityCards.entries` declara las rutas exclusivas de Q y R. Los ocho PNG 1024×1536 permanecen como maestros; las copias WebP de ejecución se reducen a 288×432 con calidad registrada. `optimize-assets.py` acepta límites de ancho/alto y `--check` reconstruye esas dimensiones desde el manifiesto. El retrato general del mismo personaje usa 512×768, suficiente para el visor y coherente con otros full arts compactos.
+
 
 ## Presentación de ofertas del mercado
 
