@@ -414,4 +414,6 @@ module.exports = [
 , {source:"src/systems/passives.js",output:"js/passives.js"}
 ,{source:"src/systems/sideral-kit.js",output:"js/sideral-kit.js"}
 ,{source:"src/rendering/sideral-lagarto.js",output:"js/sideral-lagarto.js"}
+,{source:"src/systems/cirilo-kit.js",output:"js/cirilo-kit.js"}
+,{source:"src/rendering/cirilo-kit-art.js",output:"js/cirilo-kit-art.js"}
 ];

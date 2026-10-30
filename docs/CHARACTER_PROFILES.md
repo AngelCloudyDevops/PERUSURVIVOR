@@ -211,3 +211,6 @@ Evolución: Huracán G5. Rango 5 y nivel 8.
 
 ### Sideral · controlador híbrido UR
 Humano / Ingenio / Controlador y Especialista, dificultad avanzada. Base 120 PV, velocidad 195, poder 27, ATQ 95/105 y DEF 100/105. Tres técnicas, evoluciones, pasiva y Q se detallan en [SIDERAL_KIT.md](SIDERAL_KIT.md); el dominio existente conserva su comportamiento.
+
+### CiriloTV · riesgo y maldiciones
+UR, Humano/Ingenio, Especialista/Controlador híbrido. Conserva 135 PV, velocidad 165 y poder 24. Kit completo en [CIRILO_KIT.md](CIRILO_KIT.md): vómito y forma infernal originales, taxi, eco, tres evoluciones, pasiva registrada, Q y Audiencia sin cambios.
