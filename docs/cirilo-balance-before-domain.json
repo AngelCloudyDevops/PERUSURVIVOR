@@ -1,0 +1,4154 @@
+{
+  "version": 2,
+  "controller": "v2: normal offers; emergency heal below 60%; vomit core, taxi inside 140, echo against groups of 3 within 100; no portal requests; R before Q",
+  "sourceSha": "ecb0ef74a6560a56987d470f549924d13a44c2f6",
+  "fingerprints": {
+    "src/systems/cirilo-kit.js": "8d0d7b4d59e9e526dd80926e752e47355f96fb30316dfd82b15b5f06cc1cc0b9",
+    "src/systems/progression.js": "a1d7a762095b8b50b6b606515732e2da55081ee5369b2fd746a69f502a516ab8",
+    "src/systems/cirilo-ur.js": "2cf5d3f5bbf99347f3fdbff8760cff75f215e6ec5687f8f6fd9fffc5cdc20105",
+    "src/systems/cirilo-arena.js": "04c2801f465db98b8c8ddbba2bd4c633c8c1aac40a2f3c7ae6f680ed8a565364"
+  },
+  "seedPolicy": "mulberry32 per isolated worker/VM",
+  "hz": 30,
+  "scope": "Offline normal solo Game.update and authoritative cooperative Simulation; no portals requested; natural progression, damage and spawns; not human play or browser FPS",
+  "reports": [
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "solo",
+      "map": "campo",
+      "seed": 202,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 17,
+          "damageTaken": 134.99999999999994,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 80.88,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            49.23,
+            86.77
+          ],
+          "rUses": [
+            28.37,
+            66
+          ],
+          "casts": {
+            "ciriloVomit": 20,
+            "ciriloTaxi": 23,
+            "ciriloEcho": 1
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 275.97,
+            "ciriloTaxi": 1289.23,
+            "echoOrOtherSpecial": 2692.38,
+            "primary:CIRILO_FIRE": 303.44,
+            "Q": 331.89,
+            "ciriloEchoImpact": 6.2,
+            "primary:CIRILO_BURN": 10.45
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 91.69,
+            "primary:CIRILO_FIRE": 79.18,
+            "primary:CIRILO_BURN": 9.02,
+            "Q": 239.59,
+            "primary:CIRILO_VOMIT": 26.07,
+            "ciriloTaxi": 126.75
+          },
+          "taxiStarts": 23,
+          "taxiReturns": 11,
+          "returnError": 0,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 2,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 92.59999999999731
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            77.9
+          ],
+          "level": 3,
+          "kills": 28,
+          "enemies": 15,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            57.8
+          ],
+          "level": 5,
+          "kills": 62,
+          "enemies": 27,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            19.2
+          ],
+          "level": 6,
+          "kills": 109,
+          "enemies": 13,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 15.27,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 27.63,
+          "slot": 0,
+          "id": "pulse"
+        },
+        {
+          "at": 49.13,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 52.23,
+          "slot": 0,
+          "id": "stat:range"
+        },
+        {
+          "at": 65.27,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 93.6,
+          "slot": 0,
+          "id": "cards"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 66.57,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 100.83,
+      "mapTime": 100.83,
+      "kills": 118,
+      "level": 7,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "solo",
+      "map": "campo",
+      "seed": 303,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 21,
+          "damageTaken": 175,
+          "damageDuringQ": 9.899999999999999,
+          "damageDuringTaxi": 101.46500000000002,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            52.5,
+            74.4,
+            97.27,
+            122.47,
+            145.43
+          ],
+          "rUses": [
+            31.57,
+            76.5,
+            124.57
+          ],
+          "casts": {
+            "ciriloVomit": 20,
+            "ciriloTaxi": 38,
+            "ciriloEcho": 1
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 282.74,
+            "ciriloTaxi": 2329.64,
+            "echoOrOtherSpecial": 4901.4,
+            "primary:CIRILO_FIRE": 352.65,
+            "primary:CIRILO_BURN": 39.9,
+            "Q": 579.1,
+            "ciriloEchoImpact": 5.67
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 271.51,
+            "Q": 208.79,
+            "ciriloTaxi": 135.7
+          },
+          "taxiStarts": 38,
+          "taxiReturns": 20,
+          "returnError": 7.105427357601002e-15,
+          "hp": 0,
+          "maxHp": 160,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 117.33333333332924
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            96.3
+          ],
+          "level": 2,
+          "kills": 19,
+          "enemies": 24,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            78.8
+          ],
+          "level": 5,
+          "kills": 66,
+          "enemies": 15,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            52.7
+          ],
+          "level": 6,
+          "kills": 95,
+          "enemies": 22,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            48.8
+          ],
+          "level": 7,
+          "kills": 131,
+          "enemies": 16,
+          "danger": 0
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            38.9
+          ],
+          "level": 8,
+          "kills": 161,
+          "enemies": 18,
+          "danger": 1
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 14.4,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 30.7,
+          "slot": 0,
+          "id": "orbit"
+        },
+        {
+          "at": 52.33,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 52.33,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 70.47,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 98.77,
+          "slot": 0,
+          "id": "stat:health"
+        },
+        {
+          "at": 145.33,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 158.3,
+          "slot": 0,
+          "id": "stat:rate"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 70.43,
+          "deadAt": 148
+        }
+      ],
+      "result": "lose",
+      "elapsed": 158.87,
+      "mapTime": 158.87,
+      "kills": 171,
+      "level": 9,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "solo",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 23,
+          "damageTaken": 174.99999999999997,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 132.85799999999998,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            51.1,
+            73.47,
+            100.3,
+            128.23,
+            181.23
+          ],
+          "rUses": [
+            30.17,
+            75.57,
+            107.3,
+            159.23
+          ],
+          "casts": {
+            "ciriloVomit": 30,
+            "ciriloTaxi": 44,
+            "ciriloEcho": 1
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 387.77,
+            "ciriloTaxi": 3251.32,
+            "primary:CIRILO_FIRE": 811.14,
+            "echoOrOtherSpecial": 4723.03,
+            "Q": 638.81,
+            "ciriloEchoImpact": 7.75,
+            "primary:CIRILO_BURN": 76.11
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 125.73,
+            "Q": 163.67,
+            "primary:CIRILO_FIRE": 91.64,
+            "primary:CIRILO_BURN": 18
+          },
+          "taxiStarts": 44,
+          "taxiReturns": 23,
+          "returnError": 1.1368683772161603e-13,
+          "hp": 0,
+          "maxHp": 160,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 141.83333333332786
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            108.8
+          ],
+          "level": 3,
+          "kills": 25,
+          "enemies": 13,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            91.2
+          ],
+          "level": 5,
+          "kills": 55,
+          "enemies": 26,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            77.8
+          ],
+          "level": 5,
+          "kills": 80,
+          "enemies": 32,
+          "danger": 1
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            57.7
+          ],
+          "level": 7,
+          "kills": 118,
+          "enemies": 24,
+          "danger": 0
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            57.7
+          ],
+          "level": 7,
+          "kills": 132,
+          "enemies": 40,
+          "danger": 0
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            57.7
+          ],
+          "level": 8,
+          "kills": 173,
+          "enemies": 27,
+          "danger": 1
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 24.47,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 29.57,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 50.93,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 59.37,
+          "slot": 0,
+          "id": "stat:speed"
+        },
+        {
+          "at": 96.33,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 100.7,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 154.73,
+          "slot": 0,
+          "id": "stat:health"
+        },
+        {
+          "at": 184.37,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 193,
+      "mapTime": 193,
+      "kills": 187,
+      "level": 9,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "solo",
+      "map": "plaza",
+      "seed": 101,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 18,
+          "damageTaken": 135.00000000000003,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 98.7,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            24.37,
+            49,
+            81.87,
+            97.27,
+            120.13
+          ],
+          "rUses": [
+            28.17,
+            60.9,
+            99.37
+          ],
+          "casts": {
+            "ciriloVomit": 24,
+            "ciriloTaxi": 33,
+            "ciriloEcho": 2
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 344.18,
+            "ciriloTaxi": 1961.1,
+            "Q": 500.91,
+            "primary:CIRILO_FIRE": 388.94,
+            "echoOrOtherSpecial": 4157.48,
+            "ciriloEchoImpact": 7.99,
+            "primary:CIRILO_BURN": 26.8
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 109.65,
+            "Q": 96.76,
+            "primary:CIRILO_VOMIT": 27.54,
+            "ciriloTaxi": 119.95
+          },
+          "taxiStarts": 33,
+          "taxiReturns": 16,
+          "returnError": 5.084229945850415e-13,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 122.6999999999956
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            116.5
+          ],
+          "level": 3,
+          "kills": 28,
+          "enemies": 15,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            102.3
+          ],
+          "level": 5,
+          "kills": 70,
+          "enemies": 15,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            94.7
+          ],
+          "level": 6,
+          "kills": 106,
+          "enemies": 21,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            70.2
+          ],
+          "level": 7,
+          "kills": 145,
+          "enemies": 11,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 18.6,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 25.17,
+          "slot": 0,
+          "id": "stat:speed"
+        },
+        {
+          "at": 48.93,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 57.33,
+          "slot": 0,
+          "id": "pulse"
+        },
+        {
+          "at": 81.67,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 93.67,
+          "slot": 0,
+          "id": "pulse"
+        },
+        {
+          "at": 120.13,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        }
+      ],
+      "minis": [
+        {
+          "name": "La Paloma Brava",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 144.33,
+      "mapTime": 144.33,
+      "kills": 165,
+      "level": 8,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "solo",
+      "map": "plaza",
+      "seed": 202,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 18,
+          "damageTaken": 135,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 88.46999999999998,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            54.83,
+            100.3
+          ],
+          "rUses": [
+            34.07,
+            79.53
+          ],
+          "casts": {
+            "ciriloVomit": 22,
+            "ciriloTaxi": 28,
+            "ciriloEcho": 1
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 318.19,
+            "ciriloTaxi": 1790.55,
+            "echoOrOtherSpecial": 3091.4,
+            "primary:CIRILO_FIRE": 261.37,
+            "Q": 107.68,
+            "ciriloEchoImpact": 6.89,
+            "primary:CIRILO_BURN": 2.89
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 72.83,
+            "Q": 47.09,
+            "primary:CIRILO_VOMIT": 27.54,
+            "ciriloTaxi": 45.46
+          },
+          "taxiStarts": 28,
+          "taxiReturns": 16,
+          "returnError": 0,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 2,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 102.86666666666339
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            111.2
+          ],
+          "level": 2,
+          "kills": 14,
+          "enemies": 26,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            105.3
+          ],
+          "level": 5,
+          "kills": 69,
+          "enemies": 16,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            78.2
+          ],
+          "level": 6,
+          "kills": 95,
+          "enemies": 23,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            4.1
+          ],
+          "level": 7,
+          "kills": 127,
+          "enemies": 20,
+          "danger": 1
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 16.9,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 33.53,
+          "slot": 0,
+          "id": "pulse"
+        },
+        {
+          "at": 54.83,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 56.23,
+          "slot": 0,
+          "id": "stat:range"
+        },
+        {
+          "at": 78.43,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 100.3,
+          "slot": 0,
+          "id": "cards"
+        }
+      ],
+      "minis": [
+        {
+          "name": "La Paloma Brava",
+          "id": 1,
+          "at": 66.57,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 121.9,
+      "mapTime": 121.9,
+      "kills": 127,
+      "level": 7,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "solo",
+      "map": "machu",
+      "seed": 101,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 18,
+          "damageTaken": 135,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 103.554,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            25.97,
+            54.83,
+            86.3,
+            119.43
+          ],
+          "rUses": [
+            27.97,
+            58.1,
+            98.67
+          ],
+          "casts": {
+            "ciriloVomit": 25,
+            "ciriloTaxi": 34
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 276.5,
+            "ciriloTaxi": 1876.85,
+            "Q": 410.07,
+            "primary:CIRILO_FIRE": 589.76,
+            "primary:CIRILO_BURN": 21.66,
+            "echoOrOtherSpecial": 2732.01
+          },
+          "damageToBosses": {
+            "ciriloTaxi": 94.82,
+            "echoOrOtherSpecial": 79.22,
+            "Q": 108.23
+          },
+          "taxiStarts": 34,
+          "taxiReturns": 13,
+          "returnError": 0,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 2,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 20.200000000000163
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            104
+          ],
+          "level": 3,
+          "kills": 26,
+          "enemies": 17,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            92.1
+          ],
+          "level": 5,
+          "kills": 64,
+          "enemies": 10,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            62.4
+          ],
+          "level": 6,
+          "kills": 97,
+          "enemies": 18,
+          "danger": 1
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            28.1
+          ],
+          "level": 7,
+          "kills": 130,
+          "enemies": 14,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 20.2,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 25.37,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 53.9,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 55.37,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 82.13,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 97.73,
+          "slot": 0,
+          "id": "cards"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Huaco Renegado",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 125.63,
+      "mapTime": 125.63,
+      "kills": 135,
+      "level": 7,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "solo",
+      "map": "machu",
+      "seed": 202,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 14,
+          "damageTaken": 134.99999999999997,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 45.34999999999999,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            29.77,
+            52.73,
+            90.73
+          ],
+          "rUses": [
+            31.77,
+            69.97
+          ],
+          "casts": {
+            "ciriloVomit": 17,
+            "ciriloTaxi": 24,
+            "ciriloEcho": 1
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 158.49,
+            "ciriloTaxi": 1008.35,
+            "echoOrOtherSpecial": 3299.55,
+            "Q": 333.73,
+            "primary:CIRILO_FIRE": 218.12,
+            "ciriloEchoImpact": 6.89,
+            "primary:CIRILO_BURN": 11.11
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 152.14,
+            "Q": 161.9,
+            "ciriloTaxi": 50.51
+          },
+          "taxiStarts": 24,
+          "taxiReturns": 11,
+          "returnError": 238.33333333333354,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 2,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 93.29999999999727
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            108.8
+          ],
+          "level": 3,
+          "kills": 22,
+          "enemies": 21,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            97.8
+          ],
+          "level": 5,
+          "kills": 65,
+          "enemies": 24,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            55.1
+          ],
+          "level": 6,
+          "kills": 108,
+          "enemies": 14,
+          "danger": 2
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 11.1,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 20.73,
+          "slot": 0,
+          "id": "orbit"
+        },
+        {
+          "at": 52.53,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 52.53,
+          "slot": 0,
+          "id": "orbit"
+        },
+        {
+          "at": 63.57,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 90.73,
+          "slot": 0,
+          "id": "stat:rate"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Huaco Renegado",
+          "id": 1,
+          "at": 66.57,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 100.3,
+      "mapTime": 100.3,
+      "kills": 122,
+      "level": 7,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "solo",
+      "map": "plaza",
+      "seed": 303,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 22,
+          "damageTaken": 175.00000000000003,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 106.78799999999998,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            25.17,
+            49.93,
+            90.27
+          ],
+          "rUses": [
+            28.97,
+            69.5
+          ],
+          "casts": {
+            "ciriloVomit": 25,
+            "ciriloTaxi": 26,
+            "ciriloEcho": 1
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 317.04,
+            "ciriloTaxi": 1316.78,
+            "Q": 181.91,
+            "echoOrOtherSpecial": 2945.44,
+            "primary:CIRILO_FIRE": 234.08,
+            "ciriloEchoImpact": 4.61,
+            "primary:CIRILO_BURN": 20.16
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 23.1
+          },
+          "taxiStarts": 26,
+          "taxiReturns": 16,
+          "returnError": 0,
+          "hp": 0,
+          "maxHp": 160,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 2,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 101.93333333333011
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            98.3
+          ],
+          "level": 3,
+          "kills": 31,
+          "enemies": 12,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            74.2
+          ],
+          "level": 5,
+          "kills": 60,
+          "enemies": 29,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            35.5
+          ],
+          "level": 5,
+          "kills": 107,
+          "enemies": 18,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 19.63,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 25.4,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 49.73,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 52.8,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 90.27,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 91.23,
+          "slot": 0,
+          "id": "stat:health"
+        }
+      ],
+      "minis": [
+        {
+          "name": "La Paloma Brava",
+          "id": 1,
+          "at": 70.43,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 119.77,
+      "mapTime": 119.77,
+      "kills": 127,
+      "level": 7,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "solo",
+      "map": "machu",
+      "seed": 303,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 16,
+          "damageTaken": 135,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 71.19999999999999,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            40.6,
+            63.47,
+            80.93,
+            103.8
+          ],
+          "rUses": [
+            42.7,
+            83.03
+          ],
+          "casts": {
+            "ciriloVomit": 27,
+            "ciriloTaxi": 23,
+            "ciriloEcho": 1
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 319.03,
+            "ciriloTaxi": 901.48,
+            "Q": 558.17,
+            "primary:CIRILO_FIRE": 238.44,
+            "echoOrOtherSpecial": 2539.96,
+            "ciriloEchoImpact": 8.61
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 103.9,
+            "Q": 97.27,
+            "primary:CIRILO_VOMIT": 26.15
+          },
+          "taxiStarts": 23,
+          "taxiReturns": 10,
+          "returnError": 4.5496934130773415e-14,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 2,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 106.36666666666319
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            72.7
+          ],
+          "level": 2,
+          "kills": 17,
+          "enemies": 26,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            59.2
+          ],
+          "level": 3,
+          "kills": 37,
+          "enemies": 30,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            13.2
+          ],
+          "level": 6,
+          "kills": 87,
+          "enemies": 16,
+          "danger": 7
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 19.4,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 39.9,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 63.47,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 65.27,
+          "slot": 0,
+          "id": "orbit"
+        },
+        {
+          "at": 79.8,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 103.8,
+          "slot": 0,
+          "id": "cards"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Huaco Renegado",
+          "id": 1,
+          "at": 70.43,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 106.87,
+      "mapTime": 106.87,
+      "kills": 109,
+      "level": 7,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "coop",
+      "map": "campo",
+      "seed": 202,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 18,
+          "damageTaken": 135,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 102.55,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            40,
+            81.7
+          ],
+          "rUses": [
+            43.67
+          ],
+          "casts": {
+            "ciriloVomit": 10,
+            "ciriloTaxi": 33
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 240.04,
+            "ciriloTaxi": 1474.48,
+            "Q": 245.65,
+            "echoOrOtherSpecial": 710.8,
+            "primary:CIRILO_FIRE": 49.36
+          },
+          "damageToBosses": {
+            "ciriloTaxi": 215.75,
+            "echoOrOtherSpecial": 45.62
+          },
+          "taxiStarts": 33,
+          "taxiReturns": 21,
+          "returnError": 2.842170943040401e-14,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 107.09999999999648
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 19,
+          "damageTaken": 135,
+          "damageDuringQ": 17.819999999999993,
+          "damageDuringTaxi": 107.28000000000002,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            43.13,
+            69.17,
+            87.37,
+            116.63
+          ],
+          "rUses": [
+            58.6,
+            90.77
+          ],
+          "casts": {
+            "ciriloVomit": 16,
+            "ciriloTaxi": 32
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 205.15,
+            "ciriloTaxi": 1753.23,
+            "Q": 647.86,
+            "echoOrOtherSpecial": 1262.43,
+            "primary:CIRILO_FIRE": 187.14
+          },
+          "damageToBosses": {
+            "Q": 316.71,
+            "echoOrOtherSpecial": 78.12,
+            "ciriloTaxi": 91.02
+          },
+          "taxiStarts": 32,
+          "taxiReturns": 22,
+          "returnError": 2.842170943040401e-14,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 106.39999999999652
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            116.6,
+            123.1
+          ],
+          "level": 3,
+          "kills": 25,
+          "enemies": 18,
+          "danger": 1
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            88.9,
+            90.5
+          ],
+          "level": 5,
+          "kills": 62,
+          "enemies": 28,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            27.2,
+            36.7
+          ],
+          "level": 7,
+          "kills": 118,
+          "enemies": 7,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 7.17,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 7.17,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 23,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 23,
+          "slot": 1,
+          "id": "stat:power"
+        },
+        {
+          "at": 30.9,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 30.9,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 54.2,
+          "slot": 0,
+          "id": "stat:range"
+        },
+        {
+          "at": 54.2,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 69.13,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 69.13,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 83.2,
+          "slot": 0,
+          "id": "cards"
+        },
+        {
+          "at": 83.2,
+          "slot": 1,
+          "id": "cards"
+        },
+        {
+          "at": 109.77,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 109.77,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 66.57,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 118.9,
+      "mapTime": 118.9,
+      "kills": 143,
+      "level": 8,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "coop",
+      "map": "campo",
+      "seed": 101,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 31,
+          "damageTaken": 221,
+          "damageDuringQ": 12.65,
+          "damageDuringTaxi": 173.754,
+          "downs": 2,
+          "resurrections": 0,
+          "qUses": [
+            49.8,
+            75.2,
+            102.97,
+            125.53,
+            162.63
+          ],
+          "rUses": [
+            64.63,
+            106.4
+          ],
+          "casts": {
+            "ciriloVomit": 30,
+            "ciriloTaxi": 44,
+            "ciriloEcho": 8
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 341.29,
+            "ciriloTaxi": 3291.74,
+            "Q": 617.38,
+            "ciriloEchoImpact": 9.91,
+            "echoOrOtherSpecial": 999.74,
+            "primary:CIRILO_FIRE": 929.84
+          },
+          "damageToBosses": {
+            "ciriloTaxi": 256.68,
+            "echoOrOtherSpecial": 51.32,
+            "primary:CIRILO_FIRE": 293.25
+          },
+          "taxiStarts": 44,
+          "taxiReturns": 38,
+          "returnError": 0,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 124.83333333332881
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 33,
+          "damageTaken": 232.99999999999997,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 178.93499999999997,
+          "downs": 2,
+          "resurrections": 0,
+          "qUses": [
+            37.2,
+            79.9,
+            148.83
+          ],
+          "rUses": [
+            39.23,
+            138.27
+          ],
+          "casts": {
+            "ciriloVomit": 17,
+            "ciriloTaxi": 43
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 326.16,
+            "ciriloTaxi": 2316.39,
+            "Q": 501.37,
+            "primary:CIRILO_FIRE": 297.91,
+            "echoOrOtherSpecial": 1061.6
+          },
+          "damageToBosses": {
+            "ciriloTaxi": 277.97,
+            "echoOrOtherSpecial": 40.2,
+            "primary:CIRILO_FIRE": 73.31,
+            "Q": 176.9
+          },
+          "taxiStarts": 43,
+          "taxiReturns": 26,
+          "returnError": 1.4210854715202004e-14,
+          "hp": 0,
+          "maxHp": 185,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 151.66666666666063
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            101.3,
+            78.8
+          ],
+          "level": 3,
+          "kills": 26,
+          "enemies": 17,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            84.8,
+            124.3
+          ],
+          "level": 5,
+          "kills": 67,
+          "enemies": 22,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            57.2,
+            97.4
+          ],
+          "level": 7,
+          "kills": 112,
+          "enemies": 20,
+          "danger": 3
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            5,
+            30.7
+          ],
+          "level": 8,
+          "kills": 150,
+          "enemies": 12,
+          "danger": 0
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            60.9,
+            34.1
+          ],
+          "level": 9,
+          "kills": 176,
+          "enemies": 16,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 9.03,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 9.03,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 21.63,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 21.63,
+          "slot": 1,
+          "id": "stat:power"
+        },
+        {
+          "at": 34.5,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 34.5,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 49.77,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 49.77,
+          "slot": 1,
+          "id": "stat:health"
+        },
+        {
+          "at": 63.63,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 63.63,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 81.5,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 81.5,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 104.2,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 104.2,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 134.9,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 134.9,
+          "slot": 1,
+          "id": "stat:health"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 150.5
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 155.17,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 165.63,
+      "mapTime": 165.63,
+      "kills": 203,
+      "level": 9,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "coop",
+      "map": "campo",
+      "seed": 303,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 25,
+          "damageTaken": 175,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 138.19400000000002,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            36.2,
+            84.5,
+            118.13,
+            141.8
+          ],
+          "rUses": [
+            43.43,
+            107.57
+          ],
+          "casts": {
+            "ciriloVomit": 72,
+            "ciriloTaxi": 36,
+            "ciriloEcho": 1
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 1233.85,
+            "ciriloTaxi": 2163.42,
+            "ciriloEchoImpact": 7.75,
+            "echoOrOtherSpecial": 818.45,
+            "Q": 215.39,
+            "primary:CIRILO_FIRE": 853.12
+          },
+          "damageToBosses": {
+            "primary:CIRILO_VOMIT": 65.17,
+            "ciriloTaxi": 225.87,
+            "echoOrOtherSpecial": 40.2,
+            "primary:CIRILO_FIRE": 321.57
+          },
+          "taxiStarts": 36,
+          "taxiReturns": 28,
+          "returnError": 1.2710574864626038e-13,
+          "hp": 0,
+          "maxHp": 160,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 149.26666666666077
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 21,
+          "damageTaken": 193,
+          "damageDuringQ": 12.649999999999999,
+          "damageDuringTaxi": 70.323,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            37.4,
+            67.3,
+            102.9,
+            159.23
+          ],
+          "rUses": [
+            56.73,
+            129.47
+          ],
+          "casts": {
+            "ciriloVomit": 33,
+            "ciriloTaxi": 36
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 456.58,
+            "ciriloTaxi": 1645.39,
+            "echoOrOtherSpecial": 1962.68,
+            "Q": 464.07,
+            "primary:CIRILO_FIRE": 251.33
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 86.67,
+            "ciriloTaxi": 107.88,
+            "Q": 200.58,
+            "primary:CIRILO_FIRE": 66.86
+          },
+          "taxiStarts": 36,
+          "taxiReturns": 27,
+          "returnError": 2.842170943040401e-14,
+          "hp": 0,
+          "maxHp": 160,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 2,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 149.26666666666077
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            107.9,
+            135
+          ],
+          "level": 3,
+          "kills": 26,
+          "enemies": 17,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            102,
+            135
+          ],
+          "level": 5,
+          "kills": 66,
+          "enemies": 23,
+          "danger": 1
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            63.5,
+            103.7
+          ],
+          "level": 7,
+          "kills": 113,
+          "enemies": 13,
+          "danger": 2
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            9.7,
+            62.7
+          ],
+          "level": 8,
+          "kills": 151,
+          "enemies": 8,
+          "danger": 0
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            49.7,
+            80.7
+          ],
+          "level": 9,
+          "kills": 183,
+          "enemies": 15,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 8.23,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 8.23,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 21.23,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 21.23,
+          "slot": 1,
+          "id": "cards"
+        },
+        {
+          "at": 33.1,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 33.1,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 53.97,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 53.97,
+          "slot": 1,
+          "id": "stat:speed"
+        },
+        {
+          "at": 67.27,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 67.27,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloVomit"
+        },
+        {
+          "at": 83.53,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 83.53,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 106.5,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 106.5,
+          "slot": 1,
+          "id": "stat:health"
+        },
+        {
+          "at": 140,
+          "slot": 0,
+          "id": "stat:health"
+        },
+        {
+          "at": 140,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Fiscalizador",
+          "id": 1,
+          "at": 70.43,
+          "deadAt": 112.13
+        },
+        {
+          "name": "El Fiscalizador",
+          "id": 2,
+          "at": 133.27,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 164.6,
+      "mapTime": 164.6,
+      "kills": 196,
+      "level": 9,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "coop",
+      "map": "plaza",
+      "seed": 202,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 17,
+          "damageTaken": 135,
+          "damageDuringQ": 9.900000000000006,
+          "damageDuringTaxi": 99.8,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            42.83,
+            85.2
+          ],
+          "rUses": [
+            44.83
+          ],
+          "casts": {
+            "ciriloVomit": 18,
+            "ciriloTaxi": 22
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 260.62,
+            "ciriloTaxi": 1376.3,
+            "Q": 314.73,
+            "primary:CIRILO_FIRE": 58.95,
+            "echoOrOtherSpecial": 348.41
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 26.77,
+            "Q": 124.27,
+            "ciriloTaxi": 113.65
+          },
+          "taxiStarts": 22,
+          "taxiReturns": 15,
+          "returnError": 1.4210854715202004e-14,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 2,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 90.53333333333076
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 17,
+          "damageTaken": 135,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 96.59099999999997,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            42.63,
+            77.67
+          ],
+          "rUses": [
+            55.4
+          ],
+          "casts": {
+            "ciriloVomit": 18,
+            "ciriloTaxi": 22
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 177.95,
+            "echoOrOtherSpecial": 1253.42,
+            "ciriloTaxi": 901.58,
+            "Q": 213.74,
+            "primary:CIRILO_FIRE": 32.76
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 71.78,
+            "ciriloTaxi": 113.65
+          },
+          "taxiStarts": 22,
+          "taxiReturns": 16,
+          "returnError": 1.4210854715202004e-14,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 2,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 94.26666666666388
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            122.5,
+            103.2
+          ],
+          "level": 3,
+          "kills": 18,
+          "enemies": 25,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            72.2,
+            74.8
+          ],
+          "level": 5,
+          "kills": 69,
+          "enemies": 20,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            7.7,
+            26.8
+          ],
+          "level": 7,
+          "kills": 113,
+          "enemies": 11,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 12.63,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 12.63,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 22.9,
+          "slot": 0,
+          "id": "stat:range"
+        },
+        {
+          "at": 22.9,
+          "slot": 1,
+          "id": "orbit"
+        },
+        {
+          "at": 38.17,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 38.17,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 42.33,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 42.33,
+          "slot": 1,
+          "id": "stat:power"
+        },
+        {
+          "at": 65.93,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 65.93,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 81.53,
+          "slot": 0,
+          "id": "orbit"
+        },
+        {
+          "at": 81.53,
+          "slot": 1,
+          "id": "orbit"
+        }
+      ],
+      "minis": [
+        {
+          "name": "La Paloma Brava",
+          "id": 1,
+          "at": 66.57,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 97.97,
+      "mapTime": 97.97,
+      "kills": 117,
+      "level": 7,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "coop",
+      "map": "plaza",
+      "seed": 101,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 33,
+          "damageTaken": 243.00000000000003,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 189.73600000000002,
+          "downs": 2,
+          "resurrections": 0,
+          "qUses": [
+            46.4,
+            76.37,
+            120.93,
+            151.17,
+            170.97
+          ],
+          "rUses": [
+            48.57,
+            133.87,
+            173.67
+          ],
+          "casts": {
+            "ciriloVomit": 21,
+            "ciriloTaxi": 54,
+            "ciriloEcho": 2
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 358.84,
+            "ciriloTaxi": 2376.71,
+            "echoOrOtherSpecial": 4204.73,
+            "Q": 477.21,
+            "primary:CIRILO_FIRE": 364.78,
+            "ciriloEchoImpact": 13.01
+          },
+          "damageToBosses": {
+            "Q": 209,
+            "echoOrOtherSpecial": 146.64,
+            "ciriloTaxi": 163.69,
+            "primary:CIRILO_FIRE": 58.65
+          },
+          "taxiStarts": 54,
+          "taxiReturns": 38,
+          "returnError": 2.2737367544323206e-13,
+          "hp": 0,
+          "maxHp": 160,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 4,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 191.66666666665836
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 27,
+          "damageTaken": 239,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 128.1635,
+          "downs": 2,
+          "resurrections": 0,
+          "qUses": [
+            43.5,
+            76.37,
+            104,
+            145.7,
+            208.63
+          ],
+          "rUses": [
+            65.8,
+            110.37,
+            198.07
+          ],
+          "casts": {
+            "ciriloVomit": 25,
+            "ciriloTaxi": 60
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 542.74,
+            "ciriloTaxi": 2510.93,
+            "Q": 536.32,
+            "echoOrOtherSpecial": 3585.28,
+            "primary:CIRILO_FIRE": 445.3
+          },
+          "damageToBosses": {
+            "Q": 131.91,
+            "ciriloTaxi": 120.63,
+            "echoOrOtherSpecial": 254.75,
+            "primary:CIRILO_FIRE": 114.75,
+            "primary:CIRILO_VOMIT": 185.83
+          },
+          "taxiStarts": 60,
+          "taxiReturns": 39,
+          "returnError": 0,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 4,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 188.86666666665852
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            123.1,
+            111.5
+          ],
+          "level": 3,
+          "kills": 27,
+          "enemies": 16,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            100.7,
+            97.3
+          ],
+          "level": 5,
+          "kills": 70,
+          "enemies": 19,
+          "danger": 1
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            64.8,
+            50.6
+          ],
+          "level": 7,
+          "kills": 113,
+          "enemies": 19,
+          "danger": 6
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            68,
+            11.9
+          ],
+          "level": 8,
+          "kills": 153,
+          "enemies": 9,
+          "danger": 5
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            70.2,
+            68
+          ],
+          "level": 9,
+          "kills": 180,
+          "enemies": 15,
+          "danger": 0
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            25.6,
+            80.1
+          ],
+          "level": 9,
+          "kills": 224,
+          "enemies": 14,
+          "danger": 3
+        },
+        {
+          "at": 210,
+          "elapsed": 210,
+          "hp": [
+            0,
+            31.8
+          ],
+          "level": 10,
+          "kills": 255,
+          "enemies": 19,
+          "danger": 2
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 12.9,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 12.9,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 25.17,
+          "slot": 0,
+          "id": "orbit"
+        },
+        {
+          "at": 25.17,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 39.57,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 39.57,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 59.1,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 59.1,
+          "slot": 1,
+          "id": "stat:power"
+        },
+        {
+          "at": 76.33,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 76.33,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 88.13,
+          "slot": 0,
+          "id": "orbit"
+        },
+        {
+          "at": 88.13,
+          "slot": 1,
+          "id": "pulse"
+        },
+        {
+          "at": 109.73,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 109.73,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 144.4,
+          "slot": 0,
+          "id": "stat:health"
+        },
+        {
+          "at": 144.4,
+          "slot": 1,
+          "id": "pulse"
+        },
+        {
+          "at": 184.2,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 184.2,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        }
+      ],
+      "minis": [
+        {
+          "name": "La Paloma Brava",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": 140.17
+        },
+        {
+          "name": "Makanaky · La Realeza",
+          "id": 2,
+          "at": 165.13,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 213.37,
+      "mapTime": 213.37,
+      "kills": 258,
+      "level": 10,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "coop",
+      "map": "machu",
+      "seed": 101,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 19,
+          "damageTaken": 135,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 112.44999999999999,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            57.63,
+            94.97
+          ],
+          "rUses": [
+            79.1
+          ],
+          "casts": {
+            "ciriloVomit": 33,
+            "ciriloTaxi": 30
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 567.48,
+            "ciriloTaxi": 1215.55,
+            "Q": 245.56,
+            "echoOrOtherSpecial": 391.13,
+            "primary:CIRILO_FIRE": 382.6
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 21.97,
+            "primary:CIRILO_VOMIT": 152.65,
+            "ciriloTaxi": 107.22
+          },
+          "taxiStarts": 30,
+          "taxiReturns": 21,
+          "returnError": 2.842170943040401e-14,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 2,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 115.499999999996
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 16,
+          "damageTaken": 135,
+          "damageDuringQ": 17.6,
+          "damageDuringTaxi": 84.94999999999999,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            23.73,
+            54.4,
+            77.7,
+            108.03
+          ],
+          "rUses": [
+            27.6,
+            65.8
+          ],
+          "casts": {
+            "ciriloVomit": 39,
+            "ciriloTaxi": 22
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 471.78,
+            "ciriloTaxi": 1258.86,
+            "echoOrOtherSpecial": 1266.23,
+            "Q": 400.27,
+            "primary:CIRILO_FIRE": 299.62
+          },
+          "damageToBosses": {
+            "Q": 53.67,
+            "primary:CIRILO_VOMIT": 88.25,
+            "echoOrOtherSpecial": 34.84,
+            "ciriloTaxi": 50.51
+          },
+          "taxiStarts": 22,
+          "taxiReturns": 18,
+          "returnError": 2.842170943040401e-14,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 2,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 91.46666666666404
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            122.3,
+            120.8
+          ],
+          "level": 4,
+          "kills": 31,
+          "enemies": 12,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            91.3,
+            72.2
+          ],
+          "level": 6,
+          "kills": 78,
+          "enemies": 11,
+          "danger": 1
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            83.7,
+            72.2
+          ],
+          "level": 7,
+          "kills": 124,
+          "enemies": 8,
+          "danger": 1
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 6.23,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 6.23,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 15.63,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 15.63,
+          "slot": 1,
+          "id": "orbit"
+        },
+        {
+          "at": 25.43,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 25.43,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 45.8,
+          "slot": 0,
+          "id": "stat:speed"
+        },
+        {
+          "at": 45.8,
+          "slot": 1,
+          "id": "orbit"
+        },
+        {
+          "at": 57.5,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 57.5,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 89.63,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloVomit"
+        },
+        {
+          "at": 89.63,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloVomit"
+        },
+        {
+          "at": 104.5,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 104.5,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Huaco Renegado",
+          "id": 1,
+          "at": 76.23,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 116.17,
+      "mapTime": 116.17,
+      "kills": 144,
+      "level": 8,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "coop",
+      "map": "plaza",
+      "seed": 303,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 18,
+          "damageTaken": 135,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 101.83500000000001,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            51.67,
+            99,
+            147.83
+          ],
+          "rUses": [
+            62.33,
+            137.27
+          ],
+          "casts": {
+            "ciriloVomit": 19,
+            "ciriloTaxi": 49,
+            "ciriloEcho": 2
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 462.11,
+            "ciriloTaxi": 2251.58,
+            "echoOrOtherSpecial": 2333.88,
+            "Q": 298.86,
+            "primary:CIRILO_FIRE": 157.65,
+            "ciriloEchoImpact": 14.82
+          },
+          "damageToBosses": {
+            "primary:CIRILO_VOMIT": 55.08,
+            "echoOrOtherSpecial": 100.04,
+            "Q": 216.28,
+            "ciriloTaxi": 61.37,
+            "primary:CIRILO_FIRE": 45.9
+          },
+          "taxiStarts": 49,
+          "taxiReturns": 29,
+          "returnError": 4.263256414560601e-14,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 173.06666666665942
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 38,
+          "damageTaken": 294.99999999999994,
+          "damageDuringQ": 9.251999999999974,
+          "damageDuringTaxi": 206.217,
+          "downs": 2,
+          "resurrections": 0,
+          "qUses": [
+            39.1,
+            72.9,
+            99,
+            129.77,
+            180.1
+          ],
+          "rUses": [
+            41.1,
+            88.43,
+            161.67
+          ],
+          "casts": {
+            "ciriloVomit": 21,
+            "ciriloTaxi": 58,
+            "ciriloEcho": 1
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 360.39,
+            "ciriloTaxi": 3118.67,
+            "Q": 522.77,
+            "echoOrOtherSpecial": 1232.92,
+            "primary:CIRILO_FIRE": 360.48,
+            "ciriloEchoImpact": 6.2
+          },
+          "damageToBosses": {
+            "ciriloTaxi": 248.79,
+            "echoOrOtherSpecial": 52.95,
+            "Q": 76.19,
+            "primary:CIRILO_VOMIT": 71.4,
+            "primary:CIRILO_FIRE": 58.65
+          },
+          "taxiStarts": 58,
+          "taxiReturns": 37,
+          "returnError": 1.4210854715202004e-14,
+          "hp": 0,
+          "maxHp": 185,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 173.06666666665942
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 2,
+          "kills": 19,
+          "enemies": 24,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            125.1,
+            109.6
+          ],
+          "level": 5,
+          "kills": 71,
+          "enemies": 18,
+          "danger": 1
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            119.2,
+            60.1
+          ],
+          "level": 6,
+          "kills": 112,
+          "enemies": 14,
+          "danger": 2
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            85.2,
+            49
+          ],
+          "level": 7,
+          "kills": 142,
+          "enemies": 15,
+          "danger": 5
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            31.5,
+            80
+          ],
+          "level": 8,
+          "kills": 175,
+          "enemies": 12,
+          "danger": 0
+        },
+        {
+          "at": 180,
+          "elapsed": 180,
+          "hp": [
+            0,
+            34.7
+          ],
+          "level": 9,
+          "kills": 203,
+          "enemies": 19,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 11.67,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 11.67,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 31.4,
+          "slot": 0,
+          "id": "orbit"
+        },
+        {
+          "at": 31.4,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 38.63,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 38.63,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 51.67,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 51.67,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 72.87,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 72.87,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 98.97,
+          "slot": 0,
+          "id": "stat:range"
+        },
+        {
+          "at": 98.97,
+          "slot": 1,
+          "id": "stat:health"
+        },
+        {
+          "at": 126.27,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 126.27,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 156.93,
+          "slot": 0,
+          "id": "orbit"
+        },
+        {
+          "at": 156.93,
+          "slot": 1,
+          "id": "stat:health"
+        }
+      ],
+      "minis": [
+        {
+          "name": "La Paloma Brava",
+          "id": 1,
+          "at": 70.43,
+          "deadAt": 166.1
+        },
+        {
+          "name": "Makanaky · La Realeza",
+          "id": 2,
+          "at": 169.13,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 186.47,
+      "mapTime": 186.47,
+      "kills": 207,
+      "level": 9,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "coop",
+      "map": "machu",
+      "seed": 202,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 25,
+          "damageTaken": 202.99999999999994,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 112.05499999999999,
+          "downs": 2,
+          "resurrections": 0,
+          "qUses": [
+            33.4,
+            68.7,
+            113.47
+          ],
+          "rUses": [
+            39,
+            102.9
+          ],
+          "casts": {
+            "ciriloVomit": 36,
+            "ciriloTaxi": 31
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 585.09,
+            "ciriloTaxi": 1873.67,
+            "Q": 416.47,
+            "echoOrOtherSpecial": 944.18,
+            "primary:CIRILO_FIRE": 358.03
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 23.17,
+            "Q": 111.81,
+            "primary:CIRILO_VOMIT": 109.52,
+            "ciriloTaxi": 88.62
+          },
+          "taxiStarts": 31,
+          "taxiReturns": 22,
+          "returnError": 2.842170943040401e-14,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 137.06666666666146
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 28,
+          "damageTaken": 220.99999999999994,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 147.46499999999997,
+          "downs": 2,
+          "resurrections": 0,
+          "qUses": [
+            38.9,
+            80.77,
+            134
+          ],
+          "rUses": [
+            58.13,
+            123.43
+          ],
+          "casts": {
+            "ciriloVomit": 14,
+            "ciriloTaxi": 37
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 206.31,
+            "ciriloTaxi": 2570.63,
+            "Q": 267.94,
+            "echoOrOtherSpecial": 991.12,
+            "primary:CIRILO_FIRE": 152.54
+          },
+          "damageToBosses": {
+            "ciriloTaxi": 134.03,
+            "echoOrOtherSpecial": 32.27,
+            "Q": 101.69
+          },
+          "taxiStarts": 37,
+          "taxiReturns": 25,
+          "returnError": 0,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 143.4666666666611
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            115.5,
+            107.3
+          ],
+          "level": 3,
+          "kills": 28,
+          "enemies": 15,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            115.5,
+            93.2
+          ],
+          "level": 5,
+          "kills": 71,
+          "enemies": 18,
+          "danger": 1
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            93.8,
+            18.6
+          ],
+          "level": 7,
+          "kills": 109,
+          "enemies": 15,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            16.3,
+            60.1
+          ],
+          "level": 8,
+          "kills": 140,
+          "enemies": 14,
+          "danger": 1
+        },
+        {
+          "at": 150,
+          "elapsed": 150,
+          "hp": [
+            0,
+            40.5
+          ],
+          "level": 8,
+          "kills": 167,
+          "enemies": 17,
+          "danger": 0
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 8.63,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 8.63,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 23.1,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 23.1,
+          "slot": 1,
+          "id": "stat:power"
+        },
+        {
+          "at": 32.6,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 32.6,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 49.53,
+          "slot": 0,
+          "id": "stat:power"
+        },
+        {
+          "at": 49.53,
+          "slot": 1,
+          "id": "stat:speed"
+        },
+        {
+          "at": 70.1,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 70.1,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 87.13,
+          "slot": 0,
+          "id": "stat:range"
+        },
+        {
+          "at": 87.13,
+          "slot": 1,
+          "id": "stat:speed"
+        },
+        {
+          "at": 118.6,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 118.6,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Huaco Renegado",
+          "id": 1,
+          "at": 66.57,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 155.57,
+      "mapTime": 155.57,
+      "kills": 174,
+      "level": 8,
+      "stalled": false
+    },
+    {
+      "limit": 360,
+      "lockFinal": false,
+      "mode": "coop",
+      "map": "machu",
+      "seed": 303,
+      "strategy": "adaptive",
+      "q": true,
+      "domain": true,
+      "actors": [
+        {
+          "slot": 0,
+          "hitsTaken": 19,
+          "damageTaken": 134.99999999999997,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 106.25999999999999,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            38.2,
+            61.03,
+            104.13
+          ],
+          "rUses": [
+            41.33,
+            93.57
+          ],
+          "casts": {
+            "ciriloVomit": 29,
+            "ciriloTaxi": 36,
+            "ciriloEcho": 1
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 431.46,
+            "ciriloTaxi": 1769.02,
+            "Q": 249.05,
+            "echoOrOtherSpecial": 1070.74,
+            "primary:CIRILO_FIRE": 282.43
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 36.8,
+            "primary:CIRILO_VOMIT": 98.34,
+            "ciriloTaxi": 68.19
+          },
+          "taxiStarts": 36,
+          "taxiReturns": 24,
+          "returnError": 5.684341886080802e-14,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 115.499999999996
+          }
+        },
+        {
+          "slot": 1,
+          "hitsTaken": 20,
+          "damageTaken": 153,
+          "damageDuringQ": 0,
+          "damageDuringTaxi": 103.28,
+          "downs": 1,
+          "resurrections": 0,
+          "qUses": [
+            55.6,
+            85.97,
+            119.87
+          ],
+          "rUses": [
+            65.1,
+            123.2
+          ],
+          "casts": {
+            "ciriloVomit": 20,
+            "ciriloTaxi": 43
+          },
+          "damage": {
+            "primary:CIRILO_VOMIT": 385.14,
+            "ciriloTaxi": 1793.25,
+            "Q": 348.75,
+            "echoOrOtherSpecial": 687.05,
+            "primary:CIRILO_FIRE": 194.58
+          },
+          "damageToBosses": {
+            "echoOrOtherSpecial": 47.78,
+            "ciriloTaxi": 163.94,
+            "primary:CIRILO_VOMIT": 20.92
+          },
+          "taxiStarts": 43,
+          "taxiReturns": 25,
+          "returnError": 0,
+          "hp": 0,
+          "maxHp": 135,
+          "arsenal": {
+            "active": "ciriloTaxi",
+            "unlocked": {
+              "ciriloVomit": true,
+              "ciriloTaxi": true,
+              "ciriloEcho": true
+            },
+            "ranks": {
+              "ciriloVomit": 1,
+              "ciriloTaxi": 3,
+              "ciriloEcho": 1
+            },
+            "evolved": {},
+            "lastSwitch": 110.8333333333296
+          }
+        }
+      ],
+      "trace": [
+        {
+          "at": 0,
+          "elapsed": 0,
+          "hp": [
+            135,
+            135
+          ],
+          "level": 1,
+          "kills": 0,
+          "enemies": 1,
+          "danger": 0
+        },
+        {
+          "at": 30,
+          "elapsed": 30,
+          "hp": [
+            116.5,
+            128.4
+          ],
+          "level": 3,
+          "kills": 26,
+          "enemies": 17,
+          "danger": 0
+        },
+        {
+          "at": 60,
+          "elapsed": 60,
+          "hp": [
+            108.9,
+            122.3
+          ],
+          "level": 6,
+          "kills": 68,
+          "enemies": 21,
+          "danger": 0
+        },
+        {
+          "at": 90,
+          "elapsed": 90,
+          "hp": [
+            54.3,
+            101.2
+          ],
+          "level": 7,
+          "kills": 112,
+          "enemies": 14,
+          "danger": 0
+        },
+        {
+          "at": 120,
+          "elapsed": 120,
+          "hp": [
+            19.3,
+            45.8
+          ],
+          "level": 8,
+          "kills": 145,
+          "enemies": 12,
+          "danger": 1
+        }
+      ],
+      "upgrades": [
+        {
+          "at": 7.6,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 7.6,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloTaxi"
+        },
+        {
+          "at": 14.87,
+          "slot": 0,
+          "id": "stat:range"
+        },
+        {
+          "at": 14.87,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 32.8,
+          "slot": 0,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 32.8,
+          "slot": 1,
+          "id": "cirilo-arsenal:unlock:ciriloEcho"
+        },
+        {
+          "at": 51.87,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 51.87,
+          "slot": 1,
+          "id": "stat:speed"
+        },
+        {
+          "at": 59.9,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 59.9,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 84.3,
+          "slot": 0,
+          "id": "stat:rate"
+        },
+        {
+          "at": 84.3,
+          "slot": 1,
+          "id": "stat:rate"
+        },
+        {
+          "at": 116.03,
+          "slot": 0,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        },
+        {
+          "at": 116.03,
+          "slot": 1,
+          "id": "cirilo-arsenal:rank:ciriloTaxi"
+        }
+      ],
+      "minis": [
+        {
+          "name": "El Huaco Renegado",
+          "id": 1,
+          "at": 70.43,
+          "deadAt": null
+        }
+      ],
+      "result": "lose",
+      "elapsed": 136.9,
+      "mapTime": 136.9,
+      "kills": 160,
+      "level": 8,
+      "stalled": false
+    }
+  ]
+}

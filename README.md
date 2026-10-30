@@ -8,10 +8,10 @@ Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcional
 
 ## Punto actual de desarrollo
 
-CiriloTV ya tiene **kit 9/9**: Taxi de Cirilo y regreso con 40 % de resistencia, Carrera de ida y vuelta, Eco maldito/Maldad contagiosa, Persistencia maldita y Q ¡FULL MALDAD! con carga independiente. Audiencia y las transformaciones existentes se conservan. [Especificación del kit](docs/CIRILO_KIT.md). El balance en partidas completas y el arte exclusivo de la carta Q quedan para una revisión posterior.
+CiriloTV ya tiene **kit 9/9**: Taxi de Cirilo y regreso con 40 % de resistencia, Carrera de ida y vuelta, Eco maldito/Maldad contagiosa, Persistencia maldita y Q ¡FULL MALDAD! con carga independiente y arte exclusivo. Audiencia y las transformaciones existentes se conservan. [Especificación del kit](docs/CIRILO_KIT.md). [Balance medido](docs/CIRILO_BALANCE.md): 60 simulaciones de partidas y 40 duelos, anticipación de Taxi/Eco/Q, explosión de Eco tras una baja y ajuste de Q. Hay cierres en ambos modos, pero la supervivencia del estilo adaptativo sigue siendo mixta; falta validación humana.
 
 
-La última tarea terminada es el **kit 9/9 de Sideral · El Lagarto**: Mirada, Colazo y Huevo, tres evoluciones, Sangre fría y Despertar del Lagarto Q. Conserva UR, 120 PV, velocidad 195 y poder 27; sus ATQ son 95 físico / 105 especial. Q tiene carga independiente y el dominio R no cambia. El balance ya tiene [mediciones automatizadas en partidas y duelos](docs/SIDERAL_BALANCE.md): huevos que apuntan al abrir y Q que crece con el arsenal, sin cambiar R. La supervivencia individual sigue requiriendo validación con jugadores; la carta Q ya tiene ilustración exclusiva del Lagarto. Especificación y pruebas: [Kit de Sideral](docs/SIDERAL_KIT.md).
+El **kit 9/9 de Sideral · El Lagarto** incluye Mirada, Colazo y Huevo, tres evoluciones, Sangre fría y Despertar del Lagarto Q. Conserva UR, 120 PV, velocidad 195 y poder 27; sus ATQ son 95 físico / 105 especial. Q tiene carga independiente y el dominio R no cambia. El balance ya tiene [mediciones automatizadas en partidas y duelos](docs/SIDERAL_BALANCE.md): huevos que apuntan al abrir y Q que crece con el arsenal, sin cambiar R. La supervivencia individual sigue requiriendo validación con jugadores; la carta Q ya tiene ilustración exclusiva del Lagarto. Especificación y pruebas: [Kit de Sideral](docs/SIDERAL_KIT.md).
 
 ### Cristorata · revisión anterior conservada
 

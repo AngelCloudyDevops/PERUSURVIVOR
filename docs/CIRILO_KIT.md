@@ -50,7 +50,7 @@ El HUD indica etapa, forma demoníaca y disponibilidad/consumo de resurrección.
 
 Q usa `ultimate.ciriloCharge`, separado del depósito `ultimate.charge` que conserva Audiencia. Cada baja propia normal/pesada/minijefe/jefe concede 5/8/20/30 puntos, con máximo 100. No recarga con sus propios proyectiles ni durante su ejecución.
 
-Durante 1,95 s reemplaza al ataque personal por tres abanicos a los 0 / 0,65 / 1,30 s. Cada uno lanza tres proyectiles con separación angular de 0,16 rad, velocidad 600 u/s, alcance base 450 u, un impacto por proyectil y coeficiente 0,75. La escala se fija al activar: 1 + 0,14 por cada rango sobre 1 de su técnica más avanzada; no suma los tres rangos.
+Durante 1,95 s reemplaza al ataque personal por tres abanicos a los 0 / 0,65 / 1,30 s. Cada uno lanza tres proyectiles con separación angular de 0,16 rad, velocidad 600 u/s, alcance base 450 u, un impacto por proyectil y coeficiente 1,05. La escala se fija al activar: 1 + 0,14 por cada rango sobre 1 de su técnica más avanzada, multiplicada por 1,15 si existe al menos una evolución personal; no suma rangos ni evoluciones.
 
 Permite caminar, sigue las colisiones y utiliza descarga verde en humano o fuego cálido en demonio. No modifica poder, vida, forma, resurrección, duración ni multiplicadores de Audiencia. No cura ni vuelve invulnerable, y no se inicia durante taxi o dominios.
 
@@ -62,4 +62,4 @@ La carta Q usa el arte exclusivo `assets/cards/cirilo-full-maldad-ultimate-fulla
 
 Pruebas nuevas en `tests/cirilo-kit.test.cjs`: contrato completo y catálogo inmutable, progresión independiente, regreso exacto, límites de impactos, paredes en ambos sentidos, resistencia parcial, marcas con demora y propagación acotada, Q con tres abanicos y cargas separadas, resurrección original, estado cooperativo y ralentización original sin heredar estados del arsenal de Makanaky. La batería ahora incluye explícitamente las 41 pruebas existentes de `cirilo-ur.test.cjs`.
 
-Pendiente: medir partidas completas con varios estilos y compañeros antes de fijar un balance final; ampliar la revisión visual con jugadores, incluyendo móvil y movimiento reducido. La implementación y sus pruebas de reglas no sustituyen esa medición.
+El [balance medido](CIRILO_BALANCE.md) incluye 60 ejecuciones de partidas y 40 duelos, con evidencia antes/después y resultados mixtos explícitos. Taxi, Eco y Q anticipan de forma limitada al lanzar, sin perseguir después; Eco conserva su explosión si el primer impacto mata al blanco. Pendiente: validación con jugadores y más compañeros, móvil y movimiento reducido antes de fijar un balance final.
