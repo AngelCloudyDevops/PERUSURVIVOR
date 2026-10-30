@@ -12,7 +12,8 @@ P.CharacterSkins={
   'kingteka-animals':{id:'kingteka-animals',characterId:'kingteka',baseName:'Kingteka',title:'Amor a los animales'},
   'makanaky-royal':{id:'makanaky-royal',characterId:'makanaky',baseName:'Makanaky',title:'La Realeza'},
   'sideral-minion-scare':{id:'sideral-minion-scare',characterId:'sideral',baseName:'Sideral',title:'Espantaminions'},
-  'chamelin-trovo':{id:'chamelin-trovo',characterId:'chamelin',baseName:'Chamelín',title:'Trovo'}
+  'chamelin-trovo':{id:'chamelin-trovo',characterId:'chamelin',baseName:'Chamelín',title:'Trovo'},
+  'marciano-polvito':{id:'marciano-polvito',characterId:'marciano',baseName:'Marciano de SJL',title:'El Polvito',period:'2021'}
  },
  catalog:{
   'cerdito-vtuber':{id:'cerdito-vtuber',name:'Cerdito VTuber',rarity:'legendary',source:'skin-gacha',characterId:'kingteka',compatibleVersions:['kingteka-animals'],artId:'cerdito',color:'#f0a8c9',atlas:'powers',spriteRow:1,look:'cuy',skinTone:'#edb49c',ultimateArt:'assets/cards/cerdito-vtuber-ultimate-fullart-v1.webp',description:'Transformación completa con arma, cerditos proyectil, impactos rosados, carta propia y bandada porcina.'}

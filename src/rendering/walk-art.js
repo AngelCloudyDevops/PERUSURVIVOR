@@ -1,7 +1,7 @@
 'use strict';
 // Six authored, intact raster poses per actor. No body-part deformation.
 P.WalkArt={
-ids:['makanaky','cristorata','cuy','paloma','alan','alberto','keiko','ollanta','kingteka','shaka','najasor','cirilo','fuzo','charles','axelbenba','cerdito','sustento','cevichero','g5','enemy-0','enemy-1','enemy-2','enemy-3','enemy-4','enemy-5','vulture','ulti-bird'],
+ids:['makanaky','cristorata','cuy','paloma','alan','alberto','keiko','ollanta','kingteka','shaka','najasor','cirilo','fuzo','charles','axelbenba','cerdito','sustento','cevichero','g5','marciano','enemy-0','enemy-1','enemy-2','enemy-3','enemy-4','enemy-5','vulture','ulti-bird'],
 integratedIds:Array.from({length:6},(_,i)=>'minion-'+i),
 professionIds:['astronaut','firefighter','chef','mummy','elf','police','architect'].map(id=>'profession-'+id),
 reactionIds:['reaction-kingteka'],
@@ -13,7 +13,7 @@ professionSheet(id,rank=0){return 'profession-'+id+(rank===1?'-veteran':rank===2
 professionRankIds(){return this.professionIds.flatMap(id=>[id+'-veteran',id+'-elite'])},
 isIntegrated(id){return this.integratedIds.includes(id)||this.professionIds.includes(id)||this.professionRankIds().includes(id)},
 professionNeeded(){return this.professionIds.filter(id=>id!=='profession-mummy'&&id!=='profession-elf'||id==='profession-mummy'&&P.Maps?.selected==='halloween'||id==='profession-elf'&&P.Maps?.selected==='navidad').flatMap(id=>[id,id+'-veteran',id+'-elite'])},
-directionalIds:["cristorata","paloma","alan","keiko","ollanta","kingteka","shaka","najasor","cirilo","fuzo","charles","axelbenba","cerdito","sustento","cevichero"],
+directionalIds:["cristorata","paloma","alan","keiko","ollanta","kingteka","shaka","najasor","cirilo","fuzo","charles","axelbenba","cerdito","sustento","cevichero","marciano"],
 directionalColumns:{keiko:3},
 attackIds:[...new Set([...P.Data.characters.map(c=>'attack-'+c.id),...Object.values(P.CharacterSkins?.catalog||{}).map(s=>'attack-'+s.artId)])],
 sheets:{},queue:[],active:0,clock:0,waitToken:0,backgroundScheduled:false,

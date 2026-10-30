@@ -9,7 +9,11 @@ const context={console,Math,innerWidth:1280,innerHeight:800,devicePixelRatio:1,r
 context.window=context;vm.createContext(context);
 for(const m of modules)vm.runInContext(fs.readFileSync(path.join(root,m.source),'utf8'),context,{filename:m.source});
 const P=context.P,s=P.state;
-assert.equal(P.Data.characters.length,20);assert.equal(elements.get('#characters').children.length,20);
+assert.equal(P.Data.characters.length,21);assert.equal(elements.get('#characters').children.length,21);
+const marciano=P.Data.characters.find(c=>c.id==='marciano'),marcianoVersion=P.CharacterSkins.version(marciano),marcianoAttack=P.Data.attacks[marciano.attack];
+assert(marciano);assert.equal(marciano.name,'Marciano de SJL · El Polvito');assert.equal(marciano.category,'Meme · parodia');assert.equal(P.Gacha.tier('marciano'),'rare');
+assert.equal(marcianoVersion.baseName,'Marciano de SJL');assert.equal(marcianoVersion.title,'El Polvito');assert.equal(marcianoVersion.period,'2021');
+assert.equal(marcianoAttack.name,'Polvito cósmico');assert.equal(marcianoAttack.count,3);assert.equal(P.Evolutions.profiles.marciano.name,'Nube fosforescente');
 function target(x,y,hp=2000){return {x,y,hp,max:hp,r:13,speed:0,hit:0,boss:false,heavy:false}}
 const practiceRecord=storage['causas-best'];P.Practice.start();assert.equal(s.player.id,'kingteka');assert(s.practice);assert.equal(s.ultimate.charge,100);assert.equal(s.enemies.length,8);assert(P.Ultimate.activate());P.Practice.recharge();assert.equal(s.ultimate.left,8);assert.equal(P.Ultimate.activate(),false);const practiceMapTime=s.mapTime;for(let n=0;n<250;n++)P.Game.update(.04);assert.equal(s.mapTime,practiceMapTime);assert.equal(s.player.hp,s.player.maxHp);assert.equal(s.enemies.length,8);assert.equal(storage['causas-best'],practiceRecord);assert.equal(s.ultimate.left,0);assert.equal(s.ultimate.charge,100);assert(P.Ultimate.activate());P.Practice.targets();assert.equal(s.enemies.length,8);P.UI.menu();assert(!s.practice);P.Game.start();assert(!s.practice);assert(!s.devRun);assert.equal(s.ultimate.charge,0);console.log('OK práctica: carga gratis, recarga sin interrumpir remate, objetivos, invencibilidad, sin tiempo ni récord y salida limpia');
 for(let i=0;i<P.Data.characters.length;i++){
@@ -259,8 +263,8 @@ P.Game.start();s.gems=[{x:s.player.x,y:s.player.y,kind:'key',rarity:'rare'}];con
 {
  P.Game.start();const calls=[],wholeCtx=new Proxy({drawImage(...args){calls.push(args)}},{get:(target,key)=>target[key]||(()=>{})});
  const savedSheets=P.Sprites.sheets;P.Sprites.sheets={};
- for(const character of P.Data.characters){const id=character.atlas||'base';P.Sprites.sheets[id]??={ready:true,image:{},cells:[]};P.Sprites.sheets[id].cells[character.spriteRow]=Array.from({length:4},(_,frame)=>({sx:frame*80,sy:0,w:80,h:120}));}
- for(const character of P.Data.characters)for(const phase of [0,Math.PI/2,Math.PI,Math.PI*1.5]){calls.length=0;assert(P.Sprites.draw(wholeCtx,0,0,27,character,1,false,{phase}));assert.equal(calls.length,1,'Caminata debe dibujar un cuadro completo: '+character.name);assert.deepEqual(calls[0].slice(1,5),[80,0,80,120]);}
+ for(const character of P.Data.characters){if(character.spriteRow===undefined)continue;const id=character.atlas||'base';P.Sprites.sheets[id]??={ready:true,image:{},cells:[]};P.Sprites.sheets[id].cells[character.spriteRow]=Array.from({length:4},(_,frame)=>({sx:frame*80,sy:0,w:80,h:120}));}
+ for(const character of P.Data.characters)for(const phase of [0,Math.PI/2,Math.PI,Math.PI*1.5]){if(character.id==='marciano'){assert.equal(P.WalkArt.url(character.id),'assets/walks/marciano-walk-v2.webp');continue}calls.length=0;assert(P.Sprites.draw(wholeCtx,0,0,27,character,1,false,{phase}));assert.equal(calls.length,1,'Caminata debe dibujar un cuadro completo: '+character.name);assert.deepEqual(calls[0].slice(1,5),[80,0,80,120]);}
  P.Sprites.sheets=savedSheets;P.EnemyArt.ready=true;P.EnemyArt.image={};
  for(let design=0;design<6;design++){
   P.EnemyArt.cells[design]=[{sx:0,sy:0,w:80,h:120},{sx:80,sy:0,w:80,h:120}];const enemy={x:s.player.x+200,y:s.player.y,hp:50,max:50,r:13,design,heavy:false,speed:65,facing:1,moving:true,walkPhase:1,hit:0};

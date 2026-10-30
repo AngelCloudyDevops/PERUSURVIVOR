@@ -203,6 +203,19 @@
       "sha256": "76174feefaf662bbd0a5ae6b69b45a1852b969d761309332171379383af7603e",
       "sourceSha256": "b8e9efc53eb67bcb275853f43ec8d9ea8c82fa9338b17286ac74332df9edbcc9",
       "connectedFigures": 30
+    },
+    {
+      "id": "marciano",
+      "frames": 30,
+      "columns": 6,
+      "rows": 5,
+      "width": 1374,
+      "height": 1145,
+      "runtimeWidth": 384,
+      "runtimeHeight": 320,
+      "sha256": "22c8065402ed849e120f223d7aab834c2b35d5e04e03cd9e7bdc7ee348224cc6",
+      "sourceSha256": "6cf2d1a0d0fc833986bcec379d6cf4ef0881576a04ceaae4d9056f18a5e9a430",
+      "connectedFigures": 30
     }
   ]
 }

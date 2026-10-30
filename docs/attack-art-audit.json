@@ -217,6 +217,18 @@
       "runtimeHeight": 288,
       "sha256": "63e4eebc3a1e4fde2c95c57c39c15a9946c2b0efd2511f40a1c87a65dbb5c4e6",
       "sourceSha256": "e0758ed71e2692db8694bca0f15afcef4b5ef9425e8fe5bd0a81f91bf59b4b1b"
+    },
+    {
+      "id": "marciano",
+      "frames": 6,
+      "columns": 3,
+      "rows": 2,
+      "width": 1536,
+      "height": 1024,
+      "runtimeWidth": 288,
+      "runtimeHeight": 288,
+      "sha256": "ddddd554644bb9eb744b05e05e14db98dfc83d73bd0387130c9e10d70a954338",
+      "sourceSha256": "c1d642a14d1d84b78e7d1bfa46662240a2ff8b445c2b9eec46ff0e9d55bc843b"
     }
   ]
 }
