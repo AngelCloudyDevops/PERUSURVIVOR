@@ -1088,3 +1088,7 @@ Kit 9/9 en [CHAMELIN_KIT.md](CHAMELIN_KIT.md). Pegote tiene 10 % de lento tempor
 
 ### Cristorata · retornos, derrape y sellos
 Kit 9/9 en [CRISTORATA_KIT.md](CRISTORATA_KIT.md): dos ataques nuevos con evolución, preparación por acertar al mismo enemigo en ida/regreso del micrófono y Coliseo de ocho segundos con tres sellos que requieren cruzarlos de nuevo. R tiene carga independiente y no encierra ni teletransporta; no concede invulnerabilidad. La Q y sus cuatro variantes originales conservan implementación y controles.
+
+### Lectura visual de buffs y debuffs
+
+Todo estado temporal que altere al personaje debe indicar nombre, naturaleza positiva, negativa o mixta y duración restante en el HUD. Si afecta protección, velocidad, daño o control, también usa una señal pequeña anclada al cuerpo sin ocultar la silueta. Las ventajas permanentes de una partida —suministros, mejoras de estadísticas y pactos— se agrupan en fichas con acumulaciones y detalle, pero no mantienen partículas constantes. Pasivas, objetos de Dota y Q/R conservan sus paneles propios para evitar información duplicada. En móvil las fichas forman una sola fila desplazable.
