@@ -31,6 +31,8 @@ P.Gacha usa la clave independiente causas-collection-preferences-v1 con version/
 
 El paquete también excluye tres metadatos de autoría conservados en public/Git (gallinazo-phase2-frames.json, gallinazo-rig-frames.json y kingteka-ultimate-portrait.json). Los frames usados en ejecución ya están integrados en los módulos JS; ningún runtime solicita estos JSON. Se conserva el margen de tamaño existente sin cambiar imágenes ni reglas.
 
+Los fondos `plaza-v1.webp` y `machu-v1.webp` conservan sus fuentes PNG, dimensiones 1536×1024 y geometría intacta, pero se distribuyen en WebP de calidad 98. Esta codificación libera margen suficiente para que el `tar.gz` sea válido tanto en Windows como en Linux sin retirar contenido jugable.
+
 
 ## Separación entre fuente y distribución
 src/ contiene la lógica y la interfaz editables. public/assets/ contiene los recursos originales. scripts/build.cjs copia ambos a dist/ sin empaquetar ni minificar el código. dist/ está ignorado por Git y siempre puede reconstruirse.

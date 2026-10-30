@@ -553,10 +553,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 3553375,
-      "optimizedBytes": 2627792,
+      "optimizedBytes": 1018728,
       "sourceSha256": "744421b181c2920b43e923b42c6c2091ad6fa4b810915c084249e7aec63d476f",
-      "outputSha256": "940872b295268d2b35104dc4c0402e31f39b6bb6a3150b7ee4edf4d4150f40e6",
-      "rgbaSha256": "0c99ba5ba38da04abdd5c10c29f079f4007b87c35d9139b6fc12b12a25c724d1"
+      "outputSha256": "9013d210a63d50d9f19ea9fe28277e664dc3032c2ad69bb2a405db2dd29bd35e",
+      "rgbaSha256": "32228da365500014d4d5a01c465658731b1d232fc0bbe784d364619b5c992be4",
+      "quality": 98
     },
     {
       "source": "assets/maps/plaza-v1.png",
@@ -564,10 +565,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 3690059,
-      "optimizedBytes": 2650912,
+      "optimizedBytes": 1042796,
       "sourceSha256": "328b1fb1bedf835ad6a2aff4880aa9d1c5576ef75b2e046369b28ca0997d6802",
-      "outputSha256": "2262aeeeaf30b3a9b22025231da5994320d615db60bac323ebf5a08c2a5f2d21",
-      "rgbaSha256": "d2e90d6067cd80c14ac79e3f4526f048738ce29a48febb1c59de1f51c74cf029"
+      "outputSha256": "ad30e47ae0748f01885a70eb735fc9eab351c575498b8399093f25c7733768a8",
+      "rgbaSha256": "7a9d04c604967750b0a11ee3bca82e4f2d9f1dcc26f361ec3e71cf1ffad6b91d",
+      "quality": 98
     },
     {
       "source": "assets/minibosses/fiscalizador-v1.png",
@@ -675,5 +677,5 @@
     }
   ],
   "originalBytes": 93423924,
-  "optimizedBytes": 43080506
+  "optimizedBytes": 39863326
 }
