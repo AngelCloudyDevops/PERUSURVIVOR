@@ -145,10 +145,11 @@
       "width": 1536,
       "height": 1024,
       "originalBytes": 2359965,
-      "optimizedBytes": 1678634,
+      "optimizedBytes": 647788,
       "sourceSha256": "7aa7bb806d0c1375c6011d8ce88332b494b12aa642c7654dc04127636e80ebe9",
-      "outputSha256": "90b1ae8b0464ed20911ea64326f12b9d4577d2741d598be95b736d8753dcfdd5",
-      "rgbaSha256": "cda9580092e6bcb0e01bf880e90c3145145bf6272ca0487244295a9ca43af99a"
+      "outputSha256": "bd7e4e71bf7062c4365c42c506cfd6e640160a4cc8775e8e7c0eb1f5280970a7",
+      "rgbaSha256": "cda9580092e6bcb0e01bf880e90c3145145bf6272ca0487244295a9ca43af99a",
+      "quality": 100
     },
     {
       "source": "assets/cards/alberto-tribunal-ultimate-fullart-v1.png",
@@ -675,5 +676,5 @@
     }
   ],
   "originalBytes": 93423924,
-  "optimizedBytes": 43080506
+  "optimizedBytes": 42049660
 }
