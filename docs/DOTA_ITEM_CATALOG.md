@@ -18,18 +18,18 @@ La subida de nivel desarrolla habilidades y mejoras pasivas del personaje. Los o
 
 ## Los 19 objetos implementados
 
-Estos efectos se extraen de `src/systems/dota-items.js`. Se describen para planificar alrededor de lo que ya existe, sin modificarlo.
+Los efectos se definen en `dota-items.js`, `dota-equipment.js` y `dota-actives.js`. Las activaciones manuales sustituyen los disparadores automáticos correspondientes.
 
 | Objeto | Categoría | Rareza | Funcionamiento y efecto actual |
 |---|---|---|---|
 | Boots of Speed | Movilidad | Común | Pasivo: +5% de velocidad. |
-| Phase Boots | Movilidad | Rara | Pasivo: +12% de velocidad. |
+| Phase Boots | Movilidad | Rara | Pasivo: +12% de velocidad. Activo: +20% y evita contacto durante 3 s; recarga 15 s. No atraviesa paredes. |
 | Power Treads | Cadencia / movilidad | Rara | Pasivo: +5% de velocidad y 10% menos de intervalo entre ataques. |
 | Tranquil Boots | Recuperación / movilidad | Rara | Automático: +8% de velocidad y curación tras 5 s sin recibir daño. |
 | Arcane Boots | Cadencia / movilidad | Épica | Pasivo: +6% de velocidad y 8% menos de intervalo entre ataques. |
-| Boots of Travel | Movilidad / recolección | Épica | Pasivo: +14% de velocidad y +20% de alcance de recolección. |
-| Magic Stick | Recuperación | Común | Automático: acumula hasta 5 cargas al recibir daño; con poca vida consume al menos 4 y cura 2% de vida máxima por carga. |
-| Magic Wand | Recuperación | Rara | Automático: hasta 10 cargas; con vida por debajo de 48%, consume al menos 4 y cura 2,5% por carga. |
+| Boots of Travel | Movilidad / recolección | Épica | Pasivo: +14% velocidad y +20% recolección. Activo: viaja al compañero tras 2 s; daño cancela. Recarga 60 s. Solo: marca y regresa. |
+| Magic Stick | Recuperación | Común | Acumula hasta 5 cargas al recibir daño. Activo: gasta todas y cura 2% de vida máxima por carga; recarga 8 s. |
+| Magic Wand | Recuperación | Rara | Hasta 10 cargas. Activo: gasta todas y cura 2,5% de vida máxima por carga; recarga 8 s. |
 | Ring of Health | Recuperación | Común | Pasivo: +3% de vida máxima y 0,55 de vida/s. |
 | Ring of Tarrasque | Recuperación | Rara | Pasivo: +7% de vida máxima y 1,1 de vida/s. |
 | Heart of Tarrasque | Recuperación | Épica | Pasivo: +12% de vida máxima y 1,6 de vida/s. |
@@ -62,7 +62,7 @@ El golpe adicional se aplica al blanco original y no genera otro efecto secundar
 |---|---|---|---|---|
 | `ring-protection` | Ring of Protection | Común | Pasivo: reduce 5% el daño físico recibido. | Base de familia Armadura. |
 | `chainmail` | Chainmail | Rara | Pasivo: reduce 9% el daño físico recibido. | Desde Ring of Protection. |
-| `blade-mail` | Blade Mail | Épica | Automático: reduce 10% el daño físico; cada 2 s puede devolver al atacante 20% del daño físico efectivamente recibido. | Rama desde Chainmail. |
+| `blade-mail` | Blade Mail | Épica | Pasivo: −10% daño físico. Activo: refleja 20% de daño físico perdido durante 4 s, máx. una devolución/2 s; recarga 25 s. | Rama desde Chainmail. |
 | `assault-cuirass` | Assault Cuirass | Legendaria | Pasivo: reduce 14% el daño físico propio y 7% el del compañero a 180 unidades. La misma aura no se acumula. | Rama alternativa desde Chainmail. |
 
 La devolución no activa críticos, robo de vida ni otras devoluciones. Los jefes reciben como máximo 0,15% de su vida máxima por devolución. La reducción total de daño por equipo tiene un límite de 35% para reducciones Dota, aplicado al final de sus combinaciones.
@@ -72,8 +72,8 @@ La devolución no activa críticos, robo de vida ni otras devoluciones. Los jefe
 | ID | Objeto | Rareza | Efecto implementado | Evolución |
 |---|---|---|---|---|
 | `morbid-mask` | Morbid Mask | Rara | Pasivo: cura 2% del daño efectivo del ataque principal, con máximo de 0,5% de vida máxima por segundo. | Base de familia Robo de vida. |
-| `mask-madness` | Mask of Madness | Épica | Automático: tras 6 impactos directos, reduce 15% el intervalo de ataque durante 3 s, pero aumenta 10% el daño recibido; recarga 12 s. Conserva el robo de vida de la base. | Rama desde Morbid Mask. |
-| `satanic` | Satanic | Legendaria | Automático: robo de vida de 3%; al caer bajo 25% de vida, sube a 8% durante 3 s; recarga 30 s. Límite de curación: 1% de vida máxima/s normal y 3%/s durante la emergencia. | Rama alternativa desde Morbid Mask. |
+| `mask-madness` | Mask of Madness | Épica | Pasivo: conserva robo de vida. Activo: −15% intervalo y +10% daño recibido durante 4 s; recarga 20 s. | Rama desde Morbid Mask. |
+| `satanic` | Satanic | Legendaria | Pasivo: robo de vida 3%, máx. 1% de vida/s. Activo: robo 8% durante 4 s, máx. 3% de vida/s; recarga 30 s. | Rama alternativa desde Morbid Mask. |
 
 Solo cuenta el daño realmente quitado al enemigo en el primer impacto elegible de cada ataque. No cuentan Q/R, daño reflejado, daño de minions, daño a cajas ni cadenas secundarias. Un golpe de área usa un único presupuesto de curación, sin multiplicarlo por todos sus blancos. No revive a jugadores caídos.
 
@@ -82,11 +82,11 @@ Solo cuenta el daño realmente quitado al enemigo en el primer impacto elegible 
 | ID | Objeto | Rareza | Efecto implementado | Evolución |
 |---|---|---|---|---|
 | `cloak` | Cloak | Común | Pasivo: reduce 5% el daño especial recibido. | Base de familia Resistencia. |
-| `glimmer-cape` | Glimmer Cape | Épica | Automático: reduce 9% el daño especial; al quedar bajo 35% de vida concede un escudo de 6% de vida máxima durante 2 s; recarga 20 s. | Rama desde Cloak. |
-| `pipe-insight` | Pipe of Insight | Legendaria | Automático: reduce 12% el daño especial; cada 20 s concede un escudo de 6% de vida máxima durante 4 s a los supervivientes a 180 unidades. | Rama alternativa desde Cloak. |
-| `black-king-bar` | Black King Bar | Legendaria | Automático: al sufrir ralentizaciones temporales, las elimina y reduce 50% la duración de nuevas ralentizaciones durante 2 s; recarga 30 s. Conserva 9% de reducción especial. | Rama alternativa desde Cloak. |
+| `glimmer-cape` | Glimmer Cape | Épica | Pasivo: −9% daño especial. Activo: escudo especial individual de 6% de vida máxima durante 3 s; recarga 20 s. Apunta al aliado cercano o protege al portador. | Rama desde Cloak. |
+| `pipe-insight` | Pipe of Insight | Legendaria | Pasivo: −12% daño especial. Activo: escudo especial de 6% de vida máxima durante 4 s para aliados a 180 u; recarga 25 s. | Rama alternativa desde Cloak. |
+| `black-king-bar` | Black King Bar | Legendaria | Pasivo: −9% daño especial. Activo: limpia lentitud, reduce 50% la nueva lentitud y 20% adicional de daño especial durante 4 s; recarga 35 s. | Rama alternativa desde Cloak. |
 
-BKB no evita el daño ni las mecánicas obligatorias de jefes. Glimmer no concede invisibilidad en esta propuesta. Los escudos repetidos del mismo efecto se renuevan sin sumarse; nunca funcionan como vida extra ni resurrección. Usar los tipos de daño y los estados reales del motor.
+BKB no da inmunidad ni evita mecánicas obligatorias de jefes. Glimmer no concede invisibilidad. Glimmer y Pipe solo absorben daño especial: el físico quita vida sin gastarlos. No se acumulan ni renuevan mientras quede un escudo especial de equipo vigente; si todos los blancos ya están protegidos no se consume recarga.
 
 ### Impacto y control: cambiar cómo golpeas
 
@@ -94,9 +94,9 @@ BKB no evita el daño ni las mecánicas obligatorias de jefes. Glimmer no conced
 |---|---|---|---|---|
 | `javelin` | Javelin | Rara | Automático: cada 5 impactos directos del ataque principal añade 20% de su daño como daño especial al mismo blanco. | Base de familia Impacto. |
 | `maelstrom` | Maelstrom | Épica | Automático: cada 6 impactos válidos lanza una cadena de hasta 3 enemigos a 120 unidades entre saltos; cada salto causa 20% del daño del ataque principal. Recarga interna 1 s. | Rama desde Javelin. |
-| `mjollnir` | Mjollnir | Legendaria | Automático: mejora la cadena a 4 enemigos y 25% de daño por salto; recarga interna 1 s. | Desde Maelstrom. |
+| `mjollnir` | Mjollnir | Legendaria | Automático: cadena a 4 enemigos, 25% de potencia, recarga interna 1 s. Activo: aura eléctrica 4 s; perder vida dispara hasta 3 rayos especiales a 180 u, máx. una descarga/s; recarga 25 s. | Desde Maelstrom. |
 | `skull-basher` | Skull Basher | Épica | Automático: cada 8 impactos válidos aturde al blanco 0,35 s; recarga interna 3 s. | Rama alternativa desde Javelin. |
-| `abyssal-blade` | Abyssal Blade | Legendaria | Automático: cada 8 impactos válidos aturde 0,55 s y añade 25% del daño del ataque principal; recarga interna 3 s. | Desde Skull Basher. |
+| `abyssal-blade` | Abyssal Blade | Legendaria | Activo: golpe físico de 25% de potencia y aturde 0,55 s a 180 u; recarga 20 s. Jefes: lentitud de 10% durante 0,5 s, sin afectar transiciones. | Desde Skull Basher. |
 
 Cada ataque emitido suma como máximo un impacto al contador, aunque tenga varios proyectiles o blancos. Los efectos secundarios no activan otros efectos secundarios. Las cadenas no golpean dos veces al mismo enemigo. Los jefes no se aturden: reciben una ralentización de 10% durante 0,5 s, si su fase permite ralentización. Máximo cuatro blancos y una cadena visual por activación.
 
@@ -104,7 +104,7 @@ Cada ataque emitido suma como máximo un impacto al contador, aunque tenga vario
 
 | ID | Objeto | Rareza | Efecto implementado | Evolución |
 |---|---|---|---|---|
-| `hand-midas` | Hand of Midas | Épica | Pasivo: +10% a las monedas sueltas recogidas, acumulando las fracciones; cada 20 derrotas propias concede 2 de experiencia. Máximo 12 de experiencia adicional/minuto. | Familia Economía independiente. Sin evolución inicial. |
+| `hand-midas` | Hand of Midas | Épica | Pasivo: +10% monedas sueltas, acumulando fracciones. Activo: convierte un enemigo normal a 240 u en 8 monedas de partida; recarga 45 s. Sin experiencia adicional por contadores. | Familia Economía independiente. Sin evolución inicial. |
 
 No aumenta premios de cofres, ventas, eventos, compras ni monedas permanentes. En cooperativo, el bonus usa solo las monedas recogidas por el portador; dos Midas no multiplican el mismo premio. No paga por cajas, invocaciones ni enemigos recreados para pruebas.
 
@@ -149,12 +149,12 @@ BKB actúa sobre las ralentizaciones temporales de tácticas, extinción, zonas 
 - Confirmar si se mantiene el máximo de cuatro espacios antes de diseñar venta o sustitución voluntaria.
 - Definir cómo se presentan visualmente las categorías y los requisitos de evolución.
 - Probar si cadencia/críticos/robo de vida dominan a defensa/control; ajustar límites y porcentajes con resultados de partida.
-- Resolver si habrá más activos manuales. El catálogo conserva Blink como único activo manual y usa activaciones automáticas en los objetos nuevos.
+- Medir el uso de los activables y ajustar recargas con partidas reales.
 - Medir frecuencia de cofres, monedas y ofertas para que una partida permita completar combinaciones sin garantizar todos los legendarios.
 
 
-## Propuesta de activables — pendiente de aprobar
-Un objeto puede conservar su bono pasivo y añadir una acción manual. Actualmente solo la daga tiene activación manual; esta tabla no cambia los efectos jugables. Los tiempos son orientativos y requieren pruebas.
+## Activables implementados
+Un objeto conserva sus bonos pasivos y añade una acción manual cuando corresponde. La tabla anterior describe los valores implementados. Los tiempos siguen sujetos a balance.
 
 | Objeto | Acción propuesta | Límite inicial |
 |---|---|---|
@@ -164,12 +164,12 @@ Un objeto puede conservar su bono pasivo y añadir una acción manual. Actualmen
 | Varita mágica | Gastar cargas para curarse | Sin sobrecuración; conservar límite de cargas |
 | Blade Mail | Devolver parte del daño recibido | 4 s / 25 s; límite contra jefes |
 | Satanic | Gran robo de vida temporal | 4 s / 30 s; requiere acertar golpes |
-| Pipe of Insight | Escudo para aliados cercanos | 4 s / 25 s; no acumular escudos |
-| Glimmer Cape | Protección breve propia o de un aliado | 3 s / 20 s; sin invisibilidad total |
-| Black King Bar | Reducir control y daño mágico | 4 s / 35 s; no anula mecánicas de jefe |
+| Pipe of Insight | Escudo especial para aliados cercanos | 4 s / 25 s; no acumular escudos |
+| Glimmer Cape | Escudo especial propio o de un aliado | 3 s / 20 s; sin invisibilidad total |
+| Black King Bar | Reducir control y daño especial | 4 s / 35 s; no anula mecánicas de jefe |
 | Mask of Madness | Más velocidad de ataque a cambio de recibir más daño | 4 s / 20 s |
 | Hand of Midas | Convertir un enemigo normal en monedas | 45 s; excluye élites, jefes e invocaciones |
 | Abyssal Blade | Golpe que aturde al objetivo | 20 s; duración reducida en jefes |
-| Mjollnir | Escudo que responde con rayos al recibir golpes | 4 s / 25 s; límite de descargas |
+| Mjollnir | Aura que responde con rayos especiales al perder vida | 4 s / 25 s; límite de descargas |
 
-Primera tanda recomendada: daga, botas de viaje, varita, Blade Mail y BKB. Seleccionar un activable para E y permitir usar los demás desde sus iconos; evitar una tecla nueva por objeto. No sumar una activación manual al disparo automático existente: al convertir un efecto, sustituir su disparador y revisar su equilibrio.
+Controles: E usa el objeto seleccionado, F cambia la selección y cada icono permite usar su objeto directamente. Clic también lo selecciona para E. No se añaden teclas por objeto. Las activaciones manuales sustituyen los disparadores automáticos de varita, Blade Mail, Satanic, Madness, Glimmer, Pipe, BKB y Abyssal. Mjollnir conserva la cadena de impactos y añade el aura manual.
