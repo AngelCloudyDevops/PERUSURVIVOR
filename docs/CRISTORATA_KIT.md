@@ -57,3 +57,5 @@ Pruebas en `tests/cristorata-kit.test.cjs`: contrato/base/catálogo, progreso in
 Se mantienen las 32 pruebas existentes de `dragon-ultimate.test.cjs`. Las regresiones genéricas de rangos/HUD siguen usando un personaje sin arsenal especializado; las pruebas de Cristorata y cooperativo verifican sus cartas nuevas. La revisión visual se hace en una copia local, sin salas públicas ni utilidades de QA dentro de la distribución.
 
 Pendientes: balance medido de partidas completas, pruebas con jugadores y distintos compañeros, móvil y una ilustración exclusiva para R. Este cierre de reglas/contrato no es una afirmación de balance definitivo.
+
+El despliegue mantiene el límite de archivo de 64 MiB. La carta Q de Chamelín conserva la misma ilustración y fuente PNG de 1024×1536; su copia WebP de ejecución se optimiza a 512×768 para dejar margen al paquete tanto en Windows como en Linux, sin cambiar habilidades ni animaciones.

@@ -54,3 +54,12 @@ test('Racha de la Realeza pierde dos al fallar, decae gradualmente y excluye al 
 test('Las fichas muestran las mismas pasivas que usa el combate',()=>{
  const {P}=setup(),makanaky=P.Passives.rows('makanaky'),kingteka=P.Passives.rows('kingteka'),source=fs.readFileSync('src/ui/reference-menus.js','utf8');assert.equal(makanaky[0][1],'Racha de la Realeza');assert(makanaky.some(row=>row[1].includes('+35 % daño')));assert.equal(kingteka[0][1],'Instinto de expedición');assert(kingteka.some(row=>row[1].includes('+12 % daño')));assert(source.includes("label:'PASIVA ÚNICA'"));assert(source.includes("c.id==='kingteka'?'↻':'◆'"));assert(source.includes('owner.idleFrame(time)'));
 });
+
+test('Todas las Q y R registradas por módulos tardíos conservan ficha técnica',()=>{
+ const {P}=setup();
+ for(const [id,entry] of Object.entries(P.AbilityCards.entries)){
+  assert(entry.title,`${id}: falta título`);
+  assert(entry.description?.length>30,`${id}: falta descripción funcional`);
+  assert(entry.details?.length>=3,`${id}: falta ficha técnica`);
+ }
+});
