@@ -24,7 +24,7 @@ P.ChosicanoDomain={entry:4.8,cycle:5,exit:1.2,serial:0,jumpQueued:false,slideDow
 {const update=P.Game.update,start=P.Game.start,render=P.World.render;
  P.Game.update=function(dt){if(!P.Coop?.active&&P.state.mode==='play'){P.ChosicanoDomain.tryStart();if(P.state.roadDomain){P.ChosicanoDomain.tick(dt,{[P.state.player.slot??0]:P.ChosicanoDomain.input()});P.ChosicanoDomain.consume();return}}return update.call(this,dt)};
  P.Game.start=function(...args){P.state.roadDomain=null;P.ChosicanoDomain.consume();P.ChosicanoDomain.slideDown=false;P.ChosicanoRoad?.stopVoice();return start.apply(this,args)};
- P.World.render=function(...args){const active=!!P.state.roadDomain&&P.state.mode!=='menu';if(typeof document!=='undefined')document.body.classList.toggle('road-scene',active);P.ChosicanoRoad.controls(active);if(active){P.ChosicanoRoad.draw();return}P.ChosicanoRoad.stopVoice();return render.apply(this,args)};
+ P.World.render=function(...args){const active=!!P.state.roadDomain&&P.state.mode!=='menu';if(typeof document!=='undefined')document.body.classList.toggle('road-scene',active);P.ChosicanoRoad?.controls(active);if(active){P.ChosicanoRoad.draw();return}P.ChosicanoRoad?.stopVoice();return render.apply(this,args)};
 }
 
 for(const owner of [P.Ultimate,P.Domain,P.Court,P.SideralDomain,P.DragonUltimate]){if(!owner?.activate)continue;const activate=owner.activate;owner.activate=function(...args){if(P.state.roadDomain)return false;return activate.apply(this,args)}}
