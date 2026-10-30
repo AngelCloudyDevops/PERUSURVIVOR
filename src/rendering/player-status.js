@@ -27,12 +27,12 @@ P.PlayerStatus={
  },
  states(actor){
   if(!actor)return [];
-  const now=this.now(),record=this.observe(actor),slowUntil=Math.max(actor.tacticSlowUntil||0,actor.extinctionSlowUntil||0,actor.extinctionChargeSlowUntil||0,actor.dynamicZoneSlowUntil||0),states=[],cabinet=this.cabinet();
+  const now=this.now(),record=this.observe(actor),slowUntil=Math.max(actor.tacticSlowUntil||0,actor.extinctionSlowUntil||0,actor.extinctionChargeSlowUntil||0,actor.dynamicZoneSlowUntil||0,actor.fiscalSlowUntil||0),states=[],cabinet=this.cabinet();
   if(record.healUntil>now)states.push({id:'heal',icon:'+',label:'CURACIÓN',detail:'Vida recuperada: '+Math.ceil(record.healAmount),color:'#8ff0a4',until:record.healUntil,amount:record.healAmount,kind:'buff'});
   if((actor.poisonVisualUntil||0)>now)states.push({id:'poison',icon:'☠',label:'VENENO',detail:(actor.dynamicZonePoisonUntil||0)>now?'Pierde vida mientras permanezca en el charco':'Daño recibido y movimiento reducido',color:'#a9ef52',until:actor.poisonVisualUntil,kind:'debuff'});
   if((actor.courtShieldUntil||0)>now)states.push({id:'shield',icon:'◆',label:'ESCUDO',detail:'Bloquea el daño mientras esté activo',color:'#ffe29b',until:actor.courtShieldUntil,kind:'buff'});
   else if((actor.animalGuardUntil||0)>now)states.push({id:'guard',icon:'◈',label:'CORAZA 50%',detail:'Recibe 50 % menos daño',color:'#f3cf76',until:actor.animalGuardUntil,kind:'buff'});
-  if(slowUntil>now){const factor=(actor.tacticSlowUntil||0)>now?.75:(actor.extinctionSlowUntil||0)>now?.72:(actor.dynamicZoneSlowUntil||0)>now?.75:.82;states.push({id:'slow',icon:'▼',label:'LENTITUD '+Math.round((1-factor)*100)+'%',detail:'Velocidad de movimiento reducida',color:'#7ddcff',until:slowUntil,kind:'debuff'})}
+  if(slowUntil>now){const factor=Math.min((actor.tacticSlowUntil||0)>now?.75:1,(actor.extinctionSlowUntil||0)>now?.72:1,(actor.dynamicZoneSlowUntil||0)>now?.75:1,(actor.fiscalSlowUntil||0)>now?(actor.fiscalSlowFactor||.82):1,(actor.extinctionChargeSlowUntil||0)>now?.82:1);states.push({id:'slow',icon:'▼',label:'LENTITUD '+Math.round((1-factor)*100)+'%',detail:'Velocidad de movimiento reducida',color:'#7ddcff',until:slowUntil,kind:'debuff'})}
   if((actor.dynamicZoneDefenseUntil||0)>now)states.push({id:'exposed',icon:'◇',label:'DEFENSAS −12%',detail:'Daño físico y especial recibido aumentado',color:'#76d9ef',until:actor.dynamicZoneDefenseUntil,kind:'debuff'});
   if((actor.predatorUntil||0)>now)states.push({id:'power',icon:'↑',label:'DEPREDADOR',detail:'+25 % daño · +18 % velocidad',color:'#ffaf67',until:actor.predatorUntil,kind:'buff'});
   if((actor.makanakyUltimateUntil||0)>now)states.push({id:'intocable',icon:'♛',label:'INTOCABLE',detail:'Los Tres de la Realeza activo',color:'#e7a6ff',until:actor.makanakyUltimateUntil,kind:'buff'});

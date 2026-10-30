@@ -54,7 +54,7 @@ P.MinionTactics={
   if(a.tactic==='police'&&P.MinionEvolution.rank(e)===2&&t.age>=a.windup&&t.age<=a.windup+.28){const time=Math.max(0,Math.min(1,(t.age-a.windup)/.28)),old={x:e.x,y:e.y};e.x=t.origin.x+t.aim.x*38*time;e.y=t.origin.y+t.aim.y*38*time;P.Terrain.resolve(e,old,e.r);}return true;
  },
  contactAllowed(e){return !e.tactic},
- playerSpeed(p){return (p.tacticSlowUntil||0)>P.state.elapsed?.75:1},
+ playerSpeed(p){const tactic=(p.tacticSlowUntil||0)>P.state.elapsed?.75:1,fiscal=(p.fiscalSlowUntil||0)>P.state.elapsed?(p.fiscalSlowFactor||.82):1;return Math.min(tactic,fiscal)},
  shield(e,source){if(e.attackProfile?.tactic!=='police'||!e.tactic||e.tactic.age>=e.tactic.events[0].at+.25)return 1;const tier=P.MinionEvolution.rank(e);if(!tier)return 1;const p=source&&Number.isFinite(source.x)&&Number.isFinite(source.y)?source:P.state.player,dx=p.x-e.x,dy=p.y-e.y,d=Math.hypot(dx,dy)||1,aim=e.tactic.aim;return (dx*aim.x+dy*aim.y)/d>.35?(tier===2?.55:.7):1},
  advance(shot,dt){if(!shot.tactical)return true;const owner=P.state.enemies.find(e=>e.hp>0&&e.tacticId===shot.tacticOwner);if(!owner){shot.life=0;return false;}if(shot.returning&&shot.age+dt>=.9&&!shot.turned){shot.vx=-shot.vx;shot.vy=-shot.vy;shot.turned=true;}return true},
  angle(shot){return shot.angle+(shot.sweep||0)*Math.max(0,Math.min(1,shot.age/shot.duration))},
@@ -64,7 +64,7 @@ P.MinionTactics={
   if(shot.shape==='ring'){const outer=shot.radius*Math.min(1,shot.age/shot.duration);return d<=outer+8&&d>=Math.max(0,outer-17);}
   if(d>shot.radius)return false;if(shot.shape==='bomb')return true;const delta=Math.atan2(dy,dx)-this.angle(shot);return Math.abs(Math.atan2(Math.sin(delta),Math.cos(delta)))<=shot.arc/2;
  },
- hit(shot,p,damage){if(shot.extinctionPoison){p.extinctionSlowUntil=Math.max(p.extinctionSlowUntil||0,P.state.elapsed+1.4);p.poisonVisualUntil=Math.max(p.poisonVisualUntil||0,P.state.elapsed+1.4);return false}if(!shot.tactical)return false;shot.hitSlots.push(p.slot??-1);if(damage>0&&shot.slow)p.tacticSlowUntil=Math.max(p.tacticSlowUntil||0,P.state.elapsed+shot.slow);return true},
+ hit(shot,p,damage){if(P.Minibosses?.dangerHit?.(shot,p,damage))return false;if(shot.extinctionPoison){p.extinctionSlowUntil=Math.max(p.extinctionSlowUntil||0,P.state.elapsed+1.4);p.poisonVisualUntil=Math.max(p.poisonVisualUntil||0,P.state.elapsed+1.4);return false}if(!shot.tactical)return false;shot.hitSlots.push(p.slot??-1);if(damage>0&&shot.slow)p.tacticSlowUntil=Math.max(p.tacticSlowUntil||0,P.state.elapsed+shot.slow);return true},
  pose(e){const t=e.tactic;if(!t)return null;const next=t.events[t.next],active=t.events.some(q=>t.age>=q.at&&t.age<q.at+q.duration);if(!next&&!active)return null;const charging=!!next&&!active;const jump=e.attackProfile.tactic==='astronaut'?Math.sin(Math.max(0,Math.min(1,(t.age-e.attackProfile.windup)/.55))*Math.PI)*30:0;return {attack:e.attackProfile,charging,t:charging?Math.min(1,1-Math.max(0,next.at-t.age)/e.attackProfile.windup):.5,tilt:0,lift:jump,squash:1};
  },
  path(ctx,q){ctx.beginPath();if(q.shape==='line'){const c=Math.cos(q.angle),s=Math.sin(q.angle),w=q.width;ctx.moveTo(q.x-s*w,q.y+c*w);ctx.lineTo(q.x+c*q.length-s*w,q.y+s*q.length+c*w);ctx.lineTo(q.x+c*q.length+s*w,q.y+s*q.length-c*w);ctx.lineTo(q.x+s*w,q.y-c*w);ctx.closePath();}
