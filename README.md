@@ -469,14 +469,14 @@ La cámara de Techos de Lima encuadra al jugador y la silueta completa del Galli
 
 Los cuatro jefes de portal mantienen una ruta corta alrededor de las coberturas, la recalculan si cambia la posición del jugador o quedan bloqueados y validan el ancho completo de su cuerpo. No inician un ataque con una cobertura entre ambos; primero buscan una línea de ataque libre.
 
-| Minijefe | Dos patrones normales |
+| Minijefe | Patrones normales |
 | --- | --- |
-| Fiscalizador | Embestida y conos. |
-| Paloma Brava | Plumas y acometida de picotazo. |
-| Huaco Renegado | Golpe de suelo y fragmentos radiales. |
+| Fiscalizador | Embestida, cerco de conos y papeletas de clausura. En fase II, Operativo de clausura sustituye cada cuarto turno con un anillo convergente y una salida visible. |
+| Paloma Brava | Aleteo, picotazo y bombardeo marcado. En fase II, Bandada del Centro cruza ocho carriles con un corredor seguro. |
+| Huaco Renegado | Golpe de suelo, fragmentos radiales y estelas quebradas. En fase II, Derrumbe del Santuario converge dejando dos salidas. |
 | Makanaky · La Realeza | Gritos/pulsos y explosión cercana. |
 
-Los minijefes aparecen en superficie a intervalos de 60–90 s, entran en furia al 50%, encadenan su ataque principal y ofrecen ventanas de recuperación para contraatacar. No tienen ulti cinematográfica. El Gallinazo es actualmente el único jefe con ulti cinematográfica completa.
+Los minijefes aparecen en superficie a intervalos de 60–90 s, entran en furia al 50%, encadenan su ataque principal y ofrecen ventanas de recuperación para contraatacar. Fiscalizador, Paloma Brava y Huaco Renegado ya tienen contrato completo con tres ataques, pasiva y ulti jugable no cinematográfica. Makanaky queda para el final. El Gallinazo es actualmente el único jefe con ulti cinematográfica completa.
 
 ## Cámara y visibilidad
 En exploración la cámara debe mostrar caminos, obstáculos y enemigos con anticipación, conservando los personajes legibles. Se reduce el zoom del mundo de 1,7 a 1,3 en una pantalla de 1280 px (aprox. 24% menos acercamiento); el mínimo móvil es 0,95. Las arenas de jefe conservan su cámara propia. El HUD de exploración es compacto y evita repetir la habilidad: mantiene vida, tiempo, bajas, nivel, botín y objetivos. No volver a acercar la cámara global ni ampliar el panel sin comparar una partida en escritorio y móvil. La fórmula está en World.zoomFor y tiene regresión en tests/gameplay.test.cjs. Todo ajuste se guarda en una rama y commit de Git antes de publicarse.

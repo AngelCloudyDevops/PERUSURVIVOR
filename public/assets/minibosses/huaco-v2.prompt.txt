@@ -1,0 +1,7 @@
+Tool: built-in image_gen
+Use case: style-transfer
+Reference roles: user photograph = subject/design; huaco-v1 atlas = style, pose order and layout.
+
+Redesign El Huaco Renegado as the monumental reddish-brown anthropomorphic ceramic statue from the reference: tall cylindrical head with two dark circular marks, carved expressive face, seated body, geometric Andean bands and the large rounded tubular object projecting from the lap. Keep the polished cartoon pixel-art hybrid of the existing atlas, with dark outlines, terracotta shading, ceramic chips and a readable game silhouette.
+
+Produce one transparent horizontal atlas with exactly four separated full-body poses: neutral seated/ready, moving while retaining the seat and tubular object, attack with raised fist and cracking base, and defeated collapsed on its side. Preserve scale and ground line. No scenery, pedestal, people, text, watermark, grid, cropping, extra limbs or photorealism.
