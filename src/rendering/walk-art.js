@@ -5,9 +5,9 @@ ids:['makanaky','cristorata','cuy','paloma','alan','alberto','keiko','ollanta','
 integratedIds:Array.from({length:6},(_,i)=>'minion-'+i),
 professionIds:['astronaut','firefighter','chef','mummy','elf','police','architect'].map(id=>'profession-'+id),
 reactionIds:['reaction-kingteka'],
-arsenalAttackIds:['arsenal-kingteka-gallinazo','arsenal-kingteka-golpe','arsenal-cerdito-gallinazo','arsenal-cerdito-golpe'],
+arsenalAttackIds:['arsenal-kingteka-gallinazo','arsenal-kingteka-golpe','arsenal-cerdito-gallinazo','arsenal-cerdito-golpe','arsenal-makanaky-makanakyHeadbutt','arsenal-makanaky-makanakyGaaaa'],
 arsenalMovementIds:['arsenal-kingteka-gallinazo-walk','arsenal-cerdito-gallinazo-walk'],
-arsenalAttacks(id){return ['kingteka','cerdito'].includes(id)?['gallinazo','golpe'].map(attack=>'arsenal-'+id+'-'+attack):[]},
+arsenalAttacks(id){if(['kingteka','cerdito'].includes(id))return ['gallinazo','golpe'].map(attack=>'arsenal-'+id+'-'+attack);if(id==='makanaky')return ['makanakyHeadbutt','makanakyGaaaa'].map(attack=>'arsenal-makanaky-'+attack);return[]},
 arsenalMovement(id){return ['kingteka','cerdito'].includes(id)?['arsenal-'+id+'-gallinazo-walk']:[]},
 professionSheet(id,rank=0){return 'profession-'+id+(rank===1?'-veteran':rank===2?'-elite':'')},
 professionRankIds(){return this.professionIds.flatMap(id=>[id+'-veteran',id+'-elite'])},
@@ -19,7 +19,7 @@ attackIds:[...new Set([...P.Data.characters.map(c=>'attack-'+c.id),...Object.val
 sheets:{},queue:[],active:0,clock:0,waitToken:0,backgroundScheduled:false,
 visualId(id){const attack=id.startsWith('attack-'),base=attack?id.slice(7):id,visual=P.CharacterSkins?.artId(base)||base;return attack?'attack-'+visual:visual},
 frame(phase){return ((Math.floor((phase||0)*6/(Math.PI*3))%6)+6)%6},
-load(id,priority=false,retry=false){id=this.visualId(id);if(id==='makanaky'||id==='attack-makanaky')return P.MakanakyPlayerArt?.load(retry)||Promise.resolve(null);
+load(id,priority=false,retry=false){id=this.visualId(id);if(id==='makanaky'||id==='attack-makanaky')return P.MakanakyPlayerArt?.load(retry)||Promise.resolve(null);if(id.startsWith('arsenal-makanaky-'))return P.MakanakyPlayerArt?.loadTechnique(id.slice('arsenal-makanaky-'.length),retry)||Promise.resolve(null);
  if(typeof Image==='undefined'||!this.ids.includes(id)&&!this.attackIds.includes(id)&&!this.reactionIds.includes(id)&&!this.arsenalAttackIds.includes(id)&&!this.arsenalMovementIds.includes(id)&&!this.isIntegrated(id)&&!P.MinionComboArt?.ids.includes(id))return Promise.resolve(null);
  let sheet=this.sheets[id];if(sheet&&!(retry&&sheet.failed)){sheet.used=++this.clock;return sheet.promise}
  sheet={id,directional:id.startsWith('attack-')&&this.directionalIds.includes(id.slice(7)),ready:false,failed:false,used:++this.clock};sheet.promise=new Promise(resolve=>sheet.resolve=resolve);this.sheets[id]=sheet;

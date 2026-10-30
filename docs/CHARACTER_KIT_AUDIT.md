@@ -77,15 +77,15 @@ Kingteka, Makanaky, Sideral, CiriloTV, Chamelín y Cristorata son kits cerrados 
 
 ## Cobertura de ilustraciones
 
-- Los 15 poderes Q/R implementados ya tienen una ruta de carta full art registrada; Los Tres de la Realeza y El Coliseo del Dragón reutilizan temporalmente sus ilustraciones de personaje.
+- Los 15 poderes Q/R implementados ya tienen una ruta de carta full art registrada; Los Tres de la Realeza ya posee ilustración exclusiva y El Coliseo del Dragón todavía reutiliza temporalmente la de Cristorata.
 - Las tres armas de Kingteka tienen full art propio para las cartas de subida de nivel.
 - Los ataques personales del resto todavía usan composición procedural con sprite e icono; no poseen full art dedicado.
 - Ocho causas tienen ilustración grande de personaje en Causapedia: Cristorata, Cuy, Paloma, Kingteka, Chamelín, Makanaky, Sideral y Cirilo.
 
 ## Orden de trabajo recomendado
 
-1. Crear las dos full arts pendientes de Makanaky y verificar tarjetas en escritorio y móvil.
-2. Afinar el balance numérico de sus tres técnicas, Q y R con partidas completas.
+1. Verificar la tarjeta exclusiva de Los Tres de la Realeza en escritorio y móvil y crear la ilustración pendiente de El Coliseo del Dragón.
+2. Afinar el balance numérico de las tres técnicas, Q y R de Makanaky con partidas completas.
 3. Elegir el siguiente personaje entre quienes ya tienen Q o R, definir juntos sus ataques 2 y 3 y repetir el mismo contrato.
 4. Diseñar pasivas solo después de cerrar los tres ataques, para evitar que tapen carencias del arsenal.
 5. Probar cada kit a nivel base y máximo contra minions, minijefes y jefe antes de marcarlo como completo.
