@@ -1,12 +1,14 @@
 'use strict';
 P.BossHealth={
-bars(e){return e?.miniboss?2:e?.mapBoss?3:e?.boss?4:1},
+bars(e){return Math.max(1,Math.floor(e?.healthBars||(e?.miniboss?2:e?.mapBoss?3:e?.boss?4:1)))},
 phase(e){const bars=this.bars(e);if(bars===1||!e?.max)return 1;return Math.max(1,Math.min(bars,e.healthStage||bars-Math.ceil(Math.max(0,e.hp)/(e.max/bars))+1))},
+bar(e){const bars=this.bars(e),phase=this.phase(e),max=(e.max||1)/bars,lower=Math.max(0,(e.max||1)-phase*max),value=Math.max(0,Math.min(max,(e.hp||0)-lower));return {bars,phase,max,value,ratio:max?value/max:0,color:this.color(phase,bars)}},
+color(phase,bars){const palettes={2:['#f0c65c','#ed6558'],3:['#b77cff','#f2ad4e','#ed5c69'],4:['#62d5ff','#9b7cff','#f2ad4e','#ed5c69']},palette=palettes[bars];if(palette)return palette[phase-1];const hue=Math.round(190-(phase-1)*190/Math.max(1,bars-1));return 'hsl('+hue+' 82% 62%)'},
 clock(source){return Number.isFinite(source?.phaseClock)?source.phaseClock:P.state.elapsed||0},
 transitioning(e,source=null){return !!e&&this.bars(e)>1&&e.healthGuardClock===(source?.phaseClockId||'world')&&(e.healthGuardUntil||0)>this.clock(source)},
 damage(e,damage,source){const bars=this.bars(e);if(bars===1||!source||source.ignorePhaseGate||!(damage>0)||!Number.isFinite(e.max))return damage;const now=this.clock(source),segment=e.max/bars;e.healthStage=Math.max(e.healthStage||1,this.phase(e));if(this.transitioning(e,source)){const floor=e.healthStage<bars?e.max-e.healthStage*segment:0,room=Math.max(0,e.hp-Math.max(0,floor+.01));return Math.min(damage*.25,room)}const floor=e.healthStage<bars?e.max-e.healthStage*segment:0;if(e.healthStage>=bars||e.hp-damage>=floor)return damage;const overflow=Math.min(segment*.25,Math.max(0,floor-(e.hp-damage))),adjusted=Math.max(0,e.hp-(floor-overflow));e.healthStage++;e.healthGuardClock=source.phaseClockId||'world';e.healthGuardUntil=now+.6;e.healthBreakSerial=(e.healthBreakSerial||0)+1;this.break(e,bars);return adjusted},
 break(e,bars=this.bars(e)){const s=P.state,label='FASE '+e.healthStage+' / '+bars;if(e.miniboss)s.danger=s.danger.filter(q=>q.miniId!==e.miniId);else if(e.mapBoss&&s.encounter)s.danger=[];if(s.effects?.length<290)s.effects.push({kind:'shout',text:label,x:e.x,y:e.y-(e.r||30)-38,life:.75,maxLife:.75,color:e.color||'#ffd477'});P.Audio?.fx?.('boss')},
-draw(ctx,e,x,y,width,height,color){const bars=this.bars(e),life=Math.max(0,Math.min(e.max,e.hp));ctx.fillStyle='#151f31';ctx.fillRect(x,y,width,height);ctx.fillStyle=color;ctx.fillRect(x,y,width*(life/e.max),height);if(bars>1){ctx.fillStyle='#111827';for(let i=1;i<bars;i++)ctx.fillRect(Math.round(x+width*i/bars)-1,y,3,height)}},
+draw(ctx,e,x,y,width,height){const bar=this.bar(e);ctx.fillStyle='#151f31';ctx.fillRect(x,y,width,height);ctx.fillStyle=bar.color;ctx.fillRect(x,y,width*bar.ratio,height)},
 label(e){const bars=this.bars(e);return bars>1?'FASE '+this.phase(e)+' / '+bars:'FASE 1'}
 };
 P.Entities={

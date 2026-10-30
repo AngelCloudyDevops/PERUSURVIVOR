@@ -178,7 +178,7 @@ hud(){
   const make=(tag,cls)=>{const el=document.createElement(tag);el.className=cls;return el};
   this.status=make('section','');this.status.id='miniboss-status';
   const row=make('div','mini-health-heading');this.healthName=make('strong','mini-health-name');this.healthPhase=make('span','mini-health-phase');this.healthValue=make('span','mini-health-value');row.append(this.healthName,this.healthPhase,this.healthValue);
-  this.healthTrack=make('div','mini-health-track');this.healthTrack.setAttribute('role','progressbar');this.healthTrack.setAttribute('aria-valuemin','0');this.healthFill=make('i','mini-health-fill');const mark=make('i','mini-health-half');mark.setAttribute('aria-hidden','true');this.healthTrack.append(this.healthFill,mark);
+  this.healthTrack=make('div','mini-health-track');this.healthTrack.setAttribute('role','progressbar');this.healthTrack.setAttribute('aria-valuemin','0');this.healthFill=make('i','mini-health-fill');this.healthTrack.append(this.healthFill);
   this.healthCaption=make('div','mini-health-caption');this.status.append(row,this.healthTrack,this.healthCaption);P.$('#hud').append(this.status)
  }
  const e=s.enemies.find(e=>e.miniboss&&e.hp>0),warning=s.miniWarning;
@@ -186,9 +186,9 @@ hud(){
  if(e){this.entryAudio(e);this.furyAudio(e)}
  const target=e||warning,def=this.catalog[target.miniMap||target.miniKey||target.map],dx=target.x-s.player.x,dy=target.y-s.player.y,phase2=!!e&&P.BossHealth.phase(e)===2;
  P.UI.write(this.healthName,def.name+' · '+P.Attributes.names[P.Attributes.init(e||{miniboss:true,miniMap:target.miniKey||target.map}).combatStats.attribute]);P.UI.write(this.healthPhase,!e?'SE ACERCA':e.phase==='mini-entry'?'ENTRADA':phase2?'FASE 2':'FASE 1');
- P.UI.write(this.healthValue,e?Math.max(0,Math.ceil(e.hp))+' / '+e.max+' PV':'');this.healthTrack.hidden=!e;
+ const bar=e?P.BossHealth.bar(e):null;P.UI.write(this.healthValue,e?Math.ceil(bar.value)+' / '+Math.ceil(bar.max)+' PV':'');this.healthTrack.hidden=!e;
  this.status.dataset.phase=phase2?'2':'1';
- if(e){const hp=Math.max(0,Math.min(e.max,e.hp));this.healthFill.style.width=(hp/e.max*100)+'%';this.healthTrack.setAttribute('aria-label',def.name);this.healthTrack.setAttribute('aria-valuemax',String(e.max));this.healthTrack.setAttribute('aria-valuenow',String(hp));this.healthTrack.setAttribute('aria-valuetext',Math.ceil(hp)+' de '+e.max+' puntos de vida. Fase '+(phase2?2:1))}
+ if(e){const hp=Math.ceil(bar.value),max=Math.ceil(bar.max);this.healthFill.style.width=(Math.round(bar.ratio*10000)/100)+'%';this.healthFill.style.background=bar.color;this.healthTrack.setAttribute('aria-label',def.name);this.healthTrack.setAttribute('aria-valuemax',String(max));this.healthTrack.setAttribute('aria-valuenow',String(hp));this.healthTrack.setAttribute('aria-valuetext',hp+' de '+max+' puntos de vida. Barra '+bar.phase+' de '+bar.bars)}
  P.UI.write(this.healthCaption,(e?.phase==='mini-recover'?'AGOTADO · Daño recibido +35 %':e?'50 % · Segunda fase':'Preparando entrada')+' · '+P.Loot.keyDirection(dx,dy)+' '+Math.round(Math.hypot(dx,dy))+' m')
 },
 lab(map){P.UI.menu();P.Maps.select(this.catalog[map]?.map||map);P.Game.start({preview:true});const s=P.state;s.devRun=true;s.miniLab=map;s.enemies=[];const enter=()=>{if(!s.devRun||s.miniLab!==map)return;const point=this.point();if(!point){P.Lab.finish(false);return}s.enemies=[this.beginEntry(this.create(map,point))];s.mode='play';P.$('#overlay').hidden=true;P.Lab.tick();P.UI.hud()};if(this.available(map)){enter();return}this.init();s.mode='mini-loading';P.UI.show('Preparando minijefe…','Su sprite debe terminar de cargar antes de entrar.',[{title:'Entrar a la prueba ↗',action:()=>{if(this.available(map))enter();else this.init()}},{title:'Volver',action:()=>P.Lab.open()}])}
