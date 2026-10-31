@@ -259,6 +259,7 @@ module.exports = [
     "source": "src/rendering/world.js",
     "output": "js/world.js"
   },
+  {"source":"src/rendering/juice.js","output":"js/juice.js"},
   {
     "source": "src/rendering/hurt-vignette.js",
     "output": "js/hurt-vignette.js"
@@ -422,7 +423,8 @@ module.exports = [
 , {"source":"src/ui/inbox.js","output":"js/inbox.js"}
 , {source:"src/systems/dragon-ultimate.js",output:"js/dragon-ultimate.js"}
 , {source:"src/rendering/dragon-art.js",output:"js/dragon-art.js"}
-, {source:"src/rendering/dragon-epic.js",output:"js/dragon-epic.js"}, {source:"src/network/friends.js",output:"js/friends.js"}
+, {source:"src/rendering/dragon-epic.js",output:"js/dragon-epic.js"}
+, {source:"src/network/friends.js",output:"js/friends.js"}
 , {source:"src/systems/chosicano-domain.js",output:"js/chosicano-domain.js"}
 , {source:"src/rendering/chosicano-road.js",output:"js/chosicano-road.js"}
  ,{source:"src/systems/chamelin.js",output:"js/chamelin.js"}
