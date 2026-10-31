@@ -1,3 +1,10 @@
+# Cooperativo, guardado y movimiento reducido — 2026-10-31
+- Cliente y servidor comparten el paso de cada enemigo (`P.Systems.stepEnemy`): en cooperativo vuelven el aviso del jefe final y su evento al 50 %, el aturdimiento de Makanaky detiene ataques y contacto, y el Gallinazo no golpea por contacto en la fase lunar.
+- Un personaje o skin retirado ya no invalida el guardado: los identificadores desconocidos se descartan con aviso en consola; los datos corruptos siguen rechazándose.
+- La sincronización de cuenta solo entra en conflicto ante un 409 real; los errores de red reintentan con espera creciente y al recuperar conexión, y una subida que sí llegó se reconcilia sin diálogo.
+- La opción «Movimiento reducido» del juego también rige el canvas (`P.Motion.reduced()`): sin sacudida de dominio, destellos atenuados y parpadeo de invulnerabilidad estable.
+- Recibir daño suena y muestra una viñeta roja breve proporcional al daño, también en cooperativo.
+
 # Normalización de Kingteka y Cerdito VTuber — 2026-10-28
 - Kingteka queda registrado como `UR · Supremo`, de acuerdo con la ficha publicada.
 - Cerdito VTuber se declara como versión/skin de Kingteka y deja de ocupar una invocación SR independiente.
