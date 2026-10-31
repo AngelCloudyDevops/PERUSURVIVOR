@@ -111,6 +111,7 @@ module.exports = [
     "source": "src/systems/progression.js",
     "output": "js/systems.js"
   },
+  {"source":"src/systems/pickup-feedback.js","output":"js/pickup-feedback.js"},
   {
     "source": "src/scenes/maps.js",
     "output": "js/maps.js"
