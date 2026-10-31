@@ -78,3 +78,14 @@ test('Cooperativo: con sesión válida guest:true no evita la propiedad de la cu
  user.send({type:'create',protocol:2,map:'campo',guest:true,character:0});m=await user.next();assert.equal(m.type,'joined');assert.match(m.players[0].username,/Invitado/,'no revela la cuenta, pero tampoco la hace dueña de todo');
  const guest=await connect({});guest.send({type:'create',protocol:2,map:'plaza',guest:true,character:7});assert.equal((await guest.next()).type,'joined','el invitado sin sesión sigue jugando');
 });
+test('Servidor estático: nosniff, octet-stream, /backend/ bloqueado y archivo desaparecido sin caída',async t=>{
+ const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),{createServer}=require('../server.cjs');
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'ps-static-'));fs.mkdirSync(path.join(dir,'backend'));fs.writeFileSync(path.join(dir,'index.html'),'<h1>ok</h1>');fs.writeFileSync(path.join(dir,'x.unknown'),'<script>alert(1)</script>');fs.writeFileSync(path.join(dir,'backend','secret.cjs'),'secreto');
+ const server=createServer({dir:fs.realpathSync(dir)});await new Promise(r=>server.listen(0,'127.0.0.1',r));t.after(async()=>{await new Promise(r=>server.close(r));fs.rmSync(dir,{recursive:true,force:true})});
+ const get=p=>fetch('http://127.0.0.1:'+server.address().port+p);
+ let r=await get('/');assert.equal(r.status,200);assert.equal(r.headers.get('x-content-type-options'),'nosniff');assert.match(r.headers.get('content-type'),/text\/html/);
+ r=await get('/x.unknown');assert.equal(r.headers.get('content-type'),'application/octet-stream');assert.equal(r.headers.get('x-content-type-options'),'nosniff');
+ assert.equal((await get('/backend/secret.cjs')).status,404);assert.equal((await get('/Backend/secret.cjs')).status,404);assert.equal((await get('/%62ackend/secret.cjs')).status,404);
+ const stat=fs.statSync;fs.statSync=(f,...a)=>String(f).endsWith('vanished.js')?{isFile:()=>true}:stat(f,...a);
+ try{assert.equal((await get('/vanished.js')).status,404);assert.equal((await get('/')).status,200,'el proceso sigue vivo')}finally{fs.statSync=stat}
+});
