@@ -15,7 +15,7 @@ biomes:[
 {id:'azoteas-lima',bossKind:'vulture',name:'Azoteas de Lima',region:'Lima · Sobre la ciudad',description:'Techos conectados, tanques de agua, antenas y pasos elevados.',color:'#65747d',asset:'assets/arenas/rooftops-v1.webp',surface:'rooftop',climate:'plaza',ambience:'rooftop',encounterBase:'plaza',eventBase:'plaza',miniboss:'plaza',spawn:{x:0,y:80}},
 {id:'archivo-final',bossKind:'fujimori',name:'Archivo del Expediente',region:'Lima · Subsuelo clasificado',description:'Pasillos de archivo, cajas y oficinas cerradas.',color:'#896b50',asset:'assets/arenas/cabinet-v1.webp',surface:'archive',climate:'plaza',ambience:'archive',encounterBase:'plaza',eventBase:'plaza',miniboss:'plaza',spawn:{x:0,y:80}}
 ],
-definition(id=this.selected){return [...this.catalog,...this.biomes].find(m=>m.id===id)},
+definition(id=this.selected){let k=this.index;if(!k||k.c!==this.catalog||k.b!==this.biomes||k.n!==this.catalog.length+this.biomes.length){const m=new Map();for(const d of [...this.catalog,...this.biomes])if(!m.has(d.id))m.set(d.id,d);k=this.index={c:this.catalog,b:this.biomes,n:this.catalog.length+this.biomes.length,m}}return k.m.get(id)},
 current(){return this.definition()||this.catalog[0]},
 available(){return this.catalog.concat(P.TestBench?.isAdmin?.()?this.biomes:[])},
 thumbnail(map){return map.asset||'assets/maps/'+(map.base||map.id)+'-menu-v1.webp'},
