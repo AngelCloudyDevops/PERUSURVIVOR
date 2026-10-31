@@ -15,10 +15,10 @@ Staging usa `/opt/perusurvivor-staging`, contenedores, base de cuentas, salas co
 - CI evita duplicados: las ramas de trabajo se validan por Pull Request; solo `staging` y `main` ejecutan también CI al recibir un push.
 - La batería completa se ejecuta una vez en Linux/Node 24 y la compatibilidad ligera en Windows/Node 22.
 - El mismo `dist/` que supera las pruebas se conserva como artefacto y llega al job de despliegue de la rama correspondiente.
-- El deploy confirma que el SHA sigue siendo la punta de `main`.
+- El deploy confirma que el SHA sigue siendo la punta de `main` o `staging`, según la rama publicada.
 - SSH usa una cuenta restringida, host fijado y comando forzado.
 - El receptor valida rutas, tipos, cantidad y tamaño de archivos.
-- `live/current` cambia atómicamente y la comprobación HTTPS restaura la release anterior si falla.
+- `live/current` cambia atómicamente y la comprobación HTTPS restaura la release anterior si falla. Producción exige portada `200` con el juego; staging acepta además su `401 Basic` intencional, siempre que `__release.json` público identifique exactamente el SHA activado.
 - Se conservan la release actual, la anterior y las cinco releases recientes adicionales.
 
 ## Presupuesto
