@@ -24,3 +24,11 @@ test('Cooperativo: límite de conexiones por IP real',async t=>{
  for(let i=0;i<60;i++)assert(await open('203.0.113.1'));
  assert.equal(await open('203.0.113.1'),false);assert.equal(await open('203.0.113.2'),true);
 });
+test('Login: un cuerpo que nunca termina se corta por tiempo y no ocupa ranuras de scrypt',async t=>{
+ const origin='https://x.test',app=createAccounts({filename:':memory:',origins:[origin],bodyTimeout:150}),server=http.createServer((q,s)=>app.handle(q,s));await new Promise(r=>server.listen(0,'127.0.0.1',r));t.after(async()=>{await new Promise(r=>server.close(r));app.close()});
+ const port=server.address().port,stalled=[];
+ for(let i=0;i<6;i++){const q=http.request({host:'127.0.0.1',port,path:'/api/login',method:'POST',headers:{Origin:origin,'Content-Type':'application/json','Content-Length':100,'X-Real-IP':'198.51.100.'+i}});q.on('error',()=>{});q.write('{"user');stalled.push(new Promise(r=>{q.on('close',r);q.on('response',x=>x.resume())}))}
+ const login=await fetch('http://127.0.0.1:'+port+'/api/login',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json','X-Real-IP':'198.51.100.99'},body:JSON.stringify({username:'nadie_x',password:'una-clave-incorrecta'})});
+ assert.equal(login.status,401,'los cuerpos lentos no consumen ranuras');
+ await Promise.race([Promise.all(stalled),new Promise((_,j)=>setTimeout(()=>j(Error('no se cortó')),3000))]);
+});

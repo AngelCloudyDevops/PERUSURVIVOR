@@ -3,7 +3,7 @@ const crypto=require('node:crypto'),{promisify}=require('node:util'),fs=require(
 const scrypt=promisify(crypto.scrypt),hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 const {clientIp}=require('./client-ip.cjs');
 const COOKIE='ps_session',TTL=7*86400000;
-function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
+function createAccounts({filename,origins=[],secure=true,now=Date.now,bodyTimeout=Number(process.env.BODY_TIMEOUT_MS)||10000}={}){
  const {DatabaseSync}=require('node:sqlite');
  if(filename!==':memory:')fs.mkdirSync(path.dirname(filename),{recursive:true,mode:0o700});
  const db=new DatabaseSync(filename);if(filename!==':memory:')fs.chmodSync(filename,0o600);db.exec(`PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON;
@@ -24,7 +24,7 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
  function session(req){const token=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith(COOKIE+'='))?.slice(COOKIE.length+1);if(!token||!/^[a-f0-9]{64}$/.test(token))return null;return decorateUser(sessionStatement.get(hash(token),now()))}
  function publicUser(id,username){const role=db.prepare('SELECT role FROM user_roles WHERE user_id=?').get(id)?.role||'player',laboratory=!!db.prepare("SELECT enabled FROM user_entitlements WHERE user_id=? AND entitlement='laboratory'").get(id)?.enabled;return {id,username,role,entitlements:{laboratory:role==='admin'||laboratory}}}
  function issue(res,id){db.prepare('DELETE FROM sessions WHERE expires_at<=?').run(now());const token=crypto.randomBytes(32).toString('hex');db.prepare('INSERT INTO sessions VALUES(?,?,?)').run(hash(token),id,now()+TTL);cookie(res,token)}
- async function body(req){let text='',size=0;if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))throw Object.assign(Error('Se requiere JSON'),{status:415});for await(const chunk of req){size+=Buffer.byteLength(chunk);if(size>131072)throw Object.assign(Error('Guardado demasiado grande'),{status:413});text+=chunk}try{return JSON.parse(text)}catch{throw Object.assign(Error('JSON inválido'),{status:400})}}
+ async function body(req){let text='',size=0;const timer=setTimeout(()=>req.destroy(Object.assign(Error('Tiempo de lectura agotado'),{status:408})),bodyTimeout);if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))throw Object.assign(Error('Se requiere JSON'),{status:415});try{for await(const chunk of req){size+=Buffer.byteLength(chunk);if(size>131072)throw Object.assign(Error('Guardado demasiado grande'),{status:413});text+=chunk}}finally{clearTimeout(timer)}try{return JSON.parse(text)}catch{throw Object.assign(Error('JSON inválido'),{status:400})}}
  function limit(req){const key=clientIp(req)||'local',time=now();for(const [ip,a]of attempts)if(time-a.at>900000)attempts.delete(ip);if(attempts.size>10000&&!attempts.has(key))return false;const a=attempts.get(key)||{at:time,count:0};attempts.set(key,a);return ++a.count<=30}
  function credentials(b){if(typeof b.username!=='string'||!/^[a-zA-Z0-9_]{3,24}$/.test(b.username)||typeof b.password!=='string'||b.password.length<12||b.password.length>128)throw Object.assign(Error('Usuario: 3–24 letras, números o _. Contraseña: 12–128 caracteres.'),{status:400});return b.username.toLowerCase()}
  const friends=require('./friends.cjs').createFriends({db,reply,body,now});
@@ -39,8 +39,9 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
   if(route==='/api/balance'&&req.method==='GET'){await balance.handle(req,res,user,url,()=>session(req));return true}
   if(route==='/api/account'&&req.method==='GET'){reply(res,200,{user:user||null});return true}
   if(['/api/register','/api/login','/api/recover'].includes(route)&&req.method==='POST'){
-   if(!limit(req)||running>=4){reply(res,429,{error:'Demasiados intentos. Vuelve a intentarlo más tarde.'});return true}
-   running++;try{const b=await body(req),username=credentials(b),row=db.prepare('SELECT * FROM users WHERE username=?').get(username);
+   if(!limit(req)){reply(res,429,{error:'Demasiados intentos. Vuelve a intentarlo más tarde.'});return true}
+   const b=await body(req);if(running>=4){reply(res,429,{error:'Demasiados intentos. Vuelve a intentarlo más tarde.'});return true}
+   running++;try{const username=credentials(b),row=db.prepare('SELECT * FROM users WHERE username=?').get(username);
     if(route==='/api/register'){
      const salt=crypto.randomBytes(16).toString('hex'),password=await scrypt(b.password,salt,64),recovery=crypto.randomBytes(24).toString('hex'),id=crypto.randomUUID();
      if(row){reply(res,409,{error:'Ese usuario no está disponible'});return true}
