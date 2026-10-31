@@ -1,0 +1,21 @@
+'use strict';
+const {test}=require('node:test'),assert=require('node:assert/strict'),loose=require('node:assert').deepEqual,{Simulation}=require('../backend/simulation.cjs');
+const meta=()=>new Simulation('campo',[0,1]).P.Meta;
+const quiet=fn=>{const warn=console.warn,logs=[];console.warn=m=>logs.push(m);try{return [fn(),logs]}finally{console.warn=warn}};
+function dirty(M){const d=M.blank();d.unlocked.push('kingteka','fantasma');d.gachaStars.kingteka={rank:3,copies:4};d.gachaStars.fantasma={rank:2,copies:9};d.characters.cuy={upgrades:{power:2},runs:3,wins:1,kills:50,bestTime:90,bestLevel:5};d.characters.fantasma={upgrades:{},runs:9,wins:0,kills:1,bestTime:1,bestLevel:1};
+ const g=(id,character)=>({id,character,tier:'common',fresh:true,refund:0,at:null,copies:0});d.gachaHistory=[g('a','kingteka'),g('b','fantasma')];d.gachaLast=g('c','fantasma');d.gachaBatch=[g('d','fantasma'),g('e','cuy')];
+ d.receipts=[{id:'r1',character:'cuy',coins:5,win:true},{id:'r2',character:'fantasma',coins:7,win:false}];d.wallet=123;d.earned=200;
+ d.skins={unlocked:['cerdito-vtuber','skin-fantasma'],equipped:{'kingteka-animals':'cerdito-vtuber','cuy-oracle':'skin-fantasma','version-fantasma':'base'}};return d}
+test('IDs desconocidos: se descartan con aviso y el resto del guardado queda intacto',()=>{const M=meta(),[out,logs]=quiet(()=>M.normalize(JSON.parse(JSON.stringify(dirty(M)))));
+ loose(out.unlocked.filter(id=>id==='fantasma'),[]);assert(out.unlocked.includes('kingteka'));assert(!('fantasma' in out.gachaStars));loose(out.gachaStars.kingteka,{rank:3,copies:4});assert(!('fantasma' in out.characters));assert.equal(out.characters.cuy.runs,3);
+ loose(out.gachaHistory.map(r=>r.id),['a']);assert.equal(out.gachaLast,null);loose(out.gachaBatch.map(r=>r.id),['e']);loose(out.receipts.map(r=>r.id),['r1']);
+ loose(out.skins.unlocked,['cerdito-vtuber']);loose(out.skins.equipped,{'kingteka-animals':'cerdito-vtuber'});assert.equal(out.wallet,123);assert.equal(out.earned,200);
+ assert.equal(logs.length,1);assert.match(logs[0],/fantasma/);assert.match(logs[0],/skin-fantasma/)});
+test('IDs desconocidos: el resultado es estable al volver a normalizar y sin aviso si no hay descartes',()=>{const M=meta(),[out]=quiet(()=>M.normalize(dirty(M))),[again,logs]=quiet(()=>M.normalize(JSON.parse(JSON.stringify(out))));loose(again,out);assert.equal(logs.length,0)});
+test('IDs desconocidos: el alias cerdito sigue migrando a kingteka',()=>{const M=meta(),d=M.blank();d.version=4;d.unlocked.push('cerdito');d.gachaStars.cerdito={rank:3,copies:4};d.characters.cerdito={upgrades:{power:1},runs:2,wins:1,kills:10,bestTime:60,bestLevel:4};d.receipts=[{id:'r',character:'cerdito',coins:3,win:false}];d.gachaHistory=[{id:'h',character:'cerdito',tier:'ultra',fresh:true,refund:0,at:null,copies:0}];
+ const [out,logs]=quiet(()=>M.normalize(d));assert(out.unlocked.includes('kingteka'));assert(!out.unlocked.includes('cerdito'));loose(out.gachaStars.kingteka,{rank:3,copies:4});assert.equal(out.characters.kingteka.runs,2);assert.equal(out.receipts[0].character,'kingteka');assert.equal(out.gachaHistory[0].character,'kingteka');assert.equal(logs.length,0)});
+test('Corrupción real sigue lanzando: tipos erróneos, rangos, versión y coherencia',()=>{const M=meta(),bad=(edit,re)=>assert.throws(()=>quiet(()=>{const d=M.blank();edit(d);return M.normalize(d)}),re);
+ bad(d=>{d.unlocked='cuy'},/Colección no válida/);bad(d=>{d.unlocked=['cristorata','cuy','paloma',5]},/Colección no válida/);bad(d=>{d.unlocked=['cristorata','cuy']},/Colección no válida/);bad(d=>{d.unlocked.push('cuy')},/Colección no válida/);
+ bad(d=>{d.wallet=-1},/Guardado no válido/);bad(d=>{d.wallet='9'},/Guardado no válido/);bad(d=>{d.gachaStars={fuzo:{rank:2,copies:0}}},/Estrellas no válidas/);bad(d=>{d.gachaStars=[]},/Estrellas no válidas/);
+ bad(d=>{d.receipts=[{id:7,character:'cuy',coins:1,win:false}]},/Recibo no válido/);bad(d=>{d.receipts='x'},/./);bad(d=>{d.skins={unlocked:'x',equipped:{}}},/skins no válida/);bad(d=>{d.skins={unlocked:[5],equipped:{}}},/skins no válida/);bad(d=>{d.skins={unlocked:[],equipped:{'kingteka-animals':'cerdito-vtuber'}}},/Skin equipada no válida/);
+ bad(d=>{d.version=99},/no compatible/);assert.throws(()=>M.normalize(null),/no compatible/)});
