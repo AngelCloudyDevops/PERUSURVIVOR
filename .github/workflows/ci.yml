@@ -8,8 +8,8 @@ permissions:
   contents: read
 
 jobs:
-  test:
-    name: Node ${{ matrix.node }} / ${{ matrix.os }}
+  compatibility:
+    name: Compatibilidad Node ${{ matrix.node }} / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
@@ -27,22 +27,14 @@ jobs:
           package-manager-cache: false
       - run: npm ci --ignore-scripts
       - run: npm run check
-      - run: npm test
+      - run: npm run build
+      - name: Smoke tests
+        run: node --test tests/build.test.cjs tests/gameplay.test.cjs tests/server.test.cjs
 
-      - name: Test deployment receiver
-        if: runner.os == 'Linux'
-        run: python3 -m unittest discover -s tests/deployment -p "test_*.py"
-
-  deploy:
-    name: Deploy PERUSURVIVOR
-    needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.PERUSURVIVOR_DEPLOY_ENABLED == 'true'
+  full-test:
+    name: Batería completa y artefacto de release
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    concurrency:
-      group: perusurvivor-production
-      cancel-in-progress: false
-      queue: max
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
         with:
@@ -52,7 +44,41 @@ jobs:
           node-version: 24
           package-manager-cache: false
       - run: npm ci --ignore-scripts
-      - run: npm run build
+      - run: npm run check
+      - run: npm test
+      - run: npm run release:budget
+      - name: Test deployment receiver
+        run: python3 -m unittest discover -s tests/deployment -p "test_*.py"
+      - name: Preserve the tested release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v7
+        with:
+          name: perusurvivor-release-${{ github.sha }}
+          path: |
+            dist
+            ops/hostinger/known_hosts
+          if-no-files-found: error
+          retention-days: 2
+          compression-level: 0
+
+  deploy:
+    name: Deploy PERUSURVIVOR
+    needs: [compatibility, full-test]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.PERUSURVIVOR_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: perusurvivor-production
+      cancel-in-progress: false
+      queue: max
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          name: perusurvivor-release-${{ github.sha }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
       - name: Check this is still the latest main commit
         id: latest
         env:
@@ -84,6 +110,12 @@ jobs:
           umask 077
           printf '%s\n' "$DEPLOY_KEY" > "$key"
           tar -cf - -C dist . | gzip -9 > "$archive"
+          size=$(stat -c %s "$archive")
+          limit=$((92 * 1024 * 1024))
+          if [ "$size" -gt "$limit" ]; then
+            echo "Release archive is $size bytes; limit is $limit" >&2
+            exit 1
+          fi
           ssh -T -i "$key" -o BatchMode=yes -o IdentitiesOnly=yes \
             -o StrictHostKeyChecking=yes -o UserKnownHostsFile=ops/hostinger/known_hosts \
             perusurvivor-deploy@179.236.77.159 "deploy $GITHUB_SHA" < "$archive"

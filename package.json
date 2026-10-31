@@ -5,6 +5,7 @@
   "description": "Causas del Caos: juego de supervivencia y parodia peruana",
   "scripts": {
     "build": "node scripts/build.cjs",
+    "release:budget": "node scripts/release-budget.cjs",
     "prestart": "npm run build",
     "start": "node server.cjs",
     "check": "node scripts/check-syntax.cjs",

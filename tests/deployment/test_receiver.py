@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tarfile
 import tempfile
+import time
 import unittest
 from unittest.mock import patch
 
@@ -55,6 +56,24 @@ class ReceiverTests(unittest.TestCase):
     def test_payload_limit(self):
         with patch.object(receiver, "MAX_ARCHIVE", 1):
             with self.assertRaises(ValueError): receiver.extract_release(package(), SHA)
+    def test_prunes_only_old_sha_directories(self):
+        names = [format(index, '040x') for index in range(10)]
+        for index, name in enumerate(names):
+            directory = self.base / 'releases' / name
+            directory.mkdir()
+            (directory / '__release.json').write_text(json.dumps({'git_sha': name}))
+            stamp = time.time_ns() + index
+            __import__('os').utime(directory, ns=(stamp, stamp))
+        keep_old = names[0]
+        (self.base / 'releases' / 'manual-note').mkdir()
+        removed = receiver.prune_releases({keep_old}, keep=3)
+        self.assertEqual(set(removed), set(names[1:-3]))
+        self.assertTrue((self.base / 'releases' / keep_old).is_dir())
+        self.assertTrue((self.base / 'releases' / 'manual-note').is_dir())
+    def test_release_sha_from_link(self):
+        self.assertEqual(receiver.release_sha_from_link('../releases/' + SHA), SHA)
+        self.assertIsNone(receiver.release_sha_from_link('../releases/current'))
+        self.assertIsNone(receiver.release_sha_from_link(None))
     @unittest.skipIf(__import__("sys").platform == "win32", "flock y symlinks de producción requieren Linux")
     def test_rollback(self):
         (self.base / "live/current").symlink_to("../releases/old")

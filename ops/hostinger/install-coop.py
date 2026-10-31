@@ -97,6 +97,14 @@ networks:
   }
 '''
         updated = updated[:match.start()] + account_routes + updated[match.start():]
+    if '# PERUSURVIVOR ARCHIVOS PRIVADOS' not in updated:
+        match = re.search(r'(?m)^[ \t]*location / \{', updated)
+        if not match:
+            raise RuntimeError('Configuración nginx inesperada')
+        private_routes = '''  # PERUSURVIVOR ARCHIVOS PRIVADOS
+  location ^~ /backend/ { return 404; }
+'''
+        updated = updated[:match.start()] + private_routes + updated[match.start():]
     if updated != original:
         shutil.copyfile(conf, BASE / 'nginx.before-accounts.conf')
         conf.write_text(updated)
