@@ -149,7 +149,11 @@ def deploy(payload, sha):
         if not healthy(sha):
             if previous is not None:
                 switch_link(previous)
-            raise RuntimeError("Comprobación HTTPS fallida; restaurada la versión anterior")
+                outcome = "restaurada la versión anterior"
+            else:
+                current.unlink(missing_ok=True)
+                outcome = "retirada la primera activación"
+            raise RuntimeError("Comprobación HTTPS fallida; " + outcome)
         try:
             removed = prune_releases({sha, release_sha_from_link(previous)})
             prune_warning = None
