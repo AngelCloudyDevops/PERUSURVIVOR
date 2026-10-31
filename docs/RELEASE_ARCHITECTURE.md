@@ -3,16 +3,18 @@
 ## Flujo de producción
 
 ```text
-rama -> Pull Request -> CI -> merge a main -> build único -> paquete -> receptor restringido -> release por SHA -> activación atómica -> HTTPS
+feature/* -> Pull Request -> staging -> prueba manual -> Pull Request -> main -> producción
 ```
 
-Los colaboradores no publican manualmente. Suben una rama y abren un Pull Request. El dueño revisa y fusiona; `main` es la única fuente de producción.
+Los colaboradores no publican manualmente. Suben una rama y abren un Pull Request hacia `staging`. El dueño revisa y prueba `https://staging.perusurvivor.michitech.tech`; solo después promueve `staging` a `main`. `main` sigue siendo la única fuente de producción.
+
+Staging usa `/opt/perusurvivor-staging`, contenedores, base de cuentas, salas cooperativas, bloqueo, releases y rollback propios. Comparte únicamente el proxy HTTPS y la red Docker del VPS. Sus contenedores tienen límites de CPU/memoria y sus respuestas incluyen `noindex`.
 
 ## Garantías actuales
 
-- CI comprueba sintaxis y compatibilidad en Linux/Windows y Node 22/24.
-- La batería completa se ejecuta en Ubuntu y Node 24.
-- El mismo `dist/` que supera las pruebas se conserva como artefacto y llega al job de despliegue.
+- CI evita duplicados: las ramas de trabajo se validan por Pull Request; solo `staging` y `main` ejecutan también CI al recibir un push.
+- La batería completa se ejecuta una vez en Linux/Node 24 y la compatibilidad ligera en Windows/Node 22.
+- El mismo `dist/` que supera las pruebas se conserva como artefacto y llega al job de despliegue de la rama correspondiente.
 - El deploy confirma que el SHA sigue siendo la punta de `main`.
 - SSH usa una cuenta restringida, host fijado y comando forzado.
 - El receptor valida rutas, tipos, cantidad y tamaño de archivos.

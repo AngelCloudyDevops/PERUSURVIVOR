@@ -1,6 +1,6 @@
 # Cómo colaborar en PERUSURVIVOR
 
-Este repositorio publica automáticamente `main` en producción. Por eso nadie debe subir cambios directamente a `main`: cada persona trabaja en una rama, abre un Pull Request y espera las pruebas.
+Este repositorio publica automáticamente `staging` en pruebas y `main` en producción. Nadie debe subir cambios directamente a esas ramas: cada persona trabaja en una rama, abre un Pull Request y espera las pruebas.
 
 ## Flujo corto para colaboradores
 
@@ -12,11 +12,11 @@ Este repositorio publica automáticamente `main` en producción. Por eso nadie d
    npm ci --ignore-scripts
    ```
 
-2. Antes de empezar, actualiza `main` y crea una rama descriptiva:
+2. Antes de empezar, actualiza `staging` y crea una rama descriptiva:
 
    ```bash
-   git switch main
-   git pull --ff-only origin main
+   git switch staging
+   git pull --ff-only origin staging
    git switch -c feature/nombre-corto
    ```
 
@@ -37,27 +37,28 @@ Este repositorio publica automáticamente `main` en producción. Por eso nadie d
    git push -u origin feature/nombre-corto
    ```
 
-6. En GitHub abre un Pull Request hacia `main`. Otra persona revisa el cambio y lo fusiona cuando CI está verde.
+6. En GitHub abre un Pull Request hacia `staging`. Otra persona revisa el cambio y lo fusiona cuando CI está verde.
 
-7. Al fusionarse en `main`, GitHub construye y publica la versión automáticamente. No hay que copiar archivos manualmente al VPS.
+7. GitHub publica `staging` automáticamente en `https://staging.perusurvivor.michitech.tech`. Después de probar allí, abre un Pull Request de `staging` hacia `main` para publicar producción. No hay que copiar archivos manualmente al VPS.
 
 ## Qué hace el dueño del repositorio
 
 - Revisa el diff y prueba la función importante.
 - Confirma que las comprobaciones de GitHub terminaron correctamente.
-- Fusiona el Pull Request; no descarga y vuelve a subir los archivos del colaborador.
-- Verifica `https://perusurvivor.michitech.tech/__release.json` y el juego publicado.
+- Fusiona primero hacia `staging`, verifica el entorno de pruebas y luego promueve `staging` a `main`.
+- Verifica primero `https://staging.perusurvivor.michitech.tech/__release.json` y, después de promover, `https://perusurvivor.michitech.tech/__release.json`.
 - Si el cambio es grande, usa `Squash and merge` para conservar un historial legible.
 
 ## Reglas de ramas
 
-- `main`: producción; siempre debe poder compilar y pasar pruebas.
+- `main`: producción; solo recibe cambios ya comprobados en staging.
+- `staging`: integración y prueba manual en línea; también debe pasar CI.
 - `feature/*`: contenido o funciones nuevas.
 - `fix/*`: correcciones.
 - `docs/*`: documentación sin cambios jugables.
 - Una rama corresponde a una tarea. Se elimina después del merge.
 - No reutilices una rama antigua ni trabajes desde un worktree atrasado.
-- Si `main` avanzó mientras trabajabas, ejecuta `git fetch origin` y actualiza tu rama antes del merge.
+- Si `staging` avanzó mientras trabajabas, ejecuta `git fetch origin` y actualiza tu rama antes del merge.
 
 ## Archivos y recursos
 

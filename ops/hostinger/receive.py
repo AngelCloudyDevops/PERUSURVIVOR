@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Receptor SSH restringido: solo acepta 'deploy <SHA>' y un tar.gz por stdin."""
+"""Receptor SSH restringido para producción y staging."""
 import io
 import json
 import os
@@ -14,16 +14,24 @@ import urllib.request
 
 BASE = Path("/opt/perusurvivor")
 DOMAIN = "https://perusurvivor.michitech.tech"
+TARGETS = {
+    "deploy": (Path("/opt/perusurvivor"), "https://perusurvivor.michitech.tech"),
+    "deploy-staging": (Path("/opt/perusurvivor-staging"), "https://staging.perusurvivor.michitech.tech"),
+}
 MAX_ARCHIVE = 96 * 1024 * 1024
 MAX_CONTENT = 192 * 1024 * 1024
 KEEP_RECENT_RELEASES = 7
 SHA_PATTERN = re.compile(r"[0-9a-f]{40}")
 
 def parse_command(command):
-    match = re.fullmatch(r"deploy ([0-9a-f]{40})", command or "")
+    match = re.fullmatch(r"(deploy|deploy-staging) ([0-9a-f]{40})", command or "")
     if not match:
-        raise ValueError("Solo se permite deploy seguido de un SHA completo")
-    return match.group(1)
+        raise ValueError("Solo se permite deploy o deploy-staging seguido de un SHA completo")
+    return match.group(1), match.group(2)
+
+def select_target(command):
+    global BASE, DOMAIN
+    BASE, DOMAIN = TARGETS[command]
 
 def members_checked(archive):
     members = []
@@ -157,7 +165,8 @@ def deploy(payload, sha):
 
 def main():
     try:
-        sha = parse_command(os.environ.get("SSH_ORIGINAL_COMMAND", ""))
+        command, sha = parse_command(os.environ.get("SSH_ORIGINAL_COMMAND", ""))
+        select_target(command)
         payload = sys.stdin.buffer.read(MAX_ARCHIVE + 1)
         print(json.dumps(deploy(payload, sha)))
     except Exception as error:
