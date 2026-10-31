@@ -1,7 +1,7 @@
 'use strict';
 const http=require('node:http'),crypto=require('node:crypto'),{WebSocketServer}=require('ws'),{Simulation}=require('./simulation.cjs');
 const {encodeState,createSender}=require('./state-wire.cjs'),{clientIp}=require('./client-ip.cjs');
-const PROTOCOL=2;
+const PROTOCOL=3;
 function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=()=>Date.now(),httpServer,maxRoomsPerIp=Number(process.env.MAX_ROOMS_PER_IP)||2,lobbyIdleMs=Number(process.env.LOBBY_IDLE_MS)||300000}={}){
  const diagnostics={roomErrors:0,droppedStates:0,lastTickMs:0,maxTickMs:0,lastStateBytes:0,statePackets:0,stateBytes:0},startedAt=now();
  const rooms=new Map(),attempts=new Map(),catalog=new Simulation('campo',[0],root).P.Data.characters,characterCount=catalog.length;

@@ -1,10 +1,10 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
 const {Simulation}=require('../backend/simulation.cjs'),{encodeState}=require('../backend/state-wire.cjs');
-// Reference: the original replacer-based implementation. The wire format must not change.
+// Reference: the original replacer-based implementation plus the protocol-3 shot strip (simulation-only fields). Everything else must stay byte-identical.
 function reference(state){
- const visual=({combatStats,hits,hitSlots,...item})=>item;
- const packet={...state};for(const key of ['shots','fields','danger'])if(packet[key])packet[key]=packet[key].map(visual);
+ const visual=({combatStats,hits,hitSlots,...item})=>item,visualShot=({startX,startY,turnAt,amplitude,frequency,pelletVolley,falloff,dotaCast,dotaPower,comboBlocked,remaining,returning,homing,...item})=>visual(item);
+ const packet={...state};for(const key of ['shots','fields','danger'])if(packet[key])packet[key]=packet[key].map(key==='shots'?visualShot:visual);
  return JSON.stringify(packet,function(key,value){
   if((key==='x'||key==='y')&&typeof value==='number'&&typeof this.x==='number'&&typeof this.y==='number'&&(Math.abs(this.x)>1||Math.abs(this.y)>1))return Math.round(value*100)/100;
   return value;
@@ -35,4 +35,11 @@ test('encodeState equals the reference on edge values',()=>{
   {},{enemies:[]},
  ];
  for(const c of cases)assert.equal(encodeState(c),reference(c));
+});
+test('protocol 3 drops simulation-only shot fields, keeps history and danger untouched',()=>{
+ const shot={x:1.234,y:2.345,kind:'spread',history:[{x:5.555,y:6.666}],startX:1,startY:2,turnAt:.5,amplitude:1,frequency:2,pelletVolley:'a',falloff:{near:1},dotaCast:1,dotaPower:2,comboBlocked:true,remaining:3,returning:true,homing:true,hits:new Set([1]),combatStats:{a:1}};
+ const danger={x:3,y:4,returning:true,remaining:2,history:[]};
+ const out=JSON.parse(encodeState({shots:[shot],danger:[danger]}));
+ assert.deepEqual(Object.keys(out.shots[0]),['x','y','kind','history']);assert.deepEqual(out.shots[0].history,[{x:5.56,y:6.67}]);
+ assert.equal(out.danger[0].returning,true);assert.equal(out.danger[0].remaining,2);
 });
