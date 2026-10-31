@@ -38,3 +38,10 @@ test('Separacion: dos minions solapados en fila se separan sin atravesar paredes
  assert.equal(run(),run(),'determinista');
  assert(!P.Terrain.hit(e1.x,e1.y,e1.r));
 });
+test('Atasco: un minion que empuja recto contra una pared se desliza de lado y la rodea',()=>{
+ const {P,s,a}=room(),wall={x:0,y:0,w:40,h:100,solid:true};Object.assign(a,{x:400,y:0});s.encounter={obstacles:[wall],definition:{kind:'test'}};
+ const e=enemy(P,-60,0);Object.assign(e,{speed:100,minionId:2,rangedCooldown:99});s.enemies=[e];
+ const step=()=>{s.elapsed+=.04;P.Systems.beginTick();P.Systems.stepEnemy(e,[a],.04);P.Systems.endTick()};
+ for(let i=0;i<10;i++)step();assert(e.x<=-20+1&&Math.abs(e.y)<5,'al principio esta pegado a la pared');
+ for(let i=0;i<100;i++)step();assert(e.x>40,'rodeo la pared (x='+e.x.toFixed(0)+', y='+e.y.toFixed(0)+')');assert(!P.Terrain.hit(e.x,e.y,e.r));
+});
