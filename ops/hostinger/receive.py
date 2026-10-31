@@ -14,8 +14,10 @@ import urllib.request
 
 BASE = Path("/opt/perusurvivor")
 DOMAIN = "https://perusurvivor.michitech.tech"
-MAX_ARCHIVE = 64 * 1024 * 1024
-MAX_CONTENT = 128 * 1024 * 1024
+MAX_ARCHIVE = 96 * 1024 * 1024
+MAX_CONTENT = 192 * 1024 * 1024
+KEEP_RECENT_RELEASES = 7
+SHA_PATTERN = re.compile(r"[0-9a-f]{40}")
 
 def parse_command(command):
     match = re.fullmatch(r"deploy ([0-9a-f]{40})", command or "")
@@ -83,6 +85,34 @@ def switch_link(target):
     temporary.symlink_to(target)
     os.replace(temporary, current)
 
+def release_sha_from_link(link):
+    if not link:
+        return None
+    name = PurePosixPath(link).name
+    return name if SHA_PATTERN.fullmatch(name) else None
+
+def prune_releases(preserve=(), keep=KEEP_RECENT_RELEASES):
+    """Conserva las releases recientes sin tocar enlaces ni rutas inesperadas."""
+    releases = BASE / "releases"
+    protected = {sha for sha in preserve if sha and SHA_PATTERN.fullmatch(sha)}
+    candidates = []
+    for entry in releases.iterdir():
+        if not SHA_PATTERN.fullmatch(entry.name) or entry.is_symlink() or not entry.is_dir():
+            continue
+        candidates.append(entry)
+    candidates.sort(key=lambda entry: entry.stat().st_mtime_ns, reverse=True)
+    protected.update(entry.name for entry in candidates[:max(0, keep)])
+    removed = []
+    for entry in candidates:
+        if entry.name in protected:
+            continue
+        resolved = entry.resolve()
+        if not resolved.is_relative_to(releases.resolve()) or resolved.parent != releases.resolve():
+            raise RuntimeError("Release fuera del directorio permitido")
+        shutil.rmtree(resolved)
+        removed.append(entry.name)
+    return removed
+
 def healthy(sha):
     for attempt in range(10):
         try:
@@ -112,7 +142,18 @@ def deploy(payload, sha):
             if previous is not None:
                 switch_link(previous)
             raise RuntimeError("Comprobación HTTPS fallida; restaurada la versión anterior")
-    return {"status": "deployed", "git_sha": sha, "url": DOMAIN}
+        try:
+            removed = prune_releases({sha, release_sha_from_link(previous)})
+            prune_warning = None
+        except Exception as error:
+            # A cleanup problem must not report a healthy, already-active release
+            # as failed. Surface it for maintenance without rolling back the game.
+            removed = []
+            prune_warning = str(error)
+    result = {"status": "deployed", "git_sha": sha, "url": DOMAIN, "pruned": removed}
+    if prune_warning:
+        result["prune_warning"] = prune_warning
+    return result
 
 def main():
     try:

@@ -298,6 +298,8 @@ Modo público: [Práctica de Kingteka con recarga gratuita](docs/KINGTEKA_PRACTI
 
 ## Desarrollo
 
+Para colaborar desde otra computadora, crear ramas, abrir Pull Requests y publicar sin copiar archivos manualmente, seguir [CONTRIBUTING.md](CONTRIBUTING.md). `main` es producción: una fusión aprobada activa CI y despliegue automático.
+
 Requiere Node.js 20 o superior. CI verifica Node 22 y 24 en Linux y Windows.
 
 ```sh
@@ -357,6 +359,8 @@ Edita src/ y public/, nunca dist/. Los scripts clásicos siguen compartiendo P; 
 - [Diseño del juego](docs/GAME_DESIGN.md): reglas actuales, personajes, habilidades, progresión y alcance.
 - [Arquitectura](docs/ARCHITECTURE.md): responsabilidades, dependencias y flujo de datos.
 - [Contribuir y validar](docs/CONTRIBUTING.md): procedimiento de cambios y CI.
+- [Arquitectura de releases](docs/RELEASE_ARCHITECTURE.md): CI, artefacto único, publicación atómica y rollback.
+- [Manual maestro de creación](docs/manual/PERUSURVIVOR_Manual_Maestro_de_Creacion_v1.pdf): reglas y plantillas actuales de personajes, enemigos, mapas, objetos y arte.
 - [Procedencia del arte](docs/ASSETS.md): hojas, prompts y referencias.
 - [Registro de cambios](CHANGELOG.md).
 - [Evidencia de la reorganización](docs/reorganization-baseline.json): hashes de las fuentes originales.

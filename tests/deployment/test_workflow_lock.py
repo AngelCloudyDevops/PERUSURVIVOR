@@ -18,6 +18,19 @@ class WorkflowLockTest(unittest.TestCase):
             locks.append(values.get('group'))
         self.assertEqual(locks, ['perusurvivor-production'] * 2)
 
+    def test_private_backend_route_is_part_of_installer(self):
+        root = Path(__file__).resolve().parents[2]
+        installer = (root / 'ops' / 'hostinger' / 'install-coop.py').read_text(encoding='utf-8')
+        self.assertIn('location ^~ /backend/ { return 404; }', installer)
+
+    def test_release_contains_safe_operational_update(self):
+        root = Path(__file__).resolve().parents[2]
+        build = (root / 'scripts' / 'build.cjs').read_text(encoding='utf-8')
+        updater = (root / 'ops' / 'hostinger' / 'update-release.py').read_text(encoding='utf-8')
+        self.assertIn("['receive.py','update-release.py']", build)
+        self.assertIn("release.is_relative_to(releases)", updater)
+        self.assertIn("location ^~ /backend/ { return 404; }", updater)
+
 
 if __name__ == '__main__':
     unittest.main()

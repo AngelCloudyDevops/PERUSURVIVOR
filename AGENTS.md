@@ -1,5 +1,5 @@
 # Trabajo en PERUSURVIVOR
-- Edita src/ para código y public/assets/ para imágenes y sonido.
+- Edita src/ para código y public/assets/ para recursos de ejecución. No añadas PNG maestros a producción sin su WebP optimizado.
 - dist/ es generado: no editarlo ni usarlo como fuente; npm run build lo actualiza.
 - scripts/modules.cjs define el orden de los scripts clásicos. Conserva ese orden y el objeto compartido P salvo refactor explícito.
 - Ejecuta npm run check y npm test antes de subir cambios.
@@ -7,4 +7,6 @@
 - Conserva modificaciones de otros chats; revisa git status antes de editar archivos compartidos.
 - No distribuyas utilidades de QA que manipulen el estado del juego.
 - Cada chat trabaja en su propia rama y worktree; integra preservando los cambios de main.
+- Parte siempre de origin/main actualizado, usa un worktree por tarea activa y retíralo después del merge. No continúes trabajo nuevo en ramas ya integradas.
+- Sigue CONTRIBUTING.md para ramas, Pull Requests y publicación. main es producción y no recibe trabajo directo.
 - Ejecuta las pruebas públicas prolongadas mediante Public cooperative E2E: comparte el bloqueo perusurvivor-production con el despliegue. No publiques por fuera del flujo durante estas pruebas.
