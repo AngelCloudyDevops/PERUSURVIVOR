@@ -68,3 +68,13 @@ test('Cooperativo: tope de salas por IP y lobbies sin iniciar caducan pronto',as
  clock.t+=5*60000;for(const x of c)x.ws.terminate();await sleep(50);clock.t+=31000;app.tick();assert.equal(app.rooms.size,0);
  const d=await connect(ip);assert.equal(await make(d),'ok');clock.t+=5*60000+1;app.tick();assert.equal(app.rooms.size,0,'lobby sin iniciar cierra a los 5 min');
 });
+test('Cooperativo: con sesión válida guest:true no evita la propiedad de la cuenta',async t=>{
+ const origins=[],accounts=createAccounts({filename:':memory:',origins}),server=http.createServer((q,s)=>accounts.handle(q,s));server.accounts=accounts;
+ const app=createCoopServer({httpServer:server,autoTick:false});await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;origins.push(origin);
+ const sockets=[];t.after(async()=>{for(const w of sockets)w.terminate();await app.close();accounts.close()});
+ const reg=await fetch(origin+'/api/register',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({username:'jugador_x',password:'una-clave-larga-y-unica'})}),cookie=reg.headers.get('set-cookie').split(';')[0];
+ const connect=async headers=>{const ws=new WebSocket(origin.replace('http:','ws:')+'/coop',{origin,headers}),log=[];ws.on('message',d=>log.push(JSON.parse(d)));sockets.push(ws);await once(ws,'open');return {ws,send:o=>ws.send(JSON.stringify(o)),next:async()=>{for(let i=0;i<200;i++){if(log.length)return log.shift();await sleep(10)}assert.fail('sin respuesta')}}};
+ const user=await connect({Cookie:cookie});user.send({type:'create',protocol:2,map:'campo',guest:true,character:7});let m=await user.next();assert.equal(m.type,'error');assert.match(m.message,/desbloqueado/);
+ user.send({type:'create',protocol:2,map:'campo',guest:true,character:0});m=await user.next();assert.equal(m.type,'joined');assert.match(m.players[0].username,/Invitado/,'no revela la cuenta, pero tampoco la hace dueña de todo');
+ const guest=await connect({});guest.send({type:'create',protocol:2,map:'plaza',guest:true,character:7});assert.equal((await guest.next()).type,'joined','el invitado sin sesión sigue jugando');
+});
