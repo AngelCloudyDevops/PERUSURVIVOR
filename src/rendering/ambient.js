@@ -1,6 +1,8 @@
 'use strict';
+// Movimiento reducido = preferencia del sistema O la opción del juego (clase ref-reduced-motion).
+P.Motion={os:typeof matchMedia==='function'?matchMedia('(prefers-reduced-motion: reduce)'):null,reduced(){if(this.os?.matches)return true;try{if(typeof document!=='undefined'&&document.body)return !!document.body.classList?.contains('ref-reduced-motion');if(typeof localStorage!=='undefined')return localStorage.getItem('perusurvivor-option-reduced-motion')==='true'}catch{}return false}};
 P.Ambient={
-reduced:typeof matchMedia==='function'?matchMedia('(prefers-reduced-motion: reduce)'):null,
+reduced:{get matches(){return P.Motion.reduced()}},
 active(){return (!!P.Maps.current?.()||['campo','plaza','machu','halloween','navidad'].includes(P.Maps.selected))&&!P.state.encounter&&P.state.mode!=='menu'},
 clock(){return this.reduced?.matches?0:(P.state.mapTime??P.state.elapsed)},
 art(ctx,row,col,x,y,size,flip=false){if(!this.artImage&&typeof Image!=='undefined'){const image=new Image();this.artImage=image;image.onload=()=>{this.artReady=true};image.onerror=()=>{this.artReady=false};image.src='assets/environment/nature-atlas-v2.webp'}if(!this.artReady)return false;ctx.save();ctx.imageSmoothingEnabled=false;ctx.translate(Math.round(x),Math.round(y));if(flip)ctx.scale(-1,1);ctx.drawImage(this.artImage,col*128,row*128,128,128,Math.round(-size/2),Math.round(-size*120/128),size,size);ctx.restore();return true},

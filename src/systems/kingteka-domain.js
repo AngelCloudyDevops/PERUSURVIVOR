@@ -64,7 +64,7 @@ P.KingtekaDomain={
  overlay(c,w,h,d){
   const intro=Math.min(1,d.age/this.entry),active=d.age>=this.entry,exit=d.exit?1-d.exit/this.exit:1;c.save();c.globalAlpha=.18*exit;c.fillStyle='#0c492d';c.fillRect(0,0,w,h);const vignette=c.createRadialGradient(w/2,h/2,Math.min(w,h)*.18,w/2,h/2,Math.max(w,h)*.68);vignette.addColorStop(0,'#c9ff6000');vignette.addColorStop(1,'#062319bb');c.fillStyle=vignette;c.fillRect(0,0,w,h);
   if(!active){const pulse=Math.sin(Math.min(1,intro/.72)*Math.PI);c.globalAlpha=Math.min(1,intro*3);this.title(c,'EXPANSIÓN DE DOMINIO',w/2,h*.16,Math.min(54,w/18),'#bfff72');if(intro>.48){c.globalAlpha=Math.min(1,(intro-.48)*4);this.title(c,'SANTUARIO DEL',w/2,h*.73,Math.min(60,w/16),'#e8ff92');this.title(c,'REINO ANIMAL',w/2,h*.82,Math.min(68,w/14),'#ffd66e')}c.globalAlpha=pulse*.55;c.strokeStyle='#d9ff7a';c.lineWidth=5;c.beginPath();c.arc(w/2,h/2,Math.min(w,h)*(.12+intro*.42),0,Math.PI*2);c.stroke()}
-  if(d.flash>0){c.globalAlpha=Math.min(.42,d.flash);c.fillStyle=d.final?'#fff6a6':'#b8ff72';c.fillRect(0,0,w,h)}c.restore();P.Core.canvas?.setAttribute('aria-label',active?'Santuario del Reino Animal activo: espíritus protectores atraviesan a los enemigos':'Kingteka abre el Santuario del Reino Animal')
+  if(d.flash>0){c.globalAlpha=Math.min((P.Motion?P.Motion.reduced():globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches)?.1:.42,d.flash);c.fillStyle=d.final?'#fff6a6':'#b8ff72';c.fillRect(0,0,w,h)}c.restore();P.Core.canvas?.setAttribute('aria-label',active?'Santuario del Reino Animal activo: espíritus protectores atraviesan a los enemigos':'Kingteka abre el Santuario del Reino Animal')
  }
 };
 

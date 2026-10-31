@@ -1,6 +1,6 @@
 'use strict';
 P.PortalFX={remoteAt:-99,fog:null,
- reduced(){return !!globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches},
+ reduced(){return !!(P.Motion?P.Motion.reduced():globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches)},
  reset(){this.remoteAt=-99},
  mist(){if(this.fog)return this.fog;const cv=document.createElement('canvas');cv.width=cv.height=128;const c=cv.getContext('2d'),g=c.createRadialGradient(64,64,3,64,64,64);g.addColorStop(0,'#aa88db70');g.addColorStop(.35,'#6b508e48');g.addColorStop(1,'#241d4000');c.fillStyle=g;c.fillRect(0,0,128,128);return this.fog=cv},
  draw(c,point,time,duo=false){const reduced=this.reduced(),t=reduced?0:time;c.save();c.translate(point.x,point.y);c.imageSmoothingEnabled=true;

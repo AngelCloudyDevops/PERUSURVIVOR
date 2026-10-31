@@ -260,6 +260,10 @@ module.exports = [
     "output": "js/world.js"
   },
   {
+    "source": "src/rendering/hurt-vignette.js",
+    "output": "js/hurt-vignette.js"
+  },
+  {
     "source": "src/ui/skill-preview.js",
     "output": "js/skill-preview.js"
   },
