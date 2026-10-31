@@ -16,7 +16,9 @@ class WorkflowLockTest(unittest.TestCase):
             self.assertEqual(values.get('cancel-in-progress'), 'false', name)
             self.assertEqual(values.get('queue'), 'max', name)
             locks.append(values.get('group'))
-        self.assertEqual(locks, ['perusurvivor-production'] * 2)
+        self.assertIn("perusurvivor-production", locks[0])
+        self.assertIn("perusurvivor-staging", locks[0])
+        self.assertEqual(locks[1], 'perusurvivor-production')
 
     def test_private_backend_route_is_part_of_installer(self):
         root = Path(__file__).resolve().parents[2]
@@ -27,9 +29,20 @@ class WorkflowLockTest(unittest.TestCase):
         root = Path(__file__).resolve().parents[2]
         build = (root / 'scripts' / 'build.cjs').read_text(encoding='utf-8')
         updater = (root / 'ops' / 'hostinger' / 'update-release.py').read_text(encoding='utf-8')
-        self.assertIn("['receive.py','update-release.py']", build)
+        self.assertIn("['receive.py','update-release.py','install-staging.py']", build)
         self.assertIn("release.is_relative_to(releases)", updater)
         self.assertIn("location ^~ /backend/ { return 404; }", updater)
+
+    def test_staging_is_isolated_and_bounded(self):
+        root = Path(__file__).resolve().parents[2]
+        installer = (root / 'ops' / 'hostinger' / 'install-staging.py').read_text(encoding='utf-8')
+        receiver = (root / 'ops' / 'hostinger' / 'receive.py').read_text(encoding='utf-8')
+        self.assertIn('/opt/perusurvivor-staging', installer)
+        self.assertIn('perusurvivor-staging-coop', installer)
+        self.assertIn('staging.perusurvivor.michitech.tech', installer)
+        self.assertIn('noindex, nofollow, noarchive', installer)
+        self.assertIn('mem_limit: 256m', installer)
+        self.assertIn('"deploy-staging"', receiver)
 
 
 if __name__ == '__main__':

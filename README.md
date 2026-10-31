@@ -298,7 +298,7 @@ Modo público: [Práctica de Kingteka con recarga gratuita](docs/KINGTEKA_PRACTI
 
 ## Desarrollo
 
-Para colaborar desde otra computadora, crear ramas, abrir Pull Requests y publicar sin copiar archivos manualmente, seguir [CONTRIBUTING.md](CONTRIBUTING.md). `main` es producción: una fusión aprobada activa CI y despliegue automático.
+Para colaborar desde otra computadora, crear ramas, abrir Pull Requests y publicar sin copiar archivos manualmente, seguir [CONTRIBUTING.md](CONTRIBUTING.md). `staging` publica el entorno de pruebas y `main` publica producción; ambas pasan CI.
 
 Requiere Node.js 20 o superior. CI verifica Node 22 y 24 en Linux y Windows.
 

@@ -33,9 +33,16 @@ class ReceiverTests(unittest.TestCase):
     def tearDown(self):
         self.patch.stop(); self.temp.cleanup()
     def test_commands(self):
-        self.assertEqual(receiver.parse_command("deploy " + SHA), SHA)
-        for command in ["bash", "deploy ../escape", "deploy " + SHA + ";id", ""]:
+        self.assertEqual(receiver.parse_command("deploy " + SHA), ("deploy", SHA))
+        self.assertEqual(receiver.parse_command("deploy-staging " + SHA), ("deploy-staging", SHA))
+        for command in ["bash", "deploy-test " + SHA, "deploy ../escape", "deploy " + SHA + ";id", ""]:
             with self.assertRaises(ValueError): receiver.parse_command(command)
+    def test_targets_are_isolated(self):
+        receiver.select_target("deploy-staging")
+        self.assertEqual(receiver.BASE, Path("/opt/perusurvivor-staging"))
+        self.assertEqual(receiver.DOMAIN, "https://staging.perusurvivor.michitech.tech")
+        receiver.select_target("deploy")
+        self.assertEqual(receiver.BASE, Path("/opt/perusurvivor"))
     def test_valid_release(self):
         path = receiver.extract_release(package(), SHA)
         self.assertEqual(json.loads((path / "__release.json").read_text())["git_sha"], SHA)
@@ -62,7 +69,7 @@ class ReceiverTests(unittest.TestCase):
             directory = self.base / 'releases' / name
             directory.mkdir()
             (directory / '__release.json').write_text(json.dumps({'git_sha': name}))
-            stamp = time.time_ns() + index
+            stamp = time.time_ns() + index * 1_000_000_000
             __import__('os').utime(directory, ns=(stamp, stamp))
         keep_old = names[0]
         (self.base / 'releases' / 'manual-note').mkdir()

@@ -7,6 +7,6 @@
 - Conserva modificaciones de otros chats; revisa git status antes de editar archivos compartidos.
 - No distribuyas utilidades de QA que manipulen el estado del juego.
 - Cada chat trabaja en su propia rama y worktree; integra preservando los cambios de main.
-- Parte siempre de origin/main actualizado, usa un worktree por tarea activa y retíralo después del merge. No continúes trabajo nuevo en ramas ya integradas.
-- Sigue CONTRIBUTING.md para ramas, Pull Requests y publicación. main es producción y no recibe trabajo directo.
+- Para contenido ordinario parte de `origin/staging`; para infraestructura de publicación parte de `origin/main`. Usa un worktree por tarea activa y retíralo después del merge. No continúes trabajo nuevo en ramas ya integradas.
+- Sigue CONTRIBUTING.md para ramas, Pull Requests y publicación. `staging` es integración y `main` es producción; ninguna recibe trabajo directo.
 - Ejecuta las pruebas públicas prolongadas mediante Public cooperative E2E: comparte el bloqueo perusurvivor-production con el despliegue. No publiques por fuera del flujo durante estas pruebas.
