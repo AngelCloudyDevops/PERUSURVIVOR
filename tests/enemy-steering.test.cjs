@@ -30,3 +30,11 @@ test('Contador de ocupados: busyEnemies coincide con el filtro completo en cada 
  P.Systems.busyEnemies=function(){const r=orig.call(this),f=full();assert.equal(r.length,f.length);assert.deepEqual(new Set(r),new Set(f));checks++;return r};
  for(let i=0;i<150;i++){sim.tick(.04,[{},{}]);seen+=full().length}assert(checks>0&&seen>0,'se consulto el contador con enemigos ocupados');
 });
+test('Separacion: dos minions solapados en fila se separan sin atravesar paredes',()=>{
+ const {sim,P,s,a}=room(),mk=(x,y,id)=>{const e=enemy(P,x,y);Object.assign(e,{speed:60,minionId:id,rangedCooldown:99});return e};
+ const e1=mk(a.x+300,0,1),e2=mk(a.x+305,0,2);s.enemies=[e1,e2];const gap=()=>Math.hypot(e1.x-e2.x,e1.y-e2.y);assert(gap()<6);
+ for(let i=0;i<30;i++)sim.tick(.04,[{},{}]);assert(gap()>e1.r+e2.r-4,'se separaron (hueco '+gap().toFixed(1)+')');
+ const run=()=>{const g=room();const [x,y]=[g.a.x+300,0];const l=g.s.enemies=[1,2,3].map(i=>{const e=enemy(g.P,x+i*3,0);Object.assign(e,{speed:60,minionId:i,rangedCooldown:99});return e});for(let i=0;i<20;i++)g.sim.tick(.04,[{},{}]);return l.map(e=>[e.x,e.y].join()).join('|')};
+ assert.equal(run(),run(),'determinista');
+ assert(!P.Terrain.hit(e1.x,e1.y,e1.r));
+});
