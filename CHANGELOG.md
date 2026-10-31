@@ -1,3 +1,10 @@
+# Rendimiento de la lógica del juego — 2026-10-31
+- Nuevo `scripts/benchmark-game.cjs`: simulación real y determinista (solo 80/160 y cooperativo 160 enemigos) con ms por tick, llamadas, GC y costo del snapshot.
+- Los enemigos reutilizan su dirección hasta ~0,15 s y solo recalculan la línea de visión al cambiar de objetivo, moverse más de 48 px, acercarse a menos de 100 px o cambiar el terreno; el mapa actual y las colisiones usan índices cacheados y claves numéricas.
+- `Stats.step` limita las estadísticas en el sitio sin copiar objetos en cada tick.
+- El servidor codifica los snapshots sin replacer por clave, con salida idéntica byte a byte.
+- Mediana por tick medida: solo 80 enemigos 17,0 → 5,7 ms, solo 160 31,7 → 10,2 ms, cooperativo 160 30,8 → 11,3 ms; eventos de GC entre 3 y 4 veces menos.
+
 # Cooperativo, guardado y movimiento reducido — 2026-10-31
 - Cliente y servidor comparten el paso de cada enemigo (`P.Systems.stepEnemy`): en cooperativo vuelven el aviso del jefe final y su evento al 50 %, el aturdimiento de Makanaky detiene ataques y contacto, y el Gallinazo no golpea por contacto en la fase lunar.
 - Un personaje o skin retirado ya no invalida el guardado: los identificadores desconocidos se descartan con aviso en consola; los datos corruptos siguen rechazándose.
