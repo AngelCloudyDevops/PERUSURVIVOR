@@ -87,5 +87,12 @@ class ReceiverTests(unittest.TestCase):
         with patch.object(receiver, "healthy", return_value=False):
             with self.assertRaises(RuntimeError): receiver.deploy(package(), SHA)
         self.assertEqual(__import__("os").readlink(self.base / "live/current"), "../releases/old")
+    @unittest.skipIf(__import__("sys").platform == "win32", "flock y symlinks de producción requieren Linux")
+    def test_first_failed_activation_leaves_no_current_link(self):
+        with patch.object(receiver, "healthy", return_value=False):
+            with self.assertRaises(RuntimeError):
+                receiver.deploy(package(), SHA)
+        self.assertFalse((self.base / "live/current").exists())
+        self.assertFalse((self.base / "live/current").is_symlink())
 
 if __name__ == "__main__": unittest.main()
