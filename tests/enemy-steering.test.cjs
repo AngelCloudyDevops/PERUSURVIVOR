@@ -24,3 +24,9 @@ test('Propietario: damageMultiplier y la guardia del anquilosaurio usan ownerSlo
  assert.equal(P.MapEvents.incomingMultiplier(ank,src(a)),1.3,'a esta detras (x=-100)');
  const meteor={owner:a};assert.equal(P.MapEvents.damageMultiplier(meteor),1);
 });
+test('Contador de ocupados: busyEnemies coincide con el filtro completo en cada paso',()=>{
+ const {sim,P,s,a}=room();P.Difficulty.index=()=>4;s.enemies=[];for(let i=0;i<30;i++){const e=P.Entities.enemy();Object.assign(e,{x:a.x+140+i*8,y:a.y+(i%5)*20,speed:20,rangedCooldown:0,attackProfile:P.Systems.minionAttacks[i%2]});s.enemies.push(e)}
+ const full=()=>s.enemies.filter(q=>q.hp>0&&(q.tactic||q.rangedAim||q.burst||q.charge)),orig=P.Systems.busyEnemies;let checks=0,seen=0;
+ P.Systems.busyEnemies=function(){const r=orig.call(this),f=full();assert.equal(r.length,f.length);assert.deepEqual(new Set(r),new Set(f));checks++;return r};
+ for(let i=0;i<150;i++){sim.tick(.04,[{},{}]);seen+=full().length}assert(checks>0&&seen>0,'se consulto el contador con enemigos ocupados');
+});

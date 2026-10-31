@@ -46,7 +46,7 @@ class Simulation{
   if(s.domain&&P.Domain.building(s.domain)){const domain=s.domain,owner=this.players.find(p=>p.slot===domain.slot)||alive[0];this.use(owner);P.Domain.dynamicTick(dt);this.save(owner)}
    if(s.ciriloDomain){const domain=s.ciriloDomain,owner=this.players.find(p=>p.slot===domain.slot)||alive[0];this.use(owner);P.CiriloUR.tick(dt);this.save(owner);if(s.ciriloDomain?.arena)P.CiriloArena.confine(domain)}
   // Cada enemigo persigue al jugador vivo más cercano; ambos reciben colisiones reales.
-  for(const e of s.enemies)if(e.hp>0)P.Systems.stepEnemy(e,alive,dt,p=>this.use(p));
+  P.Systems.beginTick();for(const e of s.enemies)if(e.hp>0)P.Systems.stepEnemy(e,alive,dt,p=>this.use(p));P.Systems.endTick();
   // Avanza cada conjunto de proyectiles exactamente una vez, manteniendo al dueño del bumerán.
   const danger=s.danger;s.danger=[];
   for(const p of this.players){this.use(p);if(p.hp>0)P.Combat.tick(dt);else {p.shots=[];p.fields=[];s.shots=[];s.fields=[]}this.save(p);if(s.encounter?.defeat){for(const q of this.players){q.shots=[];q.fields=[]}return}}
