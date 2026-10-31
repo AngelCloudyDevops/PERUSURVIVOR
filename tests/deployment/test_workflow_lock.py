@@ -48,6 +48,13 @@ class WorkflowLockTest(unittest.TestCase):
         self.assertIn('X-Real-IP $remote_addr', new)
         self.assertEqual(module.forward_ip(new), new)
 
+    def test_backup_cron_logs_exit_status(self):
+        root = Path(__file__).resolve().parents[2]
+        installer = (root / 'ops' / 'hostinger' / 'install-coop.py').read_text(encoding='utf-8')
+        self.assertIn('/var/log/perusurvivor-backup.log', installer)
+        self.assertIn('backup exit=$?', installer)
+        self.assertNotIn('>/dev/null', installer)
+
     def test_staging_is_isolated_and_bounded(self):
         root = Path(__file__).resolve().parents[2]
         installer = (root / 'ops' / 'hostinger' / 'install-staging.py').read_text(encoding='utf-8')

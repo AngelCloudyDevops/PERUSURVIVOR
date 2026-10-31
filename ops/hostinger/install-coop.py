@@ -127,7 +127,9 @@ networks:
             raise
     print('COOP_READY ' + health)
     backup_cron = Path('/etc/cron.d/perusurvivor-accounts-backup')
-    backup_cron.write_text('17 4 * * * root python3 /opt/perusurvivor/live/current/backend/backup-accounts.py >/dev/null\n')
+    # Salida con fecha y código de salida en un log: un fallo del backup debe quedar visible (exit distinto de 0).
+    log = '/var/log/perusurvivor-backup.log'
+    backup_cron.write_text('17 4 * * * root (echo "$(date -Is) backup inicio"; python3 /opt/perusurvivor/live/current/backend/backup-accounts.py; echo "$(date -Is) backup exit=$?") >>' + log + ' 2>&1\n')
     backup_cron.chmod(0o644)
     print(run('python3', str(source / 'backup-accounts.py')))
 

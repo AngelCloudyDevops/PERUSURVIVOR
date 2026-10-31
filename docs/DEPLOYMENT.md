@@ -57,3 +57,13 @@ python3 /opt/perusurvivor/live/current/backend/ops/update-release.py
 ```
 
 El actualizador verifica que la fuente pertenezca a la release activa, reemplaza atómicamente únicamente el receptor de PERUSURVIVOR, guarda una copia de la configuración Nginx y recarga solo `perusurvivor-web` después de `nginx -t`.
+
+## Copias de seguridad de cuentas
+`install-coop.py` programa a diario (04:17) `backup-accounts.py` y añade a `/var/log/perusurvivor-backup.log` la hora de inicio y `backup exit=<código>`; revisar que no aparezca un código distinto de 0 (`grep -v 'exit=0' /var/log/perusurvivor-backup.log`). Las copias son locales (14 retenidas en `/opt/perusurvivor/backups/accounts`).
+
+TODO (decisión del propietario): no existe copia externa. Si el VPS se pierde, se pierden también las copias. Falta elegir destino privado (almacenamiento de objetos, otro servidor) y credenciales antes de automatizarla.
+
+## IP real del cliente y proxies de confianza
+nginx envía `X-Real-IP` y `X-Forwarded-For` en `/coop` y `/api/`. El backend (`backend/client-ip.cjs`) solo confía en `X-Real-IP` cuando el par TCP está en `TRUSTED_PROXIES` (IP o CIDR separados por coma; por defecto loopback y los rangos privados `10/8`, `172.16/12`, `192.168/16`, `fc00::/7`, que cubren la red `perusurvivor_gateway`). Los limitadores de login y de conexiones WebSocket usan esa IP. Las instalaciones existentes reciben las cabeceras al ejecutar `update-release.py` (idempotente; valida y recarga nginx).
+
+Variables opcionales del contenedor cooperativo: `TRUSTED_PROXIES`, `BODY_TIMEOUT_MS` (10000), `MAX_ROOMS_PER_IP` (2), `LOBBY_IDLE_MS` (300000).
