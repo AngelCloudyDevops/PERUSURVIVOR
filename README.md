@@ -359,6 +359,8 @@ Edita src/ y public/, nunca dist/. Los scripts clásicos siguen compartiendo P; 
 - [Diseño del juego](docs/GAME_DESIGN.md): reglas actuales, personajes, habilidades, progresión y alcance.
 - [Arquitectura](docs/ARCHITECTURE.md): responsabilidades, dependencias y flujo de datos.
 - [Contribuir y validar](docs/CONTRIBUTING.md): procedimiento de cambios y CI.
+- [Manual del propietario](docs/MANUAL_DEL_PROPIETARIO.md): revisión, staging, publicación y mantenimiento.
+- [Guía para colaboradores](docs/GUIA_PARA_COLABORADORES.md): flujo compartible sin accesos sensibles.
 - [Arquitectura de releases](docs/RELEASE_ARCHITECTURE.md): CI, artefacto único, publicación atómica y rollback.
 - [Manual maestro de creación](docs/manual/PERUSURVIVOR_Manual_Maestro_de_Creacion_v1.pdf): reglas y plantillas actuales de personajes, enemigos, mapas, objetos y arte.
 - [Procedencia del arte](docs/ASSETS.md): hojas, prompts y referencias.
