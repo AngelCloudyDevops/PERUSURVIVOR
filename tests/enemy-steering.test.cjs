@@ -13,3 +13,14 @@ test('Objetivo: cambia cuando otro jugador esta claramente mas cerca o el actual
  b.hp=0;assert.equal(P.Systems.target(e,[a,b]),a,'objetivo muerto');
  const f=enemy(P,0,0);assert.equal(P.Systems.target(f,[a]),a);
 });
+test('Propietario: damageMultiplier y la guardia del anquilosaurio usan ownerSlot, no al anfitrion',()=>{
+ const {P,s,a,b}=room();b.extinctionRelic='predator';b.predatorUntil=s.elapsed+5;b.extinctionDungeonPower=2;
+ const src=slot=>P.Attributes.source(slot,'physical');
+ assert.equal(P.Attributes.owner(src(b)),b);assert.equal(P.Attributes.owner(src(a)),a);assert.equal(P.Attributes.owner({}),null);
+ assert.equal(P.MapEvents.damageMultiplier(src(b)),2.5);assert.equal(P.MapEvents.damageMultiplier(src(a)),1);
+ P.state.player=a;assert.equal(P.MapEvents.damageMultiplier(src(b)),2.5,'independiente del jugador activo');
+ const ank={extinctionDino:true,dinoKind:'ankylosaur',x:0,y:0,facing:1};
+ assert.equal(P.MapEvents.incomingMultiplier(ank,src(b)),.48,'b esta delante (x=100)');
+ assert.equal(P.MapEvents.incomingMultiplier(ank,src(a)),1.3,'a esta detras (x=-100)');
+ const meteor={owner:a};assert.equal(P.MapEvents.damageMultiplier(meteor),1);
+});
