@@ -19,9 +19,9 @@ domainCameraFrame(time,w,h,baseZoom,baseTarget){
  const duration=reduced?.12:active?.7:.8,step=duration?dt/duration:1;
  camera.amount=Math.max(0,Math.min(1,camera.amount+(active?step:-step)));
  if(active){
-  const players=(P.Court?.players?.()||[P.state.player,...(P.Coop?.peers||[])]).filter(p=>p&&p.hp>0&&Number.isFinite(p.x)&&Number.isFinite(p.y));
-  const points=[{x:active.x,y:active.y},...players],xs=points.map(p=>p.x),ys=points.map(p=>p.y);
-  camera.x=(Math.min(...xs)+Math.max(...xs))/2;camera.y=(Math.min(...ys)+Math.max(...ys))/2;camera.zoom=baseZoom*(mobile?.87:.78);camera.key=active.key
+  const rx=Math.max(80,Number(active.rx)||420),ry=Math.max(80,Number(active.ry)||320),side=mobile?18:54,top=mobile?76:92,bottom=mobile?112:96;
+  const usableW=Math.max(120,w-side*2),usableH=Math.max(120,h-top-bottom),fit=Math.max(.12,Math.min(baseZoom,usableW/(rx*2),usableH/(ry*2)));
+  camera.x=active.x;camera.y=active.y-(top-bottom)/(fit*2);camera.zoom=fit;camera.key=active.key
  }
  if(camera.amount<=0){camera.key=null;return{zoom:baseZoom,target:baseTarget,amount:0}}
  const q=camera.amount*camera.amount*(3-2*camera.amount);

@@ -56,6 +56,10 @@ test('Dominios dinámicos sumergen objetos y cofres sin borrar su estado',()=>{
  d.exit=d.exitTotal=1.35;assert(P.Loot.active().includes(inside));assert.equal(P.DomainScenery.progress(),1);d.exit=.01;assert(P.DomainScenery.progress()<.01);assert.equal(P.Terrain.hit(prop.x,prop.y),prop);assert.equal(inside.opened,false);
 });
 
+test('Dominios dinámicos cierran el perímetro para jugadores y minions atrapados',()=>{
+ const {P,s,p}=setup(),D=P.SideralDomain,e=P.Entities.enemy();s.devRun=true;D.practicePresentation='dynamic';Object.assign(e,{x:p.x+90,y:p.y,hp:100,max:100});s.enemies=[e];p.ultimate.charge=100;assert(D.activate());const d=s.sideralDomain;d.age=D.entryFor(d);D.enter(d);P.DomainScenery.enforce();const info=P.DomainScenery.current(),key=P.DomainScenery.barrierKey(info);assert.equal(p._domainBarrierKey,key);assert.equal(e._domainBarrierKey,key);p.x=d.x+info.rx+300;e.y=d.y-info.ry-300;P.DomainScenery.enforce();assert(P.DomainScenery.inside(p));assert(P.DomainScenery.inside(e));d.exit=d.exitTotal=1.35;P.DomainScenery.enforce();assert.equal(p._domainBarrierKey,undefined);assert.equal(e._domainBarrierKey,undefined)
+});
+
 test('Sideral dinámico: el servidor cooperativo conserva la presentación solicitada',()=>{
  const {sim,P,s,p}=setup();p.ultimate.charge=100;sim.tick(.04,[{domain:true,domainPresentation:'dynamic'},{}]);const d=s.sideralDomain;
  assert(d);assert.equal(d.presentationOverride,'dynamic');assert.equal(P.SideralDomain.entryFor(d),2.6);assert.equal(sim.snapshot().sideralDomain.presentationOverride,'dynamic');
