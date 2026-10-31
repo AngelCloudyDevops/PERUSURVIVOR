@@ -1,11 +1,13 @@
 import importlib.util
 import io
 import json
+from email.message import Message
 from pathlib import Path
 import tarfile
 import tempfile
 import time
 import unittest
+import urllib.error
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -81,6 +83,16 @@ class ReceiverTests(unittest.TestCase):
         self.assertEqual(receiver.release_sha_from_link('../releases/' + SHA), SHA)
         self.assertIsNone(receiver.release_sha_from_link('../releases/current'))
         self.assertIsNone(receiver.release_sha_from_link(None))
+    def test_staging_accepts_intentional_basic_auth(self):
+        headers = Message(); headers['WWW-Authenticate'] = 'Basic realm="restricted"'
+        unauthorized = urllib.error.HTTPError(receiver.TARGETS['deploy-staging'][1] + '/', 401, 'Unauthorized', headers, None)
+        with patch.object(receiver, 'DOMAIN', receiver.TARGETS['deploy-staging'][1]), patch.object(receiver.urllib.request, 'urlopen', side_effect=unauthorized):
+            self.assertTrue(receiver.homepage_healthy())
+    def test_production_rejects_basic_auth(self):
+        headers = Message(); headers['WWW-Authenticate'] = 'Basic realm="restricted"'
+        unauthorized = urllib.error.HTTPError(receiver.TARGETS['deploy'][1] + '/', 401, 'Unauthorized', headers, None)
+        with patch.object(receiver, 'DOMAIN', receiver.TARGETS['deploy'][1]), patch.object(receiver.urllib.request, 'urlopen', side_effect=unauthorized):
+            self.assertFalse(receiver.homepage_healthy())
     @unittest.skipIf(__import__("sys").platform == "win32", "flock y symlinks de producción requieren Linux")
     def test_rollback(self):
         (self.base / "live/current").symlink_to("../releases/old")
