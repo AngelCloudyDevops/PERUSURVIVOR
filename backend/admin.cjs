@@ -41,6 +41,6 @@ function createAdmin({db,reply,body,now,notify=()=>{}}){
    const inserted=db.prepare('INSERT INTO admin_actions(actor_id,target_id,request_id,fingerprint,result,kind,amount,character_id,created_at) VALUES(?,?,?,?,?,?,?,?,?)').run(user.id,target.id,b.requestId,fingerprint,JSON.stringify(result),b.kind,b.kind==='coins'?b.amount:null,b.kind==='character'?b.characterId:null,at);data.progress.adminCursor=Number(inserted.lastInsertRowid);db.prepare('UPDATE saves SET payload=? WHERE user_id=?').run(JSON.stringify(data),target.id);db.exec('COMMIT');notify(target.id);reply(res,200,receipt(db.prepare('SELECT * FROM admin_actions WHERE id=?').get(inserted.lastInsertRowid)));
   }catch(e){db.exec('ROLLBACK');throw e}
  }
- return {handle};
+ return {handle,rules};
 }
 module.exports={createAdmin};

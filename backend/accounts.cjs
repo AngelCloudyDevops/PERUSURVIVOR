@@ -29,6 +29,7 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
  const friends=require('./friends.cjs').createFriends({db,reply,body,now});
  const gifts=require('./gifts.cjs').createGifts({db,session,reply});
  const admin=require('./admin.cjs').createAdmin({db,reply,body,now,notify:gifts.notify});
+ const checks=require('./save-checks.cjs').createSaveChecks({db,rules:admin.rules,now});
  const balance=require('./balance.cjs').createBalance({db,reply,body,now});
  async function handle(req,res){try{
   const url=new URL(req.url,'http://localhost');if(!url.pathname.startsWith('/api/'))return false;
@@ -66,7 +67,9 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
   if(route==='/api/save'&&req.method==='GET'){const row=db.prepare('SELECT * FROM saves WHERE user_id=?').get(user.id);reply(res,200,row?{revision:row.revision,data:JSON.parse(row.payload),updatedAt:row.updated_at}:{revision:0,data:null});return true}
   if(route==='/api/save'&&req.method==='PUT'){
    const b=await body(req);if(!Number.isSafeInteger(b.revision)||b.revision<0||!b.data||b.data.version!==4||typeof b.data.progress!=='object'||!b.data.progress||!Number.isSafeInteger(b.data.best)||b.data.best<0||b.data.best>100000000){reply(res,400,{error:'Guardado inválido'});return true}
-   db.exec('BEGIN IMMEDIATE');try{const previous=db.prepare('SELECT revision,payload FROM saves WHERE user_id=?').get(user.id),revision=previous?.revision||0,merged=gifts.merge(user,b,previous);if(!merged){db.exec('ROLLBACK');reply(res,409,{error:'El progreso cambió en otra sesión. Tu copia local se conserva.'});return true}db.prepare('INSERT INTO saves VALUES(?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET revision=excluded.revision,payload=excluded.payload,updated_at=excluded.updated_at').run(user.id,revision+1,JSON.stringify(merged.data),now());db.exec('COMMIT');reply(res,200,{revision:revision+1,grants:merged.grants});return true}catch(e){db.exec('ROLLBACK');throw e}
+   // Se guarda siempre el resultado de las reglas del juego (migra, descarta ids desconocidos, acota); lo malformado se rechaza.
+   try{b.data={version:4,progress:admin.rules().Meta.normalize(b.data.progress),best:b.data.best}}catch{reply(res,400,{error:'Guardado inválido'});return true}
+   db.exec('BEGIN IMMEDIATE');try{const previous=db.prepare('SELECT revision,payload,updated_at FROM saves WHERE user_id=?').get(user.id),revision=previous?.revision||0,merged=gifts.merge(user,b,previous);if(!merged){db.exec('ROLLBACK');reply(res,409,{error:'El progreso cambió en otra sesión. Tu copia local se conserva.'});return true}const why=checks.check(user,previous,merged.data.progress);if(why){db.exec('ROLLBACK');console.warn('[saves] '+user.id+' rechazado: '+why);reply(res,422,{error:'Guardado no verosímil. Tu copia local se conserva.'});return true}db.prepare('INSERT INTO saves VALUES(?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET revision=excluded.revision,payload=excluded.payload,updated_at=excluded.updated_at').run(user.id,revision+1,JSON.stringify(merged.data),now());db.exec('COMMIT');reply(res,200,{revision:revision+1,grants:merged.grants});return true}catch(e){db.exec('ROLLBACK');throw e}
   }
   reply(res,404,{error:'Ruta no encontrada'});return true;
  }catch(e){if(!res.headersSent)reply(res,e.status||500,{error:e.status?e.message:'No se pudo completar la operación'});else res.end();return true}}
