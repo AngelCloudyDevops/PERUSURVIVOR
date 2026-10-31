@@ -10,14 +10,14 @@ test('Movimiento reducido: sistema, clase del cuerpo u opción guardada',()=>{
  assert.equal(motion({localStorage:{getItem:k=>k==='perusurvivor-option-reduced-motion'?'true':null}}).Motion.reduced(),true);
  assert.equal(motion({}).Motion.reduced(),false);
 });
-test('Daño: suena una vez (con límite), viñeta roja y atenuada con movimiento reducido',()=>{
+test('Daño: suena una vez (con límite), viñeta roja y legible sin pulso con movimiento reducido',()=>{
  const {P}=new Simulation('campo',[7,0]),s=P.state,p=s.player,fx=P.HurtFx;let sounds=0;P.Audio.fx=n=>{if(n==='hurt')sounds++};
  s.mode='play';p.maxHp=100;p.hp=100;fx.who=null;fx.observe(p);assert.equal(sounds,0);
  p.hp=90;fx.observe(p);assert.equal(sounds,1);assert.ok(fx.power>=.25&&fx.power<=1);
  fx.observe(p);assert.equal(sounds,1);
  const alphas=[],ctx={createRadialGradient:()=>({addColorStop(){}}),save(){},restore(){},fillRect(){alphas.push(ctx.globalAlpha)},globalAlpha:1};
  P.Motion.reduced=()=>false;fx.start=fx.now()-.05;assert.equal(fx.draw(ctx,800,600),true);
- P.Motion.reduced=()=>true;fx.start=fx.now()-.05;assert.equal(fx.draw(ctx,800,600),true);assert.ok(alphas[1]<alphas[0]);
+ P.Motion.reduced=()=>true;fx.start=fx.now()-.05;assert.equal(fx.draw(ctx,800,600),true);assert.ok(alphas[1]>=.2,'legible con movimiento reducido');fx.power=.25;fx.start=fx.now()-.36;assert.equal(fx.draw(ctx,800,600),true,'dura más y se desvanece en línea');
  fx.start=fx.now()-1;assert.equal(fx.draw(ctx,800,600),false);
  p.hp=100;fx.observe(p);assert.equal(sounds,1);
 });
