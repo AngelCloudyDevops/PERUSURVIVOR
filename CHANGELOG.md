@@ -1,3 +1,12 @@
+# Sensación de combate e IA de enemigos — 2026-10-31
+- Cooperativo: cada enemigo mantiene su objetivo salvo que otro jugador esté claramente más cerca (histéresis 0,75×); el daño de eventos de mapa acredita al tirador real (`P.Attributes.owner`).
+- Los minions se separan entre sí en vez de avanzar en fila y se deslizan al quedar atascados contra una pared; los enemigos ocupados se cuentan una vez por tick.
+- `P.Juice`: sacudida central con trauma que decae, tope en pantalla, compensación de zoom y sin sacudida con movimiento reducido; la sacudida de la ulti se desvanece en vez de cortarse.
+- Derrotar jefes y minijefes suma sacudida, chispas y un destello suave; la victoria del encuentro ya no borra esa explosión.
+- Los efectos importantes (gritos, muertes, críticos) tienen prioridad sobre los golpes rutinarios; los números de daño se acumulan por enemigo y los críticos se ven más grandes y cálidos.
+- Recoger experiencia suena con un tic ascendente y la barra de XP pulsa; ambos respetan silencio y movimiento reducido.
+- Costo medido de la separación y los atascos: +0,3 ms por tick con 80 enemigos y +1 a 1,3 ms con 160.
+
 # Rendimiento de la lógica del juego — 2026-10-31
 - Nuevo `scripts/benchmark-game.cjs`: simulación real y determinista (solo 80/160 y cooperativo 160 enemigos) con ms por tick, llamadas, GC y costo del snapshot.
 - Los enemigos reutilizan su dirección hasta ~0,15 s y solo recalculan la línea de visión al cambiar de objetivo, moverse más de 48 px, acercarse a menos de 100 px o cambiar el terreno; el mapa actual y las colisiones usan índices cacheados y claves numéricas.
