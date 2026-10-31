@@ -10,6 +10,7 @@ import sys
 import tarfile
 import tempfile
 import time
+import urllib.error
 import urllib.request
 
 BASE = Path("/opt/perusurvivor")
@@ -121,6 +122,18 @@ def prune_releases(preserve=(), keep=KEEP_RECENT_RELEASES):
         removed.append(entry.name)
     return removed
 
+def homepage_healthy():
+    """Valida la portada pública o la protección Basic intencional de staging."""
+    try:
+        with urllib.request.urlopen(DOMAIN + "/", timeout=10) as page:
+            return page.status == 200 and b"CAUSAS" in page.read()
+    except urllib.error.HTTPError as error:
+        authentication = error.headers.get("WWW-Authenticate", "")
+        staging_domain = TARGETS["deploy-staging"][1]
+        return DOMAIN == staging_domain and error.code == 401 and authentication.lower().startswith("basic ")
+    except Exception:
+        return False
+
 def healthy(sha):
     for attempt in range(10):
         try:
@@ -129,10 +142,8 @@ def healthy(sha):
                 headers={"Cache-Control": "no-cache"},
             )
             with urllib.request.urlopen(request, timeout=10) as response:
-                if response.status == 200 and json.load(response).get("git_sha") == sha:
-                    with urllib.request.urlopen(DOMAIN + "/", timeout=10) as page:
-                        if page.status == 200 and b"CAUSAS" in page.read():
-                            return True
+                if response.status == 200 and json.load(response).get("git_sha") == sha and homepage_healthy():
+                    return True
         except Exception:
             pass
         time.sleep(2)
