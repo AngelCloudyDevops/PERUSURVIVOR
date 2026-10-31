@@ -1,3 +1,8 @@
+# Guardados: validación en el servidor, migraciones y copia local — 2026-10-31
+- `PUT /api/save` pasa el progreso por `P.Meta.normalize` (las reglas del cliente) y guarda el resultado normalizado; lo malformado se rechaza con 400, también sin `giftSync`. Nuevo `backend/save-checks.cjs`: frente al guardado anterior se rechaza (422) `earned` a la baja o por encima de partidas y tiempo, `wallet` por encima de lo ganado más reembolsos, y personajes o skins sin tiradas o concesión admin que los expliquen. La primera sincronización (importación de invitado) solo recorta lo imposible y lo registra.
+- `meta-progress.js`: las migraciones son una cadena `MIGRATE[v]` hasta `CURRENT` aplicada antes de validar; el resultado de los guardados v1..v5 no cambia y las versiones más nuevas se siguen rechazando.
+- La transacción local conserva el valor anterior en `<clave>-bak`; si el principal está dañado se recupera esa copia con un aviso que no bloquea.
+
 # Sensación de combate e IA de enemigos — 2026-10-31
 - Cooperativo: cada enemigo mantiene su objetivo salvo que otro jugador esté claramente más cerca (histéresis 0,75×); el daño de eventos de mapa acredita al tirador real (`P.Attributes.owner`).
 - Los minions se separan entre sí en vez de avanzar en fila y se deslizan al quedar atascados contra una pared; los enemigos ocupados se cuentan una vez por tick.
