@@ -38,7 +38,7 @@ if(e.kind==='feather-break'){ctx.translate(e.x,e.y);ctx.rotate(e.angle);for(let 
 if(e.kind==='evolution'){P.Evolutions?.effect(ctx,e,progress);ctx.restore();return}
 if(P.PowerFX.effect(ctx,e,progress)){ctx.restore();return}
 if(e.kind==='spark'){this.pixel(ctx,e.x,e.y,4,e.color)}
-else if(e.kind==='damage'){ctx.fillStyle='#fff1bc';ctx.font='bold 12px monospace';ctx.textAlign='center';ctx.fillText(e.text,e.x,e.y-progress*26)}
+else if(e.kind==='damage'){if(e.crit){const k=1-(1-progress)**3;ctx.fillStyle='#ffb347';ctx.font='bold 18px monospace';ctx.textAlign='center';ctx.fillText(e.text,e.x+(e.dx||0)*k,e.y-k*34)}else{ctx.fillStyle='#fff1bc';ctx.font='bold 12px monospace';ctx.textAlign='center';ctx.fillText(e.text,e.x,e.y-progress*26)}}
 else if(e.kind==='cast'){for(let i=0;i<6;i++){const a=i*Math.PI/3+progress*2;this.pixel(ctx,e.x+Math.cos(a)*(8+progress*20),e.y+Math.sin(a)*(8+progress*20),4,e.color)}}
  else if(e.kind==='impact'){ctx.strokeStyle=e.color;ctx.lineWidth=3;for(let i=0;i<6;i++){const a=i*Math.PI/3;ctx.beginPath();ctx.moveTo(e.x+Math.cos(a)*(3+progress*5),e.y+Math.sin(a)*(3+progress*5));ctx.lineTo(e.x+Math.cos(a)*(10+progress*15),e.y+Math.sin(a)*(10+progress*15));ctx.stroke()}}
  else if(e.kind==='contra-impact'){ctx.translate(e.x,e.y);ctx.rotate(progress*.7);for(let i=0;i<8;i++){const a=i*Math.PI/4,r=5+progress*22;ctx.fillStyle=i%4===0?'#ffd06a':i%2?'#ff302f':'#ff7138';ctx.save();ctx.translate(Math.cos(a)*r,Math.sin(a)*r);ctx.rotate(a);ctx.fillRect(-2,-2,7-progress*3,3);ctx.restore()}ctx.fillStyle=e.color;ctx.fillRect(-7+progress*4,-7+progress*4,14-progress*8,14-progress*8)}
