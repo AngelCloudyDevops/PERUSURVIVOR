@@ -1,6 +1,6 @@
 'use strict';
 const http=require('node:http'),crypto=require('node:crypto'),{WebSocketServer}=require('ws'),{Simulation}=require('./simulation.cjs');
-const {encodeState,createSender}=require('./state-wire.cjs');
+const {encodeState,createSender}=require('./state-wire.cjs'),{clientIp}=require('./client-ip.cjs');
 const PROTOCOL=2;
 function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=()=>Date.now(),httpServer}={}){
  const diagnostics={roomErrors:0,droppedStates:0,lastTickMs:0,maxTickMs:0,lastStateBytes:0,statePackets:0,stateBytes:0},startedAt=now();
@@ -25,7 +25,7 @@ function createCoopServer({root,maxRooms=6,autoTick=true,allowedOrigins=[],now=(
   let parsed;try{parsed=new URL(req.url,'http://localhost')}catch{return socket.destroy()}
   const origin=req.headers.origin,expected=allowedOrigins.length?allowedOrigins:[`http://${req.headers.host}`,`https://${req.headers.host}`];
   if(parsed.pathname!=='/coop'||!expected.includes(origin)||wss.clients.size>=maxRooms*2+8)return socket.destroy();
-  const ip=req.socket.remoteAddress||'',old=attempts.get(ip)||{time:now(),count:0};if(now()-old.time>60000){old.time=now();old.count=0}old.count++;attempts.set(ip,old);if(old.count>60)return socket.destroy();
+  const ip=clientIp(req),old=attempts.get(ip)||{time:now(),count:0};if(now()-old.time>60000){old.time=now();old.count=0}old.count++;attempts.set(ip,old);if(old.count>60)return socket.destroy();
   wss.handleUpgrade(req,socket,head,ws=>wss.emit('connection',ws,req));
  });
  wss.on('connection',(ws,req)=>{

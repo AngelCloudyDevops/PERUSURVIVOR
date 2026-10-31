@@ -1,6 +1,7 @@
 'use strict';
 const crypto=require('node:crypto'),{promisify}=require('node:util'),fs=require('node:fs'),path=require('node:path');
 const scrypt=promisify(crypto.scrypt),hash=s=>crypto.createHash('sha256').update(s).digest('hex');
+const {clientIp}=require('./client-ip.cjs');
 const COOKIE='ps_session',TTL=7*86400000;
 function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
  const {DatabaseSync}=require('node:sqlite');
@@ -24,7 +25,7 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now}={}){
  function publicUser(id,username){const role=db.prepare('SELECT role FROM user_roles WHERE user_id=?').get(id)?.role||'player',laboratory=!!db.prepare("SELECT enabled FROM user_entitlements WHERE user_id=? AND entitlement='laboratory'").get(id)?.enabled;return {id,username,role,entitlements:{laboratory:role==='admin'||laboratory}}}
  function issue(res,id){db.prepare('DELETE FROM sessions WHERE expires_at<=?').run(now());const token=crypto.randomBytes(32).toString('hex');db.prepare('INSERT INTO sessions VALUES(?,?,?)').run(hash(token),id,now()+TTL);cookie(res,token)}
  async function body(req){let text='',size=0;if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))throw Object.assign(Error('Se requiere JSON'),{status:415});for await(const chunk of req){size+=Buffer.byteLength(chunk);if(size>131072)throw Object.assign(Error('Guardado demasiado grande'),{status:413});text+=chunk}try{return JSON.parse(text)}catch{throw Object.assign(Error('JSON inválido'),{status:400})}}
- function limit(req){const key=req.socket.remoteAddress||'local',time=now();for(const [ip,a]of attempts)if(time-a.at>900000)attempts.delete(ip);if(attempts.size>10000&&!attempts.has(key))return false;const a=attempts.get(key)||{at:time,count:0};attempts.set(key,a);return ++a.count<=30}
+ function limit(req){const key=clientIp(req)||'local',time=now();for(const [ip,a]of attempts)if(time-a.at>900000)attempts.delete(ip);if(attempts.size>10000&&!attempts.has(key))return false;const a=attempts.get(key)||{at:time,count:0};attempts.set(key,a);return ++a.count<=30}
  function credentials(b){if(typeof b.username!=='string'||!/^[a-zA-Z0-9_]{3,24}$/.test(b.username)||typeof b.password!=='string'||b.password.length<12||b.password.length>128)throw Object.assign(Error('Usuario: 3–24 letras, números o _. Contraseña: 12–128 caracteres.'),{status:400});return b.username.toLowerCase()}
  const friends=require('./friends.cjs').createFriends({db,reply,body,now});
  const gifts=require('./gifts.cjs').createGifts({db,session,reply});
