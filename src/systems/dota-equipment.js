@@ -34,7 +34,7 @@
  Object.assign(D,{
   equipped(p,family){return this.data(this.current(p,family))},
   runtime(p){return p.dotaRuntime||=( {counts:{},seen:[],ready:{},shields:{},controlSeen:{}} )},
-  owner(source){if(!source?.ownerId)return null;return (P.Court?.players?.()||[P.state.player]).find(p=>p.id===source.ownerId&&(p.slot??null)===(source.ownerSlot??null))||null},
+  owner(source){return P.Attributes.owner(source)},
   now(){return P.state.elapsed||0},
   heal(p,amount){if(!(p?.hp>0)||!(amount>0))return 0;const before=p.hp;p.hp=Math.min(p.maxHp,p.hp+amount);return p.hp-before},
   shield(p,kind,ratio,seconds,type='general'){if(!(p.hp>0))return;const r=this.runtime(p),now=this.now(),old=r.shields[kind];if(old?.until>now)return;r.shields[kind]={amount:p.maxHp*ratio,until:now+seconds,type}},

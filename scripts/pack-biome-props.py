@@ -59,5 +59,5 @@ audit = {
     "method": "Built-in image_gen; reviewed crop boundaries; Lanczos packing into six isolated cells.",
     "atlases": audits,
 }
-(root / "docs/biome-props-audit.json").write_text(json.dumps(audit, indent=2) + "\n", encoding="utf8")
+(root / "docs/arte/auditorias/biome-props-audit.json").write_text(json.dumps(audit, indent=2) + "\n", encoding="utf8")
 print(json.dumps(audit))

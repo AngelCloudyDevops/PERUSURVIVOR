@@ -1,0 +1,16 @@
+'use strict';
+const {test}=require('node:test'),assert=require('node:assert/strict'),{Simulation}=require('../backend/simulation.cjs'),fixtures=require('./fixtures/meta-saves.cjs'),golden=require('./fixtures/meta-saves.golden.json');
+const meta=()=>new Simulation('campo',[0,1]).P.Meta,clone=x=>JSON.parse(JSON.stringify(x));
+const quiet=fn=>{const warn=console.warn;console.warn=()=>{};try{return fn()}finally{console.warn=warn}};
+// El golden se generó con el normalize() previo a la cadena MIGRATE: la migración no puede cambiar el resultado de ningún guardado existente.
+test('Migraciones: v1..v5 producen exactamente lo mismo que antes de separar la cadena',()=>{const M=meta();for(const [name,make] of Object.entries(fixtures)){const out=clone(quiet(()=>M.normalize(make(M))));assert.deepEqual(out,golden[name],name);assert.equal(out.version,5,name)}});
+test('Migraciones: la cadena es explícita, un paso por versión hasta CURRENT',()=>{const M=meta();assert.equal(M.CURRENT,5);assert.deepEqual(Object.keys(M.MIGRATE).map(Number),[1,2,3,4]);assert.equal(M.blank().version,M.CURRENT);
+ for(let v=1;v<M.CURRENT;v++)assert.equal(M.MIGRATE[v].call(M,{version:v,wallet:0,earned:0,receipts:[],unlocked:['cristorata','cuy','paloma']}).version,v+1,'paso '+v);
+ const raw=fixtures.v1(M),migrated=M.migrate(raw);assert.equal(migrated.version,5);assert.equal(raw.version,1)});
+test('Migraciones: no mutan el guardado de entrada y normalizar dos veces da lo mismo',()=>{const M=meta();for(const [name,make] of Object.entries(fixtures)){const raw=make(M),before=clone(raw),out=quiet(()=>M.normalize(raw));assert.deepEqual(clone(raw),before,name);assert.deepEqual(clone(quiet(()=>M.normalize(clone(out)))),clone(out),name)}});
+test('Migraciones: versiones desconocidas o más nuevas que CURRENT se rechazan sin tocar nada',()=>{const M=meta(),ok=M.normalize(M.blank());for(const version of [0,-1,6,99,5.5,'5',null,undefined,NaN]){const raw={...clone(ok),version};assert.throws(()=>M.normalize(raw),/Versión de guardado no compatible/,String(version))}
+ assert.throws(()=>M.normalize(null),/Versión de guardado no compatible/);assert.throws(()=>M.normalize({}),/Versión de guardado no compatible/);assert.throws(()=>M.normalize('5'),/Versión de guardado no compatible/)});
+test('Migraciones: la corrupción de una versión antigua sigue lanzando tras migrar',()=>{const M=meta();for(const edit of [d=>{d.wallet=-1},d=>{d.receipts='x'},d=>{delete d.earned},d=>{d.inventory={lunch:500}}])for(const v of ['v1','v2','v3','v4']){const raw=fixtures[v](M);edit(raw);assert.throws(()=>quiet(()=>M.normalize(raw)),/./,v)}
+ const raw=fixtures.v3(M);raw.unlocked=['cristorata'];assert.throws(()=>M.normalize(raw),/Colección no válida/);const sk=fixtures.v4(M);sk.skins={unlocked:'x',equipped:{}};assert.throws(()=>M.normalize(sk),/skins no válida/)});
+test('Migraciones: v4 retira Cerdito VTuber y v3 deduce estrellas y v1 deduce colección',()=>{const M=meta(),v4=quiet(()=>M.normalize(fixtures.v4(M)));assert.deepEqual(clone(v4.skins),{unlocked:[],equipped:{'kingteka-animals':'base'}});
+ const v3=quiet(()=>M.normalize(fixtures.v3(M)));assert.deepEqual(clone(v3.gachaStars),{fuzo:{rank:1,copies:1},cuy:{rank:1,copies:2}});const v1=quiet(()=>M.normalize(fixtures.v1(M)));for(const id of ['cristorata','cuy','paloma','fuzo','alan','najasor'])assert(v1.unlocked.includes(id),id)});

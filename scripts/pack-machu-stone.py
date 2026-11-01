@@ -7,4 +7,4 @@ for i,(name,box) in enumerate(boxes):
     tile=im.crop(box);tile=tile.crop(tile.getchannel('A').point(lambda a:255 if a>64 else 0).getbbox());tile.thumbnail((232,232),Image.Resampling.NEAREST);tile=tile.crop(tile.getchannel('A').point(lambda a:255 if a>64 else 0).getbbox());x=i%3*256+(256-tile.width)//2;y=i//3*256+248-tile.height;out.alpha_composite(tile,(x,y));cells.append({'id':name,'x':x,'y':y,'w':tile.width,'h':tile.height})
 dest=src.with_suffix('.webp');out.save(dest,lossless=True,exact=True,method=6)
 audit={'source':'public/assets/environment/'+src.name,'runtime':'public/assets/environment/'+dest.name,'source_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),'runtime_sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'bytes':dest.stat().st_size,'width':768,'height':512,'cells':cells,'method':'Built-in image_gen; mechanical isolated-object cropping and nearest-neighbor packing.'}
-(root/'docs/machu-stone-audit.json').write_text(json.dumps(audit,indent=2)+'\n',encoding='utf8');print(json.dumps(audit))
+(root/'docs/arte/auditorias/machu-stone-audit.json').write_text(json.dumps(audit,indent=2)+'\n',encoding='utf8');print(json.dumps(audit))

@@ -88,7 +88,7 @@ async function run(map){return new Promise(resolve=>{
   }catch(error){finish(false,error.message)}
  }
  function connect(slot,code){const ws=new WebSocket(base.replace('https:','wss:')+'/coop',{origin:base});sockets[slot]=ws;
-  ws.on('open',()=>send(slot,{type:slot?'join':'create',protocol:2,character:fullRun?(slot?7:2):7,map,code}));ws.on('error',e=>finish(false,e.message));
+  ws.on('open',()=>send(slot,{type:slot?'join':'create',protocol:3,character:fullRun?(slot?7:2):7,map,code}));ws.on('error',e=>finish(false,e.message));
   ws.on('close',()=>{if(!ended)finish(false,'Conexión cerrada durante la prueba')});
   ws.on('message',raw=>{if(ended)return;const began=performance.now(),m=JSON.parse(raw),parsed=performance.now();if(m.type==='pong'){metrics.rtt[slot].push(parsed-m.sent);if(slot===0){metrics.tickMs.push(m.tickMs||0);metrics.serializeMs.push(m.serializeMs||0)}return}
    if(m.type==='joined'&&slot===0){evidence.room=m.code;note('sala',{code:m.code});connect(1,m.code)}
