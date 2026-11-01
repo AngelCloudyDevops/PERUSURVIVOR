@@ -12,6 +12,12 @@ RECEIVER = Path('/usr/local/libexec/perusurvivor-receive.py')
 def run(*args):
     return subprocess.check_output(args, text=True, stderr=subprocess.STDOUT)
 
+def forward_ip(conf):
+    # El backend limita por IP real: nginx debe enviarla en /coop y /api/ (también en configuraciones ya instaladas).
+    if 'X-Real-IP' in conf:
+        return conf
+    return re.sub(r'(?m)^([ \t]*)proxy_set_header Host \$host;\n', lambda m: m.group(0) + m.group(1) + 'proxy_set_header X-Real-IP $remote_addr;\n' + m.group(1) + 'proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n', conf)
+
 def update():
     if os.geteuid() != 0:
         raise RuntimeError('La actualización operativa requiere root')
@@ -39,6 +45,7 @@ def update():
             raise RuntimeError('Configuración nginx inesperada')
         routes = marker + '  location ^~ /backend/ { return 404; }\n'
         updated = updated[:match.start()] + routes + updated[match.start():]
+    updated = forward_ip(updated)
     if updated != original:
         backup = BASE / 'backups/nginx.conf.before-private-backend'
         backup.parent.mkdir(parents=True, exist_ok=True)
@@ -51,7 +58,7 @@ def update():
         except Exception:
             conf.write_text(original)
             raise
-    print('Receptor actualizado y /backend/ protegido.')
+    print('Receptor actualizado, /backend/ protegido e IP real reenviada.')
 
 if __name__ == '__main__':
     update()

@@ -53,6 +53,8 @@ def install():
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
     proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_read_timeout 60s;
   }
   location = /coop/health { proxy_pass http://perusurvivor-staging-coop:4180; }
@@ -60,6 +62,8 @@ def install():
     client_max_body_size 128k;
     proxy_pass http://perusurvivor-staging-coop:4180;
     proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_read_timeout 15s;
     add_header Cache-Control "no-store" always;

@@ -11,4 +11,4 @@ for i,(name,box) in enumerate([('fountain',(0,0,cut,im.height)),('facade',(cut,0
     out.alpha_composite(tile,(x,y));cells.append({'id':name,'x':x,'y':y,'w':tile.width,'h':tile.height})
 dest=src.with_suffix('.webp');out.save(dest,lossless=True,method=6)
 audit={'source':'public/assets/environment/'+src.name,'runtime':'public/assets/environment/'+dest.name,'source_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),'runtime_sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'bytes':dest.stat().st_size,'width':1024,'height':512,'cells':cells,'method':'Built-in image_gen; mechanical crop along transparent gap and nearest-neighbor packing.'}
-(root/'docs/plaza-landmarks-audit.json').write_text(json.dumps(audit,indent=2)+'\n',encoding='utf8');print(json.dumps(audit))
+(root/'docs/arte/auditorias/plaza-landmarks-audit.json').write_text(json.dumps(audit,indent=2)+'\n',encoding='utf8');print(json.dumps(audit))
