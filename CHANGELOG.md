@@ -1,3 +1,12 @@
+# Servidor: borde de red, cooperativo y protocolo 3 — 2026-10-31
+- Los límites de intentos usan la IP real del cliente (`X-Real-IP` solo desde proxies de `TRUSTED_PROXIES`); nginx envía ese encabezado en `/api/` y `/coop`.
+- Los cuerpos lentos se cortan a los `BODY_TIMEOUT_MS` (408) y la ranura de scrypt se ocupa solo tras leerlos.
+- Cooperativo: cierra sockets que inundan mensajes, agrupa los snapshots de actividad en el siguiente tick, limita salas por IP (`MAX_ROOMS_PER_IP`) y caduca lobbies sin iniciar (`LOBBY_IDLE_MS`); con sesión iniciada `guest:true` ya no salta la propiedad de personajes.
+- Servidor de desarrollo: `nosniff`, tipo desconocido como `application/octet-stream`, `/backend` bloqueado y sin caída si un archivo desaparece.
+- El backup diario registra inicio y código de salida en `/var/log/perusurvivor-backup.log`.
+- Protocolo cooperativo 3: el snapshot omite campos que solo usa la simulación (balance de enemigos, estadísticas por defecto, campos internos de disparos); con 160 enemigos baja de 263 KB a 95 KB y la codificación de 2,1 a 1,1 ms.
+- Un guardado que el servidor rechaza (400/422) deja de reintentarse y avisa conservando la copia local.
+
 # Guardados: validación en el servidor, migraciones y copia local — 2026-10-31
 - `PUT /api/save` pasa el progreso por `P.Meta.normalize` (las reglas del cliente) y guarda el resultado normalizado; lo malformado se rechaza con 400, también sin `giftSync`. Nuevo `backend/save-checks.cjs`: frente al guardado anterior se rechaza (422) `earned` a la baja o por encima de partidas y tiempo, `wallet` por encima de lo ganado más reembolsos, y personajes o skins sin tiradas o concesión admin que los expliquen. La primera sincronización (importación de invitado) solo recorta lo imposible y lo registra.
 - `meta-progress.js`: las migraciones son una cadena `MIGRATE[v]` hasta `CURRENT` aplicada antes de validar; el resultado de los guardados v1..v5 no cambia y las versiones más nuevas se siguen rechazando.

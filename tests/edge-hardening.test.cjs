@@ -49,7 +49,7 @@ test('Cooperativo: ráfagas aisladas no cierran el socket',async t=>{
  c.send({type:'ping',sent:1});await sleep(50);assert.equal(c.ws.readyState,1);
 });
 async function start(connect,app){
- const a=await connect(),b=await connect('203.0.113.8');a.send({type:'create',protocol:2,map:'campo',character:0});const joined=await a.next('joined');b.send({type:'join',protocol:2,code:joined.code,character:6});await b.next('joined');
+ const a=await connect(),b=await connect('203.0.113.8');a.send({type:'create',protocol:3,map:'campo',character:0});const joined=await a.next('joined');b.send({type:'join',protocol:3,code:joined.code,character:6});await b.next('joined');
  const room=app.rooms.get(joined.code);for(const c of [a,b])c.send({type:'ready',ready:true,revision:room.revision});await sleep(50);a.send({type:'start'});await a.next('state');await b.next('state');return {a,b,room};
 }
 test('Cooperativo: activity y team se agrupan en el siguiente tick en vez de emitir snapshot inmediato',async t=>{
@@ -61,7 +61,7 @@ test('Cooperativo: activity y team se agrupan en el siguiente tick en vez de emi
 });
 test('Cooperativo: tope de salas por IP y lobbies sin iniciar caducan pronto',async t=>{
  const clock={t:1000},{app,connect}=await coop(t,{maxRoomsPerIp:2,maxRooms:10},clock);
- const make=async c=>{c.send({type:'create',protocol:2,map:'campo',character:0});return Promise.race([c.next('joined').then(()=>'ok'),c.next('error').then(m=>m.message)])};
+ const make=async c=>{c.send({type:'create',protocol:3,map:'campo',character:0});return Promise.race([c.next('joined').then(()=>'ok'),c.next('error').then(m=>m.message)])};
  const ip='198.51.100.5',c=[await connect(ip),await connect(ip),await connect(ip),await connect('198.51.100.6')];
  assert.equal(await make(c[0]),'ok');assert.equal(await make(c[1]),'ok');assert.match(await make(c[2]),/demasiadas salas/);assert.equal(await make(c[3]),'ok');assert.equal(app.rooms.size,3);
  clock.t+=60000;app.tick();assert.equal(app.rooms.size,3,'30 s de gracia y 5 min de lobby no han vencido');
@@ -74,9 +74,9 @@ test('Cooperativo: con sesión válida guest:true no evita la propiedad de la cu
  const sockets=[];t.after(async()=>{for(const w of sockets)w.terminate();await app.close();accounts.close()});
  const reg=await fetch(origin+'/api/register',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({username:'jugador_x',password:'una-clave-larga-y-unica'})}),cookie=reg.headers.get('set-cookie').split(';')[0];
  const connect=async headers=>{const ws=new WebSocket(origin.replace('http:','ws:')+'/coop',{origin,headers}),log=[];ws.on('message',d=>log.push(JSON.parse(d)));sockets.push(ws);await once(ws,'open');return {ws,send:o=>ws.send(JSON.stringify(o)),next:async()=>{for(let i=0;i<200;i++){if(log.length)return log.shift();await sleep(10)}assert.fail('sin respuesta')}}};
- const user=await connect({Cookie:cookie});user.send({type:'create',protocol:2,map:'campo',guest:true,character:7});let m=await user.next();assert.equal(m.type,'error');assert.match(m.message,/desbloqueado/);
- user.send({type:'create',protocol:2,map:'campo',guest:true,character:0});m=await user.next();assert.equal(m.type,'joined');assert.match(m.players[0].username,/Invitado/,'no revela la cuenta, pero tampoco la hace dueña de todo');
- const guest=await connect({});guest.send({type:'create',protocol:2,map:'plaza',guest:true,character:7});assert.equal((await guest.next()).type,'joined','el invitado sin sesión sigue jugando');
+ const user=await connect({Cookie:cookie});user.send({type:'create',protocol:3,map:'campo',guest:true,character:7});let m=await user.next();assert.equal(m.type,'error');assert.match(m.message,/desbloqueado/);
+ user.send({type:'create',protocol:3,map:'campo',guest:true,character:0});m=await user.next();assert.equal(m.type,'joined');assert.match(m.players[0].username,/Invitado/,'no revela la cuenta, pero tampoco la hace dueña de todo');
+ const guest=await connect({});guest.send({type:'create',protocol:3,map:'plaza',guest:true,character:7});assert.equal((await guest.next()).type,'joined','el invitado sin sesión sigue jugando');
 });
 test('Servidor estático: nosniff, octet-stream, /backend/ bloqueado y archivo desaparecido sin caída',async t=>{
  const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),{createServer}=require('../server.cjs');
