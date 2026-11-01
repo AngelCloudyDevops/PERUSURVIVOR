@@ -1,3 +1,8 @@
+# Cooperativo: tiempo límite para elegir y daño visible — 2026-10-31
+- Las elecciones de equipo (subida de nivel, cofres, portales, Extinción) tienen 15 s de tiempo de simulación; al vencer, el servidor elige por quien no respondió (la opción segura de cada tipo) y la partida sigue. El plazo se congela mientras un compañero se reconecta.
+- La pantalla de elección muestra «Se elige solo en N s» o «Esperando a tu compañero · N s», resaltado en los últimos 5 s y sin pulso con movimiento reducido.
+- La viñeta y el sonido de daño ahora se disparan en cooperativo: el jugador se identifica por `slot` porque cada snapshot reemplaza su objeto.
+
 # Servidor: borde de red, cooperativo y protocolo 3 — 2026-10-31
 - Los límites de intentos usan la IP real del cliente (`X-Real-IP` solo desde proxies de `TRUSTED_PROXIES`); nginx envía ese encabezado en `/api/` y `/coop`.
 - Los cuerpos lentos se cortan a los `BODY_TIMEOUT_MS` (408) y la ranura de scrypt se ocupa solo tras leerlos.

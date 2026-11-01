@@ -1,7 +1,7 @@
 'use strict';
 // Actividades de sala. Solo acepta intenciones; posiciones, premios y consumo de llaves se validan aquí.
 class Activities{
- constructor(sim){this.sim=sim;this.votes=new Set();this.serial=0;this.pending=null;this.returning=false;this.message='';this.messageTime=0;this.escort=new (require('./escort.cjs').Escort)(sim);this.signals=new (require('./signals.cjs').Signals)(sim);this.duo=new (require('./duo-event.cjs').DuoEvent)(sim);sim.P.Encounters.win=()=>{this.returning=true}}
+ constructor(sim){this.sim=sim;this.votes=new Set();this.serial=0;this.pending=null;this.choiceTimeout=15;this.returning=false;this.message='';this.messageTime=0;this.escort=new (require('./escort.cjs').Escort)(sim);this.signals=new (require('./signals.cjs').Signals)(sim);this.duo=new (require('./duo-event.cjs').DuoEvent)(sim);sim.P.Encounters.win=()=>{this.returning=true}}
  get P(){return this.sim.P}
  notice(text){this.message=text;this.messageTime=4}
  action(slot,action,id,choice){
@@ -97,8 +97,16 @@ class Activities{
   if(pending.applied.every(Boolean)){this.pending=null;this.notice('Recompensas entregadas a los dos. ¡Sigan explorando!');if(P.state.xp>=P.state.need)this.levelup()}
   return true;
  }
+ // Plazo de elección: segundos de simulación restantes (no avanza con la sala pausada por una reconexión). Al agotarse, elige por quien no lo hizo.
+ arm(){const p=this.pending;if(p&&p.phase==='choice'&&p.left===undefined)p.left=this.choiceTimeout}
+ autoPick(){
+  const pending=this.pending,fallback={'extinction-portal':1,'mini-reward':1,item:pending.options?0:1};this.notice('Se eligió solo en nombre de quien no respondió');
+  for(const slot of [0,1])if(!pending.applied[slot]){let done=false;for(const choice of new Set([fallback[pending.kind]??0,0,1,2,3]))if(this.choose(slot,pending.id,choice)){done=true;break}if(!done&&this.pending===pending)pending.applied[slot]=true}
+  if(this.pending===pending&&pending.applied.every(Boolean))this.pending=null;
+ }
  advance(dt){
   this.P.Loot.animate(dt);if(this.pending?.phase==='opening'){this.pending.age+=dt;if(this.pending.age>=.65)this.pending.phase='choice'}
+  this.arm();if(this.pending?.phase==='choice'&&(this.pending.left-=dt)<=0)this.autoPick()
  }
  tick(dt){this.signals.tick(dt);
   const sim=this.sim,P=this.P,s=P.state;this.messageTime=Math.max(0,this.messageTime-dt);P.Loot.messageTime=Math.max(0,P.Loot.messageTime-dt);
@@ -119,6 +127,6 @@ class Activities{
    if(!opener){chest.progress=0;continue}sim.use(opener);if(!P.Loot.canOpen(chest)){P.Loot.locked(chest);continue}chest.progress+=dt;if(chest.progress>=1.8){this.open(chest);break}
   }
  }
- snapshot(){const P=this.P,s=P.state;return {escort:this.escort.snapshot(),signals:this.signals.snapshot(),duoEvent:this.duo.snapshot(),portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles,defeat:s.encounter.defeat||null}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
+ snapshot(){const P=this.P,s=P.state;this.arm();return {escort:this.escort.snapshot(),signals:this.signals.snapshot(),duoEvent:this.duo.snapshot(),portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles,defeat:s.encounter.defeat||null}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
 }
 module.exports={Activities};

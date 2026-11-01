@@ -56,11 +56,16 @@ receive(m){
  P.Chunks.sync();P.MapEvents.ensureTerrain();P.UI.hudFrame();P.$('#coop-hud').textContent='SALA '+this.session.code+' · '+m.players.map(p=>p.name+': '+Math.ceil(p.hp)+' ♥'+(p.hp<=0?' · Reanimación '+Math.floor(p.revive||0)+'/4 s':'')).join(' / ');
  const votes=m.portal?.votes||[];if(m.portal?.open)P.$('#portal-status').textContent+=' · Toca el centro: entran los dos';P.$('#portal-enter').textContent=votes.includes(this.session.slot)?'Listo · E para cancelar':'Entrar juntos al portal · E';
  P.$('#hint').textContent=m.message||(s.player.hp<=0?'CAÍSTE · TU AMIGO PUEDE REANIMARTE ACERCÁNDOSE 4 S':'COOPERATIVO · EXPLORA COFRES, PORTALES Y EVENTOS CON TU AMIGO');
- this.showReward(m.pending);
+ this.showReward(m.pending);this.countdown(m.pending);
  if(m.result&&!this.resultShown){this.resultShown=true;this.paused=true;this.resultSummary={win:m.result==='win',kills:m.kills,elapsed:m.elapsed};const round=this.room?.round,show=()=>{if(!this.active||!this.resultShown||this.room?.round!==round)return;this.resultVisible=true;this.showResult()};const credit=this.session.code+':'+(this.room?.round||0);if(this.creditedRound!==credit){P.Meta.result(m.result==='win',m);this.creditedRound=credit;this.persistSession()}if(m.result==='lose')P.PlayerFeedback.finish(show);else show()}
 },
 showResult(){const result=this.resultSummary;if(!result)return;const returning=this.room?.players[this.session?.slot]?.returning,count=this.room?.players.filter(p=>p.returning).length||0;P.UI.show(result.win?'¡Ganaron, causas!':'Cayó el equipo.',result.kills+' rivales · '+P.Core.clock(result.elapsed)+' · Volver a la sala '+count+'/2',[{title:returning?'Esperando a tu compañero…':'Volver juntos a la sala',disabled:!!returning,action:()=>this.send({type:'return',round:this.room.round})},{title:'Salir del grupo',action:()=>this.leave()}]);P.Meta.decorate()},
 backToRoom(){this.queuedState=null;this.active=false;this.paused=false;this.resultShown=false;this.resultVisible=false;this.resultSummary=null;this.activityPending=false;this.activityKey='';this.peers=[];this.ultimate=false;this.domain=false;this.dragonSpin=false;this.weapon=0;this.lastSend=0;P.CoopMotion?.reset();P.$('#coop-hud').textContent='';P.$('#pause').setAttribute('aria-label','Pausar partida');P.UI.menu({keepGroup:true});P.Lobby.show('coop')},
+countdown(pending){
+ const overlay=P.$('#overlay');let el=overlay.querySelector('.coop-countdown');if(!pending||pending.phase!=='choice'||typeof pending.left!=='number'){el?.remove();return}
+ const sec=Math.max(0,Math.ceil(pending.left)),mine=pending.applied[this.session.slot],key=sec+':'+mine;if(!el){el=document.createElement('p');el.className='coop-countdown';overlay.append(el)}if(el.dataset.key===key)return;
+ el.dataset.key=key;el.dataset.low=String(sec<=5);el.textContent=mine?'Esperando a tu compañero · '+sec+' s':'Se elige solo en '+sec+' s'
+},
 showReward(pending){
  this.activityPending=!!pending;const key=pending?pending.id+':'+pending.phase+':'+pending.applied[this.session.slot]:'';if(key===this.activityKey)return;this.activityKey=key;
  if(pending){P.Evolutions.close();P.Market.close(false);this.paused=false;P.Core.clear()}
