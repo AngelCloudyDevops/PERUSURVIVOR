@@ -30,8 +30,8 @@ class Activities{
  enterPortal(trigger){const sim=this.sim,P=this.P,s=P.state;if(s.encounter||this.pending||!trigger||trigger.hp<=0)return false;this.positions=sim.players.map(p=>({x:p.x,y:p.y}));sim.use(trigger);s.mode='portal';P.Encounters.enter();if(!s.encounter){s.mode='play';return false}s.portal.open=false;for(const p of sim.players){p.x=p.slot?60:0;p.y=220;p.inv=1.5;p.moving=false;p.fire=.2;p.shots=[];p.fields=[]}this.votes.clear();this.notice('Entraron juntos a '+s.encounter.scene.name);return true}
  returnFromArena(){
   const sim=this.sim,P=this.P,s=P.state,arena=s.encounter;if(!arena)return;
-  s.enemies=arena.enemies;s.gems=arena.gems;s.spawn=arena.spawn;s.encounter=null;s.danger=[];s.effects=[];s.portal.open=false;s.portal.cleared=true;s.mapBossWon=true;
-  for(const p of sim.players){Object.assign(p,this.positions[p.slot]);p.inv=2;p.shots=[];p.fields=[];p.fire=.2}
+  s.effects=[];sim.use(sim.players[0]);const nextMap=P.Encounters.leave(arena,sim.players);this.chestWindow=null;
+  for(const p of sim.players){if(!nextMap)Object.assign(p,this.positions[p.slot]);p.inv=2;p.shots=[];p.fields=[];p.fire=.2}
   sim.use(sim.players[0]);P.Chunks.signature='';P.Chunks.sync();P.Terrain.flow=null;
   if(!P.Loot.bossDropped){P.Loot.bossDropped=true;const p=sim.players[0],pos=P.Loot.position(p.x+60,p.y)||{x:p.x,y:p.y};P.Loot.chests.push({id:'boss:'+P.Maps.selected,...pos,progress:0,opened:false,gold:true,rarity:'legendary',map:P.Maps.selected})}
   this.returning=false;this.notice('Jefe derrotado: abran el cofre dorado y elijan una mejora cada uno');

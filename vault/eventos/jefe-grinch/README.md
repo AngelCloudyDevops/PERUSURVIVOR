@@ -8,7 +8,7 @@ verificado: 2026-10-31
 
 - Definición: `src/systems/encounters.js:44`. Vida 1450, radio 66, velocidad 38. Daño especial (`wit`).
 - Mapa propio: `navidad` (portal 420,220). Sustituye al Gabinete en el sorteo en `navidad` (`encounters.js:47`). Bioma al vencer: `distrito-gabinete` (mismo `kind:'cabinet'`, `src/scenes/maps.js:13`).
-- Invocación: portal; `HolidayBoss.eligible` (`src/systems/holiday-boss.js:4`). `bossMove` lo deriva tras Cabinet/Guardian/Procesión (`encounters.js:65`).
+- Invocación: portal; `HolidayBoss.eligible` (`src/systems/holiday-boss.js:4`). `bossMove` lo deriva tras Cabinet/Guardian/Procesión (`encounters.js:68`).
 
 ## Robos (`start`, `holiday-boss.js:10`, ciclo de 4)
 1. Regalos (`gifts :11`): 3 (4 si <50 %) puntos, uno robado; rescatar los demás en 4,5 s.

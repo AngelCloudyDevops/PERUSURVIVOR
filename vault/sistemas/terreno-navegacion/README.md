@@ -27,7 +27,7 @@ Mundo infinito por sectores deterministas, colisión con props y campo de flujo 
 - Consumidores: `P.Systems.stepBody` (`src/systems/progression.js:21`), `map-events.js:121`.
 
 ## Estado y reinicio
-- `Terrain.props`, `nav`, `revision`, `flow`, `flowCache`; `Chunks.cache`, `edgeCache`, `broken`, `signature`. Se reinician con `Terrain.reset()`/`Chunks.reset()` al empezar partida o cambiar de mapa (`src/scenes/game.js:3`, `encounters.js:58`).
+- `Terrain.props`, `nav`, `revision`, `flow`, `flowCache`; `Chunks.cache`, `edgeCache`, `broken`, `signature`. Se reinician con `Terrain.reset()`/`Chunks.reset()` al empezar partida o cambiar de mapa (`src/scenes/game.js:3`, `encounters.js:59`, `leave`).
 
 ## Envoltorios
 - `P.Terrain.active/hit/resolve/draw`: `chamelin-arena.js:24-26,32`, `cirilo-arena.js:75-77`, `sideral-domain.js:73-76` (sustituyen el terreno por la arena del dominio). `P.Terrain.draw`: `seasonal-art.js:45`.

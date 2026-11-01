@@ -9,7 +9,7 @@ verificado: 2026-10-31
 Defender el puesto 20 s para curarte y ganar monedas. Solo en `campo` (`src/systems/exploration.js:4-5`).
 
 ## Cómo funciona
-- `reset` busca el primer punto libre entre `[850,400]`, `[850,250]`, `[1000,400]`, `[850,550]` (`exploration.js:4`). Se invoca en `Game.start` (`src/scenes/game.js:3`) y al cambiar de bioma (`src/systems/encounters.js:58`).
+- `reset` busca el primer punto libre entre `[850,400]`, `[850,250]`, `[1000,400]`, `[850,550]` (`exploration.js:4`). Se invoca en `Game.start` (`src/scenes/game.js:3`) y al cambiar de bioma (`src/systems/encounters.js:59`, `leave`).
 - Disponible si hay estación, mapa `campo`, sin encuentro y fuera de pruebas (`available :5`). No hay estación en halloween, navidad, plaza ni machu.
 - Iniciar: acercarse a <150 y pulsar el botón `#event-start` (`start :7`, `near :6`, `hud :9`). Solo en fase `idle` y sin jefe final.
 - `active`: permanecer a ≤200 del puesto; fuera de ahí el progreso vuelve a 0 (`tick :8`). Cada 4 s sale un enemigo a 290 del puesto si hay cupo (`:8`).

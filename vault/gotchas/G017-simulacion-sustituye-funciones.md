@@ -13,6 +13,7 @@ verificado: 2026-10-31
   - `P.Systems.levelup` (`backend/simulation.cjs:23`): abre la elección compartida de
     `Activities`.
   - `P.Chunks.centers`, `P.Minibosses.partySize`, `P.Court.players` (`:21`).
+  - `P.Encounters.win` (`backend/activities.cjs:4`): marca `returning`; `returnFromArena` comparte `P.Encounters.leave` con la victoria individual.
 - Y `Simulation.tick` (`:28-62`) reimplementa el bucle: no llama a `P.Game.update`, así
   que sus 13 envoltorios no corren en el servidor. Los ticks de dominios se llaman a mano
   (`:34-47`).

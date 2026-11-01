@@ -21,7 +21,7 @@ Nace como `'menu'` en `src/core/runtime.js:3`.
 | `item` | `src/systems/loot.js:46`, `src/systems/miniboss-relics.js:6` |
 | `shop` | `src/systems/market.js:15` |
 | `portal` | `src/systems/encounters.js:55`, `src/rendering/portal-fx.js:16`, `src/development/lab.js:12` |
-| `reward` | `src/systems/encounters.js:59` |
+| `reward` | `src/systems/encounters.js:62` |
 | `mini-loading` | `src/systems/minibosses.js:220` |
 | `supplies-loading`, `supplies-error` | `src/systems/supplies.js:13` |
 | `extinction-portal`, `extinction-room`, `extinction-reward` | `src/systems/map-events.js:153,157,162` |

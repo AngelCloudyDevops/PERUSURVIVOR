@@ -34,21 +34,22 @@ verificado: 2026-10-31
 - Proyectiles de aviso y disparo comparten plan: `projectilePatterns` (`:5-9`), `projectilePlan` (`:11`). Test: `tests/boss-projectile-contracts.test.cjs:8,26,33`.
 - IA de ruta persistente `planRoute`/`navigate` (`:17-32`). Test: `tests/encounter-navigation.test.cjs:17,23,30`.
 
-## Victoria (`win`, `encounters.js:57-63`)
-1. Solo/Caos: `P.Maps.transition(kind)` cambia al bioma del jefe (`src/scenes/maps.js:23`). `kind→bioma`: `combi→ruta-chosicano`, `cabinet→distrito-gabinete`, `stone→santuario-niebla`, `vulture→azoteas-lima`, `fujimori→archivo-final` (`maps.js:12-16`).
-2. Al cambiar de bioma se reinician mundo, terreno, `MapEvents.event`, zonas, barriles, mercader y estación (`encounters.js:58`). Rápida: regresa al mapa con enemigos guardados.
-3. Cofre dorado `P.Loot.bossChest` y elección (`encounters.js:59-62`):
+## Victoria (`leave` `encounters.js:58-60`, `win` `:61-66`)
+1. `leave(arena,party)` es la parte compartida con el servidor. Solo/Caos: `P.Maps.transition(kind)` cambia al bioma del jefe (`src/scenes/maps.js:23`). `kind→bioma`: `combi→ruta-chosicano`, `cabinet→distrito-gabinete`, `stone→santuario-niebla`, `vulture→azoteas-lima`, `fujimori→archivo-final` (`maps.js:12-16`).
+2. Al cambiar de bioma se reinician mundo, terreno, `MapEvents.event`, zonas, barriles, mercader y estación (`encounters.js:59`); `party[0]` va al spawn y el resto a +26 por `slot`. Rápida: repone enemigos guardados y `win` devuelve al jugador a `returnX/Y`.
+3. Cofre dorado `P.Loot.bossChest` y elección (`encounters.js:62-65`):
    - Poder del portal: +30 % daño.
    - Corazón de la arena: +40 vida máxima y cura total.
    - Ritmo del campeón: ataques +25 % más frecuentes (`rate*.75`, mínimo .1).
-4. `reward()` llama `ChaosDirector.bossVictory()` y retoma la cuenta a ElZeein (`:64`).
-- Caos: se marca la ventana en `clearedWindows`; `cleared` cuando son 3 (`:59`). Rápida: `cleared=true`.
+4. `reward()` llama `ChaosDirector.bossVictory()` y retoma la cuenta a ElZeein (`:67`).
+- Caos: `leave` marca la ventana en `clearedWindows`; `cleared` cuando son 3 (`:60`). Rápida: `cleared=true`.
 
 ## Cooperativo
-- `Encounters.win` se reemplaza en el servidor por `returning=true` (`backend/activities.cjs:4`) y `returnFromArena` (`:31-38`) repone mundo y deja un cofre dorado `boss:<mapa>` legendario.
+- `Encounters.win` se reemplaza en el servidor por `returning=true` (`backend/activities.cjs:4`) y `returnFromArena` (`:31-38`) llama a `P.Encounters.leave(arena,sim.players)` (mismo cambio de bioma y `clearedWindows` que en solitario), devuelve a cada uno a su posición previa solo si no hubo cambio de bioma y deja un cofre dorado `boss:<mapa>` legendario.
 - Entrada: contacto de uno basta (`autoPortal`, `activities.cjs:28`) o voto de los dos (`tryPortal`, `:29`, exige `votes.size===2`). Ambos aparecen en la arena (x 0 y 60, y 220).
 - Premio: cada jugador elige uno de 3 (`kind:'portal-reward'`, `activities.cjs:82-85`).
-- `returnFromArena` no llama `Maps.transition` ni actualiza `clearedWindows` (no hay cambio de bioma en coop). Efecto en Caos sin verificar en ejecución.
+- Antes de compartir `leave`, en Caos el servidor no anotaba la ventana: el portal se reabría y el dúo, devuelto junto a él, volvía a entrar. Test «Arena cooperativa en Caos» en `tests/cooperative.test.cjs`.
+- Un cambio a la salida de la arena va en `leave`, no en `win`: `win` no corre en el servidor ([[gotchas/G017-simulacion-sustituye-funciones]]).
 - Tests: `tests/cooperative.test.cjs:19`, `tests/boss-charge-ranges.test.cjs:53-58` (dúo, contacto, retorno individual).
 
 Jefes: [[eventos/jefe-chosicano/README]], [[eventos/jefe-gabinete/README]], [[eventos/jefe-guardian-niebla/README]], [[eventos/jefe-procesion/README]], [[eventos/jefe-grinch/README]], [[eventos/jefe-gallinazo/README]], [[eventos/jefe-fujimori/README]].

@@ -35,7 +35,7 @@ verificado: 2026-10-31
 - Cada etapa nueva (>0) agrega un obstáculo destructible `chaos-branch` (campo/navidad), `chaos-barricade` (plaza) o `chaos-rubble` (resto), con `hp:90+stage*20` (`run-mode.js:25-26`).
 - Transición visual 2,2 s y aviso `ETAPA n` (`run-mode.js:27`).
 - `bossVictory()` al reclamar el premio de un jefe de portal: transición 1,8 s (`run-mode.js:28`).
-- Se reinicia en `Game.start` y en cada cambio de bioma (`src/scenes/game.js:3`, `src/systems/encounters.js:58`).
+- Se reinicia en `Game.start` y en cada cambio de bioma (`src/scenes/game.js:3`, `src/systems/encounters.js:59`, `leave`).
 
 ## Qué corre según el modo
 | Sistema | Rápida | Caos |
