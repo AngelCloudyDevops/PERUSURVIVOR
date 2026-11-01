@@ -52,7 +52,9 @@ class WorkflowLockTest(unittest.TestCase):
         root = Path(__file__).resolve().parents[2]
         installer = (root / 'ops' / 'hostinger' / 'install-coop.py').read_text(encoding='utf-8')
         self.assertIn('/var/log/perusurvivor-backup.log', installer)
-        self.assertIn('backup exit=$?', installer)
+        self.assertIn('code=$?', installer)
+        self.assertIn('backup exit=$code', installer)
+        self.assertIn('exit $code', installer)
         self.assertNotIn('>/dev/null', installer)
 
     def test_staging_is_isolated_and_bounded(self):
