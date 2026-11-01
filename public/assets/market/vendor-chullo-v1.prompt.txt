@@ -1,0 +1,7 @@
+Use case: stylized-concept
+Asset type: transparent 2D pixel-art sprite sheet for a browser survival game
+Primary request: yellow Wobbuffet-inspired market vendor wearing a colorful Peruvian chullo, with four full-body animation frames in one horizontal row: idle, raising arms, presenting sideways, and both arms fully raised.
+Reference role: preserve the supplied Wobbuffet silhouette—tall flexible body, long arms, tiny feet, joyful face and black eye-tail—while adapting its color and merchant costume.
+Style: polished 32-bit pixel art, consistent anatomy and palette across every frame.
+Palette: golden yellow body, warm shading, black eye-tail, red-white-turquoise chullo with Andean geometric accents and dark outlines.
+Constraints: transparent background; no cart, merchandise, text, labels or watermark; identical proportions, face, chullo and lighting in all frames.
