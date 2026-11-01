@@ -129,7 +129,7 @@ networks:
     backup_cron = Path('/etc/cron.d/perusurvivor-accounts-backup')
     # Salida con fecha y código de salida en un log: un fallo del backup debe quedar visible (exit distinto de 0).
     log = '/var/log/perusurvivor-backup.log'
-    backup_cron.write_text('17 4 * * * root (echo "$(date -Is) backup inicio"; python3 /opt/perusurvivor/live/current/backend/backup-accounts.py; echo "$(date -Is) backup exit=$?") >>' + log + ' 2>&1\n')
+    backup_cron.write_text('17 4 * * * root (echo "$(date -Is) backup inicio"; python3 /opt/perusurvivor/live/current/backend/backup-accounts.py; code=$?; echo "$(date -Is) backup exit=$code"; exit $code) >>' + log + ' 2>&1\n')
     backup_cron.chmod(0o644)
     print(run('python3', str(source / 'backup-accounts.py')))
 

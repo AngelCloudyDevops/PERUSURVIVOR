@@ -32,6 +32,11 @@ test('Login: un cuerpo que nunca termina se corta por tiempo y no ocupa ranuras 
  assert.equal(login.status,401,'los cuerpos lentos no consumen ranuras');
  await Promise.race([Promise.all(stalled),new Promise((_,j)=>setTimeout(()=>j(Error('no se cortó')),3000))]);
 });
+test('Login: rechazar un tipo de contenido inválido limpia el temporizador de lectura',async t=>{
+ const origin='https://x.test',app=createAccounts({filename:':memory:',origins:[origin],bodyTimeout:80}),server=http.createServer((q,s)=>app.handle(q,s)),agent=new http.Agent({keepAlive:true});await new Promise(r=>server.listen(0,'127.0.0.1',r));t.after(async()=>{agent.destroy();await new Promise(r=>server.close(r));app.close()});
+ const result=await new Promise((resolve,reject)=>{let socket;const q=http.request({host:'127.0.0.1',port:server.address().port,path:'/api/login',method:'POST',agent,headers:{Origin:origin,'Content-Type':'text/plain','Content-Length':0}},r=>{r.resume();r.on('end',()=>resolve({status:r.statusCode,socket}))});q.on('socket',value=>{socket=value});q.on('error',reject);q.end()});
+ assert.equal(result.status,415);await sleep(160);assert.equal(result.socket.destroyed,false,'el temporizador ya no destruye la conexión después de responder');
+});
 async function coop(t,options={},clock){
  const app=createCoopServer({autoTick:false,...options,...(clock?{now:()=>clock.t}:{})});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+app.server.address().port,sockets=[];t.after(async()=>{for(const w of sockets)w.terminate();await app.close()});
  const connect=async(ip='203.0.113.7',headers={})=>{const ws=new WebSocket(origin.replace('http:','ws:')+'/coop',{origin,headers:{'X-Real-IP':ip,...headers}}),log=[];ws.on('message',d=>log.push(JSON.parse(d)));sockets.push(ws);await once(ws,'open');const c={ws,log,send:o=>ws.send(JSON.stringify(o)),next:async type=>{for(let i=0;i<200;i++){const m=log.find(m=>m.type===type);if(m){log.splice(log.indexOf(m),1);return m}await sleep(10)}assert.fail('sin '+type)}};return c};
