@@ -11,7 +11,7 @@ Cliente de sala por WebSocket. El servidor es autoritativo: simula en una VM y e
 ## Modelo
 - El cliente **no simula** en coop: manda entrada (`input`) y pinta el snapshot `state` que recibe (`P.Coop.receive`, `src/network/cooperative.js:46`). `P.Game.update` hace `P.Coop.tick(dt)` y sale (`src/scenes/game.js:4`).
 - Protocolo 3: el cliente envía `protocol:3` al abrir (`connect`, `:24-27`) y el servidor lo exige (`backend/cooperative.cjs:4,49`). Subir la versión en ambos lados a la vez.
-- Se fuerza `P.RunMode.selected='chaos'` al crear/unirse (`:25`) y se bloquea si el personaje no está desbloqueado en Gacha.
+- Se fuerza `P.RunMode.selected='chaos'` al crear/unirse (`:25`) y se bloquea si el personaje no está desbloqueado en Gacha. El servidor repite la comprobación con `accounts.owns` (`backend/cooperative.cjs:34`): gratuitos = `Meta.blank().unlocked`, luego `progress.unlocked` del guardado y concesiones admin (`backend/accounts.cjs:78`).
 
 ## `P.Coop` (`cooperative.js:2`)
 - Estado: `active`, `session` (`code`, `token`, `slot`, `guest`), `ws`, `peers`, `paused`, `reconnecting`, `activityPending`, `queuedState`, `net` (rtt, tickMs, bytes).

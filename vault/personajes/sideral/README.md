@@ -26,7 +26,7 @@ Controlador UR (cono de miedo, colazo, huevos y forma Lagarto). Kit **9/9**. Not
 
 ## Colección, atributo y canal
 - Rareza `UR · Supremo` (`src/systems/gacha.js:4`, tier `ultra`, crecimiento ×1,12 en `gacha.js:5`).
-- Desbloqueado de inicio en la lista base `src/systems/meta-progress.js:21`. No figura en la lista gratuita de `backend/accounts.cjs:78` (solo cristorata, cuy, paloma, makanaky). Test: `tests/gacha.test.cjs:35`.
+- Desbloqueado de inicio en la lista base `src/systems/meta-progress.js:21`. El servidor usa esa misma lista para la propiedad en cooperativo: `owns` lee `admin.rules().Meta.blank().unlocked` (`backend/accounts.cjs:78`; test «Propiedad cooperativa» en `tests/accounts.test.cjs`). Un guardado antiguo sin `sideral` en `unlocked` no lo gana en el cliente (`P.Gacha.owns`, `src/systems/gacha.js:9`). Test: `tests/gacha.test.cjs:35`.
 - Atributo `Ingenio`, canal `special` (`src/data/attributes.js:5`: `['wit','special',100,105]`).
 - Ver [[sistemas/atributos/README]] y [[sistemas/gacha-meta/README]].
 
