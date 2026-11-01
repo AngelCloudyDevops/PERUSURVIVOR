@@ -8,4 +8,4 @@ for i,(name,l,r) in enumerate([('park-bench',0,893),('colonial-bench',893,1821),
     out.alpha_composite(tile,(x,y));cells.append({'id':name,'x':x,'y':y,'w':tile.width,'h':tile.height})
 dest=src.with_suffix('.webp');out.save(dest,lossless=True,exact=True,method=6)
 audit={'source':'public/assets/environment/'+src.name,'runtime':'public/assets/environment/'+dest.name,'source_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),'runtime_sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'bytes':dest.stat().st_size,'width':512,'height':256,'cells':cells,'method':'Built-in image_gen; mechanical transparent-gap cropping and nearest-neighbor packing.'}
-(root/'docs/street-furniture-audit.json').write_text(json.dumps(audit,indent=2)+'\n',encoding='utf8');print(json.dumps(audit))
+(root/'docs/arte/auditorias/street-furniture-audit.json').write_text(json.dumps(audit,indent=2)+'\n',encoding='utf8');print(json.dumps(audit))

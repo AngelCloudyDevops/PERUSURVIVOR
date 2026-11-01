@@ -1,6 +1,8 @@
 # Perfiles de personajes
 
-Base de rango 1 sin mejoras permanentes ni mochila. La rareza de colección no aumenta el poder. El daño por impacto no es DPS: los retornos, nubes y múltiples impactos cuentan por separado. Véase [comparación antes/después](ROSTER_BALANCE.md).
+> Verificado contra el código el 2026-10-31: hay 21 personajes jugables (`src/data/catalog.js:3-11` menos ElZeein, que `shift()` convierte en jefe en `src/data/catalog.js:32`; `src/data/catalog.js:33`; `src/data/powers.js:74-109`; comprobado por `tests/gameplay.test.cjs:12`). La tabla cubre 17 de ellos más Cerdito VTuber, que es una variante de Kingteka (`src/systems/gacha.js:3`), no un personaje del roster. Makanaky, Sideral, Chamelín y Marciano no tienen fila; Sideral, CiriloTV, Chamelín y Cristorata se detallan al final. Rarezas corregidas según `src/systems/gacha.js:4`. Los valores numéricos no se reverificaron: ante contradicción manda el código (`src/data/`, `src/systems/character-balance.js`).
+
+Base de rango 1 sin mejoras permanentes ni mochila. La rareza de colección no aumenta el poder. El daño por impacto no es DPS: los retornos, nubes y múltiples impactos cuentan por separado. Véase [comparación antes/después](../balance/ROSTER_BALANCE.md).
 
 | Personaje | Rareza | Rol | Vida | Velocidad u/s | Daño/impacto | Recarga s | Alcance nominal u | Proyectiles/bandas | Objetivos/proyectil |
 |---|---|---|---:|---:|---:|---:|---:|---:|---|
@@ -11,10 +13,10 @@ Base de rango 1 sin mejoras permanentes ni mochila. La rareza de colección no a
 | Alberto Fujimori · ¡Soy Inocente! | SSR · Ultra raro | Defensa orbital | 120 | 175 | 28 | 0.42 | 100 | 3 | Área |
 | Keiko Fujimori · País Rico | SSR · Ultra raro | Hostigadora de retorno | 110 | 185 | 23 | 1.05 | 540 | 1 | Sin límite por trayecto |
 | Ollanta Humala · Cosito en Campaña | SR · Súper raro | Vanguardia | 135 | 170 | 30 | 0.9 | 250 | Área | Área |
-| Kingteka | Épico | Escopetero cercano | 125 | 175 | 16.8 | 0.78 | 480 | 5 | 1 |
-| Shakadoto | Épico | Control de pasillos | 140 | 160 | 17.5 | 0.95 | 550 | 2 | Sin límite por trayecto |
+| Kingteka | UR · Supremo | Escopetero cercano | 125 | 175 | 16.8 | 0.78 | 480 | 5 | 1 |
+| Shakadoto | SR · Súper raro | Control de pasillos | 140 | 160 | 17.5 | 0.95 | 550 | 2 | Sin límite por trayecto |
 | Najasor | Raro | Tirador móvil | 95 | 215 | 17 | 0.85 | 650 | 3 | 1 |
-| CiriloTV | Común | Hostigador equilibrado | 120 | 175 | 22 | 0.95 | 520 | 1 | Sin límite por trayecto |
+| CiriloTV | UR · Supremo | Hostigador equilibrado | 120 | 175 | 22 | 0.95 | 520 | 1 | Sin límite por trayecto |
 | Fuzo | R · Raro | Perforador de filas | 115 | 180 | 19.2 | 0.75 | 850 | 2 | 3 |
 | Charles | Raro | Control de zonas | 130 | 165 | 26.4 | 1.2 | 600 | 1 | 1 |
 | Axel Benba | Común | Tirador de abanico | 100 | 200 | 16.8 | 0.7 | 700 | 3 | 1 |

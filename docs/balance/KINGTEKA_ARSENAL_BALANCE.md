@@ -8,7 +8,7 @@ La primera medición mostró que el golpe de cuerpo concentraba casi todo el da�
 - **Gallinazo:** más potencia y las plumas perforan hasta dos rivales. Sigue siendo una opción especial guiada y de cadencia lenta.
 - **Golpe de cuerpo:** menor daño y recuperación más pausada. Conserva el empuje y la ventaja de corto alcance, con mayor exposición al acercarse.
 
-Los números de perfiles están en `src/systems/kingteka-arsenal.js`; las reglas de progresión están en `docs/GAME_DESIGN.md`.
+Los números de perfiles están en `src/systems/kingteka-arsenal.js`; las reglas de progresión están en `docs/diseno/GAME_DESIGN.md`.
 
 ## Método
 

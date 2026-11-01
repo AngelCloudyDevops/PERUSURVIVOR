@@ -1,6 +1,6 @@
 # Manual del propietario de PERUSURVIVOR
 
-Este manual explica cómo recibir cambios de colaboradores, probarlos y publicarlos sin compartir accesos sensibles. Las reglas técnicas del juego están en el [Manual maestro de creación](manual/PERUSURVIVOR_Manual_Maestro_de_Creacion_v1.pdf).
+Este manual explica cómo recibir cambios de colaboradores, probarlos y publicarlos sin compartir accesos sensibles. Las reglas técnicas del juego están en el [Manual maestro de creación](../manual/PERUSURVIVOR_Manual_Maestro_de_Creacion_v1.pdf).
 
 ## Ramas permanentes
 
@@ -83,9 +83,9 @@ No copies archivos manualmente al servidor y no reconstruyas una release directa
 ## Documentos relacionados
 
 - [Guía para colaboradores](GUIA_PARA_COLABORADORES.md)
-- [Cómo contribuir](../CONTRIBUTING.md)
-- [Arquitectura de releases](RELEASE_ARCHITECTURE.md)
+- [Cómo contribuir](../../CONTRIBUTING.md)
+- [Arquitectura de releases](../arquitectura/RELEASE_ARCHITECTURE.md)
 - [Despliegue automático](DEPLOYMENT.md)
-- [Diseño del juego](GAME_DESIGN.md)
-- [Arquitectura del proyecto](ARCHITECTURE.md)
+- [Diseño del juego](../diseno/GAME_DESIGN.md)
+- [Arquitectura del proyecto](../arquitectura/ARCHITECTURE.md)
 

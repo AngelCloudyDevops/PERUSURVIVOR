@@ -1,4 +1,4 @@
-> Registro de la pasada anterior. Los ajustes posteriores de G5, Fuzo y Cerdito están en [TRIO_BALANCE.md](TRIO_BALANCE.md); las fichas actuales, en [CHARACTER_PROFILES.md](CHARACTER_PROFILES.md).
+> Registro de la pasada anterior. Los ajustes posteriores de G5, Fuzo y Cerdito están en [TRIO_BALANCE.md](TRIO_BALANCE.md); las fichas actuales, en [CHARACTER_PROFILES.md](../diseno/CHARACTER_PROFILES.md).
 
 # Balance de los 18 personajes
 

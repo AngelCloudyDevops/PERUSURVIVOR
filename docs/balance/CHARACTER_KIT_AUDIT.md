@@ -1,5 +1,7 @@
 # Auditoría de kits de personajes
 
+> Histórico: refleja el estado del commit `77bf549` (2026-10-30), con 20 causas. Hoy hay 21 personajes jugables (`src/data/catalog.js:3-11` menos ElZeein, que `shift()` convierte en jefe en `src/data/catalog.js:32`; `src/data/catalog.js:33`; `src/data/powers.js:74-109`; comprobado por `tests/gameplay.test.cjs:12`); Marciano de SJL (`src/data/powers.js:109`) no figura aquí. Ver código.
+
 Estado comprobado contra el código del juego. Esta tabla distingue lo que funciona en combate de lo que solo está planeado o reservado.
 
 ## Regla del roster
@@ -38,7 +40,7 @@ El arsenal ejecutable vive en `P.CharacterProfiles.weaponKits` y `weaponSlots`; 
 | Sideral · Espantaminions | Mirada Sideral | Colazo del Lagarto | Huevo sospechoso | **3/3** |
 | Chamelín · Trovo | Retaguardia de Trovo | Escupitajo pegajoso | Pichi de Trovo | **3/3** |
 
-Resumen: 20 causas, 32 ataques personales funcionales, sin conceptos en estado planeado y seis contratos 9/9 completos: Kingteka, Makanaky, Sideral, CiriloTV, Chamelín y Cristorata. Detalle del nuevo kit: [SIDERAL_KIT.md](SIDERAL_KIT.md).
+Resumen: 20 causas, 32 ataques personales funcionales, sin conceptos en estado planeado y seis contratos 9/9 completos: Kingteka, Makanaky, Sideral, CiriloTV, Chamelín y Cristorata. Detalle del nuevo kit: [SIDERAL_KIT.md](../diseno/SIDERAL_KIT.md).
 
 ## Q, R y pasivas
 
@@ -93,4 +95,4 @@ Kingteka, Makanaky, Sideral, CiriloTV, Chamelín y Cristorata son kits cerrados 
 
 Sideral está 9/9: tres técnicas, tres evoluciones, Sangre fría, Q y dominio existente. Su Q ya tiene ilustración exclusiva del Lagarto; ya tiene medición automática y ajustes de huevo/Q en [SIDERAL_BALANCE.md](SIDERAL_BALANCE.md), con validación humana pendiente.
 
-CiriloTV completa 9/9 con taxi, eco, evoluciones, pasiva registrada y Q. Se conservan Audiencia y transformaciones. [CIRILO_KIT.md](CIRILO_KIT.md) describe límites, carga independiente y trabajo visual/balance pendiente.
+CiriloTV completa 9/9 con taxi, eco, evoluciones, pasiva registrada y Q. Se conservan Audiencia y transformaciones. [CIRILO_KIT.md](../diseno/CIRILO_KIT.md) describe límites, carga independiente y trabajo visual/balance pendiente.

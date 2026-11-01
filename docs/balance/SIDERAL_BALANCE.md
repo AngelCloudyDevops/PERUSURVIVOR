@@ -67,10 +67,10 @@ La mejora genérica «Uno más para el combo» ya convierte el proyectil adicion
 
 Base: `ce2ffb4a6722dbbc2a1e0d2951f4815cd8410bd3`. Los JSON distinguen el SHA base y las huellas SHA-256 normalizadas de los archivos medidos. Las huellas de `sideral-domain.js` coinciden antes/después.
 
-- [Serie antes](sideral-balance-before-domain.json) / [serie después](sideral-balance-after-domain.json).
-- [Estilos antes](sideral-balance-before-pilot-domain.json) / [estilos después](sideral-balance-after-pilot-domain.json).
-- [Cierre antes](sideral-balance-before-boss-domain.json) / [cierre después](sideral-balance-after-boss-domain.json).
-- [Duelos antes](sideral-duels-before.json) / [duelos después](sideral-duels-after.json).
+- [Serie antes](datos/sideral-balance-before-domain.json) / [serie después](datos/sideral-balance-after-domain.json).
+- [Estilos antes](datos/sideral-balance-before-pilot-domain.json) / [estilos después](datos/sideral-balance-after-pilot-domain.json).
+- [Cierre antes](datos/sideral-balance-before-boss-domain.json) / [cierre después](datos/sideral-balance-after-boss-domain.json).
+- [Duelos antes](datos/sideral-duels-before.json) / [duelos después](datos/sideral-duels-after.json).
 
 Desde el checkout candidato:
 

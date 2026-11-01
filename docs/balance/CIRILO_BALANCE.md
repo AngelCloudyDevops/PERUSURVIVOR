@@ -91,11 +91,11 @@ Las huellas SHA-256 normalizadas de `cirilo-ur.js` y `cirilo-arena.js` son idén
 
 Base: `ecb0ef74a6560a56987d470f549924d13a44c2f6`. Los JSON guardan SHA base y huellas normalizadas del código medido. El candidato tiene cambios locales sobre esa base, identificados por la huella de `cirilo-kit.js`; `sourceSha` por sí solo no identifica el candidato.
 
-- [Principal antes](cirilo-balance-before-domain.json) / [después](cirilo-balance-after-domain.json).
-- [Estilos antes](cirilo-balance-before-pilot-domain.json) / [después](cirilo-balance-after-pilot-domain.json).
-- [Cierre con Vómito antes](cirilo-balance-before-boss-domain.json) / [después](cirilo-balance-after-boss-domain.json).
-- [Cierre con Eco antes](cirilo-balance-before-echo-boss-domain.json) / [después](cirilo-balance-after-echo-boss-domain.json).
-- [Duelos antes](cirilo-duels-before.json) / [después](cirilo-duels-after.json).
+- [Principal antes](datos/cirilo-balance-before-domain.json) / [después](datos/cirilo-balance-after-domain.json).
+- [Estilos antes](datos/cirilo-balance-before-pilot-domain.json) / [después](datos/cirilo-balance-after-pilot-domain.json).
+- [Cierre con Vómito antes](datos/cirilo-balance-before-boss-domain.json) / [después](datos/cirilo-balance-after-boss-domain.json).
+- [Cierre con Eco antes](datos/cirilo-balance-before-echo-boss-domain.json) / [después](datos/cirilo-balance-after-echo-boss-domain.json).
+- [Duelos antes](datos/cirilo-duels-before.json) / [después](datos/cirilo-duels-after.json).
 
 ```sh
 node scripts/cirilo-balance-audit.cjs --after --domain

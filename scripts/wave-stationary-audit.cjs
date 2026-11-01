@@ -1,4 +1,4 @@
 'use strict';
-const fs=require('node:fs'),{play,load}=require('./full-run-audit.cjs'),snapshot=require('../docs/wave-baseline-profile.json'),P=load(920),results=[];
+const fs=require('node:fs'),{play,load}=require('./full-run-audit.cjs'),snapshot=require('../docs/balance/datos/wave-baseline-profile.json'),P=load(920),results=[];
 for(const id of ['cristorata','cuy','paloma','kingteka','g5','fuzo'])for(const baseline of [true,false]){const run=play({index:P.Data.characters.findIndex(c=>c.id===id),map:'campo',seed:920,limit:60,autoCombo:true,recordPressure:true,stationary:true,waveSnapshot:baseline?snapshot:null});results.push({baseline,...run});console.log(JSON.stringify({id,baseline,result:run.result,seconds:run.seconds,damage:run.pressure.damage}))}
-fs.writeFileSync('docs/wave-stationary.json',JSON.stringify({method:'Six characters x paired baseline/new pressure. Same normal engine, seed920, Campo, 60 s, zero movement, actual offered upgrade choice bot. No stat changes. Staying still is intentionally a poor strategy.',results},null,2)+'\n');
+fs.writeFileSync('docs/balance/datos/wave-stationary.json',JSON.stringify({method:'Six characters x paired baseline/new pressure. Same normal engine, seed920, Campo, 60 s, zero movement, actual offered upgrade choice bot. No stat changes. Staying still is intentionally a poor strategy.',results},null,2)+'\n');

@@ -4,20 +4,20 @@ Cooperativo: R activa el dominio; G confirma el combo compartido (también dispo
 
 Cooperativo sin barrera de separación: cada jugador puede explorar libremente; el servidor conserva sectores y colisiones alrededor de ambos, alterna el foco de aparición sin duplicar enemigos y reutiliza dos mapas de navegación. Una flecha señala al compañero lejano. Los dominios de Makanaky, Sideral y Chamelín se solicitan al servidor sin activarse localmente. Las pulsaciones breves de dominio, ulti, golpe y salto se conservan entre mensajes hasta el siguiente paso de simulación y se consumen una vez.
 
-Supervivencia peruana con dieciocho personajes, cinco mapas, encuentros opcionales y objetos de Dota 2 adaptados como cartas de equipo evolutivo durante cada partida.
+Supervivencia peruana con veintiún personajes jugables, cinco mapas, encuentros opcionales y objetos de Dota 2 adaptados como cartas de equipo evolutivo durante cada partida.
 
 ## Punto actual de desarrollo
 
 El **Grinch del Cercado** ya tiene su contrato mecánico completo: cuatro ataques propios, Lista negra, Espíritu navideño robado, la expansión Cercado sin Navidad y la ulti Noche del gran robo. Su segunda fase añade un cuarto objetivo y acelera los robos según los fallos. Pendientes: dirección de arte, animación, audio y balance en partidas completas.
 
-Cristorata ya tiene **kit 9/9**: Clip/Directo encadenado, Derrape/Derrape encendido, Garra/Doble garra, pasiva De ida y de vuelta y R El Coliseo del Dragón con tres sellos. La Q original conserva variantes, montura y controles. [Reglas y verificación](docs/CRISTORATA_KIT.md). Pendientes: balance de partidas completas y arte exclusivo de R.
+Cristorata ya tiene **kit 9/9**: Clip/Directo encadenado, Derrape/Derrape encendido, Garra/Doble garra, pasiva De ida y de vuelta y R El Coliseo del Dragón con tres sellos. La Q original conserva variantes, montura y controles. [Reglas y verificación](docs/diseno/CRISTORATA_KIT.md). Pendientes: balance de partidas completas y arte exclusivo de R.
 
-Chamelín ya tiene **kit 9/9**: Retaguardia/Desastre de Trovo, Escupitajo pegajoso con 10 % de Pegote, Pichi con 15 % de resbalón, evoluciones, Presión acumulada y Q ¡SE TAPÓ TODO! con carga independiente. Baño de Trovo conserva su funcionamiento. [Reglas, animaciones y pruebas](docs/CHAMELIN_KIT.md). La Q ya tiene arte exclusivo de ondas de presión. Pendiente: balance en partidas completas.
+Chamelín ya tiene **kit 9/9**: Retaguardia/Desastre de Trovo, Escupitajo pegajoso con 10 % de Pegote, Pichi con 15 % de resbalón, evoluciones, Presión acumulada y Q ¡SE TAPÓ TODO! con carga independiente. Baño de Trovo conserva su funcionamiento. [Reglas, animaciones y pruebas](docs/diseno/CHAMELIN_KIT.md). La Q ya tiene arte exclusivo de ondas de presión. Pendiente: balance en partidas completas.
 
-CiriloTV ya tiene **kit 9/9**: Taxi de Cirilo y regreso con 40 % de resistencia, Carrera de ida y vuelta, Eco maldito/Maldad contagiosa, Persistencia maldita y Q ¡FULL MALDAD! con carga independiente y arte exclusivo. Audiencia y las transformaciones existentes se conservan. [Especificación del kit](docs/CIRILO_KIT.md). [Balance medido](docs/CIRILO_BALANCE.md): 60 simulaciones de partidas y 40 duelos, anticipación de Taxi/Eco/Q, explosión de Eco tras una baja y ajuste de Q. Hay cierres en ambos modos, pero la supervivencia del estilo adaptativo sigue siendo mixta; falta validación humana.
+CiriloTV ya tiene **kit 9/9**: Taxi de Cirilo y regreso con 40 % de resistencia, Carrera de ida y vuelta, Eco maldito/Maldad contagiosa, Persistencia maldita y Q ¡FULL MALDAD! con carga independiente y arte exclusivo. Audiencia y las transformaciones existentes se conservan. [Especificación del kit](docs/diseno/CIRILO_KIT.md). [Balance medido](docs/balance/CIRILO_BALANCE.md): 60 simulaciones de partidas y 40 duelos, anticipación de Taxi/Eco/Q, explosión de Eco tras una baja y ajuste de Q. Hay cierres en ambos modos, pero la supervivencia del estilo adaptativo sigue siendo mixta; falta validación humana.
 
 
-El **kit 9/9 de Sideral · El Lagarto** incluye Mirada, Colazo y Huevo, tres evoluciones, Sangre fría y Despertar del Lagarto Q. Conserva UR, 120 PV, velocidad 195 y poder 27; sus ATQ son 95 físico / 105 especial. Q tiene carga independiente y el dominio R no cambia. El balance ya tiene [mediciones automatizadas en partidas y duelos](docs/SIDERAL_BALANCE.md): huevos que apuntan al abrir y Q que crece con el arsenal, sin cambiar R. La transformación Q ya usa huevo rodante, eclosión, atlas reptiliano detallado, aliento e impactos propios. Su caminata alterna apoyos con la misma cadencia por distancia del atlas general y conserva los pasos al disparar, evitando deslizamiento. La supervivencia individual y la naturalidad final del ciclo todavía requieren validación con jugadores; solo se creará otro atlas si esa prueba revela deformación o cambios de tamaño entre cuadros. Especificación y pruebas: [Kit de Sideral](docs/SIDERAL_KIT.md).
+El **kit 9/9 de Sideral · El Lagarto** incluye Mirada, Colazo y Huevo, tres evoluciones, Sangre fría y Despertar del Lagarto Q. Conserva UR, 120 PV, velocidad 195 y poder 27; sus ATQ son 95 físico / 105 especial. Q tiene carga independiente y el dominio R no cambia. El balance ya tiene [mediciones automatizadas en partidas y duelos](docs/balance/SIDERAL_BALANCE.md): huevos que apuntan al abrir y Q que crece con el arsenal, sin cambiar R. La transformación Q ya usa huevo rodante, eclosión, atlas reptiliano detallado, aliento e impactos propios. Su caminata alterna apoyos con la misma cadencia por distancia del atlas general y conserva los pasos al disparar, evitando deslizamiento. La supervivencia individual y la naturalidad final del ciclo todavía requieren validación con jugadores; solo se creará otro atlas si esa prueba revela deformación o cambios de tamaño entre cuadros. Especificación y pruebas: [Kit de Sideral](docs/diseno/SIDERAL_KIT.md).
 
 El **Marciano de SJL · El Polvito** también conserva kit 9/9. Sus tres técnicas, tres evoluciones, Q Treinta intervenidos y R Disco-Bar Manhattan ya poseen full arts propios conectados a las cartas. Reposo y caminata usan la misma lámina independiente, evitando que el personaje cambie de apariencia al soltar el movimiento. PNG y prompts quedan archivados; el paquete público distribuye copias WebP compactas.
 
@@ -25,7 +25,7 @@ El **Marciano de SJL · El Polvito** también conserva kit 9/9. Sus tres técnic
 
 También está terminada la presentación dinámica de la ulti de **Cristorata**. Después de la tarjeta, la máquina cae y permanece fija en el punto de invocación; Cristorata conserva movimiento, ataques y cámara. El jugador debe acercarse a 86 unidades y accionar la palanca con Espacio, clic o toque. El acercamiento muestra tres rodillos con imágenes de dragones que se detienen de izquierda a derecha: tres iguales conceden Jade, Brasa o Trueno, mientras Jade + Brasa + Trueno revela al Tricéfalo. El dragón elegido emerge desde la máquina, vuela hasta la posición actual de Cristorata y comienza los ocho segundos completos de montura. No hay giro automático ni invulnerabilidad durante la espera. El servidor valida la distancia y replica el ancla, la palanca y el resultado en cooperativo.
 
-Este flujo ya está implementado, probado y publicado. El siguiente paso es probar su lectura y ritmo en una partida real; cualquier ajuste posterior debe conservar la máquina fija, los tres rodillos, la interacción cercana y el combate continuo. La especificación completa permanece en `docs/GAME_DESIGN.md`.
+Este flujo ya está implementado, probado y publicado. El siguiente paso es probar su lectura y ritmo en una partida real; cualquier ajuste posterior debe conservar la máquina fija, los tres rodillos, la interacción cercana y el combate continuo. La especificación completa permanece en `docs/diseno/GAME_DESIGN.md`.
 
 ## Regla general de continuidad de los dominios
 
@@ -37,7 +37,7 @@ Cooperativo: señales Aquí/Peligro/Ayuda/Cofre desde el botón Señales, posici
 
 ## Contrato general de personajes: estadísticas, pasiva y habilidades
 
-El contrato mecánico se complementa con el [contrato visual de personajes](docs/VISUAL_CONTRACT.md). Kingteka es la referencia de cobertura: identidad, movimiento, tres ataques y evoluciones legibles, pasiva, Q, R, cartas propias, reacciones, accesibilidad y entrega optimizada. Un kit 9/9 no se declara visualmente completo si sus estados jugables todavía usan placeholders o no están conectados al flujo real.
+El contrato mecánico se complementa con el [contrato visual de personajes](docs/diseno/VISUAL_CONTRACT.md). Kingteka es la referencia de cobertura: identidad, movimiento, tres ataques y evoluciones legibles, pasiva, Q, R, cartas propias, reacciones, accesibilidad y entrega optimizada. Un kit 9/9 no se declara visualmente completo si sus estados jugables todavía usan placeholders o no están conectados al flujo real.
 
 Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa. Una ficha no debe enseñar una estadística que todavía no tenga efecto real en el combate. Los valores base significan **rango 1, una estrella, sin mejoras permanentes, objetos ni bonificaciones de la partida**.
 
@@ -61,7 +61,7 @@ Esta es la estructura obligatoria para diseñar, mostrar y balancear cada causa.
 
 El objetivo final de cada causa es **9/9**, pero el contrato describe el estado real y permite desarrollar una pieza a la vez. `Planeado` significa que la mecánica y su función ya fueron aprobadas; `Por definir` reserva capacidad sin prometer comportamiento. Una skin, objeto, pacto o poder de apoyo no cuenta como pieza del kit.
 
-Estado actual calculado: **Kingteka, Makanaky, Sideral, CiriloTV, Chamelín y Cristorata están 9/9**. Makanaky ya posee tres técnicas intercambiables, tres evoluciones, pasiva, Q y dominio R. **Sideral también está 9/9**: Colazo del Lagarto, Huevo sospechoso, sus evoluciones, Sangre fría y Despertar del Lagarto Q completan su identidad; Habitación del Lagarto R se conserva. Stats, límites y controles en [Kit de Sideral](docs/SIDERAL_KIT.md).
+Estado actual calculado: **Kingteka, Makanaky, Sideral, CiriloTV, Chamelín y Cristorata están 9/9**. Makanaky ya posee tres técnicas intercambiables, tres evoluciones, pasiva, Q y dominio R. **Sideral también está 9/9**: Colazo del Lagarto, Huevo sospechoso, sus evoluciones, Sangre fría y Despertar del Lagarto Q completan su identidad; Habitación del Lagarto R se conserva. Stats, límites y controles en [Kit de Sideral](docs/diseno/SIDERAL_KIT.md).
 
 ### Cómo se interpretan los stats
 
@@ -148,7 +148,7 @@ El atributo siempre se muestra aparte del rol: Fuerza vence a Técnica, Técnica
 
 Kingteka es la referencia del formato: **Humano · Fuerza · Especialista / Controlador · alcance variable · daño híbrido**. Sus etiquetas son Arsenal intercambiable, Ráfaga, Control, Movilidad, Curación y Daño fijo. Escopeta y golpe son físicos, Gallinazo es especial. Su pasiva **Instinto de expedición** se activa al cambiar realmente entre armas desbloqueadas: recupera 2,5 % de vida máxima, prepara durante 4 s un único ataque con +12 % de daño y, si conecta, carga 8 % del Vínculo animal de R; después entra en recuperación durante 7 s. Un aro visible y el HUD muestran la ventana activa.
 
-La cobertura real de los tres ataques, Q, R, pasivas e ilustraciones de cada causa se mantiene en [Auditoría de kits de personajes](docs/CHARACTER_KIT_AUDIT.md). La Causapedia diferencia `Implementado`, `Planeado` y `Reservado`: un concepto o espacio futuro nunca se presenta como una habilidad funcional.
+La cobertura real de los tres ataques, Q, R, pasivas e ilustraciones de cada causa se mantiene en [Auditoría de kits de personajes](docs/balance/CHARACTER_KIT_AUDIT.md). La Causapedia diferencia `Implementado`, `Planeado` y `Reservado`: un concepto o espacio futuro nunca se presenta como una habilidad funcional.
 
 ## Pendiente priorizado
 
@@ -171,7 +171,7 @@ Ya están funcionales y fuera de esta lista: impacto y cráter, invasión y form
 
 Toda amenaza declara identidad (`id`, nombre, categoría y rol), estadísticas base (vida, velocidad y tamaño), atributo, canal de daño, ATQ/DEF físico y especial y los nueve stats avanzados universales: perforación, resistencia de estado, regeneración, crítico, daño crítico, resistencia crítica, defensa crítica, recuperación y robo de vida. También declara debilidad, ataques, habilidad de rol cuando corresponda, pasivas, fases, ulti y expansión según su categoría. Un valor neutral se escribe explícitamente; no se omite. Un hueco sin mecánica real queda como **Por definir**.
 
-La Wiki aplica ahora el mismo criterio de sinceridad que las fichas de personajes: cada espacio aparece como `Implementado` o `Por definir`, muestra el porcentaje cubierto y nunca convierte un hueco en una habilidad genérica. La auditoría boss por boss, incluidos minijefes, jefes de portal y Extinción, vive en [BOSS_KIT_AUDIT.md](docs/BOSS_KIT_AUDIT.md). Esta primera pasada documenta faltantes; no cambia daño, vida, colisiones ni patrones.
+La Wiki aplica ahora el mismo criterio de sinceridad que las fichas de personajes: cada espacio aparece como `Implementado` o `Por definir`, muestra el porcentaje cubierto y nunca convierte un hueco en una habilidad genérica. La auditoría boss por boss, incluidos minijefes, jefes de portal y Extinción, vive en [BOSS_KIT_AUDIT.md](docs/balance/BOSS_KIT_AUDIT.md). Esta primera pasada documenta faltantes; no cambia daño, vida, colisiones ni patrones.
 
 | Categoría | Ataques | Habilidades de rol | Pasivas | Fases | Ulti | Expansión |
 |---|---:|---:|---:|---:|---:|---:|
@@ -187,7 +187,7 @@ Checklist para aprobar una pieza nueva:
 3. Pausa, movimiento reducido, muerte, reinicio y reconexión limpian su estado.
 4. Wiki, Balance, laboratorio y tests leen el mismo registro; no copian cifras manualmente.
 5. La ulti es un remate extraordinario y la expansión transforma temporalmente las reglas o el escenario; no son alias de un ataque normal.
-6. La auditoría en `docs/BOSS_KIT_AUDIT.md` se actualiza y cualquier faltante permanece visible.
+6. La auditoría en `docs/balance/BOSS_KIT_AUDIT.md` se actualiza y cualquier faltante permanece visible.
 
 Primer jefe normalizado con esta plantilla: **El Chosicano · Última Parada**. Sus cuatro ataques son Embestida de ruta, Bocinazo, Lluvia de boletos y Control de paradero; conserva las pasivas La familia es primero y Frenazo expuesto, activa Hora punta como ulti única al 25 % y despliega Última Parada como expansión al 50 %. Control de paradero fija tres zonas durante 1,3 s y luego las impacta sin seguir al jugador. Su ficha se mantiene conectada al mismo catálogo, stats, Wiki, Balance y laboratorio.
 
@@ -250,7 +250,7 @@ La intención es que Makanaky sostenga presión sin perder toda la preparación 
 La pasiva se valida con los mismos escenarios base y con la racha activa: enemigo cercano, grupo frontal, jefe móvil, falla deliberada, pérdida de objetivo, evolución, pausa, movimiento reducido y dos jugadores. El objetivo no es que Makanaky gane todas las pruebas, sino que su ventaja aparezca cuando mantiene el combo y desaparezca cuando no consigue conectar.
 
 ## Estándar obligatorio de tarjetas de ulti
-Las entradas de ulti usan 40 % de ancho, 82 % de alto, x = 0, y = 8 %, 1,3 s, borde diagonal con marco oscuro y retrato dedicado de cintura arriba. Render a resolución de pantalla, sin margen ni ampliación del lienzo del dominio. Las vistas de espalda deben usar sprites cartoon pixel art completos y contorneados, nunca figuras geométricas de sustitución. Detalles y assets: [Contrato visual de ultis](docs/ULTIMATE_ART.md).
+Las entradas de ulti usan 40 % de ancho, 82 % de alto, x = 0, y = 8 %, 1,3 s, borde diagonal con marco oscuro y retrato dedicado de cintura arriba. Render a resolución de pantalla, sin margen ni ampliación del lienzo del dominio. Las vistas de espalda deben usar sprites cartoon pixel art completos y contorneados, nunca figuras geométricas de sustitución. Detalles y assets: [Contrato visual de ultis](docs/arte/ULTIMATE_ART.md).
 
 En partida, todos los personajes muestran dos espacios de carta en el HUD: ulti (Q) y Expansión de Dominio (R). La habilidad implementada usa su arte, carga y estado; si aún no existe para ese personaje, el espacio queda visible en gris como «PRÓXIMAMENTE», sin activarse. Mantener Q o R levanta la carta para revelar su arte; una pulsación breve activa una habilidad disponible cuando está cargada. Las expansiones de dominio comienzan con su cinemática a pantalla completa.
 
@@ -258,7 +258,7 @@ En partida, todos los personajes muestran dos espacios de carta en el HUD: ulti 
 Al subir de nivel se revelan las tres cartas antes de elegir una. El giro muestra un destello breve de izquierda a derecha según la rareza: turquesa para rara, violeta para épica y dorado para legendaria; común conserva un giro limpio. El efecto es cosmético y de una sola ejecución, respeta `prefers-reduced-motion` y no modifica el poder: la rareza solo influye en la probabilidad de aparición.
 
 ## Objetos de Dota durante la partida
-Los objetos equipados aparecen en una fila de hasta cuatro espacios en la esquina inferior derecha. Cada espacio muestra el icono oficial de Dota 2, el nombre y un estado corto; al pasar el cursor o enfocarlo se lee la descripción completa. Si el CDN oficial no responde, se usa el icono pixel art local. Botas, Magic Stick/Wand, anillos y armas son pasivos; Blink Dagger y sus evoluciones son el único objeto activable y se usan con **E** o clic en su icono. El Ring of Health se obtiene en cofres comunes o en el ambulante y evoluciona a Ring of Tarrasque desde nivel 5 y Heart of Tarrasque desde nivel 8: aumentan vida máxima y regeneración. Blades of Attack también aparece en cofres comunes y en el ambulante y evoluciona en orden a Broadsword (nivel 5), Crystalys (nivel 8) y Daedalus (nivel 11): suben el daño y las dos últimas pueden asestar críticos. Cada rama ocupa un espacio y el equipo de objetos se reinicia al comenzar otra partida. Las cartas de objetos muestran ampliada la imagen original de Dota como arte principal, sin personaje de fondo; si falla la imagen oficial, se muestra el icono pixel art local.
+Los objetos equipados aparecen en una fila de hasta cuatro espacios en la esquina inferior derecha. Cada espacio muestra el icono oficial de Dota 2, el nombre y un estado corto; al pasar el cursor o enfocarlo se lee la descripción completa. Si el CDN oficial no responde, se usa el icono pixel art local. Botas, Magic Stick/Wand, anillos y armas son pasivos; Blink Dagger y sus evoluciones son activables, igual que Phase Boots, Boots of Travel, Magic Stick/Wand, Blade Mail, Satanic, Mask of Madness, Glimmer Cape, Pipe of Insight, Black King Bar, Hand of Midas, Abyssal Blade y Mjollnir (`src/systems/dota-actives.js:5-23`); se usan con **E** o clic en su icono. El Ring of Health se obtiene en cofres comunes o en el ambulante y evoluciona a Ring of Tarrasque desde nivel 5 y Heart of Tarrasque desde nivel 8: aumentan vida máxima y regeneración. Blades of Attack también aparece en cofres comunes y en el ambulante y evoluciona en orden a Broadsword (nivel 5), Crystalys (nivel 8) y Daedalus (nivel 11): suben el daño y las dos últimas pueden asestar críticos. Cada rama ocupa un espacio y el equipo de objetos se reinicia al comenzar otra partida. Las cartas de objetos muestran ampliada la imagen original de Dota como arte principal, sin personaje de fondo; si falla la imagen oficial, se muestra el icono pixel art local.
 
 ## Dominio de Sideral: «¿QUÉ, EN SERIO?»
 Como Expansión de Dominio UR, Sideral no usa tarjeta lateral: al activarla comienza directamente su cinemática propia a pantalla completa, igual que Makanaky. Cada onda morada nace desde la posición actual de Sideral al gritar, incluso si se ha movido desde el centro de la habitación.
@@ -294,7 +294,7 @@ Rareza, estrellas, Solo listos para ascender y orden se guardan automáticamente
 
 Juego de supervivencia y parodia peruana para navegador: diecinueve personajes, Backyardigans y policías ficticios como rivales, cinco mapas y encuentros opcionales. HTML, CSS y Canvas 2D, sin dependencias de ejecución.
 
-Modo público: [Práctica de Kingteka con recarga gratuita](docs/KINGTEKA_PRACTICE.md).
+Modo público: [Práctica de Kingteka con recarga gratuita](docs/diseno/KINGTEKA_PRACTICE.md).
 
 ## Desarrollo
 
@@ -347,7 +347,7 @@ public/assets/
   audio/         Reservado; la ulti usa síntesis Web Audio
 scripts/         Compilación y orden de carga
 tests/           Regresión, compilación, HTTP y herramientas manuales
-docs/            Diseño y arquitectura
+docs/            Documentación humana (índice en docs/README.md)
 .github/workflows/ci.yml
 dist/            Generado, fuera del control de versiones
 ```
@@ -356,16 +356,17 @@ Edita src/ y public/, nunca dist/. Los scripts clásicos siguen compartiendo P; 
 
 ## Documentación
 
-- [Diseño del juego](docs/GAME_DESIGN.md): reglas actuales, personajes, habilidades, progresión y alcance.
-- [Arquitectura](docs/ARCHITECTURE.md): responsabilidades, dependencias y flujo de datos.
-- [Contribuir y validar](docs/CONTRIBUTING.md): procedimiento de cambios y CI.
-- [Manual del propietario](docs/MANUAL_DEL_PROPIETARIO.md): revisión, staging, publicación y mantenimiento.
-- [Guía para colaboradores](docs/GUIA_PARA_COLABORADORES.md): flujo compartible sin accesos sensibles.
-- [Arquitectura de releases](docs/RELEASE_ARCHITECTURE.md): CI, artefacto único, publicación atómica y rollback.
+- [Índice de la documentación](docs/README.md): qué hay en cada carpeta de docs/.
+- [Diseño del juego](docs/diseno/GAME_DESIGN.md): reglas actuales, personajes, habilidades, progresión y alcance.
+- [Arquitectura](docs/arquitectura/ARCHITECTURE.md): responsabilidades, dependencias y flujo de datos.
+- [Contribuir y validar](docs/operacion/CONTRIBUTING.md): procedimiento de cambios y CI.
+- [Manual del propietario](docs/operacion/MANUAL_DEL_PROPIETARIO.md): revisión, staging, publicación y mantenimiento.
+- [Guía para colaboradores](docs/operacion/GUIA_PARA_COLABORADORES.md): flujo compartible sin accesos sensibles.
+- [Arquitectura de releases](docs/arquitectura/RELEASE_ARCHITECTURE.md): CI, artefacto único, publicación atómica y rollback.
 - [Manual maestro de creación](docs/manual/PERUSURVIVOR_Manual_Maestro_de_Creacion_v1.pdf): reglas y plantillas actuales de personajes, enemigos, mapas, objetos y arte.
-- [Procedencia del arte](docs/ASSETS.md): hojas, prompts y referencias.
+- [Procedencia del arte](docs/arquitectura/ASSETS.md): hojas, prompts y referencias.
 - [Registro de cambios](CHANGELOG.md).
-- [Evidencia de la reorganización](docs/reorganization-baseline.json): hashes de las fuentes originales.
+- [Evidencia de la reorganización](docs/arquitectura/datos/reorganization-baseline.json): hashes de las fuentes originales.
 
 ## Validación
 
@@ -375,9 +376,9 @@ GitHub Actions ejecuta las mismas comprobaciones en cada push y pull request. La
 
 ## Publicación
 
-El destino principal es https://perusurvivor.michitech.tech, en el VPS de Hostinger srv2060131.hstgr.cloud (179.236.77.159). Nginx (perusurvivor-web) sirve /opt/perusurvivor/live/current detrás de Caddy. Un push a main despliega automáticamente dist/ después de CI; las ramas y PR no publican. Véase docs/DEPLOYMENT.md. El sitio de ChatGPT configurado en .openai/hosting.json es una copia separada: publicarlo no actualiza el dominio principal.
+El destino principal es https://perusurvivor.michitech.tech, en el VPS de Hostinger srv2060131.hstgr.cloud (179.236.77.159). Nginx (perusurvivor-web) sirve /opt/perusurvivor/live/current detrás de Caddy. Un push a main despliega automáticamente dist/ después de CI; las ramas y PR no publican. Véase docs/operacion/DEPLOYMENT.md. El sitio de ChatGPT configurado en .openai/hosting.json es una copia separada: publicarlo no actualiza el dominio principal.
 
-Esta es una versión de un jugador, sin cuentas, pagos, multijugador ni voces de figuras reales. El récord se guarda en el navegador. Las figuras públicas aparecen como caricaturas de parodia con habilidades inventadas; no existe afiliación.
+No hay pagos ni voces de figuras reales. Hay cuentas opcionales (`src/network/account.js:2`, `backend/accounts.cjs:40`; ver [Cuentas](docs/arquitectura/ACCOUNTS.md)) y cooperativo en línea; sin cuenta se juega como invitado y el progreso se guarda en el navegador. Las figuras públicas aparecen como caricaturas de parodia con habilidades inventadas; no existe afiliación.
 
 ## Terreno continuo
 El mapa principal ahora continúa sin bordes mediante sectores deterministas. Conserva los cinco temas, obstáculos y cajas destruibles; las arenas de portales siguen cerradas. El terreno de combate usa texturas de suelo de los fondos, no mosaicos de la ilustración completa. Código en src/systems/chunks.js; build generado con npm run build. Las pruebas verifican viaje a coordenadas lejanas, caché acotada, cámara libre y persistencia de cajas destruidas.
@@ -415,7 +416,7 @@ src/rendering/map-art.js mantiene simpleStyle activado: los atlas detallados de 
 La prueba de poderes respeta esta referencia: efectos de Kingteka rasterizados a píxeles de dos unidades, sin halo desenfocado, conservando globos de cómic y sello. Audio y controles de ulti se mantienen.
 
 ## Despliegue automático
-La preparación y el estado de activación están documentados en [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Cada push a main publica el juego después de las pruebas, mediante la cuenta restringida del VPS y comprobación HTTPS con reversión automática.
+La preparación y el estado de activación están documentados en [docs/operacion/DEPLOYMENT.md](docs/operacion/DEPLOYMENT.md). Cada push a main publica el juego después de las pruebas, mediante la cuenta restringida del VPS y comprobación HTTPS con reversión automática.
 
 
 ## Fondos y objetos coherentes
@@ -425,7 +426,7 @@ El mundo y el fondo del menú usan el mismo dibujo sencillo con contornos oscuro
 Cajas, cofres comunes y dorados y los cuatro objetos usan el atlas pixel art public/assets/loot/loot-atlas-v1.png. Conservan siluetas sencillas y contornos visibles; las tablas y herrajes añaden detalle. Los cofres animan la tapa antes de revelar el premio.
 
 ## Cofres por rareza
-Común (madera, ●), raro (azul, ◆) y legendario (violeta/dorado, ★), con cuatro objetos mejorados por nivel. Las aperturas y el arte se distribuyen desde GitHub al hosting de producción https://perusurvivor.michitech.tech según docs/DEPLOYMENT.md. El sitio chatgpt.site es una copia independiente y no es el destino principal.
+Común (madera, ●), raro (azul, ◆) y legendario (violeta/dorado, ★), con cuatro objetos mejorados por nivel. Las aperturas y el arte se distribuyen desde GitHub al hosting de producción https://perusurvivor.michitech.tech según docs/operacion/DEPLOYMENT.md. El sitio chatgpt.site es una copia independiente y no es el destino principal.
 
 ## Cartas de ulti y expansión de dominio
 
@@ -443,7 +444,7 @@ Las nueve habilidades actuales usan un patrón HUD compartido: arte full art ver
 | CiriloTV | Audiencia de Medianoche | `cirilo-audiencia-domain-fullart-v1.webp` |
 | Chamelín Trovo | Baño de Trovo | `chamelin-domain-fullart-v1.webp` |
 
-`P.AbilityCards.frames` es el registro obligatorio de temas. Las ultis actuales usan `fire`; Cirilo usa `domain-demon` con `visual:'demon'` y el recurso `cirilo-domain-demon-frame-v1.webp`. Los temas `domain-royal` (Makanaky), `domain-cosmic` (Sideral) y `domain-steam` (Chamelín) conservan el fuego probado en el HUD, pero Causapedia usa su `futureVisual` para mostrar desde ahora un borde Royal, Cósmico o Vapor propio. Tanto el álbum como el visor ampliado deben renderizar el marco registrado y mantenerlo centrado desde el 50% de la carta; nunca se ajusta con desplazamientos independientes por lado. Para habilitar una habilidad futura, registra primero su tema, agrega `frame` y arte a `P.AbilityCards.entries` (`src/systems/ability-cards.js`) y conecta su HUD/activación con `P.AbilityCards.apply(button,id,kind,charge,ready,active)`. Para un dominio, registra también `state` y `label`. Q y R mantienen sus manejadores de juego; los espacios sin habilidad usan `none` y siguen como reserva gris. Conserva los PNG fuente y registra sus WebP en `docs/asset-optimization.json` con `scripts/optimize-assets.py`.
+`P.AbilityCards.frames` es el registro obligatorio de temas. Las ultis actuales usan `fire`; Cirilo usa `domain-demon` con `visual:'demon'` y el recurso `cirilo-domain-demon-frame-v1.webp`. Los temas `domain-royal` (Makanaky), `domain-cosmic` (Sideral) y `domain-steam` (Chamelín) conservan el fuego probado en el HUD, pero Causapedia usa su `futureVisual` para mostrar desde ahora un borde Royal, Cósmico o Vapor propio. Tanto el álbum como el visor ampliado deben renderizar el marco registrado y mantenerlo centrado desde el 50% de la carta; nunca se ajusta con desplazamientos independientes por lado. Para habilitar una habilidad futura, registra primero su tema, agrega `frame` y arte a `P.AbilityCards.entries` (`src/systems/ability-cards.js`) y conecta su HUD/activación con `P.AbilityCards.apply(button,id,kind,charge,ready,active)`. Para un dominio, registra también `state` y `label`. Q y R mantienen sus manejadores de juego; los espacios sin habilidad usan `none` y siguen como reserva gris. Conserva los PNG fuente y registra sus WebP en `docs/arte/auditorias/asset-optimization.json` con `scripts/optimize-assets.py`.
 
 La pestaña **Cartas** de la Causapedia convierte este mismo registro en un álbum visual, sin mantener un segundo catálogo. La cuadrícula principal muestra seis cartas verticales por fila en escritorio, baja a cinco o cuatro en anchos intermedios y a dos en celular; permite filtrar ultis o dominios y abre cualquier carta en un visor dedicado. El visor conserva marco, reflejo holográfico y reverso informativo, permite inclinar, voltear y centrar la carta, y recorre el filtro vigente mediante botones laterales, flechas del teclado, miniaturas inferiores o deslizamiento táctil. Incluye contador y cierre con `Esc`. Las imágenes cargan de forma diferida, la inclinación agrupa cada movimiento en un único `requestAnimationFrame` y la animación del archivo de amenazas se detiene mientras esta pestaña está abierta. Para una variante futura, añade a la entrada de la habilidad `variants:[{id,edition,art,frame?,title?,description?,color?}]`; el álbum la descubrirá automáticamente y mantendrá la edición base.
 
@@ -498,7 +499,7 @@ Las jardineras deben reconocerse como macetas: volumen frontal, borde, tierra, f
 En partidas individuales, los cofres comunes son gratis. Los raros requieren una llave azul ◆ y los legendarios una violeta ★; se consume una al comenzar la apertura. Los enemigos especiales PORTADOR tienen aura, icono de llave, barra de vida y más resistencia. Aparece un portador raro desde 0:30 y luego cada 40 s; uno legendario desde 1:30 y luego cada 90 s. Solo hay uno vivo por tipo y respetan el límite de enemigos. Soltarán una llave garantizada que debes recoger; el HUD muestra las cantidades. Las llaves se reinician con la partida. Los cofres de jefe siguen siendo gratuitos.
 
 ### Control de versiones
-Repositorio Git: https://github.com/AngelCloudyDevops/PERUSURVIVOR. Los cambios se guardan mediante commits y pull requests; main conserva el historial integrado. Antes de publicar se ejecutan npm run check y npm test. GitHub Actions valida main y despliega en https://perusurvivor.michitech.tech, según docs/DEPLOYMENT.md. No se versionan credenciales ni dist/.
+Repositorio Git: https://github.com/AngelCloudyDevops/PERUSURVIVOR. Los cambios se guardan mediante commits y pull requests; main conserva el historial integrado. Antes de publicar se ejecutan npm run check y npm test. GitHub Actions valida main y despliega en https://perusurvivor.michitech.tech, según docs/operacion/DEPLOYMENT.md. No se versionan credenciales ni dist/.
 
 Los arbustos deben tener silueta orgánica, redondeada e irregular, con masas de hojas y sombras de pocos tonos. El acabado pixelado no justifica dibujarlos como cajas apiladas. La misma regla se aplica al follaje de jardineras; conservar el movimiento suave y la lectura del combate.
 ## Portadores y llaves en el minimapa
@@ -513,7 +514,7 @@ El HUD indica con una flecha de ocho direcciones y distancia al portador vivo o 
 
 El indicador también funciona en cooperativo: cada jugador ve la dirección y distancia desde su propia posición, usando los portadores y llaves compartidos por el servidor.
 
-Entrada visual de Kingteka: [cómic pixel art y pausa breve de la ulti](docs/KINGTEKA_COMIC.md). Disponible también en la práctica pública con recarga gratuita.
+Entrada visual de Kingteka: [cómic pixel art y pausa breve de la ulti](docs/arte/KINGTEKA_COMIC.md). Disponible también en la práctica pública con recarga gratuita.
 
 Las sombras de árboles deben tocar la base del tronco: pequeñas y discretas, ancladas al pie visible del dibujo, no al centro o borde de su colisión. Evitar óvalos separados que hagan flotar árboles y mobiliario.
 
@@ -527,7 +528,7 @@ Código guardado en rama propia, commits y PR de GitHub; main se publica en Host
 ## Ciclo de luz
 El reloj del mapa controla día (0–1:30), atardecer (1:30–3:00), anochecer (3:00–4:30) y noche (desde 4:30). Transiciones graduales y faroles que se encienden al oscurecer. El tinte afecta al suelo antes de dibujar actores, botín y avisos, manteniendo visible el combate. Pausa y arenas detienen el reloj del mapa; arenas y prácticas conservan su luz propia. No cambia dificultad, colisiones ni recompensas.
 
-Entrada de ulti de Kingteka: panel diagonal al 40 %, retrato animado de cintura arriba y 1,3 s sin pausa, con invulnerabilidad. Detalles en [KINGTEKA_COMIC](docs/KINGTEKA_COMIC.md).
+Entrada de ulti de Kingteka: panel diagonal al 40 %, retrato animado de cintura arriba y 1,3 s sin pausa, con invulnerabilidad. Detalles en [KINGTEKA_COMIC](docs/arte/KINGTEKA_COMIC.md).
 
 ## Garúa de Campo de Marte
 Episodios visuales de 25 segundos desde el minuto 1, separados por 65 segundos despejados. Entrada y salida suaves, gotas y pequeñas salpicaduras debajo de actores y avisos. Sigue mapTime: pausa y arenas no avanzan el clima. No aparece en prácticas y se desactiva con movimiento reducido. No modifica daño, velocidad, colisiones ni premios.
@@ -551,13 +552,13 @@ Campo de Marte responde durante toda la partida, no solamente al desenlace de El
 
 
 ## Evoluciones propias y menú de habilidades
-Cada uno de los 18 personajes conserva su arma inicial y tiene al menos una evolución. La evolución principal se elige con rango 5 y nivel 8; Kingteka es la excepción de arsenal y puede evolucionar independientemente sus tres armas en rango 5 y nivel 14. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.
+Cada uno de los 21 personajes jugables conserva su arma inicial y tiene al menos una evolución. La evolución principal se elige con rango 5 y nivel 8; Kingteka es la excepción de arsenal y puede evolucionar independientemente sus tres armas en rango 5 y nivel 14. «Habilidades y evoluciones» en la selección y «Habilidades» en la partida permiten recorrer personajes, consultar cinco rangos, requisitos, efectos y apoyos. Verde indica rangos obtenidos en la partida actual. La consulta pausa el individual; en cooperativo detiene únicamente la entrada local y avisa que la sala continúa. Escape y Cerrar vuelven al estado previo; las elecciones del servidor tienen prioridad.
 
 ### Regla global de fichas y cartas
 Cada causa se diseña con tres ataques, tres evoluciones, una pasiva única y dos espacios especiales: ulti `Q` y expansión de dominio `R`. Un espacio sin mecánica terminada debe mostrarse como **por definir** y nunca inventar un efecto. Toda habilidad especial implementada registra en `src/systems/ability-cards.js` un título, una descripción funcional y filas técnicas (tecla, duración, tipo de daño, alcance, control y valores relevantes). Ese registro es la fuente única para la ficha de Causas y el álbum de cartas. Los ataques toman descripción y valores de su perfil de combate; las pasivas los toman de `src/systems/passives.js`. Al agregar o ajustar una habilidad, se actualiza esa fuente y sus pruebas para que escritorio y móvil expliquen exactamente la misma mecánica.
 
 ### Prototipo de arsenal de Kingteka
-Kingteka empieza con una escopeta corta de cuatro perdigones; su caída de daño mantiene el impacto cerca. En nivel 2 puede desbloquear Gallinazo, que lanza dos plumas especiales guiadas y perforantes; en nivel 4 puede desbloquear el golpe de cuerpo, físico y frontal, con empuje y cadencia pausada. `1`, `2` y `3` cambian de arma durante la partida, también desde los botones del HUD. Durante una subida de nivel, esas teclas siguen escogiendo tarjeta. Los rangos son independientes por arma, mejoran daño, alcance y cadencia y tienen requisitos escalonados; el arma activa recibe la tarjeta de arsenal cada dos niveles. En rango 5 y nivel 14 evolucionan por separado a Escopeta Contra, Gallinazo de Expedición y Golpe de Supervivencia. El cambio funciona en cooperativo con autoridad del servidor. Las cartas de poderes y mejoras usan escenas con el sprite del personaje elegido y un motivo del poder o estadística. Las cartas de objetos muestran su icono oficial como arte central, sin el sprite del personaje. Solo las tres armas distintivas de Kingteka usan ilustraciones full art dedicadas. La cara ilustrada ocupa todo el marco al revelarse; categoría, efecto y comparación quedan en una placa inferior, y la rareza conserva su destello. El paquete usa WebP y conserva los PNG fuente; algunos recursos seleccionados tienen compresión con pérdida para caber en el límite de 64 MiB. El manifiesto registra calidad, tamaños y hashes en [asset-optimization.json](docs/asset-optimization.json); prompts de cartas: [Kingteka card art](docs/kingteka-card-art-prompts.json). Balance de las tres armas y partidas completas: [KINGTEKA_ARSENAL_BALANCE](docs/KINGTEKA_ARSENAL_BALANCE.md).
+Kingteka empieza con una escopeta corta de cuatro perdigones; su caída de daño mantiene el impacto cerca. En nivel 2 puede desbloquear Gallinazo, que lanza dos plumas especiales guiadas y perforantes; en nivel 4 puede desbloquear el golpe de cuerpo, físico y frontal, con empuje y cadencia pausada. `1`, `2` y `3` cambian de arma durante la partida, también desde los botones del HUD. Durante una subida de nivel, esas teclas siguen escogiendo tarjeta. Los rangos son independientes por arma, mejoran daño, alcance y cadencia y tienen requisitos escalonados; el arma activa recibe la tarjeta de arsenal cada dos niveles. En rango 5 y nivel 14 evolucionan por separado a Escopeta Contra, Gallinazo de Expedición y Golpe de Supervivencia. El cambio funciona en cooperativo con autoridad del servidor. Las cartas de poderes y mejoras usan escenas con el sprite del personaje elegido y un motivo del poder o estadística. Las cartas de objetos muestran su icono oficial como arte central, sin el sprite del personaje. Solo las tres armas distintivas de Kingteka usan ilustraciones full art dedicadas. La cara ilustrada ocupa todo el marco al revelarse; categoría, efecto y comparación quedan en una placa inferior, y la rareza conserva su destello. El paquete usa WebP y conserva los PNG fuente; algunos recursos seleccionados tienen compresión con pérdida para caber en el límite de 64 MiB. El manifiesto registra calidad, tamaños y hashes en [asset-optimization.json](docs/arte/auditorias/asset-optimization.json); prompts de cartas: [Kingteka card art](docs/arte/prompts/kingteka-card-art-prompts.json). Balance de las tres armas y partidas completas: [KINGTEKA_ARSENAL_BALANCE](docs/balance/KINGTEKA_ARSENAL_BALANCE.md).
 
 El kit de Kingteka se considera cerrado cuando conviven sus tres armas, sus tres evoluciones, la ulti Q, la expansión R y la pasiva **Instinto de expedición**. Q usa el Combo del Causa; R tiene un Vínculo animal separado que solo crece al acertar ataques adaptados. La pasiva muestra su preparación mediante HUD, texto y aura sobre el personaje.
 
@@ -582,12 +583,12 @@ El kit de Kingteka se considera cerrado cuando conviven sus tres armas, sus tres
 
 P.Evolutions define perfiles de ataque inmutables y efectos serializables por personaje; Combat conserva el ID de ataque original para mantener sus sprites. Las animaciones nuevas son geometría pixel art de raíles, ondas, abanicos, enjambres, plumas y barridos, además de trayectorias radiales, retorno, búsqueda y zonas persistentes según el perfil. El servidor usa el mismo módulo. Movimiento reducido estabiliza la animación decorativa sin alterar impactos. El menú es solo de consulta: no concede niveles ni poderes.
 ## Arte de naturaleza
-Las palomas y la vegetación reactiva utilizan [sprites cartoon con acabado pixel](docs/NATURE_ART.md): cuatro poses de ave, tres arbustos con flores/bayas y una mata de ichu. Usar siluetas orgánicas, contornos oscuros y sombras al pie; evitar rectángulos como diseño definitivo. Atlas compartido de 512×256, sin cambiar los límites ambientales ni añadir partículas.
+Las palomas y la vegetación reactiva utilizan [sprites cartoon con acabado pixel](docs/arte/NATURE_ART.md): cuatro poses de ave, tres arbustos con flores/bayas y una mata de ichu. Usar siluetas orgánicas, contornos oscuros y sombras al pie; evitar rectángulos como diseño definitivo. Atlas compartido de 512×256, sin cambiar los límites ambientales ni añadir partículas.
 
 
-Ulti de Fujimori: [Tribunal](docs/GAME_DESIGN.md), entrada de 1,3 s y tribunal compartido de 3,4 s, aliado como abogado y remate de radio 340 u que excluye jefes. El menu incluye practica con recarga gratis y objetivos dentro/fuera del radio.
+Ulti de Fujimori: [Tribunal](docs/diseno/GAME_DESIGN.md), entrada de 1,3 s y tribunal compartido de 3,4 s, aliado como abogado y remate de radio 340 u que excluye jefes. El menu incluye practica con recarga gratis y objetivos dentro/fuera del radio.
 ## Pileta y fachada de la Plaza
-La fuente ornamental y el edificio colonial usan [sprites cartoon con acabado pixel](docs/PLAZA_LANDMARKS.md): piedra/bronce, balcones tallados y arcos. Conservar perspectiva, contornos y sombras al pie, sin volver a bloques geométricos como arte definitivo. Atlas compartido, ocho reflejos de agua como máximo y transparencia al pasar detrás. No cambia colisiones ni cupos del mapa.
+La fuente ornamental y el edificio colonial usan [sprites cartoon con acabado pixel](docs/arte/PLAZA_LANDMARKS.md): piedra/bronce, balcones tallados y arcos. Conservar perspectiva, contornos y sombras al pie, sin volver a bloques geométricos como arte definitivo. Atlas compartido, ocho reflejos de agua como máximo y transparencia al pasar detrás. No cambia colisiones ni cupos del mapa.
 
 ## Inicio y demostraciones de ataques
 El inicio se organiza como un lobby: causa destacado, botón Jugar ahora y accesos a mapas, personajes, habilidades y cooperativo. Conserva el estilo peruano y todos los controles existentes; no añade funciones de cuenta ni tiendas inexistentes.
@@ -597,7 +598,7 @@ El menú de habilidades compara ataque básico y evolución en dos canvas animad
 ## Vestíbulo pixel art
 La portada muestra «Pulsa para empezar» sobre el escenario con nueve personajes decorativos en movimiento. Al entrar, el causa elegido ocupa el centro y una navegación lateral abre secciones independientes: Jugar (mapas y comienzo), Causas (colección y ficha con atributos), Habilidades (rama y comparación animada), Cooperativo (salas existentes) y Ajustes (sonido, controles y prácticas). En móvil la navegación se sitúa abajo. No introduce cuentas, monedas persistentes ni un gacha ficticio. El fondo y los retratos son cosméticos: no avanzan la partida, no crean enemigos ni consumen recursos. Se reutilizan los atlas cargados y se respeta movimiento reducido. El mejor récord mostrado sigue siendo local.
 ## Bancas y faroles
-El mobiliario de Campo y Plaza utiliza [sprites cartoon con acabado pixel](docs/STREET_FURNITURE.md): dos bancas con madera y hierro ornamentales y farol colonial. Conservar perspectiva, sombras pequeñas pegadas a las patas y base del poste. Atlas compartido de unos 50 KB; luz del vidrio cacheada y ligada al ciclo de día/noche. No cambiar colisiones, cantidades ni añadir luces dinámicas por objeto.
+El mobiliario de Campo y Plaza utiliza [sprites cartoon con acabado pixel](docs/arte/STREET_FURNITURE.md): dos bancas con madera y hierro ornamentales y farol colonial. Conservar perspectiva, sombras pequeñas pegadas a las patas y base del poste. Atlas compartido de unos 50 KB; luz del vidrio cacheada y ligada al ciclo de día/noche. No cambiar colisiones, cantidades ni añadir luces dinámicas por objeto.
 
 ## Progreso permanente por personaje
 El progreso se guarda automáticamente en localStorage de este navegador (causas-progress-v1), conservando el récord anterior. No sincroniza cuentas ni guarda una partida en curso. El panel Mejoras muestra saldo, partidas, victorias, rivales y mejores marcas de cada causa.
@@ -613,22 +614,22 @@ La pantalla Mejoras reúne rol, fortaleza, debilidad, rareza, crecimiento y los 
 La interfaz de Mejoras prioriza decisiones sobre explicación: saldo y selector comparten una barra, las reglas extensas están dentro de «¿Cómo funciona?», cada estadística agrupa su etiqueta con su valor y las estrellas usan una fila compacta. El historial, las proyecciones y los rangos tienen títulos diferenciados. El HUD Combo del Causa se oculta por completo en el vestíbulo para no cubrir la navegación; continúa visible durante las partidas.
 
 ## Árboles y jardineras
-Campo y Plaza usan [árboles y jardineras cartoon con acabado pixel](docs/TREES_PLANTERS.md): dos copas orgánicas y jardineras de piedra en orientación horizontal y alargada. Mantener raíces y sombras apoyadas; solo la parte alta del árbol oscila, con transparencia al pasar detrás. Un atlas compartido, dos llamadas de imagen por árbol y una por jardinera; sin cambiar colisiones ni cantidades. Pausa y movimiento reducido detienen el movimiento.
+Campo y Plaza usan [árboles y jardineras cartoon con acabado pixel](docs/arte/TREES_PLANTERS.md): dos copas orgánicas y jardineras de piedra en orientación horizontal y alargada. Mantener raíces y sombras apoyadas; solo la parte alta del árbol oscila, con transparencia al pasar detrás. Un atlas compartido, dos llamadas de imagen por árbol y una por jardinera; sin cambiar colisiones ni cantidades. Pausa y movimiento reducido detienen el movimiento.
 
 
 ## Equilibrio y autoataque
-La [primera pasada de equilibrio](docs/COMBAT_BALANCE.md) limita los objetivos automáticos a pantalla y alcance; las balas lanzadas conservan su recorrido. Los minions comienzan sus ataques a distancia a la vista. Kingteka tiene alcance/cadencia revisados y daño decreciente a distancia; Cerdito comparte la regla de escopeta. Cooperativo valida la cámara de cada jugador. Comparación de 18 personajes y evolución de Kingteka: docs/balance-audit.json. Se conservan salud y patrones de jefes.
+La [primera pasada de equilibrio](docs/balance/COMBAT_BALANCE.md) limita los objetivos automáticos a pantalla y alcance; las balas lanzadas conservan su recorrido. Los minions comienzan sus ataques a distancia a la vista. Kingteka tiene alcance/cadencia revisados y daño decreciente a distancia; Cerdito comparte la regla de escopeta. Cooperativo valida la cámara de cada jugador. Comparación de 18 personajes y evolución de Kingteka: docs/balance/datos/balance-audit.json. Se conservan salud y patrones de jefes.
 
 ## Monumento y picnic de Campo de Marte
-El [monumento y las mesas de picnic](docs/CAMPO_LANDMARKS.md) conservan el estilo cartoon con acabado pixel: piedra tallada, relieves, madera y metal, mantel o canasta/termo. Mantener sombras pegadas a la base y patas, escala coherente y transparencia detrás del monumento. Atlas compartido de unos 96 KB, una llamada de dibujo por objeto, sin cambiar cantidades ni colisiones.
+El [monumento y las mesas de picnic](docs/arte/CAMPO_LANDMARKS.md) conservan el estilo cartoon con acabado pixel: piedra tallada, relieves, madera y metal, mantel o canasta/termo. Mantener sombras pegadas a la base y patas, escala coherente y transparencia detrás del monumento. Atlas compartido de unos 96 KB, una llamada de dibujo por objeto, sin cambiar cantidades ni colisiones.
 
 
 ## Perdigones y resistencia de minijefes
-La [segunda pasada](docs/COMBAT_BALANCE_2.md) reduce los impactos adicionales de una descarga sobre el mismo enemigo (100/35/15/15… %), manteniendo daño independiente por rival y jugador. Los minijefes fijan su vida al aparecer según tiempo de mapa y grupo; no crece durante el combate. Los minions básicos conservan su salud. Medición de 18 personajes: docs/shotgun-miniboss-audit.json.
+La [segunda pasada](docs/balance/COMBAT_BALANCE_2.md) reduce los impactos adicionales de una descarga sobre el mismo enemigo (100/35/15/15… %), manteniendo daño independiente por rival y jugador. Los minijefes fijan su vida al aparecer según tiempo de mapa y grupo; no crece durante el combate. Los minions básicos conservan su salud. Medición de 18 personajes: docs/balance/datos/shotgun-miniboss-audit.json.
 
 
 ## Piedra de Machu Picchu
-Las [rocas, muros y terrazas](docs/MACHU_STONE.md) usan sprites cartoon con acabado pixel, grietas y musgo discreto. Mantener siluetas irregulares, piedra coherente y sombras al pie. Atlas compartido de unos 287 KB, una llamada de imagen por obstáculo y bordes del suelo cacheados por sector. Conserva colisiones, rutas y cantidades; sin añadir partículas ni animaciones.
+Las [rocas, muros y terrazas](docs/arte/MACHU_STONE.md) usan sprites cartoon con acabado pixel, grietas y musgo discreto. Mantener siluetas irregulares, piedra coherente y sombras al pie. Atlas compartido de unos 287 KB, una llamada de imagen por obstáculo y bordes del suelo cacheados por sector. Conserva colisiones, rutas y cantidades; sin añadir partículas ni animaciones.
 
 ## Tienda del menú y mochila
 El monedero permanente compra unidades de Lonchera del causa (20: +25 vida máxima/inicial), Café de cabina (25: recarga ×0.88), Zapatillas de repuesto (25: velocidad ×1.10), Imán de bolsillo (20: recogida ×1.25), Llave rara (30) y Llave legendaria (70). Los cuatro bonos duran una partida; las llaves se suman al inventario temporal del mapa. Los objetos usan iconos pixel art propios y el estilo azul del vestíbulo.
@@ -638,7 +639,7 @@ La mochila es compartida entre personajes, tiene hasta 99 unidades por objeto y 
 El esquema local v2 incorpora inventario, preparados y recibos, leyendo también los guardados v1 y conservando saldo, mejoras y marcas. Mantiene la clave local existente; al escribir migra a v2. Las versiones antiguas rechazan ese formato en lugar de sobrescribir la mochila. P.Supply reutiliza P.Meta.transaction y su bloqueo entre pestañas; compra, preparación y consumo validan cantidad, saldo, cupos y modo antes de persistir. El juego espera sin avanzar reloj mientras confirma la mochila; un fallo permite reintentar, conservar objetos y jugar o volver al menú. Nada se aplica si el consumo no queda confirmado. No se distribuyen controles de QA.
 
 ### Perfiles de combate
-El selector Causas muestra rol, fortalezas, debilidades y estadísticas base reales de los 18 personajes, separadas del progreso permanente. Consulta [la tabla de personajes](docs/CHARACTER_PROFILES.md). La rareza del botín no clasifica el poder de los personajes.
+El selector Causas muestra rol, fortalezas, debilidades y estadísticas base reales de los 21 personajes jugables, separadas del progreso permanente. Consulta [la tabla de personajes](docs/diseno/CHARACTER_PROFILES.md). La rareza del botín no clasifica el poder de los personajes.
 
 ## Gacha de personajes
 Cada tirada cuesta 60 monedas permanentes. Probabilidades base por rareza: común 60%, raro 27%, épico 10%, legendario 3%; cada personaje se elige uniformemente dentro de su rareza. Los repetidos devuelven 15/25/40/60 monedas respectivamente, sin duplicar personajes. Tras nueve tiradas sin épico o superior, la siguiente garantiza al menos épico; tras 29 sin legendario, la siguiente garantiza legendario. Las garantías pueden elevar la rareza de la tirada base. No se cobra si la colección está completa. No hay compra con dinero real.
@@ -647,7 +648,7 @@ Perfiles nuevos reciben Cristorata, Cuy Supremo y Paloma del Centro. El esquema 
 
 P.Gacha resuelve cargo, devolución, desbloqueo, garantías e historial en una sola P.Meta.transaction. El resultado se guarda antes de la animación y se puede consultar de nuevo sin pagar; cerrar o recargar no vuelve a tirar. La animación comparte el bucle de dibujo, se detiene al salir/ocultar pestaña y se revela inmediatamente con movimiento reducido. La rareza no modifica los stats base: mejora únicamente las ganancias de estrellas y mejoras permanentes en individual.
 ## Acabado de caminos
-Los [caminos](docs/PATH_FINISH.md) conservan sus rutas y texturas aprobadas, con bordes de pasto en Campo, juntas de pavimento en Plaza y desgaste sutil en Machu. Acabado de dos unidades por píxel, detalles deterministas y composición cacheada por sector. Sin imágenes adicionales ni cambios de colisiones; hasta 96 grupos de pasto en los bordes, fuera del corredor.
+Los [caminos](docs/arte/PATH_FINISH.md) conservan sus rutas y texturas aprobadas, con bordes de pasto en Campo, juntas de pavimento en Plaza y desgaste sutil en Machu. Acabado de dos unidades por píxel, detalles deterministas y composición cacheada por sector. Sin imágenes adicionales ni cambios de colisiones; hasta 96 grupos de pasto en los bordes, fuera del corredor.
 
 
 ## Ambiente sonoro de los mapas
@@ -662,11 +663,13 @@ Gacha incorpora pestañas Invocar, Historial y Estrellas. El historial guarda la
 
 Los repetidos mantienen su devolución de monedas y añaden una copia del mismo personaje hasta 5★. Todos empiezan a 1★; ascender manualmente a 2★/3★/4★/5★ consume 2/3/4/5 copias respectivamente, sin monedas adicionales. Cada estrella suma 3% de vida y daño multiplicado por el crecimiento de su rareza: a 5★ va de +12% C a +13,44% UR. Solo se aplica en individual; no altera cooperativo ni prácticas. Puedes seguir invocando con la colección completa para obtener copias, hasta tener todos a 5★.
 ### Balance de los 18 causas
-Comparación reproducible de ataques base y evolucionados contra blancos cercanos, medios, jefe móvil, filas y enemigos alrededor. Se moderan bumeranes, ráfagas y nubes dominantes y se refuerzan Cristorata, Cuy, Alberto y Cerdito. Consulta [los valores y motivos](docs/ROSTER_BALANCE.md). El catálogo base conserva el balance por rol; la rareza multiplica solamente el progreso permanente posterior. Las fichas muestran el catálogo actualizado.
+
+> Histórico: las mediciones de esta sección se hicieron con el roster de 18 causas de entonces. Hoy hay 21 personajes jugables (`src/data/catalog.js:3-11` menos ElZeein, que `shift()` convierte en jefe en `src/data/catalog.js:32`; `src/data/catalog.js:33`; `src/data/powers.js:74-109`; comprobado por `tests/gameplay.test.cjs:12`).
+Comparación reproducible de ataques base y evolucionados contra blancos cercanos, medios, jefe móvil, filas y enemigos alrededor. Se moderan bumeranes, ráfagas y nubes dominantes y se refuerzan Cristorata, Cuy, Alberto y Cerdito. Consulta [los valores y motivos](docs/balance/ROSTER_BALANCE.md). El catálogo base conserva el balance por rol; la rareza multiplica solamente el progreso permanente posterior. Las fichas muestran el catálogo actualizado.
 
 
 ### Validación con partidas completas
-El [informe de partidas automatizadas](docs/FULL_RUN_BALANCE.md) compara los 18 causas en los tres mapas, con tres semillas por mapa. Usa el motor individual normal, enemigos móviles, daño recibido, colisiones, experiencia y mejoras obtenidas jugando. Conserva trazas, victorias, derrotas, límites de tiempo y minijefes no abatidos. Es evidencia de simulación local, no una tasa de victoria humana ni una prueba de FPS.
+El [informe de partidas automatizadas](docs/balance/FULL_RUN_BALANCE.md) compara los 18 causas en los tres mapas, con tres semillas por mapa. Usa el motor individual normal, enemigos móviles, daño recibido, colisiones, experiencia y mejoras obtenidas jugando. Conserva trazas, victorias, derrotas, límites de tiempo y minijefes no abatidos. Es evidencia de simulación local, no una tasa de victoria humana ni una prueba de FPS.
 
 Resultado de la muestra inicial: 160/162 sobreviven a 300 s, 143 victorias finales, 9 derrotas y 10 límites con vida; 526/529 minijefes abatidos. Sustento y Charles siguen destacando por rapidez contra minijefes. Se conserva el balance actual hasta contrastar estos datos con otras estrategias o jugadores; no se equipara esta muestra con una tasa de victoria humana.
 
@@ -702,7 +705,7 @@ Makanaky · La Realeza está disponible como causa jugable y conserva su aparici
 Versiones oficiales del catálogo: **Cuy Supremo · El Oráculo de la Tómbola** (C), **Paloma del Centro · El Almuerzo del Pueblo** (C), **Alan García · Los Balconazos** (SR), **Alberto Fujimori · ¡Soy Inocente!** (SSR), **Keiko Fujimori · País Rico** (SSR) y **Ollanta Humala · Cosito en Campaña** (SR). Los años y lemas viven en la ficha y no alargan el título de la carta. El ID, progreso, estadísticas y rareza del personaje se conservan al asignarle una versión.
 
 ### Ajuste fino de G5, Fuzo y Cerdito
-G5 conserva vida, movilidad y arco: recarga 0,62 → 0,68 s y multiplicador evolucionado 0,65 → 0,58. Fuzo conserva alcance y perforación: impacto 0,85 → 0,80 y evolución 0,65 → 0,58. Cerdito mantiene siete perdigones y alcance 400: impacto 0,50 → 0,56, inicio de caída 140 → 165 u y evolución 0,65 → 0,70. Consulta [la comparación emparejada](docs/TRIO_BALANCE.md), con partidas antes/después en los mismos mapas y semillas. Las fichas se derivan de los valores nuevos.
+G5 conserva vida, movilidad y arco: recarga 0,62 → 0,68 s y multiplicador evolucionado 0,65 → 0,58. Fuzo conserva alcance y perforación: impacto 0,85 → 0,80 y evolución 0,65 → 0,58. Cerdito mantiene siete perdigones y alcance 400: impacto 0,50 → 0,56, inicio de caída 140 → 165 u y evolución 0,65 → 0,70. Consulta [la comparación emparejada](docs/balance/TRIO_BALANCE.md), con partidas antes/después en los mismos mapas y semillas. Las fichas se derivan de los valores nuevos.
 
 En 54 partidas emparejadas, la mediana de minijefe cambia de 5,8 → 9,1 s para G5, 5,4 → 7,5 s para Fuzo y 13,5 → 12,8 s para Cerdito. Las 27 posteriores sobreviven cinco minutos: 26 victorias y un límite con vida. Se conservan los resultados completos, incluidos minijefes no abatidos, y los límites de una sola estrategia automatizada.
 
@@ -710,12 +713,12 @@ En 54 partidas emparejadas, la mediana de minijefe cambia de 5,8 → 9,1 s para 
 
 El vestíbulo incluye **Cuenta / Login**: registro, acceso, recuperación con código privado y guardado por cuenta en Hostinger. Jugar como invitado sigue disponible. El progreso incluye monedas, colección, estrellas, mejoras e inventario; se conserva separado del invitado y detecta conflictos entre dispositivos. No guarda partidas a medio jugar ni proporciona un ranking verificado.
 
-La activación del backend requiere el volumen persistente y la ruta `/api/` del juego; el formulario por sí solo no activa la base de datos. Consulta [cuentas, esquema, instalación, backup y límites de confianza](docs/ACCOUNTS.md). **Este repositorio se trata como público**: nunca subir claves, `.env`, bases de datos, usuarios o backups. Los datos reales viven fuera de la carpeta pública y de las releases.
+La activación del backend requiere el volumen persistente y la ruta `/api/` del juego; el formulario por sí solo no activa la base de datos. Consulta [cuentas, esquema, instalación, backup y límites de confianza](docs/arquitectura/ACCOUNTS.md). **Este repositorio se trata como público**: nunca subir claves, `.env`, bases de datos, usuarios o backups. Los datos reales viven fuera de la carpeta pública y de las releases.
 
 La pantalla de entrada ofrece **Iniciar sesión**, **Crear cuenta** o **Jugar como invitado**. El acceso utiliza los paneles azules y botones dorados del juego. Registro y recuperación tienen formularios separados; elegir invitado conserva su guardado local.
 
 ### Combo del Causa · carga de ultis
-Las ultis de Kingteka, Alberto, Cuy y Paloma requieren tres cartas automáticas: Caos, Aguante y Hazaña. Se completan en 55–60 s de combate; con la duración de la habilidad, el ciclo ronda 60–70 s. Q consume las tres y puedes guardarlas hasta necesitarlas. Kingteka carga R por separado al conectar ataques adaptados. Las propias bajas, proyectiles tardíos y nubes de la ulti no recargan. Funciona contra un jefe solo y respeta pausa/cooperativo; práctica y laboratorio conservan recarga gratis. Consulta [reglas, mediciones y límites](docs/CAUSA_COMBO.md).
+Las ultis de Kingteka, Alberto, Cuy y Paloma requieren tres cartas automáticas: Caos, Aguante y Hazaña. Se completan en 55–60 s de combate; con la duración de la habilidad, el ciclo ronda 60–70 s. Q consume las tres y puedes guardarlas hasta necesitarlas. Kingteka carga R por separado al conectar ataques adaptados. Las propias bajas, proyectiles tardíos y nubes de la ulti no recargan. Funciona contra un jefe solo y respeta pausa/cooperativo; práctica y laboratorio conservan recarga gratis. Consulta [reglas, mediciones y límites](docs/balance/CAUSA_COMBO.md).
 
 En el laboratorio, «Minions al morir» permite dejarlos normales, hacer que reaparezcan a los 0,8 s o volverlos inmortales con un mínimo de 1 PV. Estas reglas solo afectan minions comunes de la prueba; los jefes y objetivos especiales mantienen su funcionamiento.
 
@@ -755,7 +758,7 @@ Fuerza → Técnica → Ingenio → Fuerza: ventaja +15% de daño, desventaja �
 
 El daño existente de cada habilidad se multiplica por `2 × ataque / (ataque + defensa)` y por la ventaja de atributo. 100 contra 100 conserva el daño neutral; 100 contra 200 deja el 66,7%. El índice principal de cada personaje es 100 y el secundario 85; la rareza no cambia esos índices base, pero multiplica la ganancia de las mejoras permanentes y estrellas en individual.
 
-Los proyectiles conservan dueño y tipo al crearse, también en cooperativo. Contactos y golpes son físicos; ondas, nubes y tarjetas de apoyo son especiales. Cuy y Paloma usan daño físico en sus estampidas aunque su ataque principal pueda ser especial. Las ejecuciones y la sentencia porcentual conservan su daño fijo y sus límites. Véase [auditoría de atributos](docs/ATTRIBUTES_BALANCE.md).
+Los proyectiles conservan dueño y tipo al crearse, también en cooperativo. Contactos y golpes son físicos; ondas, nubes y tarjetas de apoyo son especiales. Cuy y Paloma usan daño físico en sus estampidas aunque su ataque principal pueda ser especial. Las ejecuciones y la sentencia porcentual conservan su daño fijo y sus límites. Véase [auditoría de atributos](docs/balance/ATTRIBUTES_BALANCE.md).
 
 ### Oleadas con presión desde el primer minuto
 
@@ -765,7 +768,7 @@ Las apariciones se sitúan fuera de la cámara, con margen de 90 u y separación
 
 Para evitar que la densidad regale niveles, los minions de oleada dan 0,75 de fama, los corredores 0,5 y los pesados 2,25; las cantidades son cuartos exactos. Minijefes, cofres y recompensas especiales mantienen sus reglas. Vida y velocidad base siguen definidas por personaje y rol; la rareza afecta solo cuánto crecen mediante estrellas y mejoras permanentes en individual.
 
-Comparación y límites de las pruebas en [WAVE_PRESSURE.md](docs/WAVE_PRESSURE.md).
+Comparación y límites de las pruebas en [WAVE_PRESSURE.md](docs/balance/WAVE_PRESSURE.md).
 
 Las criaturas de las ultis de Cuy y Paloma tienen una retirada visual de 1,6 segundos: los cuyes siguen corriendo y las palomas ascienden y planean, con desvanecimiento al final. La retirada no prolonga el daño ni la coraza; conserva posiciones del mundo en cooperativo y no se corta al recargar la ulti.
 El panorama exterior del Gallinazo conserva ahora el original de 1536 × 1024, con filtrado al escalar y una sola capa ajustada a la cámara. Se elimina la copia ampliada a 6400 unidades que producía bloques enormes. La azotea jugable, los personajes, las colisiones y las animaciones mantienen su dibujo y escala.
@@ -813,15 +816,15 @@ El despegue del Tricéfalo tiene carga de peso, aletazo descendente y recuperaci
 
 El vuelo del Tricéfalo usa 16 pasos de aleteo y 12 pasos de despegue cacheados, derivados del atlas con muestreo sin suavizado. Una malla continua mantiene la raíz del ala y el agarre, repliega las patas hacia el vientre y transmite un movimiento leve al jinete. El ciclo comparte fase entre cinemática y combate; hasta 28 superficies por atlas, sin recalcular la malla cada cuadro. Movimiento reducido conserva una pose quieta y no cambia el combate.
 
-Corrección visual de Cristorata: las poses completas del atlas cristorata-reaction-v2 sustituyen los recortes de brazos y piernas. El dibujo conserva sus proporciones al señalar y subir; el Tricéfalo aparece completo sin cortes horizontales. Véase docs/CRISTORATA_REACTION_ART.md para origen y prompt.
+Corrección visual de Cristorata: las poses completas del atlas cristorata-reaction-v2 sustituyen los recortes de brazos y piernas. El dibujo conserva sus proporciones al señalar y subir; el Tricéfalo aparece completo sin cortes horizontales. Véase docs/arte/CRISTORATA_REACTION_ART.md para origen y prompt.
 
-Cristorata usa doce poses completas del atlas reaction-v3 para señalar, girar, elevar la rodilla y sentarse. La escala común y el anclaje de cabeza evitan saltos de tamaño y posición. Reacción y subida comparten la misma selección de cuadro y una inclinación continua; sin fundidos o siluetas dobles. Documentación de arte: docs/CRISTORATA_REACTION_ART.md.
+Cristorata usa doce poses completas del atlas reaction-v3 para señalar, girar, elevar la rodilla y sentarse. La escala común y el anclaje de cabeza evitan saltos de tamaño y posición. Reacción y subida comparten la misma selección de cuadro y una inclinación continua; sin fundidos o siluetas dobles. Documentación de arte: docs/arte/CRISTORATA_REACTION_ART.md.
 
 El cierre del asiento converge al anclaje y ancho de cabeza del jinete de la montura, compartiendo el mismo cálculo para posición y escala. La sala de revelación añade suelo en perspectiva, paneles con pliegues, luces laterales, reflejo cálido localizado y hasta 18 motas ambientales; todo procede del reloj de la escena, sin entidades de combate. Movimiento reducido retira las motas y se conserva el alfa de la transición al mapa.
 
 La revelación del dragón incorpora un reflector cenital sobre la máquina. El aletazo mueve pliegues de cortinas y lámparas colgantes con amortiguación y desplaza una ráfaga de polvo por el suelo. En cooperativo aparece el personaje real del compañero, con pequeños saltos y celebración al revelar el dragón (más marcada con el secreto). Todo es visual, deriva de la edad de la ulti y no mueve ni modifica jugadores. Movimiento reducido conserva iluminación y texto, sin saltos o sacudidas.
 
-El compañero celebra el dragón secreto con una silueta completa de brazos levantados y cara alegre; cuy y paloma usan patitas o alas. El atlas cubre los 21 personajes y conserva escala corporal y anclaje de pies, sin estirar miembros. El salto se reduce para destacar el gesto. Arte y prompt: docs/COMPANION_CHEER_ART.md.
+El compañero celebra el dragón secreto con una silueta completa de brazos levantados y cara alegre; cuy y paloma usan patitas o alas. El atlas cubre los 21 personajes y conserva escala corporal y anclaje de pies, sin estirar miembros. El salto se reduce para destacar el gesto. Arte y prompt: docs/arte/COMPANION_CHEER_ART.md.
 
 Sideral: al cargar su atlas se conserva la figura conectada principal de cada cuadro y se eliminan fragmentos aislados de cuadros vecinos, incluida la onda roja que invadía la recuperación. La limpieza se hace una sola vez, mantiene la cuadrícula, tamaño y anclaje originales y conserva la lata roja unida a la mano.
 
@@ -934,4 +937,4 @@ En cualquier combate se puede hacer clic izquierdo sobre un enemigo, jefe o frag
 
 ### Sideral · kit del Lagarto completo
 
-Tres técnicas intercambiables con rangos y evoluciones propios, Sangre fría y Q de transformación con aliento dirigido. UR, 120 PV, velocidad 195, poder 27, ATQ físico/especial 95/105, DEF 100/105. Q usa una reserva independiente; el dominio R conserva mecánicas y carga. Especificación, animaciones y límites: [docs/SIDERAL_KIT.md](docs/SIDERAL_KIT.md). El [informe de balance](docs/SIDERAL_BALANCE.md) registra 56 ejecuciones automáticas, resultados mixtos y cierres con victoria en ambos modos; falta validación con jugadores. La carta Q usa arte exclusivo del Lagarto, con auriculares, camiseta roja y aliento verde, conservando el marco de las otras ultis.
+Tres técnicas intercambiables con rangos y evoluciones propios, Sangre fría y Q de transformación con aliento dirigido. UR, 120 PV, velocidad 195, poder 27, ATQ físico/especial 95/105, DEF 100/105. Q usa una reserva independiente; el dominio R conserva mecánicas y carga. Especificación, animaciones y límites: [docs/diseno/SIDERAL_KIT.md](docs/diseno/SIDERAL_KIT.md). El [informe de balance](docs/balance/SIDERAL_BALANCE.md) registra 56 ejecuciones automáticas, resultados mixtos y cierres con victoria en ambos modos; falta validación con jugadores. La carta Q usa arte exclusivo del Lagarto, con auriculares, camiseta roja y aliento verde, conservando el marco de las otras ultis.

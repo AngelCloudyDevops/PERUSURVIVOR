@@ -36,7 +36,7 @@ El despliegue automático no reinicia Caddy, Docker ni ninguna aplicación. Solo
 
 Staging usa límites menores (`96 MiB` web; `256 MiB`, `0.50 CPU` y tres salas para cooperativo), una base SQLite independiente y cabeceras `noindex`.
 
-El job de CI limita el contenido a 80 MiB y 1000 archivos. El archivo enviado no puede superar 92 MiB; el receptor reserva margen hasta 96 MiB comprimidos y 192 MiB extraídos. Los valores y la estrategia futura de recursos por hash se documentan en [RELEASE_ARCHITECTURE.md](RELEASE_ARCHITECTURE.md).
+El job de CI limita el contenido a 80 MiB y 1000 archivos. El archivo enviado no puede superar 92 MiB; el receptor reserva margen hasta 96 MiB comprimidos y 192 MiB extraídos. Los valores y la estrategia futura de recursos por hash se documentan en [RELEASE_ARCHITECTURE.md](../arquitectura/RELEASE_ARCHITECTURE.md).
 
 ## Pruebas
 python3 -m unittest discover -s tests/deployment -p "test_*.py"
