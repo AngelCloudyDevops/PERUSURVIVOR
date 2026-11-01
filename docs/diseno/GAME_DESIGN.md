@@ -187,6 +187,11 @@ El suelo del combate usa texturas extraídas de los fondos originales y caminos 
 - Imán, chaleco y batería antiguos dejan de aparecer en cofres y tiendas. Las mejoras sencillas de estadísticas pertenecen a las subidas de nivel. Las reliquias exclusivas de minijefes conservan su espacio y recompensa propios.
 - Al vencer al jefe del portal, se vuelve al mapa y aparece un único cofre dorado. Al abrirlo se elige la recompensa especial del jefe. El premio ya no aparece de forma inmediata al vencer. El reloj del mapa continúa hasta detenerse en la pantalla de elección.
 - La fama, monedas, equipo, estado de cajas y cofres pertenecen a la partida; se reinician al comenzar otra. Las monedas de exploración se gastan en las tiendas de esa partida; no son el saldo permanente del menú ni se convierten en él.
+- Las recompensas de cofres y las subidas de nivel presentan exactamente tres opciones y consumen la elección al confirmar una. Los objetos físicos del mapa no abren una cuarta elección: se recogen o activan de inmediato.
+- Los minions normales dejan su fama visible como un cristal de color animado. Además, tienen 10% de probabilidad de soltar un panetón que recupera 25% de vida máxima y 5% de soltar un imán criollo que triplica durante 8 s el alcance de recolección vigente. Las mejoras permanentes de Imán siguen ampliando la base antes de aplicar ese impulso temporal.
+- Las cajas destructibles y barriles explosivos se pueden fijar con clic igual que un enemigo; el contorno amarillo confirma el objetivo. El ataque automático conserva su selección mientras el objeto siga vivo y dentro del alcance.
+- Las llaves raras y legendarias tienen contadores separados y coloreados en el HUD. La dirección al portador o llave más cercana continúa apareciendo como guía adicional.
+- El ambulante usa un vendedor amarillo con chullo y cuatro poses de exhibición. Cada producto comprado desaparece de su disponibilidad con un efecto de humo, tanto en la tienda normal como en la secreta; los demás productos de la visita continúan disponibles.
 - El HUD muestra monedas, objeto equipado e icono, y avisos breves de recogida. Los cofres abiertos permanecen visibles, pero vacíos. No hay cofres ni obstáculos del mapa de origen dentro de la arena del portal.
 
 ## Objetos de Dota 2 durante la partida
@@ -264,6 +269,8 @@ En cooperativo las monedas garantizadas son de equipo y se suman una vez por cof
 
 ## Audio
 Música instrumental sintetizada original por mapa y tema de jefe. Efectos de ataques, impactos, daño, mejora y resultado. El botón Sonido activa o silencia todo y recuerda la elección. Solo arranca tras interacción; no suena en menú, pausa o pestaña oculta. No utiliza voces ni grabaciones de personas.
+
+El panel de sonido permite elegir un archivo de audio local de hasta 30 MB. Se reproduce únicamente en la sesión actual mediante una URL temporal del navegador: no se sube al servidor, no se guarda en la cuenta y debe elegirse de nuevo al recargar. La fama usa una campanilla cristalina original, no una copia de sonidos de otros juegos.
 
 ## Evento de emoliente
 Campo de Marte tiene un puesto cerca de la zona inicial. Al acercarse a 150 unidades se ofrece una defensa opcional con botón, accesible también en móvil. Mantenerse a menos de 200 unidades durante 20 segundos otorga una sola vez 25 monedas y cura el 35% de vida máxima. Salir reinicia el progreso; cada 4 segundos dentro aparece un rival adicional respetando el límite global. Pausa, mejoras y portales suspenden el evento. El jefe final lo interrumpe. Reiniciar la partida reinicia el puesto. El puesto es decorativo, sin nuevas colisiones, y usa el dibujo simple del README.
