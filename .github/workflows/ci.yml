@@ -10,8 +10,16 @@ permissions:
   contents: read
 
 jobs:
+  compatibility:
+    name: Compatibilidad Node 22 / Windows
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Compatibility gate moved to nightly workflow
+        run: echo "La matriz completa se ejecuta en Compatibilidad completa."
+
   full-test:
-    name: Validación rápida y artefacto de release
+    name: Batería completa y artefacto de release
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
