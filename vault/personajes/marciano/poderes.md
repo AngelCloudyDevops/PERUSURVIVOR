@@ -28,7 +28,7 @@ Cada poder tiene su carga, pero ambas suben a la vez por baja: Q usa `ultimate.m
 
 ## Cooperativo
 - Q: el cliente delega; solo el servidor ejecuta `P.MarcianoKit.activate` (`marciano-kit.js:77`).
-- R: el servidor la activa por `input.domain` (`backend/simulation.cjs:41`) y la avanza en `simulation.cjs:45`; en el cliente `P.MarcianoDomain.activate` llama a `P.Coop.requestDomain` (`marciano-kit.js:44`), que mira `ultimate.charge` y no `marcianoDomainCharge` (`src/network/cooperative.js:17`).
+- R: el servidor la activa por `input.domain` (`backend/simulation.cjs:41`) y la avanza en `simulation.cjs:45`; en el cliente `P.MarcianoDomain.activate` llama a `P.Coop.requestDomain` (`marciano-kit.js:44`), que mira `marcianoDomainCharge` (`src/network/cooperative.js:17`).
 - Cambio de arsenal por `input.weapon` (`backend/simulation.cjs:41`). Test: `tests/marciano-kit.test.cjs:14`.
 - `P.Combat.tick` solo avanza el dominio fuera del servidor (`marciano-kit.js:75`).
 
