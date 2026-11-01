@@ -1,3 +1,15 @@
+# Interfaz: legibilidad, HUD móvil y accesibilidad — 2026-11-01
+- HUD en móvil (≤760 px): vitales, monedas, etapa, pasiva, combo, cartas Q/R, objetos y ataques ya no se pisan y el centro queda libre; el minimapa pasa arriba a la derecha en tamaño compacto y en pantallas táctiles se oculta «Teclas 1-3».
+- El modal de mejora y la pantalla final quedan por encima del dock de objetos y ataques.
+- El panel de FPS/ping viene apagado por defecto; se activa en Opciones o con `?profile`.
+- Ningún texto de menús ni HUD baja de 11 px (había textos de 6 a 9 px).
+- «Texto grande» y «Contraste alto» de Opciones > Accesibilidad ahora afectan al HUD y a los menús, no solo al panel de Opciones.
+- Pantalla final: velo detrás, «Otra partida» como botón primario y las monedas ganadas como texto, no como botón.
+- Escape cierra Opciones.
+- Móvil: pestañas Solo/Cooperativo, mochila, ajustes y audio miden al menos 44 px, y JUGAR queda fijo abajo en el hub.
+- Hub: se quita el rótulo «PERÚSURVIVOR · Edición Perú» (el nombre es «Causas del Caos») y en móvil se oculta el logo superior junto al título.
+- Mejora: «Elige una mejora» aparece una sola vez y las etiquetas de rareza son más grandes y legibles.
+
 # Correcciones detectadas al documentar el vault — 2026-10-31
 - Evoluciones de Fuzo y Paloma: el texto cuenta los rivales que realmente atraviesan (diez y cuatro; incluye los 2 que suma toda evolución). Sin cambio de balance.
 - Puesto de emoliente: el aviso dice «recuperas 35% de vida máxima», que es lo que hace (cura; no sube el máximo).
