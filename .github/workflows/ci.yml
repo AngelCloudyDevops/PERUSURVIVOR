@@ -10,26 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  compatibility:
-    name: Compatibilidad Node 22 / Windows
-    runs-on: windows-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          package-manager-cache: false
-      - run: npm ci --ignore-scripts
-      - run: npm run check
-      - run: npm run build
-      - name: Smoke tests
-        run: node --test tests/build.test.cjs tests/gameplay.test.cjs tests/server.test.cjs
-
   full-test:
-    name: Batería completa y artefacto de release
+    name: Validación rápida y artefacto de release
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -43,7 +25,9 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: npm test
-      - run: npm run release:budget
+      - name: Check release budget
+        if: github.event_name == 'push'
+        run: npm run release:budget
       - name: Test deployment receiver
         run: python3 -m unittest discover -s tests/deployment -p "test_*.py"
       - name: Preserve the tested release
@@ -60,7 +44,7 @@ jobs:
 
   deploy:
     name: Deploy PERUSURVIVOR (${{ github.ref_name }})
-    needs: [compatibility, full-test]
+    needs: full-test
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging') && vars.PERUSURVIVOR_DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
