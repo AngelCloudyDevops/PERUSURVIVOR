@@ -1,6 +1,7 @@
 # Correcciones detectadas al documentar el vault — 2026-10-31
 - Evoluciones de Fuzo y Paloma: el texto cuenta los rivales que realmente atraviesan (diez y cuatro; incluye los 2 que suma toda evolución). Sin cambio de balance.
 - Puesto de emoliente: el aviso dice «recuperas 35% de vida máxima», que es lo que hace (cura; no sube el máximo).
+- README: los compañeros con atlas de reacciones en el dominio de Makanaky son 17 (no 18); la fila `cerdito` del atlas es un alias, y Sideral, Chamelín y Marciano usan el dibujo de respaldo.
 
 # Cooperativo: tiempo límite para elegir y daño visible — 2026-10-31
 - Las elecciones de equipo (subida de nivel, cofres, portales, Extinción) tienen 15 s de tiempo de simulación; al vencer, el servidor elige por quien no respondió (la opción segura de cada tipo) y la partida sigue. El plazo se congela mientras un compañero se reconecta.
