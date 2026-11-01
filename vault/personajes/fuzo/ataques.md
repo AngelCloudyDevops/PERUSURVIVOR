@@ -22,7 +22,7 @@ Genéricos para todo el roster sin arsenal (`src/systems/progression.js:77-78`):
 - Evolución: rango 5 y nivel 8 (`src/systems/progression.js:62`); poder ×1,6, alcance ×1,3, intervalo ×0,85, +2 proyectiles, `primaryPierce` +2.
 
 ## Evolución · Banca infinita
-- Perfil en `src/systems/evolutions.js:18`: count 5, spread 0,11, speed 900, pierce 8, `extra:chain` (hasta 3 rivales a ≤220 u del objetivo, 45 % del daño, `evolutions.js:37`), `damageScale` 0,58 (`evolutions.js:54`).
+- Perfil en `src/systems/evolutions.js:18`: count 5, spread 0,11, speed 900, pierce 8 (texto: «atraviesan diez», el total con `primaryPierce`), `extra:chain` (hasta 3 rivales a ≤220 u del objetivo, 45 % del daño, `evolutions.js:37`), `damageScale` 0,58 (`evolutions.js:54`).
 - `P.Evolutions.attack` mezcla `{...ataque base, ...perfil}` (`src/systems/evolutions.js:28`).
 - Medido con `Simulation` aplicando solo `evolve:primary` (sin rangos previos): 5 tarjetas de 17,82 de daño, cada una con `remaining` 10 (8 del perfil + 2 de `primaryPierce`, `progression.js:78`), poder ×1,6, alcance ×1,3, cadencia 0,637 s.
 - Con los 4 rangos previos el daño y la cadencia son mayores; las fórmulas de arriba se multiplican.

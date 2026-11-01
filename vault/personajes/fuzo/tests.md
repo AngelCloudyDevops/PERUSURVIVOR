@@ -19,6 +19,7 @@ Volver: [[personajes/fuzo/README]]. No hay test propio (`tests/fuzo*.test.cjs` n
 | `tests/save-validation.test.cjs:31,41,64` | tiradas de gacha |
 | `tests/roster-balance.test.cjs:3` | mejora de jefe en el informe |
 | `tests/evolutions.test.cjs:4` | recorre todo el roster |
+| `tests/evolutions.test.cjs` («Texto de evolución…») | la evolución atraviesa 10 rivales y el texto dice «diez» |
 | `tests/domain.test.cjs:76` | fila `fuzo` del atlas de compañeros |
 
 ## Registro en `package.json`

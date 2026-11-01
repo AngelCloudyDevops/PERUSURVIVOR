@@ -1,3 +1,6 @@
+# Correcciones detectadas al documentar el vault — 2026-10-31
+- Evoluciones de Fuzo y Paloma: el texto cuenta los rivales que realmente atraviesan (diez y cuatro; incluye los 2 que suma toda evolución). Sin cambio de balance.
+
 # Cooperativo: tiempo límite para elegir y daño visible — 2026-10-31
 - Las elecciones de equipo (subida de nivel, cofres, portales, Extinción) tienen 15 s de tiempo de simulación; al vencer, el servidor elige por quien no respondió (la opción segura de cada tipo) y la partida sigue. El plazo se congela mientras un compañero se reconecta.
 - La pantalla de elección muestra «Se elige solo en N s» o «Esperando a tu compañero · N s», resaltado en los últimos 5 s y sin pulso con movimiento reducido.

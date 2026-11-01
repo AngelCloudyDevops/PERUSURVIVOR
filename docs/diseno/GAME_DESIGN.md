@@ -451,7 +451,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene al menos una evol
 
 - cristorata: **Directo encadenado** — Dos micrófonos de retorno enlazan hasta tres rivales con sonido.
 - cuy: **Terremoto del cuy** — Una onda completa empuja y deja una zona de temblor a tus pies.
-- paloma: **Corona de plumas** — Doce plumas salen en todas direcciones y atraviesan dos rivales.
+- paloma: **Corona de plumas** — Doce plumas salen en todas direcciones y atraviesan cuatro rivales.
 - alan: **Eco de la plaza** — Un discurso amplio alcanza también a los rivales detrás de ti.
 - alberto: **Órbita presidencial** — Seis bandas giran alrededor y una onda golpea el centro.
 - keiko: **Abanico solar** — Cuatro abanicos salen en cruz, regresan y dejan un remolino junto al objetivo.
@@ -460,7 +460,7 @@ Cada uno de los 18 personajes conserva su arma inicial y tiene al menos una evol
 - shaka: **Tornado bananero** — Cinco plátanos parten en todas direcciones y regresan; un torbellino golpea cerca.
 - najasor: **Marea CPEZ** — Siete pescados zigzaguean y una ola daña al grupo junto al objetivo.
 - cirilo: **Concierto orbital** — Tres micros van y vuelven en abanico; una onda corta protege al artista.
-- fuzo: **Banca infinita** — Cinco tarjetas rápidas atraviesan ocho rivales y enlazan al grupo más cercano.
+- fuzo: **Banca infinita** — Cinco tarjetas rápidas atraviesan diez rivales y enlazan al grupo más cercano.
 - charles: **Lluvia de pañales** — Tres pañales dejan nubes y una nube adicional aparece junto al objetivo.
 - axelbenba: **Tormenta relámpago** — Dos clips buscan al enemigo vivo más cercano durante su vuelo.
 - cerdito: **Fiesta del cerdito** — Doce balas salen en círculo; una onda corta despeja el puesto.

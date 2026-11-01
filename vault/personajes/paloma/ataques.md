@@ -14,7 +14,7 @@ Solo existe un ataque (slots 2 y 3 `reserved`, `src/data/powers.js:51`).
 - Vida de la pluma = `range·reach / speed` (`combat.js:22`), sin retorno.
 
 ## Evolución «Corona de plumas» (`evolutions.js:9`)
-- Perfil: `count 12`, `radial:true`, `pierce 2`, sin `damageScale` ni extra. Las 12 plumas salen en círculo desde la orientación del tiro (`combat.js:22`, `a.radial`).
+- Perfil: `count 12`, `radial:true`, `pierce 2` (+2 de `primaryPierce` = 4 rivales; el texto dice «cuatro», fijado en `tests/evolutions.test.cjs`), sin `damageScale` ni extra. Las 12 plumas salen en círculo desde la orientación del tiro (`combat.js:22`, `a.radial`).
 - `count` del perfil sustituye al 5 de `feathers`; los proyectiles extra de rangos posteriores se suman al evolucionar (`progression.js:78`).
 - Daño por pluma 17 (×1,6 de poder al evolucionar, `progression.js:78`).
 
