@@ -727,7 +727,7 @@ El laboratorio de administrador incluye «Supervivencia · oleadas reales» para
 
 
 
-**Panel admin:** exclusivamente la cuenta `reysuperior` con rol admin puede consultar usuarios, entregar 1–100.000 monedas por operación, desbloquear personajes y conceder o retirar acceso al Laboratorio. El permiso de laboratorio se guarda en el servidor y no convierte al jugador en administrador: no habilita control de cuentas ni balance global. Incluye búsqueda, paginación, confirmación e historial auditable. No permite cambiar roles ni ver contraseñas.
+**Panel admin:** exclusivamente la cuenta `reysuperior` con rol admin puede consultar usuarios, entregar 1–100.000 monedas por operación, desbloquear personajes y conceder o retirar los permisos independientes de **Laboratorio** y **Balance global**. Laboratorio habilita las pruebas de combate; Balance permite consultar, probar y guardar ajustes de causas y enemigos. Ninguno convierte al jugador en administrador ni habilita el control de cuentas. Incluye búsqueda, paginación, confirmación e historial auditable. No permite ver contraseñas.
 
 Las entregas administrativas se reciben en vivo durante la sesión: monedas y personajes se suman al guardado local sin reemplazar la partida. Un aviso confirma la recepción. Al reconectar se recuperan entregas pendientes sin duplicarlas.
 
@@ -911,7 +911,7 @@ Chamelín: sello encadenado con pausa y pisotón, giro con arrastre visual, chor
 Balance de Chamelín: el impacto del emoji usa 15 % del daño base del arma; el charco conserva su daño independiente de 30 % del daño base por segundo durante 4 s. Ralentiza 20 % a normales y 10 % a jefes/minijefes. Las zonas superpuestas no suman daño ni ralentización. Solo el chorro del dominio reduce ambas defensas; la mordida conserva sus multiplicadores y potencia anteriores.
 Las cartas de todos los objetos Dota muestran su imagen original grande como arte principal, igual que el catálogo y el inventario. No usan una reinterpretación generada ni el fondo de personaje con franjas. Se conserva el respaldo local si falla la imagen remota.
 
-### Balance global de personajes (solo admin)
+### Balance global de personajes (admin o permiso de Balance)
 En el vestíbulo, **Balance de personajes** permite seleccionar un causa con su retrato y ajustar vida, daño base, velocidad, recarga, alcance y ATQ/DEF físicos y especiales. Muestra originales y cambios antes de guardar. El servidor valida el rol admin, límites y revisión; conserva auditoría y permite restaurar cada personaje. Todos los admins pueden balancear; las entregas siguen reservadas a ReySuperior.
 Los ajustes persisten en SQLite, sin editar archivos ni redesplegar. Afectan nuevas partidas individuales/prácticas y salas cooperativas, nunca entidades en una partida activa. El lobby consulta al abrir, volver al menú, recuperar foco y cada 15 s; recarga la página para recibirlos inmediatamente. No modifica estrellas, inventario, progresión ni coeficientes exclusivos de ultis. Un cambio de daño base sí escala habilidades que dependen de ese valor.
 Las imágenes originales de objetos Dota en cartas se reducen 28 %, se centran con margen y se acompañan del sprite del causa actual. Al elegir, la confirmación usa la misma imagen original y un efecto por familia (regeneración, filo, movilidad, cargas o Blink), sin icono genérico. Movimiento reducido aplica la elección inmediatamente.
