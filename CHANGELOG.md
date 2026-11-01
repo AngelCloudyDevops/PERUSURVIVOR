@@ -5,6 +5,7 @@
 - Cooperativo: el servidor toma los personajes gratuitos de `P.Meta.blank()` (la misma lista que el cliente); una cuenta sin guardado ya puede entrar con Sideral.
 - Cooperativo: la R del Marciano se envía al llenarse su carga de dominio (antes el cliente miraba la carga de la Q y la R no salía).
 - Cooperativo en Caos: vencer al jefe del portal cambia de bioma y cuenta la ventana igual que en solitario (`Encounters.leave` compartido); antes el portal se reabría y el dúo volvía a entrar.
+- Auditoría de assets en ejecución: solo `kingteka-gallinazo-attack-v1.webp` y `cerdito-gallinazo-attack-v1.webp` se publican sin uso (documentados en `vault/arquitectura/build.md`, no borrados).
 
 # Cooperativo: tiempo límite para elegir y daño visible — 2026-10-31
 - Las elecciones de equipo (subida de nivel, cofres, portales, Extinción) tienen 15 s de tiempo de simulación; al vencer, el servidor elige por quien no respondió (la opción segura de cada tipo) y la partida sigue. El plazo se congela mientras un compañero se reconecta.

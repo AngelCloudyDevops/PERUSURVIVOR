@@ -58,6 +58,17 @@ verificado: 2026-10-31
 | `coop` | `node backend/cooperative.cjs` (servidor cooperativo aislado) |
 - 103 archivos `tests/*.test.cjs`; 3 no están en ninguna lista: [[gotchas/G006-tests-manuales]].
 
+## Assets publicados sin uso (candidatos, no borrados)
+Auditoría del 2026-10-31 sobre los 226 archivos de `dist/assets/` tras `npm run build`:
+- Método en ejecución: cargar los scripts de `scripts/modules.cjs` en un `node:vm` con `Image`, `fetch` y `src` que registran URLs; llamar a los `init`/`load` de `P`; recorrer `P` buscando strings `assets/`; y llamar a las 54 funciones cuyo código construye rutas `assets/` con los ~3100 identificadores que aparecen en `P`. Lo que quedó sin pedir se revisó a mano (CSS de `src/ui/styles.css`, cartas por arma, rangos de profesión, `fetch` del audio).
+- La mayoría de rutas se construyen (`'assets/walks/'+id+'-walk-'+…`, `src/rendering/walk-art.js:32`): un `grep` del nombre de archivo da falsos huérfanos.
+- Huérfanos reales (publicados y nunca pedidos):
+  - `assets/attacks/kingteka-gallinazo-attack-v1.webp` (14,5 KB)
+  - `assets/attacks/cerdito-gallinazo-attack-v1.webp` (15,5 KB)
+  El Gallinazo pide siempre `-v2` (`src/rendering/walk-art.js:32`). Sus `.png` y `.prompt.txt` no se publican.
+- Para retirarlos: añadirlos a `archivedCinematics` de `scripts/build.cjs:6` o borrarlos; decisión del propietario.
+- Lo no publicado de `public/assets/` (387 archivos) son PNG maestros, prompts y archivados por las listas de `scripts/build.cjs:4-12`.
+
 ## Qué se publica
 - Los 4 módulos de `src/development/` están en `scripts/modules.cjs` y llegan a `dist/js/`:
   [[gotchas/G008-development-en-produccion]].

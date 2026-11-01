@@ -20,6 +20,6 @@ Su atlas declarado es `makanaky` (`src/data/powers.js:96`), pero `P.Sprites` sol
 | `public/assets/cards/makanaky-los-tres-ultimate-fullart-v1.webp` | Carta de Q | `src/systems/ability-cards.js:19` |
 | `public/assets/cards/makanaky-domain-fullart-v1.webp` | Carta de R | `src/systems/ability-cards.js:20` |
 - Las técnicas 2 y 3 y sus evoluciones no tienen carta de mejora propia (no hay rama de Makanaky en `src/ui/screens.js:44`).
-- `makanaky-domain-back-v1.*` y los `.png` equivalentes: sin referencia directa en `src/` (sin verificar uso externo).
+- `makanaky-domain-back-v1.*` y los `.png` equivalentes: sin referencia en `src/` y no se publican (lista de archivados de `scripts/build.cjs:9`).
 - Los `.prompt.txt` son documentación de generación; no se cargan.
 - **Minijefe, otro arte**: `public/assets/minibosses/makanaky-v1.webp` (`src/systems/minibosses.js:5`, `asset:'makanaky'`; empaquetado: `tests/build.test.cjs:348`).

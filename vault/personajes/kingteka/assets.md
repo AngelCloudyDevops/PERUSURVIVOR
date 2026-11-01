@@ -33,5 +33,5 @@ Volver: [[personajes/kingteka/README]]. Todo bajo `public/assets/`. Los sprites 
 
 ## Sin raster
 - El Santuario (R) se dibuja con canvas: hojas, espíritus (cóndor, puma, oso, cuy) y suelo en `src/systems/kingteka-domain.js:48-68`.
-- `attacks/kingteka-attack-v1.*` y `attacks/kingteka-gallinazo-attack-v1.*` existen pero ningún código los pide: `attack-kingteka` carga el archivo `aim/` y el Gallinazo fuerza el v2 (`walk-art.js:32`).
+- `attacks/kingteka-attack-v1.*` y `attacks/kingteka-gallinazo-attack-v1.*` existen pero ningún código los pide: `attack-kingteka` carga el archivo `aim/` y el Gallinazo fuerza el v2 (`walk-art.js:32`). `kingteka-attack-v1` no se publica; `kingteka-gallinazo-attack-v1.webp` y `cerdito-gallinazo-attack-v1.webp` sí: candidatos en [[arquitectura/build]].
 - Los `*.prompt.txt` y `kingteka-ultimate-portrait.json` son metadatos de autoría.
