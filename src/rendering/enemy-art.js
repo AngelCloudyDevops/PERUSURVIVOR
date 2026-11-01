@@ -20,7 +20,7 @@ feedbackProfiles:[
  {color:'#8de2cb',duration:1,style:'static',tilt:.12,lift:0,squash:.98}
 ],
 profile(e){return !e.boss&&!e.mapBoss&&Number.isInteger(e.design)?(P.MinionProfessions?.feedback(e)||this.feedbackProfiles[e.design]):null},
-feedback(e,dead=false){const profile=this.profile(e),effects=P.state.effects;if(!profile||effects.length>=(dead?300:280))return;const life=dead?profile.duration:.22;effects.push({kind:dead?'minion-death':'minion-hit',x:e.x,y:e.y,design:e.design,r:e.r,heavy:e.heavy,evolution:e.evolution,profession:e.profession,facing:e.facing||1,transformed:dead&&!!P.Ultimate.owner(),life,maxLife:life,color:profile.color})},
+feedback(e,dead=false){const profile=this.profile(e),effects=P.state.effects;if(!profile||effects.length>=(dead?300:P.Entities.routineFx))return;const life=dead?profile.duration:.22;effects.push({kind:dead?'minion-death':'minion-hit',x:e.x,y:e.y,design:e.design,r:e.r,heavy:e.heavy,evolution:e.evolution,profession:e.profession,facing:e.facing||1,transformed:dead&&!!P.Ultimate.owner(),life,maxLife:life,color:profile.color})},
 hitPose(e){const profile=this.profile(e);if(!profile||!(e.hit>0))return null;const strength=Math.min(1,e.hit/.22);return {x:(e.hitDir||1)*3*strength,y:-profile.lift*Math.sin(strength*Math.PI),tilt:profile.tilt*strength,squash:1-(1-profile.squash)*strength,alpha:1-strength*.28}},
 // Eye anchors refer to the intact first column of the 1024 x 1536 source atlas.
 deathEyes:[[[344,96,14],[385,94,13]],[[348,318,13],[384,315,11]],[[348,562,14],[386,559,13]],[[348,798,14],[383,794,12]],[[356,1069,13],[388,1065,11]],[[348,1319,13],[383,1318,12]]],

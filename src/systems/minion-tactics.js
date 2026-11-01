@@ -20,7 +20,7 @@ P.MinionTactics={
  busy(e){return !!(e.tactic||e.rangedAim||e.burst||e.charge)},
  isRanged(a){return !!a&&(!!a.ranged||['fan','twin','zigzag','burst'].includes(a.mode))},
  started(e){const s=P.state;if(e.progressive&&(!s.devRun||s.balanceTest)&&!s.encounter)s.tacticGate={at:s.elapsed}},
- canStart(e,a){const s=P.state;if(!e.progressive||s.devRun&&!s.balanceTest||s.encounter)return true;const limits=P.Difficulty.limits(e),busy=s.enemies.filter(q=>q.hp>0&&this.busy(q));if(busy.length>=limits.casts||s.danger.length>=limits.danger)return false;
+ canStart(e,a){const s=P.state;if(!e.progressive||s.devRun&&!s.balanceTest||s.encounter)return true;const limits=P.Difficulty.limits(e),busy=P.Systems.busyEnemies();if(busy.length>=limits.casts||s.danger.length>=limits.danger)return false;
   const active=busy.filter(q=>q.tactic),ranged=busy.filter(q=>this.isRanged(q.attackProfile||P.Difficulty.attack(q))).length;
   if(this.isRanged(a)&&ranged>=Math.min(this.breathing()?1:2,limits.casts)||active.filter(q=>q.attackProfile?.tactic===a.tactic).length>=(P.Difficulty.index()<6?1:2))return false;
   const gate=s.tacticGate;if(gate&&s.elapsed>=gate.at&&s.elapsed<gate.at+(this.breathing()?.65:.38))return false;return true;

@@ -15,7 +15,7 @@ if args.quality is not None and not 1 <= args.quality <= 100:
 if args.max_width is not None and args.max_width < 1 or args.max_height is not None and args.max_height < 1:
     parser.error('--max-width and --max-height must be positive')
 rows = []
-path = ROOT/'docs/asset-optimization.json'
+path = ROOT/'docs/arte/auditorias/asset-optimization.json'
 previous = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'assets':[], 'previews':[]}
 previous_by_source = {row['source']:row for row in previous['assets']}
 sources = [ROOT / name for name in args.only] if args.only else [ROOT/'public'/row['source'] for row in previous['assets']] if args.check else sorted((ROOT / 'public/assets').rglob('*.png'))

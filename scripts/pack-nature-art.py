@@ -24,5 +24,5 @@ for row in range(2):
 dest=src.with_suffix('.webp')
 out.save(dest,lossless=True,method=6)
 audit={'source':str(src.relative_to(root)).replace('\\','/'),'runtime':str(dest.relative_to(root)).replace('\\','/'),'source_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),'runtime_sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'width':512,'height':256,'bytes':dest.stat().st_size,'cells':cells,'method':'Built-in image_gen; transparent 4x2 atlas. Mechanical nearest-neighbor packing only.'}
-(root/'docs/nature-art-audit.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+(root/'docs/arte/auditorias/nature-art-audit.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 print(json.dumps({'source_size':im.size,'runtime_bytes':dest.stat().st_size,'cells':cells}))
