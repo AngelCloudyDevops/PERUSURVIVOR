@@ -45,7 +45,8 @@ Sistema de juego: [[sistemas/cooperativo/README]].
   - Redondea `x`/`y` a centésimas si |x| o |y| > 1 (`:5-14`).
 - Envío: un estado en vuelo por conexión; se descarta si la cola supera 64 KiB
   (`backend/state-wire.cjs:40-43`).
-- Test: `tests/snapshot-slim.test.cjs:87` exige que el snapshot pese < 55 % del original.
+- Test: `tests/snapshot-slim.test.cjs:88` exige que el snapshot adelgazado pese < 45 % del original.
+- Medido el 2026-10-31 con la simulación sembrada del test (campo, Caos, 160 enemigos, 2 jugadores): **251,7 KB → 84,2 KB (33 %)**. `node scripts/benchmark-game.cjs coop-160` da **95,2 KB** por snapshot adelgazado y codificación mediana 1,27 ms. El mensaje de `cf90177` citaba 263 → 95 KB.
 
 ## Elecciones de equipo con plazo de 15 s (commit e824100)
 - `this.choiceTimeout=15` (`backend/activities.cjs:4`).

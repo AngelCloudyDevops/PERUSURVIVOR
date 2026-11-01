@@ -80,9 +80,10 @@ test('non-default combatStats and special enemies are never stripped',()=>{
   assert.equal(slimEnemy(P,{x:1,y:2,hp:1,max:1,r:5}).combatStats,undefined);
  });
 });
+// Medido el 2026-10-31 (coop-160 sembrado, campo, Caos): 251,7 KB -> 84,2 KB (33 %); scripts/benchmark-game.cjs coop-160 da 95,2 KB por snapshot adelgazado.
 test('KB per snapshot before/after',()=>{
  let before=0,after=0,n=0;
  run((sim,snap,P)=>{before+=JSON.stringify({...snap,enemies:P.state.enemies}).length;after+=encodeState(snap).length;n++});
  console.log('  snapshot KB raw/slim:',(before/n/1024).toFixed(1),(after/n/1024).toFixed(1));
- assert.ok(after<before*.55);
+ assert.ok(after<before*.45,'slim '+after+' >= 45% of raw '+before);
 });
