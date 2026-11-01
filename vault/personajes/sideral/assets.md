@@ -2,7 +2,7 @@
 tipo: personaje
 id: sideral
 archivos: [public/assets/characters, public/assets/cards, src/rendering/sideral-art.js, src/rendering/sideral-lagarto.js, src/systems/sideral-domain.js, src/ui/screens.js]
-verificado: 2026-10-31
+verificado: 2026-11-01
 ---
 # Sideral · assets
 
@@ -11,7 +11,10 @@ No usa atlas ni marchas de `P.WalkArt`: `walk-art.js:33-34` lo excluye de la pre
 | Archivo | Qué es | Cargado por |
 |---|---|---|
 | `public/assets/characters/sideral-ur-v1.webp` | Cuerpo, ataque y marcha | `src/rendering/sideral-art.js:5` |
-| `public/assets/characters/sideral-lagarto-motion-v2.webp` | Forma Lagarto de Q (ocho poses) | `src/rendering/sideral-lagarto.js:6` |
+| `public/assets/characters/sideral-lagarto-motion-v2.webp` | Maestro histórico de la forma Lagarto; no se distribuye | `scripts/build.cjs` |
+| `public/assets/characters/sideral-tail-attack-v2.webp` | Colazo humano unido al cuerpo (seis poses) | `src/rendering/sideral-lagarto.js` |
+| `public/assets/characters/sideral-transform-motion-v2.webp` | Transformación humana → Lagarto (ocho etapas) | `src/rendering/sideral-lagarto.js` |
+| `public/assets/characters/sideral-breath-motion-v2.webp` | Aliento Lagarto con apoyos y recuperación (ocho poses) | `src/rendering/sideral-lagarto.js` |
 | `public/assets/characters/sideral-domain-v3.png` | Figura del dominio | `src/systems/sideral-domain.js:8` |
 | `public/assets/characters/sideral-domain-room-v1.jpg` | Habitación del dominio | `src/systems/sideral-domain.js:8` |
 | `public/assets/cards/sideral-character-fullart-v1.webp` | Carta de personaje | `src/ui/reference-menus.js:36` |
