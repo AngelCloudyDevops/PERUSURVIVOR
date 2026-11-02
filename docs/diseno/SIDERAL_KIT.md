@@ -57,6 +57,8 @@ Durante el aliento se usa un ciclo continuo de ocho cuadros sincronizado con cad
 
 **Mirada Sideral** usa `assets/characters/sideral-fear-motion-v1.webp`, una actuación exclusiva de ocho cuadros: alcanza el marco, baja progresivamente los lentes, sostiene los ojos violetas y vuelve a cubrirlos. El gesto dura 0,72 s sin retrasar la aplicación del daño. Cada rival afectado tiembla en dirección opuesta, conserva un aviso de miedo sobre la cabeza y distingue con un aro adicional la evolución **Rostro prohibido**. Mirada, coletazo y huevo tienen firmas sintetizadas diferentes; la onda evolucionada desprende escamas luminosas y el huevo evolucionado pulsa antes de abrirse. Estas señales son visuales y sonoras, no alteran daño, resistencia ni duración del control.
 
+Las tres técnicas mantienen lectura de piernas al desplazarse: Mirada y Coletazo recorren láminas corporales completas con cambios de apoyo, mientras Huevo conserva la caminata base y superpone el lanzamiento. Ningún ataque puede sustituir el ciclo por una pose fija que se deslice sobre el suelo.
+
 ## Cobertura visual del arsenal
 
 Las cartas de subida de nivel ya no usan la composición genérica. `P.UI.upgradeArt` resuelve una ilustración vertical para cada técnica y cambia a la versión evolucionada únicamente en la carta de evolución:
