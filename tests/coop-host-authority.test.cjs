@@ -14,6 +14,27 @@ test('El runtime del creador ejecuta la simulación completa compartida',()=>{
  assert.doesNotThrow(()=>JSON.stringify(state));
 });
 
+test('El creador directo activa cada expansión sin reenviarla hacia su propio cliente',()=>{
+ const cases=[
+  ['makanaky','domainCharge','domain'],
+  ['sideral','charge','sideralDomain'],
+  ['kingteka','domainCharge','kingtekaDomain'],
+  ['chamelin','charge','chamelinDomain'],
+  ['cirilo','charge','ciriloDomain'],
+  ['marciano','marcianoDomainCharge','marcianoDomain'],
+  ['cristorata','cristorataDomainCharge','cristorataDomain']
+ ];
+ for(const [id,charge,state]of cases){
+  const seed=new Simulation('campo',[0],root),index=seed.P.Data.characters.findIndex(c=>c.id===id);
+  assert(index>=0,id+' debe existir en el catálogo');
+  const sim=new Simulation('campo',[index],root),P=sim.P,p=sim.players[0];
+  P.Coop.active=true;P.CoopDirect={authoritative:()=>true};
+  if(id==='cristorata'){P.Terrain.hit=()=>null;P.Terrain.clear=()=>true}
+  p.ultimate[charge]=100;sim.tick(.04,[{domain:true}]);
+  assert(P.state[state],id+' debe activar '+state+' con autoridad del anfitrión');
+ }
+});
+
 test('El creador conserva su sesión y el estado autoritativo al iniciar la partida',()=>{
  const server=new Simulation('campo',[0,1],root),P=server.P,context={P,console,performance:{now:()=>0},JSON,Math,Number,setTimeout,clearTimeout};
  vm.runInNewContext(fs.readFileSync(path.join(root,'dist/js/coop-host-runtime.js'),'utf8'),context);
