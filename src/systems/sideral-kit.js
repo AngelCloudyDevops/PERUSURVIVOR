@@ -39,7 +39,7 @@ P.SideralKit={serial:0,duration:6,breathInterval:.24,
    if(a.arsenalId==='sideralFear'&&primed){const extra=s.enemies.filter(e=>e.hp>0&&Math.hypot(e.x-p.x,e.y-p.y)>range+(e.r||0)&&P.Combat.inArc(p,e,range+70,arc)&&P.Terrain.clear(p.x,p.y,e.x,e.y,5)).sort((x,y)=>Math.hypot(x.x-p.x,x.y-p.y)-Math.hypot(y.x-p.x,y.y-p.y))[0];if(extra){this.hit(p,extra,a.damageScale,'special');this.fear(p,extra,a)}}
    if(a.wave){const speed=650,reach=280*p.reach;s.shots.push({...this.source(p,'physical'),x:p.x,y:p.y,vx:Math.cos(p.aim)*speed,vy:Math.sin(p.aim)*speed,angle:p.aim,life:reach/speed,age:0,history:[],kind:'spread',glyph:'LAGARTO_WAVE',color:'#b2ed6d',power:p.power*.65*(1+((p.sideralArsenal.ranks.sideralTail||1)-1)*.14),hits:new Set(),remaining:3})}
    s.effects.push({kind:'sideral-sweep',x:p.x,y:p.y,angle:p.aim,r:range,arc,life:.4,maxLife:.4,tail:a.arsenalId==='sideralTail'})
-  }if(a.arsenalId==='sideralFear'&&a.evolution)P.Evolutions.afterCast(p,a,target);if(primed){passive.stacks=0;passive.progress=0}return true
+  }if(a.arsenalId==='sideralFear'&&a.evolution)P.Evolutions.afterCast(p,a,target);if(primed){P.state.effects.push({kind:'sideral-passive-burst',x:p.x,y:p.y-8,angle:p.aim,life:.38,maxLife:.38});passive.stacks=0;passive.progress=0}return true
  },
  eggs(p,dt){
   const s=P.state;
