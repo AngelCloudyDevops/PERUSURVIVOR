@@ -41,6 +41,9 @@ class WorkflowLockTest(unittest.TestCase):
         self.assertIn("env_file.chmod(0o600)", installer)
         self.assertIn("min-port=49160", installer)
         self.assertIn("max-port=49200", installer)
+        self.assertIn("relay-ip={address}", installer)
+        self.assertIn("cap_add: [NET_BIND_SERVICE]", installer)
+        self.assertIn("os.chown(config, 65534, 65533)", installer)
         self.assertIn("denied-peer-ip=192.168.0.0-192.168.255.255", installer)
         self.assertIn("coturn/coturn:4.18.0-r0-alpine", installer)
 
