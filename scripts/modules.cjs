@@ -297,10 +297,12 @@ module.exports = [
   {"source":"src/systems/run-mode.js","output":"js/run-mode.js"},
   {"source":"src/systems/map-events.js","output":"js/map-events.js"},
   {"source":"src/network/coop-motion.js","output":"js/coop-motion.js"},
+  {"source":"src/network/coop-host-runtime.js","output":"js/coop-host-runtime.js"},
   {
     "source": "src/network/cooperative.js",
     "output": "js/cooperative.js"
   },
+  {"source":"src/network/coop-direct.js","output":"js/coop-direct.js"},
   {
     "source": "src/development/performance.js",
     "output": "js/performance.js"

@@ -1,3 +1,10 @@
+# Claridad e impacto visual del combate — 2026-11-01
+- Los golpes físicos usan cortes cálidos y las técnicas especiales anillos, partículas y estelas luminosas; los críticos tienen una ráfaga mayor y una micro-sacudida acotada.
+- La resistencia parcial de minions pesados y escudos tácticos muestra un arco azul con `BLOQ.` sin modificar el daño ni los tiempos de protección.
+- Los proyectiles físicos y especiales reciben estelas diferentes y el fogonazo del arma añade rayos direccionales y humo breve desde la punta correcta.
+- Los avisos de ataques de minions ganan borde oscuro, relleno progresivo y un reloj de carga. La geometría sigue siendo la misma que usa la colisión.
+- Movimiento reducido limita partículas y puntos de estela; no elimina áreas, dirección ni tiempo de los avisos.
+
 # Correcciones detectadas al documentar el vault — 2026-10-31
 - Evoluciones de Fuzo y Paloma: el texto cuenta los rivales que realmente atraviesan (diez y cuatro; incluye los 2 que suma toda evolución). Sin cambio de balance.
 - Puesto de emoliente: el aviso dice «recuperas 35% de vida máxima», que es lo que hace (cura; no sube el máximo).
