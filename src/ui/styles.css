@@ -940,6 +940,36 @@ body.reference-open #overlay:not([hidden]){z-index:80}
 /* Las pasivas pueden mostrar una cantidad distinta de marcas sin duplicar el HUD. */
 .passive-ga-preview{grid-template-columns:repeat(var(--passive-preview-columns,4),1fr)}
 #passive-hud div{grid-template-columns:repeat(var(--passive-columns,4),1fr)}
+#passive-hud .passive-eye{display:none}
+#passive-hud[data-passive=sideral]{isolation:isolate;top:116px;bottom:auto;left:16px;width:310px;height:140px;padding:43px 27px 28px 79px;border:0;border-radius:0;background:none;box-shadow:none;color:#f3ffd2;filter:drop-shadow(0 9px 13px #07110a99);overflow:visible}
+#passive-hud[data-passive=sideral]::after{content:'';position:absolute;z-index:-2;inset:40px 18px 28px 59px;border:1px solid #709f42aa;border-radius:13px;background:linear-gradient(110deg,#0b1711f2,#15281df0 58%,#21152aee);box-shadow:inset 0 0 18px #7bcc4724}
+#passive-hud[data-passive=sideral]::before{content:'';position:absolute;z-index:-1;inset:0;background:url('../assets/ui/sideral-passive-frame-v1.webp') center/contain no-repeat;transform-origin:42% 68%;pointer-events:none}
+#passive-hud[data-passive=sideral] small,#passive-hud[data-passive=sideral] strong,#passive-hud[data-passive=sideral] .passive-marks,#passive-hud[data-passive=sideral] .passive-status{position:absolute;z-index:2;right:27px;left:79px}
+#passive-hud[data-passive=sideral] small{top:44px;color:#a8eb6b;font-size:7px;letter-spacing:1.2px}
+#passive-hud[data-passive=sideral] strong{top:55px;margin:0;color:#f5ffd6;font-size:15px;line-height:1;text-shadow:0 1px #13210d,0 0 7px #8fd34c66}
+#passive-hud[data-passive=sideral] .passive-marks{top:88px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;height:24px}
+#passive-hud[data-passive=sideral] .passive-marks i{position:relative;padding:0;border:0;background:none;color:#789267;font-size:19px;line-height:23px;text-shadow:0 1px #081009,0 0 4px #a6dc6b77;opacity:.72}
+#passive-hud[data-passive=sideral] .passive-marks i[data-filled=true]{color:#c8f578;text-shadow:0 0 5px #75dc45,0 0 10px #8f54d7;opacity:1}
+#passive-hud[data-passive=sideral] .passive-marks i[data-current=true]{color:#668348;opacity:1;animation:sideral-scale-form .8s ease-in-out infinite alternate}
+#passive-hud[data-passive=sideral] .passive-status{top:72px;margin:0;overflow:hidden;color:#d3e8c5;font-size:7.3px;line-height:1.15;letter-spacing:.12px;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 1px #071009}
+#passive-hud[data-passive=sideral] .passive-eye{display:block;position:absolute;z-index:3;top:30px;left:55px;width:9px;height:7px;border-radius:50%;background:#f6c8ff;box-shadow:0 0 5px #d65cff,0 0 12px #8ee651;opacity:.55;transform:rotate(-9deg);pointer-events:none}
+#passive-hud[data-passive=sideral][data-passive-state=idle]::before{filter:saturate(.7) brightness(.76);opacity:.88}
+#passive-hud[data-passive=sideral][data-passive-state=charging]::before{animation:sideral-frame-breathe 1.8s ease-in-out infinite alternate}
+#passive-hud[data-passive=sideral][data-passive-state=charging] .passive-eye{animation:sideral-eye-blink 2.5s steps(1,end) infinite}
+#passive-hud[data-passive=sideral][data-passive-state=ready]::before{animation:sideral-frame-ready .58s ease-in-out infinite alternate;filter:drop-shadow(0 0 6px #a9ef58)}
+#passive-hud[data-passive=sideral][data-passive-state=ready] .passive-eye{opacity:1;background:#fff4ff;box-shadow:0 0 7px #e466ff,0 0 18px #acff67;animation:sideral-eye-ready .48s ease-in-out infinite alternate}
+#passive-hud[data-passive=sideral][data-passive-state=ready] .passive-status{color:#efffa8;text-shadow:0 0 6px #a5e45d}
+#passive-hud[data-passive=sideral][data-passive-state=broken]{animation:sideral-frame-break .32s steps(2,end) 2}
+#passive-hud[data-passive=sideral][data-passive-state=broken]::before{filter:hue-rotate(278deg) saturate(1.4)}
+#passive-hud[data-passive=sideral][data-passive-state=broken] .passive-status{color:#ff9e91}
+@keyframes sideral-frame-breathe{to{transform:scale(1.012) translateY(-1px);filter:brightness(1.08)}}
+@keyframes sideral-frame-ready{to{transform:scale(1.022);filter:brightness(1.18) drop-shadow(0 0 8px #b3ff65)}}
+@keyframes sideral-scale-form{to{color:#b8e96b;text-shadow:0 0 8px #8edb52;transform:translateY(-1px) scale(1.08)}}
+@keyframes sideral-eye-blink{0%,44%,52%,100%{transform:rotate(-9deg) scaleY(1)}45%,51%{transform:rotate(-9deg) scaleY(.12)}}
+@keyframes sideral-eye-ready{to{transform:rotate(-9deg) scale(1.25)}}
+@keyframes sideral-frame-break{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@media(max-width:760px){#passive-hud[data-passive=sideral]{top:102px;left:8px;width:244px;height:111px;padding:34px 21px 21px 62px}#passive-hud[data-passive=sideral]::after{inset:31px 14px 22px 47px;border-radius:10px}#passive-hud[data-passive=sideral] small,#passive-hud[data-passive=sideral] strong,#passive-hud[data-passive=sideral] .passive-marks,#passive-hud[data-passive=sideral] .passive-status{right:21px;left:62px}#passive-hud[data-passive=sideral] small{top:34px;font-size:6px}#passive-hud[data-passive=sideral] strong{top:43px;font-size:12px}#passive-hud[data-passive=sideral] .passive-status{top:57px;font-size:5.7px}#passive-hud[data-passive=sideral] .passive-marks{top:69px;gap:5px;height:19px}#passive-hud[data-passive=sideral] .passive-marks i{font-size:15px;line-height:18px}#passive-hud[data-passive=sideral] .passive-eye{top:24px;left:44px;width:7px;height:5px}}
+@media(prefers-reduced-motion:reduce){#passive-hud[data-passive=sideral],#passive-hud[data-passive=sideral]::before,#passive-hud[data-passive=sideral] .passive-eye,#passive-hud[data-passive=sideral] .passive-marks i{animation:none!important}}
 
 /* Centro de balance: lectura rápida, navegación por tipo y catálogo enemigo. */
 .balance-dashboard{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:12px;padding:13px 15px;border:1px solid #35495d;border-radius:10px;background:linear-gradient(110deg,#172435,#101722)}

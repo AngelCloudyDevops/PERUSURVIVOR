@@ -33,6 +33,8 @@ Son presupuestos previos a crítico, atributo, defensas y reducciones. Mirada co
 
 ## Sangre fría
 
+El HUD usa un marco verde propio abrazado por un lagarto: cabeza y espinas en la esquina superior, cuerpo en el borde y cola bajo la tarjeta. Las tres escamas se encienden por separado. El marco respira mientras progresa, apaga su color sin rivales cercanos, ilumina ojos y escamas cuando la siguiente técnica está potenciada y reacciona en rojo al perder concentración por daño. Se ubica bajo la vida para asociarse con Sideral y no competir con el minimapa; con movimiento reducido conserva todos los estados sin animación.
+
 Cada 2 s con un rival vivo a 300 u obtiene una escama, hasta tres. Alejarse reinicia solo el progreso hacia la siguiente; Q y dominios suspenden la generación. Recibir daño efectivo resta una escama y reinicia el progreso. Daño bloqueado no resta escamas.
 
 Con tres escamas, el siguiente lanzamiento personal válido consume las tres:
