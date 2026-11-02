@@ -1,3 +1,8 @@
+# Remaster pixel art de Mirada y Huevo de Sideral — 2026-11-02
+- Mirada Sideral reemplaza sus dos atlas borrosos por figuras completas de alta definición pixelada, tanto quieto como caminando, con ocho cuadros compatibles con el gesto existente.
+- Huevo sospechoso y la entrada de la Q usan un huevo redibujado con contorno oscuro, manchas legibles y cuadros propios de giro, impacto, rotura y apertura.
+- Los recursos anteriores se conservan como historial; no cambian daño, tiempos, alcance, colisiones ni balance.
+
 # Nitidez de los ataques de Sideral — 2026-11-02
 - Mirada, huevo, transformación y Lagarto desactivan el suavizado de imagen y dibujan sus cuadros en coordenadas y dimensiones enteras.
 - El cambio conserva tamaño, animación, daño y colisiones; evita que los sprites pierdan el borde pixel-art al atacar o al cambiar el zoom.
