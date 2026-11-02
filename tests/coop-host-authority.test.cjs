@@ -12,6 +12,7 @@ test('El runtime del creador ejecuta la simulación completa compartida',()=>{
  assert(host.players[0].x>before);const state=host.snapshot();
  assert.equal(state.players.length,2);assert.equal(state.map,'campo');
  assert.doesNotThrow(()=>JSON.stringify(state));
+ assert.equal(typeof context.P.CoopHostEncodeState,'function');
 });
 
 test('El creador directo activa cada expansión sin reenviarla hacia su propio cliente',()=>{

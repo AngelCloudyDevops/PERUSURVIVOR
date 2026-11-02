@@ -27,7 +27,7 @@ function minifyCss(source){
 function coopHostBundle(){
  const files=['simulation.cjs','activities.cjs','escort.cjs','signals.cjs','duo-event.cjs','team-combo.cjs','state-wire.cjs'],entries=[];
  for(const name of files){const source=fs.readFileSync(path.join(root,'backend',name),'utf8');entries.push(JSON.stringify('./'+name)+':function(require,module,exports){\n'+source+'\n}')}
- return "'use strict';(function(){const modules={"+entries.join(',')+"},cache={};function require(id){if(cache[id])return cache[id].exports;const factory=modules[id];if(!factory)throw Error('Módulo cooperativo no disponible: '+id);const module=cache[id]={exports:{}};factory(require,module,module.exports);return module.exports}const Simulation=require('./simulation.cjs').Simulation;P.CoopHostSimulation=class extends Simulation{constructor(map,characters,balance=null,runMode='chaos'){super(map,characters,null,balance,runMode,P)}}})();\n";
+ return "'use strict';(function(){const modules={"+entries.join(',')+"},cache={};function require(id){if(cache[id])return cache[id].exports;const factory=modules[id];if(!factory)throw Error('Módulo cooperativo no disponible: '+id);const module=cache[id]={exports:{}};factory(require,module,module.exports);return module.exports}const Simulation=require('./simulation.cjs').Simulation,stateWire=require('./state-wire.cjs');P.CoopHostEncodeState=stateWire.encodeState;P.CoopHostSimulation=class extends Simulation{constructor(map,characters,balance=null,runMode='chaos'){super(map,characters,null,balance,runMode,P)}}})();\n";
 }
 function build(){
  // dist es una salida reconstruible; comprobar el destino antes de limpiarlo.
