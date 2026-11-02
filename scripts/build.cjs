@@ -24,6 +24,11 @@ function minifyCss(source){
  css=css.replace(/\s+/g,' ').replace(/\s*([{},;>])\s*/g,'$1').replace(/:\s+/g,':').replace(/\(\s+/g,'(').replace(/\s+\)/g,')').replace(/;}+/g,'}').trim();
  return css.replace(/\0(\d+)\0/g,(_,index)=>strings[Number(index)]);
 }
+function coopHostBundle(){
+ const files=['simulation.cjs','activities.cjs','escort.cjs','signals.cjs','duo-event.cjs','team-combo.cjs','state-wire.cjs'],entries=[];
+ for(const name of files){const source=fs.readFileSync(path.join(root,'backend',name),'utf8');entries.push(JSON.stringify('./'+name)+':function(require,module,exports){\n'+source+'\n}')}
+ return "'use strict';(function(){const modules={"+entries.join(',')+"},cache={};function require(id){if(cache[id])return cache[id].exports;const factory=modules[id];if(!factory)throw Error('Módulo cooperativo no disponible: '+id);const module=cache[id]={exports:{}};factory(require,module,module.exports);return module.exports}const Simulation=require('./simulation.cjs').Simulation;P.CoopHostSimulation=class extends Simulation{constructor(map,characters,balance=null,runMode='chaos'){super(map,characters,null,balance,runMode,P)}}})();\n";
+}
 function build(){
  // dist es una salida reconstruible; comprobar el destino antes de limpiarlo.
  if(path.dirname(out)!==root||path.basename(out)!=='dist')throw new Error('Destino de build inválido');
@@ -32,6 +37,7 @@ function build(){
  copy(path.join(root,'src/index.html'),path.join(out,'index.html'));
  fs.writeFileSync(path.join(out,'style.css'),minifyCss(fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8')));
  for(const m of modules)copy(path.join(root,m.source),path.join(out,m.output));
+ fs.writeFileSync(path.join(out,'js/coop-host-runtime.js'),coopHostBundle());
  fs.cpSync(path.join(root,'public'),out,{recursive:true,filter:source=>!sourceMetadata.has(path.relative(path.join(root,'public'),source).split(path.sep).join('/'))&&!archivedAsset(path.relative(path.join(root,'public'),source))&&!/(?:^|[\\/])(?:.*-)?prompts?\.json$/.test(source)&&!source.endsWith('.prompt.txt')&&(!source.endsWith('.png')||!fs.existsSync(source.slice(0,-4)+'.webp'))&&(!source.endsWith('-walk-v1.webp')||!fs.existsSync(source.replace('-walk-v1.webp','-walk-v2.webp')))});
  fs.cpSync(path.join(root,'backend'),path.join(out,'backend'),{recursive:true});
  fs.writeFileSync(path.join(out,'backend/modules.json'),JSON.stringify(modules.map(m=>m.output)));
