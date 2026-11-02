@@ -1,3 +1,7 @@
+# Logo de imagen y nueva frase de bienvenida — 2026-11-02
+- El logo «KICK PERÚ · ALL STARS» entregado por el dueño del proyecto sustituye al wordmark pixel en la bienvenida, el título del hub y el menú legado (`public/assets/ui/logo-kick-peru-v1.webp`, 900x450, 112 KB; fondo negro eliminado y recortado). El header conserva el wordmark pixel en línea porque la imagen no se lee a 14–20 px.
+- La bienvenida dice «Sobrevive con tu parásito de la sociedad.».
+
 # Textos: baneo y dibujitos — 2026-11-02
 - Al perder, la pantalla final dice «¡TE BANEARON DEL DISCORD!» (antes «Se cayó el directo.»).
 - Los personajes pasan a llamarse «dibujo» / «dibujitos» en todo texto visible: «Elige tu dibujo», «Cambiar dibujo», panel «Dibujitos», «Combo del dibujo», saludos («¡DALE, DIBUJITO!», «¡Juntos, dibujitos!») y nombres de mejoras («Onda dibujo», «Escopeta dibujo», «Lonchera del dibujo», «Plaza de los Dibujitos»). El verbo «causar», las claves de guardado `causas-*`, ids, clases y nombres de assets no cambian.
