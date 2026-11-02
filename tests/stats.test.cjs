@@ -76,3 +76,13 @@ test('La ficha lateral usa stats efectivos, se mantiene abierta con Tab y no pau
  assert(css.includes('body.stats-drawer-open #player-stats-drawer'));
  assert(css.includes('#player-stats-toggle:not([hidden])'));
 });
+
+test('El HUD mantiene una jerarquía legible en escritorio y móvil',()=>{
+ const css=fs.readFileSync('src/ui/styles.css','utf8'),terrain=fs.readFileSync('src/systems/terrain.js','utf8');
+ assert(css.includes('/* HUD legible: una jerarquía estable'));
+ assert.match(css,/@media\(min-width:1101px\)[\s\S]*#hud-vitals\{left:18px;top:18px;width:320px/);
+ assert.match(css,/#player-stats-drawer\{inset:110px auto 0 0;width:470px;max-width:94vw;padding:206px/);
+ assert.match(css,/#combat-dock\{left:226px;right:16px;bottom:12px/);
+ assert.match(css,/@media\(max-width:760px\)[\s\S]*#player-stats-drawer\{inset:94px auto 0 0;width:min\(430px,96vw\)/);
+ assert.match(terrain,/y=h-154,mw=190,mh=126/);
+});
