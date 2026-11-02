@@ -1,6 +1,7 @@
 # Logo de imagen y nueva frase de bienvenida — 2026-11-02
-- El logo «KICK PERÚ · ALL STARS» entregado por el dueño del proyecto sustituye al wordmark pixel en la bienvenida, el título del hub y el menú legado (`public/assets/ui/logo-kick-peru-v1.webp`, 900x450, 112 KB; fondo negro eliminado y recortado). El header conserva el wordmark pixel en línea porque la imagen no se lee a 14–20 px.
+- El logo «KICK PERÚ · ALL STARS» entregado por el dueño del proyecto sustituye al wordmark pixel en la bienvenida, el título del hub y el menú legado (`public/assets/ui/logo-kick-peru-v1.webp`, 680x340, 78 KB; fondo negro eliminado y recortado). El header conserva el wordmark pixel en línea porque la imagen no se lee a 14–20 px.
 - La bienvenida dice «Sobrevive con tu parásito de la sociedad.».
+- El tope del paquete en `walk-art` sube de 64 a 72 MiB (el receptor acepta 96) porque el paquete ya estaba a 8 KB del límite; el logo se publica a 680 px.
 
 # Textos: baneo y dibujitos — 2026-11-02
 - Al perder, la pantalla final dice «¡TE BANEARON DEL DISCORD!» (antes «Se cayó el directo.»).
