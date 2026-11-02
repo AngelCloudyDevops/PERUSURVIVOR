@@ -1,9 +1,9 @@
 'use strict';
 // Una VM por sala: reutiliza catálogos, ataques y terreno sin DOM ni autoridad del cliente.
 const {Activities}=require('./activities.cjs'),{slimEnemies}=require('./state-wire.cjs');
-const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const engineScripts=new Map();
 function loadEngine(root){
+ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
  const elements=new Map(),drawing=new Proxy({createRadialGradient:()=>({addColorStop(){}})},{get:(t,k)=>t[k]||(()=>{})});
  function element(){return {children:[],style:{},dataset:{},classList:{add(){},remove(){},toggle(){}},setAttribute(){},append(...c){this.children.push(...c)},replaceChildren(){this.children=[]},querySelector(){return this.children[0]},focus(){},addEventListener(){},getContext(){return drawing},setPointerCapture(){}}}
  const context={console,Math,innerWidth:1280,innerHeight:720,devicePixelRatio:1,requestAnimationFrame(){},addEventListener(){},localStorage:{getItem(){},setItem(){}},document:{body:element(),querySelector(s){if(!elements.has(s))elements.set(s,element());return elements.get(s)},querySelectorAll(){return []},createElement:element}};
@@ -15,8 +15,9 @@ function loadEngine(root){
  return context.P;
 }
 class Simulation{
- constructor(map,characters,root=path.resolve(__dirname,'..'),balance=null,runMode='quick'){
-  this.P=loadEngine(root);const P=this.P;if(balance)P.CharacterBalance.apply(balance);P.Combat.server=true;P.Maps.selected=map;P.state.chosen=characters[0];P.RunMode.selected=runMode;P.Game.start();
+ constructor(map,characters,root=null,balance=null,runMode='quick',engine=null){
+  if(!engine&&!root)root=require('node:path').resolve(__dirname,'..');
+  this.P=engine||loadEngine(root);const P=this.P;if(balance)P.CharacterBalance.apply(balance);P.Combat.server=true;P.Maps.selected=map;P.state.chosen=characters[0];P.RunMode.selected=runMode;P.Game.start();
   this.players=characters.map((id,i)=>{const p=P.Entities.player(P.Data.characters[id]);Object.assign(p,{x:P.state.player.x+i*45,y:P.state.player.y,slot:i,fire:0,shots:[],fields:[],revive:0});P.state.player=p;P.Ultimate.reset();p.ultimate=P.state.ultimate;return p});P.Combat.party=this.players;
   P.Chunks.centers=()=>this.players.filter(p=>p.hp>0);P.state.player=this.players[0];P.Minibosses.partySize=()=>this.players.length;P.Court.players=()=>this.players;this.result=null;
   P.Game.finish=win=>{if(P.state.chamelinDomain){P.state.chamelinDomain.result=win;return}if(win){P.state.cristorataDomain=null;this.result='win'}};

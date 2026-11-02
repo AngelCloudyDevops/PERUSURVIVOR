@@ -4,8 +4,8 @@ Destinos: producción en https://perusurvivor.michitech.tech y pruebas en https:
 Cada entorno tiene archivos, contenedores, base de cuentas, salas y rollback separados.
 
 ## Flujo preparado
-1. Cada Pull Request ejecuta compatibilidad ligera en Windows/Node 22; los pushes directos solo activan CI en `staging` y `main`, evitando ejecuciones duplicadas en ramas de trabajo.
-2. Linux y Node 24 ejecutan una vez la batería completa, el presupuesto de release y las pruebas del receptor.
+1. Cada Pull Request a `main` o `staging` ejecuta una única validación en Linux y Node 24; los pushes a ramas de trabajo no duplican esa ejecución.
+2. Un push a `main` o `staging` repite la validación, comprueba el presupuesto de release y genera el artefacto que se publicará.
 3. La publicación solo se habilita para push a `staging` o `main`, después de todas las pruebas.
 4. El dist/ probado se guarda como artefacto temporal; deploy descarga exactamente ese artefacto y comprueba que el commit siga siendo el último de su rama.
 5. GitHub envía únicamente el paquete de release por SSH.
@@ -13,6 +13,8 @@ Cada entorno tiene archivos, contenedores, base de cuentas, salas y rollback sep
 7. La release se extrae en releases/<sha> y live/current cambia de forma atómica.
 8. Se comprueba por HTTPS el SHA publicado y el HTML del juego. Ante un fallo se restaura el enlace anterior.
 9. Después de una activación correcta se conservan la release actual, la anterior y las cinco releases recientes adicionales; el resto se elimina de forma acotada.
+
+La matriz completa Ubuntu/Windows y Node 22/24 se ejecuta cada noche o manualmente mediante `Compatibilidad completa`. Así se conserva la cobertura multiplataforma sin bloquear cada actualización.
 
 ## Acceso y configuración
 La cuenta perusurvivor-deploy no tiene sudo, acceso a Docker ni permiso sobre los otros servicios.
@@ -26,13 +28,13 @@ Instalación restringida completada el 2026-10-25. La variable de activación se
 
 El despliegue automático no reinicia Caddy, Docker ni ninguna aplicación. Solo modifica `releases/` y `live/` del entorno correspondiente. Cada launcher cooperativo detecta exclusivamente su enlace y espera que sus propias salas terminen antes de sustituir el proceso.
 
-## Flujo de promoción
+## Flujo de integración
 
-1. `feature/*` abre Pull Request hacia `staging`.
-2. CI valida y publica staging automáticamente.
-3. Se prueban móvil, escritorio y cooperativo en el dominio de staging.
-4. `staging` abre Pull Request hacia `main`.
-5. CI vuelve a validar y producción se actualiza atómicamente.
+- Cambio habitual de un colaborador: rama desde `main`, Pull Request directo a `main`, validación, fusión y publicación automática.
+- Ajuste pequeño del propietario: push directo a `main`, validación y publicación automática.
+- Cambio de alto riesgo: rama hacia `staging`, prueba en línea y promoción posterior de `staging` a `main`.
+
+Se consideran de alto riesgo los cambios en cooperativo, guardados, cuentas, backend, permisos o arquitectura de publicación. Staging deja de ser un paso obligatorio para contenido, interfaz, balance, personajes y correcciones normales.
 
 Staging usa límites menores (`96 MiB` web; `256 MiB`, `0.50 CPU` y tres salas para cooperativo), una base SQLite independiente y cabeceras `noindex`.
 
