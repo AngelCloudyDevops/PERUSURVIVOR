@@ -58,4 +58,4 @@ Se mantienen las 32 pruebas existentes de `dragon-ultimate.test.cjs`. Las regres
 
 Pendientes: balance medido de partidas completas, pruebas con jugadores y distintos compañeros, móvil y una ilustración exclusiva para R. Este cierre de reglas/contrato no es una afirmación de balance definitivo.
 
-El despliegue mantiene el límite de archivo de 64 MiB. La carta Q de Chamelín conserva la misma ilustración y fuente PNG de 1024×1536; su copia WebP de ejecución se optimiza a 512×768 para dejar margen al paquete tanto en Windows como en Linux, sin cambiar habilidades ni animaciones.
+El test de despliegue (`walk-art`) mantiene un tope de 72 MiB para el paquete (el receptor acepta 96 MiB). La carta Q de Chamelín conserva la misma ilustración y fuente PNG de 1024×1536; su copia WebP de ejecución se optimiza a 512×768 para dejar margen al paquete tanto en Windows como en Linux, sin cambiar habilidades ni animaciones.

@@ -61,7 +61,7 @@ P.Wordmark={
  // Cabecera fija: KICK PERU en una línea (viewBox 46x7). El logo de imagen no se lee a 14-20 px de alto.
  svg(className='wordmark'){return '<svg class="'+className+'" viewBox="0 0 46 7" fill="currentColor" shape-rendering="crispEdges" role="img" aria-label="'+this.name+'" focusable="false"><title>'+this.name+'</title>'+this.rects('KICK PERU',0,0,1)+'</svg>'},
  // Logo de imagen para bienvenida y hub; sin DOM (VM del servidor) no hace nada.
- image(el,className){if(!el||typeof document==='undefined')return false;const img=document.createElement('img');img.src='assets/ui/logo-kick-peru-v1.webp';img.alt='KICK PERÚ: All Stars';img.width=900;img.height=450;img.decoding='async';img.className=className;el.replaceChildren(img);return true},
+ image(el,className){if(!el||typeof document==='undefined')return false;const img=document.createElement('img');img.src='assets/ui/logo-kick-peru-v1.webp';img.alt='KICK PERÚ: All Stars';img.width=680;img.height=340;img.decoding='async';img.className=className;el.replaceChildren(img);return true},
  // Sustituye el contenido de el por el logo; sin DOM (VM del servidor) deja el texto de respaldo.
  fill(el,className){if(!el||typeof document==='undefined')return false;const holder=document.createElement('template');holder.innerHTML=this.svg(className);const svg=holder.content?.firstChild;if(!svg)return false;el.replaceChildren(svg);return true}
 };

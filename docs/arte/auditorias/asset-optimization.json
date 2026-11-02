@@ -942,13 +942,13 @@
       "width": 902,
       "height": 451,
       "originalBytes": 495830,
-      "optimizedBytes": 114772,
+      "optimizedBytes": 79430,
       "sourceSha256": "8439c2882e66e4be440569b854fbfe36ecd8c5b766d8484f0106937704e6e423",
-      "outputSha256": "0fc63535a5ca1705af6b89212641677cf5028817fbc6f0c82b2936d1529083b3",
+      "outputSha256": "cc5705f73f781e0f4e5d9858f2ddc02a564129f674edae7a32eb87794b1b57dd",
       "rgbaSha256": "271696c53420590b0feee45942e7a8b008512348e12948a83d359a46d9eaa9a7",
       "quality": 85,
-      "runtimeWidth": 900,
-      "runtimeHeight": 450
+      "runtimeWidth": 680,
+      "runtimeHeight": 340
     }
   ],
   "previews": [
@@ -975,5 +975,5 @@
     }
   ],
   "originalBytes": 150517990,
-  "optimizedBytes": 42479394
+  "optimizedBytes": 42444052
 }
