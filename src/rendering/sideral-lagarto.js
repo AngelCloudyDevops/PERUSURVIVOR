@@ -6,9 +6,9 @@ P.SideralLagarto={
   tail:{src:'assets/characters/sideral-tail-attack-v2.webp',columns:3,rows:2,cells:[]},
   transform:{src:'assets/characters/sideral-transform-motion-v2.webp',columns:4,rows:2,cells:[]},
   breath:{src:'assets/characters/sideral-breath-motion-v3.webp',columns:4,rows:2,cells:[]},
-  fear:{src:'assets/characters/sideral-fear-motion-v1.webp',columns:4,rows:2,cells:[]},
-  fearWalk:{src:'assets/characters/sideral-fear-walk-motion-v1.webp',columns:4,rows:2,cells:[]},
-  egg:{src:'assets/characters/sideral-egg-motion-v2.webp',columns:4,rows:2,cells:[]}
+  fear:{src:'assets/characters/sideral-fear-motion-v2.webp',columns:4,rows:2,cells:[]},
+  fearWalk:{src:'assets/characters/sideral-fear-walk-motion-v2.webp',columns:4,rows:2,cells:[]},
+  egg:{src:'assets/characters/sideral-egg-motion-v3.webp',columns:4,rows:2,cells:[]}
  },
  walkCycle:[0,1,2,1,0,3,1,0],
  loadSheet(key){const sheet=this.sheets[key];if(!sheet||sheet.ready||sheet.image||typeof Image==='undefined')return;const image=sheet.image=new Image();image.onload=()=>{try{const cv=document.createElement('canvas');cv.width=image.width;cv.height=image.height;const c=cv.getContext('2d');c.drawImage(image,0,0);const pixels=c.getImageData(0,0,cv.width,cv.height).data,count=sheet.columns*sheet.rows;sheet.cells=Array.from({length:count},(_,i)=>{const col=i%sheet.columns,row=Math.floor(i/sheet.columns),sx=Math.round(col*cv.width/sheet.columns),sy=Math.round(row*cv.height/sheet.rows),right=Math.round((col+1)*cv.width/sheet.columns),bottom=Math.round((row+1)*cv.height/sheet.rows);return P.Sprites.bounds(pixels,cv.width,sx,sy,right-sx,bottom-sy)});sheet.ready=true}catch{sheet.failed=true}};image.onerror=()=>{sheet.failed=true;sheet.image=null};image.src=sheet.src},
