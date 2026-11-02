@@ -301,6 +301,7 @@ module.exports = [
     "source": "src/network/cooperative.js",
     "output": "js/cooperative.js"
   },
+  {"source":"src/network/coop-direct.js","output":"js/coop-direct.js"},
   {
     "source": "src/development/performance.js",
     "output": "js/performance.js"
