@@ -459,4 +459,5 @@ module.exports = [
 ,{source:"src/systems/weapon-input.js",output:"js/weapon-input.js"}
 ,{source:"src/development/equipment-bench.js",output:"js/equipment-bench.js"}
 ,{source:"src/ui/hud-notice.js",output:"js/hud-notice.js"}
+,{source:"src/ui/net-meter.js",output:"js/net-meter.js"}
 ];

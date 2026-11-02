@@ -37,7 +37,7 @@ open(message){
   if(m.type==='joined'){if(m.hostChanged)this.hostNotice=true;if(this.reconnecting)this.paused=false;accepted=true;this.session={code:m.code,token:m.token,slot:m.slot,guest:message.type==='resume'?message.guest:!P.Account?.user};this.persistSession();this.joinResolve?.(m);this.joinResolve=null;this.reconnecting=false}
   if(m.type==='joined'||m.type==='room'){if(!m.started&&this.active)this.backToRoom();this.roomRender(m);if(m.finished&&this.resultVisible)this.showResult();if(m.hostChanged)this.status('SALA '+m.code+' · El grupo sigue aquí. '+(this.session.slot===0?'Ahora eres el anfitrión: puedes invitar a otro amigo.':'Cambió el anfitrión.'));if(this.active&&!m.players.every(p=>p.connected)){this.cancelIntent();P.$('#hint').textContent='Tu compañero se desconectó. Partida detenida durante 30 s.';}}
 
-  if(m.type==='state'){if(!this.active||m.result){this.queuedState=null;this.receive(m);}else this.queuedState=m;}
+  if(m.type==='state'){P.NetMeter?.record(m.elapsed,performance.now());if(!this.active||m.result){this.queuedState=null;this.receive(m);}else this.queuedState=m;}
   if(m.type==='closed'){this.leave();this.status(m.message)}
  };
  ws.onerror=()=>this.status('No se pudo conectar al servidor cooperativo. El modo individual sigue disponible.');

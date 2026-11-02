@@ -952,3 +952,7 @@ En cooperativo, `dota-active` envía solo `item` y vector de dirección normaliz
 ## Iconos de interfaz (`P.Icons`)
 
 `P.Icons` vive al inicio de `src/ui/lobby.js` y dibuja los iconos de la interfaz en DOM como SVG pixel: rejilla de 12x12, un `<rect>` por tramo, `fill="currentColor"`, `shape-rendering="crispEdges"` y `aria-hidden="true"`. Expone `svg(nombre)` (cadena), `node(nombre)` (elemento) y `fill(el, nombre, texto)` (icono más etiqueta). Todas las llamadas toleran los stubs del VM del servidor: fuera del navegador devuelven cadena vacía o `null`, y quien llama usa `P.Icons?.…` con respaldo de texto. El color del icono lo pone el CSS del contenedor según `DESIGN.md`; no se usan caracteres Unicode ni emoji como icono.
+
+## Medidor de red (`P.NetMeter`)
+
+`src/ui/net-meter.js` calcula en el cliente el ping y la pérdida aparente del cooperativo. `src/network/cooperative.js` llama a `P.NetMeter.record(elapsed, llegada)` con cada snapshot `state`; `NetMeter.loss(muestras, ahora)` es una función pura (probada en `tests/net-meter.test.cjs`) que, en una ventana de 5 s, compara los ticks esperados según el avance de `elapsed` del servidor (0,04 s por tick) con los snapshots recibidos. Como el transporte es WebSocket (TCP), no mide paquetes perdidos sino snapshots que no llegaron a tiempo. No cambia el protocolo ni `backend/`.

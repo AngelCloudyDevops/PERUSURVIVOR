@@ -95,6 +95,50 @@ P.PlayerStatus={
   ctx.restore()
  },
  allyBar(ctx,actor){this.bar(ctx,actor,{level:P.state?.level,down:true})},
+ // Estados temporales sobre la cabeza: iconos de 14 px con barra de tiempo restante; máximo 5 y «+N».
+ // El tiempo total de cada estado es el mayor restante visto desde que apareció (la simulación solo guarda el final).
+ buffRow(ctx,actor,y){
+  const record=this.observe(actor),span=record.span||(record.span={}),states=this.states(actor).filter(q=>!q.persistent&&q.id!=='heal'&&q.id!=='invulnerable'),seen={};
+  for(const q of states){const left=this.remaining(q);seen[q.id]=1;if(!(span[q.id]>=left))span[q.id]=left}
+  for(const id of Object.keys(span))if(!seen[id])delete span[id];
+  if(!states.length)return;
+  const shown=states.slice(0,5),extra=states.length-shown.length,size=14,gap=3,count=shown.length+(extra?1:0),x0=Math.round(actor.x-(count*size+(count-1)*gap)/2);
+  ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
+  shown.forEach((q,i)=>{
+   const x=x0+i*(size+gap),total=span[q.id]||0,ratio=total>0?Math.max(0,Math.min(1,this.remaining(q)/total)):1,color=q.color||'#fff4dc',icon=String(q.icon||'•');
+   ctx.fillStyle='#0c0a10';ctx.fillRect(x-1,y-1,size+2,size+2);ctx.fillStyle=q.kind==='debuff'?'#3a1424':'#1b1622';ctx.fillRect(x,y,size,size);
+   ctx.fillStyle=color;ctx.font=(icon.length>1?'bold 8px':'bold 11px')+' monospace';ctx.fillText(icon,x+size/2,y+size/2-1);
+   ctx.fillRect(x,y+size-2,Math.max(1,Math.round(size*ratio)),2);
+   if(q.kind==='debuff'){ctx.fillStyle='#ff2e88';ctx.fillRect(x,y,size,1)}
+  });
+  if(extra){const x=x0+shown.length*(size+gap);ctx.fillStyle='#0c0a10';ctx.fillRect(x-1,y-1,size+2,size+2);ctx.fillStyle='#fff4dc';ctx.font='bold 9px monospace';ctx.fillText('+'+extra,x+size/2,y+size/2)}
+  ctx.restore()
+ },
+ // Avisos de evento y botín (P.Loot.message): salen flotando sobre el personaje, uno a uno.
+ notices:{owner:null,queue:[],cur:null,start:0,last:'',lastT:0},
+ watchNotices(){
+  const s=P.state,n=this.notices,loot=P.Loot;
+  if(n.owner!==s){n.owner=s;n.queue=[];n.cur=null;n.start=0;n.last='';n.lastT=0}
+  const text=loot?.message||'',t=loot?.messageTime||0;
+  if(text&&t>0&&(text!==n.last||t>n.lastT+.5)&&n.cur?.text!==text&&!n.queue.includes(text)){n.queue.push(text);if(n.queue.length>4)n.queue.shift()}
+  n.last=t>0?text:'';n.lastT=t;return n
+ },
+ noticeLines(ctx,text,max){
+  const lines=[];let line='';for(const word of String(text).split(/\s+/)){const next=line?line+' '+word:word;if(line&&ctx.measureText(next).width>max){lines.push(line);line=word}else line=next}
+  if(line)lines.push(line);return lines.slice(0,3)
+ },
+ drawNotices(ctx,actor,y){
+  const n=this.watchNotices(),now=this.now(),reduced=P.Motion?P.Motion.reduced():!!P.Ambient?.reduced?.matches;
+  if(n.cur&&(now<n.start||now-n.start>=n.cur.life))n.cur=null;
+  if(!n.cur&&n.queue.length){n.cur={text:n.queue.shift(),life:n.queue.length>1?1.6:2.6};n.start=now}
+  const c=n.cur;if(!c)return;
+  const age=now-n.start,rise=reduced?0:-14*Math.min(1,age/c.life),alpha=reduced?1:age<.15?age/.15:age>c.life-.5?Math.max(0,(c.life-age)/.5):1;
+  ctx.save();ctx.font='bold 13px "Pixelify Sans",monospace';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.lineJoin='round';ctx.lineWidth=4;ctx.globalAlpha=alpha;ctx.strokeStyle='#0c0a10';ctx.fillStyle='#fff4dc';
+  const lines=c.lines||(c.lines=this.noticeLines(ctx,c.text,260)),x=Math.round(actor.x);
+  lines.forEach((line,i)=>{const ly=Math.round(y+rise-(lines.length-1-i)*16);ctx.strokeText(line,x,ly);ctx.fillText(line,x,ly)});
+  ctx.restore()
+ },
+ overhead(ctx,p){if(p.hp>0)this.buffRow(ctx,p,Math.round(p.y)-60);this.drawNotices(ctx,p,Math.round(p.y)-68)},
  // Última pasada del mundo: las barras quedan sobre enemigos y efectos y no se duplican.
- bars(ctx){const s=P.state,p=s?.player;if(!p)return;if(P.Coop?.active)for(const a of P.Coop.peers||[])if(a!==p&&a.coopPlayer)this.allyBar(ctx,a);if(p.hp>0)this.bar(ctx,p,{level:s.level})}
+ bars(ctx){const s=P.state,p=s?.player;if(!p)return;if(P.Coop?.active)for(const a of P.Coop.peers||[])if(a!==p&&a.coopPlayer)this.allyBar(ctx,a);if(p.hp>0)this.bar(ctx,p,{level:s.level});this.overhead(ctx,p)}
 };

@@ -1,3 +1,9 @@
+# HUD configurable: buffs y avisos sobre el personaje, objetos laterales y ping — 2026-11-02
+- Los buffs y debuffs con duración (escudo, veneno, ralentización…) se ven como iconos pequeños encima de la cabeza del jugador, con una barra de tiempo restante; máximo 5 y «+N».
+- Los avisos de evento y botín («Barril de dinamita…», recompensas) salen como texto flotante breve sobre el personaje en vez de arriba a la izquierda; sin movimiento con movimiento reducido.
+- Los objetos pasan a una barra vertical en el borde de la pantalla. Opciones › Juego › «Barra de objetos: Derecha / Izquierda» (por defecto Derecha).
+- Opciones › Gráficos separa «Mostrar FPS» de «Mostrar ping y pérdida de paquetes». El indicador junto al reloj muestra `PING 42 ms · PÉRDIDA 0 %` en cooperativo; la pérdida es el % de snapshots que no llegaron a tiempo en los últimos 5 s (`P.NetMeter`), no pérdida TCP real.
+
 # Logo de imagen y nueva frase de bienvenida — 2026-11-02
 - El logo «KICK PERÚ · ALL STARS» entregado por el dueño del proyecto sustituye al wordmark pixel en la bienvenida, el título del hub y el menú legado (`public/assets/ui/logo-kick-peru-v1.webp`, 900x450, 112 KB; fondo negro eliminado y recortado). El header conserva el wordmark pixel en línea porque la imagen no se lee a 14–20 px.
 - La bienvenida dice «Sobrevive con tu parásito de la sociedad.».
