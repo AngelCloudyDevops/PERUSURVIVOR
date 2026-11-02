@@ -460,4 +460,5 @@ module.exports = [
 ,{source:"src/systems/dota-actives.js",output:"js/dota-actives.js"}
 ,{source:"src/systems/weapon-input.js",output:"js/weapon-input.js"}
 ,{source:"src/development/equipment-bench.js",output:"js/equipment-bench.js"}
+,{source:"src/ui/player-stats-drawer.js",output:"js/player-stats-drawer.js"}
 ];

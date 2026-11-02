@@ -63,3 +63,16 @@ test('Todas las Q y R registradas por módulos tardíos conservan ficha técnica
   assert(entry.details?.length>=3,`${id}: falta ficha técnica`);
  }
 });
+
+test('La ficha lateral usa stats efectivos, se mantiene abierta con Tab y no pausa el combate',()=>{
+ const source=fs.readFileSync('src/ui/player-stats-drawer.js','utf8'),modules=fs.readFileSync('scripts/modules.cjs','utf8'),css=fs.readFileSync('src/ui/styles.css','utf8');
+ assert(source.includes("event.code!=='Tab'"));
+ assert(source.includes("addEventListener('keyup'"));
+ assert(source.includes('P.Evolutions?.attack?.(p)'));
+ assert(source.includes('P.Stats.channelRows(p)'));
+ assert(source.includes('P.Stats.advancedRows(p)'));
+ assert(!source.includes("P.state.mode='pause'"));
+ assert(modules.includes('src/ui/player-stats-drawer.js'));
+ assert(css.includes('body.stats-drawer-open #player-stats-drawer'));
+ assert(css.includes('#player-stats-toggle:not([hidden])'));
+});
