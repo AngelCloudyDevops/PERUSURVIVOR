@@ -1,5 +1,9 @@
 'use strict';
-const {test}=require('node:test'),assert=require('node:assert/strict'),{once}=require('node:events'),{WebSocket}=require('ws'),{Simulation}=require('../backend/simulation.cjs'),{createCoopServer}=require('../backend/cooperative.cjs');
+const {test}=require('node:test'),assert=require('node:assert/strict'),{once}=require('node:events'),{WebSocket}=require('ws'),{Simulation}=require('../backend/simulation.cjs'),{createCoopServer,createIceConfig}=require('../backend/cooperative.cjs');
+test('TURN: entrega credenciales efímeras sin revelar el secreto compartido',()=>{
+ const config=createIceConfig({turnUrls:'turn:relay.example.test:3478?transport=udp,turns:relay.example.test:5349',turnSharedSecret:'private-test-secret',turnTtlSeconds:600,now:()=>1_700_000_000_000,subject:'ROOM-0'});
+ assert.equal(config.relay,true);assert.equal(config.expiresAt,1_700_000_600_000);assert.equal(config.iceServers.length,2);assert.deepEqual(config.iceServers[1].urls,['turn:relay.example.test:3478?transport=udp','turns:relay.example.test:5349']);assert.equal(config.iceServers[1].username,'1700000600:ROOM-0');assert.equal(config.iceServers[1].credential,'eC95wej1YVVr6/8XVd2SNRFYhxk=');assert(!JSON.stringify(config).includes('private-test-secret'));
+});
 test('Cooperativo: cinco mapas, 18 ataques, reanimación y mejoras compartidas',()=>{
  for(const map of ['campo','plaza','machu','halloween','navidad']){
   const sim=new Simulation(map,[0,6]);sim.tick(.04,[{x:1,y:0},{x:-1,y:0}]);assert.equal(sim.snapshot().map,map);assert.notEqual(sim.players[0].x,sim.players[1].x);
@@ -147,6 +151,13 @@ test('Red directa: adelanta solo al compañero y calcula la mejora frente a 150 
 
 test('Red directa: un pico aislado no descarta una ruta de menor ping',()=>{
  const vm=require('node:vm'),fs=require('node:fs'),P={Coop:{send(){},open(){},roomRender(){},tick(){},leave(){}}};vm.runInNewContext(fs.readFileSync('src/network/coop-direct.js','utf8'),{P,performance:{now:()=>5000},JSON,Math,Number});P.CoopDirect.state='open';P.CoopDirect.samples=[35,34,36,35,35,34,36,35,35,34,36,82].map(rtt=>({rtt,at:4000}));P.CoopDirect.probes=Array.from({length:12},(_,i)=>({id:i,sentAt:3000+i,received:true}));const direct=P.CoopDirect.measure(5000);assert.equal(direct.rtt,35);assert(direct.jitter<=1);assert.equal(direct.reason,null);assert.equal(P.CoopDirect.chooseRoute({samples:12,rtt:128},direct).route,'direct');
+});
+
+test('Red directa: usa TURN temporal y distingue el candidato relay elegido',async()=>{
+ const vm=require('node:vm'),fs=require('node:fs'),P={Coop:{send(){},open(){},roomRender(){},tick(){},leave(){}}};let rtcConfig;
+ class Peer{constructor(config){rtcConfig=config;this.connectionState='new'}close(){}async getStats(){return new Map([['transport',{id:'transport',type:'transport',selectedCandidatePairId:'pair'}],['pair',{id:'pair',type:'candidate-pair',state:'succeeded',nominated:true,localCandidateId:'local',remoteCandidateId:'remote'}],['local',{id:'local',type:'local-candidate',candidateType:'relay'}],['remote',{id:'remote',type:'remote-candidate',candidateType:'srflx'}]])}}
+ vm.runInNewContext(fs.readFileSync('src/network/coop-direct.js','utf8'),{P,performance:{now:()=>2000},JSON,Math,Number,Map,RTCPeerConnection:Peer,setTimeout,clearTimeout});
+ assert(P.CoopDirect.configure({iceServers:[{urls:['turn:relay.example.test:3478'],username:'temporary',credential:'signed'}],relay:true}));P.CoopDirect.create(false);assert.equal(rtcConfig.iceServers[0].username,'temporary');assert.equal(await P.CoopDirect.detectTransport(2000),'relay');P.CoopDirect.reset();
 });
 
 test('Red directa: control y estados viajan separados, compactados y sin retroceder',()=>{
