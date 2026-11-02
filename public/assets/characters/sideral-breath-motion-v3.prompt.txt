@@ -1,0 +1,3 @@
+Built-in image_gen; transparent background; 2026-11-01. Reference: sideral-breath-motion-v2.webp. Final atlas optimized as WebP at 1024×512.
+
+Replacement 4×2 gameplay atlas for Sideral's transformed Lagarto. Preserve the stocky green reptile, connected thick tail, black hair crest, black/red gaming headset, red shirt, blue pants and clawed feet. Exactly eight isolated full-body poses in order: planted inhale, deep inhale, jaw wind-up, mouth fully open, active breath planted, active breath stepping, strongest recoil and recovery. Detailed crisp pixel art, consistent scale/baseline and transparent background. No breath beam, particles, text, grid, floor, shadow, extra limbs, wings or watermark.
