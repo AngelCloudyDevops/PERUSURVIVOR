@@ -1758,3 +1758,4 @@ body #combat-dock #dota-inventory .dota-inventory-state{font:600 11px/1 var(--fu
  body #combat-dock #dota-inventory .dota-inventory-icon{width:30px;height:30px}
 }
 .option-row select{min-width:120px;min-height:44px;padding:6px 10px;border:0;border-bottom:3px solid var(--chicha-amarillo);border-radius:0;background:var(--chicha-negro);color:var(--chicha-hueso);font:600 14px var(--fuente-texto)}
+body #hud #key-target.key-target-sr{position:absolute;width:1px;height:1px;max-width:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;background:none}/* texto solo para lectores de pantalla: la brujula se dibuja junto al personaje */
