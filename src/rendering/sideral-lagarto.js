@@ -7,6 +7,7 @@ P.SideralLagarto={
   transform:{src:'assets/characters/sideral-transform-motion-v2.webp',columns:4,rows:2,cells:[]},
   breath:{src:'assets/characters/sideral-breath-motion-v3.webp',columns:4,rows:2,cells:[]},
   fear:{src:'assets/characters/sideral-fear-motion-v1.webp',columns:4,rows:2,cells:[]},
+  fearWalk:{src:'assets/characters/sideral-fear-walk-motion-v1.webp',columns:4,rows:2,cells:[]},
   egg:{src:'assets/characters/sideral-egg-motion-v2.webp',columns:4,rows:2,cells:[]}
  },
  walkCycle:[0,1,2,1,0,3,1,0],
@@ -59,7 +60,7 @@ P.SideralLagarto={
   if((p.sideralRevertUntil||0)>P.state.elapsed){const t=Math.max(0,Math.min(1,(P.state.elapsed-(p.sideralRevertStarted||P.state.elapsed))/.32)),frame=Math.min(7,6+Math.floor(t*2));this.sheetSprite(ctx,'breath',x,y+r*.8,r*3.75,flip,frame,1-t);ctx.save();ctx.globalAlpha*=t;const result=base(ctx,x,y,r,p,attack,flip,preview);ctx.restore();return result||true}
   const pose=p.sideralCast,t=pose?(P.state.elapsed-pose.start)/pose.duration:2;
   if(pose?.kind==='tail'&&t>=0&&t<1){const frame=Math.min(5,Math.floor((P.Ambient?.reduced?.matches?.5:t)*6)),anchors=[.44,.5,.72,.72,.52,.56];if(this.sheetSprite(ctx,'tail',x,y+r*.82,r*3.2,flip,frame,1,anchors[frame]))return true}
-  if(pose?.kind==='fear'&&t>=0&&t<1&&this.sheetSprite(ctx,'fear',x,y+r*.82,r*3.15,flip,this.fearFrame(t),1,.5))return true;
+  if(pose?.kind==='fear'&&t>=0&&t<1&&this.sheetSprite(ctx,p.moving?'fearWalk':'fear',x,y+r*.82,r*3.15,flip,this.fearFrame(t),1,.5))return true;
   const cleanBase=pose?.kind==='egg'||pose?.kind==='fear'&&p.moving,result=base(ctx,x,y,r,p,cleanBase?false:attack,flip,preview);
   if(pose?.kind==='egg'&&t>=0&&t<.28){const q=t/.28,ex=x+(flip?-1:1)*(13+t*25),ey=y-11-Math.sin(q*Math.PI)*17,frame=4+Math.min(1,Math.floor(q*2));if(!this.sheetSprite(ctx,'egg',ex,ey,31,flip,frame,1-q*.45,.5)){ctx.save();ctx.globalAlpha=1-q;ctx.translate(ex,ey-7);ctx.rotate((flip?-1:1)*t*Math.PI*8);this.egg(ctx,0,0,9);ctx.restore()}}
   return result
@@ -91,4 +92,5 @@ P.SideralLagarto.loadSheet('tail');
 P.SideralLagarto.loadSheet('transform');
 P.SideralLagarto.loadSheet('breath');
 P.SideralLagarto.loadSheet('fear');
+P.SideralLagarto.loadSheet('fearWalk');
 P.SideralLagarto.loadSheet('egg');
