@@ -1,3 +1,11 @@
+# Interfaz: rediseño «afiche chicha» — 2026-11-01
+- Nuevo sistema visual inspirado en los afiches chicha (documentado en `DESIGN.md`): fondo negro plano, bloques de color fosforescente por función (amarillo acción principal, rosa peligro y gacha, verde cooperativo, cian información, naranja énfasis), títulos en Bungee con contornos de colores y texto en Pixelify Sans.
+- Fuera los paneles redondeados con vidrio, brillos y degradados, las etiquetas encima de los títulos y los números de sección.
+- Iconos pixel dibujados en SVG (`P.Icons`) en lugar de caracteres Unicode y emoji: navegación del hub, audio, monedas, llaves, pausa, Wiki, diálogos y clima.
+- Hub y bienvenida: título con contornos chicha, JUGAR en bloque amarillo, rieles con icono de color por función y pie legal discreto.
+- HUD de partida: barra de vida rosa y de XP cian segmentadas, reloj grande, contadores con icono y paneles de pasiva, combo, objetos y ataques planos con franja de color.
+- Modal de mejora, pantalla final, botín, vendedor, Opciones, diálogos y barra de jefe con el mismo sistema; los deslizadores de Opciones muestran su valor y «Silenciar todo» pasa a botón secundario.
+
 # Interfaz: legibilidad, HUD móvil y accesibilidad — 2026-11-01
 - HUD en móvil (≤760 px): vitales, monedas, etapa, pasiva, combo, cartas Q/R, objetos y ataques ya no se pisan y el centro queda libre; el minimapa pasa arriba a la derecha en tamaño compacto y en pantallas táctiles se oculta «Teclas 1-3».
 - El modal de mejora y la pantalla final quedan por encima del dock de objetos y ataques.
