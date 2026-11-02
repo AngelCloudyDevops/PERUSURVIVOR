@@ -55,6 +55,8 @@ La carta Q usa ilustración exclusiva de la transformación: `assets/cards/sider
 
 Durante el aliento se usa un ciclo continuo de ocho cuadros sincronizado con cada pulso de 0,24 s; ya no vuelve a reposo entre pulsos. Incluye apoyos alternos de las piernas, pecho que se infla, mandíbula articulada y retroceso, por lo que disparar avanzando no reutiliza una simple caminata ni parece deslizar al Lagarto. El cono nace en el hocico visible y los impactos permanecen como capas reactivas separadas para conservar dirección, alcance y lectura del daño. Huevo sospechoso ahora comunica vuelo, giro, grietas, sombra y dirección previa a la eclosión; Mirada y Sangre fría reciben avisos propios sin modificar sus reglas.
 
+**Mirada Sideral** usa `assets/characters/sideral-fear-motion-v1.webp`, una actuación exclusiva de ocho cuadros: alcanza el marco, baja progresivamente los lentes, sostiene los ojos violetas y vuelve a cubrirlos. El gesto dura 0,72 s sin retrasar la aplicación del daño. Cada rival afectado tiembla en dirección opuesta, conserva un aviso de miedo sobre la cabeza y distingue con un aro adicional la evolución **Rostro prohibido**. Mirada, coletazo y huevo tienen firmas sintetizadas diferentes; la onda evolucionada desprende escamas luminosas y el huevo evolucionado pulsa antes de abrirse. Estas señales son visuales y sonoras, no alteran daño, resistencia ni duración del control.
+
 ## Cobertura visual del arsenal
 
 Las cartas de subida de nivel ya no usan la composición genérica. `P.UI.upgradeArt` resuelve una ilustración vertical para cada técnica y cambia a la versión evolucionada únicamente en la carta de evolución:
