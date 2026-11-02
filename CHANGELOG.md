@@ -1,3 +1,8 @@
+# Nitidez de los ataques de Sideral — 2026-11-02
+- Mirada, huevo, transformación y Lagarto desactivan el suavizado de imagen y dibujan sus cuadros en coordenadas y dimensiones enteras.
+- El cambio conserva tamaño, animación, daño y colisiones; evita que los sprites pierdan el borde pixel-art al atacar o al cambiar el zoom.
+- Una prueba de render impide reactivar accidentalmente el suavizado en estas figuras.
+
 # Claridad e impacto visual del combate — 2026-11-01
 - Los golpes físicos usan cortes cálidos y las técnicas especiales anillos, partículas y estelas luminosas; los críticos tienen una ráfaga mayor y una micro-sacudida acotada.
 - La resistencia parcial de minions pesados y escudos tácticos muestra un arco azul con `BLOQ.` sin modificar el daño ni los tiempos de protección.
