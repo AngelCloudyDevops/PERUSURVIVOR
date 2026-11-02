@@ -1206,3 +1206,13 @@ La rueda sobre el campo cambia a la siguiente/anterior arma desbloqueada, salta 
 ### Ruta directa cooperativa
 
 El anfitrión intenta enlazarse directamente con el invitado al completarse la sala. Esta ruta puede anticipar únicamente la dirección visual del compañero. La posición válida, ataques, daño, enemigos, cofres, monedas, dominios, resultados y recompensas continúan bajo autoridad del servidor. La corrección del siguiente snapshot debe prevalecer sin teletransportes largos, respetar terreno y caducar si faltan paquetes directos. La partida nunca depende de que el enlace directo funcione: ante incompatibilidad, bloqueo de red o desconexión vuelve de forma silenciosa al transporte del servidor. El diagnóstico presenta ambas latencias por separado y no promete una reducción antes de medirla en los dos dispositivos reales.
+
+La preparación cooperativa usa revelado progresivo. La entrada muestra solo **Crear sala** y **Entrar con código**; amigos e invitaciones quedan plegados como atajo opcional. Al crear o entrar, la pantalla cambia a Sala → Invitado → Listos, presenta el código copiable, los dos participantes y una única confirmación por jugador. El mapa no se elige: se sortea al crear la sala y se presenta como **Destino sorteado**, sin control editable. Las explicaciones de portales, caídas y reconexión no se repiten antes de jugar ni compiten con la acción principal.
+## Cooperativo: creador como anfitrión
+
+- El jugador que crea la sala aloja el combate cuando existe enlace directo con su compañero.
+- El mapa continúa siendo sorteado al crear la sala; alojar no concede selección ni ventajas de juego.
+- La caída del enlace cambia automáticamente al respaldo del servidor y puede producir una reconciliación breve, pero no cancela la partida.
+- Cofres, elecciones, combo de equipo y resultados se envían también al servidor para validación y recuperación.
+- El HUD de red debe diferenciar `ANFITRIÓN` de `SERVIDOR`; nunca debe presentar predicción visual como alojamiento real.
+- El anfitrión puede consumir más CPU que el invitado. Si no sostiene la simulación o el enlace, el respaldo del servidor tiene prioridad.
