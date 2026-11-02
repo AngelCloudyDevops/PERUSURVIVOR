@@ -75,7 +75,7 @@ test('La selección de causa, mapa y modo permanece en el flujo moderno hasta in
  assert.match(css,/\.character-viewer-title-row \.character-viewer-choose\{position:static/);assert.match(css,/\.character-viewer-info\{[^}]*overflow-x:hidden/);
  assert.match(css,/\.cause-collectible-card:hover \.cause-card-inner/);assert.match(css,/rotateY\(180deg\)/);assert.match(css,/prefers-reduced-motion:reduce[^}]*\{\.cause-card-inner/);assert.match(css,/\.cause-card-placeholder\.has-art/);assert.match(css,/\.character-viewer-illustration/);assert.match(css,/object-position:center var\(--art-y,50%\)/);
  assert.match(game,/LobbyComplete\?\.chooseCause\?\.\(\)/);assert.match(screens,/LobbyComplete\?\.chooseCause\?\.\(\)/);
- assert.doesNotMatch(game,/Elegir otro causa/);assert.doesNotMatch(screens,/Elegir otro personaje/);
+ assert.doesNotMatch(game,/Elegir otra dibujo/);assert.doesNotMatch(screens,/Elegir otro personaje/);
 });
 test('Laboratorio, Balance y Admin comparten la estructura visual del lobby sin perder sus controles',()=>{
  const source=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8'),bench=fs.readFileSync(path.join(root,'src/development/test-bench.js'),'utf8');

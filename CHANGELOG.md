@@ -1,3 +1,7 @@
+# Textos: baneo y dibujitos — 2026-11-02
+- Al perder, la pantalla final dice «¡TE BANEARON DEL DISCORD!» (antes «Se cayó el directo.»).
+- Los personajes pasan a llamarse «dibujo» / «dibujitos» en todo texto visible: «Elige tu dibujo», «Cambiar dibujo», panel «Dibujitos», «Combo del dibujo», saludos («¡DALE, DIBUJITO!», «¡Juntos, dibujitos!») y nombres de mejoras («Onda dibujo», «Escopeta dibujo», «Lonchera del dibujo», «Plaza de los Dibujitos»). El verbo «causar», las claves de guardado `causas-*`, ids, clases y nombres de assets no cambian.
+
 # HUD mínimo de partida — 2026-11-02
 - La vida pasa a una barra pequeña bajo el personaje (rosa sobre pista oscura, segmentada) con el nivel en una chapa amarilla a su lado; la comparten el jugador local y el compañero (`P.PlayerStatus.bar`/`bars`, última pasada del mundo). Sacudida y destello breves al recibir daño, apagados con movimiento reducido.
 - Arriba solo quedan la barra de XP cian de 6 px, el reloj con rivales y, junto a pausa y audio, chips de monedas y llaves (la reliquia solo aparece como icono si hay una equipada). Se oculta el bloque de nombre/NV/vida (sigue en el DOM para lectores de pantalla).

@@ -178,7 +178,7 @@ encounterCard(){
  if(!this.card){this.card=document.createElement('aside');this.card.id='mini-encounter-card';this.card.setAttribute('aria-live','polite');document.body.append(this.card)}
  const s=P.state,e=this.active(),r=s.miniReport,intro=e&&(e.ambientTime||0)<3,report=r&&s.elapsed-r.at<8;
  this.card.hidden=s.mode==='menu'||!!s.encounter||(!intro&&!report);if(this.card.hidden)return;
- const phrases={makanaky:'¡Llegó la realeza! · Parodia ficticia',campo:'¡Papeles, causa!',plaza:'La plaza tiene dueña',machu:'No debiste despertarlo'};
+ const phrases={makanaky:'¡Llegó la realeza! · Parodia ficticia',campo:'¡Papeles, dibujito!',plaza:'La plaza tiene dueña',machu:'No debiste despertarlo'};
  P.UI.write(this.card,intro?e.name+' · ENCUENTRO '+((e.tier||0)+1)+'\n'+phrases[e.miniMap]:r.name+' · DERROTADO\n'+Math.floor(r.time/60)+':'+String(Math.floor(r.time%60)).padStart(2,'0')+' · Daño recibido: '+r.damage+'\nContraataques: '+r.windows+'\n'+(r.practice?'Prueba · sin monedas':r.coins+' monedas en el suelo · +'+r.bonus+' bonus acreditado\nCofre exclusivo disponible'))
 },
 soundEvents(){

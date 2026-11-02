@@ -1,5 +1,5 @@
 'use strict';
-// Contrato único de causas jugables. Describe el estado real del kit; no desbloquea contenido.
+// Contrato único de dibujitos jugables. Describe el estado real del kit; no desbloquea contenido.
 P.CharacterContract={
  version:2,
  limits:{attacks:3,evolutions:3,passives:1,ultimates:1,domains:1,supports:2},
