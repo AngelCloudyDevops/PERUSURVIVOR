@@ -59,7 +59,8 @@ test('Salas reales: código privado, máximo dos, autoridad, reconexión, limpie
  async function connect(){const ws=new WebSocket(url,{origin});const receive=mailbox(ws);clients.push(ws);await once(ws,'open');return {ws,receive,send:obj=>ws.send(JSON.stringify(obj))}}
  try{
   const a=await connect();assert.match(a.ws.extensions,/permessage-deflate/);a.send({type:'create',protocol:3,map:'plaza',character:0});const joined=await a.receive('joined');assert.match(joined.code,/^[A-F0-9]{8}$/);
-  const b=await connect();b.send({type:'join',protocol:3,code:joined.code,character:17});const bj=await b.receive('joined');assert.equal(bj.slot,1);
+  const b=await connect();b.send({type:'join',protocol:3,code:joined.code,character:17});const bj=await b.receive('joined');assert.equal(bj.slot,1);assert.equal(bj.direct,true);
+  a.send({type:'rtc-signal',signal:{description:{type:'offer',sdp:'v=0\r\ns=causas-direct\r\n'}}});const relayed=await b.receive('rtc-signal');assert.equal(relayed.from,0);assert.equal(relayed.signal.description.type,'offer');assert.match(relayed.signal.description.sdp,/causas-direct/);
   const third=await connect();third.send({type:'join',protocol:3,code:joined.code,character:1});assert.match((await third.receive('error')).message,/completa/);
   a.send({type:'ready',ready:true,revision:2});b.send({type:'ready',ready:true,revision:2});await new Promise(r=>setTimeout(r,20));b.send({type:'start'});assert.equal((await b.receive('error')).type,'error');a.send({type:'start'});const stateA=await a.receive('state'),stateB=await b.receive('state');assert.deepEqual(stateA.players,stateB.players);assert.equal(stateA.players[1].id,'makanaky');
   a.send({type:'ping',sent:123});const pong=await a.receive('pong');assert.equal(pong.sent,123);assert.equal(pong.snapshotMs,40);app.tick();assert((await a.receive('state')).elapsed>stateA.elapsed,'Transmitir cada tick de 40 ms, sin saltar uno');await b.receive('state');
@@ -130,6 +131,11 @@ test('Red: interpolación entre paquetes es continua y no modifica el estado aut
 
 test('Red: movimiento local anticipado, colisiones respetadas y congelación al faltar paquetes',()=>{
  const vm=require('node:vm'),fs=require('node:fs'),P={};vm.runInNewContext(fs.readFileSync('src/network/coop-motion.js','utf8'),{P,Map,Math});const m={map:'campo',elapsed:1,players:[{slot:0,x:0,y:0,hp:95,speed:200,walkPhase:0}],enemies:[]},player=m.players[0];P.state={player,enemies:[]};P.Coop={active:true,session:{slot:0},peers:[],net:{rtt:130}};P.Core={direction:()=>({x:1,y:0})};P.Terrain={clear:()=>true};P.CoopMotion.accept(m,0);const seen=[];for(const t of [0,16,32,48])P.CoopMotion.draw(t,()=>seen.push(player.x));assert(seen[1]>0&&seen[2]>seen[1]&&seen[3]>seen[2]);assert.equal(player.x,0);P.Terrain.clear=()=>false;P.CoopMotion.draw(64,()=>assert.equal(player.x,0));P.CoopMotion.draw(300,()=>assert.equal(player.x,0));assert.equal(P.CoopMotion.local,null);
+});
+
+test('Red directa: adelanta solo al compañero y calcula la mejora frente a 150 ms',()=>{
+ const vm=require('node:vm'),fs=require('node:fs'),P={Coop:{send(){},open(){},roomRender(){},tick(){},leave(){}}};vm.runInNewContext(fs.readFileSync('src/network/coop-direct.js','utf8'),{P,performance:{now:()=>0},JSON,Math,Number});const estimate=P.CoopDirect.estimate(150,30);assert.deepEqual({...estimate},{server:150,direct:30,saved:120,percent:80});
+ vm.runInNewContext(fs.readFileSync('src/network/coop-motion.js','utf8'),{P,Map,Math});const packet={map:'campo',elapsed:1,players:[{slot:0,x:0,y:0,hp:95,speed:200},{slot:1,x:0,y:0,hp:95,speed:200}],enemies:[]};P.state={player:packet.players[0],enemies:[]};P.Coop.active=true;P.Coop.session={slot:0};P.Coop.peers=[packet.players[1]];P.Coop.net={rtt:150};P.Core={direction:()=>({x:0,y:0})};P.Terrain={clear:()=>true};P.DragonUltimate=null;P.CoopDirect.rtt=30;P.CoopMotion.accept(packet,0);P.CoopMotion.direct(1,{x:1,y:0},0);let visual=0;P.CoopMotion.draw(16,()=>{visual=P.Coop.peers[0].x});assert(visual>10,'La entrada directa anticipa el movimiento remoto');assert.equal(packet.players[1].x,0,'La predicción no altera el estado autoritativo');
 });
 
 test('Red: cambios de dirección priorizados sin saturar el límite de mensajes',()=>{
