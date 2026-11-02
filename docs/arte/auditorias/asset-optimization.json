@@ -672,6 +672,20 @@
       "rgbaSha256": "7fa95a7a4c38bbd3bd64bc29589be9a3b981b80cf78cfeb81c602e3132285e62"
     },
     {
+      "source": "assets/characters/sideral-egg-motion-v2.png",
+      "output": "assets/characters/sideral-egg-motion-v2.webp",
+      "width": 896,
+      "height": 448,
+      "originalBytes": 284732,
+      "optimizedBytes": 11188,
+      "sourceSha256": "254d25695f620a376f419dabea34c1675a12109c67975de4d67e9972c2195914",
+      "outputSha256": "f387a2cd5a8c01b601219e5f1ae16a46e33a4a38d78062f907166625c9ef09d9",
+      "rgbaSha256": "c199644ba5778852b7012cbb92ab0d5d54eb2cf70eeeca25f3fcd722b3fb834a",
+      "quality": 50,
+      "runtimeWidth": 256,
+      "runtimeHeight": 128
+    },
+    {
       "source": "assets/characters/sideral-lagarto-motion-v2.png",
       "output": "assets/characters/sideral-lagarto-motion-v2.webp",
       "width": 1774,
@@ -960,6 +974,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 150022160,
-  "optimizedBytes": 42364622
+  "originalBytes": 150306892,
+  "optimizedBytes": 42375810
 }
