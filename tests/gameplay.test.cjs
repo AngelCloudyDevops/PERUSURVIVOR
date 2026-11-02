@@ -21,7 +21,7 @@ for(let i=0;i<P.Data.characters.length;i++){
  P.UI.select(i);P.Game.start();const p=s.player;
  assert.equal(p.id,P.Data.characters[i].id);
  let point=p.attack==='orbit'?P.Combat.orbitPoints(p,0)[0]:{x:p.x+90,y:p.y};
- const e=target(point.x,point.y);s.enemies=[e];P.Combat.cast();
+ const e=target(point.x,point.y);s.enemies=[e];P.Combat.cast();if(p.id==='sideral'){s.elapsed+=.29;P.SideralKit.tick(p,.29)}
  if(s.shots.length)for(let t=0;t<8;t++)P.Combat.tick(.04);
  assert(e.hp<2000,'Ataque no daña: '+p.name);
  P.World.render(100);console.log('OK ataque: '+p.name);
