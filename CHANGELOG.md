@@ -1,3 +1,11 @@
+# HUD mínimo de partida — 2026-11-02
+- La vida pasa a una barra pequeña bajo el personaje (rosa sobre pista oscura, segmentada) con el nivel en una chapa amarilla a su lado; la comparten el jugador local y el compañero (`P.PlayerStatus.bar`/`bars`, última pasada del mundo). Sacudida y destello breves al recibir daño, apagados con movimiento reducido.
+- Arriba solo quedan la barra de XP cian de 6 px, el reloj con rivales y, junto a pausa y audio, chips de monedas y llaves (la reliquia solo aparece como icono si hay una equipada). Se oculta el bloque de nombre/NV/vida (sigue en el DOM para lectores de pantalla).
+- Etapa, hora y clima ya no son paneles fijos: salen 3 s como aviso temporal (`P.HudNotice`, `#hud-notice`) solo cuando cambian. La cuenta atrás del jefe queda en el último minuto.
+- Pasiva única y Combo del Causa colapsados a tiras compactas; minimapa más pequeño y translúcido (120x80 en escritorio, 76x52 arriba a la derecha en móvil).
+- Dock de escritorio sin cabeceras de color («OBJETOS», «ATAQUES · TECLAS 1–3») y combo encima de la barra de ataques sin pisarla.
+- Tarjetas de mejora sin retrato del personaje ni arte de fondo: icono del poder una sola vez y grande, nombre, rareza · tipo, explicación y comparación alineada abajo; en móvil son filas compactas y las tres caben sin scroll.
+
 # Nuevo nombre: KICK PERU: All Stars — 2026-11-02
 - El juego pasa a llamarse «KICK PERU: All Stars» en la pestaña del navegador, la pantalla de carga, el header, la bienvenida, el hub, la cuenta, el perfil y las docs vivas. Las claves `perusurvivor-*` de los guardados, el nombre del repo y los dominios no cambian.
 - Logotipo de letras pixel en bloque dibujado en SVG (`P.Wordmark`): «KICK PERU» en verde `#53fc18` y «ALL STARS» en hueso, con variantes apilada (bienvenida), compacta (hub) y en línea (header).

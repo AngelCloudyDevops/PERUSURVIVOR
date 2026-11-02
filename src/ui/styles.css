@@ -1599,3 +1599,126 @@ body #hud #time-of-day .pixel-icon{display:inline-block;width:12px;height:12px;v
  body #hud #loot-message{top:267px}
  body #hud #miniboss-status{top:312px}
 }
+
+/* HUD mínimo (referencias: Vampire Survivors, Brotato, 20 Minutes Till Dawn).
+   Fijo en pantalla: barra de XP arriba, reloj + rivales al centro, monedas/llaves junto a pausa y minimapa pequeño.
+   Vida y nivel van bajo el personaje (canvas). Etapa, hora y clima salen como aviso temporal (#hud-notice). */
+body #hud-vitals{position:absolute;left:0;top:0;width:1px;height:1px;margin:0;padding:0;overflow:hidden;clip-path:inset(50%);border:0;background:none;white-space:nowrap}
+body #hud .xp,body #hud:not(.boss-hud) .xp,body #hud.boss-hud .xp{display:block;height:6px;border-bottom:1px solid var(--chicha-negro);background:var(--chicha-negro)}
+body #hud .xp i{background:var(--chicha-cian)}
+body #hud .xp:after{display:none}
+body #hud .stats{top:10px;flex-direction:row;align-items:center;gap:10px;padding:2px 10px}
+body #hud .stats #time{font-size:22px}
+body #hud #kills{gap:4px;font-size:12px}
+body #hud #kills .pixel-icon{width:12px;height:12px}
+body #hud #kills>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+body #hud #boss-countdown{position:absolute;top:46px;left:50%;transform:translateX(-50%);padding:1px 8px;background:var(--chicha-negro);color:var(--chicha-amarillo);font:500 12px/1.3 var(--fuente-texto);white-space:nowrap}
+body #hud #run-stage,body #hud #time-of-day,body #hud #difficulty-status{display:none!important}
+body #hud #loot-hud{position:absolute;top:18px;right:168px;left:auto;width:auto;height:30px;margin:0;padding:0 8px;display:flex;flex-wrap:nowrap;align-items:center;justify-content:flex-start;gap:8px;background:var(--chicha-negro);color:var(--chicha-hueso);font:500 14px/1 var(--fuente-texto)}
+body #hud.boss-hud #loot-hud{display:none}
+body #hud #loot-hud .hud-coin{flex:none;width:14px;height:14px;color:var(--chicha-amarillo)}
+body #hud #loot-summary{flex:none;color:var(--chicha-amarillo)}
+body #hud #loot-icon{order:3;width:22px;height:22px}
+body #hud #loot-icon[hidden]{display:none}
+body #hud #key-inventory{order:2;display:flex;align-items:center;gap:8px;margin:0}
+body #hud #key-inventory .key-chip{display:inline-flex;align-items:center;gap:3px;padding:0;font:500 14px/1 var(--fuente-texto)}
+body #hud #key-inventory .key-chip[hidden]{display:none}
+body #hud #key-inventory .key-chip .pixel-icon,body #hud #key-inventory .key-chip svg{width:14px;height:14px}
+body #hud #loot-message{left:14px;top:100px}
+body #hud #key-target{left:14px;top:128px}
+body #coop-duo-status{top:14px;left:14px}
+#hud-notice{position:absolute;top:70px;left:50%;transform:translateX(-50%);z-index:4;max-width:min(460px,calc(100vw - 32px));padding:6px 14px 7px;background:var(--chicha-negro);border-bottom:4px solid var(--notice-tone,var(--chicha-amarillo));color:var(--chicha-hueso);text-align:center;text-shadow:none;animation:hud-notice-in .18s ease-out}
+#hud-notice[hidden]{display:none}
+#hud-notice b{display:block;font:400 15px/1.2 var(--fuente-titulo);letter-spacing:.02em}
+#hud-notice small{display:block;margin-top:2px;color:var(--chicha-gris);font:500 12px/1.3 var(--fuente-texto)}
+#hud-notice small[hidden]{display:none}
+@keyframes hud-notice-in{from{opacity:0;translate:0 -8px}}
+@media(prefers-reduced-motion:reduce){#hud-notice{animation:none!important}}
+body.ref-reduced-motion #hud-notice{animation:none!important}
+body.ref-contrast #hud #loot-hud,body.ref-contrast #hud-notice{background:#05080d;border:2px solid var(--hc-line)}
+@media(min-width:761px){body #passive-hud{left:14px;bottom:110px}}
+body #passive-hud{width:auto;max-width:170px;padding:3px 6px 4px;background:var(--chicha-negro)}
+body #passive-hud strong{margin:0 0 3px;padding:0;overflow:hidden;background:none;color:var(--chicha-naranja);font:400 11px/1.2 var(--fuente-titulo);text-overflow:ellipsis;white-space:nowrap}
+body #passive-hud small,body #passive-hud span{display:none}
+body #passive-hud div{margin:0;gap:3px}
+body #passive-hud i{min-width:18px;padding:1px 0;font-size:11px}
+body #causa-combo{width:auto;padding:3px;display:grid;grid-template-columns:repeat(3,56px);gap:3px}
+body #causa-combo>strong,body #causa-combo>small{display:none}
+body #causa-combo .causa-card{margin:0;padding:3px 2px 7px;text-align:center}
+body #causa-combo .causa-card span{display:block;overflow:hidden;font-size:11px;text-overflow:ellipsis;white-space:nowrap}
+body #causa-combo .causa-card b{display:none}
+@media(max-width:760px){
+ body #hud .stats{top:10px;flex-direction:column;gap:0;padding:2px 8px}
+ body #hud .stats #time{font-size:20px}
+ body #hud #boss-countdown{top:60px;max-width:46vw}
+ body #hud #loot-hud{top:12px;left:8px;right:auto;height:26px;padding:0 6px;gap:6px;font-size:13px}
+ body #hud #loot-message{left:8px;top:44px;width:84px}
+ body #hud #key-target{left:8px;top:84px;max-width:84px}
+ body #coop-duo-status{top:124px;left:8px;max-width:86px}
+ #hud-notice{top:82px;left:96px;right:96px;width:auto;max-width:none;transform:none;padding:5px 8px 6px}
+ #hud-notice b{font-size:13px}
+ body #hud #miniboss-status{top:150px;left:8px;transform:none;width:calc(100vw - 108px)}
+ body #hud #portal-status{top:150px;left:96px;width:calc(100vw - 192px);transform:none}
+ body #hud #event-status{top:164px;right:8px;max-width:45vw}
+ body #hud #market-status{top:188px;right:8px;max-width:45vw}
+ body #passive-hud{left:8px;width:auto;max-width:calc(50vw - 12px)}
+ body #causa-combo{right:8px;max-width:calc(50vw - 12px);grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+/* Dock de escritorio sin cabeceras: solo huecos y botones; el combo queda por encima de la barra de ataques. */
+@media(min-width:761px){
+ body #causa-combo{bottom:164px}
+ body #weapon-bar:before{display:none}
+ body #weapon-bar{padding:7px}
+ body #dota-inventory>.dota-inventory-title{display:none}
+ body #combat-dock #dota-inventory{padding:0}
+ body #passive-hud{bottom:116px}
+ body #passive-hud strong{color:var(--chicha-hueso);font:600 12px/1.2 var(--fuente-texto)}
+}
+
+/* Tarjetas de mejora: solo icono del poder + texto, sin retrato ni arte de fondo (estilo Vampire Survivors / Brotato). */
+body #overlay.level-up .upgrade-front{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:8px;padding:14px 14px 16px;border:2px solid var(--chicha-negro);border-bottom:8px solid var(--rarity);border-radius:0;background:var(--chicha-tinta);box-shadow:none;text-align:left}
+body #overlay .upgrade-front:before,body #overlay .upgrade-card:not([data-rarity=legendary]) .upgrade-front:after{display:none}
+body #overlay.level-up .upgrade-card:not(.legendary-reveal):after{display:none}
+body #overlay .upgrade-card .upgrade-key{position:absolute;top:10px;left:10px;display:grid;place-items:center;width:26px;height:26px;min-height:0;padding:0;background:var(--chicha-amarillo);color:var(--chicha-negro);font:400 14px/1 var(--fuente-titulo)}
+body #overlay .upgrade-plate{display:grid;place-items:center;align-self:center;width:72px;height:72px;margin-top:6px;background:var(--chicha-negro);border-bottom:6px solid var(--rarity)}
+body #overlay .upgrade-plate .upgrade-icon{flex:none;width:56px;height:56px;border:0;background:none;object-fit:contain;image-rendering:pixelated}
+body #overlay .upgrade-new{position:absolute;top:10px;right:10px;padding:3px 7px;background:var(--chicha-verde);color:var(--chicha-negro);font:400 11px/1 var(--fuente-titulo)}
+body #overlay .upgrade-front .upgrade-content{display:flex;flex:1;flex-direction:column;gap:5px;width:100%;min-height:0}
+body #overlay .upgrade-front .upgrade-content strong{min-height:2.3em;color:var(--chicha-hueso);font:400 16px/1.15 var(--fuente-titulo);letter-spacing:.02em}
+body #overlay .upgrade-front .upgrade-badge{display:block;padding:0;background:none;color:var(--rarity);font:600 12px/1.2 var(--fuente-texto);letter-spacing:.04em}
+body #overlay .upgrade-front .upgrade-content small{display:block;color:var(--chicha-hueso);font:500 13px/1.4 var(--fuente-texto)}
+body #overlay .upgrade-front .upgrade-comparison{align-self:flex-start;margin-top:auto;padding:4px 8px;background:var(--chicha-negro);color:var(--chicha-amarillo);font:600 13px/1.2 var(--fuente-texto)}
+body #overlay.level-up .upgrade-card:hover .upgrade-front,body #overlay.level-up .upgrade-card:focus-visible .upgrade-front{border-bottom-color:var(--chicha-amarillo)}
+body #overlay.level-up .upgrade-card.upgrade-chosen .upgrade-front{outline:3px solid var(--chicha-hueso);outline-offset:-5px}
+@media(min-width:761px){body #overlay.level-up.card-reveal .upgrade-card{height:clamp(280px,40vh,320px)}}
+body #overlay.level-up.four-upgrades .upgrade-card{height:104px;min-height:104px;padding:0;margin-top:8px}
+body #overlay.level-up.four-upgrades .upgrade-front{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:center;gap:0 10px;padding:8px 10px;border-bottom-width:6px}
+body #overlay.level-up.four-upgrades .upgrade-plate{grid-column:1;width:56px;height:56px;margin:0;border-bottom-width:4px}
+body #overlay.level-up.four-upgrades .upgrade-icon{width:40px;height:40px}
+body #overlay.level-up.four-upgrades .upgrade-content{grid-column:2;gap:2px;justify-content:center}
+body #overlay.level-up.four-upgrades .upgrade-content strong{min-height:0;font-size:13px}
+body #overlay.level-up.four-upgrades .upgrade-badge{font-size:11px}
+body #overlay.level-up.four-upgrades .upgrade-content small{font-size:12px;line-height:1.25}
+body #overlay.level-up.four-upgrades .upgrade-comparison{margin-top:2px;padding:2px 6px;font-size:12px}
+body #overlay.level-up.four-upgrades .upgrade-key{top:4px;left:4px;width:20px;height:20px;font-size:11px}
+body #overlay.level-up.four-upgrades .upgrade-new{top:4px;right:4px;padding:2px 5px;font-size:11px}
+@media(max-width:760px){
+ body #overlay.level-up.card-reveal{grid-template-rows:auto auto repeat(3,108px);gap:8px}
+ body #overlay.level-up.card-reveal .upgrade-card{height:108px;min-height:108px}
+ body #overlay.level-up.four-upgrades .upgrade-card{height:108px;min-height:108px}
+body #overlay.level-up .upgrade-front{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:center;gap:0 10px;padding:8px 10px;border-bottom-width:6px}
+body #overlay.level-up .upgrade-plate{grid-column:1;width:56px;height:56px;margin:0;border-bottom-width:4px}
+body #overlay.level-up .upgrade-icon{width:40px;height:40px}
+body #overlay.level-up .upgrade-content{grid-column:2;gap:2px;justify-content:center}
+body #overlay.level-up .upgrade-content strong{min-height:0;font-size:13px}
+body #overlay.level-up .upgrade-badge{font-size:11px}
+body #overlay.level-up .upgrade-content small{font-size:12px;line-height:1.25}
+body #overlay.level-up .upgrade-comparison{margin-top:2px;padding:2px 6px;font-size:12px}
+body #overlay.level-up .upgrade-key{top:4px;left:4px;width:20px;height:20px;font-size:11px}
+body #overlay.level-up .upgrade-new{top:4px;right:4px;padding:2px 5px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){body #overlay.level-up .upgrade-card:hover,body #overlay.level-up .upgrade-card:focus-visible,body #overlay.level-up.card-reveal .upgrade-card:hover,body #overlay.level-up.card-reveal .upgrade-card:focus-visible{transform:none!important}}
+body.ref-reduced-motion #overlay.level-up .upgrade-card:hover,body.ref-reduced-motion #overlay.level-up .upgrade-card:focus-visible{transform:none!important}
+body #overlay.level-up.card-reveal .upgrade-front .upgrade-content small{font-size:13px;line-height:1.4;margin-top:0}
+@media(max-width:760px){body #overlay.level-up.card-reveal .upgrade-front .upgrade-content small{font-size:12px;line-height:1.25}}
+body #overlay .upgrade-front .upgrade-content strong{order:-1}

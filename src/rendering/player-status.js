@@ -15,13 +15,14 @@ P.PlayerStatus={
  },
  observe(actor){
   let record=this.records.get(actor),hp=Number(actor?.hp);
-  if(!record){record={hp,healUntil:0,healAmount:0};this.records.set(actor,record);return record}
+  if(!record){record={hp,healUntil:0,healAmount:0,hurtUntil:0};this.records.set(actor,record);return record}
   const now=this.now();
   if(Number.isFinite(hp)&&Number.isFinite(record.hp)&&hp>record.hp+.01){
    if(record.healUntil<=now)record.healAmount=0;
    record.healAmount=Math.max(record.healAmount,hp-record.hp);
    record.healUntil=now+1.05
   }
+  if(Number.isFinite(hp)&&Number.isFinite(record.hp)&&hp<record.hp-.01)record.hurtUntil=now+.22;
   record.hp=hp;
   return record
  },
@@ -82,10 +83,18 @@ P.PlayerStatus={
   }
   ctx.restore()
  },
- allyBar(ctx,actor){
-  if(!actor)return;const max=Math.max(1,Number(actor.maxHp)||Number(actor.max)||1),life=Math.max(0,Math.min(max,Number(actor.hp)||0));
-  ctx.save();ctx.translate(actor.x,actor.y);ctx.fillStyle='#101827dd';ctx.fillRect(-25,29,50,6);ctx.fillStyle=life/max>.35?'#66d8df':'#ff7d78';ctx.fillRect(-24,30,48*life/max,4);
-  if(life<=0){ctx.fillStyle='#ff9a90';ctx.font='bold 9px monospace';ctx.textAlign='center';ctx.fillText('CAÍDO',0,47)}
+ // Barra compacta bajo los pies (jugador local y compañero): vida rosa, nivel en chapa amarilla.
+ bar(ctx,actor,opts={}){
+  if(!actor)return;const max=Math.max(1,Number(actor.maxHp)||Number(actor.max)||1),life=Math.max(0,Math.min(max,Number(actor.hp)||0)),ratio=life/max,record=this.observe(actor),now=this.now(),reduced=P.Motion?P.Motion.reduced():!!P.Ambient?.reduced?.matches,left=record.hurtUntil-now,hurt=left>0,flash=hurt&&left>.1&&!reduced,shake=hurt&&!reduced?Math.round(Math.sin(now*90)*left/.22*2):0,
+   w=44,h=6,level=Math.floor(Number(opts.level))||0,text=String(level),badge=level?Math.max(14,text.length*7+6):0,total=w+(level?3+badge:0),x=Math.round(-total/2)+shake,y=31,fill=Math.round(w*ratio);
+  ctx.save();ctx.translate(actor.x,actor.y);ctx.fillStyle='#0c0a10';ctx.fillRect(x-2,y-2,w+4,h+4);ctx.fillStyle='#2a2233';ctx.fillRect(x,y,w,h);
+  ctx.fillStyle=flash?'#fff4dc':record.healUntil>now?'#8ff0a4':ratio>.35?'#ff2e88':'#ff7a1a';ctx.fillRect(x,y,fill,h);
+  ctx.fillStyle='#0c0a10';for(let i=1;i<4;i++)ctx.fillRect(x+Math.round(w*i/4)-1,y,1,h);
+  if(level){const bx=x+w+3,by=y-3;ctx.fillStyle='#0c0a10';ctx.fillRect(bx-2,by-2,badge+4,16);ctx.fillStyle='#ffe02e';ctx.fillRect(bx,by,badge,12);ctx.fillStyle='#0c0a10';ctx.font='bold 10px monospace';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(text,bx+badge/2,by+7)}
+  if(life<=0&&opts.down){ctx.fillStyle='#ff9a90';ctx.font='bold 9px monospace';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText('CAÍDO',0,47)}
   ctx.restore()
- }
+ },
+ allyBar(ctx,actor){this.bar(ctx,actor,{level:P.state?.level,down:true})},
+ // Última pasada del mundo: las barras quedan sobre enemigos y efectos y no se duplican.
+ bars(ctx){const s=P.state,p=s?.player;if(!p)return;if(P.Coop?.active)for(const a of P.Coop.peers||[])if(a!==p&&a.coopPlayer)this.allyBar(ctx,a);if(p.hp>0)this.bar(ctx,p,{level:s.level})}
 };
