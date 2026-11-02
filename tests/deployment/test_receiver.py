@@ -18,7 +18,7 @@ SHA = "a" * 40
 
 def package(entries=None):
     output = io.BytesIO()
-    entries = entries or [("index.html", b"CAUSAS DEL CAOS"), ("js/game.js", b"game")]
+    entries = entries or [("index.html", b"KICK PERU"), ("js/game.js", b"game")]
     with tarfile.open(fileobj=output, mode="w:gz") as archive:
         for name, data in entries:
             item = tarfile.TarInfo(name); item.size = len(data)

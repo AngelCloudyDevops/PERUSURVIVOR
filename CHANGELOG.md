@@ -1,3 +1,8 @@
+# Nuevo nombre: KICK PERU: All Stars — 2026-11-02
+- El juego pasa a llamarse «KICK PERU: All Stars» en la pestaña del navegador, la pantalla de carga, el header, la bienvenida, el hub, la cuenta, el perfil y las docs vivas. Las claves `perusurvivor-*` de los guardados, el nombre del repo y los dominios no cambian.
+- Logotipo de letras pixel en bloque dibujado en SVG (`P.Wordmark`): «KICK PERU» en verde `#53fc18` y «ALL STARS» en hueso, con variantes apilada (bienvenida), compacta (hub) y en línea (header).
+- El pie legal indica que el juego no está afiliado con Kick ni otras marcas.
+
 # Interfaz: rediseño «afiche chicha» — 2026-11-01
 - Nuevo sistema visual inspirado en los afiches chicha (documentado en `DESIGN.md`): fondo negro plano, bloques de color fosforescente por función (amarillo acción principal, rosa peligro y gacha, verde cooperativo, cian información, naranja énfasis), títulos en Bungee con contornos de colores y texto en Pixelify Sans.
 - Fuera los paneles redondeados con vidrio, brillos y degradados, las etiquetas encima de los títulos y los números de sección.

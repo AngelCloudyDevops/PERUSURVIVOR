@@ -1,4 +1,4 @@
-# PERUSURVIVOR — Causas del Caos
+# PERUSURVIVOR — KICK PERU: All Stars
 
 Cooperativo: R activa el dominio; G confirma el combo compartido (también disponible por botón). Las partidas activas no caducan a los 45 min; ese plazo limpia salas de espera/resultados inactivos. Se cancelan entradas pendientes al desconectar o recuperar un socket, y no se admiten entradas mientras falta un compañero. La misma pestaña conserva una credencial efímera de recuperación en sessionStorage, renovada durante la partida y pagehide; al recargar, espera la comprobación de cuenta y solicita recuperar el grupo dentro de los 30 s del servidor. Salir, vencer el plazo o cambiar de cuenta elimina la recuperación; no se guarda en localStorage ni se sincroniza entre pestañas.
 

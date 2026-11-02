@@ -17,9 +17,11 @@ corrido y una fuente de rótulo para los títulos.
 ## Tipografía
 | Uso | Fuente | Notas |
 |---|---|---|
-| Títulos, botones grandes, números del HUD | `Bungee` (Google Fonts) | Letra de rótulo urbano; en títulos lleva contornos chicha con `text-shadow` apilado |
+| Títulos, botones grandes, números del HUD | `Bungee` (Google Fonts) | Letra de rótulo urbano; en títulos lleva contornos chicha con `text-shadow` apilado (salvo el logotipo del juego, que es un wordmark pixel plano) |
 | Texto corrido, etiquetas, descripciones | `Pixelify Sans` (Google Fonts) | Mínimo 12 px; con tildes y ñ |
 | Datos tabulares (tiempos, contadores) | `Pixelify Sans` con `font-variant-numeric:tabular-nums` | |
+
+El título del juego es un SVG de bloques (`P.Wordmark` en `src/ui/lobby.js`): KICK y PERU en `--kick-verde`, ALL STARS en hueso, sin contorno ni sombra.
 
 Sin `monospace` genérico, sin Barlow ni DM Sans en la interfaz rediseñada.
 
@@ -35,6 +37,7 @@ Sin `monospace` genérico, sin Barlow ni DM Sans en la interfaz rediseñada.
 | `--chicha-verde` | `#2ee86a` | Cooperativo, éxito, curación |
 | `--chicha-naranja` | `#ff7a1a` | Énfasis, rareza rara, avisos |
 | `--chicha-cian` | `#2ed6ff` | Información, XP, enlaces |
+| `--kick-verde` | `#53fc18` | Color de marca, solo para el logotipo «KICK PERU» (`P.Wordmark`); plano, sin contorno ni sombra |
 
 Texto sobre bloques de color: siempre `--chicha-negro`.
 

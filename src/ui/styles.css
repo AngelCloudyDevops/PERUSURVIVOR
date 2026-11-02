@@ -1136,7 +1136,7 @@ body.ref-contrast #menu small,body.ref-contrast #hud small,body.ref-contrast #ov
    Sigue DESIGN.md. Este bloque va al final a propósito: sobrescribe las reglas anteriores de estas
    pantallas (las reglas viejas quedan solo como respaldo de lo que aún no se rediseña).
    ========================================================================== */
-:root{--chicha-negro:#0c0a10;--chicha-tinta:#1b1622;--chicha-hueso:#fff4dc;--chicha-gris:#b9adc4;--chicha-amarillo:#ffe02e;--chicha-rosa:#ff2e88;--chicha-verde:#2ee86a;--chicha-naranja:#ff7a1a;--chicha-cian:#2ed6ff;--fuente-titulo:'Bungee',sans-serif;--fuente-texto:'Pixelify Sans',sans-serif;--toque:44px}
+:root{--kick-verde:#53fc18;--chicha-negro:#0c0a10;--chicha-tinta:#1b1622;--chicha-hueso:#fff4dc;--chicha-gris:#b9adc4;--chicha-amarillo:#ffe02e;--chicha-rosa:#ff2e88;--chicha-verde:#2ee86a;--chicha-naranja:#ff7a1a;--chicha-cian:#2ed6ff;--fuente-titulo:'Bungee',sans-serif;--fuente-texto:'Pixelify Sans',sans-serif;--toque:44px}
 ::selection{background:var(--chicha-rosa);color:var(--chicha-negro)}
 button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--chicha-amarillo);outline-offset:2px}
 #menu,.reference-body,.music-settings{scrollbar-width:thin;scrollbar-color:var(--chicha-amarillo) var(--chicha-tinta)}
@@ -1148,8 +1148,8 @@ body.menu:before{background:#0c0a1059}
 #lobby-hub:before,body.menu[data-lobby-panel=home] #lobby-hub:before{background:none}
 
 /* Cabecera fija: logo y control de audio. */
-header a{font-family:var(--fuente-titulo);font-weight:400;font-size:20px;letter-spacing:.03em;color:var(--chicha-hueso);text-shadow:2px 2px 0 var(--chicha-rosa)}
-header a b{font-weight:400;color:var(--chicha-amarillo)}
+header a{display:inline-flex;align-items:center;font-family:var(--fuente-titulo);font-weight:400;font-size:20px;letter-spacing:.03em;color:var(--kick-verde)}header a .wordmark{display:block;height:20px;width:auto}.wordmark .wm-sub{fill:var(--chicha-hueso)}
+header a b{font-weight:400}
 body.menu[data-lobby-panel=home] header>a{display:none}
 .audio-cluster{border:0;border-radius:0;background:var(--chicha-negro);box-shadow:none}
 .audio-cluster #audio-toggle{border-radius:0;background:transparent;color:var(--chicha-hueso)}
@@ -1168,7 +1168,7 @@ body.menu header .music-control summary{font-size:0}
 
 /* Pantalla de bienvenida. */
 #lobby-splash{background:#0c0a10b8}
-#lobby-splash h1{font:400 clamp(36px,8vw,92px)/1.02 var(--fuente-titulo);letter-spacing:.02em;color:var(--chicha-hueso);-webkit-text-stroke:.07em var(--chicha-negro);paint-order:stroke fill;text-shadow:.06em .06em 0 var(--chicha-rosa),.12em .12em 0 var(--chicha-verde),.18em .18em 0 var(--chicha-naranja),.24em .24em 0 var(--chicha-negro);margin:0 0 28px;animation:chicha-entra .6s steps(4) both}
+#lobby-splash h1{font:400 clamp(30px,6vw,60px)/1.02 var(--fuente-titulo);letter-spacing:.02em;color:var(--kick-verde);margin:0 0 28px;animation:chicha-entra .6s steps(4) both}#lobby-splash h1 .wordmark{display:block;width:min(60vw,340px);height:auto;max-height:30vh;margin:0 auto}
 #lobby-splash p{font:400 18px/1.5 var(--fuente-texto);color:var(--chicha-hueso);max-width:34ch;margin:0 auto}
 #lobby-splash .welcome-note{font:400 14px/1.5 var(--fuente-texto);color:var(--chicha-gris);max-width:40ch;margin:16px auto 0}
 #welcome-actions{gap:10px}
@@ -1181,7 +1181,7 @@ body.menu header .music-control summary{font-size:0}
 #welcome-actions button:focus-visible{outline:3px solid var(--chicha-amarillo);outline-offset:2px}
 
 /* Hub: título, tarjeta central, perfil, rieles y JUGAR. */
-body.menu[data-lobby-panel=home] #menu .home-copy h1{font:400 clamp(22px,2.7vw,40px)/1.1 var(--fuente-titulo);letter-spacing:.02em;color:var(--chicha-hueso);-webkit-text-stroke:.07em var(--chicha-negro);paint-order:stroke fill;text-shadow:.06em .06em 0 var(--chicha-rosa),.12em .12em 0 var(--chicha-verde),.18em .18em 0 var(--chicha-naranja),.24em .24em 0 var(--chicha-negro);margin:0 0 14px;animation:chicha-entra .6s steps(4) both}
+body.menu[data-lobby-panel=home] #menu .home-copy h1{font:400 clamp(22px,2.7vw,40px)/1.1 var(--fuente-titulo);letter-spacing:.02em;color:var(--kick-verde);margin:0 0 8px;animation:chicha-entra .6s steps(4) both}body.menu[data-lobby-panel=home] #menu .home-copy h1 .wordmark{display:block;width:clamp(120px,12.5vw,170px);height:auto;max-height:56px}
 body.menu[data-lobby-panel=home] #menu .home-copy h1 em{font-style:normal;color:inherit}
 body.menu[data-lobby-panel=home] #menu .home-feature{background:var(--chicha-negro);border:0;border-radius:0;box-shadow:none;backdrop-filter:none;padding:14px}
 body.menu[data-lobby-panel=home] #menu .home-feature h2{font:400 clamp(20px,2.2vw,28px)/1.15 var(--fuente-titulo);letter-spacing:.02em;color:var(--chicha-hueso);text-shadow:none;margin:12px 0 4px}
@@ -1270,7 +1270,7 @@ body.menu #menu .ui-back-button::before,body.menu #menu .lobby-back::before{cont
  body.menu[data-lobby-panel=home] :is(#hub-left,#hub-right) button strong{font-size:13px;max-width:92px}
 }
 @media(max-width:760px){
- header a{font-size:14px;line-height:1.1}
+ header a{font-size:14px;line-height:1.1}header a .wordmark{height:14px}
  body.menu header>a{max-width:none;flex:1 1 auto}
  body.menu[data-lobby-panel=home] #menu .home-copy h1{font-size:clamp(20px,6.4vw,28px);margin:0}
  body.menu[data-lobby-panel=home] #menu .home-feature{padding:10px}
