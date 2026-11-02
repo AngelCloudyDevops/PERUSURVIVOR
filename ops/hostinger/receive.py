@@ -23,6 +23,8 @@ MAX_ARCHIVE = 96 * 1024 * 1024
 MAX_CONTENT = 192 * 1024 * 1024
 KEEP_RECENT_RELEASES = 7
 SHA_PATTERN = re.compile(r"[0-9a-f]{40}")
+# Marcador estable del juego: el canvas existe pase lo que pase con el nombre/marca.
+MARKER = b'id="game"'
 
 def parse_command(command):
     match = re.fullmatch(r"(deploy|deploy-staging) ([0-9a-f]{40})", command or "")
@@ -70,7 +72,7 @@ def extract_release(payload, sha):
                     with archive.extractfile(member) as source, destination.open("wb") as output:
                         shutil.copyfileobj(source, output)
                     destination.chmod(0o644)
-        if not (stage / "index.html").is_file() or b"CAUSAS" not in (stage / "index.html").read_bytes():
+        if not (stage / "index.html").is_file() or MARKER not in (stage / "index.html").read_bytes():
             raise ValueError("El paquete no contiene el juego")
         if not (stage / "js/game.js").is_file():
             raise ValueError("Falta el código del juego")
@@ -126,7 +128,7 @@ def homepage_healthy():
     """Valida la portada pública o la protección Basic intencional de staging."""
     try:
         with urllib.request.urlopen(DOMAIN + "/", timeout=10) as page:
-            return page.status == 200 and b"CAUSAS" in page.read()
+            return page.status == 200 and MARKER in page.read()
     except urllib.error.HTTPError as error:
         authentication = error.headers.get("WWW-Authenticate", "")
         staging_domain = TARGETS["deploy-staging"][1]

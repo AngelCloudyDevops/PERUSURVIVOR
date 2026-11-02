@@ -948,3 +948,7 @@ En cooperativo, `dota-active` envía solo `item` y vector de dirección normaliz
 
 ## Benchmark de lógica del juego
 `node scripts/benchmark-game.cjs [solo-80|solo-160|coop-160|all] [--detail] [--json salida.json]` ejecuta `backend/simulation.cjs` con los módulos fuente (misma lógica que el navegador, sin dibujo) con `Math.random` sembrado (mulberry32), enemigos con hp normal repuestos hasta el objetivo y solo el jugador con hp enorme. Informa mediana/p95/máx por tick, población, GC (`PerformanceObserver('gc')`), llamadas por tick a `Terrain.direction/hit/clear`, `Entities.hurt` y `Maps.definition`, y snapshot + `encodeState` (solo coop). `--detail` añade tiempos por subsistema con envoltorios (con sobrecarga: no compararlos con la pasada limpia). No forma parte de `npm test`; úsalo antes y después de cada optimización.
+
+## Iconos de interfaz (`P.Icons`)
+
+`P.Icons` vive al inicio de `src/ui/lobby.js` y dibuja los iconos de la interfaz en DOM como SVG pixel: rejilla de 12x12, un `<rect>` por tramo, `fill="currentColor"`, `shape-rendering="crispEdges"` y `aria-hidden="true"`. Expone `svg(nombre)` (cadena), `node(nombre)` (elemento) y `fill(el, nombre, texto)` (icono más etiqueta). Todas las llamadas toleran los stubs del VM del servidor: fuera del navegador devuelven cadena vacía o `null`, y quien llama usa `P.Icons?.…` con respaldo de texto. El color del icono lo pone el CSS del contenedor según `DESIGN.md`; no se usan caracteres Unicode ni emoji como icono.

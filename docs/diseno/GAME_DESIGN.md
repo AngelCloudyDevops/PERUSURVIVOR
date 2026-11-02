@@ -87,7 +87,7 @@ Filtros y orden se recuerdan entre visitas en el mismo navegador. Se restauran a
 
 
 ## Identidad y objetivo
-Título visible: Causas del Caos. Supervivencia de acción en vista superior con humor y referencias peruanas. El jugador controla el movimiento y esquiva rivales mientras su personaje ataca automáticamente. La meta es crecer durante la partida y derrotar al jefe final ElZeein.
+Título visible: KICK PERU: All Stars (logotipo de letras pixel en bloque, `P.Wordmark`). Supervivencia de acción en vista superior con humor y referencias peruanas. El jugador controla el movimiento y esquiva rivales mientras su personaje ataca automáticamente. La meta es crecer durante la partida y derrotar al jefe final ElZeein.
 
 Este documento describe la implementación existente. La reorganización de carpetas no modifica sus reglas ni agrega mecánicas.
 

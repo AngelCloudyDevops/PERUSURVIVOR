@@ -2,7 +2,7 @@
 
 # Claude Code en PERUSURVIVOR
 
-«Causas del Caos»: survivor de navegador. Lo común (ramas, worktrees, documentación,
+«KICK PERU: All Stars»: survivor de navegador. Lo común (ramas, worktrees, documentación,
 pruebas antes de subir) está en `AGENTS.md` y `CONTRIBUTING.md`; aquí va cómo trabajar
 sin romper nada. Ante una contradicción entre docs y código, **manda el código**.
 
