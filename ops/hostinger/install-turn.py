@@ -63,6 +63,7 @@ def install(environment, address=None):
     config.write_text(f'''listening-port=3478
 listening-ip=0.0.0.0
 external-ip={address}
+relay-ip={address}
 min-port=49160
 max-port=49200
 fingerprint
@@ -89,6 +90,7 @@ log-file=stdout
 simple-log
 ''')
     config.chmod(0o600)
+    os.chown(config, 65534, 65533)  # nobody:nogroup dentro de la imagen oficial fijada
     compose = TURN / 'compose.yaml'
     compose.write_text('''services:
   turn:
@@ -102,6 +104,7 @@ simple-log
     cpus: 0.25
     pids_limit: 48
     cap_drop: [ALL]
+    cap_add: [NET_BIND_SERVICE]
     security_opt: [no-new-privileges:true]
     tmpfs: [/tmp]
     volumes:
