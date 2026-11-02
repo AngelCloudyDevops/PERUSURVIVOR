@@ -19,7 +19,7 @@ P.PortalFX={remoteAt:-99,fog:null,
 };
 {const update=P.Game.update,render=P.World.render,reset=P.Encounters.reset;
  P.Encounters.reset=function(...args){P.PortalFX.reset();return reset.apply(this,args)};
- P.Game.update=function(dt){const s=P.state;if(!P.Coop?.active){if(s.portalTransition){P.PortalFX.advance(dt);P.UI.hud();return}if(s.portal?.blockTouch&&s.player){const point=P.Encounters.definition().portal;if(Math.hypot(s.player.x-point.x,s.player.y-point.y)>60)s.portal.blockTouch=false}if(P.PortalFX.begin()){P.PortalFX.advance(dt);return}}const result=update.call(this,dt);if(!P.Coop?.active)P.PortalFX.begin();return result};
+ P.Game.update=function(dt){const s=P.state;if(!P.Coop?.active){if(s.portalTransition){P.PortalFX.advance(dt);P.UI.hud();return}if(s.portal?.blockTouch&&s.player){const point=P.Encounters.portalPoint();if(Math.hypot(s.player.x-point.x,s.player.y-point.y)>60)s.portal.blockTouch=false}if(P.PortalFX.begin()){P.PortalFX.advance(dt);return}}const result=update.call(this,dt);if(!P.Coop?.active)P.PortalFX.begin();return result};
  P.World.render=function(...args){const age=P.state.elapsed-P.PortalFX.remoteAt,active=P.state.portalTransition||(age>=0&&age<.6);if(typeof document!=='undefined')document.body.classList.toggle('portal-transfer',!!active&&P.state.mode!=='menu');const result=render.apply(this,args);P.PortalFX.overlay();return result};
 }
 
