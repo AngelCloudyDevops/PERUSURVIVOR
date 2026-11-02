@@ -40,7 +40,7 @@ test('Laboratorio: seis estados de las 18 armas, combate real, sin niveles ni ac
    bench.attack=stage;bench.applyAttack();const p=s.player,expected=P.Entities.player(c);configurePrimary(P,expected,stage);const rank=stage==='evolved'?5:Number(stage);
    for(const key of ['power','rate','reach','projectileBonus','primaryPierce','evolutionBaseBonus'])assert.equal(p[key],expected[key],c.id+' '+stage+' '+key);
    assert.equal(p.powerRanks.primary,rank);assert.equal(primaryEvolved(P,p),stage==='evolved');assert.equal(s.level,1);assert.equal(s.xp,0);
-   const a=P.Evolutions.attack(p),e={x:p.x+(a.kind==='orbit'?100:50),y:p.y,r:16,hp:99999,max:99999,speed:0};s.enemies=[e];s.shots=[];s.effects=[];s.fields=[];s.fire=0;assert(P.Combat.cast(),c.id+' '+stage+' ataque');
+   const a=P.Evolutions.attack(p),e={x:p.x+(a.kind==='orbit'?100:50),y:p.y,r:16,hp:99999,max:99999,speed:0};s.enemies=[e];s.shots=[];s.effects=[];s.fields=[];s.fire=0;assert(P.Combat.cast(),c.id+' '+stage+' ataque');if(c.id==='sideral'){s.elapsed+=.29;P.SideralKit.tick(p,.29)}
    if(stage==='evolved')assert(s.effects.some(e=>e.kind==='evolution'&&e.evolution===c.id));else assert(!s.effects.some(e=>e.kind==='evolution'));
    for(let i=0;i<20;i++)P.Combat.tick(.04);assert(e.hp<99999,c.id+' '+stage+' daño');
    const power=p.power;bench.applyAttack();assert.equal(p.power,power,'Aplicación idempotente');
