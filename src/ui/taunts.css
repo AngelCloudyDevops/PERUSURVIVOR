@@ -7,3 +7,10 @@ body:not(.menu) #taunt-trigger{display:flex}#taunt-trigger kbd,.taunt-wheel-cent
 .taunt-option[data-selected=true]{z-index:1;border-color:#ffd15d;background:#285374;color:#fff3c7;box-shadow:0 0 0 3px #f6bd3d33,0 8px 20px #000b;transform:translate(-50%,-50%) scale(1.1)}.taunt-option[data-selected=true] span{border-color:#ffe08a;color:#ffd35f}
 @media(max-width:760px),(pointer:coarse){#taunt-trigger{right:10px;bottom:calc(205px + env(safe-area-inset-bottom));min-height:44px}.taunt-wheel-title{margin-top:-184px}.taunt-wheel-help{margin-top:184px}.taunt-option{width:82px;height:68px}.taunt-option small{font-size:6.5px}}
 @media(prefers-reduced-motion:reduce){.taunt-option{transition:none}}
+
+/* El meme se mantiene anclado al actor en pantalla y nunca captura controles. */
+#taunt-video{position:fixed;z-index:36;width:clamp(92px,7vw,128px);aspect-ratio:9/16;overflow:hidden;pointer-events:none;transform:translate(-50%,-100%);border:2px solid #ffd15d;border-radius:12px;background:#070b12;box-shadow:0 0 0 3px #10263dcc,0 10px 26px #000b,0 0 18px #f1aa3555;animation:taunt-video-enter .22s cubic-bezier(.2,.9,.25,1.15) both}
+#taunt-video[hidden]{display:none}#taunt-video video{display:block;width:100%;height:100%;object-fit:cover;background:#05070c}
+@keyframes taunt-video-enter{from{opacity:0;transform:translate(-50%,-92%) scale(.78)}to{opacity:1;transform:translate(-50%,-100%) scale(1)}}
+@media(max-width:760px),(pointer:coarse){#taunt-video{width:clamp(78px,23vw,104px);border-radius:9px}}
+@media(prefers-reduced-motion:reduce){#taunt-video{animation:none}}

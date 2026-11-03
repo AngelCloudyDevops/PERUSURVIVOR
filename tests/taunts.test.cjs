@@ -9,19 +9,21 @@ const source=fs.readFileSync(path.join(root,'src/systems/taunts.js'),'utf8');
 
 function runtime(){
  let now=1000,played=0;
- class AudioStub{constructor(src){this.src=src;this.volume=0;this.currentTime=0;this.preload='';this.paused=true}addEventListener(){}pause(){this.paused=true}play(){this.paused=false;played++;return Promise.resolve()}}
+ class MediaStub{constructor(src){this.src=src;this.volume=0;this.currentTime=0;this.preload='';this.paused=true;this.muted=false}addEventListener(){}pause(){this.paused=true}play(){this.paused=false;played++;return Promise.resolve()}}
  const P={state:{mode:'play',player:{hp:100,r:24}},Audio:{muted:false,blurred:false,effectsVolume:.7,unlock(){},duckMusic(){this.ducked=true},tone(){}},Coop:{active:false}};
- const context={P,Audio:AudioStub,performance:{now:()=>now},setTimeout:()=>1,clearTimeout(){},Map,Number,Math,globalThis:{matchMedia:()=>({matches:false})}};
+ const context={P,performance:{now:()=>now},setTimeout:()=>1,clearTimeout(){},Map,Number,Math,globalThis:{matchMedia:()=>({matches:false})}};
  vm.runInNewContext(source,context,{filename:'taunts.js'});
+ P.Taunts.video=new MediaStub('assets/video/burla-entiendes-v1.mp4');P.Taunts.videoRoot={hidden:true,dataset:{}};
  return{P,played:()=>played,time:value=>{now=value}};
 }
 
-test('la rueda registra seis burlas y activa la principal sin tocar la simulación',()=>{
+test('la rueda registra seis burlas y activa el video principal sin tocar la simulación',()=>{
  const {P,played}=runtime(),taunts=P.Taunts;
  assert.equal(taunts.items.length,6);
  assert.equal(taunts.activate(0),true);
  assert.equal(played(),1);
- assert.equal(taunts.voice.src,'assets/audio/burla-voz-v1.mp3');
+ assert.equal(taunts.video.src,'assets/video/burla-entiendes-v1.mp4');
+ assert.equal(taunts.videoRoot.hidden,false);
  assert.equal(taunts.stateFor(P.state.player).label,'¿ME ENTIENDES?');
  assert.equal(P.Audio.ducked,true);
 });
@@ -34,12 +36,13 @@ test('una burla cooperativa solo acepta slot e identificador conocidos',()=>{
  assert.equal(taunts.receive({slot:1,id:'desconocida'}),false);
 });
 
-test('el audio existe, se carga bajo demanda y el build publica el módulo',()=>{
- const audio=path.join(root,'public/assets/audio/burla-voz-v1.mp3');
- assert.equal(fs.statSync(audio).size,3966132);
+test('el video existe, se carga bajo demanda y el build lo publica',()=>{
+ const video=path.join(root,'public/assets/video/burla-entiendes-v1.mp4');
+ assert.equal(fs.statSync(video).size,1046984);
  assert.match(source,/preload='none'/);
- assert.match(source,/setTimeout\(\(\)=>this\.stopVoice\(\),5000\)/);
+ assert.match(source,/setTimeout\(\(\)=>this\.stopVideo\(\),9000\)/);
  const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');
  assert.match(html,/js\/taunts\.js\?v=/);
  assert(fs.existsSync(path.join(root,'dist/js/taunts.js')));
+ assert.equal(fs.statSync(path.join(root,'dist/assets/video/burla-entiendes-v1.mp4')).size,1046984);
 });
