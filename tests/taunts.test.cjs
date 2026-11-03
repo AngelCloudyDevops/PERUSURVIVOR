@@ -9,7 +9,7 @@ const source=fs.readFileSync(path.join(root,'src/systems/taunts.js'),'utf8');
 
 function runtime(){
  let now=1000,played=0;
- class MediaStub{constructor(src){this.src=src;this.volume=0;this.currentTime=0;this.preload='';this.paused=true;this.muted=false}addEventListener(){}pause(){this.paused=true}play(){this.paused=false;played++;return Promise.resolve()}}
+ class MediaStub{constructor(src){this.src=src;this.volume=0;this.currentTime=0;this.preload='';this.paused=true;this.muted=false}getAttribute(name){return name==='src'?this.src:null}addEventListener(){}pause(){this.paused=true}play(){this.paused=false;played++;return Promise.resolve()}}
  const P={state:{mode:'play',player:{hp:100,r:24}},Audio:{muted:false,blurred:false,effectsVolume:.7,unlock(){},duckMusic(){this.ducked=true},tone(){}},Coop:{active:false}};
  const context={P,performance:{now:()=>now},setTimeout:()=>1,clearTimeout(){},Map,Number,Math,globalThis:{matchMedia:()=>({matches:false})}};
  vm.runInNewContext(source,context,{filename:'taunts.js'});
@@ -40,7 +40,7 @@ test('el video existe, se carga bajo demanda y el build lo publica',()=>{
  const video=path.join(root,'public/assets/video/burla-entiendes-v1.mp4');
  assert.equal(fs.statSync(video).size,1046984);
  assert.match(source,/preload='none'/);
- assert.match(source,/setTimeout\(\(\)=>this\.stopVideo\(\),9000\)/);
+ assert.match(source,/setTimeout\(\(\)=>this\.stopVideo\(\),10000\)/);
  const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');
  assert.match(html,/js\/taunts\.js\?v=/);
  assert(fs.existsSync(path.join(root,'dist/js/taunts.js')));
