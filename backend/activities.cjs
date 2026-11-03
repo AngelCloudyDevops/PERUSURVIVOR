@@ -4,10 +4,11 @@ class Activities{
  constructor(sim){this.sim=sim;this.votes=new Set();this.serial=0;this.pending=null;this.choiceTimeout=15;this.returning=false;this.message='';this.messageTime=0;this.escort=new (require('./escort.cjs').Escort)(sim);this.signals=new (require('./signals.cjs').Signals)(sim);this.duo=new (require('./duo-event.cjs').DuoEvent)(sim);sim.P.Encounters.win=()=>{this.returning=true}}
  get P(){return this.sim.P}
  notice(text){this.message=text;this.messageTime=4}
- action(slot,action,id,choice){
+ action(slot,action,id,choice,detail={}){
   const sim=this.sim,P=this.P,s=P.state,p=sim.players[slot];if(!p||sim.result)return false;
   if(action==='signal')return this.signals.send(slot,id);
-  if(action==='choose')return this.choose(slot,id,choice);
+  if(action==='choose')return this.choose(slot,id,choice,detail);
+  if(action==='reroll')return this.reroll(slot,id,detail.revision);
   if(this.pending||p.hp<=0||s.mode!=='play')return false;
   sim.use(p);
   if(action==='escort')return this.escort.start(slot);
@@ -51,7 +52,7 @@ class Activities{
   this.pending={id:++this.serial,kind:chest.miniReward?'mini-reward':chest.gold?'portal-reward':'item',phase:'opening',age:0,item,rarity:tierName,coins,options:equipment?this.sim.players.map((p,slot)=>P.Loot.rewardOptions(p,chest,slot)):undefined,applied:[false,false],chestId:chest.id};
   return true;
  }
- levelup(){const P=this.P,s=P.state;if(this.pending||s.xp<s.need||P.Progression.blocksUpgrade(this.sim.players))return;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.22+1);this.pending={id:++this.serial,kind:'level',phase:'choice',applied:[false,false],options:this.sim.players.map(p=>P.Progression.options(p))};for(const p of this.sim.players)p.moving=false}
+ levelup(){const P=this.P,s=P.state;if(this.pending||s.xp<s.need||P.Progression.blocksUpgrade(this.sim.players))return;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.22+1);this.pending={id:++this.serial,kind:'level',phase:'choice',applied:[false,false],revisions:[0,0],options:this.sim.players.map(p=>P.Progression.options(p))};for(const p of this.sim.players)p.moving=false}
  syncExtinction(){
   const P=this.P,e=P.MapEvents?.event;if(this.pending||!e?.extinction)return;
   if(e.phase==='portal'&&!e.portalOffered&&this.sim.players.some(p=>p.hp>0&&Math.hypot(p.x-e.x,p.y-e.y)<125)){
@@ -62,7 +63,8 @@ class Activities{
    this.pending={id:++this.serial,kind:'extinction-reward',phase:'choice',applied:[false,false],choices:[null,null],eventSerial:e.serial};for(const p of this.sim.players)p.moving=false;this.notice('Elijan la reliquia que recibirá todo el equipo');
   }
  }
- choose(slot,id,choice){
+ reroll(slot,id,revision){const pending=this.pending,p=this.sim.players[slot];if(!p||!pending||pending.kind!=='level'||pending.id!==id||pending.phase!=='choice'||pending.applied[slot]||revision!==pending.revisions[slot])return false;this.sim.use(p);if(!this.P.CardBuilds.reroll(p))return false;pending.options[slot]=this.P.Progression.options(p);pending.revisions[slot]++;return true}
+ choose(slot,id,choice,detail={}){
   const pending=this.pending;if(!pending||pending.id!==id||pending.phase!=='choice'||pending.applied[slot]||!Number.isInteger(choice))return false;
   const P=this.P,p=this.sim.players[slot];this.sim.use(p);
   if(pending.kind==='extinction-portal'){
@@ -78,7 +80,7 @@ class Activities{
    if(pending.applied.every(Boolean)){const selected=pending.choices[0],e=P.MapEvents.event,relic=['fossil','predator','celestial'][selected];this.pending=null;if(e?.serial===pending.eventSerial)P.MapEvents.applyRelic(e,relic);this.notice('Reliquia de equipo obtenida: '+({fossil:'Corazón fósil',predator:'Colmillo del depredador',celestial:'Fragmento celeste'}[relic]||'Extinción'))}
    return true;
   }else if(pending.kind==='level'){
-   const offer=pending.options[slot]?.[choice];if(!offer)return false;P.Progression.apply(p,offer.id);
+   const offer=pending.options[slot]?.[choice];if(!offer||(detail.revision??0)!==pending.revisions[slot])return false;if(P.Progression.apply(p,offer.id,detail.target)===false)return false;
   }else if(pending.kind==='portal-reward'){
    if(choice<0||choice>2)return false;
    if(choice===0)p.power*=1.3;
@@ -101,7 +103,7 @@ class Activities{
  arm(){const p=this.pending;if(p&&p.phase==='choice'&&p.left===undefined)p.left=this.choiceTimeout}
  autoPick(){
   const pending=this.pending,fallback={'extinction-portal':1,'mini-reward':1,item:pending.options?0:1};this.notice('Se eligió solo en nombre de quien no respondió');
-  for(const slot of [0,1])if(!pending.applied[slot]){let done=false;for(const choice of new Set([fallback[pending.kind]??0,0,1,2,3]))if(this.choose(slot,pending.id,choice)){done=true;break}if(!done&&this.pending===pending)pending.applied[slot]=true}
+  for(const slot of [0,1])if(!pending.applied[slot]){let done=false;for(const choice of new Set([pending.kind==='level'?Math.max(0,pending.options[slot].findIndex(o=>!o.id.startsWith('fusion:'))):fallback[pending.kind]??0,0,1,2,3]))if(this.choose(slot,pending.id,choice,{revision:pending.revisions?.[slot]??0,target:pending.kind==='level'&&pending.options[slot]?.[choice]?.id.startsWith('fusion:')?this.P.CardBuilds.compatible(this.sim.players[slot],pending.options[slot][choice].id.slice(7))[0]?.id:undefined})){done=true;break}if(!done&&this.pending===pending)pending.applied[slot]=true}
   if(this.pending===pending&&pending.applied.every(Boolean))this.pending=null;
  }
  advance(dt){

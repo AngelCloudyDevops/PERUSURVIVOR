@@ -2,6 +2,12 @@
 
 > Nota de vigencia (2026-10-31): hay 21 personajes jugables (`src/data/catalog.js:3-11` menos ElZeein, que `shift()` convierte en jefe en `src/data/catalog.js:32`; `src/data/catalog.js:33`; `src/data/powers.js:74-109`; comprobado por `tests/gameplay.test.cjs:12`). Las menciones a «18 personajes» en secciones de arte o de historial describen el roster de cuando se añadieron. Ante contradicción manda el código. El 2026-10-31 se eliminó una copia duplicada de unas 388 líneas (de «Laboratorio de combate» a «Mundos heredados de los jefes»); se conservó la versión que coincide con el código.
 
+## Progresión de cartas · implementación inicial
+
+2026-11-03: reglas y recetas en [Guía de progresión](GUIA_PROGRESION_CARTAS.md). Cuatro ofertas al subir de nivel, elegir una. Dos apoyos; una fusión opcional por apoyo, en destinos distintos, conserva rango/espacio y deja de atacar sola. Rango 3 y nivel 8 (6 en Rápida); una modificación personal desde nivel 4. Sideral admite fusiones de Onda/Tarjetas/Bandas con Colazo o Huevo; los básicos convencionales con su ataque principal. Otros arsenales no se convierten automáticamente.
+
+Renovar: 1/2/3 usos por partida con maestría 0/5/10; maestría = partidas registradas del personaje, hasta 10. Se reutiliza el guardado; el cooperativo fija el saldo desde la cuenta y valida revisiones por jugador. Cofres, monedas y equipo Dota mantienen sus reglas. Los valores de recetas son iniciales y requieren contraste de balance antes de promoción desde staging. La rama local no implica publicación.
+
 ## Regla universal de mejoras durante dominios
 
 La experiencia continúa acumulándose mientras cualquier expansión de dominio esté activa, pero nunca se abre una selección de nivel durante su introducción, combate ni transición de salida. La mejora pendiente se presenta únicamente después de que el dominio haya desaparecido por completo y el mapa original esté restaurado. Si la experiencia acumulada concede varios niveles, las selecciones se entregan consecutivamente después de resolver la anterior. La misma regla se aplica en cooperativo y a todos los dominios actuales o futuros; un dominio nuevo debe registrar su estado en `P.Progression.domainActive()` y añadir una prueba de regresión.
