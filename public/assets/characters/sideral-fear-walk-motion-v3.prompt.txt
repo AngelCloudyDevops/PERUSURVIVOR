@@ -1,0 +1,3 @@
+Mode: image editing with transparent background, using sideral-ur-v1.webp as the binding character model.
+
+Create the walking counterpart to Mirada as exactly eight complete full-body frames in a strict 4 columns by 2 rows atlas. Preserve the short, stocky, rounded, clean-shaven base character with NO BEARD and NO MUSTACHE; identical face, hair, sunglasses, black T-shirt, jeans, rounded sneakers, wristbands and red can in the same hand. Keep the glasses gesture while alternating left contact, passing pose, right contact and weight shift on one foot baseline. Transparent empty gutters only; no smoke, aura, texture, shapes, text, grid, beam, background, redesign or broken limbs.

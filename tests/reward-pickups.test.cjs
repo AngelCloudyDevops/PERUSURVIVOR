@@ -1,5 +1,6 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path');
 const {Simulation}=require('../backend/simulation.cjs');
 
 function setup(){
@@ -30,10 +31,21 @@ test('Imán criollo triplica temporalmente el alcance base de recolección',()=>
  assert.equal(other.x,p.x+180,'el impulso termina y conserva el alcance normal');
 });
 
-test('Cristales de experiencia, panetón e imán tienen dibujo propio',()=>{
- const {P}=setup(),calls=[],ctx=new Proxy({save(){},restore(){},translate(){},rotate(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},fill(){},fillRect(){},arc(){},stroke(){}},{set(target,key,value){target[key]=value;calls.push(key);return true}});
+test('Cristales de experiencia compactos, panetón e imán tienen dibujo propio',()=>{
+ const {P}=setup(),calls=[],scales=[],ctx=new Proxy({save(){},restore(){},translate(){},scale(x,y){scales.push([x,y])},rotate(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},fill(){},fillRect(){},arc(){},stroke(){}},{set(target,key,value){target[key]=value;calls.push(key);return true}});
  assert(P.Loot.drawDrop(ctx,{x:0,y:0,value:1}));
  assert(P.Loot.drawDrop(ctx,{x:0,y:0,kind:'paneton'}));
  assert(P.Loot.drawDrop(ctx,{x:0,y:0,kind:'magnet-pulse'}));
  assert(calls.includes('fillStyle'));
+ assert.deepEqual(scales[0],[.84,.84]);
+ assert.equal(P.Loot.xpGemScale,.84);
+});
+
+test('La moneda del suelo usa el sprite animado de un sol peruano',()=>{
+ const art=fs.readFileSync(path.join(__dirname,'../public/assets/loot/sol-peruano-flip-v2.png'));
+ assert.equal(art.subarray(1,4).toString(),'PNG');
+ const source=fs.readFileSync(path.join(__dirname,'../src/rendering/loot-art.js'),'utf8');
+ assert.match(source,/sol-peruano-flip-v2\.png/);
+ assert.match(source,/Math\.cos\(age\*7\)/);
+ assert.match(source,/Math\.max\(\.1,Math\.abs\(turn\)\)/);
 });
