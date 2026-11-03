@@ -1187,3 +1187,49 @@ body.menu[data-lobby-panel=home] #menu .home-feature p{margin:1px 0;font-size:11
 
 /* Las cabeceras internas del panel no heredan la cabecera fija del juego. */
 #admin-dialog .admin-section-head{position:static;inset:auto;z-index:auto;width:auto;height:auto;padding:0;display:block;background:none}
+
+/* La mano de Sideral se centra en la pantalla; los objetos quedan como bloque lateral independiente. */
+@media(min-width:761px){
+ #combat-dock[data-character=sideral]{left:50%;right:auto;width:656px;grid-template-columns:390px 260px;transform:translateX(-50%)}
+ #combat-dock[data-character=sideral] #dota-inventory{position:fixed;left:18px;right:auto;bottom:12px;width:220px;max-width:220px}
+ #combat-dock[data-character=sideral] #attack-dock-slot{grid-column:1}
+ #combat-dock[data-character=sideral] #ability-dock{grid-column:2}
+}
+@media(min-width:761px) and (max-width:1100px){
+ #combat-dock[data-character=sideral] #dota-inventory{left:10px;bottom:10px;width:190px;max-width:190px}
+}
+
+/* Identidad de combate: el medallón y su energía nacen de la rareza real del personaje. */
+#hud-vitals{--hud-rarity:#aeb7c2;--hud-rarity-rgb:174,183,194;padding-left:62px;overflow:visible}
+#hud-medallion{position:absolute;z-index:1;left:-12px;top:50%;width:68px;height:68px;padding:4px;transform:translateY(-50%);border-radius:50%;background:linear-gradient(145deg,#eef5ff,var(--hud-rarity) 43%,#101827 44% 58%,var(--hud-rarity) 59%,#fff3c4);box-shadow:0 5px 13px #050b14aa,0 0 12px rgba(var(--hud-rarity-rgb),.3);isolation:isolate}
+#hud-medallion::before{content:"";position:absolute;z-index:-1;inset:-5px;border:1px solid rgba(var(--hud-rarity-rgb),.48);border-radius:50%;opacity:.45}
+#hud-medallion img,#hud-initials{position:absolute;inset:4px;width:calc(100% - 8px);height:calc(100% - 8px);border-radius:50%;border:1px solid #fff4;box-sizing:border-box}
+#hud-medallion img{display:block;object-fit:cover;object-position:50% 17%;background:#111b29}
+#hud-initials{display:grid;place-items:center;background:radial-gradient(circle at 42% 32%,rgba(var(--hud-rarity-rgb),.45),#111b29 66%);color:#fff3da;font:900 20px/1 monospace;text-shadow:0 2px 3px #000}
+#hud-portrait[hidden],#hud-initials[hidden]{display:none}
+#hud-rarity{position:absolute;z-index:2;right:-4px;bottom:-2px;min-width:25px;padding:3px 4px;border:2px solid #101827;border-radius:5px;background:var(--hud-rarity);color:#101522;text-align:center;font:900 8px/1 monospace;box-shadow:0 2px 5px #0009}
+#hud-vitals[data-rarity=common]{--hud-rarity:#aeb7c2;--hud-rarity-rgb:174,183,194}
+#hud-vitals[data-rarity=rare]{--hud-rarity:#5fd17a;--hud-rarity-rgb:95,209,122}
+#hud-vitals[data-rarity=epic]{--hud-rarity:#5ca9ff;--hud-rarity-rgb:92,169,255}
+#hud-vitals[data-rarity=legendary]{--hud-rarity:#f4c84a;--hud-rarity-rgb:244,200,74}
+#hud-vitals[data-rarity=ultra]{--hud-rarity:#ff5bd8;--hud-rarity-rgb:255,91,216}
+#hud-vitals[data-rarity=rare] #hud-medallion{box-shadow:0 5px 13px #050b14aa,0 0 11px #5fd17a66}
+#hud-vitals[data-rarity=epic] #hud-medallion{box-shadow:0 5px 13px #050b14aa,0 0 13px #5ca9ff80}
+#hud-vitals[data-rarity=legendary] #hud-medallion{box-shadow:0 5px 13px #050b14aa,0 0 15px #f4c84a8c}
+#hud-vitals[data-rarity=ultra] #hud-medallion{box-shadow:0 5px 13px #050b14aa,0 0 18px #ff5bd8a8}
+#hud-vitals[data-rarity=ultra] #hud-medallion::before{border:2px solid transparent;background:conic-gradient(from 25deg,transparent 0 17%,#fff3a6 20%,#ff5bd8 28%,transparent 34% 62%,#8e6bff 70%,transparent 77%) border-box;mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:.86;animation:hud-ur-aura 4.6s linear infinite}
+#hud-vitals[data-rarity=ultra] #hud-medallion::after{content:"";position:absolute;z-index:3;inset:5px;border-radius:50%;background:linear-gradient(112deg,transparent 28%,#fff0 42%,#fff9 49%,#fff0 56%,transparent 72%);background-size:250% 100%;background-position:145% 0;pointer-events:none;animation:hud-ur-glint 4s ease-in-out infinite}
+#health-track::before{content:"♥";position:absolute;z-index:2;left:5px;top:50%;transform:translateY(-52%);color:#ff465f;font-size:12px;filter:drop-shadow(0 1px 0 #5b1020)}
+#health-fill{background:linear-gradient(90deg,#e84d57 0 25%,#f0c847 48%,#74d45c 78%,#53c95b 100%);background-position:left center;transition:width .18s ease,background-size .18s ease}
+#hud #hp{z-index:3;padding-left:13px;color:#fffdf0}
+#hud-vitals[data-health=critical] #health-track{border-color:#ff5667;box-shadow:0 0 8px #ff334a6b}
+#hud-vitals.hud-damaged{animation:hud-damage-flash .28s ease-out}
+#hud-vitals.hud-healed{animation:hud-heal-flash .38s ease-out}
+@keyframes hud-ur-aura{to{transform:rotate(1turn)}}
+@keyframes hud-ur-glint{0%,65%{background-position:145% 0;opacity:0}73%{opacity:.92}88%,100%{background-position:-80% 0;opacity:0}}
+@keyframes hud-damage-flash{0%{filter:none;transform:translateX(0)}28%{filter:brightness(1.35) saturate(1.3);transform:translateX(-2px)}54%{transform:translateX(2px)}100%{filter:none;transform:translateX(0)}}
+@keyframes hud-heal-flash{35%{filter:brightness(1.22) drop-shadow(0 0 5px #62e68a);transform:translateY(-1px)}100%{filter:none;transform:none}}
+@media(min-width:1101px){#hud-vitals{width:350px;padding-left:76px}#hud-medallion{left:-15px;width:82px;height:82px}#hud-initials{font-size:24px}}
+@media(min-width:761px) and (max-width:1100px){#hud-vitals{width:304px;padding-left:68px}#hud-medallion{left:-13px;width:74px;height:74px}}
+@media(max-width:760px){#hud-vitals{width:min(248px,62vw);padding-left:49px}#hud-medallion{left:-5px;width:54px;height:54px;padding:3px}#hud-medallion img,#hud-initials{inset:3px;width:calc(100% - 6px);height:calc(100% - 6px)}#hud-initials{font-size:15px}#hud-rarity{right:-3px;bottom:-3px;min-width:21px;font-size:7px}#health-track::before{left:4px;font-size:10px}}
+@media(prefers-reduced-motion:reduce){#hud-vitals[data-rarity=ultra] #hud-medallion::before,#hud-vitals[data-rarity=ultra] #hud-medallion::after,#hud-vitals.hud-damaged,#hud-vitals.hud-healed{animation:none}}
