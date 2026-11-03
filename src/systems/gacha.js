@@ -37,10 +37,10 @@ random(){if(typeof crypto!=='undefined'&&crypto.getRandomValues){const n=new Uin
 choose(data,roll=this.random(),pick=this.random()){const ids=Object.keys(this.tiers);let index=roll<.60?0:roll<.87?1:roll<.96?2:roll<.99?3:4;if(data.gacha.legend>=29&&index<3)index=3;else if(data.gacha.epic>=9&&index<2)index=2;const tier=ids[index],pool=this.tiers[tier].ids,character=pool[Math.min(pool.length-1,Math.max(0,Math.floor(pick*pool.length)))];return{tier,character}},
 async pull(count=1){
  const M=P.Meta;if(![1,10].includes(count)||this.ascension||M.busy||P.state.mode!=='menu'||this.animation&&!this.animation.done)return false;
- M.busy=true;this.render();
+ M.busy=true;this.render();const ticketCost=Math.min(count,P.CaptiveEvent?.tickets?.()||0);
  const results=await M.transaction(data=>{
-  if(P.state.mode!=='menu'||data.wallet<this.cost*count||!this.canPull(data))return false;
-  data.wallet-=this.cost*count;const results=[];
+  const coinCost=(count-ticketCost)*this.cost;if(P.state.mode!=='menu'||data.wallet<coinCost||!this.canPull(data))return false;
+  data.wallet-=coinCost;const results=[];
   for(let i=0;i<count;i++){
    const {tier,character}=this.choose(data),base=this.canonical(character),fresh=!this.owns(base,data),refund=fresh?0:this.tiers[tier].refund,id=typeof crypto!=='undefined'&&crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);
    data.wallet+=refund;if(fresh)data.unlocked.push(base);const copies=!fresh&&this.star(base,data).rank<5?1:0;if(copies){const stars=this.star(base,data);data.gachaStars[base]={rank:stars.rank,copies:Math.min(100000000,stars.copies+1)}}
@@ -49,7 +49,7 @@ async pull(count=1){
   }
   data.gachaLast=results[results.length-1];data.gachaBatch=results;data.gachaHistory=[...data.gachaHistory,...results].slice(-200);return results;
  });
- M.busy=false;this.refresh();if(results){this.animation={receipt:results[results.length-1],results,started:null,done:!!P.Ambient.reduced?.matches};for(const r of results)P.WalkArt.load(r.character)}this.render();return results?(count===1?results[0]:results):false;
+ M.busy=false;if(results&&ticketCost)P.CaptiveEvent.spendTickets(ticketCost);this.refresh();if(results){this.animation={receipt:results[results.length-1],results,started:null,done:!!P.Ambient.reduced?.matches};for(const r of results)P.WalkArt.load(r.character)}this.render();return results?(count===1?results[0]:results):false;
 },
 restore(){const data=P.Meta.data,results=data.gachaBatch?.length?data.gachaBatch:data.gachaLast?[data.gachaLast]:[];return results.length?{receipt:results[results.length-1],results,started:null,done:true}:null},
 open(){if(P.state.mode!=='menu')return;P.Meta.load();P.Lobby.show('gacha',false);if(!this.animation)this.animation=this.restore();this.render();P.$('#lobby-gacha').querySelector('button')?.focus()},
