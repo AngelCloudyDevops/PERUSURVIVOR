@@ -49,6 +49,8 @@ Límites: cuatro zonas activas por jugador, tres pulsos por zona, máximo 180 pr
 
 `npm run check` y `npm test` cubren ofertas, daño real, propiedad de apoyos, herencia, cancelación, revisiones, timeout, conexión directa y reinicio. `node scripts/card-build-audit.cjs` produce evidencia local de partidas normales en `output/` (no se distribuye). Las mediciones de lógica sin renderizado no se presentan como FPS del navegador.
 
+Evidencia inicial en [auditoría de progresión](../balance/datos/card-build-progression-audit.json): Caos automático llegó a nivel 19 y murió a 934,8 s; Caos con dos fusiones (Tarjetas→Colazo, Bandas→Huevo) llegó a nivel 18 y murió a 874,4 s; Rápida alcanzó 300 s y nivel 12 sin fusión. Son semillas diferentes, no una comparación A/B ni prueba de equilibrio completo de 30 minutos. Confirman recorridos distintos y sin bloqueos; queda ampliar el muestreo y revisar la frecuencia de fusiones en Rápida.
+
 El cambio entra primero por PR a **staging** por tocar elecciones cooperativas. Antes de promover, comprobar la versión publicada, interacción con ratón/teclado/móvil y ejecutar Public cooperative E2E con el bloqueo compartido de despliegue. La comprobación visual local puede usar una escena temporal externa; nunca añadir manipuladores de estado al juego distribuido.
 
 ## Referencia de la conversación y base anterior
