@@ -1253,3 +1253,7 @@ La mascota usa pasos ligados a la distancia real recorrida tanto al buscar botí
 
 ### Apoyos en el mazo de combate
 Los apoyos activos se muestran como cartas con el arte genérico existente, nombre, cinco estrellas de rango y AUTO; no añaden teclas. Al fusionarse desaparecen de la fila y la técnica conserva la insignia del apoyo. El rango y la fusión permanecen en el jugador y siguen ocupando uno de los dos cupos: no permiten adquirir un tercer apoyo. En pantallas estrechas, las cartas de apoyo pasan a una segunda fila.
+
+### Balance legible de enemigos
+
+El Centro de balance presenta los enemigos con valores reales de referencia —PV, daño por impacto, velocidad, defensas, recarga en segundos, radio y duración— y nunca como “Vida 1” o “Ataque 1”. Internamente conserva factores relativos para que el crecimiento por tiempo, rango, dificultad y cooperativo siga funcionando. Los balances antiguos continúan siendo válidos y la interfaz los convierte automáticamente a números legibles.
