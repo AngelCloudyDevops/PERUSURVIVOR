@@ -1,3 +1,8 @@
+# Daño legible, críticos diferenciados y DPS — 2026-11-02
+- Los números normales ganan tamaño, peso y contorno oscuro; el daño físico permanece dorado y el especial usa cian.
+- Los críticos muestran `CRÍT.`, crecen y cambian a rojo coral o magenta según su tipo, con una etiqueta física/especial.
+- El panel opcional de FPS y ping incorpora DPS móvil de 2 segundos y el pico de la partida usando daño efectivo, sin contar sobre-daño.
+
 # Campanillas de experiencia a volumen 120 — 2026-11-02
 - La campanilla parte en 0,09 y alcanza un máximo estricto de 0,12 al subir la escala, quedando por encima de la mezcla musical sin cambiar otros efectos.
 - El intervalo mínimo entre sonidos y el límite de voces siguen activos para impedir saturación al absorber grupos grandes.
