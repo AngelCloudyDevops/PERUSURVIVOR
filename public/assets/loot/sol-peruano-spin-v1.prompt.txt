@@ -1,0 +1,6 @@
+Use case: stylized-concept
+Asset type: production sprite sheet for a 2D browser game
+Primary request: one horizontal strip with eight equally spaced frames of a rotating Peruvian one-sol coin.
+References: a generic rotating coin strip for motion layout and a photographed S/1 coin for identity.
+Style: crisp polished pixel art, silver metal, dark steel shadows and subtle warm reflections.
+Required: the front face reads “1 SOL”; transparent background; consistent center and scale; no UI, watermark, stars or fantasy-gold treatment.
