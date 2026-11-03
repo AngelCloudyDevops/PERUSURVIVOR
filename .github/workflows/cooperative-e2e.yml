@@ -11,20 +11,20 @@ on:
         description: SHA esperado; vacío comprueba la versión publicada al iniciar
         type: string
         required: false
-  push:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
     branches: [main]
-    paths:
-      - .github/workflows/cooperative-e2e.yml
-      - tests/live/**
 permissions:
   contents: read
 jobs:
   public-test:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
     timeout-minutes: 12
     env:
       COOP_URL: ${{ inputs.environment == 'staging' && 'https://staging.perusurvivor.michitech.tech' || 'https://perusurvivor.michitech.tech' }}
-      EXPECTED_RELEASE: ${{ inputs.expected_release }}
+      EXPECTED_RELEASE: ${{ inputs.expected_release || github.event.workflow_run.head_sha }}
     concurrency:
       group: perusurvivor-production
       cancel-in-progress: false

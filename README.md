@@ -10,7 +10,7 @@ Reglas, recetas y comprobaciones: [Guía de progresión](docs/diseno/GUIA_PROGRE
 - Una modificación personal por partida cambia el comportamiento de una técnica. Sideral es el piloto de las técnicas manuales; no se convierte todo el roster.
 - **Renovar:** 1/2/3 usos con maestría 0/5/10. La maestría es el número de partidas registradas con esa causa, hasta 10; reutiliza el guardado existente.
 
-Las nuevas reglas requieren validación y publicación por staging. No se presupone que una rama local esté ya publicada ni que las cifras iniciales estén equilibradas definitivamente.
+Publicación acordada: producción después de CI, seguida de la prueba cooperativa pública sobre el SHA desplegado. Las cifras iniciales requieren seguimiento de balance; una rama local no implica publicación.
 
 ## Burlas y gestos
 

@@ -990,3 +990,5 @@ Las fusiones no usan flags de `combos` heredados. Los ataques derivados llevan p
 Public cooperative E2E permite seleccionar staging o producción y fijar el SHA esperado. Ambos despliegues y la prueba pública comparten ahora `perusurvivor-production`, con cola y sin cancelación: una prueba de staging tampoco puede competir con una activación de su versión. Se conservan comandos, destinos y servicios separados de staging/producción.
 
 La batería de Node limita a dos archivos de prueba simultáneos, tanto en pretest como en test. Evita saturar memoria/CPU en Windows al cargar muchas VMs completas; conserva todas las pruebas y sus límites de tiempo. No altera el bucle ni los recursos del juego.
+
+Por indicación del usuario, esta entrega se promueve a producción tras CI verde. Public cooperative E2E se dispara al terminar el workflow CI de un push a main, después del despliegue, fijando el SHA esperado. Se evita iniciar una prueba de la versión antigua que bloquearía la activación nueva. Se conserva el inicio manual y el bloqueo compartido.

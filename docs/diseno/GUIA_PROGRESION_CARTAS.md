@@ -2,7 +2,9 @@
 
 Fecha: 2026-11-03. Base revisada: `7d3b780883a1459c1067dc35314a0296c8bb0289`.
 
-**Estado: primera implementación preparada; no equivale a versión publicada.**
+**Estado: implementación validada automáticamente, preparada para producción.**
+
+Indicación vigente del usuario (2026-11-03): publicar en producción tras CI y comprobar allí la partida pública, sin exigir configurar acceso de staging. El intento de prueba de staging fue rechazado por HTTP 401 antes de jugar y no cuenta como validación de combate. La comprobación visual final quedó pendiente al detenerse el control del navegador.
 La sección siguiente fija las decisiones abiertas para esta primera versión. El resto conserva el razonamiento y la base anterior de la conversación. El código es la fuente del comportamiento vigente.
 
 ## Implementación inicial · 2026-11-03
@@ -51,7 +53,7 @@ Límites: cuatro zonas activas por jugador, tres pulsos por zona, máximo 180 pr
 
 Evidencia inicial en [auditoría de progresión](../balance/datos/card-build-progression-audit.json): Caos automático llegó a nivel 19 y murió a 934,8 s; Caos con dos fusiones (Tarjetas→Colazo, Bandas→Huevo) llegó a nivel 18 y murió a 874,4 s; Rápida alcanzó 300 s y nivel 12 sin fusión. Son semillas diferentes, no una comparación A/B ni prueba de equilibrio completo de 30 minutos. Confirman recorridos distintos y sin bloqueos; queda ampliar el muestreo y revisar la frecuencia de fusiones en Rápida.
 
-El cambio entra primero por PR a **staging** por tocar elecciones cooperativas. Antes de promover, comprobar la versión publicada, interacción con ratón/teclado/móvil y ejecutar Public cooperative E2E con el bloqueo compartido de despliegue. La comprobación visual local puede usar una escena temporal externa; nunca añadir manipuladores de estado al juego distribuido.
+La publicación sigue la indicación vigente del usuario: PR directo a **main**, CI verde, despliegue automático y Public cooperative E2E en producción sobre el SHA publicado. El flujo de prueba espera a que termine CI con su despliegue; no compite con él ni valida silenciosamente la versión anterior. La comprobación visual local puede usar una escena temporal externa; nunca añadir manipuladores de estado al juego distribuido.
 
 ## Referencia de la conversación y base anterior
 
