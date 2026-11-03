@@ -103,7 +103,7 @@ class Activities{
  arm(){const p=this.pending;if(p&&p.phase==='choice'&&p.left===undefined)p.left=this.choiceTimeout}
  autoPick(){
   const pending=this.pending,fallback={'extinction-portal':1,'mini-reward':1,item:pending.options?0:1};this.notice('Se eligió solo en nombre de quien no respondió');
-  for(const slot of [0,1])if(!pending.applied[slot]){let done=false;for(const choice of new Set([fallback[pending.kind]??0,0,1,2,3]))if(this.choose(slot,pending.id,choice,{revision:pending.revisions?.[slot]??0,target:pending.kind==='level'&&pending.options[slot]?.[choice]?.id.startsWith('fusion:')?this.P.CardBuilds.compatible(this.sim.players[slot],pending.options[slot][choice].id.slice(7))[0]?.id:undefined})){done=true;break}if(!done&&this.pending===pending)pending.applied[slot]=true}
+  for(const slot of [0,1])if(!pending.applied[slot]){let done=false;for(const choice of new Set([pending.kind==='level'?Math.max(0,pending.options[slot].findIndex(o=>!o.id.startsWith('fusion:'))):fallback[pending.kind]??0,0,1,2,3]))if(this.choose(slot,pending.id,choice,{revision:pending.revisions?.[slot]??0,target:pending.kind==='level'&&pending.options[slot]?.[choice]?.id.startsWith('fusion:')?this.P.CardBuilds.compatible(this.sim.players[slot],pending.options[slot][choice].id.slice(7))[0]?.id:undefined})){done=true;break}if(!done&&this.pending===pending)pending.applied[slot]=true}
   if(this.pending===pending&&pending.applied.every(Boolean))this.pending=null;
  }
  advance(dt){

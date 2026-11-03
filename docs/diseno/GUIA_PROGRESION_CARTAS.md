@@ -18,7 +18,7 @@ La sección siguiente fija las decisiones abiertas para esta primera versión. E
 | Rerolls | Recurso por jugador y partida: 1 base; 2 con maestría 5; 3 con maestría 10. Renovar no da otra recompensa ni aumenta el nivel. |
 | Maestría | Partidas registradas de ese personaje (`characters[id].runs`), con límite 10. No se suman estrellas, compras o nivel temporal. No se crea otra versión del guardado ni se modifica el historial. |
 | Cooperativo | El servidor obtiene la maestría del guardado de la cuenta al iniciar; invitado = 0. Intenciones con ID de elección y revisión por jugador. Doble clic, revisión anterior y saldo agotado se rechazan. La ruta directa usa el mismo validador y recibe la maestría fijada por la sala. |
-| Tiempo límite | Se conservan los 15 s de la elección cooperativa; renovar no los reinicia. La elección automática usa revisión y destino válidos. |
+| Tiempo límite | Se conservan los 15 s de la elección cooperativa; renovar no los reinicia. La elección automática usa la revisión vigente y prefiere una mejora sin fusión para no imponer un sacrificio. |
 | Compatibilidad | Directo viral y Prensa blindada dejan de aparecer en las nuevas ofertas. Si una partida ya los tenía, conservan su efecto y bloquean fusiones de sus apoyos implicados. El laboratorio conserva su comparación heredada. |
 
 ### Recetas habilitadas

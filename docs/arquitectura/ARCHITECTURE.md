@@ -988,3 +988,5 @@ El enlace directo es una optimización recuperable, no un requisito. Si WebRTC f
 Las fusiones no usan flags de `combos` heredados. Los ataques derivados llevan procedencia `cardBuild` y `comboBlocked`, no vuelven a disparar recetas y tienen límites de zonas/pulsos/proyectiles. Las zonas pertenecen al jugador y se incluyen en su snapshot; se limpian al morir o entrar en dominio. El juego publicado no contiene escenas ni manipuladores auxiliares de QA.
 
 Public cooperative E2E permite seleccionar staging o producción y fijar el SHA esperado. Ambos despliegues y la prueba pública comparten ahora `perusurvivor-production`, con cola y sin cancelación: una prueba de staging tampoco puede competir con una activación de su versión. Se conservan comandos, destinos y servicios separados de staging/producción.
+
+La batería de Node limita a dos archivos de prueba simultáneos, tanto en pretest como en test. Evita saturar memoria/CPU en Windows al cargar muchas VMs completas; conserva todas las pruebas y sus límites de tiempo. No altera el bucle ni los recursos del juego.

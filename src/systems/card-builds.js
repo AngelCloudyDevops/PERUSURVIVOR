@@ -62,3 +62,12 @@ P.CardBuilds={
  P.Combat.cast=function(...args){const p=P.state.player,enabled=P.CardBuilds.generic(p)&&(p.cardBuild?.modification||Object.keys(p.cardBuild?.fusions||{}).length),target=enabled?P.Combat.target(p,P.state.enemies,650):null,ok=combatCast.apply(this,args);if(ok&&enabled)P.CardBuilds.cast(p,'primary',target);return ok};
  P.Meta.applyRun=function(){const p=P.state.player;if(p&&!P.Combat.server&&!P.Coop?.active&&!p.cardBuildSeeded){P.CardBuilds.seed(p,this.data?.characters?.[p.id]);p.cardBuildSeeded=true}return applyRun.call(this)};
 }
+
+// Las cinemáticas pueden saltar Combat.tick: limpiar al entrar, no esperar su siguiente tick.
+{
+ const clear=()=>{for(const p of new Set([...(P.Combat.party||[]),P.state.player]))if(p)P.CardBuilds.resetTransient(p)};
+ for(const [system,key]of [[P.SideralDomain,'activate'],[P.KingtekaDomain,'activate'],[P.Domain,'activate'],[P.ChosicanoDomain,'activate'],[P.ChosicanoDomain,'tryStart'],[P.Chamelin,'activate'],[P.CiriloUR,'activate'],[P.CristorataKit,'activateDomain'],[P.MarcianoDomain,'activate'],[P.Court,'activate']]){
+  const original=system?.[key];if(typeof original!=='function')continue;system[key]=function(...args){const result=original.apply(this,args);if(P.Progression.domainActive())clear();return result};
+ }
+ const hit=P.PlayerFeedback.hit;P.PlayerFeedback.hit=function(p,...args){const result=hit.call(this,p,...args);if(p.hp<=0)P.CardBuilds.resetTransient(p);return result};
+}
