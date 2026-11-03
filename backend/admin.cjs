@@ -21,6 +21,14 @@ function createAdmin({db,reply,body,now,notify=()=>{}}){
    const rows=db.prepare('SELECT a.*,u.username AS target FROM admin_actions a JOIN users u ON u.id=a.target_id WHERE a.id<? ORDER BY a.id DESC LIMIT 21').all(before);
    reply(res,200,{actions:rows.slice(0,20).map(r=>({...receipt(r),target:r.target})),next:rows.length>20?rows[19].id:null});return;
   }
+  if(url.pathname==='/api/admin/season'&&req.method==='GET'){
+   const row=db.prepare("SELECT value,updated_at FROM global_settings WHERE key='season_map'").get();reply(res,200,{mapId:row?.value||'navidad',updatedAt:row?.updated_at||0,options:[{id:'none',name:'Sin temporada'},{id:'navidad',name:'Navidad Peruana'},{id:'halloween',name:'Noche de Halloween'}]});return;
+  }
+  if(url.pathname==='/api/admin/season'&&req.method==='PUT'){
+   const b=await body(req),allowed=['none','navidad','halloween'];if(!b||!allowed.includes(b.mapId)){reply(res,400,{error:'Selecciona un mapa de temporada válido'});return}
+   const current=verify();if(!current||current.id!==user.id||current.role!=='admin'||current.username!=='reysuperior'){reply(res,403,{error:'La autorización ya no está activa'});return}
+   const at=now();db.prepare("INSERT INTO global_settings(key,value,updated_at,updated_by) VALUES('season_map',?,?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value,updated_at=excluded.updated_at,updated_by=excluded.updated_by").run(b.mapId,at,user.id);reply(res,200,{mapId:b.mapId,updatedAt:at});return;
+  }
   if(url.pathname!=='/api/admin/grants'||req.method!=='POST'){reply(res,404,{error:'Ruta no encontrada'});return}
   const b=await body(req),validKind=['coins','character','skin','access','role'].includes(b?.kind),validValue=b?.kind==='coins'?Number.isSafeInteger(b.amount)&&b.amount>=1&&b.amount<=100000:b?.kind==='character'?rules().Data.characters.some(c=>c.id===b.characterId):b?.kind==='skin'?!!rules().CharacterSkins.catalog[b.skinId]:b?.kind==='access'?['laboratory','balance'].includes(b.entitlement)&&typeof b.enabled==='boolean':b?.kind==='role'?b.roleName==='admin'&&typeof b.enabled==='boolean':false;if(!b||typeof b.requestId!=='string'||!/^[a-f0-9-]{36}$/i.test(b.requestId)||typeof b.userId!=='string'||!Number.isSafeInteger(b.revision)||b.revision<0||!validKind||!validValue){reply(res,400,{error:'Indica un usuario, revisión y concesión válidos'});return}
   const value=b.kind==='coins'?b.amount:b.kind==='character'?b.characterId:b.kind==='skin'?b.skinId:b.kind==='role'?[b.roleName,b.enabled]:[b.entitlement,b.enabled];const fingerprint=crypto.createHash('sha256').update(JSON.stringify([b.userId,b.revision,b.kind,value])).digest('hex');

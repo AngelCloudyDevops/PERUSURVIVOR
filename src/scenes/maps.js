@@ -1,6 +1,6 @@
 'use strict';
 P.Maps={
-selected:'campo',images:{},ready:{},pending:{},
+selected:'campo',seasonMap:'navidad',images:{},ready:{},pending:{},
 catalog:[
 {id:'campo',name:'Campo de Marte',region:'Lima · Jesús María',description:'Parque sin bordes · Césped y senderos.',color:'#769b58',bounds:{left:-940,right:940,top:-430,bottom:620},spawn:{x:0,y:-60}},
 {id:'plaza',name:'Plaza de Armas',region:'Lima · Centro histórico',description:'Ciudad sin bordes · Piedra y jardines.',color:'#ccaa65',bounds:{left:-880,right:880,top:-430,bottom:600},spawn:{x:0,y:210},fountain:{x:0,y:55,rx:176,ry:105}},
@@ -21,6 +21,7 @@ available(){return this.catalog.concat(P.TestBench?.isAdmin?.()?this.biomes:[])}
 thumbnail(map){return map.asset||'assets/maps/'+(map.base||map.id)+'-menu-v1.webp'},
 ensureAllowed(){if(P.state.mode==='menu'&&this.biomes.some(map=>map.id===this.selected)&&!P.TestBench?.isAdmin?.())this.select(this.catalog[0].id)},
 transition(kind){const map=this.biomes.find(m=>m.bossKind===kind);if(!map)return null;this.selected=map.id;this.load(map.id);return map},
+applySeason(mapId){this.seasonMap=['navidad','halloween'].includes(mapId)?mapId:'none';if(this.seasonMap!=='none'&&P.state.mode==='menu'&&this.catalog.some(map=>map.id===this.seasonMap))this.select(this.seasonMap)},
 init(){this.catalog.forEach(map=>{const button=document.createElement('button');button.className='map-card';button.dataset.map=map.id;button.setAttribute('aria-pressed',String(map.id===this.selected));let image;if(['halloween','navidad'].includes(map.id)){image=document.createElement('canvas');image.className='seasonal-thumb';image.width=384;image.height=256;image.setAttribute('aria-hidden','true');this.preview(image,map.id)}else{image=document.createElement('img');image.src='assets/maps/'+(map.base||map.id)+'-menu-v1.webp';image.alt='';image.width=384;image.height=256}const name=document.createElement('b');name.textContent=map.name;const region=document.createElement('small');region.textContent=map.region;button.append(image,name,region);button.onclick=()=>this.select(map.id);P.$('#maps').append(button);
 });
 this.select(this.selected)},

@@ -14,6 +14,8 @@ function createAccounts({filename,origins=[],secure=true,now=Date.now,bodyTimeou
  CREATE TABLE IF NOT EXISTS user_entitlements(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, entitlement TEXT NOT NULL CHECK(entitlement IN ('laboratory','balance')),enabled INTEGER NOT NULL CHECK(enabled IN (0,1)),updated_at INTEGER NOT NULL,PRIMARY KEY(user_id,entitlement));
  CREATE TABLE IF NOT EXISTS admin_actions(id INTEGER PRIMARY KEY AUTOINCREMENT,actor_id TEXT NOT NULL REFERENCES users(id),target_id TEXT NOT NULL REFERENCES users(id),request_id TEXT NOT NULL,fingerprint TEXT NOT NULL,result TEXT NOT NULL,kind TEXT NOT NULL,amount INTEGER,character_id TEXT,created_at INTEGER NOT NULL,UNIQUE(actor_id,request_id));
  CREATE TABLE IF NOT EXISTS inbox_state(user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,last_read_id INTEGER NOT NULL DEFAULT 0);
+ CREATE TABLE IF NOT EXISTS global_settings(key TEXT PRIMARY KEY,value TEXT NOT NULL,updated_at INTEGER NOT NULL,updated_by TEXT REFERENCES users(id));
+ INSERT OR IGNORE INTO global_settings(key,value,updated_at) VALUES('season_map','navidad',0);
  UPDATE saves SET payload=json_set(payload,'$.progress.adminCursor',COALESCE((SELECT MAX(id) FROM admin_actions WHERE target_id=saves.user_id),0)) WHERE json_valid(payload) AND json_type(payload,'$.progress.adminCursor') IS NULL;
  PRAGMA user_version=5;`);
  const entitlementSchema=db.prepare("SELECT sql FROM sqlite_master WHERE type='table' AND name='user_entitlements'").get()?.sql||'';
@@ -43,6 +45,7 @@ async function body(req){let text='',size=0;const timer=setTimeout(()=>req.destr
   const url=new URL(req.url,'http://localhost');if(!url.pathname.startsWith('/api/'))return false;
   if(req.method!=='GET'&&!origins.includes(req.headers.origin)){reply(res,403,{error:'Origen no permitido'});return true}
   const route=url.pathname,user=session(req);
+  if(route==='/api/season'&&req.method==='GET'){const row=db.prepare("SELECT value,updated_at FROM global_settings WHERE key='season_map'").get();reply(res,200,{mapId:row?.value||'navidad',updatedAt:row?.updated_at||0});return true}
   if(route==='/api/balance'&&req.method==='GET'){await balance.handle(req,res,user,url,()=>session(req));return true}
   if(route==='/api/account'&&req.method==='GET'){reply(res,200,{user:user||null});return true}
   if(['/api/register','/api/login','/api/recover'].includes(route)&&req.method==='POST'){
