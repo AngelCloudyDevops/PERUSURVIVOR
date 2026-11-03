@@ -1,7 +1,7 @@
 {
   "id": "burla-voz-v1",
   "source": "WhatsApp Audio 2026-10-26 at 00.23.42.mpeg",
-  "runtime": "public/assets/audio/burla-voz-v1.mpeg",
+  "runtime": "public/assets/audio/burla-voz-v1.mp3",
   "container": "MPEG audio",
   "durationSeconds": 495,
   "playbackLimitSeconds": 5,

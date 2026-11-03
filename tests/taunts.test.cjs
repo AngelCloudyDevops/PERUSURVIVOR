@@ -21,7 +21,7 @@ test('la rueda registra seis burlas y activa la principal sin tocar la simulaci�
  assert.equal(taunts.items.length,6);
  assert.equal(taunts.activate(0),true);
  assert.equal(played(),1);
- assert.equal(taunts.voice.src,'assets/audio/burla-voz-v1.mpeg');
+ assert.equal(taunts.voice.src,'assets/audio/burla-voz-v1.mp3');
  assert.equal(taunts.stateFor(P.state.player).label,'¿ME ENTIENDES?');
  assert.equal(P.Audio.ducked,true);
 });
@@ -35,7 +35,7 @@ test('una burla cooperativa solo acepta slot e identificador conocidos',()=>{
 });
 
 test('el audio existe, se carga bajo demanda y el build publica el módulo',()=>{
- const audio=path.join(root,'public/assets/audio/burla-voz-v1.mpeg');
+ const audio=path.join(root,'public/assets/audio/burla-voz-v1.mp3');
  assert.equal(fs.statSync(audio).size,3966132);
  assert.match(source,/preload='none'/);
  assert.match(source,/setTimeout\(\(\)=>this\.stopVoice\(\),5000\)/);
