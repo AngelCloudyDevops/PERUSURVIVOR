@@ -33,7 +33,7 @@ Son presupuestos previos a crítico, atributo, defensas y reducciones. Mirada co
 
 ## Sangre fría
 
-El HUD usa un marco verde propio abrazado por un lagarto: cabeza y espinas en la esquina superior, cuerpo en el borde y cola bajo la tarjeta. Las tres escamas se encienden por separado. El marco respira mientras progresa, apaga su color sin rivales cercanos, ilumina ojos y escamas cuando la siguiente técnica está potenciada y reacciona en rojo al perder concentración por daño. Se ubica bajo la vida para asociarse con Sideral y no competir con el minimapa; con movimiento reducido conserva todos los estados sin animación.
+El HUD usa un marco verde propio abrazado por un lagarto: cabeza y espinas en la esquina superior, cuerpo en el borde y cola bajo la tarjeta. Las tres escamas se encienden por separado. En el mundo, cada carga nace del pecho y ocupa una posición fija en semicírculo sobre Sideral; la tercera conecta las marcas, enciende un contorno reptiliano y muestra `SANGRE FRÍA LISTA`. El marco respira mientras progresa, apaga su color sin rivales cercanos, ilumina ojos y escamas cuando la siguiente técnica está potenciada y reacciona en rojo al perder concentración por daño. Se ubica bajo la vida para asociarse con Sideral y no competir con el minimapa; con movimiento reducido conserva marcas, contorno y avisos sin rotaciones ni partículas abundantes.
 
 Cada 2 s con un rival vivo a 300 u obtiene una escama, hasta tres. Alejarse reinicia solo el progreso hacia la siguiente; Q y dominios suspenden la generación. Recibir daño efectivo resta una escama y reinicia el progreso. Daño bloqueado no resta escamas.
 
@@ -43,7 +43,7 @@ Con tres escamas, el siguiente lanzamiento personal válido consume las tres:
 - Colazo gana 30 % de amplitud angular.
 - Huevo abre tras 0,25 s de espera en lugar de 0,8 s; conserva el vuelo de 0,35 s.
 
-Objetos, apoyos y aliento Q no consumen escamas. Tres marcas a los pies y el HUD indican la preparación.
+Objetos, apoyos y aliento Q no consumen escamas. Al consumirlas, las tres marcas convergen hacia los ojos de Mirada, la cola del Colazo o el Huevo, acompañadas por `TÉCNICA POTENCIADA` y un motivo sonoro propio. Recibir daño rompe una marca en fragmentos. El semicírculo sobre el personaje y el HUD indican siempre la preparación real.
 
 ## Q · Despertar del Lagarto
 
