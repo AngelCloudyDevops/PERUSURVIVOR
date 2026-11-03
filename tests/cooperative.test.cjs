@@ -49,6 +49,13 @@ test('Cofres cooperativos: llave compartida, apertura única, elecciones separad
  assert(a.action(1,'choose',id,1));assert(!a.pending);assert.equal(sim.players[1].equipment,undefined);assert.equal(sim.players[1].dotaItems.length,1);assert(!a.action(0,'choose',id,0));
  sim.tick(.04,[{},{}]);assert(s.elapsed>elapsed);assert.doesNotThrow(()=>JSON.stringify(sim.snapshot()));
 });
+test('Zona de cofre cooperativa: cualquiera abre en movimiento y ambos pueden relevarse',()=>{
+ const sim=new Simulation('plaza',[0,6]),P=sim.P,a=sim.activities,[first,second]=sim.players,chest={id:'test:zone',x:250,y:250,progress:0,opened:false,gold:false,rarity:'common'};P.Loot.chests=[chest];a.syncChests=()=>{};P.Loot.spawnKeepers=()=>{};P.Exploration.station=null;
+ Object.assign(first,{x:250,y:250,moving:true});Object.assign(second,{x:500,y:500,moving:false});a.tick(.35);assert(chest.progress>=.35);
+ Object.assign(first,{x:500,y:500});Object.assign(second,{x:270,y:250,moving:true,hp:Math.max(1,second.hp-10)});a.tick(.3);assert(chest.progress>.64,'El segundo jugador continúa el progreso compartido');
+ Object.assign(second,{x:500,y:500});a.tick(.01);assert.equal(chest.progress,0,'Solo se cancela cuando todos salen');
+ Object.assign(first,{x:250,y:250,moving:true});a.tick(.79);assert(!chest.opened);a.tick(.02);assert(chest.opened);assert.equal(a.pending?.chestId,chest.id);
+});
 test('Evento cooperativo: cualquiera inicia, defensa alternada, curación de ambos y premio irrepetible',()=>{
  const sim=new Simulation('campo',[0,6]),P=sim.P,s=P.state,a=sim.activities;P.Systems.spawn=()=>{};P.Loot.active=()=>[];P.Loot.chests=[];a.syncChests=()=>{};P.Loot.spawnKeepers=()=>{};P.Combat.tick=()=>{}; /* Aislar la defensa: combate/cofres aleatorios pueden abrir elecciones y pausar el reloj. */const station=P.Exploration.station;assert(station);
  assert(!a.action(0,'event'));for(const p of sim.players){p.x=station.x;p.y=station.y;p.hp=30;p.inv=99999}
