@@ -535,6 +535,8 @@ Entregas en vivo v4: `/api/events?account=UUID` usa SSE con cookie HttpOnly, cue
 
 El volumen musical inicia en 50 % cuando el navegador todavía no tiene una preferencia. Ese valor se guarda al inicializar y cada ajuste se persiste tanto durante el arrastre como al confirmar el control; una preferencia válida existente siempre tiene prioridad al volver a cargar.
 
+La pista musical elegida por el jugador se guarda como `Blob` en la base IndexedDB `perusurvivor-audio`, almacén `tracks`, bajo la clave `custom`. `BackgroundMusic.restoreCustom` reconstruye su URL local al iniciar y mantiene la selección `custom`; si el archivo falta o IndexedDB no está disponible, vuelve de forma segura a la alternancia de pistas incluidas. El límite de entrada es 50 MB y el archivo permanece local al navegador.
+
 
 VultureRig.cardLayout y cardEnvelope separan geometría adaptable y tiempos cosméticos. card reutiliza un canvas de retrato, sin descargas ni timers; proyecta su sombra y compone trama/rayos, arcos del grito, plumas y marco en el canvas principal. No altera la jerarquía articulada ni el estado de combate. VultureMoon.overlay sincroniza body.vulture-card en todas las fases para ocultar el laboratorio durante la entrada y restituirlo al despegar. La prueba cubre límites de composición en escritorio/móvil, título escalonado, movimiento reducido y ausencia de mutaciones de simulación.
 
