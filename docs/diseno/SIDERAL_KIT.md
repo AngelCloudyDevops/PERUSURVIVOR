@@ -1,6 +1,6 @@
 # Sideral · El Lagarto
 
-Kit funcional 9/9: tres técnicas, tres evoluciones, Sangre fría, Despertar del Lagarto Q y Habitación del Lagarto R. La implementación de R permanece intacta: presentación elegida, duración de 8 s, carga de 35 bajas, inmunidades y retorno existentes.
+Kit funcional 9/9: tres técnicas, tres evoluciones, Sangre fría, Despertar del Lagarto Q y Habitación del Lagarto R. R conserva su presentación, duración de 8 s, inmunidades y retorno, pero su activación ahora exige completar los tres sellos del arsenal en lugar de contar bajas indiferenciadas.
 
 ## Identidad y estadísticas base
 
@@ -76,3 +76,9 @@ Cada WebP tiene PNG maestro y `.prompt.txt` versionado. El arte conserva cabello
 ## Validación
 
 `tests/sideral-kit.test.cjs` cubre contrato, stats, puertas de progresión, evoluciones independientes, arco frontal, cobertura, demora, límite de impactos y huevos, daño a la pasiva, Q/R independientes y snapshots cooperativos. Las pruebas existentes de `sideral-domain.test.cjs` siguen protegiendo R. La batería completa cubre los demás personajes y el modo solitario. La medición de 56 ejecuciones automáticas locales, los duelos, ajustes y límites se documentan en [SIDERAL_BALANCE.md](../balance/SIDERAL_BALANCE.md). Hay cierres con victoria en ambos modos; la muestra general no acredita equilibrio definitivo y necesita validación con jugadores.
+## Lectura de cartas y condiciones
+
+- Los tres ataques ocupan siempre las teclas 1–3 y muestran cinco marcas de rango. La evolución se señala con una estrella sin sustituir la identidad de la técnica.
+- **Q · Despertar del Lagarto** conserva su carga independiente de 0–100, pero el HUD la divide visualmente en cinco orbes de 20 puntos. Baja normal: +5; pesado: +10; minijefe: +20; jefe: +35. Las bajas de la propia Q no la recargan.
+- **R · Habitación del Lagarto** requiere tres sellos separados, uno por técnica. La baja acredita únicamente el ataque que la produjo: normal +12, pesado +24, minijefe +45 y jefe +100. Los tres sellos deben llegar a 100 % y se consumen juntos al activar R.
+- Cambiar de ataque es, por tanto, una decisión de preparación del dominio. La rareza de una carta solo cambia su presentación o frecuencia de aparición; nunca multiplica por sí sola el poder de la técnica.
