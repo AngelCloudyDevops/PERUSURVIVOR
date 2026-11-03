@@ -1,3 +1,8 @@
+# Gemas de experiencia compactas y campanillas ascendentes — 2026-11-02
+- Las gemas de experiencia se dibujan 16 % más pequeñas y con un resplandor más contenido, sin reducir su alcance de imán ni su área de recogida.
+- Cada recogida encadenada avanza por una escala pentatónica aguda con timbre de campanilla; la escala se reinicia tras medio segundo sin recoger experiencia.
+- El sonido conserva un límite de frecuencia y de voces para que una acumulación de gemas no tape la música ni sature el audio.
+
 # Huevo caricaturesco y defensa física de Sideral — 2026-11-02
 - El huevo de la Q usa un atlas caricaturesco de contornos suaves, volumen redondeado y ocho cuadros de rodamiento, impacto y rotura; deja atrás el acabado pixelado por bloques.
 - Durante los cuatro segundos de huevo rodante, Sideral se mueve 25 % más rápido y bloquea todo daño físico. El daño especial continúa entrando y el beneficio termina antes de la eclosión.

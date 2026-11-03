@@ -30,10 +30,12 @@ test('Imán criollo triplica temporalmente el alcance base de recolección',()=>
  assert.equal(other.x,p.x+180,'el impulso termina y conserva el alcance normal');
 });
 
-test('Cristales de experiencia, panetón e imán tienen dibujo propio',()=>{
- const {P}=setup(),calls=[],ctx=new Proxy({save(){},restore(){},translate(){},rotate(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},fill(){},fillRect(){},arc(){},stroke(){}},{set(target,key,value){target[key]=value;calls.push(key);return true}});
+test('Cristales de experiencia compactos, panetón e imán tienen dibujo propio',()=>{
+ const {P}=setup(),calls=[],scales=[],ctx=new Proxy({save(){},restore(){},translate(){},scale(x,y){scales.push([x,y])},rotate(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},fill(){},fillRect(){},arc(){},stroke(){}},{set(target,key,value){target[key]=value;calls.push(key);return true}});
  assert(P.Loot.drawDrop(ctx,{x:0,y:0,value:1}));
  assert(P.Loot.drawDrop(ctx,{x:0,y:0,kind:'paneton'}));
  assert(P.Loot.drawDrop(ctx,{x:0,y:0,kind:'magnet-pulse'}));
  assert(calls.includes('fillStyle'));
+ assert.deepEqual(scales[0],[.84,.84]);
+ assert.equal(P.Loot.xpGemScale,.84);
 });
