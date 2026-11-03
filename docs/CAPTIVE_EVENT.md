@@ -4,7 +4,7 @@
 
 - Solo aparece en partidas individuales normales, fuera de arenas y pruebas de rendimiento.
 - El motor intenta una aparición cada 30 segundos hasta que ocurre una. La probabilidad por intento crece linealmente de 5 % al empezar a 20 % al minuto 3.
-- El cautivo aparece amarrado y muestra un globo `HELP` cuyo color pulsa. Se libera con `E` o con el botón táctil cercano.
+- El cautivo aparece amarrado y muestra un globo `HELP` cuyo color pulsa. Se libera como un cofre: el jugador permanece quieto a su lado durante 1,8 segundos mientras avanza la barra visible. Moverse o alejarse reinicia el progreso.
 - Solo puede aparecer una vez a la vez. Reiniciar la partida limpia por completo el encuentro.
 
 ## Resultados
@@ -24,4 +24,6 @@ En el Laboratorio aparece `Probar cautivo` únicamente para una cuenta con rol `
 
 ## Arte
 
-El atlas `public/assets/events/captive-companion-v1.webp` contiene ocho cuadros 4×2. El PNG fuente y el prompt reproducible se conservan junto al WebP; el build público distribuye únicamente la versión optimizada.
+El atlas `public/assets/events/captive-companion-v2.webp` contiene 24 cuadros 6×4: tres poses amarradas, tres de liberación, seis de caminata, tres por cada Hadoken, dos de tickets, tres de huida y una de humo. La caminata y la huida avanzan según la distancia realmente recorrida, por lo que los pies no se deslizan cuando cambia la velocidad. Los ataques separan anticipación, carga y lanzamiento; el proyectil nace al llegar al cuadro de extensión.
+
+El PNG fuente y el prompt reproducible se conservan junto al WebP; el build público distribuye únicamente la versión optimizada.
