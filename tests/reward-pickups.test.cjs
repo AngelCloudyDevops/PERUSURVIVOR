@@ -76,3 +76,12 @@ test('Las monedas de minion respetan el 3 %, el límite por minuto y las exclusi
  s.practice=false;s.devRun=true;assert.equal(drop(enemy(31),31),false);
  assert.equal(s.gems.filter(g=>g.minionCoin).length,9);
 });
+
+test('La rareza del cofre determina su tiempo de apertura',()=>{
+ const {P}=setup();
+ assert.equal(P.Loot.openingDuration({rarity:'common'}),.6);
+ assert.equal(P.Loot.openingDuration({rarity:'rare'}),1);
+ assert.equal(P.Loot.openingDuration({rarity:'legendary'}),1.5);
+ assert.equal(P.Loot.openingDuration({gold:true,rarity:'legendary'}),.8);
+ assert.equal(P.Loot.openingDuration({}),.8);
+});

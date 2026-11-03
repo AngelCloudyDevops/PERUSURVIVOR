@@ -45,7 +45,7 @@ class Activities{
   const P=this.P;if(this.pending||chest.opened||P.state.encounter||!P.Loot.canOpen(chest))return false;
   if(chest.impostor&&!chest.purified)return P.Market.wake(chest);
   const tier=P.Loot.keyType(chest);if(tier)P.state.keys[tier]--;
-  chest.opened=true;chest.progress=P.Loot.openDuration;chest.openAge=0;P.Loot.opened.add(chest.id);
+  chest.opened=true;chest.progress=P.Loot.openingDuration(chest);chest.openAge=0;P.Loot.opened.add(chest.id);
   const item=chest.miniReward?P.Relics.ids[chest.miniReward]:null,tierName=chest.rarity||'common',equipment=!chest.gold&&!chest.miniReward,coins=equipment?P.Loot.chestCoins(tierName):0;
   if(equipment&&!chest.coinsGranted)P.Loot.scatterCoins(chest,coins)
   this.pending={id:++this.serial,kind:chest.miniReward?'mini-reward':chest.gold?'portal-reward':'item',phase:'opening',age:0,item,rarity:tierName,coins,options:equipment?this.sim.players.map((p,slot)=>P.Loot.rewardOptions(p,chest,slot)):undefined,applied:[false,false],chestId:chest.id};
@@ -124,7 +124,7 @@ class Activities{
    }
   }
   for(const chest of P.Loot.chests){if(chest.opened)continue;if(chest.impostor){const victim=sim.players.find(p=>p.hp>0&&Math.hypot(p.x-chest.x,p.y-chest.y)<100);if(victim){sim.use(victim);P.Market.wake(chest)}continue}const opener=sim.players.find(p=>p.hp>0&&Math.hypot(p.x-chest.x,p.y-chest.y)<=P.Loot.openRadius);
-   if(!opener){chest.progress=0;continue}sim.use(opener);if(!P.Loot.canOpen(chest)){P.Loot.locked(chest);continue}chest.progress=Math.min(P.Loot.openDuration,(chest.progress||0)+dt);if(chest.progress>=P.Loot.openDuration){this.open(chest);break}
+   if(!opener){chest.progress=0;continue}sim.use(opener);if(!P.Loot.canOpen(chest)){P.Loot.locked(chest);continue}const duration=P.Loot.openingDuration(chest);chest.progress=Math.min(duration,(chest.progress||0)+dt);if(chest.progress>=duration){this.open(chest);break}
   }
  }
  snapshot(){const P=this.P,s=P.state;this.arm();return {escort:this.escort.snapshot(),signals:this.signals.snapshot(),duoEvent:this.duo.snapshot(),portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles,defeat:s.encounter.defeat||null}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}
