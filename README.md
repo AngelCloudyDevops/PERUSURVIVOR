@@ -1,16 +1,16 @@
 # PERUSURVIVOR — Causas del Caos
 
-## Guía del próximo sistema de cartas
+## Progresión de cartas
 
-El resumen acordado y el orden para implementarlo están en [Guía de progresión: cartas, apoyos, modificaciones y fusiones](docs/diseno/GUIA_PROGRESION_CARTAS.md).
+Reglas, recetas y comprobaciones: [Guía de progresión](docs/diseno/GUIA_PROGRESION_CARTAS.md).
 
-- **Conservar los apoyos actuales:** Onda causa, Tarjetas del caos y Escudo de bandas. No se sustituyen sus nombres ni su identidad.
-- **Base existente:** kits personales, hasta dos apoyos automáticos, mejoras generales, tres ofertas al subir de nivel y cuatro espacios de equipo Dota obtenidos en cofres/tiendas.
-- **Diseño por implementar:** cuatro ofertas para elegir una, modificaciones del comportamiento, fusiones compatibles y rerolls limitados ligados a un progreso de personaje todavía por definir.
-- **Regla de fusión:** una por apoyo, hasta dos; es opcional. El apoyo fusionado conserva su espacio y su inversión, deja de atacar por su cuenta y transfiere su efecto a la habilidad elegida.
-- **Variedad:** elegir una dirección y descubrir interacciones durante la partida, sin garantizar siempre la misma receta. El foco es Supervivencia de 30 minutos; el modo rápido se valida aparte.
+- Al subir de nivel aparecen **cuatro cartas; eliges una**. Los cofres conservan tres objetos y sus monedas.
+- Conservamos **Onda causa, Tarjetas del caos y Escudo de bandas** en dos espacios de apoyo.
+- Una fusión es opcional: conserva rango y espacio, apaga el automático y pasa su efecto a un destino compatible. Máximo dos, en destinos distintos.
+- Una modificación personal por partida cambia el comportamiento de una técnica. Sideral es el piloto de las técnicas manuales; no se convierte todo el roster.
+- **Renovar:** 1/2/3 usos con maestría 0/5/10. La maestría es el número de partidas registradas con esa causa, hasta 10; reutiliza el guardado existente.
 
-La guía separa comportamiento actual, decisiones y cifras pendientes. **Esta documentación no cambia el gameplay ni presenta las nuevas fusiones como implementadas.** Empezar por un piloto de Sideral y Bandas antes de ampliar el sistema; seguir las etapas y comprobaciones de la guía.
+Las nuevas reglas requieren validación y publicación por staging. No se presupone que una rama local esté ya publicada ni que las cifras iniciales estén equilibradas definitivamente.
 
 ## Burlas y gestos
 

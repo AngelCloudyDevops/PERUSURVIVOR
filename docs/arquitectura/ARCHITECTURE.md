@@ -975,3 +975,16 @@ El enlace directo es una optimización recuperable, no un requisito. Si WebRTC f
 ### Rueda de burlas
 
 `systems/taunts.js` crea una única rueda radial accesible y reutilizable. B abre el selector, el ángulo del puntero determina uno de seis IDs y soltar confirma; el botón táctil abre la misma vista. El gesto activo se guarda solo como estado visual efímero y se proyecta al final de `World.render` en coordenadas de pantalla, por encima del personaje sin modificar su actor, colisiones o combate. El audio de voz se instancia en el primer uso con `preload=none`, se limita a cinco segundos, sigue el volumen de efectos y aplica ducking a la música sin pausarla. El mensaje cooperativo `taunt` valida una lista cerrada y retransmite únicamente `slot` e `id`; no entra al snapshot autoritativo. Movimiento reducido elimina transiciones y el sistema no usa intervalos ni partículas persistentes.
+
+
+## Progresión de cartas por jugador · 2026-11-03
+
+`src/systems/card-builds.js` declara recetas y modificaciones e instala las integraciones después de los kits, sin reordenar los scripts existentes ni sustituir `P`. `player.cardBuild` contiene versión 1, mapa de fusiones, modificación única, maestría/saldo inicial y zonas transitorias. El jugador nuevo reinicia ese estado. Las consultas de ofertas operan sobre una copia ligera; no consumen recursos ni inicializan el jugador consultado.
+
+`src/ui/card-builds.js` presenta la vinculación y el HUD. El vínculo pendiente existe solo en la elección: se confirma con un destino válido o se cancela sin cobrar. Los callbacks individuales tienen token de elección y revisión para impedir aplicar una carta descartada. Se conservan controles de los kits.
+
+`backend/activities.cjs` conserva la autoridad de elección: ID compartido, revisión de ofertas por jugador, saldo del dueño y confirmación única. Un reroll incrementa solo su revisión, sin reiniciar el plazo. El timeout también usa la revisión vigente. `backend/accounts.cjs.characterStats` consulta las estadísticas persistidas, sin aceptar una maestría enviada por el cliente ni cambiar la estructura del guardado. La sala fija el grado al iniciar y lo comunica al anfitrión de ruta directa, que reutiliza el mismo validador; el canal remoto fija el slot del invitado al reenviar intenciones.
+
+Las fusiones no usan flags de `combos` heredados. Los ataques derivados llevan procedencia `cardBuild` y `comboBlocked`, no vuelven a disparar recetas y tienen límites de zonas/pulsos/proyectiles. Las zonas pertenecen al jugador y se incluyen en su snapshot; se limpian al morir o entrar en dominio. El juego publicado no contiene escenas ni manipuladores auxiliares de QA.
+
+Public cooperative E2E permite seleccionar staging o producción y fijar el SHA esperado. Ambos despliegues y la prueba pública comparten ahora `perusurvivor-production`, con cola y sin cancelación: una prueba de staging tampoco puede competir con una activación de su versión. Se conservan comandos, destinos y servicios separados de staging/producción.

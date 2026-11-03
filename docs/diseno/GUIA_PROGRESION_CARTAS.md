@@ -2,8 +2,56 @@
 
 Fecha: 2026-11-03. Base revisada: `7d3b780883a1459c1067dc35314a0296c8bb0289`.
 
-**Estado: diseño para implementar por etapas. Este documento no activa las reglas propuestas.**
-El código sigue siendo la fuente del comportamiento actual. Esta guía resume las decisiones de la conversación y sirve de referencia para próximos cambios.
+**Estado: primera implementación preparada; no equivale a versión publicada.**
+La sección siguiente fija las decisiones abiertas para esta primera versión. El resto conserva el razonamiento y la base anterior de la conversación. El código es la fuente del comportamiento vigente.
+
+## Implementación inicial · 2026-11-03
+
+| Regla | Implementación |
+|---|---|
+| Subida de nivel | Cuatro ofertas ponderadas, elegir una; filtros y límite de dos apoyos. Se mantiene la oportunidad de desarrollar el kit personal, sin garantizar una fusión. |
+| Cofres y objetos | Sin cambios: tres opciones de equipo y monedas, cuatro espacios Dota separados. |
+| Fusiones | Apoyo de rango 3, nivel 8 en Caos o 6 en Rápida, destino desbloqueado. Una por apoyo; destinos distintos; máximo dos. No exige evolucionar primero. |
+| Traducción | Se conserva el rango y la evolución; el apoyo fusionado no ataca ni dibuja órbita automática. Sigue ocupando su espacio y puede seguir mejorándose. |
+| Selección | Carta de fusión → arrastrar apoyo o tocar destino → confirmar. Tab/Enter permiten el mismo flujo. Cancelar devuelve las mismas cuatro ofertas. |
+| Modificación | Una personal por partida, disponible desde nivel 4. Las alternativas incompatibles o ya equipadas salen del pool. |
+| Rerolls | Recurso por jugador y partida: 1 base; 2 con maestría 5; 3 con maestría 10. Renovar no da otra recompensa ni aumenta el nivel. |
+| Maestría | Partidas registradas de ese personaje (`characters[id].runs`), con límite 10. No se suman estrellas, compras o nivel temporal. No se crea otra versión del guardado ni se modifica el historial. |
+| Cooperativo | El servidor obtiene la maestría del guardado de la cuenta al iniciar; invitado = 0. Intenciones con ID de elección y revisión por jugador. Doble clic, revisión anterior y saldo agotado se rechazan. La ruta directa usa el mismo validador y recibe la maestría fijada por la sala. |
+| Tiempo límite | Se conservan los 15 s de la elección cooperativa; renovar no los reinicia. La elección automática usa revisión y destino válidos. |
+| Compatibilidad | Directo viral y Prensa blindada dejan de aparecer en las nuevas ofertas. Si una partida ya los tenía, conservan su efecto y bloquean fusiones de sus apoyos implicados. El laboratorio conserva su comparación heredada. |
+
+### Recetas habilitadas
+
+Sideral admite los tres apoyos en **Colazo** y **Huevo**, siempre en destinos distintos. Los personajes de básico convencional tienen una receta con `primary`; los demás arsenales conservan sus controles y esperan recetas propias. No se inventa una conversión automática de todos los personajes ni destinos Q/R.
+
+| Apoyo | Colazo | Huevo | Básico convencional |
+|---|---|---|---|
+| Onda causa | Onda especial al lanzar | Onda especial al abrir | Onda especial en el objetivo al atacar |
+| Tarjetas del caos | Disparo perforante al lanzar | Disparo una vez al abrir | Disparo adicional al atacar |
+| Escudo de bandas | Zona fija de bandas de 2,4 s | Zona de 2,4 s al abrir | Zona de bandas en el objetivo |
+
+Onda y Tarjetas usan el daño del apoyo con factor inicial 2,2 en técnicas manuales y 1,5 en básico. Bandas emite hasta tres pulsos con factor 0,8; conserva los bonos de rango/evolución. Cada apoyo mantiene el canal **especial**; fusionar con Colazo no convierte el golpe físico del Colazo en especial. Son valores iniciales para contrastar con la alternativa automática.
+
+### Modificaciones habilitadas
+
+- **Colazo abierto:** arco ×1,45 y alcance ×0,85.
+- **Mirada panorámica:** arco ×1,45 y alcance ×0,85.
+- **Eclosión rápida:** espera 0,2 s y daño ×0,8; también adelanta el disparador de la fusión.
+- **Nido de presión:** al abrir deja una zona especial de 2 s, hasta tres pulsos de 0,22× el poder.
+- Básicos convencionales: **Eco de impacto** (un estallido especial de 0,45× tras 0,25 s) o **Rastro de combate** (zona de 2 s, hasta tres pulsos de 0,22×).
+
+Mirada y Colazo modifican solo su geometría original; no ensanchan silenciosamente la onda de un apoyo. Nido y Bandas pueden compartir centro, con límite conjunto de cuatro zonas por jugador. Cada huevo dispara sus efectos una vez al abrir, independientemente de sus fragmentos. Los efectos derivados no activan otras fusiones.
+
+Límites: cuatro zonas activas por jugador, tres pulsos por zona, máximo 180 proyectiles al emitir tarjetas y 290 efectos visuales al añadir una onda. Morir o entrar en un dominio limpia zonas pendientes. Una pausa no avanza ni daña con ellas. Los estados se reinician con el jugador de la nueva partida.
+
+### Validación y publicación
+
+`npm run check` y `npm test` cubren ofertas, daño real, propiedad de apoyos, herencia, cancelación, revisiones, timeout, conexión directa y reinicio. `node scripts/card-build-audit.cjs` produce evidencia local de partidas normales en `output/` (no se distribuye). Las mediciones de lógica sin renderizado no se presentan como FPS del navegador.
+
+El cambio entra primero por PR a **staging** por tocar elecciones cooperativas. Antes de promover, comprobar la versión publicada, interacción con ratón/teclado/móvil y ejecutar Public cooperative E2E con el bloqueo compartido de despliegue. La comprobación visual local puede usar una escena temporal externa; nunca añadir manipuladores de estado al juego distribuido.
+
+## Referencia de la conversación y base anterior
 
 ## 1. Objetivo y alcance
 
@@ -13,9 +61,9 @@ La progresión se diseña principalmente para Supervivencia del Caos de **30 min
 
 **Última decisión: conservar los tres apoyos actuales, sus nombres e identidad.** No sustituirlos por trompos, parlantes ni aviones de papel. Esas alternativas se descartaron para este trabajo. Una mejora de arte futura se puede estudiar aparte.
 
-## 2. Qué tenemos hoy
+## 2. Base anterior a esta implementación
 
-| Sistema | Comportamiento actual verificado |
+| Sistema | Comportamiento de la base revisada |
 |---|---|
 | Kit personal | El contrato prevé tres ataques y sus evoluciones, pasiva propia, Q y R. No todos los personajes usan el mismo control ni tienen todas sus piezas implementadas. |
 | Sideral | Mirada automática; Colazo y Huevo manuales con recarga; Sangre fría; Q Despertar del Lagarto; R Habitación del Lagarto. La rueda no activa sus técnicas. |
@@ -131,7 +179,7 @@ En cooperativo, las renovaciones pertenecen a cada jugador. El servidor valida e
 
 ## 9. Orden para implementarlo
 
-Cada etapa tiene su PR, reglas, pruebas y comprobación visual. Esta entrega solo completa la documentación; no marca como realizadas las siguientes fases.
+Cada etapa tiene su PR, reglas, pruebas y comprobación visual. La primera versión implementa el recorrido funcional descrito al inicio; esta tabla conserva el orden de trabajo y los criterios de validación. Las pruebas de equilibrio y variedad siguen requiriendo partidas, no solo presencia de código.
 
 | Etapa | Trabajo | Criterio para avanzar |
 |---|---|---|
@@ -170,9 +218,9 @@ Preservar `P`, el orden de scripts y cambios de otros chats. Los campos de estad
 - Efectos, proyectiles y búsqueda de blancos tienen límites; comprobar FPS con una escena comparable, no inferirlos del daño.
 - Ejecutar `npm run check` y `npm test` antes de subir cambios. Las pruebas públicas prolongadas usan Public cooperative E2E y comparten `perusurvivor-production` con el despliegue; no se publican pruebas auxiliares que manipulen el estado.
 
-## 11. Decisiones todavía abiertas
+## 11. Decisiones que estaban abiertas en la conversación
 
-Antes de programar cada punto, cerrar su definición; la existencia de este resumen no convierte una cifra de ejemplo en una regla aprobada.
+Las reglas de la primera versión quedan fijadas al inicio. Se conserva esta lista como origen de las decisiones y de las tareas de balance; los cambios a Sangre fría o a los sellos de R siguen fuera de alcance.
 
 1. Puertas de acceso a modificaciones y fusiones; relación con la evolución actual de rango 5/nivel 8.
 2. Límite definitivo de modificaciones y alternativas por técnica.
