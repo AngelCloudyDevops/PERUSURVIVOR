@@ -11,6 +11,7 @@ class Activities{
   if(action==='reroll')return this.reroll(slot,id,detail.revision);
   if(this.pending||p.hp<=0||s.mode!=='play')return false;
   sim.use(p);
+  if(action==='fuse-support'){const fused=P.CardBuilds.liveFuse(p,id,detail.target);sim.save(p);return fused}
   if(action==='escort')return this.escort.start(slot);
   if(action==='duo-event')return this.duo.start(slot);
   if(action==='market-buy')return P.Market.buy(id);

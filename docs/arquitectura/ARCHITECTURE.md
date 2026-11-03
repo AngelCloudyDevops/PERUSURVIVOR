@@ -1000,3 +1000,7 @@ Por indicación del usuario, esta entrega se promueve a producción tras CI verd
 
 ### Presentación de apoyos fusionados
 CardBuildUI filtra solo para presentación los apoyos registrados en CardBuilds.fusions. No borra powerRanks ni el estado de fusión. El arte reutiliza UI.cardArtwork y se dibuja al cambiar la firma del HUD, sin bucles nuevos de animación. El dock adapta su ancho al número de apoyos visibles; la validación del límite continúa en CardBuilds.
+
+
+### Intención de fusión directa
+CardBuildUI usa Pointer Events con captura para mouse y toque, y selección de destino accesible por clic/teclado. No escribe fusiones remotas: envía la actividad fuse-support con el ID del apoyo y target. Activities verifica jugador, estado y requisitos con CardBuilds.liveFuse; la ruta directa reutiliza el mismo validador. El estado de arrastre solo vive en la UI y se cancela al cambiar su elegibilidad.
