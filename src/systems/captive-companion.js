@@ -2,7 +2,7 @@
 // Encuentro raro del cautivo. El aliado no entra en `enemies`: los minions no lo
 // seleccionan, no tiene colision ni vida y desaparece cuando el jugador recibe daño.
 P.CaptiveEvent={
- asset:'assets/events/captive-companion-v2.webp',image:null,ready:false,attemptAt:30,forced:null,testCycle:0,releaseDuration:1.8,
+ asset:'assets/events/captive-companion-v2.webp',image:null,ready:false,attemptAt:30,forced:null,testCycle:0,releaseDuration:1.8,cyanCadence:2,vortexCadence:3,companionDuration:60,
  outcomes:['cyan','vortex','tickets','escape'],
  init(){
   if(typeof Image!=='undefined'){this.image=new Image();this.image.decoding='async';this.image.onload=()=>this.ready=true;this.image.src=this.asset}
@@ -31,7 +31,8 @@ P.CaptiveEvent={
  update(dt){const s=P.state,admin=P.$('#captive-admin-test');if(admin)admin.hidden=!(P.Profile?.admin?.()&&s.mode==='play'&&!s.encounter);if(s.mode!=='play')return;this.trySpawn();const c=this.state(),p=s.player;if(!c)return;c.age+=dt;if(c.phase==='captive'){if(this.near()&&!p.moving){c.progress=Math.min(this.releaseDuration,(c.progress||0)+dt);if(c.progress>=this.releaseDuration){this.free();return}}else c.progress=0}
   this.tickVortices(c,dt);
   if(c.phase==='freeing'){c.frame=3+Math.min(2,Math.floor(c.age/.22));if(c.age>.66){c.age=0;if(c.outcome==='cyan'||c.outcome==='vortex'){c.phase='companion';c.frame=6;c.nextShot=s.elapsed+.35}else if(c.outcome==='tickets'){c.phase='tickets';c.frame=18;this.award(c)}else{c.phase='sneak';c.frame=20;c.walkDistance=0}}}
-  if(c.phase==='companion'){if(c.attack){c.attack.age+=dt;const base=c.outcome==='vortex'?15:12;c.frame=base+Math.min(2,Math.floor(c.attack.age/.12));if(!c.attack.fired&&c.attack.age>=.24){c.attack.fired=this.fire(c,p,c.attack.target)||true}if(c.attack.age>=.42){c.attack=null;c.frame=6}}else if(s.elapsed>=c.nextShot){const target=this.target(c);if(target){c.attack={age:0,fired:false,target};c.facing=target.x<c.x?-1:1;c.frame=c.outcome==='vortex'?15:12;c.nextShot=s.elapsed+(c.outcome==='vortex'?6:4)}}else{const desired={x:p.x-(p.facing||1)*54,y:p.y+24},dx=desired.x-c.x,dy=desired.y-c.y,d=Math.hypot(dx,dy)||1,step=Math.min(d,180*dt);c.x+=dx/d*step;c.y+=dy/d*step;if(step>.05){c.walkDistance+=step;if(Math.abs(dx)>.5)c.facing=Math.sign(dx);c.frame=6+Math.floor(c.walkDistance/13)%6}else c.frame=6}}
+  if(c.phase==='companion'&&c.age>=this.companionDuration)this.dismiss('timeout');
+  if(c.phase==='companion'){if(c.attack){c.attack.age+=dt;const base=c.outcome==='vortex'?15:12;c.frame=base+Math.min(2,Math.floor(c.attack.age/.12));if(!c.attack.fired&&c.attack.age>=.24){c.attack.fired=this.fire(c,p,c.attack.target)||true}if(c.attack.age>=.42){c.attack=null;c.frame=6}}else if(s.elapsed>=c.nextShot){const target=this.target(c);if(target){c.attack={age:0,fired:false,target};c.facing=target.x<c.x?-1:1;c.frame=c.outcome==='vortex'?15:12;c.nextShot=s.elapsed+(c.outcome==='vortex'?this.vortexCadence:this.cyanCadence)}}else{const desired={x:p.x-(p.facing||1)*54,y:p.y+24},dx=desired.x-c.x,dy=desired.y-c.y,d=Math.hypot(dx,dy)||1,step=Math.min(d,180*dt);c.x+=dx/d*step;c.y+=dy/d*step;if(step>.05){c.walkDistance+=step;if(Math.abs(dx)>.5)c.facing=Math.sign(dx);c.frame=6+Math.floor(c.walkDistance/13)%6}else c.frame=6}}
   if(c.phase==='tickets'){c.frame=18+Math.floor(c.age/.28)%2;if(c.age>2.2){c.phase='smoke';c.age=0;c.frame=23}}
   if(c.phase==='sneak'){const step=85*dt;c.x+=step;c.y-=18*dt;c.facing=1;c.walkDistance+=step;c.frame=20+Math.floor(c.walkDistance/12)%3;if(c.age>1.5){c.phase='smoke';c.age=0;c.frame=23;P.state.effects.push({kind:'nova',x:c.x,y:c.y,r:52,life:.4,maxLife:.4,color:'#7a668d'})}}
   if(c.phase==='smoke'&&c.age>.65)this.reset()
