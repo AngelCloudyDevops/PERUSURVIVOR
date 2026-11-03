@@ -1,5 +1,6 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path');
 const {Simulation}=require('../backend/simulation.cjs');
 
 function setup(){
@@ -38,4 +39,12 @@ test('Cristales de experiencia compactos, panetón e imán tienen dibujo propio'
  assert(calls.includes('fillStyle'));
  assert.deepEqual(scales[0],[.84,.84]);
  assert.equal(P.Loot.xpGemScale,.84);
+});
+
+test('La moneda del suelo usa el sprite animado de un sol peruano',()=>{
+ const art=fs.readFileSync(path.join(__dirname,'../public/assets/loot/sol-peruano-spin-v1.png'));
+ assert.equal(art.subarray(1,4).toString(),'PNG');
+ const source=fs.readFileSync(path.join(__dirname,'../src/rendering/loot-art.js'),'utf8');
+ assert.match(source,/sol-peruano-spin-v1\.png/);
+ assert.match(source,/frame\*cell/);
 });
