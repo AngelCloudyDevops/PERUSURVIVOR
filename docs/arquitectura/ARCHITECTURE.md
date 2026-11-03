@@ -533,6 +533,8 @@ Entregas en vivo v4: `/api/events?account=UUID` usa SSE con cookie HttpOnly, cue
 
 `src/systems/background-music.js` gestiona un HTMLAudioElement individual o hasta dos reutilizados para alternancia, creados de forma diferida y dos WebM/Opus en `public/assets/music/`. `Audio.init/sync/silence/unlock` integran selección, volumen, pausa y autorización por gesto. `Audio.tick` omite solo la melodía sintetizada cuando se reproduce una pista o se elige sin música; ambiente y voces siguen activos. No se decodifica música completa en el hilo principal ni se descarga al inicio (`preload=none`, URL asignada al reproducir). Se detienen reintentos de autoplay hasta otro gesto, se atienden promesas tardías tras pausa y se recupera la síntesis ante errores de carga. El servidor local entrega WebM/Opus como `audio/webm`.
 
+El volumen musical inicia en 50 % cuando el navegador todavía no tiene una preferencia. Ese valor se guarda al inicializar y cada ajuste se persiste tanto durante el arrastre como al confirmar el control; una preferencia válida existente siempre tiene prioridad al volver a cargar.
+
 
 VultureRig.cardLayout y cardEnvelope separan geometría adaptable y tiempos cosméticos. card reutiliza un canvas de retrato, sin descargas ni timers; proyecta su sombra y compone trama/rayos, arcos del grito, plumas y marco en el canvas principal. No altera la jerarquía articulada ni el estado de combate. VultureMoon.overlay sincroniza body.vulture-card en todas las fases para ocultar el laboratorio durante la entrada y restituirlo al despegar. La prueba cubre límites de composición en escritorio/móvil, título escalonado, movimiento reducido y ausencia de mutaciones de simulación.
 
