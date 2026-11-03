@@ -381,6 +381,7 @@ module.exports = [
     "output": "js/test-bench.js"
   },
   {"source":"src/systems/captive-companion.js","output":"js/captive-companion.js"},
+  {"source":"src/systems/gacha-economy.js","output":"js/gacha-economy.js"},
   {"source":"src/systems/collector-pets.js","output":"js/collector-pets.js"},
   {
     "source": "src/rendering/animal-entry.js",

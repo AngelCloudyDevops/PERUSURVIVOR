@@ -1011,3 +1011,9 @@ CardBuildUI usa Pointer Events con captura para mouse y toque, y selección de d
 
 ### Navegación y profundidad de mascotas
 CollectorPets reutiliza Terrain.hit/clear/resolve con radio propio y una ruta local en cuadrícula de 32 unidades, máximo 2048 nodos y reintentos separados por 0,5 s. No altera el flujo compartido de navegación de enemigos. World incluye un actor collectorPetActor en su ordenamiento por Y; ya no se añade un dibujo encima del escenario al terminar render. El atlas mide una vez el borde inferior de cada figura con Sprites.bounds para anclar las patas sin modificar el activo.
+
+## Economía inicial del Gacha por temporada
+
+`src/systems/gacha-economy.js` amplía el guardado normalizado sin romper la clave histórica `inventory.golden_ticket`. Añade `inventory.season_ticket`, el contador acotado `seasonBossWins` y los campos de recibo `ticketReward`/`ticketSeason`. La recompensa del jefe se acredita en una segunda transacción idempotente ligada al recibo de la partida: recuperar o repetir el mismo resultado no duplica tickets.
+
+`Maps.seasonRevision` recibe `updatedAt` desde `/api/season`. La pareja `seasonMap:seasonRevision` identifica una activación concreta, incluso cuando el mismo mapa vuelva en otra temporada. El catálogo y la interfaz de banners son datos separados de la lógica actual de tiradas; solo `permanent-characters` está habilitado en este prototipo. Los demás banners no ejecutan tiradas hasta incorporar sus catálogos, probabilidades y garantías definitivas.

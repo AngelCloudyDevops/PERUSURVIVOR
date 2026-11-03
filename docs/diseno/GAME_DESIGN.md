@@ -1274,3 +1274,11 @@ Navidad Peruana tiene como minijefe exclusivo a El Árbol Maldito, un controlado
 
 ### Mascotas sobre el terreno
 Las mascotas usan un radio de colisión de 10 unidades en sus patas, rodean sólidos del mapa y respetan límites de arena. No bloquean jugadores ni enemigos y no reciben daño. La búsqueda de ruta solo se activa si el tramo directo está obstruido, con presupuesto acotado. Un objetivo inaccesible libera su reserva sin conceder botín; si la mascota se atasca o queda muy lejos, reaparece junto al dueño en un punto libre conservando su carga. El atlas se ancla al extremo inferior de la figura, con sombra a la altura de las patas y rebote leve al caminar. Se dibuja por profundidad junto al jugador y los obstáculos.
+
+## Prototipo de banners y tickets de Gacha
+
+El Gacha separa dos familias de banners. Los permanentes muestran Personajes y versiones, Skins, Expresiones y Mascotas; el prototipo solo habilita el catálogo de personajes existente hasta que cada lista tenga contenido aprobado. La temporada muestra dos banners de personaje —Sideral y Makanaky— y banners compartidos de Skins, Expresiones y Mascotas. Los banners temporales quedan visibles como prototipo, pero no permiten gastar hasta definir probabilidades, pity y procedencia de sus tickets.
+
+Existen dos saldos: tickets permanentes y tickets de temporada. `golden_ticket` sigue siendo la clave interna del ticket permanente para conservar los guardados anteriores. El Divagante mantiene su regla real: intenta aparecer cada 30 segundos; su probabilidad escala de 5% a 20% durante los primeros tres minutos y, después del rescate, sortea 30% Hadoken celeste, 30% Hadoken morado, 30% diez tickets permanentes y 10% fuga. Los minions no botan tickets.
+
+Derrotar al jefe final concede 10 tickets permanentes en la primera victoria de cada activación de temporada y 2 en cada victoria posterior. La temporada se identifica con el mapa global y su revisión del servidor, por lo que reactivar un evento abre una recompensa inicial nueva sin borrar los tickets existentes. Laboratorio, práctica y pruebas de rendimiento no conceden premios.
