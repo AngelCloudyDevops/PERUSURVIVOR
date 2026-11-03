@@ -35,7 +35,8 @@ function build(){
  if(fs.existsSync(out)&&fs.lstatSync(out).isSymbolicLink())throw new Error('dist no puede ser un enlace simbólico');
  fs.rmSync(out,{recursive:true,force:true});fs.mkdirSync(out,{recursive:true});
  copy(path.join(root,'src/index.html'),path.join(out,'index.html'));
- fs.writeFileSync(path.join(out,'style.css'),minifyCss(fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8')));
+ const styles=['styles.css','taunts.css'].map(name=>fs.readFileSync(path.join(root,'src/ui',name),'utf8')).join('\n');
+ fs.writeFileSync(path.join(out,'style.css'),minifyCss(styles));
  for(const m of modules)copy(path.join(root,m.source),path.join(out,m.output));
  fs.writeFileSync(path.join(out,'js/coop-host-runtime.js'),coopHostBundle());
  fs.cpSync(path.join(root,'public'),out,{recursive:true,filter:source=>!sourceMetadata.has(path.relative(path.join(root,'public'),source).split(path.sep).join('/'))&&!archivedAsset(path.relative(path.join(root,'public'),source))&&!/(?:^|[\\/])(?:.*-)?prompts?\.json$/.test(source)&&!source.endsWith('.prompt.txt')&&(!source.endsWith('.png')||!fs.existsSync(source.slice(0,-4)+'.webp'))&&(!source.endsWith('-walk-v1.webp')||!fs.existsSync(source.replace('-walk-v1.webp','-walk-v2.webp')))});
