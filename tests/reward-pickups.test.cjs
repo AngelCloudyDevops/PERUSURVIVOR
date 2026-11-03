@@ -85,3 +85,25 @@ test('La rareza del cofre determina su tiempo de apertura',()=>{
  assert.equal(P.Loot.openingDuration({gold:true,rarity:'legendary'}),.8);
  assert.equal(P.Loot.openingDuration({}),.8);
 });
+
+test('Las llaves salen físicamente del portador y exigen caminar sobre ellas',()=>{
+ const {P,s,p}=setup();s.elapsed=12;p.x=0;p.y=0;p.magnet=500;
+ const keeper={x:0,y:0,keyTier:'rare'};P.Loot.enemyDrop(keeper);
+ const key=s.gems.find(g=>g.kind==='key');
+ assert(key);assert.equal(key.rarity,'rare');assert.equal(Math.hypot(key.x,key.y),42);assert.equal(s.keys?.rare||0,0);
+ const before={x:key.x,y:key.y};P.Systems.collect(.2);
+ assert.equal(key.x,before.x,'el imán no arrastra llaves');assert.equal(key.y,before.y);assert.equal(s.keys?.rare||0,0);
+ s.elapsed=13;p.x=key.x;p.y=key.y;P.Systems.collect(.01);
+ assert.equal(s.keys.rare,1);assert(!s.gems.includes(key));
+});
+
+test('Las rarezas de llave usan el atlas azul y violeta generado para el juego',()=>{
+ const art=fs.readFileSync(path.join(__dirname,'../public/assets/loot/key-rarities-v1.png'));
+ assert.equal(art.subarray(1,4).toString(),'PNG');
+ const source=fs.readFileSync(path.join(__dirname,'../src/systems/loot.js'),'utf8');
+ assert.match(source,/key-rarities-v1\.png/);assert.match(source,/tier==='legendary'\?1:0/);
+ assert.match(source,/Math\.sin\(age\*3\.2\)\*3/,'las llaves flotan');
+ assert.match(source,/Math\.abs\(Math\.cos\(age\*2\.4\)\)/,'las llaves giran');
+ assert.match(source,/g\.rarity==='legendary'\?18:10/,'la legendaria brilla más');
+});
+
