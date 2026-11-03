@@ -22,7 +22,7 @@ Cada poder tiene su propia carga: Q usa `ultimate.sideralCharge`; R usa `ultimat
 - Carga por baja: normal 5, pesado 10, minijefe 20, jefe 35 (`sideral-kit.js:68`).
 - Duración 6 s (`sideral-kit.js:27`). Reemplaza el ataque automático por un aliento especial: pulso cada 0,24 s, cono de 310 u × alcance y 0,48 rad, 0,36× de poder por pulso, giro máximo 2,4 rad/s.
 - Escala fijada al activar: ×(1 + 0,14 × (mayor rango − 1)), ×1,15 si hay alguna evolución (`sideral-kit.js:67`).
-- Se puede mover y girar; no da invulnerabilidad ni curación. Bloquea el ataque automático mientras dura (`sideral-kit.js:36`).
+- Se puede mover y girar; durante los 4 s de huevo gana +25 % de velocidad y bloquea únicamente daño físico. El daño especial, la eclosión y el aliento siguen vulnerables. No cura. Bloquea el ataque automático mientras dura.
 
 ## R · Vacío Sideral (`src/systems/sideral-domain.js`, carta `ability-cards.js:21`)
 - Activación con `charge` 100; se bloquea si ya hay dominio, tribunal o cinemática (`sideral-domain.js:10`). Solo `tier ultra` (`sideral-domain.js:4`).
