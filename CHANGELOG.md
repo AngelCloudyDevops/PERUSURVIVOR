@@ -1,3 +1,7 @@
+# Identidad base restaurada en Mirada Sideral — 2026-11-02
+- Los atlas de Mirada quieta y caminando vuelven al modelo visual exacto de `sideral-ur-v1`: rostro sin barba, proporciones redondeadas, mismo cabello, gafas, ropa, zapatillas y lata.
+- Se conservan la nitidez, los ocho cuadros y el movimiento de piernas de la remasterización; no cambia ninguna regla de combate.
+
 # Remaster pixel art de Mirada y Huevo de Sideral — 2026-11-02
 - Mirada Sideral reemplaza sus dos atlas borrosos por figuras completas de alta definición pixelada, tanto quieto como caminando, con ocho cuadros compatibles con el gesto existente.
 - Huevo sospechoso y la entrada de la Q usan un huevo redibujado con contorno oscuro, manchas legibles y cuadros propios de giro, impacto, rotura y apertura.
