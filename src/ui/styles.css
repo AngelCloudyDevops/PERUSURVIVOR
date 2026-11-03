@@ -1267,3 +1267,23 @@ body.menu[data-lobby-panel=home] #menu .home-feature p{margin:1px 0;font-size:11
 /* Apoyos bajo los ataques; la mochila conserva su nueva ubicación independiente. */
 #combat-dock #support-dock{grid-column:1;grid-row:2}
 @media(max-width:760px){#combat-dock #support-dock{grid-column:1/-1;grid-row:3}#combat-dock[data-character=sideral] #support-dock{grid-row:2}}
+
+/* Apoyos como cartas: el cupo fusionado se conserva en CardBuilds, no en el DOM. */
+#combat-dock{width:min(calc(100vw - 270px),calc(800px + var(--support-width,0px)));grid-template-columns:minmax(0,520px) auto 266px;align-items:end}
+#combat-dock[data-character=sideral]{width:min(calc(100vw - 270px),calc(656px + var(--support-width,0px)));grid-template-columns:minmax(0,390px) auto 260px}
+#combat-dock #attack-dock-slot{grid-column:1;grid-row:1;min-width:0}
+#combat-dock #support-dock{grid-column:2;grid-row:1;display:flex;flex-wrap:nowrap;align-items:end;gap:6px;max-width:none;pointer-events:auto}
+#combat-dock #support-dock[hidden]{display:none}
+#combat-dock #ability-dock,#combat-dock[data-character=sideral] #ability-dock{grid-column:3;grid-row:1}
+.support-card{position:relative;flex:0 0 124px;width:124px;height:158px;overflow:hidden;border:2px solid #76c5d4;border-radius:7px;background:#142632;color:#fff;box-shadow:0 4px 0 #080b11,0 8px 14px #0008;text-align:left;transition:transform .16s ease}
+.support-card:hover,.support-card:focus-visible{transform:translateY(-6px);outline:2px solid #c0f5ff;outline-offset:2px}
+.support-card-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+.support-card-status{position:absolute;top:6px;right:6px;padding:3px 5px;border:1px solid #76c5d4;border-radius:4px;background:#0b202ce8;color:#c6f4ff;font:800 8px monospace}
+.support-card .sideral-card-title{white-space:normal;line-height:1.1;bottom:25px}
+#build-modification{position:absolute;bottom:calc(100% + 8px);left:0;padding:3px 7px;background:#10202ced;border-radius:4px;pointer-events:none}
+.fusion-badge{position:absolute;top:35px;left:5px;right:5px;padding:3px;background:#241c35e8;border-radius:3px;text-align:center;white-space:normal;line-height:1.15}
+@media(max-width:1100px){#combat-dock,#combat-dock[data-character=sideral]{width:min(calc(100vw - 220px),800px);grid-template-columns:minmax(0,1fr) 250px}#combat-dock #ability-dock,#combat-dock[data-character=sideral] #ability-dock{grid-column:2}#combat-dock #support-dock{grid-column:1/-1;grid-row:2;justify-self:center}.support-card{flex-basis:92px;width:92px;height:116px}}
+@media(max-width:760px){#combat-dock,#combat-dock[data-character=sideral]{left:8px;right:8px;width:auto;transform:none;grid-template-columns:minmax(0,3fr) minmax(0,2fr);grid-template-rows:108px auto;gap:5px}#combat-dock #attack-dock-slot,#combat-dock[data-character=sideral] #attack-dock-slot{grid-column:1;grid-row:1}#combat-dock #ability-dock,#combat-dock[data-character=sideral] #ability-dock{grid-column:2;grid-row:1}#combat-dock #support-dock,#combat-dock[data-character=sideral] #support-dock{grid-column:1/-1;grid-row:2;gap:6px}.support-card{flex-basis:76px;width:76px;height:96px}.support-card-status{top:4px;right:4px;font-size:7px}.support-card .sideral-card-title{font-size:8px;bottom:20px}body:has(#combat-dock[data-support-count="1"]) #dota-inventory,body:has(#combat-dock[data-support-count="2"]) #dota-inventory{bottom:232px}}
+@media(prefers-reduced-motion:reduce){.support-card{transition:none}.support-card:hover,.support-card:focus-visible{transform:none}}
+
+#combat-dock #weapon-bar{flex-wrap:nowrap;min-width:0}#combat-dock #weapon-bar .sideral-skill-card{min-width:0}
