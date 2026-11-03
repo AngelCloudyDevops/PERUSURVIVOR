@@ -15,7 +15,7 @@ La sección siguiente fija las decisiones abiertas para esta primera versión. E
 | Cofres y objetos | Sin cambios: tres opciones de equipo y monedas, cuatro espacios Dota separados. |
 | Fusiones | Apoyo de rango 3, nivel 8 en Caos o 6 en Rápida, destino desbloqueado. Una por apoyo; destinos distintos; máximo dos. No exige evolucionar primero. |
 | Traducción | Se conserva el rango y la evolución; el apoyo fusionado no ataca ni dibuja órbita automática. Sigue ocupando su espacio y puede seguir mejorándose. |
-| Selección | Carta de fusión → arrastrar apoyo o tocar destino → confirmar. Tab/Enter permiten el mismo flujo. Cancelar devuelve las mismas cuatro ofertas. |
+| Selección | En combate: arrastrar apoyo sobre técnica compatible, o seleccionar ambos por clic/toque/teclado. Aplica al soltar, sin pausa ni confirmación, conservando requisitos y cupos. La oferta de nivel anterior continúa como alternativa con confirmación. |
 | Modificación | Una personal por partida, disponible desde nivel 4. Las alternativas incompatibles o ya equipadas salen del pool. |
 | Rerolls | Recurso por jugador y partida: 1 base; 2 con maestría 5; 3 con maestría 10. Renovar no da otra recompensa ni aumenta el nivel. |
 | Maestría | Partidas registradas de ese personaje (`characters[id].runs`), con límite 10. No se suman estrellas, compras o nivel temporal. No se crea otra versión del guardado ni se modifica el historial. |
