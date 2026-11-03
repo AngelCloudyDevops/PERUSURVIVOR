@@ -39,8 +39,8 @@ async pull(count=1){
  const M=P.Meta;if(![1,10].includes(count)||this.ascension||M.busy||P.state.mode!=='menu'||this.animation&&!this.animation.done)return false;
  M.busy=true;this.render();
  const results=await M.transaction(data=>{
-  if(P.state.mode!=='menu'||data.wallet<this.cost*count||!this.canPull(data))return false;
-  data.wallet-=this.cost*count;const results=[];
+  const ticketCost=Math.min(count,P.CaptiveEvent?.tickets?.(data)||0),coinCost=(count-ticketCost)*this.cost;if(P.state.mode!=='menu'||data.wallet<coinCost||!this.canPull(data))return false;
+  data.inventory.golden_ticket=(data.inventory.golden_ticket||0)-ticketCost;data.wallet-=coinCost;const results=[];
   for(let i=0;i<count;i++){
    const {tier,character}=this.choose(data),base=this.canonical(character),fresh=!this.owns(base,data),refund=fresh?0:this.tiers[tier].refund,id=typeof crypto!=='undefined'&&crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);
    data.wallet+=refund;if(fresh)data.unlocked.push(base);const copies=!fresh&&this.star(base,data).rank<5?1:0;if(copies){const stars=this.star(base,data);data.gachaStars[base]={rank:stars.rank,copies:Math.min(100000000,stars.copies+1)}}

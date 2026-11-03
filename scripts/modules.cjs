@@ -375,6 +375,7 @@ module.exports = [
     "source": "src/development/test-bench.js",
     "output": "js/test-bench.js"
   },
+  {"source":"src/systems/captive-companion.js","output":"js/captive-companion.js"},
   {
     "source": "src/rendering/animal-entry.js",
     "output": "js/animal-entry.js"

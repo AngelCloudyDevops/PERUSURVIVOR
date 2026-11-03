@@ -21,10 +21,10 @@ function createSaveChecks({db,rules,now}){
   const earned=next.earned-old.earned;if(earned<0)return 'earned no puede disminuir';
   const elapsed=Math.max(0,now()-(previous.updated_at||0)),cap=Math.min(MAX_RUN*Math.max(0,runs(next)-runs(old)),2*MAX_RUN*(Math.ceil(elapsed/MIN_RUN_MS)+1));
   if(earned>cap)return 'earned sube más de lo que permiten las partidas y el tiempo transcurrido';
-  const available=old.wallet+earned+refunds(old);
+  const spentGolden=Math.max(0,(old.inventory.golden_ticket||0)-(next.inventory.golden_ticket||0)),available=old.wallet+earned+refunds(old),drawValue=available+spentGolden*COST;
   if(next.wallet>available)return 'wallet supera lo ganado más reembolsos';
   const given=grants(user.id,'character','character_id'),fresh=next.unlocked.filter(id=>!old.unlocked.includes(id)&&!given.has(id));
-  if(fresh.length>Math.max(0,next.gacha.draws-old.gacha.draws)||fresh.length*COST>available)return 'personajes desbloqueados sin tiradas que los expliquen';
+  if(fresh.length>Math.max(0,next.gacha.draws-old.gacha.draws)||fresh.length*COST>drawValue)return 'personajes desbloqueados sin tiradas que los expliquen';
   const skins=grants(user.id,'skin',"json_extract(result,'$.skinId')");
   if(next.skins.unlocked.some(id=>!old.skins.unlocked.includes(id)&&!skins.has(id)))return 'skins sin concesión';
   return null;
