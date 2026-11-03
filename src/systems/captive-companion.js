@@ -8,7 +8,7 @@ P.CaptiveEvent={
   if(typeof Image!=='undefined'){this.image=new Image();this.image.decoding='async';this.image.onload=()=>this.ready=true;this.image.src=this.asset}
   if(typeof document==='undefined')return;
   const admin=document.createElement('button');admin.id='captive-admin-test';admin.type='button';admin.hidden=true;admin.textContent='🪢 PROBAR CAUTIVO';admin.title='Solo administrador · cada pulsación prueba uno de los cuatro resultados';admin.onclick=()=>this.adminTest();document.body.append(admin);
-  const actions=P.$('#test-bench .bench-actions');if(actions?.insertBefore){const test=document.createElement('button');test.id='bench-captive';test.type='button';test.textContent='Probar cautivo';test.title='Solo administrador · alterna los cuatro resultados';test.onclick=()=>this.adminTest(true);actions.insertBefore(test,P.$('#bench-exit'))}
+  const exit=P.$('#bench-exit'),actions=exit?.parentElement||P.$('#test-bench .bench-actions');if(actions?.insertBefore){const test=document.createElement('button');test.id='bench-captive';test.type='button';test.textContent='Probar cautivo';test.title='Solo administrador · alterna los cuatro resultados';test.onclick=()=>this.adminTest(true);actions.insertBefore(test,exit?.parentElement===actions?exit:null)}
  },
  state(){return P.state.captiveEvent},
  chance(time=P.state.mapTime){return .05+.15*Math.min(1,Math.max(0,time)/180)},

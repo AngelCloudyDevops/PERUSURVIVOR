@@ -17,9 +17,15 @@ class WorkflowLockTest(unittest.TestCase):
             self.assertEqual(values.get('cancel-in-progress'), 'false', name)
             self.assertEqual(values.get('queue'), 'max', name)
             locks.append(values.get('group'))
-        self.assertIn("perusurvivor-production", locks[0])
-        self.assertIn("perusurvivor-staging", locks[0])
-        self.assertEqual(locks[1], 'perusurvivor-production')
+        self.assertEqual(locks, ['perusurvivor-production', 'perusurvivor-production'])
+
+    def test_public_staging_test_pins_the_expected_release(self):
+        root = Path(__file__).resolve().parents[2]
+        text = (root / '.github/workflows/cooperative-e2e.yml').read_text(encoding='utf-8')
+        self.assertIn('options: [production, staging]', text)
+        self.assertIn('https://staging.perusurvivor.michitech.tech', text)
+        self.assertIn('data.git_sha !== process.env.EXPECTED_RELEASE', text)
+        self.assertIn('fetch(process.env.COOP_URL+', text)
 
     def test_private_backend_route_is_part_of_installer(self):
         root = Path(__file__).resolve().parents[2]

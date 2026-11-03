@@ -4,10 +4,11 @@ class Activities{
  constructor(sim){this.sim=sim;this.votes=new Set();this.serial=0;this.pending=null;this.choiceTimeout=15;this.returning=false;this.message='';this.messageTime=0;this.escort=new (require('./escort.cjs').Escort)(sim);this.signals=new (require('./signals.cjs').Signals)(sim);this.duo=new (require('./duo-event.cjs').DuoEvent)(sim);sim.P.Encounters.win=()=>{this.returning=true}}
  get P(){return this.sim.P}
  notice(text){this.message=text;this.messageTime=4}
- action(slot,action,id,choice){
+ action(slot,action,id,choice,detail={}){
   const sim=this.sim,P=this.P,s=P.state,p=sim.players[slot];if(!p||sim.result)return false;
   if(action==='signal')return this.signals.send(slot,id);
-  if(action==='choose')return this.choose(slot,id,choice);
+  if(action==='choose')return this.choose(slot,id,choice,detail);
+  if(action==='reroll')return this.reroll(slot,id,detail.revision);
   if(this.pending||p.hp<=0||s.mode!=='play')return false;
   sim.use(p);
   if(action==='escort')return this.escort.start(slot);
@@ -45,13 +46,13 @@ class Activities{
   const P=this.P;if(this.pending||chest.opened||P.state.encounter||!P.Loot.canOpen(chest))return false;
   if(chest.impostor&&!chest.purified)return P.Market.wake(chest);
   const tier=P.Loot.keyType(chest);if(tier)P.state.keys[tier]--;
-  chest.opened=true;chest.progress=1.8;chest.openAge=0;P.Loot.opened.add(chest.id);
+  chest.opened=true;chest.progress=P.Loot.openingDuration(chest);chest.openAge=0;P.Loot.opened.add(chest.id);
   const item=chest.miniReward?P.Relics.ids[chest.miniReward]:null,tierName=chest.rarity||'common',equipment=!chest.gold&&!chest.miniReward,coins=equipment?P.Loot.chestCoins(tierName):0;
   if(equipment&&!chest.coinsGranted)P.Loot.scatterCoins(chest,coins)
   this.pending={id:++this.serial,kind:chest.miniReward?'mini-reward':chest.gold?'portal-reward':'item',phase:'opening',age:0,item,rarity:tierName,coins,options:equipment?this.sim.players.map((p,slot)=>P.Loot.rewardOptions(p,chest,slot)):undefined,applied:[false,false],chestId:chest.id};
   return true;
  }
- levelup(){const P=this.P,s=P.state;if(this.pending||s.xp<s.need||P.Progression.blocksUpgrade(this.sim.players))return;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.22+1);this.pending={id:++this.serial,kind:'level',phase:'choice',applied:[false,false],options:this.sim.players.map(p=>P.Progression.options(p))};for(const p of this.sim.players)p.moving=false}
+ levelup(){const P=this.P,s=P.state;if(this.pending||s.xp<s.need||P.Progression.blocksUpgrade(this.sim.players))return;s.xp-=s.need;s.level++;s.need=Math.round(s.need*1.22+1);this.pending={id:++this.serial,kind:'level',phase:'choice',applied:[false,false],revisions:[0,0],options:this.sim.players.map(p=>P.Progression.options(p))};for(const p of this.sim.players)p.moving=false}
  syncExtinction(){
   const P=this.P,e=P.MapEvents?.event;if(this.pending||!e?.extinction)return;
   if(e.phase==='portal'&&!e.portalOffered&&this.sim.players.some(p=>p.hp>0&&Math.hypot(p.x-e.x,p.y-e.y)<125)){
@@ -62,7 +63,8 @@ class Activities{
    this.pending={id:++this.serial,kind:'extinction-reward',phase:'choice',applied:[false,false],choices:[null,null],eventSerial:e.serial};for(const p of this.sim.players)p.moving=false;this.notice('Elijan la reliquia que recibirá todo el equipo');
   }
  }
- choose(slot,id,choice){
+ reroll(slot,id,revision){const pending=this.pending,p=this.sim.players[slot];if(!p||!pending||pending.kind!=='level'||pending.id!==id||pending.phase!=='choice'||pending.applied[slot]||revision!==pending.revisions[slot])return false;this.sim.use(p);if(!this.P.CardBuilds.reroll(p))return false;pending.options[slot]=this.P.Progression.options(p);pending.revisions[slot]++;return true}
+ choose(slot,id,choice,detail={}){
   const pending=this.pending;if(!pending||pending.id!==id||pending.phase!=='choice'||pending.applied[slot]||!Number.isInteger(choice))return false;
   const P=this.P,p=this.sim.players[slot];this.sim.use(p);
   if(pending.kind==='extinction-portal'){
@@ -78,7 +80,7 @@ class Activities{
    if(pending.applied.every(Boolean)){const selected=pending.choices[0],e=P.MapEvents.event,relic=['fossil','predator','celestial'][selected];this.pending=null;if(e?.serial===pending.eventSerial)P.MapEvents.applyRelic(e,relic);this.notice('Reliquia de equipo obtenida: '+({fossil:'Corazón fósil',predator:'Colmillo del depredador',celestial:'Fragmento celeste'}[relic]||'Extinción'))}
    return true;
   }else if(pending.kind==='level'){
-   const offer=pending.options[slot]?.[choice];if(!offer)return false;P.Progression.apply(p,offer.id);
+   const offer=pending.options[slot]?.[choice];if(!offer||(detail.revision??0)!==pending.revisions[slot])return false;if(P.Progression.apply(p,offer.id,detail.target)===false)return false;
   }else if(pending.kind==='portal-reward'){
    if(choice<0||choice>2)return false;
    if(choice===0)p.power*=1.3;
@@ -101,7 +103,7 @@ class Activities{
  arm(){const p=this.pending;if(p&&p.phase==='choice'&&p.left===undefined)p.left=this.choiceTimeout}
  autoPick(){
   const pending=this.pending,fallback={'extinction-portal':1,'mini-reward':1,item:pending.options?0:1};this.notice('Se eligió solo en nombre de quien no respondió');
-  for(const slot of [0,1])if(!pending.applied[slot]){let done=false;for(const choice of new Set([fallback[pending.kind]??0,0,1,2,3]))if(this.choose(slot,pending.id,choice)){done=true;break}if(!done&&this.pending===pending)pending.applied[slot]=true}
+  for(const slot of [0,1])if(!pending.applied[slot]){let done=false;for(const choice of new Set([pending.kind==='level'?Math.max(0,pending.options[slot].findIndex(o=>!o.id.startsWith('fusion:'))):fallback[pending.kind]??0,0,1,2,3]))if(this.choose(slot,pending.id,choice,{revision:pending.revisions?.[slot]??0,target:pending.kind==='level'&&pending.options[slot]?.[choice]?.id.startsWith('fusion:')?this.P.CardBuilds.compatible(this.sim.players[slot],pending.options[slot][choice].id.slice(7))[0]?.id:undefined})){done=true;break}if(!done&&this.pending===pending)pending.applied[slot]=true}
   if(this.pending===pending&&pending.applied.every(Boolean))this.pending=null;
  }
  advance(dt){
@@ -123,8 +125,8 @@ class Activities{
     this.notice('¡Evento completado! +25 monedas de equipo y curación para ambos');
    }
   }
-  for(const chest of P.Loot.chests){if(chest.opened)continue;if(chest.impostor){const victim=sim.players.find(p=>p.hp>0&&Math.hypot(p.x-chest.x,p.y-chest.y)<100);if(victim){sim.use(victim);P.Market.wake(chest)}continue}const opener=sim.players.find(p=>p.hp>0&&!p.moving&&Math.hypot(p.x-chest.x,p.y-chest.y)<75);
-   if(!opener){chest.progress=0;continue}sim.use(opener);if(!P.Loot.canOpen(chest)){P.Loot.locked(chest);continue}chest.progress+=dt;if(chest.progress>=1.8){this.open(chest);break}
+  for(const chest of P.Loot.chests){if(chest.opened)continue;if(chest.impostor){const victim=sim.players.find(p=>p.hp>0&&Math.hypot(p.x-chest.x,p.y-chest.y)<100);if(victim){sim.use(victim);P.Market.wake(chest)}continue}const opener=sim.players.find(p=>p.hp>0&&Math.hypot(p.x-chest.x,p.y-chest.y)<=P.Loot.openRadius);
+   if(!opener){chest.progress=0;continue}sim.use(opener);if(!P.Loot.canOpen(chest)){P.Loot.locked(chest);continue}const duration=P.Loot.openingDuration(chest);chest.progress=Math.min(duration,(chest.progress||0)+dt);if(chest.progress>=duration){this.open(chest);break}
   }
  }
  snapshot(){const P=this.P,s=P.state;this.arm();return {escort:this.escort.snapshot(),signals:this.signals.snapshot(),duoEvent:this.duo.snapshot(),portal:{...s.portal,votes:[...this.votes]},encounter:s.encounter?{definition:s.encounter.definition,scene:s.encounter.scene,obstacles:s.encounter.obstacles,defeat:s.encounter.defeat||null}:null,mapBossWon:!!s.mapBossWon,merchant:P.Market.merchant,chests:P.Loot.chests.map(({onOpen,...c})=>c),debris:P.Loot.debris,station:P.Exploration.station,keys:s.keys,pending:this.pending,message:this.messageTime>0?this.message:P.Loot.messageTime>0?P.Loot.message:''}}

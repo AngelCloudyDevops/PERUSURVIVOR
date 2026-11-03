@@ -1,0 +1,317 @@
+{
+  "note": "Simulación sin renderizado ni cambios de estadísticas; CPU no equivale a FPS del navegador.",
+  "results": [
+    {
+      "seed": 101,
+      "runMode": "chaos",
+      "strategy": "auto",
+      "result": "death",
+      "seconds": 934.8,
+      "level": 19,
+      "kills": 1672,
+      "hp": 0,
+      "build": {
+        "version": 1,
+        "fusions": {},
+        "modification": "quickEgg",
+        "rerolls": 1,
+        "rerollCap": 1,
+        "mastery": 0,
+        "zones": []
+      },
+      "choices": [
+        {
+          "level": 2,
+          "at": 14.8,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "level": 3,
+          "at": 31.6,
+          "id": "stat:health"
+        },
+        {
+          "level": 4,
+          "at": 38,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "level": 5,
+          "at": 54.8,
+          "id": "cards"
+        },
+        {
+          "level": 6,
+          "at": 61.9,
+          "id": "modify:quickEgg"
+        },
+        {
+          "level": 7,
+          "at": 78.9,
+          "id": "orbit"
+        },
+        {
+          "level": 8,
+          "at": 94,
+          "id": "orbit"
+        },
+        {
+          "level": 9,
+          "at": 123.5,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "level": 10,
+          "at": 153.9,
+          "id": "orbit"
+        },
+        {
+          "level": 11,
+          "at": 194.4,
+          "id": "cards"
+        },
+        {
+          "level": 12,
+          "at": 238,
+          "id": "orbit"
+        },
+        {
+          "level": 13,
+          "at": 278,
+          "id": "orbit"
+        },
+        {
+          "level": 14,
+          "at": 305.5,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "level": 15,
+          "at": 354.7,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        },
+        {
+          "level": 16,
+          "at": 448.9,
+          "id": "cards"
+        },
+        {
+          "level": 17,
+          "at": 552.2,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "level": 18,
+          "at": 695.4,
+          "id": "cards"
+        },
+        {
+          "level": 19,
+          "at": 844.8,
+          "id": "sideral-arsenal:rank:sideralTail"
+        }
+      ],
+      "logicMs": {
+        "median": 6.828800000002957,
+        "p95": 26.56930000000284,
+        "max": 338.94880000001285
+      }
+    },
+    {
+      "seed": 202,
+      "runMode": "chaos",
+      "strategy": "fusion",
+      "result": "death",
+      "seconds": 874.4,
+      "level": 18,
+      "kills": 1335,
+      "hp": 0,
+      "build": {
+        "version": 1,
+        "fusions": {
+          "cards": "sideralTail",
+          "orbit": "sideralEgg"
+        },
+        "modification": "quickEgg",
+        "rerolls": 1,
+        "rerollCap": 1,
+        "mastery": 0,
+        "zones": []
+      },
+      "choices": [
+        {
+          "level": 2,
+          "at": 11.6,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "level": 3,
+          "at": 38.4,
+          "id": "orbit"
+        },
+        {
+          "level": 4,
+          "at": 38.4,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "level": 5,
+          "at": 46.4,
+          "id": "stat:magnet"
+        },
+        {
+          "level": 6,
+          "at": 59.6,
+          "id": "modify:quickEgg"
+        },
+        {
+          "level": 7,
+          "at": 78.9,
+          "id": "cards"
+        },
+        {
+          "level": 8,
+          "at": 99.9,
+          "id": "cards"
+        },
+        {
+          "level": 9,
+          "at": 129.1,
+          "id": "orbit"
+        },
+        {
+          "level": 10,
+          "at": 165.5,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "level": 11,
+          "at": 205.6,
+          "id": "cards"
+        },
+        {
+          "level": 12,
+          "at": 259.7,
+          "id": "orbit"
+        },
+        {
+          "level": 13,
+          "at": 292.5,
+          "id": "fusion:cards"
+        },
+        {
+          "level": 14,
+          "at": 372.3,
+          "id": "fusion:orbit"
+        },
+        {
+          "level": 15,
+          "at": 416.3,
+          "id": "cards"
+        },
+        {
+          "level": 16,
+          "at": 509.3,
+          "id": "orbit"
+        },
+        {
+          "level": 17,
+          "at": 607.4,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "level": 18,
+          "at": 732.6,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        }
+      ],
+      "logicMs": {
+        "median": 5.0204999999841675,
+        "p95": 21.20240000000922,
+        "max": 3719.306199999992
+      }
+    },
+    {
+      "seed": 303,
+      "runMode": "quick",
+      "strategy": "fusion",
+      "result": "limit",
+      "seconds": 300,
+      "level": 12,
+      "kills": 377,
+      "hp": 137.8,
+      "build": {
+        "version": 1,
+        "fusions": {},
+        "modification": "wideFear",
+        "rerolls": 1,
+        "rerollCap": 1,
+        "mastery": 0,
+        "zones": []
+      },
+      "choices": [
+        {
+          "level": 2,
+          "at": 14.1,
+          "id": "sideral-arsenal:unlock:sideralTail"
+        },
+        {
+          "level": 3,
+          "at": 31.6,
+          "id": "stat:health"
+        },
+        {
+          "level": 4,
+          "at": 36.2,
+          "id": "sideral-arsenal:unlock:sideralEgg"
+        },
+        {
+          "level": 5,
+          "at": 55.5,
+          "id": "modify:wideFear"
+        },
+        {
+          "level": 6,
+          "at": 73.4,
+          "id": "cards"
+        },
+        {
+          "level": 7,
+          "at": 79.9,
+          "id": "sideral-arsenal:rank:sideralFear"
+        },
+        {
+          "level": 8,
+          "at": 115.6,
+          "id": "sideral-arsenal:rank:sideralTail"
+        },
+        {
+          "level": 9,
+          "at": 137.1,
+          "id": "orbit"
+        },
+        {
+          "level": 10,
+          "at": 169.2,
+          "id": "sideral-arsenal:rank:sideralEgg"
+        },
+        {
+          "level": 11,
+          "at": 221.7,
+          "id": "cards"
+        },
+        {
+          "level": 12,
+          "at": 263.4,
+          "id": "sideral-arsenal:rank:sideralFear"
+        }
+      ],
+      "logicMs": {
+        "median": 0.8638999999966472,
+        "p95": 3.740700000023935,
+        "max": 286.8166000000201
+      }
+    }
+  ],
+  "scope": "Tres partidas con controles normales y estadísticas sin alterar. Caos tiene límite 1800 s, rápida 300 s; se conservan las derrotas. Semillas distintas: no es una comparación A/B de balance."
+}
