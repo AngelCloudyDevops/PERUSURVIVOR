@@ -1270,3 +1270,7 @@ Un apoyo en rango 3, desde nivel 8 (6 en Rápida), puede arrastrarse sobre una t
 ## Minijefe navideño: El Árbol Maldito
 
 Navidad Peruana tiene como minijefe exclusivo a El Árbol Maldito, un controlador/invocador de daño especial. Alterna Adornos explosivos, Raíces heladas y Lluvia de regalos. El regalo verde invoca un duende y los rojos explotan; las raíces permanecen 3,2 s y ralentizan sin inmovilizar. Al 50 % de vida gana 12 % de velocidad y cada cuarto turno usa Navidad marchita: diez adornos convergen dejando dos salidas opuestas. Madera resinosa aumenta en 25 % el daño de fuentes de fuego. Su cofre exclusivo entrega Estrella torcida, que cada sexto ataque básico dispara cuatro estrellas de 25 % de poder.
+
+
+### Mascotas sobre el terreno
+Las mascotas usan un radio de colisión de 10 unidades en sus patas, rodean sólidos del mapa y respetan límites de arena. No bloquean jugadores ni enemigos y no reciben daño. La búsqueda de ruta solo se activa si el tramo directo está obstruido, con presupuesto acotado. Un objetivo inaccesible libera su reserva sin conceder botín; si la mascota se atasca o queda muy lejos, reaparece junto al dueño en un punto libre conservando su carga. El atlas se ancla al extremo inferior de la figura, con sombra a la altura de las patas y rebote leve al caminar. Se dibuja por profundidad junto al jugador y los obstáculos.

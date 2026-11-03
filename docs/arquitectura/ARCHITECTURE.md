@@ -1007,3 +1007,7 @@ CardBuildUI usa Pointer Events con captura para mouse y toque, y selección de d
 ### Extensión de minijefe navideño
 
 `christmas-tree-miniboss.js` extiende el contrato de `P.Minibosses` después de cargar el núcleo. El catálogo, avisos, peligros, raíces persistentes, definitiva y debilidad al fuego usan únicamente estado plano serializable del enemigo (`christmas`), por lo que individual y servidor cooperativo comparten la misma simulación. La imagen conserva el atlas de cuatro componentes que ya mide `Minibosses.init`; el PNG maestro cuenta con WebP optimizado de ejecución.
+
+
+### Navegación y profundidad de mascotas
+CollectorPets reutiliza Terrain.hit/clear/resolve con radio propio y una ruta local en cuadrícula de 32 unidades, máximo 2048 nodos y reintentos separados por 0,5 s. No altera el flujo compartido de navegación de enemigos. World incluye un actor collectorPetActor en su ordenamiento por Y; ya no se añade un dibujo encima del escenario al terminar render. El atlas mide una vez el borde inferior de cada figura con Sprites.bounds para anclar las patas sin modificar el activo.
