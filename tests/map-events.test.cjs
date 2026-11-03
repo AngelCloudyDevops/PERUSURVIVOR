@@ -21,6 +21,10 @@ test('Impacto del cielo: una cinemática garantizada congela combate y crea un c
  const impact=JSON.stringify(M.impacts);P.Chunks.signature='';P.Chunks.sync();M.ensureTerrain();assert.equal(JSON.stringify(M.impacts),impact);assert(P.Terrain.props.some(o=>o.meteorImpact));
 });
 
+test('Extinción: la presentación distingue alerta, identificación e impacto sin alterar la cinemática',()=>{
+ const {P}=ready(),M=P.MapEvents;M.startWorld();assert.equal(M.anomalyPresentation(.5).phase,'warning');assert.equal(M.anomalyPresentation(.5).title,'WARNING');assert.equal(M.anomalyPresentation(2).phase,'identified');assert.match(M.anomalyPresentation(2).subtitle,/MIRA EL CIELO/);assert.equal(M.anomalyPresentation(5).phase,'impact');M.event.phase='invasion';assert.equal(M.anomalyPresentation(5),null)
+});
+
 test('Extinción: las oleadas usan roles, el tanque tiene armadura direccional y el anti-kite limita meteoritos',()=>{
  const {P,s}=ready(),M=P.MapEvents,p=s.player;M.startWorld();const e=M.event;M.activateWorld(e);for(let i=0;i<30;i++)M.tickWorld(.1);const first=s.enemies.filter(q=>q.extinctionDino);assert.deepEqual(first.map(q=>q.dinoKind).sort(),['ankylosaur','raptor','raptor']);assert(first.every(q=>q.dinoRole));
  const tank=first.find(q=>q.dinoKind==='ankylosaur');tank.facing=1;assert.equal(M.incomingMultiplier(tank,{owner:{x:tank.x+20}}),.48);assert.equal(M.incomingMultiplier(tank,{owner:{x:tank.x-20}}),1.3);
