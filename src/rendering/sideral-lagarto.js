@@ -6,8 +6,8 @@ P.SideralLagarto={
   tail:{src:'assets/characters/sideral-tail-attack-v2.webp',columns:3,rows:2,cells:[]},
   transform:{src:'assets/characters/sideral-transform-motion-v2.webp',columns:4,rows:2,cells:[]},
   breath:{src:'assets/characters/sideral-breath-motion-v3.webp',columns:4,rows:2,cells:[]},
-  fear:{src:'assets/characters/sideral-fear-motion-v2.webp',columns:4,rows:2,cells:[]},
-  fearWalk:{src:'assets/characters/sideral-fear-walk-motion-v2.webp',columns:4,rows:2,cells:[]},
+  fear:{src:'assets/characters/sideral-fear-motion-v3.webp',columns:4,rows:2,cells:[]},
+  fearWalk:{src:'assets/characters/sideral-fear-walk-motion-v3.webp',columns:4,rows:2,cells:[]},
   egg:{src:'assets/characters/sideral-egg-motion-v3.webp',columns:4,rows:2,cells:[]}
  },
  walkCycle:[0,1,2,1,0,3,1,0],
