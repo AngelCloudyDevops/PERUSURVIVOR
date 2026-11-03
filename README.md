@@ -1,5 +1,17 @@
 # PERUSURVIVOR — Causas del Caos
 
+## Progresión de cartas
+
+Reglas, recetas y comprobaciones: [Guía de progresión](docs/diseno/GUIA_PROGRESION_CARTAS.md).
+
+- Al subir de nivel aparecen **cuatro cartas; eliges una**. Los cofres conservan tres objetos y sus monedas.
+- Conservamos **Onda causa, Tarjetas del caos y Escudo de bandas** en dos espacios de apoyo.
+- Una fusión es opcional: conserva rango y espacio, apaga el automático y pasa su efecto a un destino compatible. Máximo dos, en destinos distintos.
+- Una modificación personal por partida cambia el comportamiento de una técnica. Sideral es el piloto de las técnicas manuales; no se convierte todo el roster.
+- **Renovar:** 1/2/3 usos con maestría 0/5/10. La maestría es el número de partidas registradas con esa causa, hasta 10; reutiliza el guardado existente.
+
+Publicación acordada: producción después de CI, seguida de la prueba cooperativa pública sobre el SHA desplegado. Las cifras iniciales requieren seguimiento de balance; una rama local no implica publicación.
+
 ## Burlas y gestos
 
 Durante una partida, mantener **B** abre una rueda de seis burlas; mover el cursor elige y soltar B activa. En móvil, el botón **B · Burlas** abre el mismo selector y cada segmento se toca directamente. Las burlas de texto aparecen durante tres segundos sobre la cabeza del personaje. «¿Me entiendes?» reproduce el MP4 vertical aportado por el usuario, anclado encima del actor con un ancho máximo de 128 px en escritorio y 104 px en móvil. El video dura una sola pasada, se carga bajo demanda, no captura controles y su audio obedece el volumen de **Efectos** sin detener la música. En cooperativo, el servidor valida el identificador y retransmite solo la burla elegida; no altera la simulación ni sus snapshots. La interfaz debe conservar seis posiciones, zona central libre, teclado, toque, movimiento reducido, un solo reproductor de video y una sola capa radial DOM para proteger los FPS.

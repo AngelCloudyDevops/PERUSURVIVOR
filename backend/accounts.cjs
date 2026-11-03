@@ -91,6 +91,7 @@ async function body(req){let text='',size=0;const timer=setTimeout(()=>req.destr
   reply(res,404,{error:'Ruta no encontrada'});return true;
  }catch(e){if(!res.headersSent)reply(res,e.status||500,{error:e.status?e.message:'No se pudo completar la operación'});else res.end();return true}}
  function owns(user,id){if(!user)return true;if(user.role==='admin'||admin.rules().Meta.blank().unlocked.includes(id))return true;const save=db.prepare('SELECT payload FROM saves WHERE user_id=?').get(user.id);let unlocked=[];try{unlocked=JSON.parse(save?.payload||'{}').progress?.unlocked||[]}catch{}return unlocked.includes(id)||!!db.prepare('SELECT id FROM admin_actions WHERE target_id=? AND character_id=? LIMIT 1').get(user.id,id)}
- return {handle,session,owns,friends,balance,taunts,closeStreams:gifts.closeStreams,close:()=>{gifts.closeStreams();db.close()}};
+ function characterStats(user,id){if(!user)return null;try{const row=db.prepare('SELECT payload FROM saves WHERE user_id=?').get(user.id);return JSON.parse(row?.payload||'{}').progress?.characters?.[id]||null}catch{return null}}
+ return {handle,session,owns,characterStats,friends,balance,taunts,closeStreams:gifts.closeStreams,close:()=>{gifts.closeStreams();db.close()}};
 }
 module.exports={createAccounts};

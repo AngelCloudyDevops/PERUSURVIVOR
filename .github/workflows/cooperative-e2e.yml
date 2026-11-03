@@ -1,17 +1,30 @@
 name: Public cooperative E2E
 on:
   workflow_dispatch:
-  push:
+    inputs:
+      environment:
+        description: Sitio público que se va a comprobar
+        type: choice
+        options: [production, staging]
+        default: production
+      expected_release:
+        description: SHA esperado; vacío comprueba la versión publicada al iniciar
+        type: string
+        required: false
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
     branches: [main]
-    paths:
-      - .github/workflows/cooperative-e2e.yml
-      - tests/live/**
 permissions:
   contents: read
 jobs:
   public-test:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
     timeout-minutes: 12
+    env:
+      COOP_URL: ${{ inputs.environment == 'staging' && 'https://staging.perusurvivor.michitech.tech' || 'https://perusurvivor.michitech.tech' }}
+      EXPECTED_RELEASE: ${{ inputs.expected_release || github.event.workflow_run.head_sha }}
     concurrency:
       group: perusurvivor-production
       cancel-in-progress: false
@@ -31,10 +44,11 @@ jobs:
           node <<'NODE'
           const fs = require('node:fs');
           (async () => {
-            const r = await fetch('https://perusurvivor.michitech.tech/__release.json?t='+Date.now(), {cache:'no-store',signal:AbortSignal.timeout(15000)});
+            const r = await fetch(process.env.COOP_URL+'/__release.json?t='+Date.now(), {cache:'no-store',signal:AbortSignal.timeout(15000)});
             if (!r.ok) throw new Error('Release HTTP '+r.status);
             const data = await r.json();
             if (!/^[a-f0-9]{40}$/.test(data.git_sha)) throw new Error('Invalid release SHA');
+            if (process.env.EXPECTED_RELEASE && data.git_sha !== process.env.EXPECTED_RELEASE) throw new Error('El sitio todavía no sirve el SHA esperado');
             fs.appendFileSync(process.env.GITHUB_OUTPUT, 'release_sha='+data.git_sha+'\n');
           })().catch(e => {console.error(e);process.exitCode=1});
           NODE
