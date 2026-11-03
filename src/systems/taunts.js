@@ -39,7 +39,7 @@ P.Taunts={
  receive(message){const index=this.items.findIndex(item=>item.id===message?.id);if(index<0||!Number.isInteger(message.slot)||message.slot<0||message.slot>1)return false;const own=P.Coop?.session?.slot;if(message.slot===own)return true;return this.activate(index,true,message.slot)},
  playVoice(){
   if(P.Audio.muted||P.Audio.effectsVolume<=0||typeof Audio==='undefined')return;P.Audio.unlock();P.Audio.duckMusic?.(3.4,.22);
-  if(!this.voice){this.voice=new Audio('assets/audio/burla-voz-v1.mpeg');this.voice.preload='none';this.voice.addEventListener('error',()=>this.stopVoice())}
+  if(!this.voice){this.voice=new Audio('assets/audio/burla-voz-v1.mp3');this.voice.preload='none';this.voice.addEventListener('error',()=>this.stopVoice())}
   clearTimeout(this.voiceStop);try{this.voice.pause();this.voice.currentTime=0;this.syncAudio();const promise=this.voice.play();promise?.catch?.(()=>{})}catch{}
   this.voiceStop=setTimeout(()=>this.stopVoice(),5000)
  },
