@@ -12,7 +12,7 @@ Cooperativo sin barrera de separación: cada jugador puede explorar libremente; 
 
 Supervivencia peruana con veintiún personajes jugables, cinco mapas, encuentros opcionales y objetos de Dota 2 adaptados como cartas de equipo evolutivo durante cada partida.
 
-Temporada global: ReySuperior puede abrir **Panel admin → Temporada** y elegir Sin temporada, Navidad Peruana o Noche de Halloween. El valor se guarda en SQLite para todo el servidor; las instalaciones nuevas comienzan en Navidad y cada cliente sincroniza el mapa activo al abrir el juego. Los jugadores normales pueden consultar la temporada pública, pero no modificarla.
+Temporada global: ReySuperior puede abrir **Panel admin → Temporada** y elegir Sin temporada, Navidad Peruana o Noche de Halloween. El valor se guarda en SQLite para todo el servidor; las instalaciones nuevas comienzan en Navidad y cada cliente sincroniza el mapa activo al abrir el juego. Una temporada activa fuerza ese escenario tanto en partidas individuales como al crear una sala cooperativa; **Sin temporada** recupera el sorteo aleatorio sin repetir el último mapa. Los jugadores normales pueden consultar la temporada pública, pero no modificarla.
 
 ## Punto actual de desarrollo
 
