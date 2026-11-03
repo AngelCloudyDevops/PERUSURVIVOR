@@ -1,3 +1,8 @@
+# Huevo caricaturesco y defensa física de Sideral — 2026-11-02
+- El huevo de la Q usa un atlas caricaturesco de contornos suaves, volumen redondeado y ocho cuadros de rodamiento, impacto y rotura; deja atrás el acabado pixelado por bloques.
+- Durante los cuatro segundos de huevo rodante, Sideral se mueve 25 % más rápido y bloquea todo daño físico. El daño especial continúa entrando y el beneficio termina antes de la eclosión.
+- La carta Q y la documentación explican la nueva defensa; el bloqueo muestra «CASCARÓN» sin conceder invulnerabilidad general.
+
 # Identidad base restaurada en Mirada Sideral — 2026-11-02
 - Los atlas de Mirada quieta y caminando vuelven al modelo visual exacto de `sideral-ur-v1`: rostro sin barba, proporciones redondeadas, mismo cabello, gafas, ropa, zapatillas y lata.
 - Se conservan la nitidez, los ocho cuadros y el movimiento de piernas de la remasterización; no cambia ninguna regla de combate.
