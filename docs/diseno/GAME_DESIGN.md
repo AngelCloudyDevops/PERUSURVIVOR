@@ -1228,3 +1228,10 @@ Mantener `TAB` abre una ficha lateral amplia sin pausar el combate. Puede cubrir
 - Cofres, elecciones, combo de equipo y resultados se envían también al servidor para validación y recuperación.
 - El HUD de red debe diferenciar `ANFITRIÓN` de `SERVIDOR`; nunca debe presentar predicción visual como alojamiento real.
 - El anfitrión puede consumir más CPU que el invitado. Si no sostiene la simulación o el enlace, el respaldo del servidor tiene prioridad.
+
+## Presentación de anomalías y portales
+
+- La Extinción reutiliza su cinemática de impacto de 6,4 s: primero muestra una alerta mundial tipo `WARNING`, después identifica el evento y finalmente confirma el cambio del terreno. La presentación no añade una segunda pausa ni altera el tiempo de supervivencia.
+- La alerta debe conservar el meteorito y el escenario visibles para comunicar de dónde llega la amenaza. En movimiento reducido elimina parpadeos y desplazamientos decorativos, pero mantiene títulos y contraste.
+- Al abrirse un portal se muestra durante 3,2 s **BRECHA ABIERTA · JEFE DETECTADO**, con un pulso violeta en los bordes. La partida sigue respondiendo y el traslado solo comienza al tocar el portal.
+- En cooperativo basta que un jugador toque el portal; el aviso debe explicitar **UNO TOCA · ENTRAN LOS DOS**. La transferencia continúa usando la transición sincronizada existente y no duplica pantallas de carga.
