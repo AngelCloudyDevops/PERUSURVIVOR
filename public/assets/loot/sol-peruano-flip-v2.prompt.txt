@@ -1,0 +1,7 @@
+Use case: stylized-concept
+Asset type: two-frame source sheet for a tiny animated game pickup
+Primary request: exactly two complete pixel-art Peruvian one-sol coins in one horizontal row: obverse and reverse.
+Style: deliberately hand-pixelled game art with crisp clusters and a readable silhouette at 28 pixels.
+Color: warm gold outer ring, cool silver center, bright upper-left rim and dark lower-right shadow.
+Required: identical size and center; transparent padding; the obverse reads “1 SOL”; simplified reverse emblem.
+Avoid: cropped edges, fragments, extra frames, baked glow, loose pixels, red artifacts, UI and watermark.

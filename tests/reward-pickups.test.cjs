@@ -42,9 +42,10 @@ test('Cristales de experiencia compactos, panetón e imán tienen dibujo propio'
 });
 
 test('La moneda del suelo usa el sprite animado de un sol peruano',()=>{
- const art=fs.readFileSync(path.join(__dirname,'../public/assets/loot/sol-peruano-spin-v1.png'));
+ const art=fs.readFileSync(path.join(__dirname,'../public/assets/loot/sol-peruano-flip-v2.png'));
  assert.equal(art.subarray(1,4).toString(),'PNG');
  const source=fs.readFileSync(path.join(__dirname,'../src/rendering/loot-art.js'),'utf8');
- assert.match(source,/sol-peruano-spin-v1\.png/);
- assert.match(source,/frame\*cell/);
+ assert.match(source,/sol-peruano-flip-v2\.png/);
+ assert.match(source,/Math\.cos\(age\*7\)/);
+ assert.match(source,/Math\.max\(\.1,Math\.abs\(turn\)\)/);
 });
