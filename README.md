@@ -1,5 +1,17 @@
 # PERUSURVIVOR — Causas del Caos
 
+## Guía del próximo sistema de cartas
+
+El resumen acordado y el orden para implementarlo están en [Guía de progresión: cartas, apoyos, modificaciones y fusiones](docs/diseno/GUIA_PROGRESION_CARTAS.md).
+
+- **Conservar los apoyos actuales:** Onda causa, Tarjetas del caos y Escudo de bandas. No se sustituyen sus nombres ni su identidad.
+- **Base existente:** kits personales, hasta dos apoyos automáticos, mejoras generales, tres ofertas al subir de nivel y cuatro espacios de equipo Dota obtenidos en cofres/tiendas.
+- **Diseño por implementar:** cuatro ofertas para elegir una, modificaciones del comportamiento, fusiones compatibles y rerolls limitados ligados a un progreso de personaje todavía por definir.
+- **Regla de fusión:** una por apoyo, hasta dos; es opcional. El apoyo fusionado conserva su espacio y su inversión, deja de atacar por su cuenta y transfiere su efecto a la habilidad elegida.
+- **Variedad:** elegir una dirección y descubrir interacciones durante la partida, sin garantizar siempre la misma receta. El foco es Supervivencia de 30 minutos; el modo rápido se valida aparte.
+
+La guía separa comportamiento actual, decisiones y cifras pendientes. **Esta documentación no cambia el gameplay ni presenta las nuevas fusiones como implementadas.** Empezar por un piloto de Sideral y Bandas antes de ampliar el sistema; seguir las etapas y comprobaciones de la guía.
+
 ## Burlas y gestos
 
 Durante una partida, mantener **B** abre una rueda de seis burlas; mover el cursor elige y soltar B activa. En móvil, el botón **B · Burlas** abre el mismo selector y cada segmento se toca directamente. Las burlas de texto aparecen durante tres segundos sobre la cabeza del personaje. «¿Me entiendes?» reproduce el MP4 vertical aportado por el usuario, anclado encima del actor con un ancho máximo de 128 px en escritorio y 104 px en móvil. El video dura una sola pasada, se carga bajo demanda, no captura controles y su audio obedece el volumen de **Efectos** sin detener la música. En cooperativo, el servidor valida el identificador y retransmite solo la burla elegida; no altera la simulación ni sus snapshots. La interfaz debe conservar seis posiciones, zona central libre, teclado, toque, movimiento reducido, un solo reproductor de video y una sola capa radial DOM para proteger los FPS.

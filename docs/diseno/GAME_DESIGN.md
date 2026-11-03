@@ -2,6 +2,12 @@
 
 > Nota de vigencia (2026-10-31): hay 21 personajes jugables (`src/data/catalog.js:3-11` menos ElZeein, que `shift()` convierte en jefe en `src/data/catalog.js:32`; `src/data/catalog.js:33`; `src/data/powers.js:74-109`; comprobado por `tests/gameplay.test.cjs:12`). Las menciones a «18 personajes» en secciones de arte o de historial describen el roster de cuando se añadieron. Ante contradicción manda el código. El 2026-10-31 se eliminó una copia duplicada de unas 388 líneas (de «Laboratorio de combate» a «Mundos heredados de los jefes»); se conservó la versión que coincide con el código.
 
+## Rediseño de progresión de cartas — planificación
+
+La [Guía de progresión: cartas, apoyos, modificaciones y fusiones](GUIA_PROGRESION_CARTAS.md), fechada 2026-11-03, reúne la dirección acordada y sus pendientes. Conserva Onda causa, Tarjetas del caos y Escudo de bandas. Plantea cuatro ofertas, modificaciones y una fusión opcional por apoyo (máximo dos), transfiriendo el apoyo automático a una habilidad personal.
+
+Es un plan de implementación por etapas: no sustituye las reglas jugables vigentes de las secciones siguientes. Actualmente se elige una de tres cartas; las modificaciones, nuevas fusiones y rerolls de esa guía todavía no están implementados. Los requisitos y cifras de ejemplo pendientes no deben usarse como balance definitivo.
+
 ## Regla universal de mejoras durante dominios
 
 La experiencia continúa acumulándose mientras cualquier expansión de dominio esté activa, pero nunca se abre una selección de nivel durante su introducción, combate ni transición de salida. La mejora pendiente se presenta únicamente después de que el dominio haya desaparecido por completo y el mapa original esté restaurado. Si la experiencia acumulada concede varios niveles, las selecciones se entregan consecutivamente después de resolver la anterior. La misma regla se aplica en cooperativo y a todos los dominios actuales o futuros; un dominio nuevo debe registrar su estado en `P.Progression.domainActive()` y añadir una prueba de regresión.

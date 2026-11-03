@@ -6,6 +6,10 @@
 **Ante una contradicción entre estos documentos y el código, manda el código** (`src/`,
 `backend/`, `tests/`). Varios informes son históricos: lo indican con un aviso al inicio.
 
+## Plan de progresión en preparación
+
+La [Guía de progresión de cartas](diseno/GUIA_PROGRESION_CARTAS.md) resume la conversación de diseño, lo que existe y la implementación pendiente: apoyos actuales, modificaciones, hasta dos fusiones opcionales, cuatro ofertas y rerolls propuestos. No describe funcionalidades nuevas ya activadas. Es la referencia de planificación para este trabajo.
+
 ## Carpetas
 
 | Carpeta | Qué contiene | Para quién |
