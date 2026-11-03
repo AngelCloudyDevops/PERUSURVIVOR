@@ -47,7 +47,7 @@ class Activities{
   const tier=P.Loot.keyType(chest);if(tier)P.state.keys[tier]--;
   chest.opened=true;chest.progress=1.8;chest.openAge=0;P.Loot.opened.add(chest.id);
   const item=chest.miniReward?P.Relics.ids[chest.miniReward]:null,tierName=chest.rarity||'common',equipment=!chest.gold&&!chest.miniReward,coins=equipment?P.Loot.chestCoins(tierName):0;
-  if(equipment&&!chest.coinsGranted){P.state.coins+=coins;chest.coinsGranted=true}
+  if(equipment&&!chest.coinsGranted)P.Loot.scatterCoins(chest,coins)
   this.pending={id:++this.serial,kind:chest.miniReward?'mini-reward':chest.gold?'portal-reward':'item',phase:'opening',age:0,item,rarity:tierName,coins,options:equipment?this.sim.players.map((p,slot)=>P.Loot.rewardOptions(p,chest,slot)):undefined,applied:[false,false],chestId:chest.id};
   return true;
  }
