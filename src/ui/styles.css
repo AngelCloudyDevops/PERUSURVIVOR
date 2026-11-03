@@ -1278,6 +1278,21 @@ body.menu[data-lobby-panel=home] #menu .home-feature p{margin:1px 0;font-size:11
 
 #overlay.fusion-link{z-index:200;max-height:90dvh;overflow-y:auto}#overlay.level-up.four-upgrades{z-index:200;overflow-x:hidden}#overlay.four-upgrades .upgrade-card{min-width:0;overflow:hidden}#overlay.four-upgrades>.upgrade-auxiliary{min-width:0;width:100%}
 
+/* Selector inicial de Sideral: tres cartas, sin mezclarlo con el panel del vestíbulo. */
+body.instinct-choice-open #lobby-hub{pointer-events:none;user-select:none}
+#overlay.level-up.card-reveal.instinct-choice{z-index:230;isolation:isolate;width:min(940px,calc(100vw - 32px));max-width:calc(100vw - 32px);max-height:calc(100dvh - 32px);grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto auto minmax(0,1fr);gap:14px;overflow-x:hidden;overflow-y:auto;padding:25px 24px 24px;background:radial-gradient(circle at 50% 12%,#314c5655,transparent 35%),linear-gradient(145deg,#172633fe,#10171efe);border-color:#d1ae62;box-shadow:0 0 0 100vmax #02070de8,0 24px 90px #000e}
+#overlay.instinct-choice>h2,#overlay.instinct-choice>p,#overlay.instinct-choice>.instinct-choice-back{grid-column:1/-1}
+#overlay.instinct-choice>h2{padding-inline:84px;margin-top:2px}
+#overlay.level-up.card-reveal.instinct-choice>h2:after{content:'ELIGE TU ATAQUE AUTOMÁTICO'}
+#overlay.instinct-choice>p{margin-bottom:2px}
+#overlay.instinct-choice .instinct-choice-back{position:absolute;z-index:8;top:17px;left:18px;width:auto;min-height:34px;margin:0;padding:8px 12px;border:1px solid #7f91a2;border-radius:5px;background:#152431;color:#f4d78f;text-align:center;font:800 10px/1 monospace;letter-spacing:.8px}
+#overlay.instinct-choice .instinct-choice-back:hover,#overlay.instinct-choice .instinct-choice-back:focus-visible{border-color:#f2cb65;background:#223848}
+#overlay.instinct-choice .upgrade-card{min-width:0}
+#overlay.instinct-choice.instinct-choice-starting .upgrade-card:not(.upgrade-chosen){opacity:.38;filter:saturate(.45) brightness(.72);pointer-events:none;transition:opacity .16s,filter .16s}
+#overlay.instinct-choice.instinct-choice-starting .upgrade-chosen{z-index:7}
+@media(max-width:600px){#overlay.level-up.card-reveal.instinct-choice{width:min(440px,calc(100vw - 14px));max-width:calc(100vw - 14px);max-height:calc(100dvh - 14px - env(safe-area-inset-top) - env(safe-area-inset-bottom));grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto repeat(3,minmax(174px,auto));gap:9px;padding:56px 9px calc(12px + env(safe-area-inset-bottom))}#overlay.instinct-choice>h2,#overlay.instinct-choice>p,#overlay.instinct-choice>.instinct-choice-back{grid-column:1}#overlay.instinct-choice>h2{padding-inline:0;font-size:clamp(25px,8vw,34px)}#overlay.instinct-choice .instinct-choice-back{top:12px;left:12px}#overlay.instinct-choice .upgrade-card{height:clamp(174px,24dvh,210px);min-height:174px}}
+@media(prefers-reduced-motion:reduce){#overlay.instinct-choice.instinct-choice-starting .upgrade-card{transition:none}}
+
 /* Apoyos bajo los ataques; la mochila conserva su nueva ubicación independiente. */
 #combat-dock #support-dock{grid-column:1;grid-row:2}
 @media(max-width:760px){#combat-dock #support-dock{grid-column:1/-1;grid-row:3}#combat-dock[data-character=sideral] #support-dock{grid-row:2}}
