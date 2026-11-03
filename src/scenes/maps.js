@@ -6,7 +6,7 @@ catalog:[
 {id:'plaza',name:'Plaza de Armas',region:'Lima · Centro histórico',description:'Ciudad sin bordes · Piedra y jardines.',color:'#ccaa65',bounds:{left:-880,right:880,top:-430,bottom:600},spawn:{x:0,y:210},fountain:{x:0,y:55,rx:176,ry:105}},
 {id:'machu',name:'Machu Picchu',region:'Cusco · Andes',description:'Andes sin bordes · Muros y rocas.',color:'#82b7a4',bounds:{left:-780,right:780,top:-400,bottom:570},spawn:{x:0,y:-80}},
 {id:'halloween',name:'Noche de Halloween',region:'Lima · Parque encantado',description:'Bruma, calabazas y momias entre senderos.',color:'#51385f',base:'campo',miniboss:'campo',bounds:{left:-940,right:940,top:-430,bottom:620},spawn:{x:0,y:-60}},
-{id:'navidad',name:'Navidad Peruana',region:'Lima · Parque navideño',description:'Duendes, regalos y luces entre pinos nevados.',color:'#547b72',base:'campo',miniboss:'plaza',bounds:{left:-940,right:940,top:-430,bottom:620},spawn:{x:0,y:-60}}
+{id:'navidad',name:'Navidad Peruana',region:'Lima · Parque navideño',description:'Duendes, regalos y luces entre pinos nevados.',color:'#547b72',base:'campo',miniboss:'navidad',bounds:{left:-940,right:940,top:-430,bottom:620},spawn:{x:0,y:-60}}
 ],
 biomes:[
 {id:'ruta-chosicano',bossKind:'combi',name:'Última Parada',region:'Lima · Ruta del Chosicano',description:'Una avenida interminable tomada por combis y paraderos.',color:'#9b7751',asset:'assets/arenas/combi-packed-v2.webp',surface:'terminal',climate:'plaza',ambience:'terminal',encounterBase:'campo',eventBase:'plaza',miniboss:'plaza',spawn:{x:0,y:80}},

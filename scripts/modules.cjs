@@ -135,6 +135,10 @@ module.exports = [
     "output": "js/minibosses.js"
   },
   {
+    "source": "src/systems/christmas-tree-miniboss.js",
+    "output": "js/christmas-tree-miniboss.js"
+  },
+  {
     "source": "src/rendering/makanaky-player-art.js",
     "output": "js/makanaky-player-art.js"
   },

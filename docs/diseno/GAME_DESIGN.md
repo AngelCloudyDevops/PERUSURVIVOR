@@ -1258,7 +1258,9 @@ Los apoyos activos se muestran como cartas con el arte genérico existente, nomb
 ### Balance legible de enemigos
 
 El Centro de balance presenta los enemigos con valores reales de referencia —PV, daño por impacto, velocidad, defensas, recarga en segundos, radio y duración— y nunca como “Vida 1” o “Ataque 1”. Internamente conserva factores relativos para que el crecimiento por tiempo, rango, dificultad y cooperativo siga funcionando. Los balances antiguos continúan siendo válidos y la interfaz los convierte automáticamente a números legibles.
-
-
 ### Fusión directa durante el combate
 Un apoyo en rango 3, desde nivel 8 (6 en Rápida), puede arrastrarse sobre una técnica compatible del HUD. Solo se resaltan destinos válidos. Soltar sobre el destino fusiona inmediatamente, sin pausa, confirmación ni consumo de subida de nivel. Soltar fuera cancela. También se puede seleccionar el apoyo y luego el destino con clic, toque o teclado. No se permite mientras hay una elección, pausa, muerte, cinemática o dominio activo. Conserva el límite de dos apoyos. La oferta de nivel anterior se mantiene como ruta alternativa.
+
+## Minijefe navideño: El Árbol Maldito
+
+Navidad Peruana tiene como minijefe exclusivo a El Árbol Maldito, un controlador/invocador de daño especial. Alterna Adornos explosivos, Raíces heladas y Lluvia de regalos. El regalo verde invoca un duende y los rojos explotan; las raíces permanecen 3,2 s y ralentizan sin inmovilizar. Al 50 % de vida gana 12 % de velocidad y cada cuarto turno usa Navidad marchita: diez adornos convergen dejando dos salidas opuestas. Madera resinosa aumenta en 25 % el daño de fuentes de fuego. Su cofre exclusivo entrega Estrella torcida, que cada sexto ataque básico dispara cuatro estrellas de 25 % de poder.

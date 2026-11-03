@@ -859,6 +859,18 @@
       "quality": 98
     },
     {
+      "source": "assets/minibosses/arbol-maldito-v1.png",
+      "output": "assets/minibosses/arbol-maldito-v1.webp",
+      "width": 2172,
+      "height": 724,
+      "originalBytes": 1886243,
+      "optimizedBytes": 626626,
+      "sourceSha256": "6b66c8f9c81a89958f604785e8b13f4ec6d11363b198b2c0092cad0d367f0cd3",
+      "outputSha256": "a1f952c64a028a3b990dcb30bbd33516d134324a2f8cc1dc86bb3d1f51c6d064",
+      "rgbaSha256": "709c9dce5c94336ea0ae4e87bf5346ac80b7da77207be0ca0b0575a05a909362",
+      "quality": 94
+    },
+    {
       "source": "assets/minibosses/fiscalizador-v1.png",
       "output": "assets/minibosses/fiscalizador-v1.webp",
       "width": 2172,
@@ -974,6 +986,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 150306892,
-  "optimizedBytes": 42375810
+  "originalBytes": 152193135,
+  "optimizedBytes": 43002436
 }
