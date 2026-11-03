@@ -90,11 +90,16 @@ test('el archivo de amenazas deja de animarse mientras se observan coleccionable
  assert.match(lobby,/this\.codexView!=='collectibles'/);
 });
 
-test('Sideral muestra sus tres full arts como una mano de cartas en combate',()=>{
+test('Sideral muestra la mano continua 1/2/3/Q/R sin bandeja negra',()=>{
  for(const art of ['sideral-fear-fullart-v1.webp','sideral-tail-fullart-v1.webp','sideral-egg-fullart-v1.webp'])assert.match(hudSource,new RegExp(art.replaceAll('.','\\.')));
  for(const contract of ['sideralCard','sideral-skill-card','sideral-card-art','sideral-card-key','sideral-card-title','sideral-card-rank'])assert.match(hudSource,new RegExp(contract));
  assert.match(css,/#weapon-bar\[data-character=sideral\]/);
  assert.match(css,/CARTAS DE ATAQUE · TECLAS 1–3/);
  assert.match(css,/\.sideral-skill-card\[data-active=true\]/);
+ assert.match(css,/#combat-dock\[data-character=sideral\].*grid-template-columns/);
+ assert.match(css,/#combat-dock\[data-character=sideral\] #weapon-bar\[data-character=sideral\][^{]*\{[^}]*background:transparent/);
+ assert.match(css,/\.sideral-card-cooldown-sweep/);
+ assert.match(css,/#combat-dock\[data-character=sideral\] #ability-dock/);
  assert.match(css,/@media\(max-width:760px\)[^{]*\{#weapon-bar\[data-character=sideral\]/);
+ assert.match(css,/@media\(max-width:760px\)\{#combat-dock\[data-character=sideral\]/);
 });
