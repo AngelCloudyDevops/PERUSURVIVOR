@@ -181,6 +181,7 @@ El suelo del combate usa texturas extraídas de los fondos originales y caminos 
 
 ## Cajas, cofres y objetos
 - Las cajas tienen 55 de vida y se pueden atacar incluso sin enemigos cercanos. Al romperse dejan curación de 18 puntos y 3 de fama; además tienen un 70% de probabilidad de dejar 5 monedas. Una caja rota no vuelve a dar botín.
+- Cada minion normal tiene un 3 % de probabilidad determinista de dejar 1 moneda de partida, con un máximo compartido de 8 apariciones por minuto. No participan jefes, minijefes, portadores de llave, invocados, imitadores ni las pruebas de práctica/desarrollo. En cooperativo la moneda pertenece al monedero común y se genera una sola vez para el grupo.
 - Los cofres se distribuyen aleatoriamente por sectores durante la exploración. Se abren al permanecer quieto a menos de 75 unidades durante 1,8 segundos. Alejarse o moverse reinicia la apertura; las pantallas de pausa o selección detienen el progreso.
 - Los cofres de exploración entregan monedas garantizadas y tres opciones personales; se elige una. El equipo Dota ocupa cuatro espacios, sin duplicar familias. Una evolución reemplaza su versión previa en el mismo espacio.
 - Emoliente: curación instantánea del 35% de vida máxima, sin superar el máximo. No ocupa el hueco de equipo.
