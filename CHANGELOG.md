@@ -1,3 +1,7 @@
+# Mayor presencia para las campanillas de experiencia — 2026-11-02
+- La fundamental de las gemas sube aproximadamente 75 % y el armónico gana presencia, sin modificar el volumen de los demás efectos.
+- El límite máximo se mantiene en 0,06 para evitar distorsión cuando muchas gemas entran al imán a la vez.
+
 # Gemas de experiencia compactas y campanillas ascendentes — 2026-11-02
 - Las gemas de experiencia se dibujan 16 % más pequeñas y con un resplandor más contenido, sin reducir su alcance de imán ni su área de recogida.
 - Cada recogida encadenada avanza por una escala pentatónica aguda con timbre de campanilla; la escala se reinicia tras medio segundo sin recoger experiencia.
