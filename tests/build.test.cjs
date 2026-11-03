@@ -47,6 +47,15 @@ test('El vestíbulo completo conecta las siete áreas y conserva enlaces sociale
  assert.match(source,/links:\{discord:'',support:''\}/,'Los enlaces externos parten vacíos y no se inventan');
  assert.match(css,/\.hub-social/);assert.match(css,/\.period-missions/);assert.match(css,/\.prepare-grid/);
 });
+test('Gacha moderno: banners, tickets y acciones permanecen en la interfaz nueva',()=>{
+ const complete=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),economy=fs.readFileSync(path.join(root,'src/systems/gacha-economy.js'),'utf8');
+ const modern=complete.slice(complete.indexOf('renderGacha(){'),complete.indexOf('renderCoop(){'));
+ assert.match(modern,/P\.GachaEconomy\.renderHub/);
+ assert.match(modern,/gachaPull\(1\)/);
+ assert.match(modern,/gachaView='history'/);
+ assert.doesNotMatch(modern,/P\.Gacha\.open\(\)/);
+ assert.match(economy,/renderHub\(panel,add,gacha,rerender=/);
+});
 test('La selección de causa, mapa y modo permanece en el flujo moderno hasta iniciar directamente',()=>{
  const complete=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),reference=fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8'),game=fs.readFileSync(path.join(root,'src/scenes/game.js'),'utf8'),screens=fs.readFileSync(path.join(root,'src/ui/screens.js'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');
  assert.match(complete,/retireLegacyPickers\(\)/);assert.match(complete,/if\(route==='characters'\)return owner\.chooseCause\(\)/);assert.match(complete,/if\(route==='play'\)\{owner\.setHubPlayMode\('solo'\);return show\('home',focus\)\}/);assert.match(complete,/reference\.open\('dex'\)/);
