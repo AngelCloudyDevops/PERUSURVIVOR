@@ -1130,7 +1130,7 @@ El kit 9/9 y su balance inicial están definidos en [SIDERAL_KIT.md](SIDERAL_KIT
 ### Ajuste medido de Sideral
 Los huevos eligen dirección al abrir y anticipan de forma limitada al rival, sin buscarlo después de lanzar la embestida. Q fija al activar el crecimiento del mayor rango del arsenal (+14 % por rango adicional, ×1,15 si existe evolución) y conserva 25 pulsos en seis segundos a 25/30 Hz. No cambian Mirada, Colazo, Sangre fría, stats base ni dominio R. [Método, evidencia y límites del balance](../balance/SIDERAL_BALANCE.md).
 
-Sangre fría tiene lectura propia bajo la vida: un lagarto verde abraza la tarjeta y sus tres escamas comunican carga, proximidad, preparación y pérdida por daño. La identidad visual no altera alcance, tiempos ni potencia y respeta movimiento reducido.
+Sangre fría tiene lectura propia bajo la vida: un lagarto verde abraza la tarjeta y sus tres escamas comunican carga, proximidad, preparación y pérdida por daño. Al completar las tres escamas aparece sobre Sideral un aura verde reptiliana ceñida al cuerpo, sin pausa, inmovilización ni corte de cámara. La Mirada potenciada cambia a un cono verde con patrón de escamas, rostro y ojos translúcidos de lagarto; si alcanza al objetivo adicional, una mirada secundaria señala ese beneficio real. La identidad visual no altera alcance, tiempos ni potencia y respeta movimiento reducido.
 
 ### CiriloTV · Taxi y maldiciones
 Kit 9/9 en [CIRILO_KIT.md](CIRILO_KIT.md): taxi con ida/regreso, resistencia parcial de 40 % y daño de reversa solo al evolucionar; eco y contagio acotado; pasiva de riesgo/resurrección existente formalizada; tres abanicos Q con carga propia. No se modifican cirilo-ur.js ni cirilo-arena.js.
