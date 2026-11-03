@@ -10,6 +10,8 @@ Cooperativo sin barrera de separación: cada jugador puede explorar libremente; 
 
 Supervivencia peruana con veintiún personajes jugables, cinco mapas, encuentros opcionales y objetos de Dota 2 adaptados como cartas de equipo evolutivo durante cada partida.
 
+Temporada global: ReySuperior puede abrir **Panel admin → Temporada** y elegir Sin temporada, Navidad Peruana o Noche de Halloween. El valor se guarda en SQLite para todo el servidor; las instalaciones nuevas comienzan en Navidad y cada cliente sincroniza el mapa activo al abrir el juego. Los jugadores normales pueden consultar la temporada pública, pero no modificarla.
+
 ## Punto actual de desarrollo
 
 El **Grinch del Cercado** ya tiene su contrato mecánico completo: cuatro ataques propios, Lista negra, Espíritu navideño robado, la expansión Cercado sin Navidad y la ulti Noche del gran robo. Su segunda fase añade un cuarto objetivo y acelera los robos según los fallos. Pendientes: dirección de arte, animación, audio y balance en partidas completas.
