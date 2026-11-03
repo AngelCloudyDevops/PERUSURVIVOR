@@ -996,3 +996,7 @@ Por indicación del usuario, esta entrega se promueve a producción tras CI verd
 ### Migración v7 de mascotas
 
 `P.Meta` migra guardados v6 a v7 añadiendo `pet_chick` a `prepared` solo cuando no existe ya otra mascota preparada. Los guardados creados directamente en v7 nacen con la misma mascota equipada. Un perfil v7 con la lista de mascotas vacía representa una retirada explícita y no se vuelve a completar en lecturas posteriores. Cliente y backend reutilizan `Meta.normalize`, por lo que la cuenta descargada y la copia SQLite convergen al mismo esquema sin una ruta especial ni campos paralelos.
+
+
+### Presentación de apoyos fusionados
+CardBuildUI filtra solo para presentación los apoyos registrados en CardBuilds.fusions. No borra powerRanks ni el estado de fusión. El arte reutiliza UI.cardArtwork y se dibuja al cambiar la firma del HUD, sin bucles nuevos de animación. El dock adapta su ancho al número de apoyos visibles; la validación del límite continúa en CardBuilds.
