@@ -1,3 +1,7 @@
+# Campanillas de experiencia a volumen 120 — 2026-11-02
+- La campanilla parte en 0,09 y alcanza un máximo estricto de 0,12 al subir la escala, quedando por encima de la mezcla musical sin cambiar otros efectos.
+- El intervalo mínimo entre sonidos y el límite de voces siguen activos para impedir saturación al absorber grupos grandes.
+
 # Mayor presencia para las campanillas de experiencia — 2026-11-02
 - La fundamental de las gemas sube aproximadamente 75 % y el armónico gana presencia, sin modificar el volumen de los demás efectos.
 - El límite máximo se mantiene en 0,06 para evitar distorsión cuando muchas gemas entran al imán a la vez.
