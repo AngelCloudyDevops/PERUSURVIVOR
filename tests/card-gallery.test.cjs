@@ -89,3 +89,12 @@ test('el archivo de amenazas deja de animarse mientras se observan coleccionable
  const lobby=fs.readFileSync(path.join(root,'src/ui/lobby.js'),'utf8');
  assert.match(lobby,/this\.codexView!=='collectibles'/);
 });
+
+test('Sideral muestra sus tres full arts como una mano de cartas en combate',()=>{
+ for(const art of ['sideral-fear-fullart-v1.webp','sideral-tail-fullart-v1.webp','sideral-egg-fullart-v1.webp'])assert.match(hudSource,new RegExp(art.replaceAll('.','\\.')));
+ for(const contract of ['sideralCard','sideral-skill-card','sideral-card-art','sideral-card-key','sideral-card-title','sideral-card-rank'])assert.match(hudSource,new RegExp(contract));
+ assert.match(css,/#weapon-bar\[data-character=sideral\]/);
+ assert.match(css,/CARTAS DE ATAQUE · TECLAS 1–3/);
+ assert.match(css,/\.sideral-skill-card\[data-active=true\]/);
+ assert.match(css,/@media\(max-width:760px\)[^{]*\{#weapon-bar\[data-character=sideral\]/);
+});
