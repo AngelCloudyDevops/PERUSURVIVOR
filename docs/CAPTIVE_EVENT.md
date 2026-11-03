@@ -13,7 +13,7 @@
 | --- | --- |
 | 30 % | Acompañante celeste: Hadoken especial cada 4 s, daño igual al 50 % del poder actual del jugador. |
 | 30 % | Acompañante morado: Hadoken especial cada 6 s; al impactar abre durante 1,8 s un pequeño vórtice que atrae minions y causa daño especial reducido. |
-| 30 % | Premio: muestra tres tickets en la mano y entrega 10 tickets dorados persistentes. Cada ticket reemplaza 60 monedas en una tirada de Gacha. |
+| 30 % | Premio: muestra tres tickets en la mano y entrega 10 tickets dorados persistentes en la cuenta. Cada ticket reemplaza 60 monedas en una tirada de Gacha. |
 | 10 % | Huida: se aleja de puntitas, lanza una bomba de humo ninja y no entrega nada. |
 
 El acompañante no forma parte de la lista de enemigos, no tiene vida ni colisión y nunca puede ser seleccionado. Permanece hasta que el jugador recibe daño efectivo; los bloqueos e invulnerabilidad que reduzcan el daño a cero no lo despiden.
