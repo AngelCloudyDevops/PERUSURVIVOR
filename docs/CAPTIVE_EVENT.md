@@ -16,7 +16,7 @@
 | 30 % | Premio: muestra tres tickets en la mano y entrega 10 tickets dorados persistentes en la cuenta. Cada ticket reemplaza 60 monedas en una tirada de Gacha. |
 | 10 % | Huida: se aleja de puntitas, lanza una bomba de humo ninja y no entrega nada. |
 
-El acompañante no forma parte de la lista de enemigos, no tiene vida ni colisión y nunca puede ser seleccionado. Permanece un máximo de 60 segundos o hasta que el jugador reciba daño efectivo; los bloqueos e invulnerabilidad que reduzcan el daño a cero no lo despiden.
+El acompañante no forma parte de la lista de enemigos, no tiene colisión y nunca puede ser seleccionado. Al liberarlo obtiene **tres corazones visibles** y no desaparece por tiempo. Cada impacto efectivo dirigido al jugador consume primero un corazón y absorbe todo el daño; la vida del jugador no baja. Los bloqueos o la invulnerabilidad que anulen el impacto tampoco gastan corazones. Al consumir el tercero, el acompañante desaparece con humo ninja.
 
 ## Prueba de administrador
 
@@ -24,6 +24,6 @@ En el Laboratorio aparece `Probar cautivo` únicamente para una cuenta con rol `
 
 ## Arte
 
-El atlas `public/assets/events/captive-companion-v2.webp` contiene 24 cuadros 6×4: tres poses amarradas, tres de liberación, seis de caminata, tres por cada Hadoken, dos de tickets, tres de huida y una de humo. La caminata y la huida avanzan según la distancia realmente recorrida, por lo que los pies no se deslizan cuando cambia la velocidad. Los ataques separan anticipación, carga y lanzamiento; el proyectil nace al llegar al cuadro de extensión.
+El atlas `public/assets/events/captive-companion-v2.webp` contiene 24 cuadros 6×4: tres poses amarradas, tres de liberación, seis de caminata, tres por cada Hadoken, dos de tickets, tres de huida y una de humo. La caminata y la huida avanzan según la distancia realmente recorrida, por lo que los pies no se deslizan cuando cambia la velocidad. Los ataques separan anticipación, carga y lanzamiento. Una esfera crece entre las manos antes del disparo; el Hadoken nace allí como una onda grande con núcleo, estela y partículas, y termina en un impacto expansivo. El ataque morado añade espirales y deja el agujero negro visible en el suelo.
 
 El PNG fuente y el prompt reproducible se conservan junto al WebP; el build público distribuye únicamente la versión optimizada.
