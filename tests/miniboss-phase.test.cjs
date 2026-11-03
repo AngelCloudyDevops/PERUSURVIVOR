@@ -1,5 +1,17 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),{Simulation}=require('../backend/simulation.cjs');
+test('Árbol Maldito: contrato, tres patrones, fase II y estado serializable',()=>{
+ const {P}=new Simulation('navidad',[0,6]),M=P.Minibosses,s=P.state,e=M.create('navidad',{x:0,y:0});s.enemies=[e];s.player.x=160;s.player.y=0;P.Terrain.clear=()=>true;P.Terrain.hit=()=>null;P.Terrain.resolve=()=>{};
+ assert.equal(P.Maps.definition('navidad').miniboss,'navidad');assert.equal(e.name,'El Árbol Maldito');assert.equal(e.combatStats.damageType,'special');assert.equal(M.catalog.navidad.ultimate,'Navidad marchita');
+ M.warn(e,'ornaments');M.fire(e);assert.equal(s.danger.length,5);assert(s.danger.every(q=>q.glyph==='TREE_ORNAMENT'&&q.damageType==='special'));
+ s.danger=[];M.warn(e,'roots');const target=e.christmas.targets[1];M.fire(e);assert.equal(s.danger.length,3);assert.equal(e.christmas.roots.length,3);s.player.x=target.x;s.player.y=target.y;P.ChristmasTreeMiniboss.tick(e);assert(s.player.dynamicZoneSlowUntil>s.elapsed);
+ s.danger=[];const before=s.enemies.length;M.warn(e,'gifts');M.fire(e);assert.equal(s.danger.length,2);assert.equal(s.enemies.length,before+1);assert(s.enemies.at(-1).christmasElf);
+ const base=e.speed;e.hp=e.max*.5;assert(M.beginFury(e));assert.equal(e.speed,base*1.12);assert(!M.beginFury(e));e.phase='approach';e.attackIndex=3;assert.equal(M.nextAttack(e),'wither');M.warn(e,'wither');s.danger=[];M.fire(e);assert.equal(s.danger.length,10);assert(s.danger.every(q=>q.ultimate));assert.equal(e.christmas.roots.length,7);assert.doesNotThrow(()=>JSON.stringify(e));
+});
+
+test('Árbol Maldito: Madera resinosa aumenta solo fuentes de fuego',()=>{
+ const normal=new Simulation('navidad',[0,6]),fire=new Simulation('navidad',[0,6]),a=normal.P.Minibosses.create('navidad',{x:0,y:0}),b=fire.P.Minibosses.create('navidad',{x:0,y:0});normal.P.state.enemies=[a];fire.P.state.enemies=[b];const hpA=a.hp,hpB=b.hp;normal.P.Minibosses.hurt(a,40,0,{damageType:'special'});fire.P.Minibosses.hurt(b,40,0,{damageType:'special',glyph:'CIRILO_Q_FIRE'});assert(Math.abs((hpB-b.hp)-(hpA-a.hp)*1.25)<1e-9);assert(fire.P.state.effects.some(q=>q.text?.includes('MADERA RESINOSA')));
+});
 for(const map of ['campo','plaza','machu'])test('Segunda fase: '+map+' · umbral, aviso y dos ejecuciones',()=>{
  const sim=new Simulation(map,[0,6]),P=sim.P,s=P.state,M=P.Minibosses,e=M.create(map,{x:0,y:0});s.enemies=[e];s.player.x=200;s.player.y=0;e.attackT=100;P.Terrain.resolve=()=>{};P.Terrain.clear=()=>true;
  e.hp=e.max*.5+1;M.move(e,0);assert(!e.enraged);e.hp=e.max*.5;s.danger=[{miniId:e.miniId},{miniId:999}];M.move(e,0);assert(e.enraged);assert.equal(e.phase,'mini-fury');assert.equal(s.danger.length,1);assert.equal(s.danger[0].miniId,999);assert.equal(M.beginFury(e),false);
