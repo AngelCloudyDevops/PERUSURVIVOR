@@ -1244,3 +1244,7 @@ Mantener `TAB` abre una ficha lateral amplia sin pausar el combate. Puede cubrir
 - La alerta debe conservar el meteorito y el escenario visibles para comunicar de dónde llega la amenaza. En movimiento reducido elimina parpadeos y desplazamientos decorativos, pero mantiene títulos y contraste.
 - Al abrirse un portal se muestra durante 3,2 s **BRECHA ABIERTA · JEFE DETECTADO**, con un pulso violeta en los bordes. La partida sigue respondiendo y el traslado solo comienza al tocar el portal.
 - En cooperativo basta que un jugador toque el portal; el aviso debe explicitar **UNO TOCA · ENTRAN LOS DOS**. La transferencia continúa usando la transición sincronizada existente y no duplica pantallas de carga.
+
+## Mascota inicial equipada
+
+Todo perfil nuevo comienza con la Gallinita recolectora obtenida y equipada. Los perfiles anteriores que ya recibieron la mascota pero nunca guardaron una selección la equipan una sola vez al migrar. Después de esa migración, cambiarla por otra mascota o quitarla es una decisión persistente del jugador. La mascota acompaña al personaje únicamente en partidas individuales, recoge los tipos de botín permitidos por su rareza y entrega la carga al regresar junto a su dueño.

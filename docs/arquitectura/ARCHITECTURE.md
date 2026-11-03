@@ -992,3 +992,7 @@ Public cooperative E2E permite seleccionar staging o producción y fijar el SHA 
 La batería de Node limita a dos archivos de prueba simultáneos, tanto en pretest como en test. Evita saturar memoria/CPU en Windows al cargar muchas VMs completas; conserva todas las pruebas y sus límites de tiempo. No altera el bucle ni los recursos del juego.
 
 Por indicación del usuario, esta entrega se promueve a producción tras CI verde. Public cooperative E2E se dispara al terminar el workflow CI de un push a main, después del despliegue, fijando el SHA esperado. Se evita iniciar una prueba de la versión antigua que bloquearía la activación nueva. Se conserva el inicio manual y el bloqueo compartido.
+
+### Migración v7 de mascotas
+
+`P.Meta` migra guardados v6 a v7 añadiendo `pet_chick` a `prepared` solo cuando no existe ya otra mascota preparada. Los guardados creados directamente en v7 nacen con la misma mascota equipada. Un perfil v7 con la lista de mascotas vacía representa una retirada explícita y no se vuelve a completar en lecturas posteriores. Cliente y backend reutilizan `Meta.normalize`, por lo que la cuenta descargada y la copia SQLite convergen al mismo esquema sin una ruta especial ni campos paralelos.
