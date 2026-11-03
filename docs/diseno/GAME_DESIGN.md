@@ -1249,6 +1249,7 @@ Mantener `TAB` abre una ficha lateral amplia sin pausar el combate. Puede cubrir
 
 Todo perfil nuevo comienza con la Gallinita recolectora obtenida y equipada. Los perfiles anteriores que ya recibieron la mascota pero nunca guardaron una selección la equipan una sola vez al migrar. Después de esa migración, cambiarla por otra mascota o quitarla es una decisión persistente del jugador. La mascota acompaña al personaje únicamente en partidas individuales, recoge los tipos de botín permitidos por su rareza y entrega la carga al regresar junto a su dueño.
 
+La mascota usa pasos ligados a la distancia real recorrida tanto al buscar botín como al seguir a su dueño. Al llegar a su posición de descanso deja de caminar; el rebote, la sombra y el pequeño rastro visual solo comunican desplazamiento y no alteran velocidad, alcance ni colisiones. Con movimiento reducido conserva una pose estable sin rebote.
 
 ### Apoyos en el mazo de combate
 Los apoyos activos se muestran como cartas con el arte genérico existente, nombre, cinco estrellas de rango y AUTO; no añaden teclas. Al fusionarse desaparecen de la fila y la técnica conserva la insignia del apoyo. El rango y la fusión permanecen en el jugador y siguen ocupando uno de los dos cupos: no permiten adquirir un tercer apoyo. En pantallas estrechas, las cartas de apoyo pasan a una segunda fila.
