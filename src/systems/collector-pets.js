@@ -6,9 +6,9 @@ P.CollectorPets={
  radius:10,
  asset:'/assets/pets/collector-chickens-v1.webp',image:null,ready:false,
  profiles:{
-  pet_chick:{name:'Gallinita recolectora',rarity:'common',row:0,drawSize:60,capacity:4,range:450,speed:270,rest:.8,kinds:['xp']},
-  pet_pack:{name:'Gallinita mochilera',rarity:'rare',row:1,drawSize:68,capacity:8,range:700,speed:360,rest:.6,kinds:['xp','coin']},
-  pet_rocket:{name:'Gallinita cohete',rarity:'legendary',row:2,drawSize:76,capacity:12,range:1000,speed:540,rest:.4,kinds:['xp','coin','key','paneton','magnet-pulse','heal']}
+  pet_chick:{name:'Gallinita recolectora',rarity:'common',row:0,drawSize:44,capacity:4,range:450,speed:270,rest:.8,kinds:['xp']},
+  pet_pack:{name:'Gallinita mochilera',rarity:'rare',row:1,drawSize:52,capacity:8,range:700,speed:360,rest:.6,kinds:['xp','coin']},
+  pet_rocket:{name:'Gallinita cohete',rarity:'legendary',row:2,drawSize:60,capacity:12,range:1000,speed:540,rest:.4,kinds:['xp','coin','key','paneton','magnet-pulse','heal']}
  },
  init(){if(typeof Image==='undefined')return;this.image=new Image();this.image.decoding='async';this.image.onload=()=>{this.measure();this.ready=true;P.Supply?.render?.();P.LobbyComplete?.renderHubPlayControls?.()};this.image.src=this.asset},
  profile(id){return this.profiles[id]||null},
