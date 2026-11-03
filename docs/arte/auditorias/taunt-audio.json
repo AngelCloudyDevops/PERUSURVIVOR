@@ -1,0 +1,11 @@
+{
+  "id": "burla-voz-v1",
+  "source": "WhatsApp Audio 2026-10-26 at 00.23.42.mpeg",
+  "runtime": "public/assets/audio/burla-voz-v1.mpeg",
+  "container": "MPEG audio",
+  "durationSeconds": 495,
+  "playbackLimitSeconds": 5,
+  "bytes": 3966132,
+  "sha256": "2c7238b098a9f56a6cf2abcbc845268b3675828068327a6f49e1cf34bf8abdf0",
+  "note": "Audio aportado por el usuario. Carga diferida; la burla usa solo un fragmento breve por activación."
+}

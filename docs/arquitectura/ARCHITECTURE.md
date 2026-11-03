@@ -967,3 +967,7 @@ El enlace directo es una optimización recuperable, no un requisito. Si WebRTC f
 ### Ficha lateral del personaje
 
 `ui/player-stats-drawer.js` se carga al final de los módulos de combate para consultar la versión definitiva de `P.Evolutions.attack`, `P.Stats` y `P.UI.hud`. Crea una sola vista DOM compartida, lee el jugador activo al pintar y no conserva copias de estadísticas. `Tab` solo cambia presentación durante `play`; no altera `P.state.mode`, temporizadores ni autoridad cooperativa. La alternativa táctil reutiliza el mismo componente. Vida, estados y pasiva siguen perteneciendo a sus módulos originales y se integran visualmente mediante CSS, sin duplicar su lógica.
+
+### Rueda de burlas
+
+`systems/taunts.js` crea una única rueda radial accesible y reutilizable. B abre el selector, el ángulo del puntero determina uno de seis IDs y soltar confirma; el botón táctil abre la misma vista. El gesto activo se guarda solo como estado visual efímero y se proyecta al final de `World.render` en coordenadas de pantalla, por encima del personaje sin modificar su actor, colisiones o combate. El audio de voz se instancia en el primer uso con `preload=none`, se limita a cinco segundos, sigue el volumen de efectos y aplica ducking a la música sin pausarla. El mensaje cooperativo `taunt` valida una lista cerrada y retransmite únicamente `slot` e `id`; no entra al snapshot autoritativo. Movimiento reducido elimina transiciones y el sistema no usa intervalos ni partículas persistentes.

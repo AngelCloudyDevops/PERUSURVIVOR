@@ -296,6 +296,7 @@ module.exports = [
   {"source":"src/network/coop-assist.js","output":"js/coop-assist.js"},
   {"source":"src/systems/run-mode.js","output":"js/run-mode.js"},
   {"source":"src/systems/map-events.js","output":"js/map-events.js"},
+  {"source":"src/systems/taunts.js","output":"js/taunts.js"},
   {"source":"src/network/coop-motion.js","output":"js/coop-motion.js"},
   {"source":"src/network/coop-host-runtime.js","output":"js/coop-host-runtime.js"},
   {
