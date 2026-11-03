@@ -42,16 +42,16 @@ render(){
  add('p','◉ '+data.wallet+' monedas permanentes · Suministros '+preparedCount+'/3 · Mascota '+(petId?this.items[petId].name:'sin equipar'));
  add('p',bag?'Prepara tres consumibles y una mascota permanente. Los consumibles se gastan; la mascota permanece en tu colección.':'Los suministros se acumulan. Las mascotas se compran una sola vez y progresan por rareza: común, rara y legendaria.');
  const switcher=add('button',bag?'Ir a la tienda':'Abrir mochila');switcher.className='supply-switch';switcher.onclick=()=>{P.Lobby.show(bag?'shop':'bag',false);this.render()};
- const grid=document.createElement('div');grid.className='supply-grid';
+ const petGrid=document.createElement('div'),grid=document.createElement('div');petGrid.id='supply-pets';petGrid.className='supply-grid supply-pet-grid';grid.id='supply-consumables';grid.className='supply-grid';
  for(const [id,item] of Object.entries(this.items)){
   const card=document.createElement('article'),canvas=document.createElement('canvas'),title=document.createElement('h3'),description=document.createElement('p'),stock=document.createElement('small'),button=document.createElement('button'),quantity=data.inventory[id]||0,prepared=data.prepared.includes(id);
   canvas.width=48;canvas.height=48;canvas.setAttribute('aria-hidden','true');title.textContent=item.name;description.textContent=item.text;
   stock.textContent=item.pet?(quantity?'OBTENIDA · '+(prepared?'EQUIPADA':item.rarity.toUpperCase()):'BLOQUEADA · '+item.rarity.toUpperCase()):'En mochila: '+quantity+(prepared?' · PREPARADO':'');
   button.textContent=bag?(item.pet?(prepared?'Quitar mascota':'Equipar mascota'):(prepared?'Quitar de preparados':'Preparar para la partida')):(item.pet&&quantity?(prepared?'Mascota equipada':'Equipar mascota'):item.pet&&item.price?'Comprar y equipar · '+item.price+' monedas':item.price?'Comprar · '+item.price+' monedas':'Incluida');
   button.disabled=M.busy||!!M.error||(bag?(!prepared&&(quantity<1||!item.pet&&preparedCount>=3)):(item.pet&&quantity?prepared:data.wallet<item.price||item.requires&&!(data.inventory[item.requires]>0)||!item.pet&&quantity>=99));
-  button.onclick=async()=>{button.disabled=true;await this.change(id,bag||item.pet&&quantity>0)};if(prepared)card.className='supply-prepared';if(item.pet)card.classList.add('supply-pet','rarity-'+item.rarity);card.append(canvas,title,description,stock,button);grid.append(card);this.icon(canvas,id)
+  button.onclick=async()=>{button.disabled=true;await this.change(id,bag||item.pet&&quantity>0)};if(prepared)card.className='supply-prepared';if(item.pet)card.classList.add('supply-pet','rarity-'+item.rarity);card.dataset.supplyId=id;card.append(canvas,title,description,stock,button);(item.pet?petGrid:grid).append(card);this.icon(canvas,id)
  }
- panel.append(grid);
+ const petTitle=add('h3',bag?'Elige tu mascota':'Mascotas recolectoras');petTitle.className='supply-group-title';panel.append(petGrid);const supplyTitle=add('h3',bag?'Prepara hasta tres suministros':'Suministros para la expedición');supplyTitle.className='supply-group-title';panel.append(grid);
  if(bag){const play=add('button','Volver al menú principal');play.className='supply-play';play.onclick=()=>P.Lobby.show('home');add('p','Los consumibles no se gastan en cooperativo, laboratorio o práctica. La mascota nunca se consume.')}
  const status=add('p',M.error||'Mochila, mascotas y monedas guardadas en este navegador.');status.setAttribute('role','status');if(M.error){const retry=add('button','Revisar guardado');retry.onclick=()=>{M.load();M.hud();this.render()}}
 }
