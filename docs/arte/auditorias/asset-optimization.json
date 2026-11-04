@@ -570,14 +570,14 @@
     {
       "source": "assets/cards/sideral-character-fullart-v1.png",
       "output": "assets/cards/sideral-character-fullart-v1.webp",
-      "width": 1024,
-      "height": 1536,
+      "width": 512,
+      "height": 768,
       "originalBytes": 2875413,
-      "optimizedBytes": 519640,
+      "optimizedBytes": 128822,
       "sourceSha256": "103d9a225519eb8a93fc3f6d1750bbf8caa5650b07a0983e7cd070114a598ada",
-      "outputSha256": "3d7ab49f0c14f418fac081f9b64c13c590be01761ce00a70cae757d11a0a0fe9",
-      "rgbaSha256": "910b80a19955050f3ea932a704fb106cf57f923ecb983997fb576471eb00c6e7",
-      "quality": 90
+      "outputSha256": "d0db37d9ec38a3c0cd5f5ed78d39fc40758d3a5b184e4d8f7041fd3219ae8de1",
+      "rgbaSha256": "788c793a726a888a62db2956ab2f8f6d4dbfb0f76397152a861882f46ca230d3",
+      "quality": 82
     },
     {
       "source": "assets/cards/sideral-domain-fullart-v1.png",
@@ -1059,6 +1059,18 @@
       "outputSha256": "17aaf615637716275229346e014dd7cc8f2985eae9df14c451086902b2467702",
       "rgbaSha256": "78f11c9113a77a2896c81456c5c21815ad6c722c7d479b135f6edd36a8e1f4a2",
       "quality": 88
+    },
+    {
+      "source": "assets/cards/sideral-lagarto-ultimate-fullart-v1.png",
+      "output": "assets/cards/sideral-lagarto-ultimate-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 2589007,
+      "optimizedBytes": 110852,
+      "sourceSha256": "0e1e2eca75b477ee9114ec2c3f2beab5e242d561da55b72e6f64e96c9244544d",
+      "outputSha256": "bdd9f38b8f0c9519c7ec67687b647e30f3327489c4db728d145d798829bf9bd5",
+      "rgbaSha256": "9958912221ff68d4c237c1a0c3ccab6466f49e8494c5f53832ba861b4a54d49d",
+      "quality": 82
     }
   ],
   "previews": [
@@ -1084,6 +1096,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 161582659,
-  "optimizedBytes": 43533022
+  "originalBytes": 164171666,
+  "optimizedBytes": 43253056
 }
