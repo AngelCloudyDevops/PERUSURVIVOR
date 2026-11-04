@@ -6,6 +6,7 @@ test('El servidor entrega el juego y los sprites y rechaza rutas inexistentes',a
  try{let res=await get('/');assert.equal(res.status,200);assert.match(res.body.toString(),/CAUSAS/);
  res=await get('/js/game.js');assert.equal(res.status,200);assert.match(res.type,/javascript/);
  res=await get('/assets/enemies/rivales-atlas-v1.webp');assert.equal(res.status,200);assert.equal(res.type,'image/webp');
+ res=await get('/assets/ui/card-types/passive.svg');assert.equal(res.status,200);assert.match(res.type,/^image\/svg\+xml/);
  assert.equal((await get('/missing-file.js')).status,404);
  assert.equal((await get('/%2e%2e/package.json')).status,404);
  }finally{await new Promise(resolve=>server.close(resolve))}
