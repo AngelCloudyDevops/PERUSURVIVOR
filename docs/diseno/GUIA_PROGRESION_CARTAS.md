@@ -13,10 +13,10 @@ La sección siguiente fija las decisiones abiertas para esta primera versión. E
 |---|---|
 | Subida de nivel | Cuatro ofertas ponderadas, elegir una; filtros y límite de dos apoyos. Se mantiene la oportunidad de desarrollar el kit personal, sin garantizar una fusión. |
 | Cofres y objetos | Sin cambios: tres opciones de equipo y monedas, cuatro espacios Dota separados. |
-| Fusiones | Apoyo de rango 3, nivel 8 en Caos o 6 en Rápida, destino desbloqueado. Una por apoyo; destinos distintos; máximo dos. No exige evolucionar primero. |
+| Fusiones | Apoyo de rango 3, nivel 9 en Caos o 7 en Rápida, destino desbloqueado. Una por apoyo; destinos distintos; máximo dos. No exige evolucionar primero. |
 | Traducción | Se conserva el rango y la evolución; el apoyo fusionado no ataca ni dibuja órbita automática. Sigue ocupando su espacio y puede seguir mejorándose. |
 | Selección | En combate: arrastrar apoyo sobre técnica compatible, o seleccionar ambos por clic/toque/teclado. Aplica al soltar, sin pausa ni confirmación, conservando requisitos y cupos. La oferta de nivel anterior continúa como alternativa con confirmación. |
-| Modificación | Una personal por partida, disponible desde nivel 4. Las alternativas incompatibles o ya equipadas salen del pool. |
+| Modificación / mutación | El roster general conserva una modificación personal desde nivel 4. Sideral usa mutaciones guiadas en niveles 5, 10 y 13: técnica primero, ruta después, máximo una por técnica. |
 | Rerolls | Recurso por jugador y partida: 1 base; 2 con maestría 5; 3 con maestría 10. Renovar no da otra recompensa ni aumenta el nivel. |
 | Maestría | Partidas registradas de ese personaje (`characters[id].runs`), con límite 10. No se suman estrellas, compras o nivel temporal. No se crea otra versión del guardado ni se modifica el historial. |
 | Cooperativo | El servidor obtiene la maestría del guardado de la cuenta al iniciar; invitado = 0. Intenciones con ID de elección y revisión por jugador. Doble clic, revisión anterior y saldo agotado se rechazan. La ruta directa usa el mismo validador y recibe la maestría fijada por la sala. |
@@ -172,7 +172,7 @@ En cooperativo, las renovaciones pertenecen a cada jugador. El servidor valida e
 
 ## 8. Interfaz y lectura
 
-- Mantener posiciones de 1/2/3/Q/R y respetar controles particulares del personaje. Sideral es la excepción documentada: `[AUTO] · [2][3] · [Q][R]`; AUTO reemplaza visualmente al antiguo ataque `1` sin consumir tecla.
+- Mantener posiciones de 1/2/3/Q/R y respetar controles particulares del personaje. Sideral es la excepción documentada: `[AUTO] · [2][3] · [Q][R]`; AUTO reemplaza el ataque automático de `1` sin consumir tecla y las dos técnicas manuales ocupan `2` y `3`.
 - Mostrar dos espacios pequeños de apoyo, distinguiendo automático, preparado para vincular y fusionado.
 - Una técnica fusionada lleva un icono pequeño del apoyo y un borde reconocible; no añade otra carta completa encima.
 - La ficha de elección comunica beneficio, sacrificio, destino y requisito en texto breve. Detalles extensos quedan en Info.

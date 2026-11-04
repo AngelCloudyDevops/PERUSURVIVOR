@@ -1324,7 +1324,7 @@ body.instinct-choice-open #lobby-hub{pointer-events:none;user-select:none}
 .support-card.is-linking{cursor:grabbing;outline:2px solid #fff0ae;transform:translateY(-8px)}
 #weapon-bar button.live-fusion-target{outline:3px solid #8cf0d1!important;outline-offset:3px;box-shadow:0 0 18px #63e9c788!important}
 
-/* Sideral: el instinto automático vive fuera del mazo manual [AUTO] · [2][3] · [Q][R]. */
+/* Sideral: la técnica instintiva vive fuera del mazo manual [AUTO] · [2][3] · [Q][R]. */
 #combat-dock[data-character=sideral]{width:min(calc(100vw - 270px),calc(686px + var(--support-width,0px)));grid-template-columns:minmax(0,420px) auto 260px}
 #combat-dock[data-character=sideral] #weapon-bar[data-character=sideral]{position:relative;display:grid;grid-template-columns:repeat(3,124px);justify-content:center;align-items:end;gap:6px;overflow:visible}
 #combat-dock[data-character=sideral] #weapon-bar .sideral-skill-card{box-sizing:border-box;width:100%;min-width:0;max-width:none;flex:none}
