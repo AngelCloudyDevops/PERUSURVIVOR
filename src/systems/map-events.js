@@ -64,15 +64,15 @@ P.MapEvents={
   wavePlan(){return [['ankylosaur','raptor','raptor'],['pterosaur','dilophosaur','raptor','raptor'],['ankylosaur','raptor','pterosaur','dilophosaur','parasaur']]},
   role(kind){return {ankylosaur:'tanque',raptor:'daño',pterosaur:'apoyo',dilophosaur:'debilitador',parasaur:'sanador',triceratops:'rompefilas'}[kind]||'depredador'},
   dinosaurVisual(kind){return {
-    raptor:{height:82,groundOffset:0,barLift:78,r:23,barWidth:84,shadowX:46,shadowY:14,roleIcon:'D',roleColor:'#f08a55'},
-    ankylosaur:{height:112,groundOffset:0,barLift:108,r:38,barWidth:112,shadowX:67,shadowY:20,roleIcon:'T',roleColor:'#78b7ff'},
-    pterosaur:{height:96,groundOffset:0,barLift:92,r:22,barWidth:92,shadowX:42,shadowY:12,roleIcon:'A',roleColor:'#72d7dc'},
-    dilophosaur:{height:94,groundOffset:0,barLift:90,r:26,barWidth:94,shadowX:49,shadowY:15,roleIcon:'V',roleColor:'#9bea55'},
-    parasaur:{height:94,groundOffset:0,barLift:90,r:29,barWidth:98,shadowX:53,shadowY:16,roleIcon:'+',roleColor:'#8ff2c5'},
-    triceratops:{height:108,groundOffset:0,barLift:104,r:35,barWidth:108,shadowX:61,shadowY:18,roleIcon:'R',roleColor:'#dc8738'},
-    tyrant:{height:190,groundOffset:0,barLift:182,r:82,barWidth:180,shadowX:98,shadowY:29,roleIcon:'J',roleColor:'#ff6845'},
-    fossil:{height:170,groundOffset:0,barLift:162,r:70,barWidth:170,shadowX:90,shadowY:27,roleIcon:'J',roleColor:'#e3bd62'}
-  }[kind]||{height:86,groundOffset:0,barLift:82,r:24,barWidth:88,shadowX:47,shadowY:14,roleIcon:'D',roleColor:'#ffad57'}},
+    raptor:{height:128,groundOffset:0,barLift:138,r:27,barWidth:92,shadowX:58,shadowY:17,roleIcon:'D',roleColor:'#f08a55'},
+    ankylosaur:{height:190,groundOffset:0,barLift:200,r:45,barWidth:128,shadowX:86,shadowY:25,roleIcon:'T',roleColor:'#78b7ff'},
+    pterosaur:{height:155,groundOffset:0,barLift:165,r:26,barWidth:104,shadowX:55,shadowY:15,roleIcon:'A',roleColor:'#72d7dc'},
+    dilophosaur:{height:145,groundOffset:0,barLift:155,r:30,barWidth:104,shadowX:62,shadowY:18,roleIcon:'V',roleColor:'#9bea55'},
+    parasaur:{height:155,groundOffset:0,barLift:165,r:34,barWidth:108,shadowX:67,shadowY:20,roleIcon:'+',roleColor:'#8ff2c5'},
+    triceratops:{height:170,groundOffset:0,barLift:180,r:41,barWidth:120,shadowX:76,shadowY:22,roleIcon:'R',roleColor:'#dc8738'},
+    tyrant:{height:285,groundOffset:0,barLift:295,r:92,barWidth:200,shadowX:120,shadowY:34,roleIcon:'J',roleColor:'#ff6845'},
+    fossil:{height:260,groundOffset:0,barLift:270,r:82,barWidth:190,shadowX:110,shadowY:32,roleIcon:'J',roleColor:'#e3bd62'}
+  }[kind]||{height:130,groundOffset:0,barLift:140,r:28,barWidth:96,shadowX:58,shadowY:17,roleIcon:'D',roleColor:'#ffad57'}},
   dinosaurTrim(kind,attack=false){const trims={
     raptor:{walk:[11,220,351,237],attack:[0,192,362,284]},
     triceratops:{walk:[20,230,326,208],attack:[14,197,343,221]},
