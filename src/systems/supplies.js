@@ -1,5 +1,5 @@
 'use strict';
-P.Supply={
+P.Supply={notice:'',
 items:{
 lunch:{name:'Lonchera del causa',price:20,text:'+25 de vida máxima y vida inicial durante una partida.',color:'#eeae6b',apply:s=>{s.player.maxHp+=25;s.player.hp+=25}},
 coffee:{name:'Café de cabina',price:25,text:'12% menos de recarga durante una partida.',color:'#cfae8b',apply:s=>s.player.rate*=.88},
@@ -19,6 +19,25 @@ equippedPet(data=P.Meta.data){return (data?.prepared||[]).find(id=>this.items[id
 applyPet(s=P.state,data=P.Meta.data){const id=this.equippedPet(data),item=this.items[id];if(!s?.player||!item?.pet)return null;item.apply(s);return id},
 refreshLoadout(){const modes=P.$?.('#hub-play-mode');if(!modes||typeof modes.querySelectorAll==='function')P.LobbyComplete?.renderHubPlayControls?.()},
 async equipPet(id){const M=P.Meta,item=this.items[id];if(P.state.mode!=='menu'||!item?.pet)return false;const result=await M.transaction(data=>{if(P.state.mode!=='menu'||!(data.inventory[id]>0))return false;data.prepared=data.prepared.filter(value=>!this.items[value]?.pet);data.prepared.push(id);return id});this.render();this.refreshLoadout();return !!result},
+async toggleSupply(id){
+ const M=P.Meta,item=this.items[id];
+ if(P.state.mode!=='menu'||!item||item.pet)return false;
+ const result=await M.transaction(data=>{
+  if(P.state.mode!=='menu'||!(data.inventory[id]>0))return false;
+  const active=this.preparedSupplies(data),pet=this.equippedPet(data),index=active.indexOf(id);
+  if(index>=0)active.splice(index,1);
+  else{
+   if(active.length>=this.supplyCapacity(data))return false;
+   active.push(id)
+  }
+  data.prepared=[...active,...(pet?[pet]:[])];
+  return index>=0?'removed':'equipped'
+ });
+ this.notice=result?(result==='equipped'?item.name+' preparado para la próxima partida.':item.name+' retirado de la próxima partida.'):(M.error||'No se pudo cambiar este suministro.');
+ this.render();
+ this.refreshLoadout();
+ return !!result
+},
 ensureCollector(){
  if(P.CollectorPets)return Promise.resolve(true);
  if(this.collectorPromise)return this.collectorPromise;
@@ -35,7 +54,7 @@ async change(id,prepare=false){const M=P.Meta,item=this.items[id];if(M.busy||P.s
 async claim(run){return P.Meta.transaction(data=>{const previous=data.supplyClaims.find(c=>c.id===run.id);if(previous)return previous;const pet=this.equippedPet(data),selected=[...this.preparedSupplies(data),...(pet?[pet]:[])];if(selected.some(id=>!this.items[id]||(data.inventory[id]||0)<1))return false;for(const id of selected)if(!this.items[id].pet)data.inventory[id]--;data.prepared=selected.filter(id=>this.items[id].pet);const claim={id:run.id,items:selected};data.supplyClaims.push(claim);data.supplyClaims=data.supplyClaims.slice(-100);return claim})},
 start(){const s=P.state,run=P.Meta.run;if(!run||run.suppliesDone||s.devRun||s.practice||P.Performance?.active||P.Coop?.active)return false;this.applyPet(s);if(run.suppliesPending)return true;if(!this.preparedSupplies().length){run.suppliesDone=true;return false}run.suppliesPending=true;s.mode='supplies-loading';P.Core.clear();P.UI.show('Preparando mochila…','Confirmando los objetos de esta partida.',[]);this.claim(run).then(claim=>{if(P.Meta.run!==run)return;run.suppliesPending=false;if(claim){for(const id of claim.items)if(!this.items[id].pet)this.items[id].apply(s);s.player.preparedSupplies=claim.items.filter(id=>!this.items[id].pet);run.suppliesDone=true;s.mode='play';P.$('#overlay').hidden=true;P.UI.hud()}else{s.mode='supplies-error';P.UI.show('La mochila sigue guardada',P.Meta.error||'No se pudo confirmar el inventario.',[{title:'Reintentar preparación',action:()=>{s.mode='play';P.$('#overlay').hidden=true}},{title:'Conservar objetos y jugar',action:()=>{run.suppliesDone=true;s.mode='play';P.$('#overlay').hidden=true}},{title:'Volver al menú',action:()=>P.UI.menu()}])}});return true},
 icon(canvas,id){const ctx=canvas.getContext('2d'),item=this.items[id];if(!ctx)return;ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,48,48);if(item?.pet&&P.CollectorPets?.icon?.(ctx,id,24,39,43))return;if(id.endsWith('_key')){P.Loot.drawKey(ctx,22,23,id==='rare_key'?'rare':'legendary',1.5);return}const r=(color,x,y,w,h)=>{ctx.fillStyle=color;ctx.fillRect(x,y,w,h)};r('#14293a',7,13,34,28);r(item.color,10,16,28,22);r('#ffe7aa',12,17,24,4);if(id==='lunch'){r('#14293a',18,8,12,9);r(item.color,21,11,6,6);r('#654c3a',22,25,5,7)}if(id==='coffee'){r('#eadbba',13,17,20,22);r('#654332',16,18,14,4);r('#eadbba',32,21,7,12);r('#14293a',33,23,4,8);r('#e9dcbe',18,7,2,6);r('#e9dcbe',25,5,2,7)}if(id==='shoes'){r('#14293a',7,11,34,30);r(item.color,12,13,11,20);r(item.color,20,24,16,11);r('#eff1cf',10,34,29,5);r('#eff1cf',16,20,10,2);r('#eff1cf',16,25,10,2)}if(id==='magnet'){r('#14293a',18,15,12,15);r('#14293a',10,13,5,11);r('#14293a',33,13,5,11);r('#e5eef1',10,13,8,8);r('#e5eef1',30,13,8,8)}},
- openBag(tab='supplies'){this.bagTab=tab==='pets'?'pets':'supplies';P.Meta.load();P.Lobby.show('bag',false);this.render();requestAnimationFrame(()=>P.$(this.bagTab==='pets'?'#supply-pets':'#supply-consumables')?.querySelector('button')?.focus?.());return true},
+ openBag(tab='supplies'){this.bagTab=tab==='pets'?'pets':'supplies';this.notice='';P.Meta.load();P.Lobby.show('bag',false);this.render();requestAnimationFrame(()=>P.$(this.bagTab==='pets'?'#supply-pets':'#supply-consumables')?.querySelector('button')?.focus?.());return true},
  init(){this.deferCollector();if(typeof Image==='undefined')return;const menu=P.$('#menu'),side=P.$('#lobby-sidebar');for(const [route,name,description] of [['shop','▣ Tienda','Compra con monedas permanentes'],['bag','▣ Mochila','Elige objetos y mascota']]){const panel=document.createElement('section');panel.id='lobby-'+route;panel.className='lobby-pane';panel.hidden=true;menu.append(panel);const button=document.createElement('button');button.id='lobby-nav-'+route;button.type='button';const title=document.createElement('strong'),small=document.createElement('small');title.textContent=name;small.textContent=description;button.append(title,small);button.onclick=()=>route==='bag'?this.openBag():void(P.Meta.load(),P.Lobby.show(route,false),this.render(),panel.querySelector('button')?.focus());side.insertBefore(button,P.$('#lobby-nav-characters'))}},
 render(){
  if(typeof Image==='undefined'||!P.Lobby?.ready||!['shop','bag'].includes(P.Lobby.route))return;
@@ -55,11 +74,11 @@ render(){
   canvas.width=48;canvas.height=48;canvas.setAttribute('aria-hidden','true');title.textContent=item.name;description.textContent=item.text;
   stock.textContent=item.pet?(quantity?'OBTENIDA · '+(isPrepared?'EQUIPADA':item.rarity.toUpperCase()):'BLOQUEADA · '+item.rarity.toUpperCase()):'En mochila: '+quantity+(isPrepared?' · PREPARADO':'');
   button.textContent=bag?(item.pet?(isPrepared?'EQUIPADA':'Equipar mascota'):(isPrepared?'Quitar de preparados':'Preparar para la partida')):(item.pet&&quantity?(isPrepared?'Mascota equipada':'Equipar mascota'):item.pet&&item.price?'Comprar y equipar · '+item.price+' monedas':item.price?'Comprar · '+item.price+' monedas':'Incluida');
-  button.disabled=M.busy||!!M.error||(bag?(item.pet?isPrepared||quantity<1:!isPrepared&&(quantity<1||preparedCount>=capacity)):(item.pet&&quantity?isPrepared:data.wallet<item.price||item.requires&&!(data.inventory[item.requires]>0)||!item.pet&&quantity>=99));
-  button.onclick=async()=>{button.disabled=true;if(bag&&item.pet)await this.equipPet(id);else await this.change(id,bag||item.pet&&quantity>0)};if(isPrepared)card.className='supply-prepared';if(item.pet)card.classList.add('supply-pet','rarity-'+item.rarity);card.dataset.supplyId=id;card.append(canvas,title,description,stock,button);(item.pet?petGrid:grid).append(card);this.icon(canvas,id)
+  button.disabled=!!M.error||(bag?(item.pet?isPrepared||quantity<1:!isPrepared&&(quantity<1||preparedCount>=capacity)):(M.busy||(item.pet&&quantity?isPrepared:data.wallet<item.price||item.requires&&!(data.inventory[item.requires]>0)||!item.pet&&quantity>=99)));
+  button.onclick=async()=>{button.disabled=true;if(bag&&item.pet)await this.equipPet(id);else if(bag)await this.toggleSupply(id);else await this.change(id,item.pet&&quantity>0)};if(isPrepared)card.className='supply-prepared';if(item.pet)card.classList.add('supply-pet','rarity-'+item.rarity);card.dataset.supplyId=id;card.append(canvas,title,description,stock,button);(item.pet?petGrid:grid).append(card);this.icon(canvas,id)
  }
  if(!bag||bagTab==='pets'){const petTitle=add('h3',bag?'Elige una mascota':'Mascotas recolectoras');petTitle.className='supply-group-title';panel.append(petGrid)}if(!bag||bagTab==='supplies'){const supplyTitle=add('h3',bag?'Prepara hasta '+capacity+' suministros':'Suministros para la expedición');supplyTitle.className='supply-group-title';panel.append(grid)}
  if(bag){const play=add('button','Volver al menú principal');play.className='supply-play';play.onclick=()=>P.Lobby.show('home');add('p','Los consumibles no se gastan en cooperativo, laboratorio o práctica. La mascota nunca se consume.')}
- const status=add('p',M.error||'Mochila, mascotas y monedas guardadas en este navegador.');status.setAttribute('role','status');if(M.error){const retry=add('button','Revisar guardado');retry.onclick=()=>{M.load();M.hud();this.render()}}
+ const status=add('p',M.error||this.notice||'Mochila, mascotas y monedas guardadas en este navegador.');status.setAttribute('role','status');status.setAttribute('aria-live','polite');if(M.error){const retry=add('button','Revisar guardado');retry.onclick=()=>{M.load();M.hud();this.render()}}
 }
 };
