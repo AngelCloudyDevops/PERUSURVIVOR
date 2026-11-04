@@ -109,6 +109,7 @@ applyAttack(){
  const signature=JSON.stringify([this.attack,this.supports(),this.supportCombos]);
  if(this.appliedPlayer===p&&this.appliedAttack===signature)return;
  const fixture=this.attackFixture();
+ P.CardBuilds?.resetTransient(p);
  // Reconstruir desde la base evita acumular multiplicadores al volver de evolución a base.
  for(const key of ['power','reach','rate','projectileBonus','primaryPierce','evolutionBaseBonus']){if(fixture[key]===undefined)delete p[key];else p[key]=fixture[key]}
  P.Progression.init(p);p.powerRanks.primary=fixture.powerRanks.primary;p.evolved.primary=!!fixture.evolved.primary;

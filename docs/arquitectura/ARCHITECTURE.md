@@ -1040,3 +1040,14 @@ Los duendes propios se convierten sin crear cuerpos nuevos ni cambiar vida. Se l
 ### Cadencia del jefe navideño
 
 `SantaBoss.recover` fija una sola ventana por fase; al expirar usa `idle` con temporizador cero, de modo que la siguiente actualización comprueba revelación/dominio/ulti antes de preparar otro ataque. `approach` comparte la aproximación acotada de reposo y preparación de regalos. `santaState.approaching` transmite la marcha al render, que conserva poses completas. Las marcas, centros de avisos y trayectorias se capturan antes de moverse; la recuperación y los avisos de embestida permanecen estacionarios.
+
+
+### Disparadores de técnicas de Sideral y nidos
+
+`SideralKit` comunica impactos reales a `CardBuilds.cast`: fin del cono, punto del barrido limitado por cobertura y apertura/explosión del huevo. El envoltorio anterior ya no emite al solicitar Mirada ni vuelve a emitir por cada cría. `cardBuild.pending` programa el fin del cono y la segunda explosión con datos planos por jugador. Las zonas conservan ralentización, vulnerabilidad máxima y tipo físico/especial sin aplicar miedo. `CardBuildUI.drawZones` solo presenta el estado; las descripciones de fusión salen del mismo catálogo.
+
+Los huevos guardan `hatchAt`, `flight`, `nestLeft`, `broodAge`, `born`, `hunter` y el contador `hits` compartido. La evolución abre con explosión y programa tres nacimientos; las crías normales mantienen rumbo, la cazadora puede corregir una sola vez. `weaken` combina la vulnerabilidad activa por máximo y renueva duración, descartando intensidades expiradas. `CardBuilds.resetTransient` cancela zonas, pendientes, anticipación de Mirada y huevos al morir, entrar en dominios o cruzar arenas. Los relojes usan el paso de simulación; una pausa no ejecuta trabajos.
+
+Las cartas buscadoras usan `preferredKey` y `cardBuildSeek`; `Combat.tick` excluye rivales ya alcanzados al dirigirlas y mantiene prioridad por el marcado mientras siga elegible. Las fusiones y la onda ancestral usan colisión barrida con cobertura. La onda se identifica como secundaria, sin `weaponAttack`, para que no vuelva a criticar. Campos nuevos usan el transporte genérico existente; no se modifica protocolo ni guardado permanente y `swarmEgg` mantiene compatibilidad de selección. Las pruebas de propiedades por dueño y la reconexión viven en `tests/sideral-branches.test.cjs`.
+
+Las Miradas solapadas por velocidad de ataque se conservan en `sideralFearQueue` con su aim y ataque capturados; liberar una no sobrescribe la siguiente. La misma limpieza de transitorios cancela esa cola al cambiar de contexto.
