@@ -18,6 +18,27 @@ def forward_ip(conf):
         return conf
     return re.sub(r'(?m)^([ \t]*)proxy_set_header Host \$host;\n', lambda m: m.group(0) + m.group(1) + 'proxy_set_header X-Real-IP $remote_addr;\n' + m.group(1) + 'proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n', conf)
 
+def media_uploads(conf):
+    marker = '  # PERUSURVIVOR SUBIDAS MULTIMEDIA\n'
+    if marker in conf:
+        return conf
+    match = re.search(r'(?m)^[ \t]*location /api/ \{', conf)
+    if not match:
+        raise RuntimeError('No se encontró la ruta /api/ para habilitar las subidas')
+    route = marker + '''  location ~ ^/api/(admin/taunts/[0-5]|music)$ {
+    client_max_body_size 52m;
+    proxy_pass http://perusurvivor-coop:4180;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 130s;
+    proxy_send_timeout 130s;
+    add_header Cache-Control "no-store" always;
+  }
+'''
+    return conf[:match.start()] + route + conf[match.start():]
+
 def update():
     if os.geteuid() != 0:
         raise RuntimeError('La actualización operativa requiere root')
@@ -45,7 +66,7 @@ def update():
             raise RuntimeError('Configuración nginx inesperada')
         routes = marker + '  location ^~ /backend/ { return 404; }\n'
         updated = updated[:match.start()] + routes + updated[match.start():]
-    updated = forward_ip(updated)
+    updated = media_uploads(forward_ip(updated))
     if updated != original:
         backup = BASE / 'backups/nginx.conf.before-private-backend'
         backup.parent.mkdir(parents=True, exist_ok=True)
@@ -58,7 +79,7 @@ def update():
         except Exception:
             conf.write_text(original)
             raise
-    print('Receptor actualizado, /backend/ protegido e IP real reenviada.')
+    print('Receptor actualizado, /backend/ protegido, IP real reenviada y subidas multimedia habilitadas.')
 
 if __name__ == '__main__':
     update()

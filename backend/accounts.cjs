@@ -3,7 +3,7 @@ const crypto=require('node:crypto'),{promisify}=require('node:util'),fs=require(
 const scrypt=promisify(crypto.scrypt),hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 const {clientIp}=require('./client-ip.cjs');
 const COOKIE='ps_session',TTL=7*86400000;
-function createAccounts({filename,origins=[],secure=true,now=Date.now,bodyTimeout=Number(process.env.BODY_TIMEOUT_MS)||10000,mediaDir}={}){
+function createAccounts({filename,origins=[],secure=true,now=Date.now,bodyTimeout=Number(process.env.BODY_TIMEOUT_MS)||10000,mediaTimeout=Number(process.env.MEDIA_TIMEOUT_MS)||120000,mediaDir}={}){
  const {DatabaseSync}=require('node:sqlite');
  if(filename!==':memory:')fs.mkdirSync(path.dirname(filename),{recursive:true,mode:0o700});
  const db=new DatabaseSync(filename);if(filename!==':memory:')fs.chmodSync(filename,0o600);db.exec(`PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON;
@@ -39,7 +39,7 @@ async function body(req){let text='',size=0;const timer=setTimeout(()=>req.destr
  const friends=require('./friends.cjs').createFriends({db,reply,body,now});
  const gifts=require('./gifts.cjs').createGifts({db,session,reply});
  const admin=require('./admin.cjs').createAdmin({db,reply,body,now,notify:gifts.notify});
- const taunts=require('./taunt-media.cjs').createTauntMedia({db,reply,now,mediaDir:mediaDir||(filename!==':memory:'?path.join(path.dirname(filename),'taunt-media'):undefined),bodyTimeout});
+ const taunts=require('./taunt-media.cjs').createTauntMedia({db,reply,now,mediaDir:mediaDir||(filename!==':memory:'?path.join(path.dirname(filename),'taunt-media'):undefined),bodyTimeout:mediaTimeout});
  const checks=require('./save-checks.cjs').createSaveChecks({db,rules:admin.rules,now});
  const balance=require('./balance.cjs').createBalance({db,reply,body,now});
  const music=require('./music.cjs').createMusic({db,reply,now,bodyTimeout:Math.max(bodyTimeout,60000)});
