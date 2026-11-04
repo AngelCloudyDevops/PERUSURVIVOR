@@ -27,7 +27,17 @@ for(let i=0;i<P.Data.characters.length;i++){
  P.World.render(100);console.log('OK ataque: '+p.name);
 }
 P.Game.start();const old=s.player.x;P.Core.keys.d=true;P.Game.update(.04);assert(s.player.x>old);
-P.UI.pause();assert.equal(s.mode,'pause');const elapsed=s.elapsed;P.Game.update(.04);assert.equal(s.elapsed,elapsed);P.UI.pause();assert.equal(s.mode,'play');
+P.UI.pause();assert.equal(s.mode,'pause');const elapsed=s.elapsed;P.Game.update(.04);assert.equal(s.elapsed,elapsed);
+const pauseTitles=()=>elements.get('#overlay').children.filter(c=>c.tag==='button').map(c=>c.textContent);
+assert.deepEqual(pauseTitles(),['Continuar ↗','Opciones · Cámara Normal · Efectos Completos','Reiniciar partida','Cambiar de causa','Salir al menú principal']);
+elements.get('#overlay').children.find(c=>c.textContent.startsWith('Opciones')).onclick();
+assert(pauseTitles().some(t=>t==='Cámara · Normal'));const normalZoom=P.World.zoomFor(1280,800,true,false);
+elements.get('#overlay').children.find(c=>c.textContent==='Cámara · Normal').onclick();
+assert.equal(P.World.cameraMode(),'wide');assert(P.World.zoomFor(1280,800,true,false)<normalZoom);assert.equal(storage['perusurvivor-camera'],'wide');
+elements.get('#overlay').children.find(c=>c.textContent==='Efectos visuales · Completos').onclick();assert.equal(storage['perusurvivor-option-reduced-motion'],'true');
+elements.get('#overlay').children.find(c=>c.textContent==='Efectos visuales · Reducidos').onclick();assert.equal(storage['perusurvivor-option-reduced-motion'],'false');
+elements.get('#overlay').children.find(c=>c.textContent==='Volver a la pausa').onclick();assert(pauseTitles().includes('Cambiar de causa'));P.World.setCameraMode('normal');
+P.UI.pause();assert.equal(s.mode,'play');
 s.xp=s.need;P.Systems.collect(0);assert.equal(s.mode,'upgrade');assert.equal(s.level,2);const revealChoices=()=>{const cards=elements.get('#overlay').children.filter(c=>c.tag==='button'&&c.className==='upgrade-card');assert.equal(cards.length,4);cards.forEach(c=>c.onclick());assert.equal(elements.get('#overlay').dataset.phase,'choose');cards[0].onclick()};revealChoices();assert.equal(s.mode,'play');
 P.UI.menu();P.Maps.select("plaza");P.Game.start();const p=s.player;p.x=0;p.y=80;P.World.collide(p,{x:0,y:95});assert(Math.hypot(p.x,p.y)>=90);
 P.UI.select(P.Data.characters.findIndex(c=>c.attack==="clip"));P.Game.start();s.enemies=[target(s.player.x+150,s.player.y)];P.Combat.cast();let shot=s.shots[0];for(let i=0;i<15;i++)P.Combat.tick(.04);assert(shot.returning,'El micrófono debe regresar');

@@ -1,7 +1,12 @@
 'use strict';
 P.World={
+cameraModes:[{id:'near',label:'Cercana',scale:1.08},{id:'normal',label:'Normal',scale:1},{id:'wide',label:'Alejada',scale:.78}],
+cameraMode(){if(this.cameraChoice)return this.cameraChoice;let saved='normal';try{saved=localStorage.getItem('perusurvivor-camera')||saved}catch{}this.cameraChoice=this.cameraModes.some(q=>q.id===saved)?saved:'normal';return this.cameraChoice},
+cameraSetting(){return this.cameraModes.find(q=>q.id===this.cameraMode())||this.cameraModes[1]},
+setCameraMode(id){this.cameraChoice=this.cameraModes.some(q=>q.id===id)?id:'normal';try{localStorage.setItem('perusurvivor-camera',this.cameraChoice)}catch{}return this.cameraSetting()},
+cycleCamera(){const index=this.cameraModes.findIndex(q=>q.id===this.cameraMode());return this.setCameraMode(this.cameraModes[(index+1)%this.cameraModes.length].id)},
 collectorPetDepth:true,
-zoomFor(w,h,playing,encounter){if(!playing)return Math.max(.6,w/2400,h/1600);const desktop=Math.max(1,w/1280),mobile=Math.min(1,w/760);return encounter?Math.max(1.05,1.5*desktop*mobile)*P.VultureUltimate.cameraScale():Math.max(.95,1.3*desktop*mobile)},
+zoomFor(w,h,playing,encounter){if(!playing)return Math.max(.6,w/2400,h/1600);const desktop=Math.max(1,w/1280),mobile=Math.min(1,w/760),base=encounter?Math.max(1.05,1.5*desktop*mobile)*P.VultureUltimate.cameraScale():Math.max(.95,1.3*desktop*mobile);return encounter?base:Math.max(.68,base*this.cameraSetting().scale)},
 domainCameraInfo(){
  const s=P.state,scenery=P.DomainScenery?.current?.();
  if(scenery?.d)return{key:'scenery:'+(scenery.d.id||scenery.d.kind||'active'),d:scenery.d,x:scenery.d.x,y:scenery.d.y,rx:scenery.rx,ry:scenery.ry};
