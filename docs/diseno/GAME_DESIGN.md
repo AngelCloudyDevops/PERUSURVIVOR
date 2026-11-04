@@ -1291,3 +1291,7 @@ El Gacha separa dos familias de banners. Los permanentes muestran Personajes y v
 Existen dos saldos: tickets permanentes y tickets de temporada. `golden_ticket` sigue siendo la clave interna del ticket permanente para conservar los guardados anteriores. El Divagante mantiene su regla real: intenta aparecer cada 30 segundos; su probabilidad escala de 5% a 20% durante los primeros tres minutos y, después del rescate, sortea 30% Hadoken celeste, 30% Hadoken morado, 30% diez tickets permanentes y 10% fuga. Los minions no botan tickets.
 
 Derrotar al jefe final concede 10 tickets permanentes en la primera victoria de cada activación de temporada y 2 en cada victoria posterior. La temporada se identifica con el mapa global y su revisión del servidor, por lo que reactivar un evento abre una recompensa inicial nueva sin borrar los tickets existentes. Laboratorio, práctica y pruebas de rendimiento no conceden premios.
+
+
+### Mazo de combate compacto
+Las cartas de ataque, apoyo, ulti y dominio se agrupan con separaciones constantes y ancho ajustado al número de apoyos visibles. Se evita reservar columnas vacías. En móvil estrecho los apoyos pasan a una fila compacta debajo; el acceso a Habilidades queda en la esquina superior, fuera de las cartas.
