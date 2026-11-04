@@ -90,7 +90,7 @@ test('el archivo de amenazas deja de animarse mientras se observan coleccionable
  assert.match(lobby,/this\.codexView!=='collectibles'/);
 });
 
-test('Sideral muestra la mano continua AUTO/1/2/Q/R sin bandeja negra',()=>{
+test('Sideral muestra la mano continua AUTO/2/3/Q/R sin bandeja negra',()=>{
  for(const art of ['sideral-fear-fullart-v1.webp','sideral-tail-fullart-v1.webp','sideral-egg-fullart-v1.webp'])assert.match(hudSource,new RegExp(art.replaceAll('.','\\.')));
  for(const contract of ['sideralCard','sideral-skill-card','sideral-card-art','sideral-card-key','sideral-card-title','sideral-card-rank'])assert.match(hudSource,new RegExp(contract));
  assert.match(css,/#weapon-bar\[data-character=sideral\]/);

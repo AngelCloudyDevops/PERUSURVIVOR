@@ -18,7 +18,7 @@ P.SideralArsenal={
  init(p){if(p?.id!=='sideral')return null;const instinct=this.validInstinct(p.sideralInstinct||this.runInstinct),state=p.sideralArsenal??={active:instinct,instinct,instinctSwapped:false,unlocked:Object.fromEntries(this.order.map(id=>[id,id===instinct])),ranks:Object.fromEntries(this.order.map(id=>[id,id===instinct?1:0])),evolved:{},lastSwitch:-1,cooldowns:{}};state.instinct=this.validInstinct(state.instinct||state.active);state.active=state.instinct;state.cooldowns??={};return state},
  active(p){return this.init(p)?.instinct||'sideralFear'},evolution(id){return this.evolutions[id]||null},
  manualOrder(p){const instinct=this.active(p);return this.order.filter(id=>id!==instinct)},
- manualTechnique(p,index){return this.manualOrder(p)[Number(index)-1]||null},
+ manualTechnique(p,index){return this.manualOrder(p)[Number(index)-2]||null},
  unlockPlan(p){const instinct=this.active(p);return this.order.filter(id=>id!==instinct).map((id,index)=>[id,index?4:2])},
  unlockGate(p,id){return this.unlockPlan(p).find(([key])=>key===id)?.[1]??0},
  attackFor(p,id){const state=this.init(p),base=this.profiles[id];if(!state||!base)return null;const rank=Math.max(1,state.ranks[id]||1),evolved=!!state.evolved[id]||(id==='sideralFear'&&!!p.evolved?.primary),e=evolved?this.evolutions[id]:{},reach=P.CharacterBalance?.attackReach?.(p,id)||1;return {...base,...e,arsenalId:id,evolution:evolved,range:(e.range||base.range)*(1+(rank-1)*.05)*reach,damageScale:(e.damageScale||base.damageScale)*(1+(rank-1)*.14),cooldown:base.cooldown*Math.pow(.96,rank-1)}},
