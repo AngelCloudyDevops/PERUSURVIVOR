@@ -6,6 +6,7 @@ test('Menú: limita dibujos repetidos sin limitar combate ni retrasar cambios de
  P.state.mode='play';for(let i=0;i<120;i++)assert.equal(P.Game.shouldPaint(1000+i*1000/120),true);
  P.state.mode='menu';assert.equal(P.Game.shouldPaint(1995),true);
 });
+test('Lienzo: reduce píxeles en móvil sin bajar la escala de escritorio',()=>{function scale(coarse,width=1280){const canvas={getContext:()=>({setTransform(){}}),addEventListener(){},setPointerCapture(){}},P={};vm.runInNewContext(fs.readFileSync('src/core/runtime.js','utf8'),{P,document:{querySelector:s=>s==='#game'?canvas:null},navigator:{deviceMemory:8,hardwareConcurrency:8},matchMedia:()=>({matches:coarse}),innerWidth:width,innerHeight:800,devicePixelRatio:3,addEventListener(){},localStorage:{getItem:()=>null},setTimeout,clearTimeout});return{scale:P.AssetPolicy.renderScale(),width:canvas.width}}const mobile=scale(true);assert.equal(mobile.scale,1.25);assert.equal(mobile.width,1600);const desktop=scale(false);assert.equal(desktop.scale,2);assert.equal(desktop.width,2560)});
 test('Laboratorio: abandona sesiones pendientes y reconexión antes de cargar arte',()=>{
  let leaves=0,waits=0;const P={Coop:{session:{},reconnecting:true,leave(menu){assert.equal(menu,false);this.session=null;this.reconnecting=false;leaves++}},WalkArt:{readyForStart:()=>false,waitForStart(){waits++}}};
  vm.runInNewContext(fs.readFileSync('src/development/lab.js','utf8'),{P});P.Lab.run();assert.equal(leaves,1);assert.equal(waits,1);P.Lab.run();assert.equal(leaves,1);
