@@ -1336,8 +1336,13 @@ Los regalos se anuncian 1,25 s / 1,1 s según fase; los ayudantes, 1 s. Trineo, 
 ## Ramas completas de Sideral
 
 Se implementa la propuesta de [Mirada, Colazo y Huevo](SIDERAL_KIT.md#ramas-de-técnicas--versión-vigente): una evolución por técnica, tres alternativas de mutación y tres recetas de apoyo. Las nueve fusiones tienen disparadores propios: fin de Mirada y primer afectado, extremo visible de Colazo y cascarón de Huevo. PRESA añade utilidad; la onda ancestral no vuelve a criticar; el nido evolucionado dura tres segundos y libera crías escalonadas con máximo dos impactos por enemigo y huevo. Cría cazadora reemplaza a Camada inquieta conservando el ID interno. Se mantienen las elecciones y cupos anteriores; el balance adicional se decidirá tras jugar la propuesta.
-
 ### Cartas de nivel: categorías y arte limpio
 Las cuatro ofertas muestran tipo y rango, sin etiquetas ni efectos de rareza. Los objetos de cofres y tiendas conservan su rareza. Instinto (incluye mejoras de técnicas manuales), Apoyo, Pasiva, Mutación, Fusión y Evolución tienen identidad visual propia; Pactos y Recuperación conservan sus etiquetas para no ocultar costes o curación.
 Las mutaciones concretas entran directamente en las ofertas y se aplican con una elección. Se agrupan en el sorteo: como máximo una mutación por oferta de cuatro, con peso de grupo 0,34 y elección uniforme entre rutas elegibles. Se mantienen los requisitos de nivel, técnicas desbloqueadas y una mutación por técnica. No hay garantía de mutación en cada nivel. Las fusiones se realizan por arrastre (o selección accesible del apoyo y destino), sin carta duplicada al subir nivel; se conservan requisitos y dos cupos totales, incluidos fusionados. Laboratorio y compatibilidad con decisiones antiguas mantienen sus validadores.
 El volteo permanece; las mejoras usan señales breves por categoría, sin destello legendario por rango o cambio de automático. Full art existente se conserva; mutaciones reutilizan el arte de su instinto. Pasivas comparten un superviviente genérico con efecto numérico distinto. Marcos, etiquetas y texto se dibujan separados del arte.
+
+## Arte legible de ataques de jefes
+
+- Todo objeto reconocible que un jefe arroje, invoque o pida activar debe usar un sprite detallado coherente con el arte del jefe: boletos, documentos, personajes, fragmentos, faroles, regalos, carbón, memorias, ecos y balizas no se representan solo con rectángulos, círculos o texto.
+- Las áreas de daño, telégrafos, trayectorias y límites interactivos siguen siendo geometría generada por el juego. Esa geometría expresa la verdad mecánica y se dibuja debajo del sprite; el arte nunca sustituye ni altera el hitbox.
+- Si un recurso todavía no terminó de cargar, el juego conserva una figura de respaldo sencilla para que la mecánica nunca desaparezca.

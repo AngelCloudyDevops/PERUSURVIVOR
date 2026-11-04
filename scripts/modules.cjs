@@ -80,6 +80,10 @@ module.exports = [
     "output": "js/power-fx.js"
   },
   {
+    "source": "src/rendering/boss-attack-art.js",
+    "output": "js/boss-attack-art.js"
+  },
+  {
     "source": "src/rendering/effects.js",
     "output": "js/fx.js"
   },
