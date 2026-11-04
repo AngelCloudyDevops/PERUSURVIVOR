@@ -151,6 +151,28 @@ test('Extinción: veneno, ondas, meteoritos y Era Perdida tienen lectura visual 
  let draws=0;const image={naturalWidth:1440,naturalHeight:480},ctx=new Proxy({save(){},restore(){},translate(){},rotate(){},beginPath(){},arc(){},ellipse(){},moveTo(){},lineTo(){},stroke(){},fill(){},fillRect(){},clip(){},drawImage(){draws++},createPattern(){return '#pattern'}},{get:(o,k)=>o[k]??(()=>{}),set:(o,k,v)=>(o[k]=v,true)});M.extinctionArt=Object.fromEntries(Object.keys(files).map(key=>[key,{ready:true,image}]));assert.equal(M.drawExtinctionProjectile(ctx,{x:0,y:0,vx:100,vy:0,age:.2,life:2,maxLife:3,extinctionPoison:true}),true);assert.equal(M.drawExtinctionProjectile(ctx,{x:0,y:0,vx:100,vy:0,age:.2,life:2,maxLife:3,extinctionRoar:true}),true);assert.equal(M.drawExtinctionProjectile(ctx,{x:0,y:0,vx:100,vy:0,age:.2,life:2,maxLife:3,extinctionWave:true}),true);M.drawDungeon(ctx,{x:0,y:0,phase:'dungeon',dungeonRoom:2});M.drawFallingMeteors(ctx,{fallingMeteors:[{x:0,y:0,r:70,left:.5,total:1}]});M.drawPrehistoricPortal(ctx,1,false);assert(draws>=16,'Los recursos nuevos se componen en proyectiles, escenario, portal y meteorito');assert.equal(M.drawExtinctionProjectile(ctx,{x:0,y:0}),false,'Los proyectiles comunes conservan el renderer general');
 });
 
+test('Extinción: cada golpe usa impacto animado y conserva la causa sin texto invasivo',()=>{
+ const {P,s}=ready(),M=P.MapEvents,p=s.player;M.startWorld();const e=M.event;M.activateWorld(e);
+ M.showExtinctionHit(p,'CRÁTER DEL TIRANO','#ff704f',{x:p.x-80,y:p.y});
+ assert.equal(p.extinctionLastHit,'CRÁTER DEL TIRANO');
+ assert.equal(p.extinctionHit.label,'CRÁTER DEL TIRANO');
+ assert.equal(p.extinctionHit.color,'#ff704f');
+ assert(!P.state.effects.some(q=>q.kind==='shout'&&q.text==='CRÁTER DEL TIRANO'));
+ const calls={line:0,arc:0,text:0,fill:0},ctx=new Proxy({save(){},restore(){},translate(){},beginPath(){},moveTo(){},lineTo(){calls.line++},stroke(){},arc(){calls.arc++},fill(){calls.fill++},fillText(){calls.text++},fillRect(){}},{get:(o,k)=>o[k]??(()=>{}),set:(o,k,v)=>(o[k]=v,true)});
+ M.drawPlayerStates(ctx);
+ assert(calls.line>=3,'el golpe proyecta chispas desde la dirección de origen');
+ assert(calls.arc>0,'el jugador recibe un anillo de impacto');
+ assert.equal(calls.text,0,'el ataque no tapa al jugador con texto');
+ e.boss={x:p.x,y:p.y,extinctionAttack:{kind:'tyrantDomain',impactUntil:s.elapsed+.4}};
+ const domainArcs=calls.arc,domainFills=calls.fill;M.drawTyrantImpacts(ctx,e);
+ assert(calls.arc>domainArcs&&calls.fill>domainFills,'el cráter dibuja onda expansiva y púas');
+ e.boss.extinctionAttack={kind:'tyrantUltimate',impactX:p.x,impactY:p.y,impactUntil:s.elapsed+.4};
+ const biteArcs=calls.arc,biteFills=calls.fill;M.drawTyrantImpacts(ctx,e);
+ assert(calls.arc>biteArcs&&calls.fill>biteFills,'la mordida dibuja mandíbula y dientes');
+ e.fallingMeteors=[{x:p.x,y:p.y,r:54,damage:18,reason:'boss',left:.01,total:1.2,hit:false}];p.inv=0;M.tickFallingMeteors(e,.02);
+ assert.equal(p.extinctionHit.label,'METEORITO DEL TIRANO');
+});
+
 test('Era Perdida: las tres salas cambian de identidad y las reliquias usan altar y cartas propias',()=>{
  const {P}=ready(),M=P.MapEvents,fs=require('node:fs'),path=require('node:path'),themes=[1,2,3].map(dungeonRoom=>M.dungeonTheme({phase:'dungeon',dungeonRoom}));assert.deepEqual(themes.map(x=>x.key),['jungle','fossil','amber']);assert.equal(new Set(themes.map(x=>x.name)).size,3);assert.deepEqual(themes.map(x=>x.frames[0]),[0,2,4]);
  const relics=M.relicOptions(()=>{});assert.equal(relics.map(x=>x.id).join(','),'fossil,predator,celestial');for(const relic of relics){assert.equal(relic.card.rarity,'legendary');const asset=path.resolve(__dirname,'../public/'+relic.card.artPath),bytes=fs.readFileSync(asset);assert(bytes.length>30000,relic.card.artPath);assert.equal(bytes.subarray(0,4).toString(),'RIFF');assert.equal(bytes.subarray(8,12).toString(),'WEBP')}
