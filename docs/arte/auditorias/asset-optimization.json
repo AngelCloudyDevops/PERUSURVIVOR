@@ -166,6 +166,20 @@
       "rgbaSha256": "611ed239256890e407cbd5aaa92edeea149a54d4d62f796fa4f1d89398d4bc05"
     },
     {
+      "source": "assets/bosses/boss-attack-props-v1.png",
+      "output": "assets/bosses/boss-attack-props-v1.webp",
+      "width": 1261,
+      "height": 1247,
+      "originalBytes": 2132361,
+      "optimizedBytes": 130984,
+      "sourceSha256": "6dbcf068867e2aae2817684e8ce215d3e44e5dba4211cd49cb48cd720d951d8f",
+      "outputSha256": "c4f0215d6616f800c99382caf6d3b841e3c7099b76ecec245c7f795501756db0",
+      "rgbaSha256": "53a13aa4f41123e807ed235fc7e0b474c76475d6732c03b922aae6625dca390a",
+      "quality": 88,
+      "runtimeWidth": 512,
+      "runtimeHeight": 506
+    },
+    {
       "source": "assets/bosses/gallinazo-atlas-v1.png",
       "output": "assets/bosses/gallinazo-atlas-v1.webp",
       "width": 1536,
@@ -1070,6 +1084,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 159450298,
-  "optimizedBytes": 43402038
+  "originalBytes": 161582659,
+  "optimizedBytes": 43533022
 }

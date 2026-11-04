@@ -1336,7 +1336,6 @@ Los regalos se anuncian 1,25 s / 1,1 s según fase; los ayudantes, 1 s. Trineo, 
 ## Ramas completas de Sideral
 
 Se implementa la propuesta de [Mirada, Colazo y Huevo](SIDERAL_KIT.md#ramas-de-técnicas--versión-vigente): una evolución por técnica, tres alternativas de mutación y tres recetas de apoyo. Las nueve fusiones tienen disparadores propios: fin de Mirada y primer afectado, extremo visible de Colazo y cascarón de Huevo. PRESA añade utilidad; la onda ancestral no vuelve a criticar; el nido evolucionado dura tres segundos y libera crías escalonadas con máximo dos impactos por enemigo y huevo. Cría cazadora reemplaza a Camada inquieta conservando el ID interno. Se mantienen las elecciones y cupos anteriores; el balance adicional se decidirá tras jugar la propuesta.
-
 ### Cartas de nivel: categorías y arte limpio
 Las cuatro ofertas muestran tipo y rango, sin etiquetas ni efectos de rareza. Los objetos de cofres y tiendas conservan su rareza. Instinto (incluye mejoras de técnicas manuales), Apoyo, Pasiva, Mutación, Fusión y Evolución tienen identidad visual propia; Pactos y Recuperación conservan sus etiquetas para no ocultar costes o curación.
 Las mutaciones concretas entran directamente en las ofertas y se aplican con una elección. Se agrupan en el sorteo: como máximo una mutación por oferta de cuatro, con peso de grupo 0,34 y elección uniforme entre rutas elegibles. Se mantienen los requisitos de nivel, técnicas desbloqueadas y una mutación por técnica. No hay garantía de mutación en cada nivel. Las fusiones se realizan por arrastre (o selección accesible del apoyo y destino), sin carta duplicada al subir nivel; se conservan requisitos y dos cupos totales, incluidos fusionados. Laboratorio y compatibilidad con decisiones antiguas mantienen sus validadores.
@@ -1345,3 +1344,9 @@ El volteo permanece; las mejoras usan señales breves por categoría, sin destel
 ### Fidelidad visual de categorías
 Las etiquetas usan símbolos propios (número, rama, enlace, escudo, unión y doble ascenso) y esquinas finas de color. El rango se muestra arriba a la derecha y la tecla de selección abajo; no se confunden con rareza. Apoyos normales/evolucionados y mazo usan arte compartido específico del efecto. Pasivas usan el superviviente genérico v2, con el acabado neón del resto del juego. Las mutaciones conservan la identidad del instinto y añaden una señal geométrica según su ruta; las evoluciones conservan su arte propio.
 Mutación: luz ramificada de 0,85 s al revelarse. Evolución: contorno luminoso de 1 s y presentación de evolución al confirmar. Fusión: tras confirmarse el estado válido, copia visual del apoyo viaja al instinto durante 0,6 s y el destino brilla; el juego continúa. No hay sacudida de pantalla ni partículas permanentes. Movimiento reducido desactiva estos efectos.
+
+## Arte legible de ataques de jefes
+
+- Todo objeto reconocible que un jefe arroje, invoque o pida activar debe usar un sprite detallado coherente con el arte del jefe: boletos, documentos, personajes, fragmentos, faroles, regalos, carbón, memorias, ecos y balizas no se representan solo con rectángulos, círculos o texto.
+- Las áreas de daño, telégrafos, trayectorias y límites interactivos siguen siendo geometría generada por el juego. Esa geometría expresa la verdad mecánica y se dibuja debajo del sprite; el arte nunca sustituye ni altera el hitbox.
+- Si un recurso todavía no terminó de cargar, el juego conserva una figura de respaldo sencilla para que la mecánica nunca desaparezca.
