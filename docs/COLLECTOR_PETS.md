@@ -1,6 +1,6 @@
 # Mascotas recolectoras
 
-Las mascotas son equipo permanente que se elige antes de una partida individual. Ocupan un espacio propio y no reducen los tres espacios de suministros. Nunca colisionan, reciben daño, atacan, abren cofres ni escogen recompensas.
+Las mascotas son equipo permanente que se elige antes de una partida individual. Ocupan un espacio propio y no reducen los dos espacios iniciales de suministros. El tercer espacio de suministros se desbloquea al completar diez victorias individuales. Nunca colisionan, reciben daño, atacan, abren cofres ni escogen recompensas.
 
 | Rareza | Mascota | Capacidad | Alcance | Velocidad | Recoge |
 | --- | --- | ---: | ---: | ---: | --- |
@@ -9,6 +9,8 @@ Las mascotas son equipo permanente que se elige antes de una partida individual.
 | Legendaria | Gallinita cohete | 12 | 1000 | 540 | Experiencia, monedas, llaves, imanes, curación y panetones |
 
 La común está incluida para todas las cuentas. La rara cuesta 180 monedas permanentes y exige la común; la legendaria cuesta 400 y exige la rara. Una compra desbloquea la mascota para siempre.
+
+La pantalla **Mochila** es la única interfaz de equipamiento y separa Suministros de Mascotas en dos pestañas. Los espacios del vestíbulo son un resumen de la próxima partida: los símbolos `+` abren Suministros y el retrato de la gallina abre Mascotas. No existe un selector modal paralelo.
 
 ## Ciclo de recolección
 
