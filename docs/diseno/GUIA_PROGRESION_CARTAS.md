@@ -172,7 +172,7 @@ En cooperativo, las renovaciones pertenecen a cada jugador. El servidor valida e
 
 ## 8. Interfaz y lectura
 
-- Mantener posiciones de 1/2/3/Q/R; respetar controles particulares del personaje.
+- Mantener posiciones de 1/2/3/Q/R y respetar controles particulares del personaje. Sideral es la excepción documentada: `[AUTO] · [1][2] · [Q][R]`.
 - Mostrar dos espacios pequeños de apoyo, distinguiendo automático, preparado para vincular y fusionado.
 - Una técnica fusionada lleva un icono pequeño del apoyo y un borde reconocible; no añade otra carta completa encima.
 - La ficha de elección comunica beneficio, sacrificio, destino y requisito en texto breve. Detalles extensos quedan en Info.
