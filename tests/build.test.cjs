@@ -48,13 +48,15 @@ test('El vestíbulo completo conecta las siete áreas y conserva enlaces sociale
  assert.match(css,/\.hub-social/);assert.match(css,/\.period-missions/);assert.match(css,/\.prepare-grid/);
 });
 test('Gacha moderno: banners, tickets y acciones permanecen en la interfaz nueva',()=>{
- const complete=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),economy=fs.readFileSync(path.join(root,'src/systems/gacha-economy.js'),'utf8');
+ const complete=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),economy=fs.readFileSync(path.join(root,'src/systems/gacha-economy.js'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');
  const modern=complete.slice(complete.indexOf('renderGacha(){'),complete.indexOf('renderCoop(){'));
  assert.match(modern,/P\.GachaEconomy\.renderHub/);
  assert.match(modern,/gachaPull\(1\)/);
  assert.match(modern,/gachaView='history'/);
+ assert.match(modern,/gacha-featured-banner/);assert.match(modern,/gacha-summon-bar/);assert.match(modern,/P\.GachaEconomy\.selected\(\)/);
  assert.doesNotMatch(modern,/P\.Gacha\.open\(\)/);
- assert.match(economy,/renderHub\(panel,add,gacha,rerender=/);
+ assert.match(economy,/renderHub\(panel,add,gacha,rerender=/);assert.match(economy,/LEYENDAS DEL CAOS/);assert.match(economy,/PRÓXIMAMENTE/);
+ assert.match(css,/\.gacha-featured-banner/);assert.match(css,/\.gacha-banner-grid/);assert.match(css,/\.gacha-summon-bar/);
 });
 test('La selección de causa, mapa y modo permanece en el flujo moderno hasta iniciar directamente',()=>{
  const complete=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),reference=fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8'),game=fs.readFileSync(path.join(root,'src/scenes/game.js'),'utf8'),screens=fs.readFileSync(path.join(root,'src/ui/screens.js'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');
