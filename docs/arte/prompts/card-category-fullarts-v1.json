@@ -1,0 +1,39 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-11-04",
+  "styleReference": "public/assets/cards/sideral-tail-fullart-v1.webp",
+  "assets": [
+    {
+      "path": "public/assets/cards/passive-survivor-fullart-v2.webp",
+      "width": 512,
+      "height": 768,
+      "bytes": 160704,
+      "sha256": "e5738e808d80cd9b291d648a92a469c01a626547150d0d3d8d2cb02a37d02d1e",
+      "prompt": "Vertical 2:3 full-art videogame card illustration, NO text, NO border, NO UI. Use provided image ONLY as STYLE reference: vivid neon magenta/cyan/lime lighting, bold comic contours, slightly chunky painterly pixel details, exaggerated playful arcade action. NOT muted realistic anime. Match saturation and rendering of the supplied PERUSURVIVOR art. Shared generic effects usable by ALL playable characters; do NOT depict Sideral or his reptile tail. Fill frame with action, keep top corners and lower quarter visually uncluttered for UI. Anonymous Peruvian urban survivor, distinctly generic adult in teal sports jacket with cream sleeves, short dark hair, no sunglasses, sprinting diagonally toward camera through a vivid neon Lima street. Large readable silhouette, energetic expression, one gloved forearm blocking a bright impact, small collectible energy fragments nearby. Medium-full body shot occupying most of frame, no large empty sky, lively expressive stylized cartoon matching reference, no cinematic washed-out background."
+    },
+    {
+      "path": "public/assets/cards/support-pulse-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "bytes": 151870,
+      "sha256": "4302ec53dddb62d0e229aefec0dd3a98ca1750cfe6f91349b15d792da29ca077",
+      "prompt": "Vertical 2:3 full-art videogame card illustration, NO text, NO border, NO UI. Use provided image ONLY as STYLE reference: vivid neon magenta/cyan/lime lighting, bold comic contours, slightly chunky painterly pixel details, exaggerated playful arcade action. NOT muted realistic anime. Match saturation and rendering of the supplied PERUSURVIVOR art. Shared generic effects usable by ALL playable characters; do NOT depict Sideral or his reptile tail. Fill frame with action, keep top corners and lower quarter visually uncluttered for UI. A powerful circular golden-orange shockwave erupting outward on neon pavement in a Peruvian urban plaza. Central bright pulsing sphere, concentric rings visibly pushing back stylized dark horde silhouettes toward edges. Focus the illustration on THE SHOCKWAVE itself, no central human character, strong circular composition, arcade energy shards, immediately readable automatic area damage."
+    },
+    {
+      "path": "public/assets/cards/support-cards-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "bytes": 125954,
+      "sha256": "9cd453ebbd8f71ceeb1d042d0effed2040467684c4bb11954e3aa55da3577c35",
+      "prompt": "Vertical 2:3 full-art videogame card illustration, NO text, NO border, NO UI. Use provided image ONLY as STYLE reference: vivid neon magenta/cyan/lime lighting, bold comic contours, slightly chunky painterly pixel details, exaggerated playful arcade action. NOT muted realistic anime. Match saturation and rendering of the supplied PERUSURVIVOR art. Shared generic effects usable by ALL playable characters; do NOT depict Sideral or his reptile tail. Fill frame with action, keep top corners and lower quarter visually uncluttered for UI. An explosive fan of glowing red-and-gold bank-like attack cards flying in perspective through neon purple urban darkness, slicing through two silhouetted enemies. Cards have abstract geometric markings, no readable words or brand logos. Dynamic diagonal composition, luminous cyan trails, powerful arcade illustration of automatic piercing projectiles. No human caster, the flying cards are the subjects."
+    },
+    {
+      "path": "public/assets/cards/support-orbit-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "bytes": 122982,
+      "sha256": "3097744432592658b51609dc906e6c4d05452be7db2f00d4167cb5059679c42a",
+      "prompt": "Vertical 2:3 full-art videogame card illustration, NO text, NO border, NO UI. Use provided image ONLY as STYLE reference: vivid neon magenta/cyan/lime lighting, bold comic contours, slightly chunky painterly pixel details, exaggerated playful arcade action. NOT muted realistic anime. Match saturation and rendering of the supplied PERUSURVIVOR art. Shared generic effects usable by ALL playable characters; do NOT depict Sideral or his reptile tail. Fill frame with action, keep top corners and lower quarter visually uncluttered for UI. Three bright green-and-teal energy bands orbiting a luminous central core in a neon urban plaza, wide protective circular sweep striking shadowy horde enemies at the edges. Clearly circular spinning bands with separated looping strips, vivid lime impacts and magenta/cyan reflections, no human caster, no shield wall, visual focus on orbiting damaging bands, coherent arcade comic style."
+    }
+  ]
+}
