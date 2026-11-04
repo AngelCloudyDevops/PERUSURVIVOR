@@ -1452,3 +1452,45 @@ body:not(.menu):has(#combat-dock[data-character=sideral]) header #skills-hud{bot
 #combat-dock #attack-dock-slot,#combat-dock[data-character=sideral] #attack-dock-slot{width:max-content}
 
 #combat-dock #weapon-bar .sideral-skill-card[data-locked=true]{opacity:1;filter:grayscale(.8) brightness(.78);border-color:#6b7c8e}
+/* Clean category cards: artwork first; rarity remains on equipment only. */
+#overlay .upgrade-card[data-clean=true]{--rarity:var(--role)}
+#overlay .upgrade-card[data-clean=true] .upgrade-front{padding:0;overflow:hidden;border:1px solid #b9c6cd70;border-radius:10px;box-shadow:0 8px 20px #0005;background:#101a23}
+#overlay .upgrade-card[data-clean=true] .upgrade-front:before,#overlay .upgrade-card[data-clean=true] .upgrade-front:after{content:none}
+#overlay .upgrade-card[data-clean=true] .upgrade-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;image-rendering:auto}
+#overlay .upgrade-card[data-clean=true] .upgrade-role{position:absolute;z-index:4;top:9px;left:9px;margin:0;padding:6px 7px;max-width:calc(100% - 52px);border:0;border-radius:4px;box-shadow:none;background:#07121cd9;color:#f5efdd;font:800 10px/1.2 monospace;letter-spacing:.4px}
+#overlay .upgrade-card[data-clean=true] .upgrade-front .upgrade-icon,#overlay .upgrade-card[data-clean=true] .upgrade-preview{display:none}
+#overlay .upgrade-card[data-clean=true] .upgrade-content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;flex:0 0 auto;margin-top:auto;width:100%;min-height:32%;padding:36px 12px 15px;border:0;background:linear-gradient(0deg,#08121afa 0%,#08121ad9 65%,#08121a00 100%)}
+#overlay .upgrade-card[data-clean=true] .upgrade-content strong{font:800 clamp(18px,1.8vw,25px)/1.05 'Barlow Condensed',sans-serif;text-wrap:balance;color:#fff1d3}
+#overlay .upgrade-card[data-clean=true] .upgrade-content small{margin:0;color:#e9eeef;font:12px/1.3 'DM Sans',sans-serif}
+#overlay .upgrade-card[data-clean=true] .upgrade-badge{color:var(--role)!important;font:800 10px/1.2 monospace;margin:0;letter-spacing:.4px}
+#overlay .upgrade-card[data-clean=true] .upgrade-key{position:absolute;left:auto;right:9px;top:9px;z-index:4;width:25px;height:25px;min-height:25px;border:0;border-radius:4px;box-shadow:none;background:#07121cd9;color:#f5efdd}
+#overlay .upgrade-card[data-clean=true][data-role=technique],#overlay .upgrade-card[data-clean=true][data-role=instinct]{--role:#f38c82}
+#overlay .upgrade-card[data-clean=true][data-role=mutation]{--role:#b2d978}
+#overlay .upgrade-card[data-clean=true][data-role=support]{--role:#f4b966}
+#overlay .upgrade-card[data-clean=true][data-role=attribute]{--role:#7ec4ef}
+#overlay .upgrade-card[data-clean=true][data-role=fusion]{--role:#d7a0ef}
+#overlay .upgrade-card[data-clean=true][data-role=evolution]{--role:#efd675}
+#overlay .upgrade-card[data-clean=true][data-role=mutation] .upgrade-role:before{content:'⑂'}
+#overlay .upgrade-card[data-clean=true][data-role=attribute] .upgrade-role:before{content:'◇'}
+#overlay .upgrade-card[data-clean=true][data-role=evolution] .upgrade-role:before{content:'⇈'}
+#overlay .upgrade-card[data-clean=true].category-reveal .upgrade-role{animation:categoryMark .4s ease-out both}
+#overlay .upgrade-card[data-clean=true][data-role=support].category-reveal .upgrade-role{animation:categorySlide .4s ease-out both}
+#overlay .upgrade-card[data-clean=true][data-role=mutation].category-reveal .upgrade-role{animation:categoryBranch .5s ease-out both}
+#overlay .upgrade-card[data-clean=true][data-role=evolution].category-reveal .upgrade-front{animation:categoryEvolve .65s ease-out both}
+.fusion-badge{animation:categorySlide .4s ease-out both}
+@keyframes categoryMark{from{opacity:.4;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes categorySlide{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
+@keyframes categoryBranch{0%{opacity:0;transform:scaleX(.6)}65%{transform:scaleX(1.08)}100%{opacity:1;transform:scaleX(1)}}
+@keyframes categoryEvolve{0%{box-shadow:0 0 0 transparent}45%{box-shadow:0 0 25px #efd67588}100%{box-shadow:0 8px 20px #0005}}
+@media(max-width:600px){#overlay .upgrade-card[data-clean=true] .upgrade-role{font-size:9px;top:7px;left:7px}#overlay .upgrade-card[data-clean=true] .upgrade-content{padding:28px 10px 12px}#overlay .upgrade-card[data-clean=true] .upgrade-content strong{font-size:21px}#overlay .upgrade-card[data-clean=true] .upgrade-content small{font-size:12px}#overlay .upgrade-card[data-clean=true] .upgrade-key{top:7px;right:7px}}
+@media(prefers-reduced-motion:reduce){#overlay .upgrade-card[data-clean=true] .upgrade-role,#overlay .upgrade-card[data-clean=true] .upgrade-front,.fusion-badge{animation:none!important}}
+#overlay .upgrade-card[data-clean=true] .upgrade-badge:empty{display:none}
+#overlay.level-up.card-reveal .upgrade-card[data-clean=true][data-role=support].upgrade-chosen{animation:categorySupportPick .46s ease-in forwards!important}
+#overlay.level-up.card-reveal .upgrade-card[data-clean=true][data-role=mutation].upgrade-chosen{animation:categoryMutationPick .46s ease-out forwards!important}
+#overlay.level-up.card-reveal .upgrade-card[data-clean=true][data-role=attribute].upgrade-chosen{animation:categoryPassivePick .35s ease-out forwards!important}
+@keyframes categorySupportPick{to{transform:translateY(22px) scale(.9);opacity:0}}
+@keyframes categoryMutationPick{40%{transform:scaleX(1.04);filter:brightness(1.2)}to{transform:scale(.96);opacity:0}}
+@keyframes categoryPassivePick{to{opacity:0;transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){#overlay.level-up.card-reveal .upgrade-card[data-clean=true].upgrade-chosen{animation:none!important}}
+#overlay.clean-categories h2:after{display:none!important}
+@media(max-width:600px){#overlay.level-up.card-reveal.clean-categories{grid-template-rows:auto auto;align-content:start}#overlay.level-up.card-reveal .upgrade-card[data-clean=true]{height:clamp(230px,31dvh,280px);min-height:230px}}
