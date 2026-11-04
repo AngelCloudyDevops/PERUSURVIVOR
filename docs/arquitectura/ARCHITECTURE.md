@@ -1028,3 +1028,10 @@ CollectorPets reutiliza Terrain.hit/clear/resolve con radio propio y una ruta lo
 `Progression.domainActive()` reconoce también el estado `santaState.phase === "domain"` de un Papá Noel vivo dentro de su encuentro. Así comparte el bloqueo de mejoras, fusiones y accesos de laboratorio con las demás expansiones, sin crear un indicador global que pueda quedar atascado al abandonar o vencer al jefe.
 
 Las invocaciones de Santa fijan explícitamente Técnico/especial y peso normal; no heredan el atributo ni la armadura aleatorios del enemigo que se usa como fábrica.
+
+
+### Papá Noel: revelación del operativo
+
+La segunda fase se enclava en `santaState.phaseTwo` al terminar el patrón en curso, seguida de `reveal` (2,2 s); curar al jefe no revierte el disfraz. `Progression.domainActive()` reconoce la revelación y el dominio para aplazar elecciones y fusiones. `santaState.ram` conserva origen, destino, recorrido y slots golpeados; usa colisión de segmento para pasos largos. `cross` fija el cruce de sirenas; `breach` fija el abanico físico de cada puerta de la ulti. El dominio comprueba las mismas zonas rectangulares que dibuja.
+
+Los duendes propios se convierten sin crear cuerpos nuevos ni cambiar vida. Se limpian perfiles y anticipaciones de su profesión anterior. `santaOfficer`, las marcas y las trayectorias viajan con el transporte de enemigos existente; no hay cambios de protocolo ni rutas de QA en producción. El atlas `santa-operativo-v1.webp` (3×2, 217 kB) se carga solo al necesitar fase II, conservando el atlas original de fase I y el reintento acotado. Policias usan arte y mecánicas ya disponibles. Los efectos de ralentización reutilizan `tacticSlowUntil`, respetando invulnerabilidad y el reloj de simulación.
