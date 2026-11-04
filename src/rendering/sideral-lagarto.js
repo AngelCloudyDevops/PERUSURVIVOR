@@ -111,11 +111,12 @@ P.SideralLagarto={
 P.SideralLagarto.criticalVignette=function(ctx,w,h){
  const localSlot=P.state.player?.slot??0,e=[...(P.state.effects||[])].reverse().find(f=>f.kind==='sideral-tail-critical'&&f.skinId==='sideral-lagartitere'&&(f.ownerSlot??0)===localSlot&&f.life>0);
  if(!e||!ctx||!w||!h)return;
- const remaining=Math.max(0,Math.min(1,e.life/Math.max(.01,e.maxLife||.58))),progress=1-remaining,reduced=P.Ambient?.reduced?.matches,fade=Math.min(1,remaining*3.5)*Math.min(1,progress*8+.32),edge=Math.min(w,h)*.24;
- ctx.save();ctx.setTransform?.(1,0,0,1,0,0);ctx.globalCompositeOperation='screen';
- const veil=ctx.createRadialGradient(w/2,h/2,Math.min(w,h)*.26,w/2,h/2,Math.max(w,h)*.72);veil.addColorStop(0,'#17402100');veil.addColorStop(.58,'#4c8f2422');veil.addColorStop(1,'#a8ef577f');ctx.globalAlpha=.72*fade;ctx.fillStyle=veil;ctx.fillRect(0,0,w,h);
- ctx.globalCompositeOperation='source-over';ctx.filter=reduced?'none':'blur(10px)';const blobs=reduced?10:22;for(let i=0;i<blobs;i++){const side=i%4,q=(Math.floor(i/4)+.5)/Math.ceil(blobs/4),wave=reduced?0:Math.sin(progress*13+i*2.17)*12,x=side===0?-edge*.12+wave:side===1?w+edge*.12+wave:w*q+wave,y=side===2?-edge*.12+wave:side===3?h+edge*.12+wave:h*q+wave,r=edge*(.28+(i%5)*.055);ctx.globalAlpha=fade*(.12+(i%3)*.035);ctx.fillStyle=i%3===0?'#e9ff9a':i%3===1?'#70cf43':'#256b36';ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill()}
- ctx.filter='none';ctx.globalCompositeOperation='screen';ctx.globalAlpha=.58*fade;ctx.strokeStyle='#cfff75';ctx.lineWidth=reduced?3:5;ctx.shadowColor='#78ff45';ctx.shadowBlur=reduced?4:18;ctx.strokeRect(4,4,w-8,h-8);ctx.restore()
+ const remaining=Math.max(0,Math.min(1,e.life/Math.max(.01,e.maxLife||1.05))),progress=1-remaining,reduced=P.Ambient?.reduced?.matches,fade=Math.min(1,remaining*4)*Math.min(1,progress*10+.55),edge=Math.min(112,Math.max(54,Math.min(w,h)*.13));
+ const stamp=Number.isFinite(e.at)?e.at:e;if(this.lastCriticalAura!==stamp){this.lastCriticalAura=stamp;P.Juice?.add?.(reduced?.18:.72)}
+ ctx.save();ctx.setTransform?.(1,0,0,1,0,0);
+ const shadow=ctx.createRadialGradient(w/2,h/2,Math.min(w,h)*.28,w/2,h/2,Math.max(w,h)*.7);shadow.addColorStop(0,'#06150b00');shadow.addColorStop(.58,'#071a0b22');shadow.addColorStop(.82,'#08271399');shadow.addColorStop(1,'#031209e8');ctx.globalAlpha=.82*fade;ctx.fillStyle=shadow;ctx.fillRect(0,0,w,h);
+ ctx.globalCompositeOperation='screen';const colors=['#1d7a36','#59d64d','#c8ff6a'];for(let layer=0;layer<(reduced?1:3);layer++)for(let side=0;side<4;side++)for(let i=0;i<(reduced?6:12);i++){const q=(i+.35)/(reduced?6:12),phase=progress*(reduced?0:2.6)+i*.73+side*1.91+layer*.54,wave=reduced?0:Math.sin(phase)*edge*.13,depth=edge*(.2+layer*.18+(i%3)*.07),x=side===0?-depth+wave:side===1?w+depth+wave:w*q+wave,y=side===2?-depth+wave:side===3?h+depth+wave:h*q+wave,r=edge*(.42+layer*.12+(i%4)*.035);ctx.globalAlpha=fade*(layer===0?.34:layer===1?.24:.16);ctx.fillStyle=colors[layer];ctx.shadowColor=colors[Math.min(2,layer+1)];ctx.shadowBlur=reduced?5:18;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill()}
+ const rim=ctx.createLinearGradient(0,0,w,h);rim.addColorStop(0,'#baff61');rim.addColorStop(.5,'#36cf4b');rim.addColorStop(1,'#efff86');ctx.globalAlpha=.9*fade;ctx.strokeStyle=rim;ctx.lineWidth=reduced?4:7;ctx.shadowColor='#75ff4b';ctx.shadowBlur=reduced?6:24;ctx.strokeRect(5,5,w-10,h-10);ctx.globalAlpha=.48*fade;ctx.lineWidth=2;ctx.strokeRect(edge*.38,edge*.38,w-edge*.76,h-edge*.76);ctx.restore()
 };
 if(P.World){
  const render=P.World.render;
