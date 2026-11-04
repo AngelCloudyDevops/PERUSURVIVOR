@@ -29,11 +29,13 @@ La curva de lectura queda separada por hitos: nivel 1 elige técnica instintiva;
 
 | Técnica | Uso / recarga | Alcance | Daño bruto de rango 1 | Evolución |
 |---|---:|---:|---:|---|
-| Mirada Sideral | 1,35 s | 270 u, arco 1,55 rad | 27 especial | Rostro prohibido: 340 u, arco 2,05 rad, coeficiente 1,15 y miedo normal de 1,25 s |
-| Colazo del Lagarto | Activa · 6→5 s | 125 u, arco 135° | 33,75 físico y crítico garantizado | Latigazo ancestral: 145 u, coeficiente 1,45 y onda estrecha de 280 u, coeficiente 0,65, hasta tres rivales; la onda no hereda el crítico garantizado |
-| Huevo sospechoso | Activa · 10→8 s | 340 u | 44,55 especial por embestida | Nido prohibido: tres lagartitos en abanico, coeficiente 1,2 por impacto; máximo dos impactos por rival y huevo |
+| Mirada Sideral | AUTO 1,35 s o manual 7→5,5 s | 270 u, arco 1,55 rad | 27 especial | Rostro prohibido: 340 u, arco 2,05 rad, coeficiente 1,15 y miedo normal de 1,25 s |
+| Colazo del Lagarto | AUTO 0,95 s o manual 6→5 s | 125 u, arco 135° | AUTO 0,9× físico; manual 1,25× | Latigazo ancestral: 145 u, coeficiente 1,45 y onda estrecha de 280 u, coeficiente 0,65, hasta tres rivales |
+| Huevo sospechoso | AUTO 1,35 s o manual 10→8 s | 340 u | AUTO 0,9075× especial; manual 1,65× | Nido prohibido: tres lagartitos en abanico, coeficiente 1,2 por impacto; máximo dos impactos por rival y huevo |
 
 Son presupuestos previos a crítico, atributo, defensas y reducciones. Mirada conserva resistencia de 2,5 s al miedo repetido y duración menor en pesados y jefes. El colazo empuja 34 u, o 40 u evolucionado; barrido y onda pueden golpear al mismo rival. Cada lagartito embiste una vez durante 0,38 s a 580 u/s; desaparece después y frena contra sólidos. No hay mascotas permanentes. Al abrir, el huevo elige una sola dirección hacia un rival vivo y visible desde su posición a 240 u, con anticipación limitada a 0,34 s y 260 u/s; la embestida no vuelve a girar. El lanzamiento dura 0,35 s y el huevo espera otros 0,8 s antes de abrir. Máximo tres huevos activos por jugador; los obstáculos limitan el destino. Los impactos respetan cobertura y autoridad del servidor.
+
+La técnica instintiva también define cómo cooperan las otras dos. Con **Mirada instintiva**, Colazo manual conserva crítico garantizado, empuje pesado y sacudida localizada; Huevo atrae enemigos antes de liberar su embestida. Con **Colazo instintivo**, el barrido automático parte de 25 % de crítico y suma 15 puntos porcentuales por fallo hasta acertar; una sola Mirada manual coloca `PRESA` durante 6 s y garantiza el siguiente Colazo, consumiendo la marca. Huevo manual atrae la horda al área de barrido. Con **Huevo instintivo**, cada automático deja una bomba hasta 2,6 s; Mirada marca `OBJETIVO DEL HUEVO` y Colazo manual golpea una bomba cercana para enviarla hacia esa presa. El impacto explota, empuja y deja 12 % de vulnerabilidad durante 3 s; acertar la marca amplía el radio y sube la vulnerabilidad a 18 % durante 4 s. Solo se lanza una bomba por Colazo y siguen vigentes el máximo de tres huevos y las coberturas.
 
 ## Sangre fría
 
@@ -45,7 +47,7 @@ Con tres escamas, el siguiente lanzamiento personal válido consume las tres:
 
 - Mirada alcanza a un único rival adicional hasta 70 u más allá del cono normal. La mirada es un cono, por lo que esta extensión sustituye la noción de «perforar» un proyectil.
 - Colazo gana 30 % de amplitud angular.
-- Huevo abre tras 0,25 s de espera en lugar de 0,8 s; conserva el vuelo de 0,35 s.
+- Huevo manual abre tras 0,25 s de espera en lugar de 0,8 s; como técnica instintiva, la bomba automática reduce su espera de 2,6 s a 1,35 s y amplía la explosión.
 
 Objetos, apoyos y aliento Q no consumen escamas. Al consumirlas, las tres marcas convergen hacia los ojos de Mirada, la cola del Colazo o el Huevo, acompañadas por `TÉCNICA POTENCIADA` y un motivo sonoro propio. Recibir daño rompe una marca en fragmentos. El semicírculo sobre el personaje y el HUD indican siempre la preparación real.
 
