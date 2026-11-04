@@ -23,29 +23,11 @@ La sección siguiente fija las decisiones abiertas para esta primera versión. E
 | Tiempo límite | Se conservan los 15 s de la elección cooperativa; renovar no los reinicia. La elección automática usa la revisión vigente y prefiere una mejora sin fusión para no imponer un sacrificio. |
 | Compatibilidad | Directo viral y Prensa blindada dejan de aparecer en las nuevas ofertas. Si una partida ya los tenía, conservan su efecto y bloquean fusiones de sus apoyos implicados. El laboratorio conserva su comparación heredada. |
 
-### Recetas habilitadas
+### Recetas y mutaciones vigentes
 
-Sideral admite los tres apoyos en **Colazo** y **Huevo**, siempre en destinos distintos. Los personajes de básico convencional tienen una receta con `primary`; los demás arsenales conservan sus controles y esperan recetas propias. No se inventa una conversión automática de todos los personajes ni destinos Q/R.
+Sideral tiene nueve recetas explícitas en Mirada, Colazo y Huevo. Su comportamiento completo, porcentajes, crías escalonadas y bonificaciones de marcas se describen en [Ramas de técnicas](SIDERAL_KIT.md#ramas-de-técnicas--versión-vigente). Los tres apoyos conservan rango y evolución al fusionar. Sus disparadores salen de impactos reales y la apertura del huevo, no de solicitar una habilidad. Cría cazadora sustituye a Camada inquieta.
 
-| Apoyo | Colazo | Huevo | Básico convencional |
-|---|---|---|---|
-| Onda causa | Onda especial al lanzar | Onda especial al abrir | Onda especial en el objetivo al atacar |
-| Tarjetas del caos | Disparo perforante al lanzar | Disparo una vez al abrir | Disparo adicional al atacar |
-| Escudo de bandas | Zona fija de bandas de 2,4 s | Zona de 2,4 s al abrir | Zona de bandas en el objetivo |
-
-Onda y Tarjetas usan el daño del apoyo con factor inicial 2,2 en técnicas manuales y 1,5 en básico. Bandas emite hasta tres pulsos con factor 0,8; conserva los bonos de rango/evolución. Cada apoyo mantiene el canal **especial**; fusionar con Colazo no convierte el golpe físico del Colazo en especial. Son valores iniciales para contrastar con la alternativa automática.
-
-### Modificaciones habilitadas
-
-- **Colazo abierto:** arco ×1,45 y alcance ×0,85.
-- **Mirada panorámica:** arco ×1,45 y alcance ×0,85.
-- **Eclosión rápida:** espera 0,2 s y daño ×0,8; también adelanta el disparador de la fusión.
-- **Nido de presión:** al abrir deja una zona especial de 2 s, hasta tres pulsos de 0,22× el poder.
-- Básicos convencionales: **Eco de impacto** (un estallido especial de 0,45× tras 0,25 s) o **Rastro de combate** (zona de 2 s, hasta tres pulsos de 0,22×).
-
-Mirada y Colazo modifican solo su geometría original; no ensanchan silenciosamente la onda de un apoyo. Nido y Bandas pueden compartir centro, con límite conjunto de cuatro zonas por jugador. Cada huevo dispara sus efectos una vez al abrir, independientemente de sus fragmentos. Los efectos derivados no activan otras fusiones.
-
-Límites: cuatro zonas activas por jugador, tres pulsos por zona, máximo 180 proyectiles al emitir tarjetas y 290 efectos visuales al añadir una onda. Morir o entrar en un dominio limpia zonas pendientes. Una pausa no avanza ni daña con ellas. Los estados se reinician con el jugador de la nueva partida.
+Se conservan las condiciones de nivel y elecciones anteriores. Los básicos convencionales mantienen Eco de impacto, Rastro de combate y las recetas de `primary`. Hay cuatro zonas por jugador; Banda + Colazo puede producir un cuarto pulso si consume PRESA. La onda ancestral no repite crítico. Las zonas de Mirada ralentizan sin repetir miedo. El máximo de dos impactos de crías se comparte entre todas las crías de cada huevo evolucionado. Pausar detiene pendientes y daño; morir, entrar en dominio o cruzar una arena cancela los estados transitorios.
 
 ### Validación y publicación
 

@@ -1331,3 +1331,8 @@ Los cuatro slots se conservan: Regalos aturdidores agranda las marcas de 58 a 70
 Hay una sola pausa de contraataque: 1,2 s en fase I y 0,95 s en fase II. Al finalizar pasa por la comprobación de cambios de fase y prepara el siguiente patrón sin sumar otro descanso (antes se acumulaban 3,3 s o 2,7 s sin ataque). La recuperación sigue siendo estacionaria y concede 20 % de daño adicional recibido.
 
 Los regalos se anuncian 1,25 s / 1,1 s según fase; los ayudantes, 1 s. Trineo, ariete, ventisca, sirenas, dominio y ulti conservan sus avisos y zonas. Mientras prepara regalos el jefe avanza al 70 % de su velocidad, se detiene a 155 unidades y mantiene las marcas fijadas al apuntar. El recorrido del ariete y la geometría de los otros avisos permanecen fijos. Los límites siguen siendo cuatro ayudantes y seis marcas.
+
+
+## Ramas completas de Sideral
+
+Se implementa la propuesta de [Mirada, Colazo y Huevo](SIDERAL_KIT.md#ramas-de-técnicas--versión-vigente): una evolución por técnica, tres alternativas de mutación y tres recetas de apoyo. Las nueve fusiones tienen disparadores propios: fin de Mirada y primer afectado, extremo visible de Colazo y cascarón de Huevo. PRESA añade utilidad; la onda ancestral no vuelve a criticar; el nido evolucionado dura tres segundos y libera crías escalonadas con máximo dos impactos por enemigo y huevo. Cría cazadora reemplaza a Camada inquieta conservando el ID interno. Se mantienen las elecciones y cupos anteriores; el balance adicional se decidirá tras jugar la propuesta.
