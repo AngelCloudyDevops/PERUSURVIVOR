@@ -56,7 +56,7 @@ test('Gacha moderno: banners, tickets y acciones permanecen en la interfaz nueva
  assert.match(modern,/gacha-featured-banner/);assert.match(modern,/gacha-summon-bar/);assert.match(modern,/P\.GachaEconomy\.selected\(\)/);
  assert.doesNotMatch(modern,/gacha-banner-promises/);assert.doesNotMatch(modern,/gacha-featured-summary/);
  assert.doesNotMatch(modern,/P\.Gacha\.open\(\)/);
- assert.match(economy,/renderHub\(panel,add,gacha,rerender=/);assert.match(economy,/LEYENDAS DEL CAOS/);assert.match(economy,/PRÓXIMAMENTE/);
+ assert.match(economy,/renderHub\(panel,add,gacha,rerender=/);assert.match(economy,/LEYENDAS DEL CAOS/);assert.match(economy,/PRÓXIMAMENTE/);assert.match(economy,/button\.onpointerdown=select;button\.onclick=select/);
  assert.match(css,/\.gacha-featured-banner/);assert.match(css,/\.gacha-banner-grid/);assert.match(css,/\.gacha-summon-bar/);
  assert.match(css,/#reference-gacha-hub \.reference-head>div\{display:none!important\}/);assert.match(css,/body\.reference-open #dota-inventory\{display:none!important\}/);
 });

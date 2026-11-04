@@ -1396,9 +1396,9 @@ body.reference-open #dota-inventory{display:none!important}
 #reference-gacha-hub .reference-back:before{content:"\2190";font:900 21px/1 monospace;color:#fff0b4}
 #reference-gacha-hub .reference-body{height:100%;padding:0!important;overflow:hidden!important}
 #reference-gacha-hub .complete-section{box-sizing:border-box;height:100%;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:8px;padding:12px 16px 14px;border:0;border-radius:0;background:transparent;overflow:hidden}
-.gacha-banner-top{min-height:40px;margin:0;padding-right:52px}
+.gacha-banner-top{position:relative;z-index:31;min-height:40px;margin:0;padding-right:52px;pointer-events:auto}
 .gacha-banner-top .gacha-scope-tabs{min-width:0;width:auto;gap:4px}
-.gacha-banner-top .gacha-scope-tabs button{flex:0 0 auto;min-width:126px;padding:8px 16px;border-color:#8296a5;background:#10283ad9}
+.gacha-banner-top .gacha-scope-tabs button{position:relative;z-index:1;flex:0 0 auto;min-width:126px;padding:8px 16px;border-color:#8296a5;background:#10283ad9;touch-action:manipulation;pointer-events:auto}
 .gacha-banner-top .gacha-scope-tabs button[aria-pressed=true]{border-color:#f0c957;background:#e0ba4d;color:#142337}
 .gacha-banner-top .gacha-wallets article{min-width:100px;padding:6px 10px;border-color:#496d87;background:#10283ad9}
 .gacha-banner-grid{min-height:58px;margin:0;padding:0 52px 4px 0;overflow-x:auto}
