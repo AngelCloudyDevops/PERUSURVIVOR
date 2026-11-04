@@ -1,6 +1,6 @@
 'use strict';
 // Movimiento reducido = preferencia del sistema O la opción del juego (clase ref-reduced-motion).
-P.Motion={os:typeof matchMedia==='function'?matchMedia('(prefers-reduced-motion: reduce)'):null,reduced(){if(this.os?.matches)return true;try{if(typeof document!=='undefined'&&document.body)return !!document.body.classList?.contains('ref-reduced-motion');if(typeof localStorage!=='undefined')return localStorage.getItem('perusurvivor-option-reduced-motion')==='true'}catch{}return false}};
+P.Motion={os:typeof matchMedia==='function'?matchMedia('(prefers-reduced-motion: reduce)'):null,reduced(){if(this.os?.matches)return true;try{if(typeof document!=='undefined'&&document.body?.classList?.contains?.('ref-reduced-motion'))return true;if(typeof localStorage!=='undefined')return localStorage.getItem('perusurvivor-option-reduced-motion')==='true'}catch{}return false},setReduced(value){try{localStorage.setItem('perusurvivor-option-reduced-motion',String(!!value))}catch{}if(typeof document!=='undefined')document.body?.classList?.toggle?.('ref-reduced-motion',!!value)},label(){return this.reduced()?'Reducidos':'Completos'}};
 P.Ambient={
 reduced:{get matches(){return P.Motion.reduced()}},
 active(){return (!!P.Maps.current?.()||['campo','plaza','machu','halloween','navidad'].includes(P.Maps.selected))&&!P.state.encounter&&P.state.mode!=='menu'},
