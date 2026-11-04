@@ -1256,6 +1256,8 @@ Mantener `TAB` abre una ficha lateral amplia sin pausar el combate. Puede cubrir
 
 Todo perfil nuevo comienza con la Gallinita recolectora obtenida y equipada. Los perfiles anteriores que ya recibieron la mascota pero nunca guardaron una selección la equipan una sola vez al migrar. Después de esa migración, cambiarla por otra mascota o quitarla es una decisión persistente del jugador. La mascota acompaña al personaje únicamente en partidas individuales, recoge los tipos de botín permitidos por su rareza y entrega la carga al regresar junto a su dueño.
 
+La mascota elegida en la mochila es la autoridad al crear el acompañante de la partida y reemplaza cualquier variante residual del jugador. Su identidad visual debe conservarse desde el primer cuadro: si el atlas todavía está cargando, la rara mantiene su mochila y la legendaria mantiene cohetes y gafas en la silueta provisional.
+
 La mascota usa pasos ligados a la distancia real recorrida tanto al buscar botín como al seguir a su dueño. Cuando está libre ronda al personaje a una distancia segura en vez de permanecer pegada a él; al recoger carga conserva la prioridad de volver y entregarla. El rebote, la sombra y el pequeño rastro visual solo comunican desplazamiento y no alteran velocidad, alcance ni colisiones. Con movimiento reducido conserva una pose estable sin rebote.
 
 ### Apoyos en el mazo de combate
