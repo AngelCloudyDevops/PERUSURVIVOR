@@ -55,13 +55,13 @@ Los dos jefes ya separan sus piezas finales de los patrones existentes. El Tiran
 
 Jefe opcional del portal de Navidad, además del Grinch. Se prueba directamente desde Laboratorio → Papá Noel del Caos y desde la Wiki. Vida inicial: 1650; dos barras/fases; atributo Ingenio; canal principal especial y golpes de trineo, ariete y allanamiento físicos. Balance inicial pendiente de partidas completas.
 
-- Regalos explosivos: tres marcas fijas por jugador (máximo seis), 1,4 s de aviso y 22 de daño especial base.
+- Regalos explosivos: tres marcas fijas por jugador (máximo seis), 1,25 s de aviso (1,1 s en fase II) y 22 de daño especial base.
 - Trineo rasante: carril fijado, 1,5 s de aviso y barrido físico de 22; salir lateralmente evita el golpe.
 - Ventisca circular: anillo entre 130 y 280 unidades, 1,5 s de aviso y 20 de daño especial; centro y exterior seguros.
 - Turno de duendes: invoca hasta tres duendes, nunca más de cuatro vivos.
 - Abrigo del taller: reduce el daño recibido un 25 % mientras viva un duende propio.
-- Saco abierto: aumenta el daño recibido un 20 % durante los 1,6 s de recuperación. Se combina multiplicativamente con el abrigo.
-- Fase II al 50 %: espera al fin del patrón y revela el operativo durante 2,2 s. Cambia a chaleco, casco y ariete; convierte duendes vivos en policías sin curarlos ni duplicarlos. Las invocaciones posteriores usan policía de atributo Ingenio y canal físico; sigue habiendo máximo cuatro. El descanso entre ataques pasa de 1,7 a 1,1 s.
+- Saco abierto: aumenta el daño recibido un 20 % durante los 1,2 s de recuperación en fase I y 0,95 s en fase II. Se combina multiplicativamente con el abrigo.
+- Fase II al 50 %: espera al fin del patrón y revela el operativo durante 2,2 s. Cambia a chaleco, casco y ariete; convierte duendes vivos en policías sin curarlos ni duplicarlos. Las invocaciones posteriores usan policía de atributo Ingenio y canal físico; sigue habiendo máximo cuatro. Tras recuperarse prepara el ataque siguiente sin un segundo descanso.
 - Dominio, Operativo Nochebuena: una vez tras la revelación; aparecen tres puertas decorativas. El refugio verde detrás de la puerta sin X evita el allanamiento. Cuatro pulsos, 4,2 s para llegar al primer refugio y 3,2 s entre cambios. Cada fallo causa 18 de daño físico. Las puertas no bloquean movimiento.
 - Ulti, «¡Abre, es tu regalo!»: una vez al 25 %, después del dominio; abre tres puertas sucesivas. Cada una anuncia un abanico dirigido y fijo durante 1,8 s antes de causar 24 de daño físico. Salir del abanico evita el golpe.
 
