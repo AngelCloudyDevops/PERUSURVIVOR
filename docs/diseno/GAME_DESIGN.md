@@ -1264,6 +1264,15 @@ Los apoyos activos se muestran como cartas con el arte genérico existente, nomb
 ### Balance legible de enemigos
 
 El Centro de balance presenta los enemigos con valores reales de referencia —PV, daño por impacto, velocidad, defensas, recarga en segundos, radio y duración— y nunca como “Vida 1” o “Ataque 1”. Internamente conserva factores relativos para que el crecimiento por tiempo, rango, dificultad y cooperativo siga funcionando. Los balances antiguos continúan siendo válidos y la interfaz los convierte automáticamente a números legibles.
+
+### Minion francotirador
+
+- Puede sustituir a un pingüino desde 02:15. Nunca hay más de dos vivos y conserva el cupo total de profesiones; no aumenta la cantidad de rivales.
+- Camina al 58 % de la velocidad original. Solo prepara `Tiro de vigilancia` cuando el objetivo lleva 0,65 s quieto, está entre 300 y 720 unidades y existe línea de visión.
+- La mira anuncia durante al menos 1,3 s la trayectoria exacta y queda fijada: moverse después del aviso permite esquivar. No es un impacto instantáneo.
+- La bala viaja a 960 unidades/s, inflige 26 de daño base físico y usa colisión barrida para no atravesar al jugador entre fotogramas. Árboles, muros y cobertura la detienen.
+- Recarga base de 8,2 s, con una sola bala por ataque incluso en rango élite. En cooperativo prioriza a un jugador quieto dentro del alcance; si ninguno cumple, conserva la selección normal sin disparar.
+
 ### Fusión directa durante el combate
 Un apoyo en rango 3, desde nivel 8 (6 en Rápida), puede arrastrarse sobre una técnica compatible del HUD. Solo se resaltan destinos válidos. Soltar sobre el destino fusiona inmediatamente, sin pausa, confirmación ni consumo de subida de nivel. Soltar fuera cancela. También se puede seleccionar el apoyo y luego el destino con clic, toque o teclado. No se permite mientras hay una elección, pausa, muerte, cinemática o dominio activo. Conserva el límite de dos apoyos. La oferta de nivel anterior se mantiene como ruta alternativa.
 

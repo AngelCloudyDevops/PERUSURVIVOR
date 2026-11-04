@@ -1,0 +1,12 @@
+{
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "id": "sniper",
+      "reference": "public/assets/minions/profession-architect-integrated-v1.png",
+      "source": "public/assets/minions/profession-sniper-integrated-v1.png",
+      "runtime": "public/assets/minions/profession-sniper-integrated-v1.webp",
+      "prompt": "Use case: identity-preserve. Production transparent 3x3 game sprite atlas for the existing PeruSurvivor minion family. Preserve the recognizable blue penguin mascot, yellow beak, proportions, bold dark outlines and polished cartoon/pixel hybrid rendering. Replace the architect outfit with a fictional scout marksman outfit and an oversized toy-like long-range dart rifle. Exactly nine complete whole-body figures: six chronological slow walking poses, aiming windup, firing recoil and seated defeat with X eyes. Uniform 3-column by 3-row grid, generous transparent gutters, no text, real insignia, detached props, gore, shadows or cropped anatomy."
+    }
+  ]
+}

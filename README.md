@@ -189,6 +189,10 @@ Ya están funcionales y fuera de esta lista: impacto y cráter, invasión y form
 
 `P.EnemyContract` es la única plantilla válida para minions, dinosaurios, minijefes y jefes. No se crea una ficha paralela ni se completa un espacio solo con texto: cada pieza marcada como implementada debe existir en combate, tener señal visual, recuperación, pruebas y fuente de datos compartida con Wiki y Balance.
 
+### Francotirador de vigilancia
+
+El minion francotirador conserva la mascota cartoon azul y el atlas 3 × 3 de las demás profesiones. Desde 02:15 puede sustituir una aparición normal, camina lentamente y solo apunta a un jugador que lleve 0,65 s quieto. Su línea queda fijada durante 1,3 s antes de lanzar una bala física rápida y de alto daño; moverse o usar cobertura permite evitarla. Hay un máximo de dos simultáneos. Los valores y el contrato completo están en [GAME_DESIGN.md](docs/diseno/GAME_DESIGN.md), y la procedencia del dibujo en [SNIPER_MINION.md](docs/arte/SNIPER_MINION.md).
+
 Toda amenaza declara identidad (`id`, nombre, categoría y rol), estadísticas base (vida, velocidad y tamaño), atributo, canal de daño, ATQ/DEF físico y especial y los nueve stats avanzados universales: perforación, resistencia de estado, regeneración, crítico, daño crítico, resistencia crítica, defensa crítica, recuperación y robo de vida. También declara debilidad, ataques, habilidad de rol cuando corresponda, pasivas, fases, ulti y expansión según su categoría. Un valor neutral se escribe explícitamente; no se omite. Un hueco sin mecánica real queda como **Por definir**.
 
 La Wiki aplica ahora el mismo criterio de sinceridad que las fichas de personajes: cada espacio aparece como `Implementado` o `Por definir`, muestra el porcentaje cubierto y nunca convierte un hueco en una habilidad genérica. La auditoría boss por boss, incluidos minijefes, jefes de portal y Extinción, vive en [BOSS_KIT_AUDIT.md](docs/balance/BOSS_KIT_AUDIT.md). Esta primera pasada documenta faltantes; no cambia daño, vida, colisiones ni patrones.
