@@ -95,7 +95,7 @@ P.CardBuilds={
   for(const zone of state.zones){zone.left-=dt;zone.next-=dt;if(zone.left<0)continue;for(const e of P.state.enemies)if(e.hp>0&&Math.hypot(e.x-zone.x,e.y-zone.y)<zone.radius+(e.r||0)&&P.Terrain.clear(zone.x,zone.y,e.x,e.y,4)){if(zone.slow)e.dynamicZoneSlowUntil=Math.max(e.dynamicZoneSlowUntil||0,P.state.elapsed+.2);if(zone.vulnerability){P.SideralKit.weaken(e,zone.vulnerability,.2)}}if(zone.next<=0&&zone.pulses>0){zone.next=.8;zone.pulses--;if(zone.support)this.emit(p,zone.support,zone.x,zone.y,.8);else this.burst(p,zone.x,zone.y,zone.radius,p.power*zone.scale,zone.glyph,zone.type);if(P.state.mode!=='play')return}}state.zones=state.zones.filter(z=>z.left>0)
  },
  label(p,support){const target=p.cardBuild?.fusions?.[support];return target?'→ '+(P.SideralArsenal.names[target]||P.Data.attacks[p.attack].name):'Automático'},
- resetTransient(p){if(p.cardBuild){p.cardBuild.zones=[];p.cardBuild.pending=[]}delete p.sideralFearCast;for(const nest of p.sideralEggs||[]){nest.cardBuildPending=false;nest.cardBuildCancelled=true}p.sideralEggs=[]}
+ resetTransient(p){if(p.cardBuild){p.cardBuild.zones=[];p.cardBuild.pending=[]}delete p.sideralFearCast;delete p.sideralFearQueue;for(const nest of p.sideralEggs||[]){nest.cardBuildPending=false;nest.cardBuildCancelled=true}p.sideralEggs=[]}
 };
 {
  const player=P.Entities.player,options=P.Progression.options,apply=P.Progression.apply,tick=P.Progression.tick,attack=P.SideralArsenal.attackFor,cast=P.SideralKit.cast,eggs=P.SideralKit.eggs,combatCast=P.Combat.cast,applyRun=P.Meta.applyRun;
