@@ -1390,9 +1390,9 @@ body.instinct-choice-open #lobby-hub{pointer-events:none;user-select:none}
 /* Gacha limpio: una sola escena, navegación mínima y acciones siempre visibles. */
 body.reference-open #dota-inventory{display:none!important}
 #menu #reference-gacha-hub{inset:54px 2vw 12px;display:block;padding:0;border:0;border-radius:0;background:linear-gradient(135deg,#07131ff5,#0b1f31f2 55%,#071722f5);box-shadow:0 18px 60px #0009}
-#reference-gacha-hub .reference-head{position:absolute!important;z-index:30;top:12px;right:12px;height:42px!important;padding:0!important;border:0!important}
+#reference-gacha-hub .reference-head{position:absolute!important;z-index:40;top:12px;right:12px;height:42px!important;padding:0!important;border:0!important;pointer-events:auto!important}
 #reference-gacha-hub .reference-head>div{display:none!important}
-#reference-gacha-hub .reference-back{display:grid;place-items:center;width:42px;height:42px;padding:0;border-color:#8296a5;border-radius:50%;background:#102638dc;font-size:0;box-shadow:0 4px 14px #0007}
+#reference-gacha-hub .reference-back{position:relative;z-index:1;display:grid;place-items:center;width:42px;height:42px;padding:0;border-color:#8296a5;border-radius:50%;background:#102638dc;font-size:0;box-shadow:0 4px 14px #0007;pointer-events:auto;touch-action:manipulation}
 #reference-gacha-hub .reference-back:before{content:"\2190";font:900 21px/1 monospace;color:#fff0b4}
 #reference-gacha-hub .reference-body{height:100%;padding:0!important;overflow:hidden!important}
 #reference-gacha-hub .complete-section{box-sizing:border-box;height:100%;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:8px;padding:12px 16px 14px;border:0;border-radius:0;background:transparent;overflow:hidden}
