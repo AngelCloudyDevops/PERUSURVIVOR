@@ -1026,3 +1026,5 @@ CollectorPets reutiliza Terrain.hit/clear/resolve con radio propio y una ruta lo
 `santaState` contiene solamente números, booleanos, cadenas y hasta seis marcas. Los duendes llevan `santaElf` para contar sólo sus invocaciones; tope cuatro vivos. El servidor usa la misma máquina de estados, apunta a ambos jugadores y serializa estos campos mediante el mecanismo existente de enemigos. Ninguna actualización del combate depende de Image, DOM o reloj real. El atlas WebP de seis poses se carga bajo demanda; los errores de imagen tienen espera de diez segundos entre reintentos. No se añade una herramienta de manipulación de estado al build.
 
 `Progression.domainActive()` reconoce también el estado `santaState.phase === "domain"` de un Papá Noel vivo dentro de su encuentro. Así comparte el bloqueo de mejoras, fusiones y accesos de laboratorio con las demás expansiones, sin crear un indicador global que pueda quedar atascado al abandonar o vencer al jefe.
+
+Las invocaciones de Santa fijan explícitamente Técnico/especial y peso normal; no heredan el atributo ni la armadura aleatorios del enemigo que se usa como fábrica.

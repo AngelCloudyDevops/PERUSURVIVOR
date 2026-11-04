@@ -11,7 +11,7 @@ P.SantaBoss={
  start(e){const c=this.init(e),slot=c.attack++%4;if(slot===0){this.marks(e);this.set(e,'gifts',1.4)}else if(slot===1){c.lane=Math.max(-235,Math.min(235,this.party()[0]?.y||0));e.x=-400;e.y=c.lane;this.set(e,'sleigh-warning',1.5)}else if(slot===2)this.set(e,'snow',1.5);else this.set(e,'elves',1.4)},
  hit(e,damage,type,p){P.PlayerFeedback.hit(p,damage,{...P.Attributes.source(e,type),x:e.x,y:e.y})},
  damageScale(e){return (P.state.enemies.some(a=>a.santaElf&&a.hp>0)?.75:1)*(e.santaState?.phase==='recover'?1.2:1)},
- summon(e){const count=P.state.enemies.filter(a=>a.santaElf&&a.hp>0).length;for(let i=0;i<Math.min(3,4-count);i++){const elf=P.Entities.enemy();Object.assign(elf,{x:-210+i*210,y:-190,hp:90,max:90,r:15,speed:65,design:4,profession:'elf',santaElf:true,progressive:false});P.Attributes.init(elf);P.state.enemies.push(elf)}},
+ summon(e){const count=P.state.enemies.filter(a=>a.santaElf&&a.hp>0).length;for(let i=0;i<Math.min(3,4-count);i++){const elf=P.Entities.enemy();Object.assign(elf,{x:-210+i*210,y:-190,hp:90,max:90,r:15,speed:65,design:4,profession:'elf',santaElf:true,progressive:false,heavy:false,combatStats:P.Attributes.stats('technique','special')});P.Attributes.init(elf);P.state.enemies.push(elf)}},
  domain(e){const c=this.init(e);c.domainUsed=true;c.wave=0;c.safe=0;this.set(e,'domain',4.2)},
  ultimate(e){const c=this.init(e);c.ultimateUsed=true;c.wave=0;this.marks(e);this.set(e,'ultimate',1.4)},
  quadrant(p){return (p.y>=0?2:0)+(p.x>=0?1:0)},
