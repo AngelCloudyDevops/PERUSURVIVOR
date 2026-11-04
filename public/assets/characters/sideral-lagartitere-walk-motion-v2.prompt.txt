@@ -1,0 +1,1 @@
+Create an 8-frame 4x2 transparent sprite sheet for Sideral's legendary Lagartitere skin. Preserve the red varsity jacket, green pants, white sneakers, black hair and green reptile hand puppet. Side-facing three-quarter walk cycle with clear planted feet, arm counter-swing, puppet bounce and consistent proportions. No text, border, shadow or background.
