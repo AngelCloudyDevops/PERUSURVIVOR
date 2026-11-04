@@ -1314,3 +1314,5 @@ Jefe opcional del portal de Navidad, además del Grinch. Se prueba directamente 
 - Ulti, Reparto de medianoche: una vez al 25 %, después del dominio; tres oleadas de regalos, 1,4 s de aviso y 24 de daño especial por oleada.
 
 Los daños base pasan por atributos, defensas, equipo e invulnerabilidad existentes. El dominio y la ulti no se superponen. Derrotarlo usa la recompensa y el retorno normales de los portales. El taller mantiene libre el carril: su decoración exterior no introduce obstáculos invisibles.
+
+Durante Taller de Nochebuena se acumula experiencia, pero las mejoras y fusiones esperan a que termine el dominio. Al recuperarse o morir Papá Noel se libera el bloqueo; no afecta otras arenas.
