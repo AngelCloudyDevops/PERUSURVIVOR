@@ -54,9 +54,11 @@ test('Gacha moderno: banners, tickets y acciones permanecen en la interfaz nueva
  assert.match(modern,/gachaPull\(1\)/);
  assert.match(modern,/gachaView='history'/);
  assert.match(modern,/gacha-featured-banner/);assert.match(modern,/gacha-summon-bar/);assert.match(modern,/P\.GachaEconomy\.selected\(\)/);
+ assert.doesNotMatch(modern,/gacha-banner-promises/);assert.doesNotMatch(modern,/gacha-featured-summary/);
  assert.doesNotMatch(modern,/P\.Gacha\.open\(\)/);
  assert.match(economy,/renderHub\(panel,add,gacha,rerender=/);assert.match(economy,/LEYENDAS DEL CAOS/);assert.match(economy,/PRÓXIMAMENTE/);
  assert.match(css,/\.gacha-featured-banner/);assert.match(css,/\.gacha-banner-grid/);assert.match(css,/\.gacha-summon-bar/);
+ assert.match(css,/#reference-gacha-hub \.reference-head>div\{display:none!important\}/);assert.match(css,/body\.reference-open #dota-inventory\{display:none!important\}/);
 });
 test('La selección de causa, mapa y modo permanece en el flujo moderno hasta iniciar directamente',()=>{
  const complete=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),reference=fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8'),game=fs.readFileSync(path.join(root,'src/scenes/game.js'),'utf8'),screens=fs.readFileSync(path.join(root,'src/ui/screens.js'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');
