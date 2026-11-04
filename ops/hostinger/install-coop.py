@@ -17,6 +17,27 @@ def forward_ip(conf):
         return conf
     return re.sub(r'(?m)^([ \t]*)proxy_set_header Host \$host;\n', lambda m: m.group(0) + m.group(1) + 'proxy_set_header X-Real-IP $remote_addr;\n' + m.group(1) + 'proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n', conf)
 
+def media_uploads(conf):
+    marker = '  # PERUSURVIVOR SUBIDAS MULTIMEDIA\n'
+    if marker in conf:
+        return conf
+    match = re.search(r'(?m)^[ \t]*location /api/ \{', conf)
+    if not match:
+        raise RuntimeError('No se encontró la ruta /api/ para habilitar las subidas')
+    route = marker + '''  location ~ ^/api/(admin/taunts/[0-5]|music)$ {
+    client_max_body_size 52m;
+    proxy_pass http://perusurvivor-coop:4180;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 130s;
+    proxy_send_timeout 130s;
+    add_header Cache-Control "no-store" always;
+  }
+'''
+    return conf[:match.start()] + route + conf[match.start():]
+
 def install():
     source = (BASE / 'live/current/backend').resolve(strict=True)
     if not source.is_relative_to((BASE / 'releases').resolve()):
@@ -115,7 +136,7 @@ networks:
   location ^~ /backend/ { return 404; }
 '''
         updated = updated[:match.start()] + private_routes + updated[match.start():]
-    updated = forward_ip(updated)
+    updated = media_uploads(forward_ip(updated))
     if updated != original:
         shutil.copyfile(conf, BASE / 'nginx.before-accounts.conf')
         conf.write_text(updated)

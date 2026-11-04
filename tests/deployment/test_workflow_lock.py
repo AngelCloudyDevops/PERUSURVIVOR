@@ -67,6 +67,19 @@ class WorkflowLockTest(unittest.TestCase):
         self.assertIn('X-Real-IP $remote_addr', new)
         self.assertEqual(module.forward_ip(new), new)
 
+    def test_media_upload_route_is_isolated_and_idempotent(self):
+        root = Path(__file__).resolve().parents[2]
+        spec = importlib.util.spec_from_file_location('update_release_media', root / 'ops' / 'hostinger' / 'update-release.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        old = '  location /api/ {\n    client_max_body_size 128k;\n    proxy_pass http://perusurvivor-coop:4180;\n  }\n'
+        new = module.media_uploads(old)
+        self.assertIn('^/api/(admin/taunts/[0-5]|music)$', new)
+        self.assertIn('client_max_body_size 52m;', new)
+        self.assertIn('proxy_read_timeout 130s;', new)
+        self.assertIn('client_max_body_size 128k;', new)
+        self.assertEqual(module.media_uploads(new), new)
+
     def test_backup_cron_logs_exit_status(self):
         root = Path(__file__).resolve().parents[2]
         installer = (root / 'ops' / 'hostinger' / 'install-coop.py').read_text(encoding='utf-8')
