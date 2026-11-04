@@ -1,0 +1,1 @@
+Create an 8-frame 4x2 transparent sprite sheet for the Lagartitere egg. It is a theatrical sewn egg prop in red, green and cream. Frames show rolling rotation, airborne rotation, landing compression, cracking and an opened shell. Consistent size and centered registration. No text, border, shadow or background.

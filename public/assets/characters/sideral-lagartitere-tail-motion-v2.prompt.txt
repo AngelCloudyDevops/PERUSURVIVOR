@@ -1,0 +1,1 @@
+Create an 8-frame 4x2 transparent sprite sheet for the Colazo attack of Sideral's Lagartitere skin. Sideral winds up, spins and sweeps a long sewn reptile costume tail in a broad readable arc, then recovers. Preserve the red varsity jacket, green pants, white sneakers and puppet. No text, border, shadow or background.
