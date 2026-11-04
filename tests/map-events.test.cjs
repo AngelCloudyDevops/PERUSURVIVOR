@@ -36,9 +36,9 @@ test('Extinción: cada dinosaurio tiene atributo, canal, defensas y resistencia 
 });
 
 test('Extinción: escala, colisión y barra respetan el cuerpo real de cada especie',()=>{
- const {P}=ready(),M=P.MapEvents;M.startWorld();const e=M.event,kinds=['raptor','pterosaur','dilophosaur','parasaur','triceratops','ankylosaur'],heights=kinds.map(kind=>M.dinosaurVisual(kind).height);assert(heights.every(height=>height>=108),'Ningún dinosaurio vuelve a verse como un minion pequeño');assert(M.dinosaurVisual('ankylosaur').height>M.dinosaurVisual('raptor').height);assert(M.dinosaurVisual('tyrant').height>M.dinosaurVisual('ankylosaur').height);
- for(const kind of kinds){const q=M.spawnDinosaur(e,true,kind),visual=M.dinosaurVisual(kind);assert.equal(q.r,visual.r,kind+' debe usar su colisión visual');assert(visual.groundOffset>=0&&visual.barLift>0);assert(visual.barWidth>=84&&visual.barWidth<=112,'La barra debe acompañar al cuerpo sin dominar la escena')}
- const q=P.state.enemies.find(x=>x.dinoKind==='ankylosaur'),visual=M.visualFor(q),rects=[],ctx=new Proxy({save(){},restore(){},beginPath(){},arc(){},fill(){},stroke(){},fillText(){},fillRect(x,y,w,h){rects.push({x,y,w,h})}},{get:(o,k)=>o[k]??(()=>{}),set:(o,k,v)=>(o[k]=v,true)});M.drawEnemyBar(ctx,q,'TANQUE',visual);assert(rects.length>=3);assert.equal(rects[0].y,q.y+visual.groundOffset-visual.barLift-14,'La barra usa la altura visible y no la celda transparente completa');assert(visual.groundOffset>=16,'El tanque compensa su margen transparente para tocar el suelo');
+ const {P}=ready(),M=P.MapEvents;M.startWorld();const e=M.event,kinds=['raptor','pterosaur','dilophosaur','parasaur','triceratops','ankylosaur'],heights=kinds.map(kind=>M.dinosaurVisual(kind).height);assert(heights.every(height=>height>=82),'Ningún dinosaurio vuelve a verse como un minion pequeño');assert(M.dinosaurVisual('ankylosaur').height>M.dinosaurVisual('raptor').height);assert(M.dinosaurVisual('tyrant').height>M.dinosaurVisual('ankylosaur').height);
+ for(const kind of kinds){const q=M.spawnDinosaur(e,true,kind),visual=M.dinosaurVisual(kind),walk=M.dinosaurTrim(kind,false),attack=M.dinosaurTrim(kind,true);assert.equal(q.r,visual.r,kind+' debe usar su colisión visual');assert.equal(visual.groundOffset,0,'El recorte alfa apoya el cuerpo sin offsets adivinados');assert(visual.barLift>0);assert(walk[1]>0&&walk[3]>0&&attack[1]>0&&attack[3]>0,kind+' debe recortar el margen transparente de ambas animaciones');assert(visual.barWidth>=84&&visual.barWidth<=112,'La barra debe acompañar al cuerpo sin dominar la escena')}
+ const q=P.state.enemies.find(x=>x.dinoKind==='ankylosaur'),visual=M.visualFor(q),rects=[],images=[],ctx=new Proxy({save(){},restore(){},beginPath(){},arc(){},fill(){},stroke(){},fillText(){},fillRect(x,y,w,h){rects.push({x,y,w,h})},drawImage(...args){images.push(args)}},{get:(o,k)=>o[k]??(()=>{}),set:(o,k,v)=>(o[k]=v,true)});M.drawEnemyBar(ctx,q,'TANQUE',visual);assert(rects.length>=3);assert.equal(rects[0].y,q.y+visual.groundOffset-visual.barLift-14,'La barra usa la altura visible y no la celda transparente completa');M.dinosaurWalkSheets={ankylosaur:{ready:true,image:{complete:true,naturalWidth:2172,naturalHeight:713}}};M.dinosaurAttackSheets={};M.drawEnemy(ctx,q);const sprite=images[0];assert.equal(sprite[2],208,'El dibujo empieza en el primer píxel visible del atlas');assert.equal(sprite[4],240,'El dibujo excluye el margen inferior transparente');assert.equal(sprite[6],-visual.height);assert.equal(sprite[8],visual.height,'La altura declarada corresponde al cuerpo visible');
 });
 
 test('Extinción: la manada se protege, aprovecha el veneno y rescata aliados heridos',()=>{
@@ -198,6 +198,14 @@ test('Extinción: el tiempo agotado falla con retorno seguro y el sanador reanim
 
 test('Triceratops fósil: dos placas absorben daño antes de exponer el cristal',()=>{
  const {P}=ready(),M=P.MapEvents;M.startWorld();const e=M.event;M.beginDungeon(e);M.spawnDungeonBoss(e);const boss=e.dungeonBoss;for(let plate=0;plate<2;plate++){assert.equal(M.modifyDamage(boss,boss.plateHp+1),0)}assert.equal(boss.fossilPlates,0);assert.equal(boss.crystal,true);assert.equal(M.modifyDamage(boss,50),50);
+});
+
+test('Triceratops fósil: los dos pilares son destruibles y cada choque consume solo uno',()=>{
+ const {P}=ready(),M=P.MapEvents;M.startWorld();const e=M.event;M.beginDungeon(e);M.spawnDungeonBoss(e);const boss=e.dungeonBoss;assert.equal(e.pillars.length,2);assert(e.pillars.every(p=>p.alive&&p.destructible&&p.r===40));for(const pillar of e.pillars){boss.x=pillar.x;boss.y=pillar.y;boss.stunned=0;assert.equal(M.collideFossilPillar(boss,e),true);assert.equal(pillar.alive,false);assert.equal(boss.stunned,2.6)}assert.equal(M.collideFossilPillar(boss,e),false,'No quedan pilares invisibles ni reutilizables');
+});
+
+test('Extinción: el aumento global de daño se aplica una sola vez a ataques y meteoritos',()=>{
+ const {P}=ready(),M=P.MapEvents;M.startWorld();const e=M.event;assert.equal(M.extinctionBalance.damageScale,1.1);assert.equal(M.extinctionDamage(10),11);M.queueMeteor(e,0,0,54,20);assert.equal(e.fallingMeteors[0].damage,22);
 });
 
 test('Laboratorio de ambiente: permite forzar cada hora, clima y evento sin alterar el reloj',()=>{
