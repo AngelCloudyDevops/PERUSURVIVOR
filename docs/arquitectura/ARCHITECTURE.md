@@ -1017,3 +1017,10 @@ CollectorPets reutiliza Terrain.hit/clear/resolve con radio propio y una ruta lo
 `src/systems/gacha-economy.js` amplía el guardado normalizado sin romper la clave histórica `inventory.golden_ticket`. Añade `inventory.season_ticket`, el contador acotado `seasonBossWins` y los campos de recibo `ticketReward`/`ticketSeason`. La recompensa del jefe se acredita en una segunda transacción idempotente ligada al recibo de la partida: recuperar o repetir el mismo resultado no duplica tickets.
 
 `Maps.seasonRevision` recibe `updatedAt` desde `/api/season`. La pareja `seasonMap:seasonRevision` identifica una activación concreta, incluso cuando el mismo mapa vuelva en otra temporada. El catálogo y la interfaz de banners son datos separados de la lógica actual de tiradas; solo `permanent-characters` está habilitado en este prototipo. Los demás banners no ejecutan tiradas hasta incorporar sus catálogos, probabilidades y garantías definitivas.
+
+
+### Controlador de Papá Noel
+
+`src/systems/santa-boss.js` añade la definición `santa`, el controlador de cuatro patrones y las integraciones de portal navideño, Wiki y laboratorio. Conserva el orden previo de módulos y se incorpora al final de `scripts/modules.cjs`. `BossArt` deriva el dibujo y fondo de Santa al controlador; los demás jefes conservan sus adaptadores. `Encounters.enter` transmite `healthBars` y la posición `bossSpawn` opcionales del catálogo; Santa usa dos y los valores anteriores conservan sus barras predeterminadas.
+
+`santaState` contiene solamente números, booleanos, cadenas y hasta seis marcas. Los duendes llevan `santaElf` para contar sólo sus invocaciones; tope cuatro vivos. El servidor usa la misma máquina de estados, apunta a ambos jugadores y serializa estos campos mediante el mecanismo existente de enemigos. Ninguna actualización del combate depende de Image, DOM o reloj real. El atlas WebP de seis poses se carga bajo demanda; los errores de imagen tienen espera de diez segundos entre reintentos. No se añade una herramienta de manipulación de estado al build.
