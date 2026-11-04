@@ -49,3 +49,20 @@ Los dos jefes ya separan sus piezas finales de los patrones existentes. El Tiran
 4. Diseñar el tercer ataque de los minijefes pendientes sin aumentar su frecuencia total: el nuevo patrón reemplaza turnos, no los añade. El Fiscalizador ya cumple esta regla.
 5. Definir segundas pasivas solo cuando cambien una decisión del jugador y tengan lectura visual propia.
 6. Validar daño, duración, móvil, movimiento reducido y cooperativo antes de marcar cualquier espacio como implementado.
+
+
+## Papá Noel del Caos · jefe navideño
+
+Jefe opcional del portal de Navidad, además del Grinch. Se prueba directamente desde Laboratorio → Papá Noel del Caos y desde la Wiki. Vida inicial: 1650; dos barras/fases; atributo Ingenio; canal principal especial y trineo físico. Balance inicial pendiente de partidas completas.
+
+- Regalos explosivos: tres marcas fijas por jugador (máximo seis), 1,4 s de aviso y 22 de daño especial base.
+- Trineo rasante: carril fijado, 1,5 s de aviso y barrido físico de 22; salir lateralmente evita el golpe.
+- Ventisca circular: anillo entre 130 y 280 unidades, 1,5 s de aviso y 20 de daño especial; centro y exterior seguros.
+- Turno de duendes: invoca hasta tres duendes, nunca más de cuatro vivos.
+- Abrigo del taller: reduce el daño recibido un 25 % mientras viva un duende propio.
+- Saco abierto: aumenta el daño recibido un 20 % durante los 1,6 s de recuperación. Se combina multiplicativamente con el abrigo.
+- Fase II al 50 %: acorta el descanso entre ataques de 1,7 a 1,1 s.
+- Dominio, Taller de Nochebuena: una vez al 50 %; cuatro pulsos con un cuadrante verde seguro que rota; 4,2 s para el primer refugio y 2,4 s entre pulsos, para acercarse al centro antes de cambiar. Cada fallo causa 18 de daño especial.
+- Ulti, Reparto de medianoche: una vez al 25 %, después del dominio; tres oleadas de regalos, 1,4 s de aviso y 24 de daño especial por oleada.
+
+Los daños base pasan por atributos, defensas, equipo e invulnerabilidad existentes. El dominio y la ulti no se superponen. Derrotarlo usa la recompensa y el retorno normales de los portales. El taller mantiene libre el carril: su decoración exterior no introduce obstáculos invisibles.

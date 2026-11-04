@@ -471,4 +471,5 @@ module.exports = [
 ,{source:"src/ui/player-stats-drawer.js",output:"js/player-stats-drawer.js"}
 ,{source:"src/systems/card-builds.js",output:"js/card-builds.js"}
 ,{source:"src/ui/card-builds.js",output:"js/card-build-ui.js"}
+,{source:"src/systems/santa-boss.js",output:"js/santa-boss.js"}
 ];
