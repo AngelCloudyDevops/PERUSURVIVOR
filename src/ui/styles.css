@@ -1192,7 +1192,7 @@ body.menu[data-lobby-panel=home] #menu .home-feature p{margin:1px 0;font-size:11
 
 /* La mano de Sideral se centra en la pantalla; los objetos quedan como bloque lateral independiente. */
 @media(min-width:761px){
- #combat-dock[data-character=sideral]{left:50%;right:auto;width:656px;grid-template-columns:390px 260px;transform:translateX(-50%)}
+ #combat-dock[data-character=sideral]{left:50%;right:auto;width:656px;grid-template-columns:390px 260px;margin-left:-328px}
  #combat-dock[data-character=sideral] #dota-inventory{position:fixed;left:18px;right:auto;bottom:12px;width:220px;max-width:220px}
  #combat-dock[data-character=sideral] #attack-dock-slot{grid-column:1}
  #combat-dock[data-character=sideral] #ability-dock{grid-column:2}
@@ -1931,8 +1931,8 @@ body.ref-net-ping #net-indicator{display:inline-flex}
 #net-indicator[data-tone="bad"]{border-color:var(--chicha-rosa);color:var(--chicha-rosa)}
 body.ref-large-text #net-indicator{font-size:14px}
 body.ref-contrast #net-indicator{background:#05080d;border:2px solid var(--hc-line)}
-body #combat-dock #dota-inventory{position:fixed;inset:auto;top:50%;bottom:auto;left:auto;right:8px;transform:translateY(-50%);z-index:29;grid-column:auto;grid-row:auto;width:auto;min-width:0;max-width:none;padding:4px;background:var(--chicha-negro)}
-body[data-item-bar="left"] #combat-dock #dota-inventory{left:8px;right:auto}
+body #combat-dock[data-character] #dota-inventory,body #combat-dock #dota-inventory{position:fixed;inset:auto;top:50%;bottom:auto;left:auto;right:8px;transform:translateY(-50%);z-index:29;grid-column:auto;grid-row:auto;width:auto;min-width:0;max-width:none;padding:4px;background:var(--chicha-negro)}
+body[data-item-bar="left"] #combat-dock[data-character] #dota-inventory,body[data-item-bar="left"] #combat-dock #dota-inventory{left:8px;right:auto}
 body #combat-dock #dota-inventory .dota-inventory-title,body #combat-dock #dota-inventory .dota-inventory-name{display:none}
 body #combat-dock #dota-inventory .dota-active-heading{justify-content:center;padding:0;background:none}
 body #combat-dock #dota-inventory .dota-active-cycle{width:100%;min-width:44px;min-height:32px;margin-bottom:4px;padding:2px 0;background:var(--chicha-tinta);color:var(--chicha-amarillo)}
@@ -1941,15 +1941,17 @@ body #combat-dock #dota-inventory .dota-inventory-slot,body #combat-dock #dota-i
 body #combat-dock #dota-inventory .dota-inventory-icon{width:34px;height:34px}
 body #combat-dock #dota-inventory .dota-inventory-state{font:600 11px/1 var(--fuente-texto)}
 @media(pointer:coarse){body #combat-dock #dota-inventory .dota-active-cycle{min-height:44px}}
+body[data-item-bar="left"] #passive-hud[data-passive=sideral]{left:84px}
 @media(max-width:760px){
  #net-indicator .net-long{display:none}
  #net-indicator .net-short{display:inline}
  body.ref-net-ping #hud #boss-countdown{top:68px}
- body #combat-dock #dota-inventory{right:6px}
- body[data-item-bar="left"] #combat-dock #dota-inventory{left:6px;right:auto}
+ body #combat-dock[data-character] #dota-inventory,body #combat-dock #dota-inventory{right:6px}
+ body[data-item-bar="left"] #combat-dock[data-character] #dota-inventory,body[data-item-bar="left"] #combat-dock #dota-inventory{left:6px;right:auto}
  body #combat-dock #dota-inventory .dota-active-cycle{min-height:44px}
  body #combat-dock #dota-inventory .dota-inventory-slot,body #combat-dock #dota-inventory .dota-inventory-slot.empty{grid-template-rows:30px 14px;width:48px;height:52px}
  body #combat-dock #dota-inventory .dota-inventory-icon{width:30px;height:30px}
+ body[data-item-bar="left"] #passive-hud[data-passive=sideral]{left:68px}
 }
 .option-row select{min-width:120px;min-height:44px;padding:6px 10px;border:0;border-bottom:3px solid var(--chicha-amarillo);border-radius:0;background:var(--chicha-negro);color:var(--chicha-hueso);font:600 14px var(--fuente-texto)}
 body #hud #key-target.key-target-sr{position:absolute;width:1px;height:1px;max-width:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;background:none}/* texto solo para lectores de pantalla: la brujula se dibuja junto al personaje */
