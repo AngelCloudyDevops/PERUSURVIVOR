@@ -94,7 +94,7 @@ test('Laboratorio, Balance y Admin comparten la estructura visual del lobby sin 
  assert.match(css,/#hub-tools/);assert.match(css,/\.hub-tools-menu/);
  assert.match(css,/\.tool-dialog-head/);
  assert.match(css,/\.lobby-back::before,#menu \.ui-back-button::before\{content:'←'/);
- assert.match(fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),/close\.textContent='×'/);
+ assert.match(fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),/P\.Icons\.node\('close'\)/);
  assert.match(fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8'),/'←','ui-back-button'/);
 });
 test('El laboratorio en vivo conserva la barra compacta y no queda debajo de los controles de Cirilo',()=>{
