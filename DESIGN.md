@@ -17,9 +17,9 @@ corrido y una fuente de rótulo para los títulos.
 ## Tipografía
 | Uso | Fuente | Notas |
 |---|---|---|
-| Títulos, botones grandes, números del HUD | `Bungee` (Google Fonts) | Letra de rótulo urbano; en títulos lleva contornos chicha con `text-shadow` apilado (salvo el logotipo del juego, que es un wordmark pixel plano) |
-| Texto corrido, etiquetas, descripciones | `Pixelify Sans` (Google Fonts) | Mínimo 12 px; con tildes y ñ |
-| Datos tabulares (tiempos, contadores) | `Pixelify Sans` con `font-variant-numeric:tabular-nums` | |
+| Títulos, botones grandes, números del HUD | `Luckiest Guy` (Google Fonts, `--fuente-titulo`) | Letra de rótulo de dibujos animados, solo mayúsculas visuales, un único peso (400); mínimo 12 px; igual que el título del logo |
+| Texto corrido, etiquetas, descripciones | `Nunito` 700/800 (Google Fonts, `--fuente-texto`) | Mínimo 12 px; con tildes y ñ; 800 para etiquetas pequeñas |
+| Datos tabulares (tiempos, contadores) | `Nunito` con `font-variant-numeric:tabular-nums` | |
 
 El título del juego es un SVG de bloques (`P.Wordmark` en `src/ui/lobby.js`): KICK y PERU en `--kick-verde`, ALL STARS en hueso, sin contorno ni sombra.
 
@@ -42,7 +42,7 @@ Sin `monospace` genérico, sin Barlow ni DM Sans en la interfaz rediseñada.
 Texto sobre bloques de color: siempre `--chicha-negro`.
 
 ## Componentes
-- **Botón principal:** bloque amarillo, texto negro en Bungee, sin borde; al pasar o enfocar,
+- **Botón principal:** bloque amarillo, texto negro en Luckiest Guy, sin borde; al pasar o enfocar,
   franja inferior de 4 px en rosa. Deshabilitado: tinta con texto gris.
 - **Botón secundario:** fondo tinta, texto hueso, franja inferior del color de su función.
 - **Panel:** fondo negro plano; la cabecera es una franja de color de lado a lado con el título
