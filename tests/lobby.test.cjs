@@ -163,9 +163,24 @@ test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta 
  assert.match(source,/makanaky-los-tres-ultimate-fullart-v1\.webp/);
  assert.match(source,/sideral-domain-fullart-v1\.webp/);
  assert.doesNotMatch(source,/Tu cuenta conserva el progreso/);
- assert.match(css,/@keyframes splash-stars-breathe/);
+ assert.match(source,/splash-stars-wave/);
+ assert.match(source,/for\(let i=0;i<9;i\+\+\)/);
+ assert.match(css,/@keyframes splash-star-letter-wave/);
  assert.match(css,/@keyframes splash-letter-shine/);
- assert.match(css,/-webkit-mask:url\('assets\/branding\/kick-all-stars-peru-logo-v1\.webp'\)/);
+ assert.match(css,/-webkit-mask-image:url\('assets\/branding\/kick-all-stars-peru-logo-v1\.webp'\)/);
+ assert.match(css,/-webkit-mask-repeat:no-repeat/);
  assert.match(css,/@keyframes splash-reel-shot/);
  assert.match(css,/#welcome-actions\[hidden\]\{display:none\}/);
+});
+
+test('Maestría: Sideral separa Renovar del entrenamiento y conserva sus tres disciplinas',()=>{
+ const fs=require('node:fs'),source=fs.readFileSync('src/ui/lobby-complete.js','utf8'),css=fs.readFileSync('src/ui/styles.css','utf8');
+ assert.match(source,/Maestría del Lagarto/);
+ assert.match(source,/RENOVAR ×/);
+ assert.match(source,/Entrenamiento permanente/);
+ assert.match(source,/\['MIRADA','Control y miedo'\]/);
+ assert.match(source,/\['COLAZO','Críticos y PRESA'\]/);
+ assert.match(source,/\['HUEVO','Área y marcas'\]/);
+ assert.match(css,/\.mastery-track\{/);
+ assert.match(css,/@media\(max-width:760px\)\{\.mastery-summary/);
 });

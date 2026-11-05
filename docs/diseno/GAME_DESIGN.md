@@ -6,7 +6,7 @@
 
 2026-11-03: reglas y recetas en [Guía de progresión](GUIA_PROGRESION_CARTAS.md). Cuatro ofertas al subir de nivel, elegir una. Dos apoyos; una fusión opcional por apoyo, en destinos distintos, conserva rango/espacio y deja de atacar sola. Rango 3 y nivel 8 (6 en Rápida); una modificación personal desde nivel 4. Sideral admite fusiones de Onda/Tarjetas/Bandas con Colazo o Huevo; los básicos convencionales con su ataque principal. Otros arsenales no se convierten automáticamente.
 
-Renovar: 1/2/3 usos por partida con maestría 0/5/10; maestría = partidas registradas del personaje, hasta 10. Se reutiliza el guardado; el cooperativo fija el saldo desde la cuenta y valida revisiones por jugador. Cofres, monedas y equipo Dota mantienen sus reglas. Los valores de recetas son iniciales y requieren contraste de balance antes de promoción desde staging. La rama local no implica publicación.
+Renovar: 1/2/3 usos por partida con maestría 0/5/10; maestría = partidas registradas del personaje, hasta 10. La maestría no suma estadísticas: su ventaja estratégica inicial consiste exclusivamente en Renovaciones, mientras sus demás recompensas quedan reservadas para prestigio y cosméticos. La pantalla de progresión separa Maestría de Entrenamiento permanente y usa a Sideral —Mirada, Colazo y Huevo— como plantilla visual. Se reutiliza el guardado; el cooperativo fija el saldo desde la cuenta y valida revisiones por jugador. Cofres, monedas y equipo Dota mantienen sus reglas. Los valores de recetas son iniciales y requieren contraste de balance antes de promoción desde staging. La rama local no implica publicación.
 
 ## Regla universal de mejoras durante dominios
 

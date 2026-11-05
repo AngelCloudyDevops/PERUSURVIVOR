@@ -46,7 +46,9 @@ P.CardBuilds={
  init(p){const state=p.cardBuild??={version:2,fusions:{},mutations:[],modification:null,rerolls:1,rerollCap:1,mastery:0,zones:[]};state.mutations??=state.modification?[state.modification]:[];state.version=2;return state},
  // Una partida registrada = un grado de maestría, hasta 10. Reutiliza estadísticas validadas.
  mastery(stats){return Math.max(0,Math.min(10,Math.floor(Number(stats?.runs)||0)))},
- seed(p,stats){const state=this.init(p),mastery=this.mastery(stats);state.mastery=mastery;state.rerolls=state.rerollCap=mastery>=10?3:mastery>=5?2:1;return state},
+ masteryRerolls(level){return level>=10?3:level>=5?2:1},
+ masteryInfo(stats){const runs=Math.max(0,Math.floor(Number(stats?.runs)||0)),level=this.mastery(stats),rerolls=this.masteryRerolls(level),next=level<5?5:level<10?10:null;return {level,max:10,runs,rerolls,next,remaining:next===null?0:next-level}},
+ seed(p,stats){const state=this.init(p),mastery=this.mastery(stats);state.mastery=mastery;state.rerolls=state.rerollCap=this.masteryRerolls(mastery);return state},
  fused(p,id){return !!p.cardBuild?.fusions?.[id]},
  targets(p){if(p.id==='sideral')return P.SideralArsenal.order.filter(id=>p.sideralArsenal?.unlocked[id]).map(id=>({id,name:P.SideralArsenal.names[id]}));return this.generic(p)?[{id:'primary',name:P.Data.attacks[p.attack].name}]:[]},
  compatible(p,support){if(!this.supports.includes(support)||!p.powerRanks?.[support]||this.fused(p,support)||p.combos?.direct&&support==='pulse'||p.combos?.press&&['cards','orbit'].includes(support))return[];const used=Object.values(p.cardBuild?.fusions||{});return this.targets(p).filter(t=>!used.includes(t.id)&&!!this.recipes[support+':'+t.id])},
