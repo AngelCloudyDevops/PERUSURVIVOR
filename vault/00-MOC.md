@@ -4,7 +4,7 @@ verificado: 2026-10-31
 ---
 # Mapa de contenidos (MOC)
 
-Base de conocimiento de PERUSURVIVOR («Causas del Caos») para agentes de IA.
+Base de conocimiento de PERUSURVIVOR («KICK PERU: All Stars») para agentes de IA.
 Léela **antes de cambiar código**. Ante una contradicción, **manda el código**:
 corrige la nota en el mismo cambio. Las convenciones de escritura están en
 [[CONVENCIONES]].

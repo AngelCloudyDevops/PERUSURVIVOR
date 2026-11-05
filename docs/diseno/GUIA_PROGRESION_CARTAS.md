@@ -27,7 +27,7 @@ Sideral admite los tres apoyos en **Colazo** y **Huevo**, siempre en destinos di
 
 | Apoyo | Colazo | Huevo | Básico convencional |
 |---|---|---|---|
-| Onda causa | Onda especial al lanzar | Onda especial al abrir | Onda especial en el objetivo al atacar |
+| Onda dibujo | Onda especial al lanzar | Onda especial al abrir | Onda especial en el objetivo al atacar |
 | Tarjetas del caos | Disparo perforante al lanzar | Disparo una vez al abrir | Disparo adicional al atacar |
 | Escudo de bandas | Zona fija de bandas de 2,4 s | Zona de 2,4 s al abrir | Zona de bandas en el objetivo |
 
@@ -69,7 +69,7 @@ La progresión se diseña principalmente para Supervivencia del Caos de **30 min
 |---|---|
 | Kit personal | El contrato prevé tres ataques y sus evoluciones, pasiva propia, Q y R. No todos los personajes usan el mismo control ni tienen todas sus piezas implementadas. |
 | Sideral | Mirada automática; Colazo y Huevo manuales con recarga; Sangre fría; Q Despertar del Lagarto; R Habitación del Lagarto. La rueda no activa sus técnicas. |
-| Apoyos | `pulse` Onda causa, `cards` Tarjetas del caos y `orbit` Escudo de bandas. Hasta dos apoyos junto al ataque principal en el flujo normal. |
+| Apoyos | `pulse` Onda dibujo, `cards` Tarjetas del caos y `orbit` Escudo de bandas. Hasta dos apoyos junto al ataque principal en el flujo normal. |
 | Rangos de apoyo | Cinco rangos. La evolución actual se ofrece con rango 5 y nivel de partida 8; aumenta daño y alcance. No es la nueva fusión. |
 | Subida de nivel | Tres ofertas, se elige una. Hay mejoras personales, apoyos, estadísticas, pactos y combinaciones existentes. |
 | Mejoras generales | Daño, intervalo, vida, velocidad, imán, alcance y proyectiles/bonificación de área. Las cartas `stat:` tienen rangos y no ocupan espacios de apoyo. |
@@ -82,7 +82,7 @@ La progresión se diseña principalmente para Supervivencia del Caos de **30 min
 
 | ID | Nombre | Función actual |
 |---|---|---|
-| `pulse` | Onda causa | Pulsos automáticos de daño especial alrededor del personaje. |
+| `pulse` | Onda dibujo | Pulsos automáticos de daño especial alrededor del personaje. |
 | `cards` | Tarjetas del caos | Proyectiles especiales dirigidos a un enemigo, con perforación. |
 | `orbit` | Escudo de bandas | Bandas visibles orbitando y pulsos de daño especial cercano. El nombre no implica absorción de daño ni un escudo defensivo real. |
 

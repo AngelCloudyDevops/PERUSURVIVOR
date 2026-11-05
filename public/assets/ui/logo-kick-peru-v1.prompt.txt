@@ -1,0 +1,5 @@
+Use case: logo
+Asset type: transparent game logo for the welcome screen and lobby hub
+Source: logo delivered by the project owner (JPG 1024x687 on a near-black background); not generated.
+Subject: "KICK PERU" in green 3D letters with a dark outline, "ALL STARS" in orange/gold 3D letters with a reddish edge, golden stars and sparkles.
+Treatment: background removed by color distance to the background (alpha ramp 18-60, color unmatted against the background) and cropped to the content with an 8 px margin.
