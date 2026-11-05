@@ -4,13 +4,13 @@ const {test}=require('node:test'),assert=require('node:assert/strict'),{Simulati
 function ready(duo=false,map='campo'){
  const sim=new Simulation(map,duo?[0,6]:[0]),P=sim.P,s=P.state;
  if(!duo){s.runMode='chaos';P.Data.arena.duration=1800}
- s.enemies=[];s.miniWarning=null;s.portal.open=false;P.Market.merchant=null;P.Exploration.station=null;
+ s.enemies=[];s.miniWarning=null;s.portal.open=false;P.Market.merchant=null;P.Market.available=()=>false;P.Exploration.station=null;
  P.MapEvents.worldPlanned=true;P.MapEvents.worldAt=duo?105:630;s.mapTime=P.MapEvents.worldDue();P.Terrain.hit=()=>null;
  return {sim,P,s};
 }
 
 test('Impacto del cielo: una cinemática garantizada congela combate y crea un cráter persistente',()=>{
- const {P,s}=ready(),M=P.MapEvents,p=s.player;const before={x:p.x,y:p.y,time:s.mapTime};
+ const {P,s}=ready(),M=P.MapEvents,p=s.player;P.Encounters.portalPoint=()=>({x:100000,y:100000});P.RunMode.portalWarning=()=>-1;const before={x:p.x,y:p.y,time:s.mapTime};
  assert(M.tick(.04));assert(M.cinematic());assert.equal(M.event.world,true);assert.equal(M.worldPlayed,true);assert(Math.hypot(M.event.x-p.x,M.event.y-p.y)>300,'El impacto queda lejos del jugador');assert.equal(M.impacts.length,0);
  const frame=M.camera(p,1280,720,1.3);assert(frame&&frame.zoom>0);
  for(let i=0;i<122;i++){s.mapTime+=.04;assert(M.tick(.04))}
@@ -19,6 +19,10 @@ test('Impacto del cielo: una cinemática garantizada congela combate y crea un c
  for(let i=0;i<M.event.invasionTarget;i++)M.defeated({extinctionDino:true});assert.equal(M.event.phase,'fragments');assert.equal(s.enemies.filter(e=>e.extinctionFragment).length,3);
  for(const fragment of s.enemies.filter(e=>e.extinctionFragment))M.defeated(fragment);assert.equal(M.event.phase,'boss');const boss=s.enemies.find(e=>e.extinctionBoss);assert(boss&&boss.max>=1500);p.x=M.event.x+700;p.y=M.event.y;const hp=p.hp;M.tick(.5);assert(Math.hypot(p.x-M.event.x,p.y-M.event.y)>520,'La tormenta no teletransporta al jugador');assert(p.hp<hp,'Alejarse de la zona segura causa daño progresivo');M.defeated(boss);assert.equal(M.event.phase,'portal');assert(s.coins>=75);
  const impact=JSON.stringify(M.impacts);P.Chunks.signature='';P.Chunks.sync();M.ensureTerrain();assert.equal(JSON.stringify(M.impacts),impact);assert(P.Terrain.props.some(o=>o.meteorImpact));
+});
+
+test('Extinción: la presentación distingue alerta, identificación e impacto sin alterar la cinemática',()=>{
+ const {P}=ready(),M=P.MapEvents;M.startWorld();assert.equal(M.anomalyPresentation(.5).phase,'warning');assert.equal(M.anomalyPresentation(.5).title,'WARNING');assert.equal(M.anomalyPresentation(2).phase,'identified');assert.match(M.anomalyPresentation(2).subtitle,/MIRA EL CIELO/);assert.equal(M.anomalyPresentation(5).phase,'impact');M.event.phase='invasion';assert.equal(M.anomalyPresentation(5),null)
 });
 
 test('Extinción: las oleadas usan roles, el tanque tiene armadura direccional y el anti-kite limita meteoritos',()=>{
