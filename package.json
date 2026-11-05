@@ -2,7 +2,7 @@
   "name": "perusurvivor",
   "version": "0.1.0",
   "private": true,
-  "description": "Causas del Caos: juego de supervivencia y parodia peruana",
+  "description": "KICK PERU: All Stars: juego de supervivencia y parodia peruana",
   "scripts": {
     "build": "node scripts/build.cjs",
     "release:budget": "node scripts/release-budget.cjs",
