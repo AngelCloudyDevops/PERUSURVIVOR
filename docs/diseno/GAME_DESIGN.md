@@ -844,7 +844,7 @@ El resultado de Makanaky entra como sello con borde neón violeta y cifras revel
 Sustituye visualmente a La Combi Final: minibús blanco y azul, cristales oscuros y letrero amarillo CHOSICA. Seis poses completas: reposo, dos de marcha, aceleración, embestida y frenado. Ruedas y marcha siguen la distancia realmente recorrida; la orientación se fija durante aviso/embestida/frenado. Permanece como jefe del portal de Campo de Marte y en Probar jefes. Conserva 1250 PV, radio 74, velocidad 48, aviso de 1,15 s y embestida de 530; mismas coberturas y recompensas.
 # Sideral · UR de control
 
-Sideral es un personaje UR de Ingenio cuyo ataque automático, **Mirada Sideral**, cubre un cono frontal de 270 unidades. Los minions normales huyen durante 0,9 s; los pesados resisten y retroceden menos, los minijefes solo sufren una interrupción breve y los jefes no abandonan su patrón. Cada objetivo obtiene 2,5 s de resistencia antes de poder ser asustado otra vez. Su evolución **Rostro prohibido** ensancha el cono y prolonga el miedo, sin convertir la rareza en daño bruto gratuito.
+Sideral es un personaje UR de Ingenio que elige antes de jugar cuál de sus tres técnicas será instintiva y automática. **Mirada** prioriza control: mantiene miedo y daño especial, mientras Huevo reúne la horda y el Colazo manual conserva el crítico pesado. **Colazo** prioriza DPS: ataca automáticamente con probabilidad crítica progresiva; una sola Mirada marca `PRESA` y garantiza el siguiente crítico, mientras Huevo reúne objetivos. **Huevo** prioriza área: deja bombas automáticas en el suelo; Mirada marca su destino y Colazo puede batear una bomba hacia esa presa para ampliar la explosión y reducir defensas. Sangre fría no acumula un segundo recurso: conserva únicamente sus tres escamas consumibles. Q y R mantienen sus cargas independientes.
 
 El Chosicano alterna embestida y bocinazo. El bocinazo fija dirección, avisa 1 s con faros y un sector de 99°, y lanza una onda frontal desde el morro: alcance 245, velocidad 650, daño especial 14, un solo impacto y bloqueo por cobertura. La franja visible y el barrido de daño avanzan juntos. Después de ambos ataques hay 1,1 s de recuperación. El frenazo añade giro visual de 0,35 s, polvo y marcas de llantas de 2,5 s; no cambia la trayectoria física después de detenerse. Movimiento reducido omite giro/polvo y deja faros estables. No se añade todavía fase doble, boletos ni derrota nueva.
 
@@ -1074,6 +1074,8 @@ Los periodos se guardan como información de ficha, sin formar parte del título
 
 Las skins forman una colección cosmética aparte. Sus rarezas son Común, Rara, Épica, Legendaria y Especial, y no aumentan estadísticas. Cada skin declara con qué versión puede usarse. La apariencia Base siempre viene equipada; una skin solo puede seleccionarse después de obtenerla en el gacha de skins. **Cerdito VTuber** es una skin legendaria exclusiva de Kingteka · Amor a los animales y no se entrega automáticamente. Al equiparla cambia al personaje y su escopeta, representa las balas como cerditos, colorea los impactos, transforma visualmente la bandada de la ulti en pequeños cerditos voladores con alas y reemplaza la carta Q por su ilustración porcina. Gallinazo y Golpe también tienen seis cuadros propios con la máscara completa: en Gallinazo sujeta y aprieta al ave antes de expulsar las plumas, y en Golpe conserva la cabeza porcina durante preparación, puñetazo y recuperación. La cantidad de proyectiles, daño, cadencia, alcance y duración permanecen iguales a los de Kingteka.
 
+**Lagartítere** es una skin legendaria exclusiva de Sideral · Espantaminions. La caminata, Mirada y Colazo tienen ciclos propios de ocho cuadros: los pies dejan de deslizarse, el títere ejecuta Mirada y la cola cosida completa el barrido. Un crítico de Colazo activa durante 1,05 s una sacudida fuerte y un aura de humo verde animado que recorre los cuatro bordes con un marco luminoso, manteniendo libre el centro; movimiento reducido conserva la confirmación visual y atenúa el movimiento. Huevo sospechoso y la entrada de Q comparten un huevo rojo, verde y crema con rotación, caída, compresión, grieta y eclosión fluidas; sus minions usan una carrera de títere dedicada. PRESA y OBJETIVO DEL HUEVO conservan su función y se distinguen mediante sprites animados del ojo y del huevo. Al activar la definitiva, Sideral rompe el huevo y aparece dentro de una botarga reptiliana; su aliento se representa como papel y confeti. La skin no cambia probabilidad de crítico, atracción, ruptura de defensa, daño, alcance, tiempos, hitbox ni autoridad de red.
+
 ## Kingteka · Amor a los animales (UR)
 
 Kingteka pasa a rareza **UR · Supremo** y conserva la ulti Gallinazo en Q. Su Expansión de Dominio se activa por separado con R usando la misma carga, por lo que el jugador elige cuál de las dos habilidades consumir.
@@ -1140,6 +1142,7 @@ Opciones → Gráficos → FPS y ping activa el cuadro durante la partida y cons
 Hasta 760 px, el menú principal organiza perfil, presentación del causa, dos filas de accesos con nombres, preparación de partida y herramientas en filas de altura natural. En pantallas bajas se desplaza verticalmente, sin estirar ni superponer tarjetas ni desbordar a los lados. Las rutas y acciones de los botones se conservan.
 
 ### Sideral · arsenal del Lagarto
+Las señales visuales de los tres instintos deben comunicar su función antes que decorar. **Mirada** reúne la horda con líneas de arrastre y un vórtice verde centrado en el Huevo. **Colazo** mantiene una marca de presa grande, con aro en el suelo y pinzas sobre el objetivo; cada crítico instintivo produce impacto radial y sacudida breve. **Huevo** anticipa el radio de la bomba durante su armado y al detonar usa destello, dos ondas, fragmentos de cascarón y partículas verdes. Movimiento reducido conserva aros, marcas y ondas esenciales, pero elimina rotaciones y exceso de partículas. Estas señales no modifican daño, alcance, control ni recargas.
 El kit 9/9 y su balance inicial están definidos en [SIDERAL_KIT.md](SIDERAL_KIT.md): Colazo, Huevo, evoluciones independientes, Sangre fría y Q con carga independiente. Despertar del Lagarto conserva el combate continuo: Sideral pasa cuatro segundos como huevo controlable, rueda según la distancia recorrida y aparta enemigos normales sin dañarlos; el empuje escala del rango 1 al 5 de Mirada Sideral y nunca desplaza jefes. Cada contacto lanza al minion por una parábola visible de 0,34 s, lo mantiene sin actuar hasta aterrizar y deja sombra, líneas de impacto y anillo de caída; los pesados recorren menos distancia. La experiencia obtenida durante Q se conserva y el selector pendiente se abre inmediatamente al finalizar la transformación. Una eclosión de 0,66 s revela el atlas reptiliano y da paso a seis segundos de aliento con 25 pulsos. El primer pulso espera la apertura de la mandíbula y el daño comparte con el arte el mismo anclaje del hocico cuadro por cuadro. Mirada usa una sola figura, sin cuerpo superpuesto, y espera 0,28 s hasta descubrir los ojos antes de liberar simultáneamente daño, miedo y cono desde ellos; al avanzar cambia a un atlas corporal de ocho pasos coordinados con el gesto para no patinar. Huevo sospechoso usa un atlas propio para vuelo, grieta y apertura, y libera un Lagarto reducido pero detallado. El dominio R mantiene sus reglas; en cooperativo la orden siempre se envía al servidor aunque el arte local aún esté terminando de cargar.
 
 ### Ajuste medido de Sideral
@@ -1264,7 +1267,9 @@ Mantener `TAB` abre una ficha lateral amplia sin pausar el combate. Puede cubrir
 
 Todo perfil nuevo comienza con la Gallinita recolectora obtenida y equipada. Los perfiles anteriores que ya recibieron la mascota pero nunca guardaron una selección la equipan una sola vez al migrar. Después de esa migración, cambiarla por otra mascota o quitarla es una decisión persistente del jugador. La mascota acompaña al personaje únicamente en partidas individuales, recoge los tipos de botín permitidos por su rareza y entrega la carga al regresar junto a su dueño.
 
-La mascota usa pasos ligados a la distancia real recorrida tanto al buscar botín como al seguir a su dueño. Cuando está libre ronda al personaje a una distancia segura en vez de permanecer pegada a él; al recoger carga conserva la prioridad de volver y entregarla. El rebote, la sombra y el pequeño rastro visual solo comunican desplazamiento y no alteran velocidad, alcance ni colisiones. Con movimiento reducido conserva una pose estable sin rebote.
+La mascota elegida en la mochila es la autoridad al crear el acompañante de la partida y reemplaza cualquier variante residual del jugador. La expedición fija esa selección al pulsar Jugar, antes de cargar el mapa o de elegir una técnica inicial; una sincronización o recarga posterior del perfil no puede cambiarla durante esa partida. Su identidad visual debe conservarse desde el primer cuadro: si el atlas todavía está cargando, la rara mantiene su mochila y la legendaria mantiene cohetes y gafas en la silueta provisional.
+
+La mascota usa pasos ligados a la distancia real recorrida tanto al buscar botín como al seguir a su dueño. Cuando está libre ronda al personaje a una distancia segura en vez de permanecer pegada a él; al recoger carga conserva la prioridad de volver y entregarla. La común y la mochilera caminan; la Gallinita cohete permanece suspendida, usa una sombra separada y mantiene propulsión suave incluso en reposo para que nunca parezca deslizarse por el piso. El rebote, la sombra y el rastro visual solo comunican desplazamiento y no alteran velocidad, alcance ni colisiones. Con movimiento reducido conserva una pose estable sin rebote.
 
 ### Apoyos en el mazo de combate
 Los apoyos activos se muestran como cartas con el arte genérico existente, nombre, cinco estrellas de rango y AUTO; no añaden teclas. Al fusionarse desaparecen de la fila y la técnica conserva la insignia del apoyo. El rango y la fusión permanecen en el jugador y siguen ocupando uno de los dos cupos: no permiten adquirir un tercer apoyo. En pantallas estrechas, las cartas de apoyo pasan a una segunda fila.
@@ -1272,6 +1277,15 @@ Los apoyos activos se muestran como cartas con el arte genérico existente, nomb
 ### Balance legible de enemigos
 
 El Centro de balance presenta los enemigos con valores reales de referencia —PV, daño por impacto, velocidad, defensas, recarga en segundos, radio y duración— y nunca como “Vida 1” o “Ataque 1”. Internamente conserva factores relativos para que el crecimiento por tiempo, rango, dificultad y cooperativo siga funcionando. Los balances antiguos continúan siendo válidos y la interfaz los convierte automáticamente a números legibles.
+
+### Minion francotirador
+
+- Puede sustituir a un pingüino desde 02:15. Nunca hay más de dos vivos y conserva el cupo total de profesiones; no aumenta la cantidad de rivales.
+- Camina al 58 % de la velocidad original. Solo prepara `Tiro de vigilancia` cuando el objetivo lleva 0,65 s quieto, está entre 300 y 720 unidades y existe línea de visión.
+- La mira anuncia durante al menos 1,3 s la trayectoria exacta y queda fijada: moverse después del aviso permite esquivar. No es un impacto instantáneo.
+- La bala viaja a 960 unidades/s, inflige 26 de daño base físico y usa colisión barrida para no atravesar al jugador entre fotogramas. Árboles, muros y cobertura la detienen.
+- Recarga base de 8,2 s, con una sola bala por ataque incluso en rango élite. En cooperativo prioriza a un jugador quieto dentro del alcance; si ninguno cumple, conserva la selección normal sin disparar.
+
 ### Fusión directa durante el combate
 Un apoyo en rango 3, desde nivel 8 (6 en Rápida), puede arrastrarse sobre una técnica compatible del HUD. Solo se resaltan destinos válidos. Soltar sobre el destino fusiona inmediatamente, sin pausa, confirmación ni consumo de subida de nivel. Soltar fuera cancela. También se puede seleccionar el apoyo y luego el destino con clic, toque o teclado. No se permite mientras hay una elección, pausa, muerte, cinemática o dominio activo. Conserva el límite de dos apoyos. La oferta de nivel anterior se mantiene como ruta alternativa.
 
@@ -1290,3 +1304,57 @@ El Gacha separa dos familias de banners. Los permanentes muestran Personajes y v
 Existen dos saldos: tickets permanentes y tickets de temporada. `golden_ticket` sigue siendo la clave interna del ticket permanente para conservar los guardados anteriores. El Divagante mantiene su regla real: intenta aparecer cada 30 segundos; su probabilidad escala de 5% a 20% durante los primeros tres minutos y, después del rescate, sortea 30% Hadoken celeste, 30% Hadoken morado, 30% diez tickets permanentes y 10% fuga. Los minions no botan tickets.
 
 Derrotar al jefe final concede 10 tickets permanentes en la primera victoria de cada activación de temporada y 2 en cada victoria posterior. La temporada se identifica con el mapa global y su revisión del servidor, por lo que reactivar un evento abre una recompensa inicial nueva sin borrar los tickets existentes. Laboratorio, práctica y pruebas de rendimiento no conceden premios.
+
+
+### Mazo de combate compacto
+Las cartas de ataque, apoyo, ulti y dominio se agrupan con separaciones constantes y ancho ajustado al número de apoyos visibles. Se evita reservar columnas vacías. En móvil estrecho los apoyos pasan a una fila compacta debajo; el acceso a Habilidades queda en la esquina superior, fuera de las cartas.
+
+
+## Papá Noel del Caos · jefe navideño
+
+Jefe opcional del portal de Navidad, además del Grinch. Se prueba directamente desde Laboratorio → Papá Noel del Caos y desde la Wiki. Vida inicial: 1650; dos barras/fases; atributo Ingenio; canal principal especial y golpes de trineo, ariete y allanamiento físicos. Balance inicial pendiente de partidas completas.
+
+- Regalos explosivos: tres marcas fijas por jugador (máximo seis), 1,25 s de aviso (1,1 s en fase II) y 22 de daño especial base.
+- Trineo rasante: carril fijado, 1,5 s de aviso y barrido físico de 22; salir lateralmente evita el golpe.
+- Ventisca circular: anillo entre 130 y 280 unidades, 1,5 s de aviso y 20 de daño especial; centro y exterior seguros.
+- Turno de duendes: invoca hasta tres duendes, nunca más de cuatro vivos.
+- Abrigo del taller: reduce el daño recibido un 25 % mientras viva un duende propio.
+- Saco abierto: aumenta el daño recibido un 20 % durante los 1,2 s de recuperación en fase I y 0,95 s en fase II. Se combina multiplicativamente con el abrigo.
+- Fase II al 50 %: espera al fin del patrón y revela el operativo durante 2,2 s. Cambia a chaleco, casco y ariete; convierte duendes vivos en policías sin curarlos ni duplicarlos. Las invocaciones posteriores usan policía de atributo Ingenio y canal físico; sigue habiendo máximo cuatro. Tras recuperarse prepara el ataque siguiente sin un segundo descanso.
+- Dominio, Operativo Nochebuena: una vez tras la revelación; aparecen tres puertas decorativas. El refugio verde detrás de la puerta sin X evita el allanamiento. Cuatro pulsos, 4,2 s para llegar al primer refugio y 3,2 s entre cambios. Cada fallo causa 18 de daño físico. Las puertas no bloquean movimiento.
+- Ulti, «¡Abre, es tu regalo!»: una vez al 25 %, después del dominio; abre tres puertas sucesivas. Cada una anuncia un abanico dirigido y fijo durante 1,8 s antes de causar 24 de daño físico. Salir del abanico evita el golpe.
+
+Los daños base pasan por atributos, defensas, equipo e invulnerabilidad existentes. El dominio y la ulti no se superponen. Derrotarlo usa la recompensa y el retorno normales de los portales. El taller mantiene libre el carril: su decoración exterior no introduce obstáculos invisibles.
+
+Durante la revelación y Operativo Nochebuena se acumula experiencia, pero las mejoras y fusiones esperan a que termine el dominio. Al recuperarse o morir Papá Noel se libera el bloqueo; no afecta otras arenas.
+
+
+### Variantes del operativo (fase II)
+
+Los cuatro slots se conservan: Regalos aturdidores agranda las marcas de 58 a 70 y, solo al hacer daño, ralentiza un 25 % durante 0,8 s sin bloquear controles. Ariete de intervención reemplaza el carril de trineo por una trayectoria dirigida y fija: 1,6 s de aviso, 24 físico, colisión barrida, máximo 600 unidades y límites de arena. Cerco de sirenas reemplaza el anillo por dos franjas cruzadas fijadas al apuntar; hay 1,7 s para salir en diagonal antes de 22 especial. Refuerzos disfrazados reemplaza duendes por policías con casco y escudo. No se añaden ataques al ciclo ni fases extra. Las señales rojo/azul no parpadean; no se oculta la visión del jugador.
+
+
+### Ritmo de Papá Noel
+
+Hay una sola pausa de contraataque: 1,2 s en fase I y 0,95 s en fase II. Al finalizar pasa por la comprobación de cambios de fase y prepara el siguiente patrón sin sumar otro descanso (antes se acumulaban 3,3 s o 2,7 s sin ataque). La recuperación sigue siendo estacionaria y concede 20 % de daño adicional recibido.
+
+Los regalos se anuncian 1,25 s / 1,1 s según fase; los ayudantes, 1 s. Trineo, ariete, ventisca, sirenas, dominio y ulti conservan sus avisos y zonas. Mientras prepara regalos el jefe avanza al 70 % de su velocidad, se detiene a 155 unidades y mantiene las marcas fijadas al apuntar. El recorrido del ariete y la geometría de los otros avisos permanecen fijos. Los límites siguen siendo cuatro ayudantes y seis marcas.
+
+
+## Ramas completas de Sideral
+
+Se implementa la propuesta de [Mirada, Colazo y Huevo](SIDERAL_KIT.md#ramas-de-técnicas--versión-vigente): una evolución por técnica, tres alternativas de mutación y tres recetas de apoyo. Las nueve fusiones tienen disparadores propios: fin de Mirada y primer afectado, extremo visible de Colazo y cascarón de Huevo. PRESA añade utilidad; la onda ancestral no vuelve a criticar; el nido evolucionado dura tres segundos y libera crías escalonadas con máximo dos impactos por enemigo y huevo. Cría cazadora reemplaza a Camada inquieta conservando el ID interno. Se mantienen las elecciones y cupos anteriores; el balance adicional se decidirá tras jugar la propuesta.
+### Cartas de nivel: categorías y arte limpio
+Las cuatro ofertas muestran tipo y rango, sin etiquetas ni efectos de rareza. Los objetos de cofres y tiendas conservan su rareza. Instinto (incluye mejoras de técnicas manuales), Apoyo, Pasiva, Mutación, Fusión y Evolución tienen identidad visual propia; Pactos y Recuperación conservan sus etiquetas para no ocultar costes o curación.
+Las mutaciones concretas entran directamente en las ofertas y se aplican con una elección. Se agrupan en el sorteo: como máximo una mutación por oferta de cuatro, con peso de grupo 0,34 y elección uniforme entre rutas elegibles. Se mantienen los requisitos de nivel, técnicas desbloqueadas y una mutación por técnica. No hay garantía de mutación en cada nivel. Las fusiones se realizan por arrastre (o selección accesible del apoyo y destino), sin carta duplicada al subir nivel; se conservan requisitos y dos cupos totales, incluidos fusionados. Laboratorio y compatibilidad con decisiones antiguas mantienen sus validadores.
+El volteo permanece; las mejoras usan señales breves por categoría, sin destello legendario por rango o cambio de automático. Full art existente se conserva; mutaciones reutilizan el arte de su instinto. Pasivas comparten un superviviente genérico con efecto numérico distinto. Marcos, etiquetas y texto se dibujan separados del arte.
+
+### Fidelidad visual de categorías
+Las etiquetas usan símbolos propios (número, rama, enlace, escudo, unión y doble ascenso) y esquinas finas de color. El rango se muestra arriba a la derecha y la tecla de selección abajo; no se confunden con rareza. Apoyos normales/evolucionados y mazo usan arte compartido específico del efecto. Pasivas usan el superviviente genérico v2, con el acabado neón del resto del juego. Las mutaciones conservan la identidad del instinto y añaden una señal geométrica según su ruta; las evoluciones conservan su arte propio.
+Mutación: luz ramificada de 0,85 s al revelarse. Evolución: contorno luminoso de 1 s y presentación de evolución al confirmar. Fusión: tras confirmarse el estado válido, copia visual del apoyo viaja al instinto durante 0,6 s y el destino brilla; el juego continúa. No hay sacudida de pantalla ni partículas permanentes. Movimiento reducido desactiva estos efectos.
+
+## Arte legible de ataques de jefes
+
+- Todo objeto reconocible que un jefe arroje, invoque o pida activar debe usar un sprite detallado coherente con el arte del jefe: boletos, documentos, personajes, fragmentos, faroles, regalos, carbón, memorias, ecos y balizas no se representan solo con rectángulos, círculos o texto.
+- Las áreas de daño, telégrafos, trayectorias y límites interactivos siguen siendo geometría generada por el juego. Esa geometría expresa la verdad mecánica y se dibuja debajo del sprite; el arte nunca sustituye ni altera el hitbox.
+- Si un recurso todavía no terminó de cargar, el juego conserva una figura de respaldo sencilla para que la mecánica nunca desaparezca.

@@ -5,6 +5,7 @@ P.AssetPolicy={
  memory:Number(globalThis.navigator?.deviceMemory)||8,cores:Number(globalThis.navigator?.hardwareConcurrency)||8,saveData:!!globalThis.navigator?.connection?.saveData,
  mobile(){return !!globalThis.matchMedia?.('(pointer:coarse)').matches||innerWidth<=760},
  constrained(){return this.saveData||this.memory<=4||this.cores<=4||this.mobile()},
+ renderScale(){return this.mobile()?1.25:this.constrained()?1.5:2},
  allowBulkPreload(){return !this.constrained()},
  concurrentImages(){return this.constrained()?1:2},
  idle(task,timeout=1800){if('requestIdleCallback'in globalThis)requestIdleCallback(task,{timeout});else if(typeof setTimeout==='function')setTimeout(task,Math.min(timeout,900));else task()},
@@ -12,7 +13,7 @@ P.AssetPolicy={
 };
 P.Core=(()=>{
 const canvas=P.$('#game'),ctx=canvas.getContext('2d'),keys={};let width,height,touch=null,mouseAim=null,domainPeekTimer=null,domainPeekHeld=false;
-function resize(){width=innerWidth;height=innerHeight;const d=Math.min(devicePixelRatio||1,P.AssetPolicy.constrained()?1.5:2);canvas.width=width*d;canvas.height=height*d;ctx.setTransform(d,0,0,d,0,0);ctx.imageSmoothingEnabled=false}
+function resize(){width=innerWidth;height=innerHeight;const d=Math.min(devicePixelRatio||1,P.AssetPolicy.renderScale());canvas.width=width*d;canvas.height=height*d;ctx.setTransform(d,0,0,d,0,0);ctx.imageSmoothingEnabled=false}
 function release(){touch=null;P.$('#stick').hidden=true}
 function direction(){if(touch)return {x:touch.dx,y:touch.dy};return {x:(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),y:(keys.s||keys.arrowdown?1:0)-(keys.w||keys.arrowup?1:0)}}
 function updateMouseAim(e){if(e.pointerType!=='mouse'||P.state.mode!=='play'||!P.state.player)return;mouseAim={clientX:e.clientX,clientY:e.clientY}}

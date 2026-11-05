@@ -493,5 +493,27 @@
         "anchorY": 87
       }
     ]
+  },
+  {
+    "id": "sniper",
+    "width": 320,
+    "height": 320,
+    "sourceWidth": 1536,
+    "sourceHeight": 1536,
+    "sha256": "75acde802c4ce6108863acaf64271ed8079df235378f29d20966eb8fb310c007",
+    "bytes": 37310,
+    "alpha": [0, 255],
+    "encoding": "320px WebP quality 70; full PNG source retained; transparent alpha",
+    "frames": [
+      {"w": 92, "h": 103, "anchorX": 46, "anchorY": 103},
+      {"w": 91, "h": 103, "anchorX": 45.5, "anchorY": 103},
+      {"w": 91, "h": 103, "anchorX": 45.5, "anchorY": 103},
+      {"w": 92, "h": 102, "anchorX": 46, "anchorY": 102},
+      {"w": 91, "h": 102, "anchorX": 45.5, "anchorY": 102},
+      {"w": 91, "h": 102, "anchorX": 45.5, "anchorY": 102},
+      {"w": 94, "h": 94, "anchorX": 47, "anchorY": 94},
+      {"w": 103, "h": 91, "anchorX": 51.5, "anchorY": 91},
+      {"w": 91, "h": 88, "anchorX": 45.5, "anchorY": 88}
+    ]
   }
 ]

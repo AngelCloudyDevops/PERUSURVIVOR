@@ -7,6 +7,7 @@ P.MinionTactics={
   sweep:{name:'Barrido de bandera',color:'#f17882',range:96,damage:9,windup:1.15,recovery:1.05},
   police:{name:'Avance de escudo',color:'#a6d6ed',range:125,damage:11,windup:1.2,recovery:1.1},
   architect:{name:'Escuadra de retorno',color:'#edc06e',range:350,damage:8,windup:1.2,recovery:1,ranged:true},
+  sniper:{name:'Tiro de vigilancia',color:'#65e8ff',range:720,min:300,damage:26,windup:1.3,recovery:1.35,ranged:true,stationary:.65},
   firefighter:{name:'Chorro sostenido',color:'#86def1',range:180,damage:9,windup:1.25,recovery:1.15,ranged:true},
   chef:{name:'Combo de sartén',color:'#efb572',range:78,damage:9,windup:1.1,recovery:1.2},
   astronaut:{name:'Salto lunar',color:'#91dfff',range:210,damage:10,windup:1.25,recovery:1.1},
@@ -14,7 +15,7 @@ P.MinionTactics={
   elf:{name:'Regalo con mecha',color:'#f178a0',range:300,damage:10,windup:1.25,recovery:1.1,ranged:true}
  },
  key(e){if(P.MinionProfessions.definition(e))return e.profession;return ['shovel','punch','sweep'][e.design]||null},
- profile(e,base){const s=P.state,key=this.key(e),d=this.definitions[key];if(!base||!d||!P.MinionEvolution.eligible(e)||!e.progressive||s.devRun&&!s.balanceTest||s.encounter)return base;return {...base,...d,tactic:key,tactical:true,mode:'tactical',min:d.ranged?70:0,max:d.range,damage:d.damage*P.MinionEvolution.profiles[P.MinionEvolution.rank(e)].damage,windup:Math.max(d.windup,base.windup),cooldown:Math.max(5.5,base.cooldown),recovery:d.recovery}},
+ profile(e,base){const s=P.state,key=this.key(e),d=this.definitions[key];if(!base||!d||!P.MinionEvolution.eligible(e)||!e.progressive||s.devRun&&!s.balanceTest||s.encounter)return base;return {...base,...d,tactic:key,tactical:true,mode:'tactical',min:d.ranged?(d.min??70):0,max:d.range,damage:d.damage*P.MinionEvolution.profiles[P.MinionEvolution.rank(e)].damage,windup:Math.max(d.windup,base.windup),cooldown:Math.max(5.5,base.cooldown),recovery:d.recovery}},
  breathing(time=P.state.mapTime){return time>=65&&time%30>=24},
  limits(stage){const i=P.Difficulty.index(),cap=this.breathing()?2:4;return {...stage,casts:Math.min(stage.casts,cap,[0,1,2,2,3,3,4,4][i]),danger:Math.min(stage.danger,[0,6,10,12,16,18,22,24][i])}},
  busy(e){return !!(e.tactic||e.rangedAim||e.burst||e.charge)},
@@ -31,6 +32,7 @@ P.MinionTactics={
   else if(a.tactic==='sweep'){sector(at,85+tier*6,2.35+tier*.2);if(tier===2)sector(at+.95,97,2.75,{reverse:true});}
   else if(a.tactic==='police'){const step=tier===2?38:0;sector(at+(step?.28:0),65+tier*5,1.25,{x:e.x+aim.x*step,y:e.y+aim.y*step});}
   else if(a.tactic==='architect'){if(tier===1)for(const [i,off] of [-.12,.12].entries())events.push({at:at+i*.75,x:e.x,y:e.y,angle:angle+off,shape:'projectile',length:336,duration:1.6});else events.push({at,x:e.x,y:e.y,angle,shape:'projectile',length:tier===2?189:336,duration:tier===2?1.8:1.6,returning:tier===2});}
+  else if(a.tactic==='sniper')events.push({at,x:e.x,y:e.y,angle,shape:'projectile',length:720,duration:1.15,speed:960,glyph:'SNIPER_ROUND',hitRadius:18,visual:'sniper'});
   else if(a.tactic==='firefighter'){sector(at,145+tier*12,.58,{duration:[.7,1,1.25][tier],sweep:tier===2?.5:0,visual:'water'});}
   else if(a.tactic==='astronaut'){const distance=Math.min(tier?150:115,aim.distance),x=e.x+aim.x*distance,y=e.y+aim.y*distance;sector(at+.55,53+tier*7,Math.PI*2,{x,y,visual:'lunar'});if(tier===2)sector(at+.8,110,Math.PI*2,{x,y,shape:'ring',duration:.65,visual:'lunar'});}
   else if(a.tactic==='mummy'){for(const off of tier===2?[-.3,.3]:[0])events.push({at,x:e.x,y:e.y,angle:angle+off,shape:'line',length:205+tier*22,width:12,duration:.3,slow:.7,visual:'bandage'});}
@@ -43,11 +45,11 @@ P.MinionTactics={
    if(t.age>=t.end){e.tactic=null;e.rangedAim=null;e.rangedCooldown=a.cooldown;e.attackUntil=0;}return true;
   }
   e.rangedCooldown=(e.rangedCooldown??(2+e.design*.23))-dt;const p=s.player,dx=p.x-e.x,dy=p.y-e.y,d=Math.hypot(dx,dy);
-  if(e.rangedCooldown>0||d<a.min||d>=a.max||!P.Combat.onScreen(e,p)||!this.canStart(e,a)||!P.Terrain.clear(e.x,e.y,p.x,p.y))return true;
+  if(e.rangedCooldown>0||d<a.min||d>=a.max||a.stationary&&(p.stationaryFor||0)<a.stationary||!P.Combat.onScreen(e,p)||!this.canStart(e,a)||!P.Terrain.clear(e.x,e.y,p.x,p.y))return true;
   e.attackProfile=a;e.tacticId??=e.minionId??(s.tacticSerial=(s.tacticSerial||0)+1);const aim={x:dx/(d||1),y:dy/(d||1),distance:d};e.tactic=this.plan(e,a,aim);e.rangedAim=aim;e.rangedWindup=a.windup;e.minionAim=Math.atan2(dy,dx);e.audioWarn=(e.audioWarn||0)+1;e.audioWarnAt=s.elapsed;if(Math.abs(dx)>.1)e.facing=Math.sign(dx);s.tacticGate={at:s.elapsed};return true;
  },
  emit(e,a,event){const s=P.state;if(s.danger.length>=P.Difficulty.limits(e).danger||!P.Terrain.clear(e.x,e.y,event.x,event.y))return;
-  s.danger.push({...P.Attributes.source(e,['firefighter','astronaut','mummy','elf'].includes(a.tactic)?'special':'physical'),...event,tactical:true,tactic:a.tactic,tacticOwner:e.tacticId,minion:true,minionRank:P.MinionEvolution.rank(e),kind:event.shape==='projectile'?'spread':'stomp',glyph:a.tactic==='architect'?'SET_SQUARE':undefined,x:event.x,y:event.y,ox:event.x,oy:event.y,vx:event.shape==='projectile'?Math.cos(event.angle)*210:0,vy:event.shape==='projectile'?Math.sin(event.angle)*210:0,age:0,life:event.duration,damage:a.damage*(event.damageScale||1),color:a.color,hitSlots:[],history:[]});
+  s.danger.push({...P.Attributes.source(e,['firefighter','astronaut','mummy','elf'].includes(a.tactic)?'special':'physical'),...event,tactical:true,tactic:a.tactic,tacticOwner:e.tacticId,minion:true,minionRank:P.MinionEvolution.rank(e),kind:event.shape==='projectile'?'spread':'stomp',glyph:event.glyph||(a.tactic==='architect'?'SET_SQUARE':undefined),x:event.x,y:event.y,ox:event.x,oy:event.y,vx:event.shape==='projectile'?Math.cos(event.angle)*(event.speed||210):0,vy:event.shape==='projectile'?Math.sin(event.angle)*(event.speed||210):0,age:0,life:event.duration,damage:a.damage*(event.damageScale||1),color:a.color,hitSlots:[],history:[]});
  },
  cancel(e){for(const q of P.state.danger)if(q.tactical&&q.tacticOwner===e.tacticId)q.life=0;e.tactic=null;e.rangedAim=null;e.attackUntil=0;e.rangedCooldown=Math.max(e.rangedCooldown||0,1.2)},
  motion(e,dt){const t=e.tactic;if(!t)return false;const a=e.attackProfile;if(a.tactic==='astronaut'){const time=(t.age-a.windup)/.55;if(time>=0&&time<=1){const landing=t.events[0],old={x:e.x,y:e.y};e.x=t.origin.x+(landing.x-t.origin.x)*time;e.y=t.origin.y+(landing.y-t.origin.y)*time;P.Terrain.resolve(e,old,e.r);}}
@@ -59,7 +61,7 @@ P.MinionTactics={
  advance(shot,dt){if(!shot.tactical)return true;const owner=P.state.enemies.find(e=>e.hp>0&&e.tacticId===shot.tacticOwner);if(!owner){shot.life=0;return false;}if(shot.returning&&shot.age+dt>=.9&&!shot.turned){shot.vx=-shot.vx;shot.vy=-shot.vy;shot.turned=true;}return true},
  angle(shot){return shot.angle+(shot.sweep||0)*Math.max(0,Math.min(1,shot.age/shot.duration))},
  hits(shot,p){if(shot.age<(shot.delay||0)||shot.hitSlots.includes(p.slot??-1))return false;const dx=p.x-shot.x,dy=p.y-shot.y,d=Math.hypot(dx,dy);
-  if(shot.shape==='projectile')return d<17;
+  if(shot.shape==='projectile'){if(shot.visual==='sniper'){const old=shot.history?.at(-1)||{x:shot.ox,y:shot.oy},vx=shot.x-old.x,vy=shot.y-old.y,len=vx*vx+vy*vy,t=len?Math.max(0,Math.min(1,((p.x-old.x)*vx+(p.y-old.y)*vy)/len)):0;return Math.hypot(p.x-old.x-t*vx,p.y-old.y-t*vy)<(shot.hitRadius||18)}return d<17;}
   if(shot.shape==='line'){const along=dx*Math.cos(shot.angle)+dy*Math.sin(shot.angle),side=Math.abs(-dx*Math.sin(shot.angle)+dy*Math.cos(shot.angle));return along>=0&&along<=shot.length&&side<=shot.width;}
   if(shot.shape==='ring'){const outer=shot.radius*Math.min(1,shot.age/shot.duration);return d<=outer+8&&d>=Math.max(0,outer-17);}
   if(d>shot.radius)return false;if(shot.shape==='bomb')return true;const delta=Math.atan2(dy,dx)-this.angle(shot);return Math.abs(Math.atan2(Math.sin(delta),Math.cos(delta)))<=shot.arc/2;
@@ -73,7 +75,7 @@ P.MinionTactics={
  },
  cue(ctx,e){if(!e.attackProfile?.tactical)return false;const t=e.tactic;if(!t)return true;const next=t.events[t.next];if(!next)return true;const remaining=Math.max(0,next.at-t.age),charge=Math.max(0,Math.min(1,1-remaining/Math.max(.01,e.attackProfile.windup))),pulse=.55+.25*Math.sin((P.state.elapsed||0)*10);ctx.save();ctx.translate(-e.x,-e.y-e.r*.8);ctx.fillStyle=e.attackProfile.color;const previews=t.events.filter(q=>q.at===next.at||t.next===0&&['shovel','astronaut'].includes(e.attackProfile.tactic));for(const event of previews){const preview=event.sweep?{...event,angle:event.angle+event.sweep/2,arc:event.arc+Math.abs(event.sweep)}:event;ctx.strokeStyle='#142033';ctx.lineWidth=5;ctx.setLineDash([]);this.path(ctx,preview);ctx.stroke();ctx.strokeStyle=e.attackProfile.color;ctx.lineWidth=2.5;ctx.setLineDash([7,4]);ctx.lineDashOffset=-charge*18;this.path(ctx,preview);ctx.globalAlpha=.08+charge*.13;ctx.fill();ctx.globalAlpha=pulse+charge*.18;ctx.stroke()}ctx.setLineDash([]);ctx.globalAlpha=.9;ctx.strokeStyle='#fff1b8';ctx.lineWidth=2;ctx.beginPath();ctx.arc(e.x,e.y,15,-Math.PI/2,-Math.PI/2+Math.PI*2*charge);ctx.stroke();if(next.returning){ctx.strokeStyle=e.attackProfile.color;ctx.setLineDash([2,6]);ctx.beginPath();ctx.moveTo(next.x+Math.cos(next.angle)*180,next.y+Math.sin(next.angle)*180);ctx.lineTo(next.x,next.y);ctx.stroke()}ctx.restore();return true},
  draw(ctx,q){if(!q.tactical)return false;ctx.save();ctx.strokeStyle='#142033';ctx.fillStyle=q.color;ctx.lineWidth=q.visual==='bandage'?8:6;ctx.globalAlpha=.72;if(q.shape!=='projectile'&&!(q.shape==='bomb'&&q.age<q.delay)){this.path(ctx,q);ctx.stroke()}ctx.strokeStyle=q.color;ctx.lineWidth=q.visual==='bandage'?5:3;ctx.globalAlpha=.88;
-  if(q.shape==='projectile'){ctx.translate(q.x,q.y);P.MinionProfessions.glyph(ctx,{glyph:'SET_SQUARE',age:q.age});ctx.restore();return true;}
+  if(q.shape==='projectile'){ctx.translate(q.x,q.y);ctx.rotate(q.angle||Math.atan2(q.vy,q.vx));P.MinionProfessions.glyph(ctx,{glyph:q.glyph||'SET_SQUARE',age:q.age});ctx.restore();return true;}
   if(q.shape==='bomb'&&q.age<q.delay){this.path(ctx,q);ctx.setLineDash([4,4]);ctx.stroke();ctx.translate(q.x,q.y);P.MinionProfessions.glyph(ctx,{glyph:'GIFT',age:0});ctx.beginPath();ctx.arc(0,0,q.radius,0,Math.PI*2*Math.min(1,q.age/q.delay));ctx.stroke();ctx.restore();return true;}
   if(q.shape==='ring'){ctx.beginPath();ctx.arc(q.x,q.y,Math.max(1,q.radius*Math.min(1,q.age/q.duration)),0,Math.PI*2);ctx.stroke();}
   else if(q.shape==='line'){ctx.beginPath();ctx.moveTo(q.x,q.y);if(q.visual==='crack'){for(let i=1;i<=6;i++){const along=q.length*i/6,side=i%2?7:-7;ctx.lineTo(q.x+Math.cos(q.angle)*along-Math.sin(q.angle)*side,q.y+Math.sin(q.angle)*along+Math.cos(q.angle)*side);}}else ctx.lineTo(q.x+Math.cos(q.angle)*q.length,q.y+Math.sin(q.angle)*q.length);ctx.stroke();}

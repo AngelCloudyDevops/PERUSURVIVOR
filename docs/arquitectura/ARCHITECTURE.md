@@ -1023,3 +1023,43 @@ CollectorPets reutiliza Terrain.hit/clear/resolve con radio propio y una ruta lo
 `src/systems/gacha-economy.js` amplía el guardado normalizado sin romper la clave histórica `inventory.golden_ticket`. Añade `inventory.season_ticket`, el contador acotado `seasonBossWins` y los campos de recibo `ticketReward`/`ticketSeason`. La recompensa del jefe se acredita en una segunda transacción idempotente ligada al recibo de la partida: recuperar o repetir el mismo resultado no duplica tickets.
 
 `Maps.seasonRevision` recibe `updatedAt` desde `/api/season`. La pareja `seasonMap:seasonRevision` identifica una activación concreta, incluso cuando el mismo mapa vuelva en otra temporada. El catálogo y la interfaz de banners son datos separados de la lógica actual de tiradas; solo `permanent-characters` está habilitado en este prototipo. Los demás banners no ejecutan tiradas hasta incorporar sus catálogos, probabilidades y garantías definitivas.
+
+
+### Controlador de Papá Noel
+
+`src/systems/santa-boss.js` añade la definición `santa`, el controlador de cuatro patrones y las integraciones de portal navideño, Wiki y laboratorio. Conserva el orden previo de módulos y se incorpora al final de `scripts/modules.cjs`. `BossArt` deriva el dibujo y fondo de Santa al controlador; los demás jefes conservan sus adaptadores. `Encounters.enter` transmite `healthBars` y la posición `bossSpawn` opcionales del catálogo; Santa usa dos y los valores anteriores conservan sus barras predeterminadas.
+
+`santaState` contiene solamente números, booleanos, cadenas y hasta seis marcas. Los duendes llevan `santaElf` para contar sólo sus invocaciones; tope cuatro vivos. El servidor usa la misma máquina de estados, apunta a ambos jugadores y serializa estos campos mediante el mecanismo existente de enemigos. Ninguna actualización del combate depende de Image, DOM o reloj real. El atlas WebP de seis poses se carga bajo demanda; los errores de imagen tienen espera de diez segundos entre reintentos. No se añade una herramienta de manipulación de estado al build.
+
+`Progression.domainActive()` reconoce también el estado `santaState.phase === "domain"` de un Papá Noel vivo dentro de su encuentro. Así comparte el bloqueo de mejoras, fusiones y accesos de laboratorio con las demás expansiones, sin crear un indicador global que pueda quedar atascado al abandonar o vencer al jefe.
+
+Las invocaciones de Santa fijan explícitamente Técnico/especial y peso normal; no heredan el atributo ni la armadura aleatorios del enemigo que se usa como fábrica.
+
+
+### Papá Noel: revelación del operativo
+
+La segunda fase se enclava en `santaState.phaseTwo` al terminar el patrón en curso, seguida de `reveal` (2,2 s); curar al jefe no revierte el disfraz. `Progression.domainActive()` reconoce la revelación y el dominio para aplazar elecciones y fusiones. `santaState.ram` conserva origen, destino, recorrido y slots golpeados; usa colisión de segmento para pasos largos. `cross` fija el cruce de sirenas; `breach` fija el abanico físico de cada puerta de la ulti. El dominio comprueba las mismas zonas rectangulares que dibuja.
+
+Los duendes propios se convierten sin crear cuerpos nuevos ni cambiar vida. Se limpian perfiles y anticipaciones de su profesión anterior. `santaOfficer`, las marcas y las trayectorias viajan con el transporte de enemigos existente; no hay cambios de protocolo ni rutas de QA en producción. El atlas `santa-operativo-v1.webp` (3×2, 217 kB) se carga solo al necesitar fase II, conservando el atlas original de fase I y el reintento acotado. Policias usan arte y mecánicas ya disponibles. Los efectos de ralentización reutilizan `tacticSlowUntil`, respetando invulnerabilidad y el reloj de simulación.
+
+
+### Cadencia del jefe navideño
+
+`SantaBoss.recover` fija una sola ventana por fase; al expirar usa `idle` con temporizador cero, de modo que la siguiente actualización comprueba revelación/dominio/ulti antes de preparar otro ataque. `approach` comparte la aproximación acotada de reposo y preparación de regalos. `santaState.approaching` transmite la marcha al render, que conserva poses completas. Las marcas, centros de avisos y trayectorias se capturan antes de moverse; la recuperación y los avisos de embestida permanecen estacionarios.
+
+
+### Disparadores de técnicas de Sideral y nidos
+
+`SideralKit` comunica impactos reales a `CardBuilds.cast`: fin del cono, punto del barrido limitado por cobertura y apertura/explosión del huevo. El envoltorio anterior ya no emite al solicitar Mirada ni vuelve a emitir por cada cría. `cardBuild.pending` programa el fin del cono y la segunda explosión con datos planos por jugador. Las zonas conservan ralentización, vulnerabilidad máxima y tipo físico/especial sin aplicar miedo. `CardBuildUI.drawZones` solo presenta el estado; las descripciones de fusión salen del mismo catálogo.
+
+Los huevos guardan `hatchAt`, `flight`, `nestLeft`, `broodAge`, `born`, `hunter` y el contador `hits` compartido. La evolución abre con explosión y programa tres nacimientos; las crías normales mantienen rumbo, la cazadora puede corregir una sola vez. `weaken` combina la vulnerabilidad activa por máximo y renueva duración, descartando intensidades expiradas. `CardBuilds.resetTransient` cancela zonas, pendientes, anticipación de Mirada y huevos al morir, entrar en dominios o cruzar arenas. Los relojes usan el paso de simulación; una pausa no ejecuta trabajos.
+
+Las cartas buscadoras usan `preferredKey` y `cardBuildSeek`; `Combat.tick` excluye rivales ya alcanzados al dirigirlas y mantiene prioridad por el marcado mientras siga elegible. Las fusiones y la onda ancestral usan colisión barrida con cobertura. La onda se identifica como secundaria, sin `weaponAttack`, para que no vuelva a criticar. Campos nuevos usan el transporte genérico existente; no se modifica protocolo ni guardado permanente y `swarmEgg` mantiene compatibilidad de selección. Las pruebas de propiedades por dueño y la reconexión viven en `tests/sideral-branches.test.cjs`.
+
+Las Miradas solapadas por velocidad de ataque se conservan en `sideralFearQueue` con su aim y ataque capturados; liberar una no sobrescribe la siguiente. La misma limpieza de transitorios cancela esa cola al cambiar de contexto.
+
+### Presentación de categorías y oferta directa
+CardBuildUI.presentation adapta cartas de mejoras sin alterar la rareza del equipo ni los efectos de Progression.apply. Los metadatos de rareza heredados permanecen para compatibilidad y pesos del sorteo; cleanCategory suprime su presentación y usa data-role para marco y animación. Las mutaciones tienen offerWeight explícito y compiten como un grupo en Progression.options, evitando multiplicar su probabilidad por el tamaño del catálogo. Los IDs modify existentes funcionan con el mismo validador individual/cooperativo. Marciano excluye la mejora primary heredada antes del sorteo y conserva cuatro ofertas. La preparación de escenas de revisión queda fuera de los archivos distribuidos.
+
+### Arte y feedback de categorías
+CardBuildUI centraliza supportArts y categorySymbol. Los símbolos SVG y esquinas son capas de interfaz independientes del WebP. Los apoyos del mazo usan el mismo full art que las ofertas. La fusión visual observa cambios confirmados de fusions en HUD, con firma por dueño: captura la geometría antes de ocultar el último apoyo, no anima solicitudes cooperativas rechazadas y limpia su copia a los 650 ms. No modifica tiempos, estado de combate ni validación de la fusión. La escena de revisión permanece externa al repositorio.

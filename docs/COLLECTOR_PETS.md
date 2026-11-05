@@ -10,6 +10,8 @@ Las mascotas son equipo permanente que se elige antes de una partida individual.
 
 La común está incluida para todas las cuentas. La rara cuesta 180 monedas permanentes y exige la común; la legendaria cuesta 400 y exige la rara. Una compra desbloquea la mascota para siempre.
 
+La selección guardada en la mochila decide la variante de la siguiente partida y se fija al preparar la expedición, antes de cargar el mapa o mostrar una elección inicial. Si queda un identificador anterior en el jugador o el perfil vuelve a sincronizarse durante esa transición, la partida conserva la variante preparada; mientras carga el atlas, el dibujo provisional conserva la mochila o los cohetes de esa variante para no parecer la gallinita común.
+
 La pantalla **Mochila** es la única interfaz de equipamiento y separa Suministros de Mascotas en dos pestañas. Los espacios del vestíbulo son un resumen de la próxima partida: los símbolos `+` abren Suministros y el retrato de la gallina abre Mascotas. No existe un selector modal paralelo.
 
 ## Ciclo de recolección

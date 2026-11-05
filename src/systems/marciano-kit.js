@@ -79,7 +79,7 @@ if(typeof addEventListener==='function'){
  P.UI.hud=function(...args){const result=hud.apply(this,args);P.MarcianoKit.hud();P.MarcianoDomain.hud();return result};
  P.Passives.state=function(p,create=true){if(P.MarcianoKit.eligible(p))return create?P.MarcianoKit.passive(p):p.marcianoPassive||null;return state.call(this,p,create)};
  P.Passives.rows=function(id){return id==='marciano'?[['Nombre','Expediente fosforescente'],['Acta','Cada 10 descargas válidas'],['Límite','3 actas'],['Intervención','El ataque siguiente consume las tres'],['Escolta','10 % al ganar acta · +15 % velocidad · 3 s'],['Recuperación de escolta','10 s']]:rows.call(this,id)};
- P.Progression.options=function(p){const result=options.call(this,p);if(p?.id!=='marciano')return result;const filtered=result.filter(card=>!['primary','evolve:primary'].includes(card.id));while(filtered.length<3)filtered.push({id:'recover:marciano-'+filtered.length,title:'Respiro del causa',description:'Recupera el 25% de vida máxima.',rarity:'common',comparison:'Vida +25%'});return filtered};
+ P.Progression.options=function(p){const result=options.call(this,p);if(p?.id!=='marciano')return result;const filtered=result.filter(card=>!['primary','evolve:primary'].includes(card.id));while(filtered.length<4)filtered.push({id:'recover:marciano-'+filtered.length,title:'Respiro del causa',description:'Recupera el 25% de vida máxima.',rarity:'common',comparison:'Vida +25%'});return filtered};
  P.DomainAftermath.slow=function(e){return Math.min(slow.call(this,e),e?.marcianoSlowUntil>(P.state.elapsed||0)?.7:1)};
 }
 {

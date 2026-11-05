@@ -49,3 +49,25 @@ Los dos jefes ya separan sus piezas finales de los patrones existentes. El Tiran
 4. Diseñar el tercer ataque de los minijefes pendientes sin aumentar su frecuencia total: el nuevo patrón reemplaza turnos, no los añade. El Fiscalizador ya cumple esta regla.
 5. Definir segundas pasivas solo cuando cambien una decisión del jugador y tengan lectura visual propia.
 6. Validar daño, duración, móvil, movimiento reducido y cooperativo antes de marcar cualquier espacio como implementado.
+
+
+## Papá Noel del Caos · jefe navideño
+
+Jefe opcional del portal de Navidad, además del Grinch. Se prueba directamente desde Laboratorio → Papá Noel del Caos y desde la Wiki. Vida inicial: 1650; dos barras/fases; atributo Ingenio; canal principal especial y golpes de trineo, ariete y allanamiento físicos. Balance inicial pendiente de partidas completas.
+
+- Regalos explosivos: tres marcas fijas por jugador (máximo seis), 1,25 s de aviso (1,1 s en fase II) y 22 de daño especial base.
+- Trineo rasante: carril fijado, 1,5 s de aviso y barrido físico de 22; salir lateralmente evita el golpe.
+- Ventisca circular: anillo entre 130 y 280 unidades, 1,5 s de aviso y 20 de daño especial; centro y exterior seguros.
+- Turno de duendes: invoca hasta tres duendes, nunca más de cuatro vivos.
+- Abrigo del taller: reduce el daño recibido un 25 % mientras viva un duende propio.
+- Saco abierto: aumenta el daño recibido un 20 % durante los 1,2 s de recuperación en fase I y 0,95 s en fase II. Se combina multiplicativamente con el abrigo.
+- Fase II al 50 %: espera al fin del patrón y revela el operativo durante 2,2 s. Cambia a chaleco, casco y ariete; convierte duendes vivos en policías sin curarlos ni duplicarlos. Las invocaciones posteriores usan policía de atributo Ingenio y canal físico; sigue habiendo máximo cuatro. Tras recuperarse prepara el ataque siguiente sin un segundo descanso.
+- Dominio, Operativo Nochebuena: una vez tras la revelación; aparecen tres puertas decorativas. El refugio verde detrás de la puerta sin X evita el allanamiento. Cuatro pulsos, 4,2 s para llegar al primer refugio y 3,2 s entre cambios. Cada fallo causa 18 de daño físico. Las puertas no bloquean movimiento.
+- Ulti, «¡Abre, es tu regalo!»: una vez al 25 %, después del dominio; abre tres puertas sucesivas. Cada una anuncia un abanico dirigido y fijo durante 1,8 s antes de causar 24 de daño físico. Salir del abanico evita el golpe.
+
+Los daños base pasan por atributos, defensas, equipo e invulnerabilidad existentes. El dominio y la ulti no se superponen. Derrotarlo usa la recompensa y el retorno normales de los portales. El taller mantiene libre el carril: su decoración exterior no introduce obstáculos invisibles.
+
+
+### Variantes del operativo (fase II)
+
+Los cuatro slots se conservan: Regalos aturdidores agranda las marcas de 58 a 70 y, solo al hacer daño, ralentiza un 25 % durante 0,8 s sin bloquear controles. Ariete de intervención reemplaza el carril de trineo por una trayectoria dirigida y fija: 1,6 s de aviso, 24 físico, colisión barrida, máximo 600 unidades y límites de arena. Cerco de sirenas reemplaza el anillo por dos franjas cruzadas fijadas al apuntar; hay 1,7 s para salir en diagonal antes de 22 especial. Refuerzos disfrazados reemplaza duendes por policías con casco y escudo. No se añaden ataques al ciclo ni fases extra. Las señales rojo/azul no parpadean; no se oculta la visión del jugador.

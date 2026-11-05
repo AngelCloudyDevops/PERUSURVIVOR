@@ -166,6 +166,20 @@
       "rgbaSha256": "611ed239256890e407cbd5aaa92edeea149a54d4d62f796fa4f1d89398d4bc05"
     },
     {
+      "source": "assets/bosses/boss-attack-props-v1.png",
+      "output": "assets/bosses/boss-attack-props-v1.webp",
+      "width": 1261,
+      "height": 1247,
+      "originalBytes": 2132361,
+      "optimizedBytes": 130984,
+      "sourceSha256": "6dbcf068867e2aae2817684e8ce215d3e44e5dba4211cd49cb48cd720d951d8f",
+      "outputSha256": "c4f0215d6616f800c99382caf6d3b841e3c7099b76ecec245c7f795501756db0",
+      "rgbaSha256": "53a13aa4f41123e807ed235fc7e0b474c76475d6732c03b922aae6625dca390a",
+      "quality": 88,
+      "runtimeWidth": 512,
+      "runtimeHeight": 506
+    },
+    {
       "source": "assets/bosses/gallinazo-atlas-v1.png",
       "output": "assets/bosses/gallinazo-atlas-v1.webp",
       "width": 1536,
@@ -556,14 +570,14 @@
     {
       "source": "assets/cards/sideral-character-fullart-v1.png",
       "output": "assets/cards/sideral-character-fullart-v1.webp",
-      "width": 1024,
-      "height": 1536,
+      "width": 512,
+      "height": 768,
       "originalBytes": 2875413,
-      "optimizedBytes": 519640,
+      "optimizedBytes": 128822,
       "sourceSha256": "103d9a225519eb8a93fc3f6d1750bbf8caa5650b07a0983e7cd070114a598ada",
-      "outputSha256": "3d7ab49f0c14f418fac081f9b64c13c590be01761ce00a70cae757d11a0a0fe9",
-      "rgbaSha256": "910b80a19955050f3ea932a704fb106cf57f923ecb983997fb576471eb00c6e7",
-      "quality": 90
+      "outputSha256": "d0db37d9ec38a3c0cd5f5ed78d39fc40758d3a5b184e4d8f7041fd3219ae8de1",
+      "rgbaSha256": "788c793a726a888a62db2956ab2f8f6d4dbfb0f76397152a861882f46ca230d3",
+      "quality": 82
     },
     {
       "source": "assets/cards/sideral-domain-fullart-v1.png",
@@ -626,6 +640,18 @@
       "quality": 10
     },
     {
+      "source": "assets/cards/sideral-lagarto-ultimate-fullart-v1.png",
+      "output": "assets/cards/sideral-lagarto-ultimate-fullart-v1.webp",
+      "width": 512,
+      "height": 768,
+      "originalBytes": 2589007,
+      "optimizedBytes": 110852,
+      "sourceSha256": "0e1e2eca75b477ee9114ec2c3f2beab5e242d561da55b72e6f64e96c9244544d",
+      "outputSha256": "bdd9f38b8f0c9519c7ec67687b647e30f3327489c4db728d145d798829bf9bd5",
+      "rgbaSha256": "9958912221ff68d4c237c1a0c3ccab6466f49e8494c5f53832ba861b4a54d49d",
+      "quality": 82
+    },
+    {
       "source": "assets/cards/sideral-tail-fullart-v1.png",
       "output": "assets/cards/sideral-tail-fullart-v1.webp",
       "width": 1024,
@@ -636,6 +662,48 @@
       "outputSha256": "a211039092f4acfdb19f4d68c03d5f607016f41317f010eac489616767a3d0e9",
       "rgbaSha256": "6201c2b192778e62373096da8e5719acb08306ee0958a0b2325c8c124dd40f18",
       "quality": 10
+    },
+    {
+      "source": "assets/cards/support-cards-fullart-v2.png",
+      "output": "assets/cards/support-cards-fullart-v2.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2728979,
+      "optimizedBytes": 291976,
+      "sourceSha256": "fd2c6cb0ace36424949153f7fd0722e6f52d420d0b507b20e073ab176813b252",
+      "outputSha256": "2319347e86ce0be08d5b84a0d2a56532835e21879c2f02c1542c85a006b16235",
+      "rgbaSha256": "a44dace2345a4ef448e6232b9e06cc39842228e995cac29ca5d429b632b2da69",
+      "quality": 90,
+      "runtimeWidth": 768,
+      "runtimeHeight": 1152
+    },
+    {
+      "source": "assets/cards/support-orbit-fullart-v2.png",
+      "output": "assets/cards/support-orbit-fullart-v2.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2699408,
+      "optimizedBytes": 297420,
+      "sourceSha256": "9e6b52008afd23bffaeb4002ad417f100bb5c722f65503ca54ef1e4f3c9b30e4",
+      "outputSha256": "02e2c56419b239c9d020c34da160215a714f363ae81a2e9773d35a30c0618d5a",
+      "rgbaSha256": "2faaa088a54d90af1abba3640779551131e6e760e5df6a83ea078efce6c84cd3",
+      "quality": 90,
+      "runtimeWidth": 768,
+      "runtimeHeight": 1152
+    },
+    {
+      "source": "assets/cards/support-pulse-fullart-v2.png",
+      "output": "assets/cards/support-pulse-fullart-v2.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2719457,
+      "optimizedBytes": 300424,
+      "sourceSha256": "c021894de1eb38c2c31f0b81428cecff76aa4deb2ab7b1b9ce94aa8cfa34bc95",
+      "outputSha256": "8b03c917002a111b51e9c36735e9cd14a96061dfc9d411dc4164006f94b307dc",
+      "rgbaSha256": "36411abacec8e866e47b62381c6961d12be00d199ee2d0caa9494953289dc06f",
+      "quality": 90,
+      "runtimeWidth": 768,
+      "runtimeHeight": 1152
     },
     {
       "source": "assets/characters/causas-atlas-v1.png",
@@ -684,6 +752,90 @@
       "quality": 50,
       "runtimeWidth": 256,
       "runtimeHeight": 128
+    },
+    {
+      "source": "assets/characters/sideral-lagartitere-egg-motion-v2.png",
+      "output": "assets/characters/sideral-lagartitere-egg-motion-v2.webp",
+      "width": 1774,
+      "height": 887,
+      "originalBytes": 1168683,
+      "optimizedBytes": 56372,
+      "sourceSha256": "1056a23338cbd64ce4600dbc7e52388147325a9749b8d50726ab5b655a696e32",
+      "outputSha256": "acdd5e0cc8039cf7b3ef4eeaaa9b476e755254afd5568bc9bab20e598b11620e",
+      "rgbaSha256": "b54078d5a6f251b024de1388e0a7d7d437dd7e3deb0c8208e4a8299d1c178dc6",
+      "quality": 78,
+      "runtimeWidth": 768,
+      "runtimeHeight": 384
+    },
+    {
+      "source": "assets/characters/sideral-lagartitere-fear-motion-v2.png",
+      "output": "assets/characters/sideral-lagartitere-fear-motion-v2.webp",
+      "width": 1774,
+      "height": 887,
+      "originalBytes": 1330255,
+      "optimizedBytes": 74710,
+      "sourceSha256": "8cd53defd139027b959e5f4ea301cdcec64a242ec03f740e45c9d43ad08ca004",
+      "outputSha256": "3c7369d231bc1c7e104f67bc7f01e84dba0291008825d16383224f500b695de5",
+      "rgbaSha256": "fc4bac3dca6bd72a0913b592ffec7dcff4929c1c3ea8139c5d1cdbc7322968b3",
+      "quality": 78,
+      "runtimeWidth": 768,
+      "runtimeHeight": 384
+    },
+    {
+      "source": "assets/characters/sideral-lagartitere-marks-v2.png",
+      "output": "assets/characters/sideral-lagartitere-marks-v2.webp",
+      "width": 1774,
+      "height": 887,
+      "originalBytes": 1329000,
+      "optimizedBytes": 76406,
+      "sourceSha256": "e7092fc3fdcec9aa313c35bf562982b513c097d398c1cd87eacd5d0a2333a531",
+      "outputSha256": "0491e75d061bb76d5dc23c3196480e11fe202be82aa0bfefcffd4b684e72eba0",
+      "rgbaSha256": "efd69deca918ea2cd5bd3656c80f3155f0739ff51496eb57a1ea59bb34def742",
+      "quality": 78,
+      "runtimeWidth": 768,
+      "runtimeHeight": 384
+    },
+    {
+      "source": "assets/characters/sideral-lagartitere-runner-v2.png",
+      "output": "assets/characters/sideral-lagartitere-runner-v2.webp",
+      "width": 1774,
+      "height": 887,
+      "originalBytes": 924640,
+      "optimizedBytes": 51200,
+      "sourceSha256": "bddc78a1eaa56401edc8992803f62c888d94225f2a493eabea9c1e567456642c",
+      "outputSha256": "8dfe277921ca6a3f76ac58eefdb1ff843b6fba38dc03fe8b398dad20a7a92f4a",
+      "rgbaSha256": "5d5c29e612a68696b364d8e3766bf04fe0d9f85cabc4f7a3fdbb5ef163edd873",
+      "quality": 78,
+      "runtimeWidth": 768,
+      "runtimeHeight": 384
+    },
+    {
+      "source": "assets/characters/sideral-lagartitere-tail-motion-v2.png",
+      "output": "assets/characters/sideral-lagartitere-tail-motion-v2.webp",
+      "width": 1774,
+      "height": 887,
+      "originalBytes": 1309746,
+      "optimizedBytes": 73620,
+      "sourceSha256": "2aeaa1efeb30234ae6c8d21d43b9707665a3dadced58a615d02e6701468a6f53",
+      "outputSha256": "0f6d0ba2eb1e2db901f198e930f76ee97508703c2421ab5e08a5187773bc9479",
+      "rgbaSha256": "9239ff5ffeffdb852613424d7f577626691ad7e440d0c75c9c0161c135f475fc",
+      "quality": 78,
+      "runtimeWidth": 768,
+      "runtimeHeight": 384
+    },
+    {
+      "source": "assets/characters/sideral-lagartitere-walk-motion-v2.png",
+      "output": "assets/characters/sideral-lagartitere-walk-motion-v2.webp",
+      "width": 1774,
+      "height": 887,
+      "originalBytes": 1194839,
+      "optimizedBytes": 67294,
+      "sourceSha256": "0c9eb523f1f2e58dd8b50b50fb8e0295c6c6358a37d3dbccf0235ff04f20ab11",
+      "outputSha256": "2fa42fad65376aad13313526716f978e00998bfb4ac6d46da9616826f469df54",
+      "rgbaSha256": "87303a82a5b0fd58b810fd7ee87bc7e6f7c025843f9ddbb47f160ba7d1a19b21",
+      "quality": 78,
+      "runtimeWidth": 768,
+      "runtimeHeight": 384
     },
     {
       "source": "assets/characters/sideral-lagarto-motion-v2.png",
@@ -986,6 +1138,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 152193135,
-  "optimizedBytes": 43002436
+  "originalBytes": 172319510,
+  "optimizedBytes": 44142876
 }

@@ -285,17 +285,21 @@ body.domain-result #hud>.stats,body.domain-result #hud>#level{visibility:hidden}
 @keyframes legendaryPanelKick{0%,100%{transform:translate(-50%,-50%)}28%{transform:translate(calc(-50% + 5px),calc(-50% - 2px))}52%{transform:translate(calc(-50% - 4px),calc(-50% + 2px))}76%{transform:translate(calc(-50% + 2px),-50%)}}
 .upgrade-card[data-rarity=common]{--rarity:#b6aa98}.upgrade-card[data-rarity=rare]{--rarity:#59d6c1}.upgrade-card[data-rarity=epic]{--rarity:#c98cff}.upgrade-card[data-rarity=legendary]{--rarity:#ffd45f}
 .upgrade-card[data-rarity=rare] .upgrade-front{background:linear-gradient(150deg,#253b38,#202a32)}.upgrade-card[data-rarity=epic] .upgrade-front{background:linear-gradient(150deg,#392c42,#20232c)}.upgrade-card[data-rarity=legendary] .upgrade-front{background:linear-gradient(150deg,#493d26,#292a29)}
+.upgrade-card{--role:#9aa9b8}.upgrade-card[data-role=technique]{--role:#ff795f}.upgrade-card[data-role=support]{--role:#63e3d2}.upgrade-card[data-role=attribute]{--role:#72aee8}.upgrade-card[data-role=mutation]{--role:#d792ff}.upgrade-card[data-role=fusion]{--role:#ef9cff}.upgrade-card[data-role=evolution],.upgrade-card[data-role=combo]{--role:#ffd45f}.upgrade-card[data-role=pact]{--role:#ff5c68}.upgrade-card[data-role=recovery]{--role:#75df94}.upgrade-card[data-role=instinct]{--role:#ff9b5e}
+.upgrade-card .upgrade-front{border-top:5px solid var(--role)}.upgrade-card[data-role=support] .upgrade-front{box-shadow:inset 0 0 28px #63e3d222,0 12px 24px #070b1099,5px 5px #0c1119}.upgrade-card[data-role=mutation] .upgrade-front{box-shadow:inset 0 0 30px #d792ff26,0 12px 24px #070b1099,5px 5px #0c1119}.upgrade-card[data-role=evolution] .upgrade-front{box-shadow:inset 0 0 34px #ffd45f2b,0 12px 24px #070b1099,5px 5px #0c1119}.upgrade-card[data-role=pact] .upgrade-front{box-shadow:inset 0 0 30px #ff5c6822,0 12px 24px #070b1099,5px 5px #0c1119}
+.upgrade-role{display:inline-flex;align-items:center;align-self:flex-start;min-height:18px;padding:3px 7px;border:1px solid var(--role);background:color-mix(in srgb,var(--role) 18%,#101820);color:#fff4dd;font:900 9px/1 monospace;letter-spacing:1px;box-shadow:2px 2px #080c11}.upgrade-role:before{content:'◆';margin-right:5px;color:var(--role);font-size:8px}.upgrade-card[data-role=support] .upgrade-role:before{content:'◈'}.upgrade-card[data-role=attribute] .upgrade-role:before{content:'+'}.upgrade-card[data-role=mutation] .upgrade-role:before{content:'✦'}.upgrade-card[data-role=fusion] .upgrade-role:before{content:'⇄'}.upgrade-card[data-role=evolution] .upgrade-role:before{content:'★'}.upgrade-card[data-role=pact] .upgrade-role:before{content:'!'}
 .upgrade-front .upgrade-icon{flex:0 0 42px;width:42px;height:42px;border-color:var(--rarity);border-radius:7px}
-.upgrade-front .upgrade-content{flex:0 1 auto;width:100%}.upgrade-front .upgrade-badge{font-size:8px}.upgrade-front .upgrade-content strong{font-size:clamp(12px,1.5vw,17px);line-height:1.12;color:#fff0d5}
-#overlay.level-up.card-reveal .upgrade-front .upgrade-content small{font-size:clamp(8px,.85vw,10px);line-height:1.3;margin-top:5px}
-.upgrade-front .upgrade-comparison{font-size:clamp(8px,.8vw,10px);line-height:1.25;margin-top:4px}
+.upgrade-front .upgrade-content{flex:0 1 auto;width:100%}.upgrade-front .upgrade-badge{font-size:9px;line-height:1.15;color:#c8d1da}.upgrade-front .upgrade-content strong{font-size:clamp(15px,1.65vw,20px);line-height:1.03;color:#fff0d5;text-wrap:balance}
+#overlay.level-up.card-reveal .upgrade-front .upgrade-content small{font-size:clamp(10px,.95vw,12px);line-height:1.28;margin-top:7px;color:#eef2ef}
+.upgrade-front .upgrade-comparison{display:block;margin-top:7px;padding-top:6px;border-top:1px solid color-mix(in srgb,var(--role) 55%,transparent);color:#ffe5a6;font-size:clamp(10px,.9vw,12px);font-weight:800;line-height:1.2}
+.illustrated-cards .upgrade-card[data-role=attribute] .upgrade-content,.illustrated-cards .upgrade-card[data-role=recovery] .upgrade-content{background:linear-gradient(0deg,#111820fa 0%,#111820ed 76%,#11182000 100%)}
 .upgrade-front .upgrade-preview{flex:none;width:min(100%,96px);height:38px}
 .upgrade-front .upgrade-key{display:grid;place-items:center;width:26px;height:26px;margin-top:auto;border:1px solid var(--rarity);background:#171c20;font:800 14px monospace;color:#ffe3ad}
 #overlay.level-up.card-reveal .upgrade-card:hover:not([data-revealed=true]),#overlay.level-up.card-reveal .upgrade-card:focus-visible:not([data-revealed=true]){outline:2px solid #ffe2a1;outline-offset:4px;transform:translateY(-4px)}
 #overlay.level-up.card-reveal[data-phase=choose] .upgrade-card:hover,#overlay.level-up.card-reveal[data-phase=choose] .upgrade-card:focus-visible{outline:2px solid var(--rarity,#ffe2a1);outline-offset:4px;transform:translateY(-4px)}
 #overlay.level-up.card-reveal .upgrade-card.upgrade-chosen{z-index:3;animation:upgradeImpact .46s steps(3) forwards!important}
 #overlay.level-up.card-reveal>button:not(.upgrade-card){grid-column:1/-1;min-height:34px}
-@media(max-width:600px){#overlay.level-up.card-reveal{gap:8px;padding:14px 10px;max-height:94vh;overflow-y:auto}#overlay.level-up.card-reveal .upgrade-card{height:clamp(225px,34vh,285px)}.upgrade-back,.upgrade-front{gap:7px;padding:9px 6px}.upgrade-back b,.upgrade-back small{font-size:7px;letter-spacing:.5px}.upgrade-front .upgrade-icon{flex-basis:34px;width:34px;height:34px}.upgrade-front .upgrade-key{width:22px;height:22px;font-size:11px}.upgrade-front .upgrade-preview{height:26px}.illustrated-cards .upgrade-front{gap:0;padding:0}.illustrated-cards .upgrade-front .upgrade-content{padding:13px 6px 7px}.illustrated-cards .upgrade-front .upgrade-content strong{font-size:clamp(9px,2.5vw,12px)}.illustrated-cards .upgrade-front .upgrade-content small{font-size:8px;line-height:1.14}.illustrated-cards .upgrade-front .upgrade-comparison{font-size:7px}.illustrated-cards .upgrade-front .upgrade-key{top:5px;left:5px;width:20px;height:20px;min-height:20px;font-size:10px}.illustrated-cards .upgrade-front .upgrade-icon{top:5px;right:5px;flex-basis:34px;width:34px;height:34px}}
+@media(max-width:600px){#overlay.level-up.card-reveal{gap:8px;padding:14px 10px;max-height:94vh;overflow-y:auto}#overlay.level-up.card-reveal .upgrade-card{height:clamp(225px,34vh,285px)}.upgrade-back,.upgrade-front{gap:7px;padding:9px 6px}.upgrade-back b,.upgrade-back small{font-size:7px;letter-spacing:.5px}.upgrade-front .upgrade-icon{flex-basis:34px;width:34px;height:34px}.upgrade-front .upgrade-key{width:22px;height:22px;font-size:11px}.upgrade-front .upgrade-preview{height:26px}.illustrated-cards .upgrade-front{gap:0;padding:0}.illustrated-cards .upgrade-front .upgrade-content{padding:16px 8px 9px}.illustrated-cards .upgrade-front .upgrade-content strong{font-size:clamp(13px,3.5vw,17px)}.illustrated-cards .upgrade-front .upgrade-content small{font-size:10px;line-height:1.18}.illustrated-cards .upgrade-front .upgrade-comparison{font-size:9px}.illustrated-cards .upgrade-front .upgrade-badge{font-size:8px}.illustrated-cards .upgrade-role{font-size:8px;min-height:17px}.illustrated-cards .upgrade-front .upgrade-key{top:5px;left:5px;width:20px;height:20px;min-height:20px;font-size:10px}.illustrated-cards .upgrade-front .upgrade-icon{top:5px;right:5px;flex-basis:34px;width:34px;height:34px}}
 @media(max-width:600px){.extinction-relic-altar{display:none}#overlay.extinction-relic-choice .upgrade-front{border-bottom:10px solid #6f4729;box-shadow:inset 0 0 22px #ff9a3622,0 0 12px #e8a74b44}}
 @media(max-width:380px){#overlay.level-up.card-reveal{gap:5px;padding:12px 7px}#overlay.level-up.card-reveal .upgrade-card{height:225px}.upgrade-back,.upgrade-front{padding:7px 4px}.upgrade-front .upgrade-content strong{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.upgrade-flipper{transition:none}.upgrade-front:before,.upgrade-front:after,.upgrade-card.legendary-reveal:before,.upgrade-card.legendary-reveal:after,#overlay.level-up.card-reveal.legendary-impact:before{animation:none!important;content:none!important}.upgrade-card.legendary-reveal,#overlay.level-up.card-reveal.legendary-impact{animation:none!important}#overlay.level-up.card-reveal .upgrade-card:hover{transform:none}}
@@ -1390,9 +1394,9 @@ body.instinct-choice-open #lobby-hub{pointer-events:none;user-select:none}
 /* Gacha limpio: una sola escena, navegación mínima y acciones siempre visibles. */
 body.reference-open #dota-inventory{display:none!important}
 #menu #reference-gacha-hub{inset:54px 2vw 12px;display:block;padding:0;border:0;border-radius:0;background:linear-gradient(135deg,#07131ff5,#0b1f31f2 55%,#071722f5);box-shadow:0 18px 60px #0009}
-#reference-gacha-hub .reference-head{position:absolute!important;z-index:30;top:12px;right:12px;height:42px!important;padding:0!important;border:0!important}
+#reference-gacha-hub .reference-head{position:absolute!important;z-index:40;top:12px;right:12px;height:42px!important;padding:0!important;border:0!important;pointer-events:auto!important}
 #reference-gacha-hub .reference-head>div{display:none!important}
-#reference-gacha-hub .reference-back{display:grid;place-items:center;width:42px;height:42px;padding:0;border-color:#8296a5;border-radius:50%;background:#102638dc;font-size:0;box-shadow:0 4px 14px #0007}
+#reference-gacha-hub .reference-back{position:relative;z-index:1;display:grid;place-items:center;width:42px;height:42px;padding:0;border-color:#8296a5;border-radius:50%;background:#102638dc;font-size:0;box-shadow:0 4px 14px #0007;pointer-events:auto;touch-action:manipulation}
 #reference-gacha-hub .reference-back:before{content:"\2190";font:900 21px/1 monospace;color:#fff0b4}
 #reference-gacha-hub .reference-body{height:100%;padding:0!important;overflow:hidden!important}
 #reference-gacha-hub .complete-section{box-sizing:border-box;height:100%;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:8px;padding:12px 16px 14px;border:0;border-radius:0;background:transparent;overflow:hidden}
@@ -1425,3 +1429,96 @@ body.reference-open #dota-inventory{display:none!important}
 .gacha-notice{position:absolute;z-index:12;right:18px;bottom:70px;max-width:360px;margin:0;padding:8px 12px;border:1px solid #f0c957;background:#071825eb}
 @media(max-width:900px){.gacha-featured-banner{grid-template-columns:1fr 1fr}.gacha-summon-bar{grid-template-columns:auto auto auto 1fr 1.15fr}.gacha-summon-bar .complete-action{order:initial}}
 @media(max-width:600px){#menu #reference-gacha-hub{inset:50px 0 0}#reference-gacha-hub .complete-section{padding:8px;gap:6px}.gacha-banner-top{padding-right:46px}.gacha-banner-top .gacha-scope-tabs button{min-width:102px;padding:7px 9px}.gacha-banner-top .gacha-wallets{display:flex}.gacha-banner-top .gacha-wallets article{min-width:82px;padding:5px 7px}.gacha-banner-grid{min-height:52px;padding-right:46px}.gacha-banner-grid button{flex-basis:130px;min-height:50px}.gacha-featured-banner{display:grid;grid-template-columns:1fr;height:100%}.gacha-featured-visual{min-height:0}.gacha-featured-visual>img:first-child{inset:-3% 2% -2%;width:96%;height:105%}.gacha-featured-copy{position:absolute;right:0;bottom:0;left:0;margin:0;padding:54px 14px 18px;background:linear-gradient(transparent,#071825e8 38%)}.gacha-featured-copy h3{font-size:36px}.gacha-featured-copy>p{display:none}.gacha-rate-strip{right:8px;bottom:8px;left:8px}.gacha-rate-strip span{width:38px;height:38px}.gacha-banner-preview{grid-template-columns:1fr;height:100%}.gacha-banner-preview>img{height:100%;min-height:0}.gacha-banner-preview>div{position:absolute;right:8px;bottom:58px;left:8px;padding:36px 12px 12px;background:linear-gradient(transparent,#071825e8 42%)}.gacha-banner-preview h3{font-size:34px}.gacha-summon-bar,.gacha-preview-actions{position:relative;bottom:auto;grid-template-columns:repeat(2,1fr);padding:5px}.gacha-summon-bar .complete-action{grid-row:auto;order:2}.gacha-summon-one,.gacha-summon-ten{grid-row:1}.gacha-preview-actions .gacha-summon-ten{grid-column:1/-1}.gacha-notice{right:8px;bottom:112px;left:8px;max-width:none}}
+
+/* Mazo compacto: grupos con ancho real y separaciones constantes. */
+#combat-dock,#combat-dock[data-character=sideral]{--deck-card-width:clamp(56px,calc((100vw - 480px - 36px)/var(--deck-card-count,5)),124px);--deck-card-height:calc(var(--deck-card-width)*1.2742);display:flex;align-items:flex-end;justify-content:center;flex-wrap:nowrap;gap:6px;left:50%;right:auto;bottom:12px;width:max-content;max-width:calc(100vw - 24px);transform:translateX(-50%)}
+#combat-dock #attack-dock-slot{order:1;flex:0 1 auto;width:auto;min-width:0}
+#combat-dock #weapon-bar,#combat-dock[data-character=sideral] #weapon-bar[data-character=sideral]{display:flex;width:auto;height:auto;gap:6px;flex-wrap:nowrap;padding:0;border:0;background:transparent;box-shadow:none}
+#combat-dock #weapon-bar:before{display:none}
+#combat-dock #weapon-bar button{flex:0 1 var(--deck-card-width);width:var(--deck-card-width);min-width:0}
+#combat-dock #weapon-bar .sideral-skill-card,#combat-dock[data-character=sideral] #weapon-bar .sideral-skill-card{flex:0 0 var(--deck-card-width);width:var(--deck-card-width);height:var(--deck-card-height);min-height:var(--deck-card-height)}
+#combat-dock #support-dock,#combat-dock[data-character=sideral] #support-dock{order:2;flex:0 0 auto;width:auto;max-width:none;gap:6px;align-self:flex-end;justify-content:center}
+#combat-dock .support-card{flex:0 0 var(--deck-card-width);width:var(--deck-card-width);height:var(--deck-card-height)}
+#combat-dock #ability-dock,#combat-dock[data-character=sideral] #ability-dock{order:3;display:flex;flex:0 0 auto;width:auto;height:var(--deck-card-height);gap:6px;align-items:flex-end}
+#combat-dock .ability-card-shell,#combat-dock[data-character=sideral] .ability-card-shell{position:relative;inset:auto;flex:0 0 var(--deck-card-width);width:var(--deck-card-width);height:var(--deck-card-height)}
+#combat-dock .ability-card-shell:has(.hud-ability-card:hover),#combat-dock .ability-card-shell:has(.hud-ability-card:focus-visible),#combat-dock .ability-card-shell:has(.hud-ability-card.is-peeking),#combat-dock[data-character=sideral] .ability-card-shell:has(.hud-ability-card:hover),#combat-dock[data-character=sideral] .ability-card-shell:has(.hud-ability-card:focus-visible),#combat-dock[data-character=sideral] .ability-card-shell:has(.hud-ability-card.is-peeking){height:var(--deck-card-height);inset:auto}
+body:not(.menu) header #skills-hud{top:72px;right:16px;bottom:auto;left:auto;transform:none;width:112px;height:32px;font-size:10px}
+@media(max-width:1000px){#combat-dock,#combat-dock[data-character=sideral]{--deck-card-width:clamp(56px,calc((100vw - 24px - 36px)/var(--deck-card-count,5)),124px)}body:not(.menu) #dota-inventory{bottom:calc(clamp(72px,16vw,158px) + 28px);left:8px}}
+@media(max-width:600px){#combat-dock,#combat-dock[data-character=sideral]{--deck-card-width:calc((100vw - 40px)/5);left:8px;right:8px;bottom:8px;width:auto;max-width:none;transform:none;flex-wrap:wrap;gap:5px 6px}#combat-dock #attack-dock-slot{flex:0 0 auto}#combat-dock #support-dock,#combat-dock[data-character=sideral] #support-dock{order:4;flex:1 0 100%;gap:6px}#combat-dock #ability-dock,#combat-dock[data-character=sideral] #ability-dock{order:3}body:not(.menu) header #skills-hud{top:65px;right:8px;width:95px;height:29px;font-size:9px}body:not(.menu) #dota-inventory{bottom:calc((100vw - 40px)/5*1.2742 + 22px)}body:has(#combat-dock[data-support-count="1"]):not(.menu) #dota-inventory,body:has(#combat-dock[data-support-count="2"]):not(.menu) #dota-inventory{bottom:calc((100vw - 40px)/5*2.5484 + 28px)}}
+
+#combat-dock[data-character=sideral] #weapon-bar .sideral-skill-card[data-role=auto],#combat-dock[data-character=sideral] #weapon-bar .sideral-skill-card[data-role=manual]:nth-of-type(2){margin:0}
+body:not(.menu):has(#combat-dock[data-character=sideral]) header #skills-hud{bottom:auto}
+
+#combat-dock #attack-dock-slot,#combat-dock[data-character=sideral] #attack-dock-slot{width:max-content}
+
+#combat-dock #weapon-bar .sideral-skill-card[data-locked=true]{opacity:1;filter:grayscale(.8) brightness(.78);border-color:#6b7c8e}
+/* Clean category cards: artwork first; rarity remains on equipment only. */
+#overlay .upgrade-card[data-clean=true]{--rarity:var(--role)}
+#overlay .upgrade-card[data-clean=true] .upgrade-front{padding:0;overflow:hidden;border:1px solid #b9c6cd70;border-radius:10px;box-shadow:0 8px 20px #0005;background:#101a23}
+#overlay .upgrade-card[data-clean=true] .upgrade-front:before,#overlay .upgrade-card[data-clean=true] .upgrade-front:after{content:none}
+#overlay .upgrade-card[data-clean=true] .upgrade-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;image-rendering:auto}
+#overlay .upgrade-card[data-clean=true] .upgrade-role{position:absolute;z-index:4;top:9px;left:9px;margin:0;padding:6px 7px;max-width:calc(100% - 52px);border:0;border-radius:4px;box-shadow:none;background:#07121cd9;color:#f5efdd;font:800 10px/1.2 monospace;letter-spacing:.4px}
+#overlay .upgrade-card[data-clean=true] .upgrade-front .upgrade-icon,#overlay .upgrade-card[data-clean=true] .upgrade-preview{display:none}
+#overlay .upgrade-card[data-clean=true] .upgrade-content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;flex:0 0 auto;margin-top:auto;width:100%;min-height:32%;padding:36px 12px 15px;border:0;background:linear-gradient(0deg,#08121afa 0%,#08121ad9 65%,#08121a00 100%)}
+#overlay .upgrade-card[data-clean=true] .upgrade-content strong{font:800 clamp(18px,1.8vw,25px)/1.05 'Barlow Condensed',sans-serif;text-wrap:balance;color:#fff1d3}
+#overlay .upgrade-card[data-clean=true] .upgrade-content small{margin:0;color:#e9eeef;font:12px/1.3 'DM Sans',sans-serif}
+#overlay .upgrade-card[data-clean=true] .upgrade-badge{color:var(--role)!important;font:800 10px/1.2 monospace;margin:0;letter-spacing:.4px}
+#overlay .upgrade-card[data-clean=true] .upgrade-key{position:absolute;left:auto;right:9px;top:9px;z-index:4;width:25px;height:25px;min-height:25px;border:0;border-radius:4px;box-shadow:none;background:#07121cd9;color:#f5efdd}
+#overlay .upgrade-card[data-clean=true][data-role=technique],#overlay .upgrade-card[data-clean=true][data-role=instinct]{--role:#f38c82}
+#overlay .upgrade-card[data-clean=true][data-role=mutation]{--role:#b2d978}
+#overlay .upgrade-card[data-clean=true][data-role=support]{--role:#f4b966}
+#overlay .upgrade-card[data-clean=true][data-role=attribute]{--role:#7ec4ef}
+#overlay .upgrade-card[data-clean=true][data-role=fusion]{--role:#d7a0ef}
+#overlay .upgrade-card[data-clean=true][data-role=evolution]{--role:#efd675}
+#overlay .upgrade-card[data-clean=true][data-role=mutation] .upgrade-role:before{content:'⑂'}
+#overlay .upgrade-card[data-clean=true][data-role=attribute] .upgrade-role:before{content:'◇'}
+#overlay .upgrade-card[data-clean=true][data-role=evolution] .upgrade-role:before{content:'⇈'}
+#overlay .upgrade-card[data-clean=true].category-reveal .upgrade-role{animation:categoryMark .4s ease-out both}
+#overlay .upgrade-card[data-clean=true][data-role=support].category-reveal .upgrade-role{animation:categorySlide .4s ease-out both}
+#overlay .upgrade-card[data-clean=true][data-role=mutation].category-reveal .upgrade-role{animation:categoryBranch .5s ease-out both}
+#overlay .upgrade-card[data-clean=true][data-role=evolution].category-reveal .upgrade-front{animation:categoryEvolve .65s ease-out both}
+.fusion-badge{animation:categorySlide .4s ease-out both}
+@keyframes categoryMark{from{opacity:.4;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes categorySlide{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
+@keyframes categoryBranch{0%{opacity:0;transform:scaleX(.6)}65%{transform:scaleX(1.08)}100%{opacity:1;transform:scaleX(1)}}
+@keyframes categoryEvolve{0%{box-shadow:0 0 0 transparent}45%{box-shadow:0 0 25px #efd67588}100%{box-shadow:0 8px 20px #0005}}
+@media(max-width:600px){#overlay .upgrade-card[data-clean=true] .upgrade-role{font-size:9px;top:7px;left:7px}#overlay .upgrade-card[data-clean=true] .upgrade-content{padding:28px 10px 12px}#overlay .upgrade-card[data-clean=true] .upgrade-content strong{font-size:21px}#overlay .upgrade-card[data-clean=true] .upgrade-content small{font-size:12px}#overlay .upgrade-card[data-clean=true] .upgrade-key{top:7px;right:7px}}
+@media(prefers-reduced-motion:reduce){#overlay .upgrade-card[data-clean=true] .upgrade-role,#overlay .upgrade-card[data-clean=true] .upgrade-front,.fusion-badge{animation:none!important}}
+#overlay .upgrade-card[data-clean=true] .upgrade-badge:empty{display:none}
+#overlay.level-up.card-reveal .upgrade-card[data-clean=true][data-role=support].upgrade-chosen{animation:categorySupportPick .46s ease-in forwards!important}
+#overlay.level-up.card-reveal .upgrade-card[data-clean=true][data-role=mutation].upgrade-chosen{animation:categoryMutationPick .46s ease-out forwards!important}
+#overlay.level-up.card-reveal .upgrade-card[data-clean=true][data-role=attribute].upgrade-chosen{animation:categoryPassivePick .35s ease-out forwards!important}
+@keyframes categorySupportPick{to{transform:translateY(22px) scale(.9);opacity:0}}
+@keyframes categoryMutationPick{40%{transform:scaleX(1.04);filter:brightness(1.2)}to{transform:scale(.96);opacity:0}}
+@keyframes categoryPassivePick{to{opacity:0;transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){#overlay.level-up.card-reveal .upgrade-card[data-clean=true].upgrade-chosen{animation:none!important}}
+#overlay.clean-categories h2:after{display:none!important}
+@media(max-width:600px){#overlay.level-up.card-reveal.clean-categories{grid-template-rows:auto auto;align-content:start}#overlay.level-up.card-reveal .upgrade-card[data-clean=true]{height:clamp(230px,31dvh,280px);min-height:230px}}
+/* Category vocabulary matches the clean full-art mockup. */
+#overlay .upgrade-card[data-clean=true] .upgrade-role{display:inline-flex;gap:6px;align-items:center;font:800 12px/1.1 'DM Sans',sans-serif;letter-spacing:.5px;padding:6px 8px;background:#07121cce;max-width:calc(100% - 65px)}
+#overlay .upgrade-card[data-clean=true] .upgrade-role:before{content:none!important}
+.category-symbol{display:block;width:21px;height:21px;flex:0 0 21px;object-fit:contain}
+#overlay .upgrade-card[data-clean=true] .category-rank{position:absolute;z-index:5;top:10px;right:10px;margin:0;padding:5px 8px;border-radius:5px;background:#07121cce;color:#fff1d3!important;font:800 12px/1.2 monospace}
+#overlay .upgrade-card[data-clean=true] .upgrade-key{top:auto;bottom:5px;right:6px;width:18px;height:18px;min-height:18px;font-size:10px;background:#07121c99;opacity:.8}
+#overlay .upgrade-card[data-clean=true] .upgrade-content{padding-right:22px}
+.card-corners{position:absolute;inset:5px;z-index:4;pointer-events:none;border-radius:7px;color:var(--role);background:linear-gradient(currentColor,currentColor) left top/15px 2px no-repeat,linear-gradient(currentColor,currentColor) left top/2px 12px no-repeat,linear-gradient(currentColor,currentColor) right top/15px 2px no-repeat,linear-gradient(currentColor,currentColor) right top/2px 12px no-repeat,linear-gradient(currentColor,currentColor) left bottom/15px 2px no-repeat,linear-gradient(currentColor,currentColor) left bottom/2px 12px no-repeat,linear-gradient(currentColor,currentColor) right bottom/15px 2px no-repeat,linear-gradient(currentColor,currentColor) right bottom/2px 12px no-repeat}
+#overlay .upgrade-card[data-clean=true][data-role=mutation]{--role:#b6ea69}
+#overlay .upgrade-card[data-clean=true][data-role=fusion]{--role:#da94ff}
+#overlay .upgrade-card[data-clean=true][data-role=evolution]{--role:#ffe176}
+#overlay .upgrade-card[data-clean=true][data-role=mutation] .card-corners{border-top:1px dashed #b6ea6966}
+#overlay .upgrade-card[data-clean=true][data-role=evolution] .card-corners{inset:4px;filter:drop-shadow(0 0 3px #ffe17688)}
+.card-variant{position:absolute;z-index:1;pointer-events:none;inset:25% 8% 30%;background:linear-gradient(125deg,transparent,#b6ea6960,transparent);mix-blend-mode:screen;clip-path:polygon(5% 52%,100% 0,100% 100%)}
+.card-variant[data-variant=focused]{clip-path:polygon(0 50%,100% 35%,100% 65%)}
+.card-variant[data-variant=heavy],.card-variant[data-variant=rebound],.card-variant[data-variant=zone]{inset:38% 8% 28%;border:3px solid #b6ea6970;border-radius:50%;background:radial-gradient(ellipse,transparent 50%,#b6ea6935);clip-path:none}
+.card-variant[data-variant=hunter],.card-variant[data-variant=quick],.card-variant[data-variant=fearEcho]{background:repeating-linear-gradient(135deg,transparent 0 25px,#b6ea6950 26px 28px,transparent 29px 45px);clip-path:polygon(0 70%,75% 0,100% 30%,25% 100%)}
+#overlay .upgrade-card[data-clean=true][data-revealed=true][data-role=mutation] .upgrade-front:after{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(115deg,transparent 30%,#d8ffac88 48%,transparent 66%);clip-path:polygon(45% 100%,45% 60%,10% 30%,10% 0,16% 0,16% 27%,50% 55%,84% 27%,84% 0,90% 0,90% 30%,55% 60%,55% 100%);animation:mutationBranchLight .85s ease-out both}
+#overlay .upgrade-card[data-clean=true][data-revealed=true][data-role=evolution] .card-corners{animation:evolutionContour 1s ease-out both}
+@keyframes mutationBranchLight{0%{opacity:0;transform:translateY(45%)}40%{opacity:1}100%{opacity:0;transform:translateY(-25%)}}
+@keyframes evolutionContour{0%{opacity:.4}40%{opacity:1;filter:drop-shadow(0 0 10px #ffe176)}100%{opacity:1;filter:drop-shadow(0 0 3px #ffe17688)}}
+.fusion-card-flight{position:fixed;z-index:1005;object-fit:cover;border:1px solid #da94ff;border-radius:7px;pointer-events:none;animation:fusionCardJoin .6s cubic-bezier(.2,.8,.2,1) forwards}
+.fusion-arrival{animation:fusionDestination .65s ease-out both!important}
+@keyframes fusionCardJoin{0%{opacity:1;transform:translate(0,0) scale(1)}70%{opacity:.9;transform:translate(var(--fusion-x),var(--fusion-y)) scale(.65)}100%{opacity:0;transform:translate(var(--fusion-x),var(--fusion-y)) scale(.15)}}
+@keyframes fusionDestination{0%,25%{filter:brightness(1)}65%{filter:brightness(1.7) drop-shadow(0 0 12px #da94ff)}100%{filter:brightness(1)}}
+#support-dock .support-card-art{width:100%;height:100%;object-fit:cover;image-rendering:auto}
+@media(max-width:600px){#overlay .upgrade-card[data-clean=true] .upgrade-role{font-size:10px;padding:5px;gap:4px;max-width:calc(100% - 48px)}.category-symbol{width:17px;height:17px;flex-basis:17px}#overlay .upgrade-card[data-clean=true] .category-rank{top:9px;right:8px;font-size:10px;padding:4px}}
+@media(prefers-reduced-motion:reduce){#overlay .upgrade-card[data-clean=true] .card-corners,#overlay .upgrade-card[data-clean=true] .upgrade-front:after,.fusion-card-flight,.fusion-arrival{animation:none!important}.fusion-card-flight{display:none}}

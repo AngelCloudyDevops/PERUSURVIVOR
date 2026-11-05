@@ -1,0 +1,1 @@
+Create an 8-frame 4x2 transparent VFX sprite sheet. Top row: four frames of a green reptile puppet eye mark opening and pulsing. Bottom row: four frames of a red-green stitched egg target symbol pulsing and cracking. Bold game-readable silhouettes, cream highlights, no text, border, shadow or background.

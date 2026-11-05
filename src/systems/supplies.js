@@ -16,7 +16,7 @@ supplyWins(data=P.Meta.data){return Object.values(data?.characters||{}).reduce((
 supplyCapacity(data=P.Meta.data){return this.supplyWins(data)>=10?3:2},
 preparedSupplies(data=P.Meta.data){return (data?.prepared||[]).filter(id=>!this.items[id]?.pet).slice(0,this.supplyCapacity(data))},
 equippedPet(data=P.Meta.data){return (data?.prepared||[]).find(id=>this.items[id]?.pet)||null},
-applyPet(s=P.state,data=P.Meta.data){const id=this.equippedPet(data),item=this.items[id];if(!s?.player||!item?.pet)return null;item.apply(s);return id},
+applyPet(s=P.state,data=P.Meta.data,id=this.equippedPet(data)){const item=this.items[id];if(!s?.player||!item?.pet||(data?.inventory?.[id]||0)<1)return null;item.apply(s);return id},
 refreshLoadout(force=false){const slots=P.$?.('#hub-loadout-slots');if(force&&slots?.dataset)delete slots.dataset.loadoutSignature;const modes=P.$?.('#hub-play-mode');if(!modes||typeof modes.querySelectorAll==='function')P.LobbyComplete?.renderHubPlayControls?.()},
 async equipPet(id){const M=P.Meta,item=this.items[id];if(P.state.mode!=='menu'||!item?.pet)return false;const result=await M.transaction(data=>{if(P.state.mode!=='menu'||!(data.inventory[id]>0))return false;data.prepared=data.prepared.filter(value=>!this.items[value]?.pet);data.prepared.push(id);return id});this.notice=result?item.name+' equipada para la próxima partida.':(M.error||'No se pudo cambiar la mascota.');this.render();this.refreshLoadout(true);return !!result},
 async toggleSupply(id){
