@@ -1537,3 +1537,5 @@ body:not(.menu):has(#combat-dock[data-character=sideral]) header #skills-hud{bot
 #support-dock .support-card-art{width:100%;height:100%;object-fit:cover;image-rendering:auto}
 @media(max-width:600px){#overlay .upgrade-card[data-clean=true] .upgrade-role{font-size:10px;padding:5px;gap:4px;max-width:calc(100% - 48px)}.category-symbol{width:17px;height:17px;flex-basis:17px}#overlay .upgrade-card[data-clean=true] .category-rank{top:9px;right:8px;font-size:10px;padding:4px}}
 @media(prefers-reduced-motion:reduce){#overlay .upgrade-card[data-clean=true] .card-corners,#overlay .upgrade-card[data-clean=true] .upgrade-front:after,.fusion-card-flight,.fusion-arrival{animation:none!important}.fusion-card-flight{display:none}}
+body.ref-items-right:not(.menu) #dota-inventory{left:auto!important;right:18px!important}
+@media(max-width:1000px){body.ref-items-right:not(.menu) #dota-inventory{left:auto!important;right:8px!important}}

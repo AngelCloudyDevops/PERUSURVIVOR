@@ -82,6 +82,18 @@ P.PlayerStatus={
   }
   ctx.restore()
  },
+ overhead(ctx,actor,{notices=false}={}){
+  if(!actor||actor.hp<=0)return;
+  const active=this.states(actor).filter(state=>!state.persistent&&state.id!=='heal').slice(0,5),y=-58;
+  if(active.length){
+   const width=active.length*20-4;ctx.save();ctx.translate(actor.x,actor.y);ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='900 9px monospace';
+   active.forEach((state,index)=>{const x=-width/2+index*20+8;ctx.fillStyle='#101827e8';ctx.fillRect(Math.round(x-8),y-8,16,16);ctx.strokeStyle=state.color||'#f6d77a';ctx.lineWidth=1.5;ctx.strokeRect(Math.round(x-8)+.5,y-7.5,15,15);ctx.fillStyle=state.color||'#fff';ctx.fillText(state.icon,x,y)});
+   ctx.restore()
+  }
+  if(notices&&P.Loot?.messageTime>0&&P.Loot.message){
+   const text=String(P.Loot.message).slice(0,58),alpha=Math.min(1,P.Loot.messageTime*2);ctx.save();ctx.translate(actor.x,actor.y-86);ctx.font='800 10px monospace';ctx.textAlign='center';ctx.textBaseline='middle';const width=Math.min(330,ctx.measureText(text).width+18);ctx.globalAlpha=alpha;ctx.fillStyle='#101827e8';ctx.fillRect(-width/2,-11,width,22);ctx.strokeStyle='#e8bd58';ctx.strokeRect(-width/2+.5,-10.5,width-1,21);ctx.fillStyle='#fff1d3';ctx.fillText(text,0,0,width-12);ctx.restore()
+  }
+ },
  allyBar(ctx,actor){
   if(!actor)return;const max=Math.max(1,Number(actor.maxHp)||Number(actor.max)||1),life=Math.max(0,Math.min(max,Number(actor.hp)||0));
   ctx.save();ctx.translate(actor.x,actor.y);ctx.fillStyle='#101827dd';ctx.fillRect(-25,29,50,6);ctx.fillStyle=life/max>.35?'#66d8df':'#ff7d78';ctx.fillRect(-24,30,48*life/max,4);
