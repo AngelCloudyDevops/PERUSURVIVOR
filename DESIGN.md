@@ -20,6 +20,7 @@ corrido y una fuente de rótulo para los títulos.
 | Títulos, botones grandes, números del HUD | `Luckiest Guy` (Google Fonts, `--fuente-titulo`) | Letra de rótulo de dibujos animados, solo mayúsculas visuales, un único peso (400); mínimo 12 px; igual que el título del logo |
 | Texto corrido, etiquetas, descripciones | `Nunito` 700/800 (Google Fonts, `--fuente-texto`) | Mínimo 12 px; con tildes y ñ; 800 para etiquetas pequeñas |
 | Datos tabulares (tiempos, contadores) | `Nunito` con `font-variant-numeric:tabular-nums` | |
+| Textos del canvas (daño, rótulos, jefes, cartas) | `P.Font.title(px)` = Luckiest Guy; `P.Font.text(px)` = Nunito 800 para frases largas | Las mismas fuentes que la interfaz; el canvas pinta con el respaldo hasta que carguen |
 
 El título del juego es un SVG de bloques (`P.Wordmark` en `src/ui/lobby.js`): KICK y PERU en `--kick-verde`, ALL STARS en hueso, sin contorno ni sombra.
 

@@ -45,6 +45,7 @@ El HTML conserva sus referencias js/*.js y style.css. scripts/modules.cjs mapea 
 | Fuente | Responsabilidad |
 |---|---|
 | data/catalog.js | Catálogos, estadísticas, ataques y mejoras |
+| data/fonts.js | `P.Font.title/text(px)`: cadena de `ctx.font` con Luckiest Guy y Nunito (sin `document`, corre también en el VM) |
 | core/runtime.js | Estado P.state, controles, lienzo y guardado |
 | entities/actors.js | Construcción de entidades, daño y recursos al derrotar |
 | systems/combat.js | Ejecución de ataques y colisiones de proyectiles |

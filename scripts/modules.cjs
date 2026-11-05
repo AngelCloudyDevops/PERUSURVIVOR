@@ -9,6 +9,7 @@ module.exports = [
   },
   {"source":"src/systems/character-skins.js","output":"js/character-skins.js"},
   {"source":"src/data/attributes.js","output":"js/attributes.js"},
+  {"source":"src/data/fonts.js","output":"js/fonts.js"},
   {"source":"src/data/stats.js","output":"js/stats.js"},
   {"source":"src/data/enemy-contract.js","output":"js/enemy-contract.js"},
   {"source":"src/data/character-contract.js","output":"js/character-contract.js"},

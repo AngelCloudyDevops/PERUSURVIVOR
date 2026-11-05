@@ -1,4 +1,5 @@
 # HUD configurable: buffs y avisos sobre el personaje, objetos laterales y ping — 2026-11-02
+- Los textos dibujados en el canvas (daño, rótulos de jefes y dominios, cartas, chapas) usan la letra del logo (Luckiest Guy) y Nunito para frases largas, mediante `P.Font`; las fuentes se piden al arrancar.
 - Los buffs y debuffs con duración (escudo, veneno, ralentización…) se ven como iconos pequeños encima de la cabeza del jugador, con una barra de tiempo restante; máximo 5 y «+N».
 - Los avisos de evento y botín («Barril de dinamita…», recompensas) salen como texto flotante breve sobre el personaje en vez de arriba a la izquierda; sin movimiento con movimiento reducido.
 - Los objetos pasan a una barra vertical en el borde de la pantalla. Opciones › Juego › «Barra de objetos: Derecha / Izquierda» (por defecto Derecha).

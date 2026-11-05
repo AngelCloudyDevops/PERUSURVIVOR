@@ -117,7 +117,7 @@ P.VulturePhase2 = {
     c.restore();
     this.warningLabel(c,e,e.chaosAttack==='storm'?'¡TORMENTA DE PLUMAS! · SAL DE LOS CÍRCULOS':'¡PLUMAS SERPIENTE! · BUSCA COBERTURA');
   },
-  warningLabel(c,e,text){const view=P.World?.view,z=P.Terrain.zoom||1,reserve=(P.Core?.width||0)>=900?285/z:0,x=view?Math.max(view.left+100/z,Math.min(view.right-reserve-100/z,e.x)):e.x,y=view?Math.max(view.top+112/z,Math.min(view.bottom-82/z,e.y+78)):e.y+78;c.save();c.textAlign='center';c.font='bold 12px monospace';const width=Math.min(360,c.measureText?.(text)?.width+22||280);c.fillStyle='#120d20cc';c.fillRect(x-width/2,y-17,width,25);c.strokeStyle='#9f73c5';c.lineWidth=1;c.strokeRect(x-width/2,y-17,width,25);c.fillStyle='#f0d5ff';c.fillText(text,x,y);c.restore()},
+  warningLabel(c,e,text){const view=P.World?.view,z=P.Terrain.zoom||1,reserve=(P.Core?.width||0)>=900?285/z:0,x=view?Math.max(view.left+100/z,Math.min(view.right-reserve-100/z,e.x)):e.x,y=view?Math.max(view.top+112/z,Math.min(view.bottom-82/z,e.y+78)):e.y+78;c.save();c.textAlign='center';c.font=P.Font.title(12);const width=Math.min(360,c.measureText?.(text)?.width+22||280);c.fillStyle='#120d20cc';c.fillRect(x-width/2,y-17,width,25);c.strokeStyle='#9f73c5';c.lineWidth=1;c.strokeRect(x-width/2,y-17,width,25);c.fillStyle='#f0d5ff';c.fillText(text,x,y);c.restore()},
   strikePose(e,index,reduced=false){
     if(e?.phase!=='vulture-chaos-charge'||e.chaosAttack!=='storm')return null;const q=e.chaosTargets?.[index];if(!q)return null;
     const age=(e.chaosTime||0)-(1.1+index*.18);if(age<-.42||age>.6)return null;
@@ -152,9 +152,9 @@ P.VulturePhase2 = {
     for(let i=0;i<24;i++){const y=(i*31+(reduced?0:t*180))%ph;c.fillStyle=i%2?'#372345':'#5a386c';c.fillRect(0,y,pw,2)}
     const art=P.VultureStrike;if(art.ready){const f=art.frames[2],scale=Math.min(pw*.78/f.w,ph*.55/f.h);this.mesh(c,art,2,pw*.4,ph*.65,scale,this.featherMotion(t,reduced))}
     c.strokeStyle='#c99ae5';c.lineWidth=6;c.beginPath();c.moveTo(pw-3,0);c.lineTo(pw*.72-3,ph);c.stroke();
-    c.textAlign='center';c.strokeStyle='#12091d';c.fillStyle='#f1d8ff';c.lineWidth=5;c.font='900 '+Math.max(17,Math.min(34,pw*.075))+'px monospace';
+    c.textAlign='center';c.strokeStyle='#12091d';c.fillStyle='#f1d8ff';c.lineWidth=5;c.font=P.Font.title(Math.max(17,Math.min(34,pw*.075)));
     for(const [word,y] of [['ECLIPSE',.76],['CARROÑERO',.84]]){c.strokeText(word,pw*.4,ph*y);c.fillText(word,pw*.4,ph*y)}
-    c.font='bold '+Math.max(10,Math.min(14,pw*.03))+'px monospace';c.fillStyle='#b88ed5';c.fillText('SEÑOR DE LAS AZOTEAS · ¡BAJO MIS ALAS!',pw*.39,ph*.94);c.restore();
+    c.font=P.Font.title(Math.max(10,Math.min(14,pw*.03)));c.fillStyle='#b88ed5';c.fillText('SEÑOR DE LAS AZOTEAS · ¡BAJO MIS ALAS!',pw*.39,ph*.94);c.restore();
   }
 };
 {

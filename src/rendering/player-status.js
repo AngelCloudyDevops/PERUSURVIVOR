@@ -90,8 +90,8 @@ P.PlayerStatus={
   ctx.save();ctx.translate(actor.x,actor.y);ctx.fillStyle='#0c0a10';ctx.fillRect(x-2,y-2,w+4,h+4);ctx.fillStyle='#2a2233';ctx.fillRect(x,y,w,h);
   ctx.fillStyle=flash?'#fff4dc':record.healUntil>now?'#8ff0a4':ratio>.35?'#ff2e88':'#ff7a1a';ctx.fillRect(x,y,fill,h);
   ctx.fillStyle='#0c0a10';for(let i=1;i<4;i++)ctx.fillRect(x+Math.round(w*i/4)-1,y,1,h);
-  if(level){const bx=x+w+3,by=y-3;ctx.fillStyle='#0c0a10';ctx.fillRect(bx-2,by-2,badge+4,16);ctx.fillStyle='#ffe02e';ctx.fillRect(bx,by,badge,12);ctx.fillStyle='#0c0a10';ctx.font='bold 10px monospace';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(text,bx+badge/2,by+7)}
-  if(life<=0&&opts.down){ctx.fillStyle='#ff9a90';ctx.font='bold 9px monospace';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText('CAÍDO',0,47)}
+  if(level){const bx=x+w+3,by=y-3;ctx.fillStyle='#0c0a10';ctx.fillRect(bx-2,by-2,badge+4,16);ctx.fillStyle='#ffe02e';ctx.fillRect(bx,by,badge,12);ctx.fillStyle='#0c0a10';ctx.font=P.Font.title(10);ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(text,bx+badge/2,by+7)}
+  if(life<=0&&opts.down){ctx.fillStyle='#ff9a90';ctx.font=P.Font.title(9);ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText('CAÍDO',0,47)}
   ctx.restore()
  },
  allyBar(ctx,actor){this.bar(ctx,actor,{level:P.state?.level,down:true})},
@@ -107,11 +107,11 @@ P.PlayerStatus={
   shown.forEach((q,i)=>{
    const x=x0+i*(size+gap),total=span[q.id]||0,ratio=total>0?Math.max(0,Math.min(1,this.remaining(q)/total)):1,color=q.color||'#fff4dc',icon=String(q.icon||'•');
    ctx.fillStyle='#0c0a10';ctx.fillRect(x-1,y-1,size+2,size+2);ctx.fillStyle=q.kind==='debuff'?'#3a1424':'#1b1622';ctx.fillRect(x,y,size,size);
-   ctx.fillStyle=color;ctx.font=(icon.length>1?'bold 8px':'bold 11px')+' monospace';ctx.fillText(icon,x+size/2,y+size/2-1);
+   ctx.fillStyle=color;ctx.font=P.Font.title(icon.length>1?8:11);ctx.fillText(icon,x+size/2,y+size/2-1);
    ctx.fillRect(x,y+size-2,Math.max(1,Math.round(size*ratio)),2);
    if(q.kind==='debuff'){ctx.fillStyle='#ff2e88';ctx.fillRect(x,y,size,1)}
   });
-  if(extra){const x=x0+shown.length*(size+gap);ctx.fillStyle='#0c0a10';ctx.fillRect(x-1,y-1,size+2,size+2);ctx.fillStyle='#fff4dc';ctx.font='bold 9px monospace';ctx.fillText('+'+extra,x+size/2,y+size/2)}
+  if(extra){const x=x0+shown.length*(size+gap);ctx.fillStyle='#0c0a10';ctx.fillRect(x-1,y-1,size+2,size+2);ctx.fillStyle='#fff4dc';ctx.font=P.Font.title(9);ctx.fillText('+'+extra,x+size/2,y+size/2)}
   ctx.restore()
  },
  // Avisos de evento y botín (P.Loot.message): salen flotando sobre el personaje, uno a uno.
@@ -133,7 +133,7 @@ P.PlayerStatus={
   if(!n.cur&&n.queue.length){n.cur={text:n.queue.shift(),life:n.queue.length>1?1.6:2.6};n.start=now}
   const c=n.cur;if(!c)return;
   const age=now-n.start,rise=reduced?0:-14*Math.min(1,age/c.life),alpha=reduced?1:age<.15?age/.15:age>c.life-.5?Math.max(0,(c.life-age)/.5):1;
-  ctx.save();ctx.font='bold 13px "Pixelify Sans",monospace';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.lineJoin='round';ctx.lineWidth=4;ctx.globalAlpha=alpha;ctx.strokeStyle='#0c0a10';ctx.fillStyle='#fff4dc';
+  ctx.save();ctx.font=P.Font.title(13);ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.lineJoin='round';ctx.lineWidth=4;ctx.globalAlpha=alpha;ctx.strokeStyle='#0c0a10';ctx.fillStyle='#fff4dc';
   const lines=c.lines||(c.lines=this.noticeLines(ctx,c.text,260)),x=Math.round(actor.x);
   lines.forEach((line,i)=>{const ly=Math.round(y+rise-(lines.length-1-i)*16);ctx.strokeText(line,x,ly);ctx.fillText(line,x,ly)});
   ctx.restore()
