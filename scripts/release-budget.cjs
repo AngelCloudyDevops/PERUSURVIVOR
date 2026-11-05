@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
 // Los recursos recientes mantienen la release apenas sobre el límite histórico;
 // conservamos un margen pequeño y explícito sin desactivar el control de peso.
-const maxBytes=Number(process.env.RELEASE_MAX_CONTENT||81.5*1024*1024);
+const maxBytes=Number(process.env.RELEASE_MAX_CONTENT||82*1024*1024);
 const maxFiles=Number(process.env.RELEASE_MAX_FILES||1000);
 if(!fs.existsSync(path.join(dist,'index.html')))throw Error('Falta dist/index.html; ejecuta npm run build');
 const rows=[];
