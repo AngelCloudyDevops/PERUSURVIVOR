@@ -1917,6 +1917,9 @@ body.menu[data-lobby-panel=home] #menu .home-copy h1 .wordmark-logo-wrap{margin:
 header a .wordmark-logo-wrap{display:inline-block;margin:0}header a .wordmark-logo-wrap:after{display:none}
 @keyframes logo-brillo{0%,55%{background-position:100% 0}100%{background-position:0 0}}
 @media(prefers-reduced-motion:reduce){.wordmark-logo-wrap{transform:none!important;opacity:1!important}.wordmark-logo-wrap:after,.wordmark-extrude{display:none}}
+/* Logo 3D (logo-3d.js): un canvas WebGL transparente, mayor que el logo para que el giro no se recorte, tapa el <img>, que queda de respaldo y texto alternativo. */
+.wordmark-logo-wrap.is-3d{transform:none!important;transform-style:flat}.wordmark-logo-wrap.is-3d>.wordmark-logo{opacity:0}.wordmark-logo-wrap.is-3d>.wordmark-extrude,.wordmark-logo-wrap.is-3d:after{display:none}
+.wordmark-logo-3d{position:absolute;left:-8%;top:-14%;width:116%;height:128%;pointer-events:none}
 body.ref-reduced-motion .wordmark-logo-wrap{transform:none!important;opacity:1!important}body.ref-reduced-motion .wordmark-logo-wrap:after,body.ref-reduced-motion .wordmark-extrude{display:none}
 
 /* Mejoras con 4 ofertas: alto igual y suficiente en las cuatro, sin recortar texto. Escritorio: columnas verticales; móvil (<=760): cuatro filas que pueden desplazarse dentro del panel. */
