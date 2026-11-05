@@ -639,6 +639,12 @@ DomainFinale.resultPose/rimPoint son funciones deterministas de tiempo de simula
 
 ChosicanoArt usa chosicano-v1.webp y seis figuras completas recortadas por alfa en 3 × 2. PNG y prompt se conservan como fuente. step integra wheelPhase a partir del desplazamiento resuelto, sin avance al quedar bloqueado. El kind combi y el ID de la arena siguen estables para guardados y lógica existente; la carga se espera al entrar con reintento y cancelación al abandonar el diálogo. El atlas original de los tres jefes permanece intacto para Gabinete y Guardián.
 
+### Controlador del Guardián de la Niebla
+
+`src/systems/guardian-boss.js` es el dueño de la máquina de estados del Guardián. Alterna `march → physical-windup → apu/impact → recover` con los ritos existentes. La marcha reutiliza `Encounters.navigate`, `Terrain.hit`, `Terrain.resolve` y los límites de la escena; por eso una cobertura afecta por igual el desplazamiento y los proyectiles. `recover` expone el núcleo y `outgoingMultiplier` aplica el multiplicador de contraataque antes de volver al siguiente rito.
+
+`GuardianBoss.cameraFrame` calcula un encuadre de ajuste a los límites del Santuario. `World.render` lo consulta únicamente si encuentra al Guardián activo, antes del encuadre genérico de encuentros. `BossArt.frame` traduce los estados mecánicos a las seis celdas ya existentes del atlas —reposo, dos pasos, anticipación, ataque y recuperación— y escala solo esta variante a 245 píxeles de alto. Las telemetrías variables permanecen en Canvas y nunca sustituyen la pose corporal.
+
 Presupuesto del bus: boss-atlas-packed-v2.webp recodifica a calidad 100 el atlas histórico sin cambiar dimensiones ni alfa, mientras el PNG y WebP originales siguen guardados. El build distribuye solo la versión activa. Se conserva el diseño del Gabinete y el Guardián; la fila antigua de combi ya no se renderiza.
 # Arte y control de Sideral
 

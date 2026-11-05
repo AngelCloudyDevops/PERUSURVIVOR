@@ -171,6 +171,14 @@ Entrar conserva los enemigos, recursos y punto de retorno del mapa. Se activa un
 - El Gabinete Infinito avisa antes de lanzar un abanico de proyectiles.
 - El Guardián de la Niebla avisa antes de lanzar anillos.
 
+### Guardián de la Niebla: combate físico y lectura del santuario
+
+El Guardián alterna sus cuatro ritos históricos con una fase física. Antes de atacar marcha con peso hacia el jugador, rodea coberturas mediante la navegación de la arena y nunca se desliza a través de un muro. Su escala visual es mayor que la de los otros jefes y su colisión crece de forma proporcional.
+
+La fase física rota entre Golpe sísmico, Barrido de piedra, Marcha del Apu y Bloque andino. Cada ataque muestra primero el área real de impacto y usa una pose del atlas para anticipación, golpe y recuperación; únicamente las zonas, trayectorias y ondas se dibujan por código para que coincidan con la colisión. Después de cada patrón el núcleo queda expuesto brevemente y recibe 35 % más daño desde cualquier dirección. Al bajar de 50 % de vida, la marcha y los avisos se aceleran moderadamente sin añadir más proyectiles simultáneos.
+
+El Santuario usa una cámara táctica propia que encuadra los límites de la arena y sus cuatro coberturas. No modifica la cámara de los demás jefes ni el ajuste general del jugador.
+
 Al ganar, se restaura el mapa y se otorgan dos segundos de invulnerabilidad. La recompensa es única y permite elegir +30% de daño, +40 de vida máxima con curación completa, o ataques un 25% más frecuentes. Perder termina la partida. El portal cierra cuando aparece ElZeein; ignorarlo no evita el jefe final.
 
 ## Presentación
