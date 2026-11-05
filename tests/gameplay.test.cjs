@@ -10,7 +10,7 @@ const context={console,Math:seededMath,innerWidth:1280,innerHeight:800,devicePix
 context.window=context;vm.createContext(context);
 for(const m of modules)vm.runInContext(fs.readFileSync(path.join(root,m.source),'utf8'),context,{filename:m.source});
 const P=context.P,s=P.state;
-assert.equal(P.Data.characters.length,21);assert.equal(elements.get('#characters').children.length,21);
+assert.equal(P.Data.characters.length,22);assert.equal(elements.get('#characters').children.length,22);
 const marciano=P.Data.characters.find(c=>c.id==='marciano'),marcianoVersion=P.CharacterSkins.version(marciano),marcianoAttack=P.Data.attacks[marciano.attack];
 assert(marciano);assert.equal(marciano.name,'Marciano de SJL · El Polvito');assert.equal(marciano.category,'Meme · parodia');assert.equal(P.Gacha.tier('marciano'),'ultra');
 assert.equal(marcianoVersion.baseName,'Marciano de SJL');assert.equal(marcianoVersion.title,'El Polvito');assert.equal(marcianoVersion.period,'2021');

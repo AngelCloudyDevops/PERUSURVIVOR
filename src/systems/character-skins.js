@@ -13,6 +13,7 @@ P.CharacterSkins={
   'makanaky-royal':{id:'makanaky-royal',characterId:'makanaky',baseName:'Makanaky',title:'La Realeza'},
   'sideral-minion-scare':{id:'sideral-minion-scare',characterId:'sideral',baseName:'Sideral',title:'Espantaminions'},
   'chamelin-trovo':{id:'chamelin-trovo',characterId:'chamelin',baseName:'Chamelín',title:'Trovo'},
+  'chamelin-prime':{id:'chamelin-prime',characterId:'chamelinPrime',baseName:'Chamelín',title:'Prime'},
   'marciano-polvito':{id:'marciano-polvito',characterId:'marciano',baseName:'Marciano de SJL',title:'El Polvito',period:'2021'}
  },
  catalog:{

@@ -3,13 +3,14 @@
 P.Passives={
  definitions:{
   kingteka:{name:'Instinto de expedición',short:'Cambiar de arma recupera vida y prepara el siguiente ataque.',trigger:'Cambio real entre dos armas desbloqueadas',reset:'La preparación dura 4 s y tiene 7 s de recuperación',heal:.025,damage:1.12,window:4,cooldown:7},
-  makanaky:{name:'Racha de la Realeza',short:'Acumula GA ×10; el siguiente golpe elegible es un Golpe Real.',trigger:'Puño o cabezazo; máximo una GA por lanzamiento',reset:'Fallar resta 2; tras 2,5 s pierde 1 GA por segundo',max:10,grace:2.5,decay:1,royalDamage:1.35,royalHeadbutt:1.6,royalPush:1.4}
+  makanaky:{name:'Racha de la Realeza',short:'Acumula GA ×10; el siguiente golpe elegible es un Golpe Real.',trigger:'Puño o cabezazo; máximo una GA por lanzamiento',reset:'Fallar resta 2; tras 2,5 s pierde 1 GA por segundo',max:10,grace:2.5,decay:1,royalDamage:1.35,royalHeadbutt:1.6,royalPush:1.4},
+  chamelinPrime:{name:'Territorio Prime',short:'Las torretas conectan una base que cura, acelera y hace resbalar a los rivales.',trigger:'Permanecer dentro del territorio de una torreta',reset:'La base desaparece al destruirse o expirar sus torretas',speed:.14,regen:.006,slow:.28}
  },
  definition(actor){return actor&&this.definitions[actor.id]||null},
  eligible(actor,attack){return !!(actor&&actor.id==='makanaky'&&!actor.miniboss&&actor.attack==='royalEcho'&&attack?.kind==='melee')},
  state(actor,create=true){
   const def=this.definition(actor);if(!actor||!def||actor.miniboss)return null;
-  if((!actor.passive||actor.passive.id!==actor.id)&&create)actor.passive=actor.id==='kingteka'?{id:'kingteka',weapon:actor.arsenal?.active||'shotgun',primed:false,readyUntil:0,cooldownUntil:0,adaptedSerial:0}:{id:'makanaky',stacks:0,expires:0,royalSerial:0};
+  if((!actor.passive||actor.passive.id!==actor.id)&&create)actor.passive=actor.id==='kingteka'?{id:'kingteka',weapon:actor.arsenal?.active||'shotgun',primed:false,readyUntil:0,cooldownUntil:0,adaptedSerial:0}:actor.id==='makanaky'?{id:'makanaky',stacks:0,expires:0,royalSerial:0}:{id:'chamelinPrime'};
   return actor.passive?.id===actor.id?actor.passive:null
  },
  now(){return Number(P.state?.elapsed)||0},
@@ -47,6 +48,7 @@ P.Passives={
  rows(id){
   const def=this.definitions[id];if(!def)return [];
   if(id==='kingteka')return [['Nombre',def.name],['Activación',def.trigger],['Preparación','Siguiente ataque: +12 % daño'],['Al conectar','Vínculo Animal R: +8 %'],['Recuperación','+2,5 % de vida máxima'],['Ventana',def.window+' s'],['Reinicio',def.cooldown+' s']];
+  if(id==='chamelinPrime')return [['Nombre',def.name],['Activación',def.trigger],['Dentro de la base','+14 % velocidad · +0,6 % vida/s'],['Enemigos normales','-28 % velocidad · pueden resbalar'],['Jefes','-10 % velocidad · no caen'],['Torretas conectadas','10 de escudo por enlace; máximo 30'],['Reinicio',def.reset]];
   return [['Nombre',def.name],['Activación',def.trigger],['Racha','GA ×'+def.max+'; el golpe 11 es Real'],['Puño Real','+35 % daño · +40 % empuje al arco'],['Cabezazo Real','+60 % daño · aturde normales'],['Reinicio',def.reset]]
  },
  aura(ctx,actor){const state=this.expire(actor),now=this.now();if(actor?.id==='makanaky'){const stacks=state?.stacks||0,royal=stacks>=(this.definition(actor)?.max||10),flash=(actor.royalFlashUntil||0)>now;if(!stacks&&!flash)return;const r=(actor.r||18)+10,pulse=.68+Math.sin(now*9)*.16;ctx.save();ctx.globalAlpha=royal||flash?pulse:Math.min(.58,.18+stacks*.04);ctx.strokeStyle=royal||flash?'#ffe58f':'#ef92cf';ctx.lineWidth=royal||flash?3:2;ctx.setLineDash?.([4,5]);ctx.lineDashOffset=-now*(royal?28:16);ctx.beginPath();ctx.ellipse(actor.x,actor.y+12,r+(royal?5:0),(r+(royal?5:0))*.43,0,0,Math.PI*2);ctx.stroke();ctx.setLineDash?.([]);const marks=Math.min(5,Math.ceil(stacks/2));for(let i=0;i<marks;i++){const a=-Math.PI*.9+i*Math.PI*1.8/Math.max(1,marks-1),x=actor.x+Math.cos(a)*(r+7),y=actor.y+9+Math.sin(a)*(r*.55);ctx.fillStyle=i%2?'#ef92cf':'#ffe58f';ctx.beginPath();ctx.moveTo(x,y-5);ctx.lineTo(x+4,y+3);ctx.lineTo(x-4,y+3);ctx.closePath();ctx.fill()}if(royal||flash){ctx.fillStyle='#fff0b5';ctx.font='900 12px monospace';ctx.textAlign='center';ctx.fillText('♛ GOLPE REAL',actor.x,actor.y-(actor.r||18)-30)}ctx.restore();return}if(!state?.primed)return;const left=Math.max(0,state.readyUntil-now),pulse=.72+Math.sin(now*10)*.18,r=(actor.r||18)+14;ctx.save();ctx.globalAlpha=pulse;ctx.strokeStyle='#d9ff7a';ctx.lineWidth=3;ctx.setLineDash?.([7,5]);ctx.lineDashOffset=-now*24;ctx.beginPath();ctx.ellipse(actor.x,actor.y+12,r,r*.46,0,0,Math.PI*2);ctx.stroke();ctx.setLineDash?.([]);ctx.fillStyle='#efffb0';ctx.font='900 10px monospace';ctx.textAlign='center';ctx.fillText('↻ +12% · '+left.toFixed(1)+'s',actor.x,actor.y-(actor.r||18)-30);ctx.restore()},
@@ -59,6 +61,11 @@ P.Passives={
    const order=P.KingtekaArsenal?.order||['shotgun','gallinazo','golpe'],icons={shotgun:'1',gallinazo:'2',golpe:'3'},active=p.arsenal?.active;node.style?.setProperty?.('--passive-columns',order.length);
    marks.replaceChildren(...order.map(id=>{const mark=document.createElement('i');mark.dataset.active=String(id===active);mark.dataset.royal=String(!!state.primed&&id===active);mark.textContent=icons[id];return mark}));
    status.textContent=state.primed?'SIGUIENTE ATAQUE · +12 % DAÑO · '+Math.max(0,state.readyUntil-now).toFixed(1)+' s':state.cooldownUntil>now?'INSTINTO EN '+Math.max(0,state.cooldownUntil-now).toFixed(1)+' s':'CAMBIA DE ARMA PARA ADAPTARTE';return
+  }
+  if(p.id==='chamelinPrime'){
+   const q=P.state.chamelinPrime,turrets=q?.turrets?.length||0,linked=q?.turrets?.filter(t=>t.links>0).length||0;node.style?.setProperty?.('--passive-columns',2);
+   marks.replaceChildren(...[['BASE',turrets],['RED',linked]].map(([label,value])=>Object.assign(document.createElement('i'),{textContent:label+' ×'+value})));
+   status.textContent=p.primeTerritory?'DENTRO DE LA BASE · VELOCIDAD Y CURACIÓN':'DESPLIEGA TORRETAS PARA EXTENDER TU TERRITORIO';return
   }
   const royal=state.stacks>=def.max;node.style?.setProperty?.('--passive-columns',1);marks.replaceChildren(Object.assign(document.createElement('i'),{textContent:'GA ×'+(state.stacks||0)+' / '+def.max}));status.textContent=royal?'SIGUIENTE IMPACTO · GOLPE REAL':state.stacks?'LA RACHA DECAE EN '+Math.max(0,state.expires-now).toFixed(1)+' s':'CONECTA PUÑO O CABEZAZO'
  },

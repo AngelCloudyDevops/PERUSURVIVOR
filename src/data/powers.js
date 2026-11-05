@@ -30,7 +30,8 @@ identities:{
  marciano:{role:'controller',secondaryRole:'shooter',species:'creature',range:'long',damage:'special',tags:['area','control','dot'],difficulty:'easy'},
  makanaky:{role:'vanguard',secondaryRole:'specialist',species:'human',range:'melee',damage:'hybrid',tags:['sustained','control','evolution','mobility','durability'],difficulty:'advanced'},
  sideral:{role:'controller',secondaryRole:'specialist',species:'human',range:'medium',damage:'special',tags:['control','area','risk'],difficulty:'advanced'},
- chamelin:{role:'controller',secondaryRole:'specialist',species:'human',range:'medium',damage:'special',tags:['area','dot','control','fixed'],difficulty:'advanced'}
+ chamelin:{role:'controller',secondaryRole:'specialist',species:'human',range:'medium',damage:'special',tags:['area','dot','control','fixed'],difficulty:'advanced'},
+ chamelinPrime:{role:'controller',secondaryRole:'specialist',species:'human',range:'medium',damage:'special',tags:['summon','area','control','healing','sustained'],difficulty:'advanced'}
 },
 // Contrato del arsenal personal. `implemented` solo se usa cuando el ataque
 // existe en combate; los conceptos planeados no habilitan teclas ni cartas.
@@ -105,5 +106,8 @@ Object.assign(P.Data.attacks.g5Kick,{cooldown:.68});
 P.Data.attacks.trovoShot={name:'Retaguardia de Trovo',description:'Impacto ligero (15 %); charcos de 4 s con daño especial continuo y ralentización 20 % (10 % a jefes), sin reducir defensas.',kind:'spread',cooldown:.8,range:420,count:1,speed:310,damageScale:.15,glyph:'POOP',color:'#a87543',damageType:'special'};
 P.Data.characters.push({id:'chamelin',name:'Chamelín Trovo',category:'Streamer · parodia',look:'chullo',atlas:'chamelin',spriteRow:0,color:'#5097cf',skinTone:'#d49b70',hp:125,speed:185,power:28,attack:'trovoShot'});
 P.CharacterProfiles.roles.chamelin=['Control de zonas UR','Poco impacto; charcos de daño continuo y ralentización.','Movilidad moderada y daño gradual.'];
+P.Data.attacks.primeTurret={name:'Base contaminada',description:'Cada recarga instala automáticamente una torreta que dispara semillas y extiende el territorio de Chamelín Prime.',kind:'primeTurret',cooldown:4.5,range:440,powerScale:.38,glyph:'PEANUT',color:'#d89542',damageType:'special'};
+P.Data.characters.push({id:'chamelinPrime',name:'Chamelín Prime',category:'Streamer · parodia',look:'chullo',atlas:'chamelin',spriteRow:0,color:'#2f78c8',skinTone:'#d49b70',hp:132,speed:180,power:25,attack:'primeTurret'});
+P.CharacterProfiles.roles.chamelinPrime=['Constructor de territorio UR','Siembra torretas automáticas; dentro de la red recupera vida y se mueve más rápido.','Necesita tiempo y espacio para levantar su base.'];
 // Mantener al final evita desplazar los índices históricos usados por salas y repeticiones guardadas.
 P.Data.characters.push({id:'marciano',name:'Marciano de SJL · El Polvito',category:'Meme · parodia',look:'alien',color:'#9dff38',skinTone:'#9dff38',hp:115,speed:188,power:23,attack:'cosmicDust'});
