@@ -32,6 +32,7 @@ jobs:
           package-manager-cache: false
       - run: npm ci --ignore-scripts
       - run: npm run check
+      - run: npm run desktop:test
       - run: npm test
       - name: Check release budget
         if: github.event_name == 'push'

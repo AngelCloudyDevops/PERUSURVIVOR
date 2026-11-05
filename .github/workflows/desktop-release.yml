@@ -1,0 +1,54 @@
+name: Windows desktop release
+
+on:
+  push:
+    tags:
+      - 'desktop-v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    name: Instalador y portátil para Windows
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Validar cliente y juego
+        run: |
+          npm run desktop:test
+          npm run check
+      - name: Construir ejecutables
+        run: npm run desktop:dist
+      - name: Crear sumas SHA-256
+        shell: pwsh
+        run: Get-FileHash artifacts/desktop/*.exe -Algorithm SHA256 | ForEach-Object { "$($_.Hash.ToLower())  $([IO.Path]::GetFileName($_.Path))" } | Set-Content artifacts/desktop/SHA256SUMS.txt
+      - name: Conservar artefactos del workflow
+        uses: actions/upload-artifact@v7
+        with:
+          name: kick-all-stars-peru-windows-${{ github.ref_name }}
+          path: |
+            artifacts/desktop/*.exe
+            artifacts/desktop/SHA256SUMS.txt
+          if-no-files-found: error
+          compression-level: 0
+      - name: Publicar descarga versionada
+        if: startsWith(github.ref, 'refs/tags/desktop-v')
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "$GITHUB_REF_NAME"
+          artifacts/desktop/*.exe
+          artifacts/desktop/SHA256SUMS.txt
+          --repo "$GITHUB_REPOSITORY"
+          --title "Kick All Stars Perú para Windows ${GITHUB_REF_NAME#desktop-v}"
+          --notes "Primera edición descargable para Windows. Incluye instalador x64 y versión portátil. Requiere conexión a Internet y usa el progreso de la cuenta oficial. Ejecutables sin firma comercial: Windows puede mostrar una advertencia de editor desconocido."
