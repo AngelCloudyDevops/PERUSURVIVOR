@@ -1539,3 +1539,36 @@ body:not(.menu):has(#combat-dock[data-character=sideral]) header #skills-hud{bot
 @media(prefers-reduced-motion:reduce){#overlay .upgrade-card[data-clean=true] .card-corners,#overlay .upgrade-card[data-clean=true] .upgrade-front:after,.fusion-card-flight,.fusion-arrival{animation:none!important}.fusion-card-flight{display:none}}
 body.ref-items-right:not(.menu) #dota-inventory{left:auto!important;right:18px!important}
 @media(max-width:1000px){body.ref-items-right:not(.menu) #dota-inventory{left:auto!important;right:8px!important}}
+
+/* Identidad visual de Kick All Stars Perú. */
+.header-brand-logo{display:block;width:132px;height:58px;object-fit:contain}
+.home-brand-logo{display:block;width:min(540px,48vw);max-height:220px;object-fit:contain;margin:0 auto;filter:drop-shadow(0 10px 16px #0009)}
+#lobby-splash .lobby-brand-logo{display:block;width:min(700px,86vw);max-height:46vh;object-fit:contain;margin:0 auto 12px;filter:drop-shadow(0 14px 22px #000a)}
+#hub-brand{align-self:start;width:clamp(180px,18vw,290px);height:76px;object-fit:contain;margin-top:-4px;font-size:0;filter:drop-shadow(0 7px 7px #000b)}
+#hub-brand:after{display:none}
+@media(max-width:760px){.header-brand-logo{width:94px;height:52px}.home-brand-logo{width:min(360px,86vw);max-height:150px}#lobby-splash .lobby-brand-logo{width:min(520px,92vw);max-height:38vh}#hub-brand{display:none}}
+
+/* Portada cinematográfica: usa la escena animada del propio juego como fondo. */
+#lobby-splash{isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#05080dcc,#07121bdd 62%,#02070bee)}
+#lobby-splash:before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 50% 38%,transparent 0 16%,#03070b55 48%,#020509e8 100%);backdrop-filter:blur(1.5px) saturate(.9)}
+#lobby-splash:after{content:"";position:absolute;inset:-25%;z-index:-1;background:conic-gradient(from 90deg at 50% 52%,transparent 0 34%,#4cff5720 40%,#ffbd2830 47%,transparent 56% 100%);animation:splash-ultimate-loop 11s linear infinite;pointer-events:none}
+#lobby-splash>*{position:relative;z-index:1}
+.splash-logo-wrap{position:relative;width:min(720px,88vw);margin:0 auto;filter:drop-shadow(0 18px 28px #000c);animation:splash-logo-arrive .85s cubic-bezier(.2,.85,.25,1) both}
+#lobby-splash .splash-logo-wrap .lobby-brand-logo{width:100%;max-height:50vh;margin:0;object-fit:contain}
+.splash-logo-wrap:before{content:"";position:absolute;inset:0;background:url('assets/branding/kick-all-stars-peru-logo-v1.webp') center/contain no-repeat;clip-path:inset(43% 0 0);animation:splash-stars-pop 1s .18s cubic-bezier(.16,1.35,.3,1) both;pointer-events:none}
+.splash-logo-wrap:after{content:"";position:absolute;inset:8% -8%;background:linear-gradient(105deg,transparent 36%,#fff0 43%,#fffbd5dd 49%,#fff0 55%,transparent 62%);transform:translateX(-115%) skewX(-15deg);mix-blend-mode:screen;animation:splash-logo-shine 2.7s 1s ease-in-out infinite;pointer-events:none}
+#welcome-continue{min-width:min(390px,84vw);margin:20px auto 8px;padding:16px 30px;border:2px solid #fff1a5;border-radius:999px;background:linear-gradient(180deg,#ffd85e,#efa92c);color:#172337;box-shadow:0 6px 0 #9e501a,0 13px 28px #0009;font:900 16px monospace;letter-spacing:1.5px;cursor:pointer;transition:transform .15s,filter .15s}
+#welcome-continue:hover{filter:brightness(1.12);transform:translateY(-2px)}
+#welcome-continue:active{transform:translateY(3px);box-shadow:0 3px 0 #9e501a,0 8px 20px #0008}
+#welcome-actions[hidden]{display:none}
+#welcome-actions{grid-template-columns:1fr 1fr;width:min(520px,90vw);animation:splash-access-in .28s ease-out both}
+#welcome-actions #welcome-register{grid-column:1/-1;background:transparent;border-color:transparent;box-shadow:none;text-decoration:underline;text-underline-offset:4px}
+#lobby-splash .welcome-note{max-width:520px;color:#d8e3e9}
+.account-session-note{display:block;margin:5px 0 2px;color:#bfe6cb}
+@keyframes splash-logo-arrive{0%{opacity:0;transform:translateY(26px) scale(.82)}70%{opacity:1;transform:translateY(-4px) scale(1.025)}100%{opacity:1;transform:none}}
+@keyframes splash-stars-pop{0%{opacity:0;transform:scale(.58) translateY(24%)}72%{opacity:1;transform:scale(1.08) translateY(-2%)}100%{opacity:1;transform:none}}
+@keyframes splash-logo-shine{0%,35%{transform:translateX(-115%) skewX(-15deg)}70%,100%{transform:translateX(115%) skewX(-15deg)}}
+@keyframes splash-ultimate-loop{to{transform:rotate(360deg)}}
+@keyframes splash-access-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(max-width:600px){.splash-logo-wrap{width:min(520px,96vw)}#welcome-actions{grid-template-columns:1fr;gap:9px}#welcome-actions #welcome-register{grid-column:1}#welcome-continue{font-size:14px}#lobby-splash{padding:16px}}
+@media(prefers-reduced-motion:reduce){#lobby-splash:after,.splash-logo-wrap,.splash-logo-wrap:before,.splash-logo-wrap:after,#welcome-actions{animation:none!important}}
