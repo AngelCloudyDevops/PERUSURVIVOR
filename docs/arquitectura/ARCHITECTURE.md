@@ -64,6 +64,8 @@ El HTML conserva sus referencias js/*.js y style.css. scripts/modules.cjs mapea 
 ## Dependencias y ejecución
 Se mantienen scripts clásicos que comparten P. No se introducen módulos ESM, un framework, motor externo ni cambios de formato de datos. catalog.js se carga primero y game.js inicia el juego al final.
 
+**Dependencia de cliente: three.js r160 (único aval del dueño).** Vendorizado en `public/vendor/three-r160.min.js` (MIT, `three-LICENSE.txt` al lado; sin red ni bundler) y cargado con un `<script>` clásico en `src/index.html` antes de `js/data.js`. Se usa el build UMD `build/three.min.js` porque expone `window.THREE` sin ESM (en r160 solo trae un `console.warn` de obsolescencia, que se quitó del archivo; el resto es el original). **No** está en `scripts/modules.cjs`: el servidor autoritativo (`backend/simulation.cjs`) carga ese listado en un `node:vm` y jamás debe cargar three.js. Solo lo usa `src/ui/logo-3d.js` (`P.Logo3d`, logo 3D de la bienvenida y el hub), que sin `window.THREE`, sin WebGL, en el VM o con movimiento reducido deja el `<img>` del logo. Los contornos de las letras se extruyen desde `P.Logo3dGlyphs` (`src/data/logo-3d-glyphs.js`, datos puros, ~7 KB; archivo ignorado por el patrón `data/` de `.gitignore`: `git add -f`) sin `FontLoader`; se regeneran con `node scripts/generate-logo-3d-glyphs.cjs <luckiest-guy.woff>` (necesita opentype.js fuera del proyecto, vía `OPENTYPE_PATH`; ver la cabecera del script). Licencias en `docs/arte/LOGO_3D_LICENCIAS.md`.
+
 Flujo principal:
 1. P.Game procesa la actualización si el estado permite jugar.
 2. Los sistemas actualizan apariciones, movimiento, combate y recogida.

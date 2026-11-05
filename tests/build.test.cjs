@@ -106,7 +106,8 @@ test('Dock de combate: inventario, ataques y cartas usan zonas responsive separa
 const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 test('El HTML carga todos los módulos en el orden declarado',()=>{
  const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');
- const scripts=[...html.matchAll(/<script src="([^"]+)"/g)].map(m=>m[1].split('?')[0]);
+ const all=[...html.matchAll(/<script src="([^"]+)"/g)].map(m=>m[1].split('?')[0]),vendor=all.filter(f=>f.startsWith('vendor/')),scripts=all.filter(f=>!f.startsWith('vendor/'));
+ assert.deepEqual(vendor,['vendor/three-r160.min.js']);
  assert.deepEqual(scripts,modules.map(m=>m.output));
  for(const file of [...scripts,'style.css'])assert(fs.existsSync(path.join(root,'dist',file)),file);
  assert(!fs.existsSync(path.join(root,'dist/qa-portals.html')),'No distribuir controles locales de QA');
