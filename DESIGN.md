@@ -56,7 +56,7 @@ Un solo momento por pantalla (p. ej. el título entra con los contornos desplaz�
 `prefers-reduced-motion` o `P.Motion.reduced()` el estado final aparece sin animación.
 
 ## Estilo logo (arcade-cartoon 3D) — sistema vigente para recompensas y títulos
-Sustituye al estilo plano «afiche chicha» descrito arriba en las pantallas de mejora, fin de partida, botín y tienda (todas comparten `#overlay`). El resto de la interfaz (hub, HUD, Opciones, diálogos) migrará por fases; hasta entonces conserva el estilo chicha. Referencia: el logo de inicio (Luckiest Guy gruesa, contorno oscuro, degradado vertical, extrusión hacia abajo, brillo superior y estrellas doradas).
+Sustituye al estilo plano «afiche chicha» descrito arriba en las pantallas de mejora, fin de partida, botín y tienda (todas comparten `#overlay`). El HUD de partida ya lo usa (fase B, aplicada); el resto (hub, Opciones, diálogos) migra por fases y conserva el estilo chicha hasta entonces. Referencia: el logo de inicio (Luckiest Guy gruesa, contorno oscuro, degradado vertical, extrusión hacia abajo, brillo superior y estrellas doradas).
 
 Tokens (`:root` al final de `src/ui/styles.css`): `--logo-oro-1/-2`, `--logo-naranja`, `--logo-borde` (marrón rojizo), `--logo-oro-canto`, `--logo-verde-1/-2/-borde/-canto`, `--logo-violeta-1/-2/-borde/-canto`, `--logo-panel`, `--logo-panel-2`, `--logo-panel-borde`, `--logo-estrella` y `--logo-estrella-img` (SVG de estrella).
 
@@ -67,3 +67,5 @@ Clases reutilizables:
 - `.logo-star`: estrella SVG con destello suave (solo `transform`); quieta con movimiento reducido.
 
 Tarjetas de mejora: marco con degradado del color de rareza (común gris-lila, rara cian, épica rosa/morado, legendaria dorada), medallón redondo con aro dorado para el icono, chapa dorada de tecla, nombre blanco con contorno, rareza en píldora, comparación en píldora dorada y sello verde «NUEVO». Al pasar o enfocar se elevan y brillan (sin elevación con movimiento reducido). Texto mínimo 12 px.
+
+Fase B (HUD de partida, aplicada): bloque «Estilo logo · HUD de partida» al final de `src/ui/styles.css`. Solo cambia el aspecto, no posiciones ni tamaños: el grosor del borde sale de sombras (`--hud-aro` exterior, `--hud-bisel` e insets interiores). Reloj y rivales en píldora oscura con cifras 3D doradas; XP con relleno cian a lima y brillo; chip de monedas, audio y ping en píldoras; pausa redonda violeta; objetos, pasiva, combo, ataques, apoyo, burlas y aviso en paneles cartoon con casillas degradadas (activo dorado) y chapas de tecla como monedas doradas; las cartas Q/R conservan su arte con marco marrón. Los marcos ilustrados de Sideral (pasiva y cartas de ataque) no se tocan. Canvas: chapa de nivel dorada y barra de vida rosa con degradado y brillo (`P.PlayerStatus.grad`, degradados en caché), brújula con aro dorado y avisos flotantes con contorno marrón.

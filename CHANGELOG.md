@@ -5,6 +5,7 @@
 - Los objetos pasan a una barra vertical en el borde de la pantalla. Opciones › Juego › «Barra de objetos: Derecha / Izquierda» (por defecto Derecha).
 - Opciones › Gráficos separa «Mostrar FPS» de «Mostrar ping y pérdida de paquetes». El indicador junto al reloj muestra `PING 42 ms · PÉRDIDA 0 %` en cooperativo; la pérdida es el % de snapshots que no llegaron a tiempo en los últimos 5 s (`P.NetMeter`), no pérdida TCP real.
 - Portadores y llaves raras/legendarias con tiempo límite: 45 s el raro y 60 s el legendario; la llave hereda el tiempo restante del portador (mínimo 12 s). Si expiran, desaparecen sin soltar llave.
+- Estilo logo en el HUD de partida (fase B): reloj, XP, monedas, pausa, objetos, pasiva, combo, ataques, cartas, apoyo, burlas y avisos con paneles cartoon; en el canvas, chapa de nivel dorada, barra de vida con degradado, brújula con aro dorado y avisos con contorno marrón.
 - Nueva brújula junto al personaje (aguja de rareza, anillo de tiempo, segundos y distancia) que sustituye al texto «→ Portador raro · 440 m»: verde, amarillo, naranja y rosa según el tiempo, tiembla y late en los últimos 10 s y estalla en fragmentos al expirar; el objeto se desintegra en polvo. Con movimiento reducido solo cambia de color y parpadea el número.
 
 # Logo de imagen y nueva frase de bienvenida — 2026-11-02

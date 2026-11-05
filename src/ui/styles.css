@@ -2124,3 +2124,87 @@ body #overlay button.upgrade-primary{margin-inline:auto}
 @media(prefers-reduced-motion:reduce){.logo-star,body #overlay.level-up>h2:before,body #overlay.level-up>h2:after,body #overlay.run-end>h2:before,body #overlay.run-end>h2:after{animation:none}.logo-btn,body #overlay button,body #overlay .upgrade-card{transition:none}}
 body.ref-reduced-motion .logo-star,body.ref-reduced-motion #overlay>h2:before,body.ref-reduced-motion #overlay>h2:after{animation:none!important}
 body.ref-reduced-motion .logo-btn,body.ref-reduced-motion #overlay button,body.ref-reduced-motion #overlay .upgrade-card{transition:none}
+/* Estilo logo · HUD de partida (fase B) */
+/* Solo aspecto: ni posiciones ni tamaños. El grosor del borde sale de sombras (aro exterior o interior), no de border-width. */
+:root{--hud-aro:0 0 0 2px var(--logo-panel-borde),0 3px 0 2px var(--logo-panel-borde);--hud-bisel:inset 0 3px 0 rgba(255,255,255,.14),inset 0 -3px 0 rgba(0,0,0,.3);--hud-casilla:linear-gradient(180deg,#3d2f6c,#1f1738);--hud-oro:linear-gradient(180deg,var(--logo-oro-1),var(--logo-naranja))}
+/* Cifras 3D doradas: mismo recorte de degradado que .logo-text, con extrusión corta para cifras pequeñas */
+body #hud .stats #time,body #hud .stats #kills-count,body #hud-notice b{--lt-1:var(--logo-oro-1);--lt-2:var(--logo-oro-2);--lt-3:var(--logo-naranja);--lt-borde:var(--logo-borde);color:var(--lt-2);font-family:var(--fuente-titulo,'Luckiest Guy',sans-serif);font-weight:400;letter-spacing:.03em;-webkit-text-stroke:.1em var(--lt-borde);paint-order:stroke fill;text-shadow:none;filter:drop-shadow(0 .05em 0 var(--lt-borde)) drop-shadow(0 .05em 0 var(--lt-borde)) drop-shadow(0 .1em .08em #0008)}
+@supports((-webkit-background-clip:text) or (background-clip:text)){body #hud .stats #time,body #hud .stats #kills-count,body #hud-notice b{background:linear-gradient(180deg,#fff9 0,#fff0 34%),linear-gradient(180deg,var(--lt-1) 0,var(--lt-2) 50%,var(--lt-3) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
+body #hud .stats #kills-count{font-size:15px}
+/* Reloj y rivales: píldora oscura con aro grueso */
+body #hud .stats{padding-left:16px;padding-right:16px;border-radius:999px;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel));box-shadow:var(--hud-bisel),var(--hud-aro)}
+body #hud #kills .pixel-icon{color:var(--logo-oro-1)}
+body #net-indicator{border:2px solid var(--logo-panel-borde);border-radius:999px;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel));box-shadow:inset 0 -3px 0 var(--tono,var(--logo-panel-borde)),inset 0 2px 0 rgba(255,255,255,.14);font-weight:800}
+body #net-indicator[data-tone=ok]{--tono:var(--logo-verde-2);color:var(--logo-verde-1)}
+body #net-indicator[data-tone=warn]{--tono:var(--logo-oro-2);color:var(--logo-oro-1)}
+body #net-indicator[data-tone=bad]{--tono:#e0307a;color:#ff9cc8}
+/* Barra de experiencia: pista oscura, relleno cian a lima con brillo superior */
+body #hud .xp,body #hud:not(.boss-hud) .xp,body #hud.boss-hud .xp{background:var(--logo-panel);border-bottom:3px solid var(--logo-panel-borde);border-radius:0 0 8px 8px;overflow:hidden;box-shadow:inset 0 -2px 0 rgba(0,0,0,.35)}
+body #hud .xp i{background:linear-gradient(90deg,#2ed6ff,#8ff04a 70%,#c6ff4d);box-shadow:inset 0 3px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(0,0,0,.18);border-radius:0 6px 6px 0}
+/* Chip de monedas y llaves */
+body #hud #loot-hud{padding-left:14px;padding-right:14px;border-radius:999px;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel));box-shadow:var(--hud-bisel),var(--hud-aro)}
+body #hud #loot-hud .hud-coin{color:var(--logo-oro-1);filter:drop-shadow(0 1px 0 var(--logo-borde))}
+body #hud #loot-summary{color:var(--logo-oro-1);font-weight:800;text-shadow:0 2px 0 var(--logo-borde)}
+/* Pausa redonda y audio en partida */
+body:not(.menu) header .game-controls #pause{border:3px solid var(--logo-violeta-borde);border-radius:50%;background:linear-gradient(180deg,var(--logo-violeta-1),var(--logo-violeta-2));color:#fff;box-shadow:inset 0 3px 0 rgba(255,255,255,.45),0 4px 0 var(--logo-violeta-canto),0 6px 0 rgba(0,0,0,.35);transition:transform .08s,box-shadow .08s,filter .12s}
+body:not(.menu) header .game-controls #pause:hover{background:linear-gradient(180deg,var(--logo-violeta-1),var(--logo-violeta-2));color:#fff;filter:brightness(1.1)}
+body:not(.menu) header .game-controls #pause:active{transform:translateY(3px);box-shadow:inset 0 3px 0 rgba(255,255,255,.3),0 1px 0 var(--logo-violeta-canto)}
+body:not(.menu) header .game-controls #pause:focus-visible{outline:3px solid #fff;outline-offset:3px}
+body:not(.menu) header .game-controls .audio-cluster{border-radius:999px;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel));box-shadow:var(--hud-bisel),var(--hud-aro)}
+body:not(.menu) header .game-controls .audio-cluster #audio-toggle{border-radius:999px 0 0 999px}
+body:not(.menu) header .game-controls .audio-cluster .music-control summary{border-radius:0 999px 999px 0}
+body:not(.menu) header .game-controls .audio-cluster .music-control[open] summary{background:var(--hud-oro);color:var(--logo-borde)}
+body:not(.menu) header .game-controls .audio-cluster #audio-toggle:hover,body:not(.menu) header .game-controls .audio-cluster .music-control summary:hover{background:rgba(255,255,255,.12)}
+body:not(.menu) header #skills-hud{border-radius:999px;background:linear-gradient(180deg,var(--logo-violeta-1),var(--logo-violeta-2));color:#fff;box-shadow:inset 0 0 0 2px var(--logo-violeta-borde),inset 0 4px 0 2px rgba(255,255,255,.28),0 3px 0 var(--logo-violeta-canto);font-weight:800}
+@media(min-width:761px){body:not(.menu) header #skills-hud{left:calc(50% - 183px);transform:translateX(-100%)}}
+/* Chapas de tecla: monedas doradas */
+body .dota-item-key,body #taunt-trigger kbd,body .hud-ability-card:after,body #domain-ability:after{display:grid;place-items:center;border:2px solid var(--logo-borde);border-radius:50%!important;background:linear-gradient(180deg,var(--logo-oro-1),var(--logo-oro-2));box-shadow:inset 0 2px 0 #fff8,0 2px 0 var(--logo-oro-canto);color:var(--logo-borde);font-family:var(--fuente-titulo,'Luckiest Guy',sans-serif);font-weight:400;text-shadow:none}
+body .dota-item-key{min-width:16px;height:16px;padding:0;font-size:12px;line-height:1}
+body #taunt-trigger kbd{font-size:13px}
+body .hud-ability-card[data-card-art=empty]:after{background:linear-gradient(180deg,#6d6485,#463e5e);border-color:#241d38;color:#c9c1da;box-shadow:inset 0 2px 0 #fff4,0 2px 0 #241d38}
+/* Barra lateral de objetos */
+body #dota-inventory,body #combat-dock #dota-inventory{border-radius:16px;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel));box-shadow:var(--hud-bisel),var(--hud-aro)}
+body #dota-inventory .dota-inventory-slot,body #dota-inventory .dota-inventory-slot.empty{border-radius:11px;background:var(--hud-casilla);box-shadow:inset 0 0 0 2px var(--logo-panel-borde),inset 0 5px 0 2px rgba(255,255,255,.1)}
+body #dota-inventory .dota-inventory-slot.empty{opacity:.7}
+body #dota-inventory .dota-inventory-slot.empty:after{color:#8a7fb0}
+body #dota-inventory .dota-inventory-slot.active-item{background:linear-gradient(180deg,#5a8d2a,#2a5a14);box-shadow:inset 0 0 0 2px var(--logo-verde-borde),inset 0 5px 0 2px rgba(255,255,255,.22)}
+body #dota-inventory .dota-inventory-slot.active-item:after{border-radius:9px}
+body #dota-inventory .dota-inventory-slot.active-item:hover:not(:disabled){background:linear-gradient(180deg,#6da332,#2f6a18);filter:brightness(1.1)}
+body #dota-inventory .dota-inventory-slot.selected-active{background:var(--hud-oro);box-shadow:inset 0 0 0 2px var(--logo-borde),inset 0 5px 0 2px rgba(255,255,255,.4)}
+body #dota-inventory .dota-inventory-state,body #dota-inventory .dota-inventory-slot.active-item .dota-inventory-state{color:var(--logo-verde-1);text-shadow:0 1px 0 var(--logo-verde-borde);font-weight:800}
+body #dota-inventory .dota-inventory-slot.selected-active .dota-inventory-state{color:var(--logo-borde);text-shadow:none}
+body #combat-dock #dota-inventory .dota-active-cycle{border-radius:10px;background:linear-gradient(180deg,var(--logo-violeta-1),var(--logo-violeta-2));color:#fff;box-shadow:inset 0 0 0 2px var(--logo-violeta-borde),inset 0 4px 0 2px rgba(255,255,255,.28)}
+/* Pasiva (el marco ilustrado de Sideral se conserva) */
+body #passive-hud:not([data-passive=sideral]){border-radius:16px;background:linear-gradient(180deg,#4b2a62,#251338);box-shadow:var(--hud-bisel),var(--hud-aro)}
+body #passive-hud:not([data-passive=sideral]) strong{color:var(--logo-oro-1);-webkit-text-stroke:.12em var(--logo-borde);paint-order:stroke fill;text-shadow:0 2px 0 var(--logo-borde)}
+body #passive-hud:not([data-passive=sideral]) i{border-radius:8px;background:var(--hud-casilla);color:#b8aad8;box-shadow:inset 0 0 0 2px var(--logo-panel-borde)}
+body #passive-hud:not([data-passive=sideral]) i[data-active=true]{background:var(--hud-oro);color:var(--logo-borde);box-shadow:inset 0 0 0 2px var(--logo-borde),inset 0 3px 0 2px rgba(255,255,255,.4)}
+body #passive-hud:not([data-passive=sideral]) i[data-royal=true]{background:linear-gradient(180deg,var(--logo-oro-1),var(--logo-oro-2));color:var(--logo-borde)}
+/* Combo de causas */
+body #causa-combo{border-radius:14px;background:linear-gradient(180deg,#4a2552,#24122f);box-shadow:var(--hud-bisel),var(--hud-aro)}
+body #causa-combo .causa-card{border-radius:9px;background:var(--hud-casilla);box-shadow:inset 0 0 0 2px var(--logo-panel-borde),inset 0 4px 0 2px rgba(255,255,255,.1);color:#fff4dc}
+body #causa-combo .causa-card i{height:5px;border-radius:0 3px 3px 0}
+body #causa-combo .causa-card.complete{background:var(--hud-oro);color:var(--logo-borde);box-shadow:inset 0 0 0 2px var(--logo-borde),inset 0 4px 0 2px rgba(255,255,255,.4)}
+/* Ataques (el diseño de cartas de Sideral se conserva) */
+body #weapon-bar:not([data-character=sideral]){border-radius:16px;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel));box-shadow:var(--hud-bisel),var(--hud-aro)}
+body #weapon-bar:not([data-character=sideral]):before{border-radius:13px 13px 0 0;background:var(--hud-oro);color:var(--logo-borde);text-shadow:0 1px 0 #fff6}
+body #weapon-bar:not([data-character=sideral]) button{border-radius:11px;background:var(--hud-casilla);color:#fff4dc;box-shadow:inset 0 0 0 2px var(--logo-panel-borde),inset 0 5px 0 2px rgba(255,255,255,.1);font-weight:800;transition:filter .12s}
+body #weapon-bar:not([data-character=sideral]) button:hover:not(:disabled){filter:brightness(1.15)}
+body #weapon-bar:not([data-character=sideral]) button[data-active=true]{background:var(--hud-oro);color:var(--logo-borde);box-shadow:inset 0 0 0 2px var(--logo-borde),inset 0 5px 0 2px rgba(255,255,255,.4),0 0 12px rgba(255,176,32,.55)}
+body #weapon-bar:not([data-character=sideral]) button[data-locked=true]{background:linear-gradient(180deg,#463e5e,#2b2540);color:#9b92b4;box-shadow:inset 0 0 0 2px var(--logo-panel-borde)}
+/* Cartas Q/R: conservan su arte con marco cartoon */
+body .hud-ability-card{border:3px solid var(--logo-borde);border-radius:14px 14px 0 0;box-shadow:inset 0 3px 0 rgba(255,255,255,.3),inset 0 0 0 1px rgba(0,0,0,.4)}
+body .hud-ability-card:hover,body .hud-ability-card:focus-visible,body .hud-ability-card.is-peeking{border-color:var(--logo-oro-2);box-shadow:inset 0 3px 0 rgba(255,255,255,.3),0 0 14px rgba(255,200,60,.55)}
+body .hud-ability-card.ability-ready{border-color:var(--logo-oro-1);box-shadow:inset 0 3px 0 rgba(255,255,255,.4),0 0 14px rgba(255,200,60,.65)}
+/* Apoyo y mascotas */
+body .support-slot{border-color:var(--logo-panel-borde);border-radius:12px;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel));box-shadow:inset 0 0 0 2px var(--logo-panel-borde),inset 0 5px 0 2px rgba(255,255,255,.1);color:#fff4dc}
+body .support-slot[data-fused=true]{border-color:var(--logo-borde);background:linear-gradient(180deg,#6a4a1a,#33200c);box-shadow:inset 0 0 0 2px var(--logo-borde),inset 0 5px 0 2px rgba(255,224,106,.25)}
+/* Burlas */
+body #taunt-trigger{border:1px solid var(--logo-violeta-borde);border-radius:999px;background:linear-gradient(180deg,var(--logo-violeta-1),var(--logo-violeta-2));color:#fff;font:800 12px var(--fuente-texto,'Nunito',sans-serif);letter-spacing:.04em;box-shadow:inset 0 0 0 2px var(--logo-violeta-borde),inset 0 5px 0 2px rgba(255,255,255,.28),0 2px 0 var(--logo-violeta-canto);transition:filter .12s}
+body #taunt-trigger:hover{filter:brightness(1.1)}
+body #taunt-trigger:focus-visible{outline:3px solid #fff;outline-offset:2px}
+/* Aviso temporal */
+body #hud-notice{border-radius:18px;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel));box-shadow:var(--hud-bisel),var(--hud-aro)}
+body #hud-notice small{color:#e6dcff}
+@media(prefers-reduced-motion:reduce){body:not(.menu) header .game-controls #pause,body #taunt-trigger,body #weapon-bar button{transition:none}}
+body.ref-reduced-motion:not(.menu) header .game-controls #pause,body.ref-reduced-motion #taunt-trigger,body.ref-reduced-motion #weapon-bar button{transition:none}
