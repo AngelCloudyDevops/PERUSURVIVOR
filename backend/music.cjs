@@ -41,6 +41,10 @@ function createMusic({db,reply,now=Date.now,bodyTimeout=60000}={}){
    const content=await readAudio(req);if(count.size+content.length>MAX_LIBRARY_SIZE){json(res,409,{error:'La biblioteca alcanzó su límite total de 500 MB'});return}
    const id=crypto.randomUUID(),createdAt=now();db.prepare('INSERT INTO music_tracks VALUES(?,?,?,?,?,?,?)').run(id,title,type,content.length,content,user.id,createdAt);json(res,201,{track:{id,title,type,size:content.length,createdAt},canManage:true,limit:MAX_TRACK_SIZE});return;
   }
+  if(match&&req.method==='PATCH'&&!route.endsWith('/file')){
+   if(!requireManager(req,res,user))return;let title;try{title=decodeURIComponent(String(req.headers['x-music-name']||''))}catch{title=''}title=title.replace(/[\u0000-\u001f\u007f]/g,' ').replace(/\s+/g,' ').trim().slice(0,120);if(!title){json(res,400,{error:'La pista necesita un nombre'});return}
+   const changed=db.prepare('UPDATE music_tracks SET title=? WHERE id=?').run(title,match[1]);if(!changed.changes){json(res,404,{error:'Pista no encontrada'});return}const row=db.prepare('SELECT id,title,content_type,size,created_at FROM music_tracks WHERE id=?').get(match[1]);json(res,200,{track:metadata(row)});return;
+  }
   if(match&&req.method==='DELETE'&&!route.endsWith('/file')){
    if(!requireManager(req,res,user))return;const removed=db.prepare('DELETE FROM music_tracks WHERE id=?').run(match[1]);if(!removed.changes){json(res,404,{error:'Pista no encontrada'});return}json(res,200,{ok:true});return;
   }
