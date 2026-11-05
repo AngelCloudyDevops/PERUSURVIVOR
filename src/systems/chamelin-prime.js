@@ -31,12 +31,12 @@ P.ChamelinPrime={
   P.state.effects.push({kind:'nova',x:t.x,y:t.y,r:82,life:.45,maxLife:.45,color:'#a86d35',glyph:'¡PLOP!'});
   P.Audio?.tone?.(72,.16,.05,'sawtooth',0,35)
  },
- turretDamage(t,amount){const absorbed=Math.min(t.shield||0,amount);t.shield-=absorbed;t.hp-=amount-absorbed},
+ turretDamage(t,amount){const absorbed=Math.min(t.shield||0,amount);t.shield-=absorbed;t.hp-=amount-absorbed;if(absorbed>0)t.shieldFlash=.22;t.hurtFlash=.16},
  fire(t,p,q){
   const target=P.state.enemies.filter(e=>e.hp>0&&Math.hypot(e.x-t.x,e.y-t.y)<=440*(p.reach||1)).sort((a,b)=>Math.hypot(a.x-t.x,a.y-t.y)-Math.hypot(b.x-t.x,b.y-t.y))[0];
-  if(!target)return false;const angle=Math.atan2(target.y-t.y,target.x-t.x);
-  q.shots.push({x:t.x,y:t.y-12,px:t.x,py:t.y-12,vx:Math.cos(angle)*this.shotSpeed,vy:Math.sin(angle)*this.shotSpeed,life:this.shotLife,power:p.power*.38,source:this.source(p)});
-  t.recoil=.16;P.Audio?.tone?.(260,.05,.018,'square',0,80);return true
+  if(!target)return false;const angle=Math.atan2(target.y-t.y,target.x-t.x),muzzle={x:t.x+Math.cos(angle)*24,y:t.y-18+Math.sin(angle)*9};
+  q.shots.push({x:muzzle.x,y:muzzle.y,px:muzzle.x,py:muzzle.y,vx:Math.cos(angle)*this.shotSpeed,vy:Math.sin(angle)*this.shotSpeed,life:this.shotLife,power:p.power*.38,source:this.source(p)});
+  t.aim=angle;t.shotAt=P.state.elapsed;t.recoil=.22;P.Audio?.tone?.(260,.05,.018,'square',0,80);return true
  },
  tickShots(dt,q){
   for(const shot of q.shots){shot.px=shot.x;shot.py=shot.y;shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;shot.life-=dt;for(const e of P.state.enemies){if(e.hp<=0||Math.hypot(e.x-shot.x,e.y-shot.y)>e.r+9)continue;P.Entities.hurt(e,shot.power,4,shot.source);shot.life=0;break}}
@@ -55,7 +55,7 @@ P.ChamelinPrime={
   const p=P.state.player;if(!this.eligible(p)||P.state.mode!=='play')return;const q=this.state(p),now=P.state.elapsed;
   this.rebuildNetwork(q);p.primeTerritory=this.inside(p.x,p.y,q);
   if(p.primeTerritory&&p.hp>0){p.hp=Math.min(p.maxHp,p.hp+p.maxHp*.006*dt);p.primeTerritoryUntil=now+.12}
-  for(const t of q.turrets){t.age+=dt;t.life-=dt;t.fire-=dt;t.recoil=Math.max(0,(t.recoil||0)-dt);if(t.fire<=0){t.fire+=Math.max(.38,.82*(p.rate/4.5));this.fire(t,p,q)}}
+  for(const t of q.turrets){t.age+=dt;t.life-=dt;t.fire-=dt;t.recoil=Math.max(0,(t.recoil||0)-dt);t.shieldFlash=Math.max(0,(t.shieldFlash||0)-dt);t.hurtFlash=Math.max(0,(t.hurtFlash||0)-dt);if(t.fire<=0){t.fire+=Math.max(.38,.82*(p.rate/4.5));this.fire(t,p,q)}}
   this.tickShots(dt,q);this.affectEnemies(dt,q);
   q.puddles.forEach(v=>v.life-=dt);q.puddles=q.puddles.filter(v=>v.life>0);
   const dead=q.turrets.filter(t=>t.hp<=0||t.life<=0);dead.forEach(t=>this.burst(t,q));q.turrets=q.turrets.filter(t=>t.hp>0&&t.life>0)
