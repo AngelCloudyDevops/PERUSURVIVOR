@@ -172,3 +172,15 @@ test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta 
  assert.match(css,/@keyframes splash-reel-shot/);
  assert.match(css,/#welcome-actions\[hidden\]\{display:none\}/);
 });
+
+test('Maestría: Sideral separa Renovar del entrenamiento y conserva sus tres disciplinas',()=>{
+ const fs=require('node:fs'),source=fs.readFileSync('src/ui/lobby-complete.js','utf8'),css=fs.readFileSync('src/ui/styles.css','utf8');
+ assert.match(source,/Maestría del Lagarto/);
+ assert.match(source,/RENOVAR ×/);
+ assert.match(source,/Entrenamiento permanente/);
+ assert.match(source,/\['MIRADA','Control y miedo'\]/);
+ assert.match(source,/\['COLAZO','Críticos y PRESA'\]/);
+ assert.match(source,/\['HUEVO','Área y marcas'\]/);
+ assert.match(css,/\.mastery-track\{/);
+ assert.match(css,/@media\(max-width:760px\)\{\.mastery-summary/);
+});

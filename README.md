@@ -8,7 +8,8 @@ Reglas, recetas y comprobaciones: [Guía de progresión](docs/diseno/GUIA_PROGRE
 - Conservamos **Onda causa, Tarjetas del caos y Escudo de bandas** en dos espacios de apoyo.
 - Una fusión es opcional: conserva rango y espacio, apaga el automático y pasa su efecto a un destino compatible. Máximo dos, en destinos distintos.
 - Una modificación personal por partida cambia el comportamiento de una técnica. Sideral usa hasta tres mutaciones, una por técnica; el resto del roster conserva una. Sideral es el piloto de las técnicas manuales; no se convierte todo el roster.
-- **Renovar:** 1/2/3 usos con maestría 0/5/10. La maestría es el número de partidas registradas con esa causa, hasta 10; reutiliza el guardado existente.
+- **Maestría visible:** cada causa conserva un recorrido de 0 a 10 basado en sus partidas registradas. No aumenta daño, vida, velocidad ni recarga. En la pantalla de Mejoras y habilidades muestra avance, próximo hito y la ventaja activa. Sideral presenta además sus disciplinas Mirada, Colazo y Huevo como plantilla visual del sistema.
+- **Renovar:** 1/2/3 usos con maestría 0/5/10. Renovar sustituye las cartas ofrecidas al subir de nivel; reutiliza el guardado existente y es la única ventaja estratégica inicial de la maestría.
 
 Publicación acordada: producción después de CI, seguida de la prueba cooperativa pública sobre el SHA desplegado. Las cifras iniciales requieren seguimiento de balance; una rama local no implica publicación.
 
