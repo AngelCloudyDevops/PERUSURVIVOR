@@ -296,6 +296,7 @@ module.exports = [
   {"source":"src/network/coop-assist.js","output":"js/coop-assist.js"},
   {"source":"src/systems/run-mode.js","output":"js/run-mode.js"},
   {"source":"src/systems/map-events.js","output":"js/map-events.js"},
+  {"source":"src/systems/taunts.js","output":"js/taunts.js"},
   {"source":"src/network/coop-motion.js","output":"js/coop-motion.js"},
   {"source":"src/network/coop-host-runtime.js","output":"js/coop-host-runtime.js"},
   {
@@ -375,6 +376,8 @@ module.exports = [
     "source": "src/development/test-bench.js",
     "output": "js/test-bench.js"
   },
+  {"source":"src/systems/captive-companion.js","output":"js/captive-companion.js"},
+  {"source":"src/systems/collector-pets.js","output":"js/collector-pets.js"},
   {
     "source": "src/rendering/animal-entry.js",
     "output": "js/animal-entry.js"
@@ -460,4 +463,7 @@ module.exports = [
 ,{source:"src/systems/dota-actives.js",output:"js/dota-actives.js"}
 ,{source:"src/systems/weapon-input.js",output:"js/weapon-input.js"}
 ,{source:"src/development/equipment-bench.js",output:"js/equipment-bench.js"}
+,{source:"src/ui/player-stats-drawer.js",output:"js/player-stats-drawer.js"}
+,{source:"src/systems/card-builds.js",output:"js/card-builds.js"}
+,{source:"src/ui/card-builds.js",output:"js/card-build-ui.js"}
 ];

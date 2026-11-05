@@ -1,0 +1,9 @@
+Use case: stylized-concept
+Asset type: 4 columns by 2 rows game sprite atlas, eight isolated full-body frames on genuine transparent background
+Input images: Image 1 is reference only for the shiny golden ticket/reward material; Image 2 is reference only for the captive crouched pose, long black hair, dark ragged clothing and restrained situation. Do not copy a real person's face.
+Primary request: create an original caricatured captive NPC for the existing PerúSurvivor game. Adult man with long messy black hair, expressive worried face, ragged dark charcoal poncho-like clothing, brown shoes and rope restraints. Polished hand-painted cartoon game art with clean dark outlines, smooth cel shading, readable silhouette, same general polished playful style as a colorful survivor game, not blocky pixel art.
+Exact atlas frames, left to right:
+top row: (1) tied with rope, crouched on the ground asking for help through pose only; (2) rope snapping as he is freed and rises; (3) friendly companion idle pose; (4) throwing a bright cyan energy wave with both hands.
+bottom row: (5) throwing a purple energy wave that spirals into a tiny floor vortex; (6) proudly holding exactly three metallic golden tickets fanned in one hand; (7) tiptoeing away stealthily with exaggerated sneaky pose; (8) tossing a small ninja smoke pellet and vanishing into a compact gray-purple smoke puff.
+Composition: exactly eight evenly spaced isolated frames, no overlap, generous transparent gutters, each figure centered inside its cell, consistent character identity and scale, full body visible in every frame.
+Constraints: no text, no HELP letters, no frame borders, no background, no scenery, no watermark, no cropped limbs, exactly three tickets in frame 6.

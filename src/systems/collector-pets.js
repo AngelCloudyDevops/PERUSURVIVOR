@@ -1,0 +1,31 @@
+'use strict';
+// Mascotas de utilidad equipables. Vuelan sobre el terreno, no colisionan, no
+// reciben daño y entregan el botín únicamente al volver junto a su dueño.
+if(!P.CollectorPets){
+P.CollectorPets={
+ asset:'assets/pets/collector-chickens-v1.webp',image:null,ready:false,
+ profiles:{
+  pet_chick:{name:'Gallinita recolectora',rarity:'common',row:0,capacity:4,range:450,speed:270,rest:.8,kinds:['xp']},
+  pet_pack:{name:'Gallinita mochilera',rarity:'rare',row:1,capacity:8,range:700,speed:360,rest:.6,kinds:['xp','coin']},
+  pet_rocket:{name:'Gallinita cohete',rarity:'legendary',row:2,capacity:12,range:1000,speed:540,rest:.4,kinds:['xp','coin','key','paneton','magnet-pulse','heal']}
+ },
+ init(){if(typeof Image==='undefined')return;this.image=new Image();this.image.decoding='async';this.image.onload=()=>{this.ready=true;P.Supply?.render?.();P.LobbyComplete?.renderHubPlayControls?.()};this.image.src=this.asset},
+ profile(id){return this.profiles[id]||null},
+ reset(){P.state.collectorPet=null},
+ ensure(){const s=P.state,p=s.player,profile=this.profile(p?.collectorPet);if(!profile||s.mode!=='play'||P.Coop?.active)return null;let pet=s.collectorPet;if(!pet||pet.id!==p.collectorPet)pet=s.collectorPet={id:p.collectorPet,x:p.x-45,y:p.y+28,phase:'follow',cargo:[],target:null,rest:0,distance:0,facing:1,frame:0,deliverAge:0};return pet},
+ kind(g){return !g.kind?'xp':g.kind},
+ eligible(g,profile,p,reserved=false){if(!g||g.dead||g.petReserved&&!reserved)return false;const kind=this.kind(g);if(!profile.kinds.includes(kind))return false;if(kind==='paneton'&&p.hp>=p.maxHp*.7||kind==='heal'&&p.hp>=p.maxHp)return false;return Math.hypot(g.x-p.x,g.y-p.y)<=profile.range},
+ priority(g){return{key:0,paneton:1,heal:1,'magnet-pulse':2,coin:3,xp:4}[this.kind(g)]??9},
+ choose(pet,profile,p){let best=null,bestScore=Infinity;for(const g of P.state.gems){if(!this.eligible(g,profile,p))continue;const score=this.priority(g)*100000+Math.hypot(g.x-pet.x,g.y-pet.y);if(score<bestScore){best=g;bestScore=score}}if(best)best.petReserved=true;return best},
+ move(pet,x,y,speed,dt){const dx=x-pet.x,dy=y-pet.y,d=Math.hypot(dx,dy)||1,step=Math.min(d,speed*Math.max(0,dt));pet.x+=dx/d*step;pet.y+=dy/d*step;pet.distance+=step;if(Math.abs(dx)>.5)pet.facing=Math.sign(dx);return d-step},
+ take(pet,g){g.petReserved=false;g.dead=true;pet.cargo.push({kind:g.kind||null,value:g.value||0,rarity:g.rarity,heal:g.heal,duration:g.duration});pet.target=null;pet.frame=4},
+ deliver(pet,profile,p){let xp=0,objects=0;for(const item of pet.cargo){if(!item.kind)xp+=item.value;else if(item.kind==='heal')p.hp=Math.min(p.maxHp,p.hp+item.value);else P.Loot.collect(item);objects++}P.state.xp+=xp;pet.cargo=[];pet.phase='rest';pet.rest=profile.rest;pet.deliverAge=.42;pet.frame=5;P.state.effects.push({kind:'nova',x:p.x,y:p.y-12,r:34,life:.35,maxLife:.35,color:profile.rarity==='legendary'?'#e5adff':profile.rarity==='rare'?'#62c6ff':'#f6df9d'});if(xp>0)P.state.effects.push({kind:'damage',x:p.x,y:p.y-55,text:'+'+xp+' EXP',color:'#9ff6ff',life:.65,maxLife:.65});P.Audio?.rewardPickup?.('magnet');return objects},
+ tick(dt){const pet=this.ensure();if(!pet)return;const s=P.state,p=s.player,profile=this.profile(pet.id),homeX=p.x-(p.facing||1)*52,homeY=p.y+25;pet.deliverAge=Math.max(0,pet.deliverAge-dt);if(pet.phase==='rest'){pet.rest-=dt;this.move(pet,homeX,homeY,profile.speed*.75,dt);if(pet.rest<=0)pet.phase='follow';return}if(pet.phase==='return'){if(this.move(pet,homeX,homeY,profile.speed,dt)<25)this.deliver(pet,profile,p);return}if(pet.target&&!this.eligible(pet.target,profile,p,true)){pet.target.petReserved=false;pet.target=null}if(!pet.target)pet.target=this.choose(pet,profile,p);if(pet.target){pet.phase='collect';if(this.move(pet,pet.target.x,pet.target.y,profile.speed,dt)<18){this.take(pet,pet.target);if(pet.cargo.length>=profile.capacity)pet.phase='return'}return}if(pet.cargo.length){pet.phase='return';return}pet.phase='follow';this.move(pet,homeX,homeY,profile.speed*.75,dt);pet.frame=Math.floor(s.elapsed*3)%2},
+ cell(id,frame){const profile=this.profile(id);return profile?{col:Math.max(0,Math.min(5,frame)),row:profile.row}:null},
+ sprite(ctx,id,frame,x,y,size=86,facing=1){if(!this.ready)return false;const cell=this.cell(id,frame),sw=this.image.naturalWidth/6,sh=this.image.naturalHeight/3;ctx.save();ctx.translate(Math.round(x),Math.round(y));ctx.scale(facing<0?-1:1,1);ctx.imageSmoothingEnabled=true;ctx.drawImage(this.image,cell.col*sw,cell.row*sh,sw,sh,-size*.58,-size,size*1.16,size);ctx.restore();return true},
+ icon(ctx,id,x,y,size){return this.sprite(ctx,id,0,x,y,size,1)},
+ draw(){const pet=P.state.collectorPet,p=P.state.player;if(!pet||!p||P.state.mode==='menu')return;const {ctx,width,height}=P.Core,profile=this.profile(pet.id),zoom=P.Terrain.zoom||1;let frame=pet.frame;if(pet.deliverAge>0)frame=5;else if(pet.phase==='collect'&&pet.target&&Math.hypot(pet.x-pet.target.x,pet.y-pet.target.y)<48)frame=4;else if(['collect','return'].includes(pet.phase))frame=2+Math.floor(pet.distance/22)%2;else frame=Math.floor(P.state.elapsed*3)%2;ctx.save();ctx.translate(width*.5,height*.5);ctx.scale(zoom,zoom);ctx.translate(-P.Terrain.cameraX,-P.Terrain.cameraY);if(profile.rarity==='legendary'&&['collect','return'].includes(pet.phase)){ctx.globalAlpha=.75;ctx.fillStyle='#ffb147';for(let i=0;i<4;i++){const d=18+i*9,x=pet.x-pet.facing*d,y=pet.y-22+Math.sin(P.state.elapsed*18+i)*5;ctx.fillRect(x-4,y-3,8-i,6-i)}}this.sprite(ctx,pet.id,frame,pet.x,pet.y,profile.rarity==='common'?72:profile.rarity==='rare'?82:90,pet.facing);if(pet.cargo.length){ctx.fillStyle='#10202add';ctx.strokeStyle=profile.rarity==='legendary'?'#e5adff':profile.rarity==='rare'?'#62c6ff':'#f6df9d';ctx.lineWidth=2;ctx.beginPath();ctx.arc(pet.x+24,pet.y-62,13,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#fff';ctx.font='900 11px monospace';ctx.textAlign='center';ctx.fillText(pet.cargo.length+'/'+profile.capacity,pet.x+24,pet.y-58)}ctx.restore()},
+ install(){this.init();const collect=P.Systems.collect.bind(P.Systems);P.Systems.collect=dt=>{this.tick(dt);return collect(dt)};const start=P.Game.start.bind(P.Game);P.Game.start=options=>{this.reset();return start(options)};const render=P.World.render.bind(P.World);P.World.render=time=>{const result=render(time);this.draw();return result}}
+};
+P.CollectorPets.install();
+}

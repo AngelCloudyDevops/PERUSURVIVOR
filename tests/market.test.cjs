@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),{Simulation}=require('../backend/simulation.cjs');
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{Simulation}=require('../backend/simulation.cjs');
 function setup(map='campo'){const sim=new Simulation(map,[0,6]),P=sim.P;sim.use(sim.players[0]);return{sim,P,s:P.state,p:sim.players[0]}}
 test('Ambulante: mapas, reloj, distancia, saldo, stock, inventario y expiración',()=>{
  for(const map of ['campo','plaza','machu']){const {P,s,p}=setup(map);s.mapTime=44;P.Market.tick();assert.equal(P.Market.merchant,null);s.mapTime=45;P.Market.tick();const m=P.Market.merchant;assert(m);assert(P.Loot.safe(m.x,m.y));assert.equal(m.offers.length,4);s.coins=300;const key=m.offers.find(o=>o.item==='key_rare');assert.equal(P.Market.buy(key.id),false);assert.equal(s.coins,300);p.x=m.x;p.y=m.y;s.coins=0;assert.equal(P.Market.buy(key.id),false);s.coins=300;assert(P.Market.buy(key.id));assert.equal(s.coins,260);assert.equal(s.keys.rare,1);assert.equal(P.Market.buy(key.id),false);assert.equal(s.coins,260);assert.equal(P.Market.buy('stale:0'),false);
@@ -21,4 +21,9 @@ test('Minimapa del ambulante: posición, borde, cuenta regresiva y desaparición
  m.x=p.x+5000;m.y=p.y-5000;rects.length=0;s.mapTime=m.until-9.2;P.Market.minimap(ctx,p,18,200,156,104,900);assert.deepEqual(rects[0],[159,201,14,14]);assert.equal(labels.at(-1)[0],'#ffad88');assert.equal(labels.at(-1)[1],'TIENDA · 10 s');
  s.mapTime=m.until;rects.length=0;P.Market.minimap(ctx,p,18,200,156,104,900);assert.equal(rects.length,0);assert.equal(P.Market.remaining(),0);
  s.mapTime=m.until-1;s.encounter={};P.Market.minimap(ctx,p,18,200,156,104,900);assert.equal(rects.length,0);
+});
+test('Arte del ambulante: atlas de cuatro poses con bandeja y puesto secreto separado',()=>{
+ const root=path.resolve(__dirname,'..'),source=fs.readFileSync(path.join(root,'src/systems/market.js'),'utf8'),asset=fs.readFileSync(path.join(root,'public/assets/market/vendor-chullo-tray-v2.webp'));
+ assert.equal(asset.subarray(0,4).toString(),'RIFF');assert.equal(asset.subarray(8,12).toString(),'WEBP');assert(asset.length<250000);
+ assert.match(source,/vendor-chullo-tray-v2\.webp/);assert.match(source,/naturalWidth\/4/);assert.match(source,/secret=m\.kind==='secret'/);assert.match(source,/if\(secret\)\{this\.stall\(ctx\)/);
 });
