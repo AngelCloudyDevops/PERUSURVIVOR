@@ -91,7 +91,7 @@ P.PlayerStatus={
    ctx.restore()
   }
   if(notices&&P.Loot?.messageTime>0&&P.Loot.message){
-   const text=String(P.Loot.message).slice(0,58),alpha=Math.min(1,P.Loot.messageTime*2);ctx.save();ctx.translate(actor.x,actor.y-86);ctx.font='800 10px monospace';ctx.textAlign='center';ctx.textBaseline='middle';const width=Math.min(330,ctx.measureText(text).width+18);ctx.globalAlpha=alpha;ctx.fillStyle='#101827e8';ctx.fillRect(-width/2,-11,width,22);ctx.strokeStyle='#e8bd58';ctx.strokeRect(-width/2+.5,-10.5,width-1,21);ctx.fillStyle='#fff1d3';ctx.fillText(text,0,0,width-12);ctx.restore()
+   const text=String(P.Loot.message).slice(0,58),alpha=Math.min(1,P.Loot.messageTime*2);ctx.save();ctx.translate(actor.x,actor.y-86);ctx.font='800 10px monospace';ctx.textAlign='center';ctx.textBaseline='middle';const measured=Number(ctx.measureText?.(text)?.width)||text.length*6,width=Math.min(330,measured+18);ctx.globalAlpha=alpha;ctx.fillStyle='#101827e8';ctx.fillRect(-width/2,-11,width,22);ctx.strokeStyle='#e8bd58';ctx.strokeRect(-width/2+.5,-10.5,width-1,21);ctx.fillStyle='#fff1d3';ctx.fillText(text,0,0,width-12);ctx.restore()
   }
  },
  allyBar(ctx,actor){
