@@ -2415,3 +2415,6 @@ body.menu #menu #lobby-sidebar #lobby-nav-play{--fn:#ff7a8a}body.menu #menu #lob
 }
 #lobby-sidebar .side-ico{display:inline-block;width:14px;height:14px;margin-right:3px;vertical-align:-2px}
 @media(min-width:761px){body.menu #menu #lobby-sidebar .side-ico{display:block;margin-right:0;vertical-align:baseline}}
+/* Barra lateral: el alto crece con la descripción (en columna flex los botones se encogían al min-height y se montaban). */
+body.menu #menu #lobby-sidebar>button{flex:none;height:auto}
+@media(max-width:760px){body.menu #menu #lobby-sidebar{grid-auto-rows:max-content}}
