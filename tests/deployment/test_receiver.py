@@ -18,7 +18,7 @@ SHA = "a" * 40
 
 def package(entries=None):
     output = io.BytesIO()
-    entries = entries or [("index.html", b"CAUSAS DEL CAOS"), ("js/game.js", b"game")]
+    entries = entries or [("index.html", b'<html data-game="kick-all-stars-peru">'), ("js/game.js", b"game")]
     with tarfile.open(fileobj=output, mode="w:gz") as archive:
         for name, data in entries:
             item = tarfile.TarInfo(name); item.size = len(data)
@@ -50,6 +50,9 @@ class ReceiverTests(unittest.TestCase):
         self.assertEqual(json.loads((path / "__release.json").read_text())["git_sha"], SHA)
         self.assertTrue((path / "js/game.js").is_file())
         self.assertEqual(path.stat().st_mode & 0o005, 0o005, "Nginx debe poder atravesar la release")
+    def test_legacy_release_remains_compatible(self):
+        path = receiver.extract_release(package([("index.html", b"CAUSAS DEL CAOS"), ("js/game.js", b"game")]), SHA)
+        self.assertTrue((path / "index.html").is_file())
     def test_traversal(self):
         for name in ["../escape", "/etc/passwd", "dir/../../escape"]:
             with self.assertRaises(ValueError): receiver.extract_release(package([(name, b"bad")]), SHA)
