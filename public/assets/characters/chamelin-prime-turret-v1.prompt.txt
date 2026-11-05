@@ -1,0 +1,6 @@
+Use case: stylized-concept
+Asset type: production 2D game sprite sheet with true transparent background
+Subject: Chamelin Prime poop turret with curved barrel, green leaf, expressive face and dirt base.
+Frames: idle, aim/recoil, firing a peanut-shaped seed, cyan shield, damaged and destroyed puddle.
+Style: polished detailed pixel-art / high-resolution 2D game sprite matching Chamelin Prime.
+Constraints: transparent background; no character, scenery, text, grid or borders.
