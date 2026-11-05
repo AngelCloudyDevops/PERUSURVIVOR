@@ -1,0 +1,7 @@
+Use case: stylized-concept
+Asset type: vertical full-art collectible game card illustration, artwork only
+Primary request: Create Onda causa in the same cartoon automatic-support family as Tarjetas del caos.
+Subject: a central autonomous resonator emitting concentric cyan shockwaves that hit several shadow enemies; no human hero.
+Style: polished high-detail cartoon, bold outlines and dimensional lighting; no pixel art.
+Composition: symmetrical central machine, circular wave geometry, teal/turquoise support-family palette, readable at thumbnail size.
+Constraints: no text, logos, UI frame or watermark.

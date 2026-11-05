@@ -1,0 +1,7 @@
+Use case: stylized-concept
+Asset type: vertical full-art collectible game card illustration, artwork only
+Primary request: Redesign Tarjetas del caos as a cartoon automatic support, not an instinct attack.
+Subject: a central floating card dispenser automatically launching red-gold cards toward several shadow enemies; no human hero.
+Style: polished high-detail cartoon, bold outlines and dimensional lighting matching the established Sideral cards; no pixel art.
+Composition: symmetrical central device, circular orbital motion, teal/turquoise support-family palette, readable at thumbnail size.
+Constraints: no text, logos, UI frame or watermark.
