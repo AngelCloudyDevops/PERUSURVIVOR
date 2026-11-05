@@ -51,3 +51,12 @@ test('el video existe, se carga bajo demanda y el build lo publica',()=>{
  assert(fs.existsSync(path.join(root,'dist/js/taunts.js')));
  assert.equal(fs.statSync(path.join(root,'dist/assets/video/burla-entiendes-v1.mp4')).size,1046984);
 });
+
+test('la burbuja conserva tamaño cuadrado y el editor permite mover y acercar el encuadre',()=>{
+ const css=fs.readFileSync(path.join(root,'src/ui/taunts.css'),'utf8'),admin=fs.readFileSync(path.join(root,'src/ui/admin.js'),'utf8');
+ assert.match(css,/#taunt-video\{[^}]*aspect-ratio:1/);
+ assert.match(css,/--taunt-crop-x/);
+ assert.match(admin,/4 · ENCUADRA LA BURBUJA/);
+ assert.match(admin,/Acercamiento/);
+ assert.match(admin,/cropStep/);
+});
