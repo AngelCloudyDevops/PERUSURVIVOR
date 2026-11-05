@@ -1,0 +1,6 @@
+Use case: stylized-concept
+Asset type: transparent legendary-skin passive HUD frame for a 2D game
+Primary request: Create the Lagartítere variant of Sideral's passive frame while preserving its wide rounded empty center. Replace the organic dragon with a dark green reptile puppet made of fabric, red and cream stitches, patches, button eyes and a sewn tail. Add exactly three button sockets along the lower edge.
+References: sideral-passive-frame-v1.png for exact layout; sideral-lagartitere-motion-v1.png for skin materials and palette.
+Composition: head at upper-left, tail wrapping below and curling at lower-right; center transparent and unobstructed.
+Constraints: transparent background and center; no words, letters, numbers, human figure, extra panels or watermark.

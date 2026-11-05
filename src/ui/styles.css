@@ -967,6 +967,14 @@ body.reference-open #overlay:not([hidden]){z-index:80}
 #passive-hud[data-passive=sideral]{isolation:isolate;top:116px;bottom:auto;left:16px;width:310px;height:140px;padding:43px 27px 28px 79px;border:0;border-radius:0;background:none;box-shadow:none;color:#f3ffd2;filter:drop-shadow(0 9px 13px #07110a99);overflow:visible}
 #passive-hud[data-passive=sideral]::after{content:'';position:absolute;z-index:-2;inset:40px 18px 28px 59px;border:1px solid #709f42aa;border-radius:13px;background:linear-gradient(110deg,#0b1711f2,#15281df0 58%,#21152aee);box-shadow:inset 0 0 18px #7bcc4724}
 #passive-hud[data-passive=sideral]::before{content:'';position:absolute;z-index:-1;inset:0;background:url('../assets/ui/sideral-passive-frame-v1.webp') center/contain no-repeat;transform-origin:42% 68%;pointer-events:none}
+#passive-hud[data-passive=sideral][data-sideral-skin=lagartitere]::before{background-image:url('../assets/ui/sideral-lagartitere-passive-frame-v1.webp')}
+#passive-hud[data-passive=sideral][data-sideral-skin=lagartitere]::after{border-color:#b34d44aa;background:linear-gradient(110deg,#15110ff2,#263019f0 58%,#301415ee);box-shadow:inset 0 0 18px #ef4b4538}
+#passive-hud[data-passive=sideral][data-sideral-skin=lagartitere] small{color:#ff9c83}
+#passive-hud[data-passive=sideral][data-sideral-skin=lagartitere] strong{color:#fff0c8;text-shadow:0 1px #28100d,0 0 7px #ef4b4566}
+#passive-hud[data-passive=sideral][data-sideral-skin=lagartitere] .passive-marks i{color:#8c5a48;text-shadow:0 1px #1c0c0a,0 0 4px #8bd34f66}
+#passive-hud[data-passive=sideral][data-sideral-skin=lagartitere] .passive-marks i[data-filled=true]{color:#fff0bd;text-shadow:0 0 5px #ef4b45,0 0 10px #8bd34f;opacity:1}
+#passive-hud[data-passive=sideral][data-sideral-skin=lagartitere] .passive-marks i[data-current=true]{color:#ef4b45}
+#passive-hud[data-passive=sideral][data-sideral-skin=lagartitere] .passive-eye{background:#fff0bd;box-shadow:0 0 6px #ef4b45,0 0 12px #8bd34f}
 #passive-hud[data-passive=sideral] small,#passive-hud[data-passive=sideral] strong,#passive-hud[data-passive=sideral] .passive-marks,#passive-hud[data-passive=sideral] .passive-status{position:absolute;z-index:2;right:27px;left:79px}
 #passive-hud[data-passive=sideral] small{top:44px;color:#a8eb6b;font-size:7px;letter-spacing:1.2px}
 #passive-hud[data-passive=sideral] strong{top:55px;margin:0;color:#f5ffd6;font-size:15px;line-height:1;text-shadow:0 1px #13210d,0 0 7px #8fd34c66}
