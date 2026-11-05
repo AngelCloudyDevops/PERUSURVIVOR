@@ -138,3 +138,28 @@ test('Sideral: Jugar abre tres técnicas instintivas en un modal propio y Volver
 test('La preparación de una expedición fija la mascota antes de cargar mapa o técnica',()=>{const source=require('node:fs').readFileSync('src/ui/lobby-complete.js','utf8');assert.match(source,/prepareSoloRun\(\)\{[^}]*collectorPet=P\.Supply\?\.equippedPet/);assert.match(source,/P\.Game\.start\(\{collectorPet\}\)/)});
 
 test('Laboratorio: cambiar rango limpia Miradas pendientes sin cancelar ataques al repetir el mismo ajuste',()=>{const {P}=new Simulation('campo',[0,1]),b=P.TestBench;P.WalkArt.readyForStart=()=>true;P.Terrain.active=()=>[];b.character='sideral';b.kind='targets';b.attack='1';b.run();const p=P.state.player;P.SideralKit.cast('sideralFear');P.SideralKit.cast('sideralFear');assert(p.sideralFearCast);assert(p.sideralFearQueue.length);b.applyAttack();assert(p.sideralFearCast);b.attack='evolved';b.applyAttack();assert.equal(p.sideralFearCast,undefined);assert.equal(p.sideralFearQueue,undefined);P.SideralKit.cast('sideralFear');assert(p.sideralFearCast.attack.evolution)});
+
+test('Marca: Kick All Stars Perú usa el logo oficial en carga, portada y vestíbulo',()=>{
+ const fs=require('node:fs'),html=fs.readFileSync('src/index.html','utf8'),lobby=fs.readFileSync('src/ui/lobby.js','utf8'),css=fs.readFileSync('src/ui/styles.css','utf8'),logo=fs.readFileSync('public/assets/branding/kick-all-stars-peru-logo-v1.webp');
+ assert.match(html,/<title>Kick All Stars Perú/);
+ assert((html.match(/kick-all-stars-peru-logo-v1\.webp/g)||[]).length>=3);
+ assert.match(lobby,/document\.title='Kick All Stars Perú/);
+ assert.match(lobby,/KICK ALL STARS PERÚ/);
+ assert.match(css,/\.lobby-brand-logo/);
+ assert.equal(logo.subarray(0,4).toString(),'RIFF');
+ assert.equal(logo.subarray(8,12).toString(),'WEBP');
+ assert(logo.length>100000);
+});
+
+test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta o invitado',()=>{
+ const fs=require('node:fs'),source=fs.readFileSync('src/ui/lobby.js','utf8'),account=fs.readFileSync('src/network/account.js','utf8'),css=fs.readFileSync('src/ui/styles.css','utf8');
+ assert.match(source,/make\('button','CONTINUAR ↗','welcome-continue'\)/);
+ assert.match(source,/actions\.hidden=true/);
+ assert.match(source,/actions\.append\(login,enter,register\)/);
+ assert.match(source,/await P\.Account\?\.startup/);
+ assert.match(account,/Usuario o nick/);
+ assert.match(account,/Sesión segura durante 7 días/);
+ assert.match(css,/@keyframes splash-stars-pop/);
+ assert.match(css,/@keyframes splash-logo-shine/);
+ assert.match(css,/#welcome-actions\[hidden\]\{display:none\}/);
+});

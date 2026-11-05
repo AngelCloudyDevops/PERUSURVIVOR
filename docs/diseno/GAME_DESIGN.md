@@ -1,4 +1,4 @@
-# Documento de diseño — PERUSURVIVOR
+# Documento de diseño — Kick All Stars Perú
 
 > Nota de vigencia (2026-10-31): hay 21 personajes jugables (`src/data/catalog.js:3-11` menos ElZeein, que `shift()` convierte en jefe en `src/data/catalog.js:32`; `src/data/catalog.js:33`; `src/data/powers.js:74-109`; comprobado por `tests/gameplay.test.cjs:12`). Las menciones a «18 personajes» en secciones de arte o de historial describen el roster de cuando se añadieron. Ante contradicción manda el código. El 2026-10-31 se eliminó una copia duplicada de unas 388 líneas (de «Laboratorio de combate» a «Mundos heredados de los jefes»); se conservó la versión que coincide con el código.
 
@@ -93,7 +93,7 @@ Filtros y orden se recuerdan entre visitas en el mismo navegador. Se restauran a
 
 
 ## Identidad y objetivo
-Título visible: Causas del Caos. Supervivencia de acción en vista superior con humor y referencias peruanas. El jugador controla el movimiento y esquiva rivales mientras su personaje ataca automáticamente. La meta es crecer durante la partida y derrotar al jefe final ElZeein.
+Título visible: Kick All Stars Perú. Supervivencia de acción en vista superior con humor y referencias peruanas. El jugador controla el movimiento y esquiva rivales mientras su personaje ataca automáticamente. La meta es crecer durante la partida y derrotar al jefe final ElZeein.
 
 Este documento describe la implementación existente. La reorganización de carpetas no modifica sus reglas ni agrega mecánicas.
 

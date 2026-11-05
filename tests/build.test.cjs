@@ -198,7 +198,7 @@ test('Carga inicial: oculta arte provisional, espera recursos y ofrece reintento
  P.Sprites.sheets.powers.ready=true;assert.equal(P.UI.loading(300),false);assert.equal(portraits,1);assert(!classes.has('assets-loading'));assert(P.$('#loading-screen').hidden);assert.equal(P.UI.loading(400),false);assert.equal(portraits,1);
  P.UI.assetsReady=false;P.Sprites.sheets.powers.ready=false;P.Sprites.sheets.powers.failed=true;assert(P.UI.loading(500));assert.equal(P.$('#loading-retry').hidden,false);assert.match(P.$('#loading-message').textContent,/conexión/);
  P.Sprites.sheets.powers.failed=false;P.$('#loading-retry').hidden=true;assert(P.UI.loading(20200));assert.equal(P.$('#loading-retry').hidden,false);
- const html=fs.readFileSync(path.join(root,'src/index.html'),'utf8');assert.match(html,/body class="assets-loading"/);assert.match(html,/body.assets-loading #menu/);assert.equal((html.match(/rel="preload"/g)||[]).length,4);
+ const html=fs.readFileSync(path.join(root,'src/index.html'),'utf8');assert.match(html,/body class="assets-loading"/);assert.match(html,/body.assets-loading #menu/);assert.equal((html.match(/rel="preload"/g)||[]).length,5);assert.match(html,/preload[^>]+kick-all-stars-peru-logo-v1\.webp/);
 });
 
 test('Cada build identifica su contenido y versiona scripts y estilos',()=>{const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8'),version=JSON.parse(fs.readFileSync(path.join(root,'dist/version.json'),'utf8')).version;assert.match(version,/^[a-f0-9]{20}$/);assert(html.includes('name="game-version" content="'+version+'"'));for(const m of [...modules,{output:'style.css'}])assert(html.includes(m.output+'?v='+hash(path.join(root,'dist',m.output)).slice(0,16)))});
