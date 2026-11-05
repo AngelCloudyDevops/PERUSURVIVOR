@@ -1603,6 +1603,7 @@ body.ref-items-right:not(.menu) #dota-inventory{left:auto!important;right:18px!i
 #account-dialog .account-remember input{appearance:auto;width:17px;min-height:17px;height:17px;margin:0;box-shadow:none;accent-color:#ffc83d}
 #account-dialog .account-primary{min-height:48px;margin:5px 0 0;border:1px solid #fff0a4;border-radius:10px;background:linear-gradient(#ffd55a,#efa829);color:#172337;box-shadow:0 4px 0 #8c481b;font-weight:900;letter-spacing:.8px}
 #account-dialog .account-link{margin:10px 0 0;color:#dce7ed;text-decoration:underline;text-underline-offset:4px}
+#account-dialog .account-logout{margin-top:18px;background:#512a32;border-color:#d9828f;color:#ffe7e9;box-shadow:0 3px 0 #281319}
 #account-dialog .account-back{margin:8px 0 0;color:#aebfca}
 #account-dialog [role=status]{margin:12px 0 0;padding:10px 12px;border-left:3px solid #ffd357;background:#263646;color:#ffe8a6;border-radius:4px}
 #account-dialog [role=status]:empty{display:none}
@@ -1613,3 +1614,8 @@ body.ref-items-right:not(.menu) #dota-inventory{left:auto!important;right:18px!i
 @keyframes splash-access-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media(max-width:600px){.splash-logo-wrap{width:min(520px,96vw)}#welcome-actions{grid-template-columns:1fr;gap:9px}#welcome-actions #welcome-login,#welcome-actions #lobby-enter,#welcome-actions #welcome-register{grid-column:1}#welcome-actions #welcome-login,#welcome-actions #lobby-enter{min-height:62px}#welcome-continue{font-size:14px}#lobby-splash{padding:16px}#account-dialog{padding:22px 18px;border-radius:14px}#account-dialog h2{font-size:26px}}
 @media(prefers-reduced-motion:reduce){.splash-reel img,.splash-logo-wrap,.splash-stars-wave img,.splash-logo-wrap:after,#welcome-actions{animation:none!important}.splash-gameplay{display:none}.splash-reel img:first-child{opacity:1}}
+
+/* Acceso visible a la cuenta desde la barra principal. */
+#hub-wallet #hub-account{width:auto;max-width:190px;padding:0 12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:800 10px monospace}
+#hub-wallet #hub-account[data-authenticated=true]{border-color:#e2bd62;color:#ffe4a0}
+@media(max-width:760px){#hub-wallet #hub-account{width:34px;padding:0;font-size:0}#hub-wallet #hub-account:before{content:'USR';font:800 8px monospace}}
