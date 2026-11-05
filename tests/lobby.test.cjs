@@ -167,6 +167,8 @@ test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta 
  assert.match(source,/for\(let i=0;i<9;i\+\+\)/);
  assert.match(css,/@keyframes splash-star-letter-wave/);
  assert.match(css,/@keyframes splash-letter-shine/);
+ assert.match(css,/\.lobby-brand-logo\{[^}]*clip-path:inset\(0 0 53% 0\)/);
+ assert.match(css,/\.splash-stars-wave img:nth-child\(1\)\{clip-path:inset\(47%/);
  assert.match(css,/-webkit-mask-image:url\('assets\/branding\/kick-all-stars-peru-logo-v1\.webp'\)/);
  assert.match(css,/-webkit-mask-repeat:no-repeat/);
  assert.match(css,/@keyframes splash-reel-shot/);
