@@ -159,7 +159,11 @@ test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta 
  assert.match(source,/actions\.append\(login,enter,register\)/);
  assert.match(source,/await P\.Account\?\.startup/);
  assert.match(account,/Usuario o nick/);
- assert.match(account,/Sesión segura durante 7 días/);
+ assert.match(account,/Recordar mi usuario en este dispositivo/);
+ assert.match(account,/kick-all-stars-remembered-user/);
+ assert.match(account,/P\.\$\('#account-title'\)\.textContent=register\?'Crear cuenta':recover\?'Recuperar acceso':'Iniciar sesión'/);
+ assert.match(source,/Recupera tu progreso guardado/);
+ assert.match(source,/Empieza ahora en este navegador/);
  assert.match(source,/gallinazo-lima-cinematic-v1\.webp/);
  assert.match(source,/makanaky-los-tres-ultimate-fullart-v1\.webp/);
  assert.match(source,/sideral-domain-fullart-v1\.webp/);
@@ -181,6 +185,8 @@ test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta 
  assert.match(css,/\.splash-gameplay\[data-ready=true\]\{opacity:/);
  assert.match(css,/\.splash-gameplay\{display:none\}/);
  assert.match(css,/#welcome-actions\[hidden\]\{display:none\}/);
+ assert.match(css,/#account-dialog \.account-remember/);
+ assert.match(css,/#account-dialog \[role=status\]:empty\{display:none\}/);
 });
 
 test('Maestría: Sideral separa Renovar del entrenamiento y conserva sus tres disciplinas',()=>{
