@@ -1,5 +1,7 @@
 # Arquitectura
 
+`src/systems/chamelin-prime.js` encapsula torretas, semillas, charcos y territorio de Chamelín Prime. `src/rendering/chamelin-prime-art.js` compone su presentación sin modificar los módulos de Chamelín Trovo.
+
 > Nota de vigencia (2026-10-31): las secciones se escribieron en momentos distintos; donde dicen «18 jugables» o «18 causas» reflejan el roster de entonces. Hoy hay 21 personajes jugables (`src/data/catalog.js:3-11` menos ElZeein, que `shift()` convierte en jefe en `src/data/catalog.js:32`; `src/data/catalog.js:33`; `src/data/powers.js:74-109`; comprobado por `tests/gameplay.test.cjs:12`). Las cuentas opcionales existen (`src/network/account.js`, `backend/accounts.cjs`; ver [Cuentas](ACCOUNTS.md)). Ante contradicción manda el código.
 
 ## Cliente descargable para Windows

@@ -1,5 +1,7 @@
 # Documento de diseño — Kick All Stars Perú
 
+La especificación de Chamelín Prime y su primer gameplay de construcción territorial se mantiene en [CHAMELIN_PRIME.md](CHAMELIN_PRIME.md).
+
 > Nota de vigencia (2026-10-31): hay 21 personajes jugables (`src/data/catalog.js:3-11` menos ElZeein, que `shift()` convierte en jefe en `src/data/catalog.js:32`; `src/data/catalog.js:33`; `src/data/powers.js:74-109`; comprobado por `tests/gameplay.test.cjs:12`). Las menciones a «18 personajes» en secciones de arte o de historial describen el roster de cuando se añadieron. Ante contradicción manda el código. El 2026-10-31 se eliminó una copia duplicada de unas 388 líneas (de «Laboratorio de combate» a «Mundos heredados de los jefes»); se conservó la versión que coincide con el código.
 
 ## Progresión de cartas · implementación inicial
