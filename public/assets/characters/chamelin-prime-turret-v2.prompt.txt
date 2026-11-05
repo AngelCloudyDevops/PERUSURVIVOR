@@ -1,0 +1,4 @@
+Use case: background-extraction
+Asset type: horizontal 6-frame game sprite atlas
+Primary request: Remove the entire white and translucent background from the exact six-frame poop-turret sprite sheet and return genuine transparent alpha everywhere outside the illustrated subjects. Preserve all six designs, their order, proportions, colors, outlines, expressions, shield dome, peanut projectile, damage marks and destroyed puddle.
+Constraints: no white canvas, rectangular cell backgrounds, fog, translucent matte, added objects, text or watermark.
