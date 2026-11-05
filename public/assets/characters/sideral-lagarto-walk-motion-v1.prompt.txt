@@ -1,0 +1,5 @@
+Mode: image generation
+
+Create a transparent production sprite atlas for PerúSurvivor. Exactly 8 isolated full-body frames in a strict 4 columns by 2 rows grid. The same transformed Sideral green cartoon lizard-man in every frame: black headphones, red T-shirt, dark pants, sneakers, strong tail and expressive reptilian face. Show a seamless locomotion cycle: neutral contact, right step, passing pose, left step, then four complementary recovery/contact poses. Preserve identical body volume, proportions, camera, scale and a shared foot baseline. Clean colorful cartoon game art with crisp outlines and soft internal shading, matching the existing Sideral card art. No breath, projectile, glow, smoke, shadow, text, labels, border, scenery or duplicated body parts. Transparent background.
+
+Generated with: built-in imagegen.

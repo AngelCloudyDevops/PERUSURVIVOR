@@ -1197,6 +1197,54 @@
       "outputSha256": "17aaf615637716275229346e014dd7cc8f2985eae9df14c451086902b2467702",
       "rgbaSha256": "78f11c9113a77a2896c81456c5c21815ad6c722c7d479b135f6edd36a8e1f4a2",
       "quality": 88
+    },
+    {
+      "source": "assets/characters/sideral-lagarto-walk-motion-v1.png",
+      "output": "assets/characters/sideral-lagarto-walk-motion-v1.webp",
+      "width": 1776,
+      "height": 888,
+      "originalBytes": 1977842,
+      "optimizedBytes": 449464,
+      "sourceSha256": "400a08b12c72f8942ff23d7b73888ae131697e77a1fa6eeb5fb1d37e4ac49898",
+      "outputSha256": "647d6b0c717d55825e0e791945f778d2dd92b3d266e45891531b829b3191e816",
+      "rgbaSha256": "562283be14104b7cd82d3894cf497122963f37a6393c43e47bf14fae71724826",
+      "quality": 92
+    },
+    {
+      "source": "assets/characters/sideral-lagarto-attacks-motion-v1.png",
+      "output": "assets/characters/sideral-lagarto-attacks-motion-v1.webp",
+      "width": 1776,
+      "height": 888,
+      "originalBytes": 1992852,
+      "optimizedBytes": 427690,
+      "sourceSha256": "6acdebce1d23b4c33787535b0bb774c895b8e5980e898707501172142662fe94",
+      "outputSha256": "f275d9a8a5f6529c54b44696c3281b17149cae62790e7c9b4c16725da5bbf1b1",
+      "rgbaSha256": "38679dbc42e1c8cc525221721fae654d99c324d23a3829ef3a6131f987bb9c37",
+      "quality": 92
+    },
+    {
+      "source": "assets/characters/sideral-lagartitere-q-walk-motion-v1.png",
+      "output": "assets/characters/sideral-lagartitere-q-walk-motion-v1.webp",
+      "width": 1776,
+      "height": 888,
+      "originalBytes": 1900613,
+      "optimizedBytes": 417650,
+      "sourceSha256": "ed02ea6f2b9a88c3f074215b8e6136c7b829d689550ac2462b3cf331f85af74f",
+      "outputSha256": "e5ab4faa4fe150730ecb9860b99c50dda73f27c6a2d8aff0272d51796382439b",
+      "rgbaSha256": "b658acdab8afd1ac61593dc9e2a62d694b429e7697ecfe5e47351f2f8fcd9e17",
+      "quality": 92
+    },
+    {
+      "source": "assets/characters/sideral-lagartitere-q-attacks-motion-v1.png",
+      "output": "assets/characters/sideral-lagartitere-q-attacks-motion-v1.webp",
+      "width": 1776,
+      "height": 888,
+      "originalBytes": 2073755,
+      "optimizedBytes": 471896,
+      "sourceSha256": "19d1ccb7f3af7a11663aa22869386daa5cf53c37f48c3512a55833667cccd943",
+      "outputSha256": "4983ff5dd1a985095057b51dfb506354a292adfe907efbb56d8ea0d007118b98",
+      "rgbaSha256": "1ab68c490482b122c42c32a296eff3c38669cf66af83685da9b64034d3df33a6",
+      "quality": 92
     }
   ],
   "previews": [
@@ -1222,6 +1270,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 185709577,
-  "optimizedBytes": 43585746
+  "originalBytes": 193654639,
+  "optimizedBytes": 45352446
 }

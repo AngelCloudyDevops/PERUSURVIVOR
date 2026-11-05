@@ -1,0 +1,5 @@
+Mode: image generation
+
+Create a transparent production attack atlas for the transformed Lagartítere skin in PerúSurvivor. Exactly 8 isolated full-body frames in a strict 4 columns by 2 rows grid. The same stitched puppet-lizard body in every frame, with cloth/wood materials, seams, button details and lime-green accents. Frames 1-3: Mirada anticipation, focus and release. Frames 4-6: Colazo wind-up, broad tail sweep and recovery. Frames 7-8: Huevo prepare and throw with one small puppet egg. Preserve identical anatomy, body volume, scale, camera and one shared foot baseline. Polished cartoon game art, crisp contours and soft painted shading consistent with Lagartítere. Effects remain separate in the game: no breath, projectile trails, impact burst, haze, floor, shadow, text, labels, border, scenery or extra limbs. Transparent background.
+
+Generated with: built-in imagegen.

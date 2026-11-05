@@ -1,0 +1,5 @@
+Mode: image editing
+
+Using the attached Lagartítere references, create a transparent production sprite atlas with exactly 8 isolated full-body frames in a strict 4 columns by 2 rows grid. Keep the same stitched puppet-lizard transformation in every frame: fabric and wooden toy construction, visible seams, button details, lime-green accents and the established Lagartítere palette. Show a seamless locomotion cycle with alternating planted feet and tail counterbalance. Preserve identical anatomy, body volume, scale, lighting, camera and one shared foot baseline. Polished cartoon game art, crisp outlines and soft painted shading. No breath, attack effects, haze, floor, shadow, text, labels, border, scenery or extra limbs. Transparent background.
+
+Generated and background-cleaned with: built-in imagegen.
