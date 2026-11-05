@@ -35,7 +35,7 @@ test('record ignora duplicados y reinicia con reconexión; status en solitario y
 });
 
 test('Avisos sobre el personaje: cola, un aviso a la vez y sin repetir el mismo texto',()=>{
- const P={state:{elapsed:0,player:{x:0,y:0}},Loot:{message:'',messageTime:0},Motion:{reduced:()=>false}};
+ const P={state:{elapsed:0,player:{x:0,y:0}},Loot:{message:'',messageTime:0},Motion:{reduced:()=>false},Font:{title:px=>px+'px t',text:px=>px+'px s'}};
  vm.runInNewContext(fs.readFileSync('src/rendering/player-status.js','utf8'),{P,Math,WeakMap});
  const ctx={save(){},restore(){},measureText:t=>({width:t.length*7}),strokeText(){},fillText(){}},S=P.PlayerStatus;
  P.Loot.message='A';P.Loot.messageTime=3;S.drawNotices(ctx,{x:0,y:0},0);
