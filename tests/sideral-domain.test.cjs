@@ -22,9 +22,10 @@ test('Sideral: reemplaza el mapa por una habitación física y la serializa en c
  assert(portal.x>b.left&&portal.x<b.right&&portal.y>b.top&&portal.y<b.bottom);assert.equal(P.Combat.cast(),false);assert.equal(p.castUntil,0);
 });
 
-test('Sideral: choque daña, rebota y al terminar restaura coordenadas',()=>{
- const {sim,P,s,p}=setup(),e={x:640,y:90,hp:100,max:100,r:14,speed:0,boss:false,hit:0,attackT:9};P.Attributes.init(e);s.enemies=[e];p.ultimate.charge=100;assert(P.SideralDomain.activate());s.sideralDomain.age=P.SideralDomain.entry;P.SideralDomain.enter(s.sideralDomain);
- const d=s.sideralDomain,b=P.SideralDomain.bounds(d);e.x=b.right-e.r-20;e.sideralFear=.9;e.sideralWallHit={side:'right'};P.SideralDomain.boundary(e,d,.04);
+test('Sideral: choque normal o con miedo daña, rebota y al terminar restaura coordenadas',()=>{
+ const {sim,P,s,p}=setup(),e={x:640,y:90,hp:100,max:100,r:14,speed:0,boss:false,hit:0,attackT:9},normal={x:600,y:110,hp:100,max:100,r:14,speed:0,boss:false,hit:0,attackT:9};P.Attributes.init(e);P.Attributes.init(normal);s.enemies=[e,normal];p.ultimate.charge=100;assert(P.SideralDomain.activate());s.sideralDomain.age=P.SideralDomain.entry;P.SideralDomain.enter(s.sideralDomain);
+ const d=s.sideralDomain,b=P.SideralDomain.bounds(d);normal.sideralFear=0;normal.fearUntil=0;normal.x=b.left+normal.r+20;normal.sideralWallHit={side:'left'};P.SideralDomain.boundary(normal,d,.04);assert.equal(normal.hp,95);assert.equal(normal.domainEdgeHits,1);assert(normal.charge.x>0);
+ e.x=b.right-e.r-20;e.sideralFear=.9;e.sideralWallHit={side:'right'};P.SideralDomain.boundary(e,d,.04);
  assert.equal(e.hp,92);assert.equal(e.domainEdgeHits,1);assert(e.charge.x<0);assert.equal(e._sideralReturnX,640);
  P.SideralDomain.end();assert.equal(s.sideralDomain,null);assert.equal(e.x,640);assert.equal(e._sideralReturnX,undefined);assert.equal(p.x,120);assert.equal(p.y,90);
 });
@@ -72,7 +73,11 @@ test('Sideral dinámico: el servidor cooperativo conserva la presentación solic
 test('Sideral dinámico: conserva construcción, título y accesos de laboratorio',()=>{
  const fs=require('node:fs'),source=fs.readFileSync('src/systems/sideral-domain.js','utf8'),options=fs.readFileSync('src/ui/reference-menus.js','utf8');
  for(const token of ['construction(c,d,time,opacity=1)','dynamicTitle(c,text,x,y,size','dynamicIntro(c,w,h,d)',"'EXPANSIÓN DE DOMINIO'","'HABITACIÓN DEL'","'LAGARTO'",'sideral-domain-dynamic-practice','bench-sideral-presentation','bench-sideral-dynamic',"labToggle.type='checkbox'","P.state.mode==='play'"])assert(source.includes(token),token);
- assert(options.includes("'Presentaciones dinámicas'"));assert(options.includes("'domain-dynamic'"));
+ for(const token of ['ANIMACIONES DE DOMINIO','domain-intro','complete','brief','skip'])assert(options.includes(token),token);
+});
+
+test('Sideral: la introducción se puede saltar y entra inmediatamente a la arena',()=>{
+ const {P,s,p}=setup(),D=P.SideralDomain;p.ultimate.charge=100;assert(D.activate());assert.equal(s.sideralDomain.arena,false);assert(D.skipIntro());assert.equal(s.sideralDomain.arena,true);assert.equal(s.sideralDomain.age,D.entryFor(s.sideralDomain));assert.equal(D.skipIntro(),false);
 });
 
 test('Sideral: la cinemática compone una sola figura sobre una sola habitación',()=>{
