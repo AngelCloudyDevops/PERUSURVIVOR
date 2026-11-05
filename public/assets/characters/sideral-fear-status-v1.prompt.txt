@@ -1,0 +1,6 @@
+Use case: stylized-concept
+Asset type: transparent 8-frame animated status-effect sprite sheet for a 2D game
+Primary request: Create exactly eight fear reaction icons for base Sideral: an organic green reptilian face with lime scales, cream muzzle, restrained purple accents, huge frightened eyes and an open fearful mouth. Animate startled, widening eyes, looking left, looking right, trembling, screaming, squeezing eyes and recovering.
+References: sideral-fear-motion-v3.png for the base character; sideral-passive-frame-v1.png for reptilian identity and palette.
+Composition: exact 4 columns by 2 rows, isolated centered cells at equal scale with transparent gutters.
+Constraints: transparent background; no stitches, fabric, buttons, human body, text, frame or watermark.
