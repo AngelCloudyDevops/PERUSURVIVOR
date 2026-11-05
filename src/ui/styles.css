@@ -1865,7 +1865,7 @@ body #causa-combo .causa-card b{display:none}
  body #weapon-bar{padding:7px}
  body #dota-inventory>.dota-inventory-title{display:none}
  body #combat-dock #dota-inventory{padding:0}
- body #passive-hud{bottom:116px}
+ body #passive-hud{bottom:196px}
  body #passive-hud strong{color:var(--chicha-hueso);font:600 12px/1.2 var(--fuente-texto)}
 }
 

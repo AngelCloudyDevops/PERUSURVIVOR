@@ -84,5 +84,5 @@ test('El HUD mantiene una jerarquía legible en escritorio y móvil',()=>{
  assert.match(css,/#player-stats-drawer\{inset:110px auto 0 0;width:470px;max-width:94vw;padding:206px/);
  assert.match(css,/#combat-dock\{left:226px;right:16px;bottom:12px/);
  assert.match(css,/@media\(max-width:760px\)[\s\S]*#player-stats-drawer\{inset:94px auto 0 0;width:min\(430px,96vw\)/);
- assert.match(terrain,/mw=c\?76:120,mh=c\?52:80,x=c\?w-mw-10:14,y=c\?98:h-98/);
+ assert.match(terrain,/mw=c\?76:190,mh=c\?52:126,x=c\?w-mw-10:18,y=c\?98:h-154/);
 });

@@ -10,6 +10,7 @@
 - El logo «KICK PERÚ · ALL STARS» entregado por el dueño del proyecto sustituye al wordmark pixel en la bienvenida, el título del hub y el menú legado (`public/assets/ui/logo-kick-peru-v1.webp`, 680x340, 78 KB; fondo negro eliminado y recortado). El header conserva el wordmark pixel en línea porque la imagen no se lee a 14–20 px.
 - La bienvenida dice «Sobrevive con tu parásito de la sociedad.».
 - El tope del paquete en `walk-art` sube de 64 a 72 MiB (el receptor acepta 96) porque el paquete ya estaba a 8 KB del límite; el logo se publica a 680 px.
+- El minimapa de escritorio (> 760 px) recupera el tamaño de staging (190x126, abajo a la izquierda) y la pasiva compacta sube a `bottom:196px` para no pisarlo; en móvil sigue compacto (76x52, arriba a la derecha).
 
 # Textos: baneo y dibujitos — 2026-11-02
 - Al perder, la pantalla final dice «¡TE BANEARON DEL DISCORD!» (antes «Se cayó el directo.»).
