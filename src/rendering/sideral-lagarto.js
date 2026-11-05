@@ -10,6 +10,7 @@ P.SideralLagarto={
   fearWalk:{src:'assets/characters/sideral-fear-walk-motion-v3.webp',columns:4,rows:2,cells:[]},
   egg:{src:'assets/characters/sideral-egg-motion-v4.webp',columns:4,rows:2,cells:[]},
   skinEgg:{src:'assets/characters/sideral-lagartitere-egg-motion-v2.webp',columns:4,rows:2,cells:[]},
+  baseMarks:{src:'assets/characters/sideral-base-marks-v1.webp',columns:4,rows:2,cells:[]},
   skinMarks:{src:'assets/characters/sideral-lagartitere-marks-v2.webp',columns:4,rows:2,cells:[]},
   fearStatus:{src:'assets/characters/sideral-fear-status-v1.webp',columns:4,rows:2,cells:[]},
   skinFearStatus:{src:'assets/characters/sideral-lagartitere-fear-status-v1.webp',columns:4,rows:2,cells:[]},
@@ -59,7 +60,7 @@ P.SideralLagarto={
  breathIntervalVisual:.24,
  breathMouthPixels:[[101,56],[104,44],[108,59],[112,65],[108,45],[108,46],[109,51],[108,60]],
  fearFrame(t){if(t<.12)return 0;if(t<.25)return 1;if(t<.38)return 2;if(t<.52)return 3;if(t<.7)return 4;if(t<.84)return 5;if(t<.94)return 6;return 7},
- breathFrame(p){const now=P.state.elapsed||0,start=p.sideralUltimateStarted??now,transform=p.sideralTransform,forming=transform&&now<transform.start+transform.duration;if(forming)return 0;const cycle=Math.max(0,now-start),phase=cycle%this.breathIntervalVisual,step=Math.floor(cycle/this.breathIntervalVisual)%2;if(phase<.045)return 1;if(phase<.09)return 2;if(phase<.135)return 3;if(phase<.205)return 4+step;return 6},
+ breathFrame(p){const now=P.state.elapsed||0,start=p.sideralUltimateStarted??now,transform=p.sideralTransform,forming=transform&&now<transform.start+transform.duration;if(forming)return 0;if(P.SideralKit?.awakened?.(p,now))return p.moving?this.walkCycle[Math.floor((p.walkPhase||0)*.8)%this.walkCycle.length]:0;const cycle=Math.max(0,now-start),phase=cycle%this.breathIntervalVisual,step=Math.floor(cycle/this.breathIntervalVisual)%2;if(phase<.045)return 1;if(phase<.09)return 2;if(phase<.135)return 3;if(phase<.205)return 4+step;return 6},
  breathMouth(p,frame,r=27){const facing=p.facing||1,index=Math.max(0,Math.min(7,frame|0)),point=this.breathMouthPixels[index],sheet=this.sheets.breath,cell=sheet.cells[index];if(cell&&sheet.image){const frameW=sheet.image.width/sheet.columns,frameH=sheet.image.height/sheet.rows,cropX=cell.sx-index%sheet.columns*frameW,cropY=cell.sy-Math.floor(index/sheet.columns)*frameH,scale=r*3.75/cell.h;return{x:p.x+facing*(point[0]-cropX-cell.w*.5)*scale,y:p.y+r*.8+(point[1]-cropY-cell.h)*scale}}const offsets=[[33,-50],[37,-54],[45,-48],[48,-42],[35,-41],[38,-40],[40,-36],[38,-28]],o=offsets[index];return{x:p.x+facing*o[0]*r/27,y:p.y+o[1]*r/27}},
  breathFx(ctx,p,frame){const mouth=this.breathMouth(p,frame),length=310*p.reach,reduced=P.Ambient?.reduced?.matches,phase=reduced?0:P.state.elapsed*18,charge=Math.max(0,Math.min(1,(frame-2)/2));ctx.save();ctx.translate(mouth.x,mouth.y);ctx.rotate(p.sideralBreathAim||0);const gradient=ctx.createLinearGradient(-8,0,length,0);gradient.addColorStop(0,'#fffde0');gradient.addColorStop(.12,'#efff86');gradient.addColorStop(.5,'#8ee84a');gradient.addColorStop(1,'#2f8c2c08');ctx.shadowColor='#b7ff48';ctx.shadowBlur=12+charge*9;ctx.fillStyle=gradient;for(let layer=0;layer<4;layer++){const width=[.22,.16,.1,.045][layer],reach=length*(1-layer*.055),open=Math.min(1,charge+.35);ctx.globalAlpha=[.28,.46,.68,.98][layer]*open;ctx.beginPath();ctx.moveTo(-8,-4+layer);for(let i=1;i<=12;i++){const q=i/12,jitter=reduced?0:Math.sin(phase+i*1.73+layer*1.4)*length*.012;ctx.lineTo(reach*q,jitter-reach*width*Math.sin(q*Math.PI))}for(let i=12;i>=1;i--){const q=i/12,jitter=reduced?0:Math.sin(phase+i*1.73+layer*1.4+1.9)*length*.012;ctx.lineTo(reach*q,jitter+reach*width*Math.sin(q*Math.PI))}ctx.closePath();ctx.fill()}ctx.globalAlpha=.98;ctx.fillStyle='#fffbd0';ctx.beginPath();ctx.ellipse(-2,0,12+charge*3,8+charge*2,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#dfff72';ctx.lineWidth=3;ctx.globalAlpha=.72;for(let i=0;i<3;i++){const q=((phase*.035+i*.31)%1),x=18+q*length*.76,r=5+q*12;ctx.beginPath();ctx.arc(x,0,r,-1.05,1.05);ctx.stroke()}ctx.shadowBlur=0;if(!reduced){for(let i=0;i<16;i++){const q=((phase*.055+i*.067)%1),spread=Math.sin(q*Math.PI)*length*.15,size=2+i%4;ctx.globalAlpha=.45+.45*(1-q);ctx.fillStyle=i%3?'#cfff69':'#fff4a4';ctx.save();ctx.translate(length*q,Math.sin(phase*1.4+i*3.7)*spread);ctx.rotate(phase+i);ctx.fillRect(-size/2,-size/2,size,size);ctx.restore()}ctx.globalAlpha=.32;ctx.strokeStyle='#eaffaa';ctx.lineWidth=1.5;for(let i=0;i<4;i++){const x=40+i*58+Math.sin(phase+i)*12;ctx.beginPath();ctx.arc(x,Math.sin(phase+i*2)*9,13+i*2,-.8,.8);ctx.stroke()}}ctx.restore()},
   actor(ctx,x,y,r,p,attack,flip,preview,base){
@@ -101,6 +102,15 @@ P.SideralLagarto={
     if(!P.SideralKit.active(p)||P.SideralKit.rolling(p))continue;const forming=p.sideralTransform&&P.state.elapsed<p.sideralTransform.start+p.sideralTransform.duration;if(forming)continue;const frame=this.breathFrame(p),activeFrame=frame>=3&&frame<=6;if(activeFrame)(p.skinId==='sideral-lagartitere'?this.puppetBreathFx:this.breathFx).call(this,ctx,p,frame)
   }}
 };
+{
+ const fallbackMark=P.SideralLagarto.instinctMark;
+ P.SideralLagarto.instinctMark=function(ctx,e){
+  const now=P.state.elapsed||0,prey=(e.sideralPreyUntil||0)>now,egg=(e.sideralEggMarkUntil||0)>now,themed=(prey?e.sideralPreySkinId:e.sideralEggMarkSkinId)==='sideral-lagartitere';
+  if(themed||!prey&&!egg||e.hp<=0)return fallbackMark.call(this,ctx,e);
+  const reduced=P.Ambient?.reduced?.matches,r=e.r||12,started=prey?e.sideralPreyFxAt:e.sideralEggMarkFxAt,intro=Math.min(1,Math.max(0,(now-(Number.isFinite(started)?started:now))/.22)),frame=(prey?0:4)+(reduced?2:Math.min(3,Math.floor(Math.max(0,now-(started||now))*9)%4)),pulse=reduced?0:Math.sin(now*8)*2;
+  ctx.save();ctx.globalAlpha=.92;ctx.strokeStyle=prey?'#ffe071':'#cfff79';ctx.shadowColor=prey?'#ff8a24':'#8dff56';ctx.shadowBlur=reduced?4:12;ctx.lineWidth=prey?3:2;ctx.beginPath();ctx.ellipse(e.x,e.y+r*.64,(r+12+pulse)*intro,(5+pulse*.3)*intro,0,0,Math.PI*2);ctx.stroke();ctx.translate(e.x,e.y-r-35);if(!this.sheetSprite(ctx,'baseMarks',0,15,prey?43:46,false,frame,intro,.5)){ctx.restore();return fallbackMark.call(this,ctx,e)}if(prey){ctx.fillStyle='#fff2ad';ctx.font='bold 9px monospace';ctx.textAlign='center';ctx.fillText('PRESA',0,-24)}ctx.restore()
+ }
+}
 P.SideralLagarto.bounceTrails=function(ctx){
  const reduced=P.Ambient?.reduced?.matches;for(const p of [P.state.player,...(P.Coop?.peers||[])])for(const n of p?.sideralEggs||[]){if(!n.tailEgg||n.open)continue;const themed=n.skinId==='sideral-lagartitere',trail=n.trail||[],target=(P.state.enemies||[]).find(e=>P.Combat?.targetKey?.(e)===n.targetKey||e.sideralTargetId===n.targetKey);ctx.save();ctx.globalAlpha=.62;ctx.strokeStyle=themed?'#ef4b45':'#baff66';ctx.shadowColor=themed?'#8bd34f':'#6dff4f';ctx.shadowBlur=reduced?3:10;ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=5;if(trail.length){ctx.beginPath();ctx.moveTo(trail[0].x,trail[0].y);for(const point of trail.slice(1))ctx.lineTo(point.x,point.y);ctx.lineTo(n.x,n.y);ctx.stroke()}if(target){ctx.globalAlpha=.35;ctx.lineWidth=2;ctx.setLineDash(reduced?[]:[6,5]);ctx.beginPath();ctx.moveTo(n.x,n.y);ctx.lineTo(target.x,target.y);ctx.stroke()}ctx.restore()}
 };
@@ -146,6 +156,13 @@ P.SideralLagarto.criticalVignette=function(ctx,w,h){
  ctx.globalAlpha=.36*fade;ctx.fillStyle='#58d64d';const wisps=reduced?4:10;for(let i=0;i<wisps;i++){const side=i&3,q=(i+.5)/wisps,span=edge*(.22+(i%3)*.11),drift=pulse+(i%2?1:-1)*progress*14,x=side===0?drift:side===1?w-span-drift:q*w,y=side===2?drift:side===3?h-span-drift:q*h;ctx.fillRect(Math.round(x),Math.round(y),Math.round(side<2?span:edge*.18),Math.round(side<2?edge*.18:span))}
  ctx.globalAlpha=.82*fade;ctx.strokeStyle='#9cff61';ctx.lineWidth=reduced?3:5;ctx.strokeRect(4,4,w-8,h-8);ctx.globalAlpha=.35*fade;ctx.lineWidth=2;ctx.strokeRect(edge*.32,edge*.32,w-edge*.64,h-edge*.64);ctx.restore()
 };
+{
+ const effect=P.FX.effect;
+ P.FX.effect=function(ctx,e,...args){
+  if(e.kind!=='sideral-awakening-aura')return effect.call(this,ctx,e,...args);
+  const t=Math.max(0,e.life/e.maxLife),q=1-t,reduced=P.Ambient?.reduced?.matches,r=34+q*28;ctx.save();ctx.translate(e.x,e.y);ctx.globalAlpha=t*.72;ctx.strokeStyle=e.skinId==='sideral-lagartitere'?'#ef5b61':'#cfff72';ctx.shadowColor=e.skinId==='sideral-lagartitere'?'#8bd34f':'#5dff4b';ctx.shadowBlur=reduced?4:14;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(0,18,r,r*.32,0,0,Math.PI*2);ctx.stroke();if(!reduced)for(let i=0;i<5;i++){const a=i*1.257+q*3.5,d=20+q*22;ctx.globalAlpha=t*(.35+i*.08);ctx.fillStyle=i%2?'#fff3a2':'#7dff65';ctx.fillRect(Math.cos(a)*d-2,-10+Math.sin(a)*18-q*18,4,7)}ctx.restore()
+ }
+}
 if(P.World){
  const render=P.World.render;
  P.World.render=function(...args){const value=render.apply(this,args);try{P.SideralLagarto.criticalVignette(P.Core.ctx,P.Core.width,P.Core.height)}catch{}return value}
@@ -157,6 +174,7 @@ P.SideralLagarto.loadSheet('fear');
 P.SideralLagarto.loadSheet('fearWalk');
 P.SideralLagarto.loadSheet('egg');
 P.SideralLagarto.loadSheet('skinEgg');
+P.SideralLagarto.loadSheet('baseMarks');
 P.SideralLagarto.loadSheet('skinMarks');
 P.SideralLagarto.loadSheet('fearStatus');
 P.SideralLagarto.loadSheet('skinFearStatus');
