@@ -159,7 +159,13 @@ test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta 
  assert.match(source,/await P\.Account\?\.startup/);
  assert.match(account,/Usuario o nick/);
  assert.match(account,/Sesión segura durante 7 días/);
- assert.match(css,/@keyframes splash-stars-pop/);
- assert.match(css,/@keyframes splash-logo-shine/);
+ assert.match(source,/gallinazo-lima-cinematic-v1\.webp/);
+ assert.match(source,/makanaky-los-tres-ultimate-fullart-v1\.webp/);
+ assert.match(source,/sideral-domain-fullart-v1\.webp/);
+ assert.doesNotMatch(source,/Tu cuenta conserva el progreso/);
+ assert.match(css,/@keyframes splash-stars-breathe/);
+ assert.match(css,/@keyframes splash-letter-shine/);
+ assert.match(css,/-webkit-mask:url\('assets\/branding\/kick-all-stars-peru-logo-v1\.webp'\)/);
+ assert.match(css,/@keyframes splash-reel-shot/);
  assert.match(css,/#welcome-actions\[hidden\]\{display:none\}/);
 });
