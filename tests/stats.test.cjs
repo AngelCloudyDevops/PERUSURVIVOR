@@ -63,3 +63,26 @@ test('Todas las Q y R registradas por módulos tardíos conservan ficha técnica
   assert(entry.details?.length>=3,`${id}: falta ficha técnica`);
  }
 });
+
+test('La ficha lateral usa stats efectivos, se mantiene abierta con Tab y no pausa el combate',()=>{
+ const source=fs.readFileSync('src/ui/player-stats-drawer.js','utf8'),modules=fs.readFileSync('scripts/modules.cjs','utf8'),css=fs.readFileSync('src/ui/styles.css','utf8');
+ assert(source.includes("event.code!=='Tab'"));
+ assert(source.includes("addEventListener('keyup'"));
+ assert(source.includes('P.Evolutions?.attack?.(p)'));
+ assert(source.includes('P.Stats.channelRows(p)'));
+ assert(source.includes('P.Stats.advancedRows(p)'));
+ assert(!source.includes("P.state.mode='pause'"));
+ assert(modules.includes('src/ui/player-stats-drawer.js'));
+ assert(css.includes('body.stats-drawer-open #player-stats-drawer'));
+ assert(css.includes('#player-stats-toggle:not([hidden])'));
+});
+
+test('El HUD mantiene una jerarquía legible en escritorio y móvil',()=>{
+ const css=fs.readFileSync('src/ui/styles.css','utf8'),terrain=fs.readFileSync('src/systems/terrain.js','utf8');
+ assert(css.includes('/* HUD legible: una jerarquía estable'));
+ assert.match(css,/@media\(min-width:1101px\)[\s\S]*#hud-vitals\{left:18px;top:18px;width:320px/);
+ assert.match(css,/#player-stats-drawer\{inset:110px auto 0 0;width:470px;max-width:94vw;padding:206px/);
+ assert.match(css,/#combat-dock\{left:226px;right:16px;bottom:12px/);
+ assert.match(css,/@media\(max-width:760px\)[\s\S]*#player-stats-drawer\{inset:94px auto 0 0;width:min\(430px,96vw\)/);
+ assert.match(terrain,/mw=c\?76:120,mh=c\?52:80,x=c\?w-mw-10:14,y=c\?98:h-98/);
+});

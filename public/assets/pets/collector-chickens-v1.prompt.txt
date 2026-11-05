@@ -1,0 +1,15 @@
+Generado con la herramienta integrada de ImageGen.
+
+Atlas transparente de mascotas recolectoras originales para un juego survival arcade.
+Cuadrícula 6x3: gallinita común sin mochila, gallinita rara con mochila andina y
+gallinita legendaria con arnés de cohetes. Seis poses completas por fila: dos de
+reposo, dos de desplazamiento, recogida y entrega. Vista lateral tres cuartos,
+ancla de pies estable, ropa y accesorios integrados, dibujo cartoon suave y
+legible a 70–90 px. Sin texto, bordes, fondo, logos ni extremidades recortadas.
+
+Las dos imágenes facilitadas por el usuario se usaron únicamente como referencia
+de la idea de una gallina mensajera y una evolución con propulsores.
+
+Pasada de limpieza: conservar exactamente personajes, equipo, poses y cuadrícula;
+eliminar manchas, halos y fragmentos de fondo, dejando transparente todo el espacio
+entre figuras sin añadir texto, guías, objetos ni extremidades.

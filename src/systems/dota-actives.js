@@ -13,7 +13,7 @@
   'glimmer-cape':[20,'Escudo especial individual: 6% de vida · 3 s','−9% daño especial recibido. Activa: escudo solo contra daño especial de 6% de vida máxima durante 3 s. Apunta al compañero cercano para protegerlo; si no, te protege a ti. Recarga 20 s.'],
   'pipe-insight':[25,'Escudo especial de grupo: 6% de vida · 4 s','−12% daño especial recibido. Activa: escudo solo contra daño especial de 6% de vida máxima durante 4 s para aliados a 180 u. Escudos especiales de equipo no se suman. Recarga 25 s.'],
   'black-king-bar':[35,'Limpia lentitud; −20% daño especial · 4 s','−9% daño especial recibido. Activa: limpia ralentizaciones, reduce 50% su duración y 20% adicional de daño especial durante 4 s. No anula mecánicas de jefes. Recarga 35 s.'],
-  'hand-midas':[45,'Convierte un enemigo normal en 8 monedas','+10% monedas sueltas. Activa: convierte un enemigo normal a 240 u en 8 monedas de partida. Excluye élites, jefes e invocaciones. Recarga 45 s.'],
+  'hand-midas':[45,'Convierte un enemigo normal en 8 monedas','+10% monedas sueltas. Activa: consume un enemigo normal a 240 u y esparce 8 monedas para recoger. Excluye élites, jefes e invocaciones. Recarga 45 s.'],
   'abyssal-blade':[20,'Golpe físico + aturde 0,55 s','Activa: golpe físico de 25% de potencia y aturde 0,55 s a un enemigo a 180 u. Jefes: solo lentitud de 10% durante 0,5 s, fuera de sus transiciones. Recarga 20 s.'],
   mjollnir:[25,'Aura: rayos especiales al perder vida · 4 s','Cada 6 impactos: cadena de 4 blancos (25% de potencia). Activa: aura eléctrica durante 4 s; al perder vida lanza rayos especiales a hasta 3 enemigos cercanos, máx. una descarga/s. Recarga 25 s.']
  };
@@ -54,7 +54,7 @@
     case 'glimmer-cape':{const ally=this.target(p,aim,180,()=>true,this.allies())||p;if(!this.specialShield(ally,.06,3))return false;break}
     case 'pipe-insight':{used=false;for(const q of this.allies())if(q.hp>0&&Math.hypot(q.x-p.x,q.y-p.y)<=180)used=this.specialShield(q,.06,4)||used;break}
     case 'black-king-bar':r.bkbUntil=now+4;r.controlSeen={};for(const k of this.slowFields)p[k]=now;break;
-    case 'hand-midas':{const e=this.target(p,aim,240,e=>!e.boss&&!e.mapBoss&&!e.miniboss&&!e.heavy&&!e.elite&&!(e.evolution>0)&&!e.summoned&&!e.vultureMinion&&!e.mimic&&!e.practiceBoss);if(!e||(P.state.practice||P.state.devRun)&&!P.TestBench?.equipmentAllowed?.())return false;this.secondary(p,e,Math.max(1,e.hp)*1000,'physical',true);if(e.hp>0)return false;P.state.coins=(P.state.coins||0)+8;P.Loot.notify('+8 monedas');break}
+    case 'hand-midas':{const e=this.target(p,aim,240,e=>!e.boss&&!e.mapBoss&&!e.miniboss&&!e.heavy&&!e.elite&&!(e.evolution>0)&&!e.summoned&&!e.vultureMinion&&!e.mimic&&!e.practiceBoss);if(!e||(P.state.practice||P.state.devRun)&&!P.TestBench?.equipmentAllowed?.())return false;this.secondary(p,e,Math.max(1,e.hp)*1000,'physical',true);if(e.hp>0)return false;P.Loot.scatterCurrency(e,8,8,{midasCoin:true});P.Loot.notify('Midas: 8 monedas en el suelo');break}
     case 'abyssal-blade':{const e=this.target(p,aim,180);if(!e)return false;if(e.boss||e.mapBoss||e.miniboss){if(P.BossHealth.transitioning(e)||['mini-entry','mini-fury','mini-shutdown'].includes(e.phase))return false;e.makanakySlow=.1;e.makanakySlowUntil=Math.max(e.makanakySlowUntil||0,now+.5)}else e.makanakyStunUntil=Math.max(e.makanakyStunUntil||0,now+P.Stats.statusDuration(e,.55));this.secondary(p,e,p.power*.25,'physical');break}
     case 'mjollnir':r.lightningUntil=now+4;break;
     default:return false;

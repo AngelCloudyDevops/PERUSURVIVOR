@@ -1,0 +1,6 @@
+Use case: stylized-concept
+Asset type: production-ready 6 columns by 4 rows character animation sprite atlas for a browser survivor game, exactly 24 isolated full-body frames on a genuine transparent background.
+Input image: captive-companion-v1.png as the identity and style reference. Preserve the same adult male character, long messy black hair, expressive face, ragged charcoal poncho and shorts, brown shoes, clean dark outlines, polished cartoon cel shading and body proportions.
+Rows: three tied captive squirm frames plus three rope-breaking liberation frames; six seamless companion walk-cycle frames; three cyan Hadoken frames plus three purple Hadoken/vortex frames; two three-ticket reward frames, three stealthy tiptoe frames and one ninja-smoke frame.
+Composition: exact 6x4 atlas, uniform cells, same character scale and ground line, full body in every cell, strong anticipation/contact/recovery, feet and arms changing clearly during locomotion.
+Constraints: genuine alpha transparency, no text, no HELP letters, no grid, no borders, no scenery, no watermark, no cropped limbs, exactly 24 frames and exactly three tickets in the reward poses.

@@ -104,7 +104,7 @@ Cada ataque emitido suma como máximo un impacto al contador, aunque tenga vario
 
 | ID | Objeto | Rareza | Efecto implementado | Evolución |
 |---|---|---|---|---|
-| `hand-midas` | Hand of Midas | Épica | Pasivo: +10% monedas sueltas, acumulando fracciones. Activo: convierte un enemigo normal a 240 u en 8 monedas de partida; recarga 45 s. Sin experiencia adicional por contadores. | Familia Economía independiente. Sin evolución inicial. |
+| `hand-midas` | Hand of Midas | Épica | Pasivo: +10% monedas sueltas, acumulando fracciones. Activo: consume un enemigo normal a 240 u y esparce 8 monedas físicas para recoger; recarga 45 s. Sin experiencia adicional por contadores. | Familia Economía independiente. Sin evolución inicial. |
 
 No aumenta premios de cofres, ventas, eventos, compras ni monedas permanentes. En cooperativo, el bonus usa solo las monedas recogidas por el portador; dos Midas no multiplican el mismo premio. No paga por cajas, invocaciones ni enemigos recreados para pruebas.
 
