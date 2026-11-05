@@ -1,0 +1,7 @@
+Use case: stylized-concept
+Asset type: transparent 4-by-2 sprite sheet for an in-game status icon
+Input references: sideral-lagartitere-marks-v2.png defines the exact status-mark style and layout; sideral-lagartitere-motion-v1.png defines the skin identity.
+Primary request: create eight animation frames of a FEAR status icon exclusive to the Lagartítere skin. The icon is a small terrified green reptile puppet face with visible red stitches, cream eyes opened wide, trembling expression and a tiny fearful open mouth.
+Composition: one evenly spaced 4 columns by 2 rows atlas, exactly one complete centered icon per cell, consistent scale and anchor, generous transparent padding and no overlap.
+Animation: startled, eyes widen, tremble left, tremble right, panic peak, recoil, frightened blink, settle while still afraid.
+Constraints: true transparent background; glossy cartoon rendering; heavy dark outline; red, cream and green palette; readable at about 32 pixels tall; no text, egg, target reticle, human face, full character, watermark or neighboring-cell shadows.
