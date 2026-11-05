@@ -2,6 +2,8 @@
 const crypto=require('node:crypto');
 const MAX_TRACK_SIZE=50*1024*1024,MAX_TRACKS=20,MAX_LIBRARY_SIZE=500*1024*1024;
 const TYPES=new Set(['audio/mpeg','audio/ogg','audio/wav','audio/webm','audio/mp4','audio/aac','audio/flac','audio/x-flac']);
+const MAP_IDS=new Set(['campo','plaza','machu','halloween','navidad','ruta-chosicano','distrito-gabinete','santuario-niebla','azoteas-lima','archivo-final']);
+const BUILTIN_CHOICES=new Set(['original','tema1','tema2','alternate','none']);
 function createMusic({db,reply,now=Date.now,bodyTimeout=60000}={}){
  db.exec(`CREATE TABLE IF NOT EXISTS music_tracks(
   id TEXT PRIMARY KEY,
@@ -12,7 +14,18 @@ function createMusic({db,reply,now=Date.now,bodyTimeout=60000}={}){
   uploader_id TEXT NOT NULL REFERENCES users(id),
   created_at INTEGER NOT NULL
  );`);
+ db.exec(`CREATE TABLE IF NOT EXISTS music_map_policies(
+  map_id TEXT PRIMARY KEY,
+  default_choice TEXT NOT NULL,
+  allowed_choices TEXT NOT NULL,
+  allow_player_choice INTEGER NOT NULL CHECK(allow_player_choice IN (0,1)),
+  updated_at INTEGER NOT NULL
+ );`);
  const metadata=row=>({id:row.id,title:row.title,type:row.content_type,size:row.size,createdAt:row.created_at});
+ const choiceExists=choice=>BUILTIN_CHOICES.has(choice)||/^server:[a-f0-9-]{36}$/i.test(choice)&&!!db.prepare('SELECT 1 FROM music_tracks WHERE id=?').get(choice.slice(7));
+ const normalizeChoices=choices=>[...new Set((Array.isArray(choices)?choices:[]).map(String).filter(choiceExists))].slice(0,25);
+ const policy=row=>{if(!row)return null;let allowed=[];try{allowed=normalizeChoices(JSON.parse(row.allowed_choices))}catch{}if(!allowed.length)allowed=['original','tema1','tema2','alternate','none'];const fallback=allowed.includes(row.default_choice)?row.default_choice:allowed[0];return {mapId:row.map_id,defaultChoice:fallback,allowedChoices:allowed,allowPlayerChoice:!!row.allow_player_choice,updatedAt:row.updated_at}};
+ const policies=()=>db.prepare('SELECT * FROM music_map_policies ORDER BY map_id').all().map(policy);
  const canManage=user=>!!user&&(user.role==='admin'||!!user.entitlements?.music);
  function json(res,status,data){reply(res,status,data)}
  function requireManager(req,res,user){if(!user){json(res,401,{error:'Inicia sesión para gestionar la música'});return false}if(req.headers['x-account-id']!==user.id){json(res,409,{error:'La sesión cambió en otra pestaña. Recarga antes de continuar.'});return false}if(!canManage(user)){json(res,403,{error:'Tu cuenta no tiene permiso para gestionar música'});return false}return true}
@@ -22,10 +35,20 @@ function createMusic({db,reply,now=Date.now,bodyTimeout=60000}={}){
   try{for await(const chunk of req){size+=chunk.length;if(size>MAX_TRACK_SIZE)throw Object.assign(Error('La pista supera 50 MB'),{status:413});chunks.push(chunk)}}finally{clearTimeout(timer)}
   if(!size)throw Object.assign(Error('La pista está vacía'),{status:400});return Buffer.concat(chunks,size)
  }
+ async function readJson(req){
+  const chunks=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>65536)throw Object.assign(Error('Configuración demasiado grande'),{status:413});chunks.push(chunk)}
+  try{return JSON.parse(Buffer.concat(chunks,size).toString('utf8')||'{}')}catch{throw Object.assign(Error('Configuración inválida'),{status:400})}
+ }
  async function handle(req,res,user,url){
   const route=url.pathname;
   if(route==='/api/music'&&req.method==='GET'){
-   const rows=db.prepare('SELECT id,title,content_type,size,created_at FROM music_tracks ORDER BY created_at DESC,id DESC').all();json(res,200,{tracks:rows.map(metadata),canManage:canManage(user),limit:MAX_TRACK_SIZE});return;
+   const rows=db.prepare('SELECT id,title,content_type,size,created_at FROM music_tracks ORDER BY created_at DESC,id DESC').all();json(res,200,{tracks:rows.map(metadata),policies:policies(),canManage:canManage(user),limit:MAX_TRACK_SIZE});return;
+  }
+  const policyMatch=route.match(/^\/api\/music\/policy\/([a-z0-9-]+)$/i);
+  if(policyMatch&&req.method==='PUT'){
+   if(!requireManager(req,res,user))return;const mapId=policyMatch[1].toLowerCase();if(!MAP_IDS.has(mapId)){json(res,400,{error:'Mapa no reconocido'});return}
+   const body=await readJson(req),allowed=normalizeChoices(body.allowedChoices);if(!allowed.length){json(res,400,{error:'Elige al menos un tema permitido'});return}const defaultChoice=String(body.defaultChoice||'');if(!allowed.includes(defaultChoice)){json(res,400,{error:'El tema predeterminado debe estar permitido'});return}
+   const updatedAt=now();db.prepare(`INSERT INTO music_map_policies(map_id,default_choice,allowed_choices,allow_player_choice,updated_at) VALUES(?,?,?,?,?) ON CONFLICT(map_id) DO UPDATE SET default_choice=excluded.default_choice,allowed_choices=excluded.allowed_choices,allow_player_choice=excluded.allow_player_choice,updated_at=excluded.updated_at`).run(mapId,defaultChoice,JSON.stringify(allowed),body.allowPlayerChoice?1:0,updatedAt);json(res,200,{policy:policy(db.prepare('SELECT * FROM music_map_policies WHERE map_id=?').get(mapId))});return;
   }
   const match=route.match(/^\/api\/music\/([a-f0-9-]{36})(?:\/file)?$/i);
   if(match&&req.method==='GET'&&route.endsWith('/file')){
@@ -46,7 +69,7 @@ function createMusic({db,reply,now=Date.now,bodyTimeout=60000}={}){
    const changed=db.prepare('UPDATE music_tracks SET title=? WHERE id=?').run(title,match[1]);if(!changed.changes){json(res,404,{error:'Pista no encontrada'});return}const row=db.prepare('SELECT id,title,content_type,size,created_at FROM music_tracks WHERE id=?').get(match[1]);json(res,200,{track:metadata(row)});return;
   }
   if(match&&req.method==='DELETE'&&!route.endsWith('/file')){
-   if(!requireManager(req,res,user))return;const removed=db.prepare('DELETE FROM music_tracks WHERE id=?').run(match[1]);if(!removed.changes){json(res,404,{error:'Pista no encontrada'});return}json(res,200,{ok:true});return;
+   if(!requireManager(req,res,user))return;const removed=db.prepare('DELETE FROM music_tracks WHERE id=?').run(match[1]);if(!removed.changes){json(res,404,{error:'Pista no encontrada'});return}const removedChoice='server:'+match[1];for(const row of db.prepare('SELECT * FROM music_map_policies').all()){const current=policy(row),allowed=current.allowedChoices.filter(choice=>choice!==removedChoice);if(!allowed.length)allowed.push('alternate');const fallback=allowed.includes(current.defaultChoice)?current.defaultChoice:allowed[0];db.prepare('UPDATE music_map_policies SET default_choice=?,allowed_choices=?,updated_at=? WHERE map_id=?').run(fallback,JSON.stringify(allowed),now(),row.map_id)}json(res,200,{ok:true});return;
   }
   json(res,404,{error:'Ruta no encontrada'});
  }
