@@ -17,9 +17,15 @@ class WorkflowLockTest(unittest.TestCase):
             self.assertEqual(values.get('cancel-in-progress'), 'false', name)
             self.assertEqual(values.get('queue'), 'max', name)
             locks.append(values.get('group'))
-        self.assertIn("perusurvivor-production", locks[0])
-        self.assertIn("perusurvivor-staging", locks[0])
-        self.assertEqual(locks[1], 'perusurvivor-production')
+        self.assertEqual(locks, ['perusurvivor-production', 'perusurvivor-production'])
+
+    def test_public_staging_test_pins_the_expected_release(self):
+        root = Path(__file__).resolve().parents[2]
+        text = (root / '.github/workflows/cooperative-e2e.yml').read_text(encoding='utf-8')
+        self.assertIn('options: [production, staging]', text)
+        self.assertIn('https://staging.perusurvivor.michitech.tech', text)
+        self.assertIn('data.git_sha !== process.env.EXPECTED_RELEASE', text)
+        self.assertIn('fetch(process.env.COOP_URL+', text)
 
     def test_private_backend_route_is_part_of_installer(self):
         root = Path(__file__).resolve().parents[2]
@@ -30,9 +36,22 @@ class WorkflowLockTest(unittest.TestCase):
         root = Path(__file__).resolve().parents[2]
         build = (root / 'scripts' / 'build.cjs').read_text(encoding='utf-8')
         updater = (root / 'ops' / 'hostinger' / 'update-release.py').read_text(encoding='utf-8')
-        self.assertIn("['receive.py','update-release.py','install-staging.py']", build)
+        self.assertIn("['receive.py','update-release.py','install-staging.py','install-turn.py']", build)
         self.assertIn("release.is_relative_to(releases)", updater)
         self.assertIn("location ^~ /backend/ { return 404; }", updater)
+
+    def test_turn_installer_keeps_secret_private_and_relay_bounded(self):
+        root = Path(__file__).resolve().parents[2]
+        installer = (root / 'ops' / 'hostinger' / 'install-turn.py').read_text(encoding='utf-8')
+        self.assertIn("secret_file.chmod(0o600)", installer)
+        self.assertIn("env_file.chmod(0o600)", installer)
+        self.assertIn("min-port=49160", installer)
+        self.assertIn("max-port=49200", installer)
+        self.assertIn("relay-ip={address}", installer)
+        self.assertIn("cap_add: [NET_BIND_SERVICE]", installer)
+        self.assertIn("os.chown(config, 65534, 65533)", installer)
+        self.assertIn("denied-peer-ip=192.168.0.0-192.168.255.255", installer)
+        self.assertIn("coturn/coturn:4.18.0-r0-alpine", installer)
 
     def test_nginx_forwards_real_client_ip(self):
         root = Path(__file__).resolve().parents[2]

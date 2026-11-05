@@ -6,6 +6,43 @@
 - HUD de partida: barra de vida rosa y de XP cian segmentadas, reloj grande, contadores con icono y paneles de pasiva, combo, objetos y ataques planos con franja de color.
 - Modal de mejora, pantalla final, botín, vendedor, Opciones, diálogos y barra de jefe con el mismo sistema; los deslizadores de Opciones muestran su valor y «Silenciar todo» pasa a botón secundario.
 
+# Daño legible, críticos diferenciados y DPS — 2026-11-02
+- Los números normales ganan tamaño, peso y contorno oscuro; el daño físico permanece dorado y el especial usa cian.
+- Los críticos muestran `CRÍT.`, crecen y cambian a rojo coral o magenta según su tipo, con una etiqueta física/especial.
+- El panel opcional de FPS y ping incorpora DPS móvil de 2 segundos y el pico de la partida usando daño efectivo, sin contar sobre-daño.
+
+# Campanillas de experiencia a volumen 120 — 2026-11-02
+- La campanilla parte en 0,09 y alcanza un máximo estricto de 0,12 al subir la escala, quedando por encima de la mezcla musical sin cambiar otros efectos.
+- El intervalo mínimo entre sonidos y el límite de voces siguen activos para impedir saturación al absorber grupos grandes.
+
+# Mayor presencia para las campanillas de experiencia — 2026-11-02
+- La fundamental de las gemas sube aproximadamente 75 % y el armónico gana presencia, sin modificar el volumen de los demás efectos.
+- El límite máximo se mantiene en 0,06 para evitar distorsión cuando muchas gemas entran al imán a la vez.
+
+# Gemas de experiencia compactas y campanillas ascendentes — 2026-11-02
+- Las gemas de experiencia se dibujan 16 % más pequeñas y con un resplandor más contenido, sin reducir su alcance de imán ni su área de recogida.
+- Cada recogida encadenada avanza por una escala pentatónica aguda con timbre de campanilla; la escala se reinicia tras medio segundo sin recoger experiencia.
+- El sonido conserva un límite de frecuencia y de voces para que una acumulación de gemas no tape la música ni sature el audio.
+
+# Huevo caricaturesco y defensa física de Sideral — 2026-11-02
+- El huevo de la Q usa un atlas caricaturesco de contornos suaves, volumen redondeado y ocho cuadros de rodamiento, impacto y rotura; deja atrás el acabado pixelado por bloques.
+- Durante los cuatro segundos de huevo rodante, Sideral se mueve 25 % más rápido y bloquea todo daño físico. El daño especial continúa entrando y el beneficio termina antes de la eclosión.
+- La carta Q y la documentación explican la nueva defensa; el bloqueo muestra «CASCARÓN» sin conceder invulnerabilidad general.
+
+# Identidad base restaurada en Mirada Sideral — 2026-11-02
+- Los atlas de Mirada quieta y caminando vuelven al modelo visual exacto de `sideral-ur-v1`: rostro sin barba, proporciones redondeadas, mismo cabello, gafas, ropa, zapatillas y lata.
+- Se conservan la nitidez, los ocho cuadros y el movimiento de piernas de la remasterización; no cambia ninguna regla de combate.
+
+# Remaster pixel art de Mirada y Huevo de Sideral — 2026-11-02
+- Mirada Sideral reemplaza sus dos atlas borrosos por figuras completas de alta definición pixelada, tanto quieto como caminando, con ocho cuadros compatibles con el gesto existente.
+- Huevo sospechoso y la entrada de la Q usan un huevo redibujado con contorno oscuro, manchas legibles y cuadros propios de giro, impacto, rotura y apertura.
+- Los recursos anteriores se conservan como historial; no cambian daño, tiempos, alcance, colisiones ni balance.
+
+# Nitidez de los ataques de Sideral — 2026-11-02
+- Mirada, huevo, transformación y Lagarto desactivan el suavizado de imagen y dibujan sus cuadros en coordenadas y dimensiones enteras.
+- El cambio conserva tamaño, animación, daño y colisiones; evita que los sprites pierdan el borde pixel-art al atacar o al cambiar el zoom.
+- Una prueba de render impide reactivar accidentalmente el suavizado en estas figuras.
+
 # Interfaz: legibilidad, HUD móvil y accesibilidad — 2026-11-01
 - HUD en móvil (≤760 px): vitales, monedas, etapa, pasiva, combo, cartas Q/R, objetos y ataques ya no se pisan y el centro queda libre; el minimapa pasa arriba a la derecha en tamaño compacto y en pantallas táctiles se oculta «Teclas 1-3».
 - El modal de mejora y la pantalla final quedan por encima del dock de objetos y ataques.

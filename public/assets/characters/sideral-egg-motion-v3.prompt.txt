@@ -1,0 +1,3 @@
+Mode: image editing with transparent background, using sideral-egg-motion-v2.png as the animation reference.
+
+Remaster the cream reptile egg with irregular dark green spots as exactly eight isolated frames in a strict 4 columns by 2 rows sprite sheet. Frames 1-4 rotate and roll the intact egg; frame 5 is airborne and tilted; frame 6 is squashed on impact; frame 7 is heavily cracked with fragments; frame 8 is an open empty shell. Use a strong dark pixel outline, deliberate square pixel clusters, limited cream/green palette and hard-edged shading. Identical scale, center, baseline and transparent gutters. No blur, soft shading, painterly or photographic texture, gradients, antialiasing, creature, text, grid or background.
