@@ -6,6 +6,10 @@
 **Ante una contradicción entre estos documentos y el código, manda el código** (`src/`,
 `backend/`, `tests/`). Varios informes son históricos: lo indican con un aviso al inicio.
 
+## Progresión de cartas
+
+La [Guía de progresión de cartas](diseno/GUIA_PROGRESION_CARTAS.md) recoge las reglas de la implementación inicial, las recetas, el estado de publicación y los criterios de balance. Conserva también la base anterior de la conversación para distinguir decisiones de propuestas históricas.
+
 ## Carpetas
 
 | Carpeta | Qué contiene | Para quién |

@@ -1,0 +1,3 @@
+Mode: image editing with transparent background, using sideral-fear-walk-motion-v1.png and sideral-fear-motion-v2.png as references.
+
+Create the moving version of Sideral's remastered fear attack as exactly eight complete full-body frames in a strict 4 columns by 2 rows sprite sheet. Preserve the sunglasses gesture while alternating left/right foot contact, passing pose, weight shift and opposite arm movement so the actor walks rather than slides. Keep the same black spiky hair, beard, sunglasses, black shirt, jeans, sneakers and red can in every frame. True crisp pixel art with hard outlines, square clusters and hard-edged shading. Transparent gutters, common baseline, no crossed cells, blur, soft focus, broken limbs, text, grid or background.

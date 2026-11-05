@@ -1,0 +1,22 @@
+# Mascotas recolectoras
+
+Las mascotas son equipo permanente que se elige antes de una partida individual. Ocupan un espacio propio y no reducen los tres espacios de suministros. Nunca colisionan, reciben daño, atacan, abren cofres ni escogen recompensas.
+
+| Rareza | Mascota | Capacidad | Alcance | Velocidad | Recoge |
+| --- | --- | ---: | ---: | ---: | --- |
+| Común | Gallinita recolectora | 4 | 450 | 270 | Experiencia |
+| Rara | Gallinita mochilera | 8 | 700 | 360 | Experiencia y monedas |
+| Legendaria | Gallinita cohete | 12 | 1000 | 540 | Experiencia, monedas, llaves, imanes, curación y panetones |
+
+La común está incluida para todas las cuentas. La rara cuesta 180 monedas permanentes y exige la común; la legendaria cuesta 400 y exige la rara. Una compra desbloquea la mascota para siempre.
+
+## Ciclo de recolección
+
+1. Busca botín permitido dentro de su alcance respecto del jugador.
+2. Viaja físicamente y guarda objetos hasta llenar su capacidad o quedarse sin objetivos.
+3. Regresa al jugador y entrega el lote completo.
+4. Descansa 0,8 / 0,6 / 0,4 segundos según su rareza.
+
+La experiencia se suma únicamente al regresar. La legendaria prioriza llaves, curación necesaria, imanes, monedas y finalmente experiencia. No toma panetones con 70 % o más de vida ni curación con la vida completa.
+
+El atlas `public/assets/pets/collector-chickens-v1.webp` contiene 18 cuadros, seis por rareza. El PNG maestro y el prompt reproducible permanecen en el repositorio, pero el build distribuye únicamente el WebP optimizado.

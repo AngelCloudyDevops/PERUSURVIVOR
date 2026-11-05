@@ -1,0 +1,12 @@
+{
+  "id": "burla-entiendes-v1",
+  "source": "asd.mp4",
+  "runtime": "public/assets/video/burla-entiendes-v1.mp4",
+  "container": "MP4",
+  "width": 720,
+  "height": 1280,
+  "durationSeconds": 8.383,
+  "bytes": 1046984,
+  "sha256": "ca3cb03b8e0bf77b9b1737cffc3ed2875f45258d34df94be826414380858cf36",
+  "note": "Video aportado por el usuario. Una sola instancia, carga diferida, reproducción no repetida y tamaño limitado sobre el actor."
+}
