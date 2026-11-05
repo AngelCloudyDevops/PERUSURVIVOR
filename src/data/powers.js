@@ -36,7 +36,7 @@ identities:{
 // existe en combate; los conceptos planeados no habilitan teclas ni cartas.
 weaponKits:{
  kingteka:[
-  {id:'shotgun',name:'Escopeta causa',damageType:'physical',status:'implemented'},
+  {id:'shotgun',name:'Escopeta dibujo',damageType:'physical',status:'implemented'},
   {id:'gallinazo',name:'Gallinazo',damageType:'special',status:'implemented'},
   {id:'golpe',name:'Golpe de cuerpo',damageType:'physical',status:'implemented'}
  ],

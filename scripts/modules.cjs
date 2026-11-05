@@ -9,6 +9,7 @@ module.exports = [
   },
   {"source":"src/systems/character-skins.js","output":"js/character-skins.js"},
   {"source":"src/data/attributes.js","output":"js/attributes.js"},
+  {"source":"src/data/fonts.js","output":"js/fonts.js"},
   {"source":"src/data/stats.js","output":"js/stats.js"},
   {"source":"src/data/enemy-contract.js","output":"js/enemy-contract.js"},
   {"source":"src/data/character-contract.js","output":"js/character-contract.js"},
@@ -466,4 +467,8 @@ module.exports = [
 ,{source:"src/ui/player-stats-drawer.js",output:"js/player-stats-drawer.js"}
 ,{source:"src/systems/card-builds.js",output:"js/card-builds.js"}
 ,{source:"src/ui/card-builds.js",output:"js/card-build-ui.js"}
+,{source:"src/ui/hud-notice.js",output:"js/hud-notice.js"}
+,{source:"src/ui/net-meter.js",output:"js/net-meter.js"}
+,{source:"src/data/logo-3d-glyphs.js",output:"js/logo-3d-glyphs.js"}
+,{source:"src/ui/logo-3d.js",output:"js/logo-3d.js"}
 ];

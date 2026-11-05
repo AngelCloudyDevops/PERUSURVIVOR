@@ -26,7 +26,7 @@ Con tres cargas, el siguiente ataque personal válido consume las tres y obtiene
 
 ## Q · Dragón existente
 
-Se conservan su depósito `ultimate.charge`, Combo del Causa, elección/ruleta, controles de palanca, montura, movimiento, despegue/aterrizaje, daño, duración, variantes Jade/Brasa/Trueno y variante secreta Tricéfalo del Caos. No se añade otra transformación ni se sustituye su animación.
+Se conservan su depósito `ultimate.charge`, Combo del Dibujo, elección/ruleta, controles de palanca, montura, movimiento, despegue/aterrizaje, daño, duración, variantes Jade/Brasa/Trueno y variante secreta Tricéfalo del Caos. No se añade otra transformación ni se sustituye su animación.
 
 Mientras Q está activa, el motor utiliza el perfil original de micrófono y el comportamiento existente de combate/montura. No se disparan Derrape ni Garra ni se consume la preparación pasiva. Un adaptador conserva la cadencia original del micrófono durante Q si se activó desde otra arma y recupera la cadencia personal al terminar; las mejoras de cadencia se conservan proporcionalmente. Activar Q limpia derrape, estela y segunda garra pendientes. Las pruebas existentes del dragón siguen cubriendo todas sus variantes y presentación.
 
@@ -58,4 +58,4 @@ Se mantienen las 32 pruebas existentes de `dragon-ultimate.test.cjs`. Las regres
 
 Pendientes: balance medido de partidas completas, pruebas con jugadores y distintos compañeros, móvil y una ilustración exclusiva para R. Este cierre de reglas/contrato no es una afirmación de balance definitivo.
 
-El despliegue mantiene el límite de archivo de 64 MiB. La carta Q de Chamelín conserva la misma ilustración y fuente PNG de 1024×1536; su copia WebP de ejecución se optimiza a 512×768 para dejar margen al paquete tanto en Windows como en Linux, sin cambiar habilidades ni animaciones.
+El test de despliegue (`walk-art`) mantiene un tope de 72 MiB para el paquete (el receptor acepta 96 MiB). La carta Q de Chamelín conserva la misma ilustración y fuente PNG de 1024×1536; su copia WebP de ejecución se optimiza a 512×768 para dejar margen al paquete tanto en Windows como en Linux, sin cambiar habilidades ni animaciones.

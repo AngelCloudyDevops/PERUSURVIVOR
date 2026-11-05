@@ -45,6 +45,7 @@ El HTML conserva sus referencias js/*.js y style.css. scripts/modules.cjs mapea 
 | Fuente | Responsabilidad |
 |---|---|
 | data/catalog.js | Catálogos, estadísticas, ataques y mejoras |
+| data/fonts.js | `P.Font.title/text(px)`: cadena de `ctx.font` con Luckiest Guy y Nunito (sin `document`, corre también en el VM) |
 | core/runtime.js | Estado P.state, controles, lienzo y guardado |
 | entities/actors.js | Construcción de entidades, daño y recursos al derrotar |
 | systems/combat.js | Ejecución de ataques y colisiones de proyectiles |
@@ -62,6 +63,8 @@ El HTML conserva sus referencias js/*.js y style.css. scripts/modules.cjs mapea 
 
 ## Dependencias y ejecución
 Se mantienen scripts clásicos que comparten P. No se introducen módulos ESM, un framework, motor externo ni cambios de formato de datos. catalog.js se carga primero y game.js inicia el juego al final.
+
+**Dependencia de cliente: three.js r160 (único aval del dueño).** Vendorizado en `public/vendor/three-r160.min.js` (MIT, `three-LICENSE.txt` al lado; sin red ni bundler) y cargado con un `<script>` clásico en `src/index.html` antes de `js/data.js`. Se usa el build UMD `build/three.min.js` porque expone `window.THREE` sin ESM (en r160 solo trae un `console.warn` de obsolescencia, que se quitó del archivo; el resto es el original). **No** está en `scripts/modules.cjs`: el servidor autoritativo (`backend/simulation.cjs`) carga ese listado en un `node:vm` y jamás debe cargar three.js. Solo lo usa `src/ui/logo-3d.js` (`P.Logo3d`, logo 3D de la bienvenida y el hub), que sin `window.THREE`, sin WebGL, en el VM o con movimiento reducido deja el `<img>` del logo. Los contornos de las letras se extruyen desde `P.Logo3dGlyphs` (`src/data/logo-3d-glyphs.js`, datos puros, ~7 KB; archivo ignorado por el patrón `data/` de `.gitignore`: `git add -f`) sin `FontLoader`; se regeneran con `node scripts/generate-logo-3d-glyphs.cjs <luckiest-guy.woff>` (necesita opentype.js fuera del proyecto, vía `OPENTYPE_PATH`; ver la cabecera del script). Licencias en `docs/arte/LOGO_3D_LICENCIAS.md`.
 
 Flujo principal:
 1. P.Game procesa la actualización si el estado permite jugar.
@@ -265,7 +268,7 @@ Los originales PNG de image_gen se conservan en `public/assets/attacks/`; el jue
 
 
 ## Progresión survivor por partida
-Los rivales dejan experiencia (fama). Al llenar la barra, subes de nivel y eliges exactamente una de tres mejoras, con el mundo pausado. El exceso de XP se conserva y encadena elecciones. El arma inicial puede subir hasta rango 5; se ofrecen desbloqueos de Onda causa (área), Tarjetas del caos (perforantes) y Escudo de bandas (área cercana), con un máximo de dos apoyos. Cada poder tiene cinco rangos. A partir de nivel 8, los poderes de rango 5 pueden evolucionar mediante una elección especial: el arma gana daño, alcance, proyectiles y perforación; los apoyos duplican daño y amplían alcance. Las mejoras de atributos tienen cinco rangos y no ocupan espacios de poderes. El HUD muestra XP, poderes, rangos y estrellas de evolución. Todo se reinicia al empezar otra partida.
+Los rivales dejan experiencia (fama). Al llenar la barra, subes de nivel y eliges exactamente una de tres mejoras, con el mundo pausado. El exceso de XP se conserva y encadena elecciones. El arma inicial puede subir hasta rango 5; se ofrecen desbloqueos de Onda dibujo (área), Tarjetas del caos (perforantes) y Escudo de bandas (área cercana), con un máximo de dos apoyos. Cada poder tiene cinco rangos. A partir de nivel 8, los poderes de rango 5 pueden evolucionar mediante una elección especial: el arma gana daño, alcance, proyectiles y perforación; los apoyos duplican daño y amplían alcance. Las mejoras de atributos tienen cinco rangos y no ocupan espacios de poderes. El HUD muestra XP, poderes, rangos y estrellas de evolución. Todo se reinicia al empezar otra partida.
 
 P.Progression centraliza opciones, aplicación, efectos automáticos y resumen. El servidor cooperativo pausa la sala y genera tres ofertas por jugador; valida ID de elección y aplica cada mejora una sola vez. Espera a ambos y encadena niveles pendientes. Los rangos y tiempos de los apoyos se serializan con cada jugador. No se cambian las ultis ni se requieren compras para evolucionar.
 
@@ -960,6 +963,15 @@ En cooperativo, `dota-active` envía solo `item` y vector de dirección normaliz
 
 ## Benchmark de lógica del juego
 `node scripts/benchmark-game.cjs [solo-80|solo-160|coop-160|all] [--detail] [--json salida.json]` ejecuta `backend/simulation.cjs` con los módulos fuente (misma lógica que el navegador, sin dibujo) con `Math.random` sembrado (mulberry32), enemigos con hp normal repuestos hasta el objetivo y solo el jugador con hp enorme. Informa mediana/p95/máx por tick, población, GC (`PerformanceObserver('gc')`), llamadas por tick a `Terrain.direction/hit/clear`, `Entities.hurt` y `Maps.definition`, y snapshot + `encodeState` (solo coop). `--detail` añade tiempos por subsistema con envoltorios (con sobrecarga: no compararlos con la pasada limpia). No forma parte de `npm test`; úsalo antes y después de cada optimización.
+
+## Iconos de interfaz (`P.Icons`)
+
+`P.Icons` vive al inicio de `src/ui/lobby.js` y dibuja los iconos de la interfaz en DOM como SVG pixel: rejilla de 12x12, un `<rect>` por tramo, `fill="currentColor"`, `shape-rendering="crispEdges"` y `aria-hidden="true"`. Expone `svg(nombre)` (cadena), `node(nombre)` (elemento) y `fill(el, nombre, texto)` (icono más etiqueta). Todas las llamadas toleran los stubs del VM del servidor: fuera del navegador devuelven cadena vacía o `null`, y quien llama usa `P.Icons?.…` con respaldo de texto. El color del icono lo pone el CSS del contenedor según `DESIGN.md`; no se usan caracteres Unicode ni emoji como icono.
+
+## Medidor de red (`P.NetMeter`)
+
+`src/ui/net-meter.js` calcula en el cliente el ping y la pérdida aparente del cooperativo. `src/network/cooperative.js` llama a `P.NetMeter.record(elapsed, llegada)` con cada snapshot `state`; `NetMeter.loss(muestras, ahora)` es una función pura (probada en `tests/net-meter.test.cjs`) que, en una ventana de 5 s, compara los ticks esperados según el avance de `elapsed` del servidor (0,04 s por tick) con los snapshots recibidos. Como el transporte es WebSocket (TCP), no mide paquetes perdidos sino snapshots que no llegaron a tiempo. No cambia el protocolo ni `backend/`.
+
 ## Autoridad cooperativa alojada por el creador
 
 Cuando `room.route` queda fijada como `direct`, el navegador del creador ejecuta `Simulation` a 25 Hz con el mismo núcleo que usa el backend. Abrir WebRTC por sí solo no concede autoridad. El invitado envía sus intenciones al creador y recibe de él los estados completos; movimiento, enemigos, daño, oleadas, jefes, dominios y actividades salen de esa simulación. El servidor conserva una simulación espejo, coordina la sala, valida que los checkpoints del creador no se separen más de cinco segundos y acepta únicamente resultados con tipos y contadores acotados. Si `room.route` es `server`, el canal directo puede permanecer medido pero no recibe entradas ni comandos del combate.

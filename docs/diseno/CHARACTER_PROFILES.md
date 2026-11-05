@@ -103,7 +103,7 @@ Fortaleza: adapta tres armas a la distancia y controla grupos cercanos.
 
 Debilidad: cada arma progresa por separado y el cambio incorrecto reduce su eficacia.
 
-Escopeta causa: cuatro perdigones físicos, alcance base 260. Daño cercano del primer perdigón; impactos extra: 35%, después 15%. A distancia baja hasta el 35%.
+Escopeta dibujo: cuatro perdigones físicos, alcance base 260. Daño cercano del primer perdigón; impactos extra: 35%, después 15%. A distancia baja hasta el 35%.
 
 Gallinazo: dos plumas guiadas de daño especial. Golpe de cuerpo: cono físico cercano con empuje.
 
