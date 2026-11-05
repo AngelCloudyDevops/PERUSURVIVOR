@@ -366,6 +366,20 @@ test('El atlas de Makanaky se distribuye porque el runtime lo solicita',()=>{
  assert.equal(hash(source),hash(built));
 });
 
+test('Sideral Q distribuye atlas nítidos y archiva las versiones históricas reemplazadas',()=>{
+ const build=require('../scripts/build.cjs');
+ for(const name of ['sideral-fear-motion-v2.webp','sideral-fear-walk-motion-v2.webp','sideral-egg-motion-v3.webp']){
+  const rel=`assets/characters/${name}`;
+  assert.equal(build.archivedAsset(rel),true);
+  assert(!fs.existsSync(path.join(root,'dist',rel)));
+ }
+ for(const name of ['sideral-lagarto-walk-motion-v1.webp','sideral-lagarto-attacks-motion-v1.webp','sideral-lagartitere-q-walk-motion-v1.webp','sideral-lagartitere-q-attacks-motion-v1.webp']){
+  const rel=`assets/characters/${name}`,source=path.join(root,'public',rel),built=path.join(root,'dist',rel);
+  assert(fs.statSync(source).size>50000,`${name} conserva detalle suficiente`);
+  assert.equal(hash(source),hash(built));
+ }
+});
+
 test('El build distribuye los apoyos cartoon v2 y archiva sus ilustraciones reemplazadas',()=>{
  const build=require('../scripts/build.cjs');
  for(const id of ['cards','pulse','orbit']){

@@ -1204,11 +1204,11 @@
       "width": 1776,
       "height": 888,
       "originalBytes": 1977842,
-      "optimizedBytes": 21958,
+      "optimizedBytes": 68040,
       "sourceSha256": "400a08b12c72f8942ff23d7b73888ae131697e77a1fa6eeb5fb1d37e4ac49898",
-      "outputSha256": "9af013dd23b660bedb389e7088ba0de867630343f7d1a3babdc17101756bfba3",
+      "outputSha256": "991507c5a49957252473e9ff6274f0b93d5cc168aecc89ade0044cdefde08a08",
       "rgbaSha256": "562283be14104b7cd82d3894cf497122963f37a6393c43e47bf14fae71724826",
-      "quality": 68
+      "quality": 80
     },
     {
       "source": "assets/characters/sideral-lagarto-attacks-motion-v1.png",
@@ -1216,11 +1216,11 @@
       "width": 1776,
       "height": 888,
       "originalBytes": 1992852,
-      "optimizedBytes": 21122,
+      "optimizedBytes": 66190,
       "sourceSha256": "6acdebce1d23b4c33787535b0bb774c895b8e5980e898707501172142662fe94",
-      "outputSha256": "d4655928c426b71c9f676261ca1b0b30ec18e730fb3c8823cd746efb1a6008d9",
+      "outputSha256": "acadcfa0c1f74e89813dcd433ec85558a72c16b6dc02ab351d9866195b8d3547",
       "rgbaSha256": "38679dbc42e1c8cc525221721fae654d99c324d23a3829ef3a6131f987bb9c37",
-      "quality": 68
+      "quality": 80
     },
     {
       "source": "assets/characters/sideral-lagartitere-q-walk-motion-v1.png",
@@ -1228,11 +1228,11 @@
       "width": 1776,
       "height": 888,
       "originalBytes": 1900613,
-      "optimizedBytes": 21448,
+      "optimizedBytes": 65968,
       "sourceSha256": "ed02ea6f2b9a88c3f074215b8e6136c7b829d689550ac2462b3cf331f85af74f",
-      "outputSha256": "3bdfd19ddaee2d5837ba06de7b25b27d34f910362465bc3fcdaadd2c0218c45e",
+      "outputSha256": "f5ab6a737728ac278eee2f4c8ce2c7f34fd79ec46178ab3255f999cd6254c629",
       "rgbaSha256": "b658acdab8afd1ac61593dc9e2a62d694b429e7697ecfe5e47351f2f8fcd9e17",
-      "quality": 68
+      "quality": 80
     },
     {
       "source": "assets/characters/sideral-lagartitere-q-attacks-motion-v1.png",
@@ -1240,11 +1240,11 @@
       "width": 1776,
       "height": 888,
       "originalBytes": 2073755,
-      "optimizedBytes": 23600,
+      "optimizedBytes": 73940,
       "sourceSha256": "19d1ccb7f3af7a11663aa22869386daa5cf53c37f48c3512a55833667cccd943",
-      "outputSha256": "5f7bb043d7cda2c686f40773b68e1a92f51aac5606579363ba23766eada96e4d",
+      "outputSha256": "8aa809a83367ff6d76da48dc8d45c44df22dc0333b3b9c0cb9b2954669769c96",
       "rgbaSha256": "1ab68c490482b122c42c32a296eff3c38669cf66af83685da9b64034d3df33a6",
-      "quality": 68
+      "quality": 80
     }
   ],
   "previews": [
@@ -1271,5 +1271,5 @@
     }
   ],
   "originalBytes": 193654639,
-  "optimizedBytes": 43673874
+  "optimizedBytes": 43859884
 }
