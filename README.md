@@ -354,7 +354,19 @@ Abre http://127.0.0.1:4173. El comando de inicio genera primero dist/. Para ver 
 | npm run build | Copia fuentes y recursos a dist/ |
 | npm run check | Comprueba la sintaxis de los módulos |
 | npm test | Genera el juego y ejecuta todas las pruebas |
+| npm run desktop | Abre el cliente de escritorio contra producción |
+| npm run desktop:test | Valida aislamiento, navegación y empaquetado del cliente |
+| npm run desktop:icon | Regenera el icono de Windows desde el logo oficial |
+| npm run desktop:dist | Genera instalador y ejecutable portátil para Windows x64 |
 | node check.cjs | Compila y ejecuta las pruebas (comando histórico) |
+
+## Versión descargable para Windows
+
+La edición de PC es un cliente Electron para Windows x64 que abre exclusivamente `https://perusurvivor.michitech.tech/`. Reutiliza el juego público, cuentas, cooperativo y eventos sin mantener una segunda versión del gameplay. Su almacenamiento persistente es independiente del navegador; al iniciar sesión con la misma cuenta se recupera el progreso sincronizado. Requiere Internet.
+
+El render remoto no recibe acceso a Node.js: `nodeIntegration` está desactivado, `contextIsolation`, sandbox y seguridad web permanecen activos, los permisos del navegador se rechazan y la navegación interna se limita al dominio oficial. Discord y GitHub se abren en el navegador predeterminado mediante una lista explícita.
+
+`npm run desktop:dist` produce en `artifacts/desktop/` un instalador NSIS por usuario y una versión portátil. El workflow `desktop-release.yml` repite la compilación en Windows, publica sumas SHA-256 y adjunta ambos `.exe` a una GitHub Release cuando se crea una etiqueta `desktop-v*`. Los ejecutables iniciales no tienen certificado comercial de firma de código, por lo que Windows puede mostrar «Editor desconocido» o una advertencia de SmartScreen.
 
 WASD o flechas para moverse, ataque automático y Esc para pausar. La pausa permite continuar, abrir opciones, reiniciar, cambiar de causa o salir al menú; las tres acciones que abandonan la ejecución exigen confirmación. Opciones incluye cámara cercana, normal o alejada, efectos completos o reducidos y visibilidad del panel de rendimiento. La distancia elegida se guarda en el dispositivo, se aplica al campo normal y no modifica los encuadres especiales de jefes o dominios. E activa Blink Dagger si lo tienes; si no, activa la esquiva perfecta o abre el portal cercano. Con Blink equipado, el portal se abre con clic en su botón. Q activa la ulti; en Kingteka, las teclas 1, 2 y 3 cambian de arma cuando está desbloqueada y no activan objetos de Dota. En móvil se arrastra el dedo y se usa el botón del portal o el icono de Blink.
 
