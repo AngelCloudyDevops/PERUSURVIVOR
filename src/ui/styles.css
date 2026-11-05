@@ -1558,8 +1558,18 @@ body.ref-items-right:not(.menu) #dota-inventory{left:auto!important;right:18px!i
 .splash-reel img:nth-child(3){animation-delay:12s;object-position:center 31%}
 .splash-logo-wrap{position:relative;width:min(720px,88vw);margin:0 auto;filter:drop-shadow(0 18px 28px #000c);animation:splash-logo-arrive .85s cubic-bezier(.2,.85,.25,1) both}
 #lobby-splash .splash-logo-wrap .lobby-brand-logo{width:100%;max-height:50vh;margin:0;object-fit:contain}
-.splash-logo-wrap:before{content:"";position:absolute;inset:0;background:url('assets/branding/kick-all-stars-peru-logo-v1.webp') center/contain no-repeat;clip-path:inset(43% 0 0);transform-origin:50% 70%;animation:splash-stars-breathe 2.2s .75s ease-in-out infinite alternate;pointer-events:none}
-.splash-logo-wrap:after{content:"";position:absolute;inset:0;background:linear-gradient(108deg,transparent 41%,#fff8ce00 45%,#fff8cedd 49%,#fff 50%,#fff8cecc 52%,#fff8ce00 56%,transparent 60%);-webkit-mask:url('assets/branding/kick-all-stars-peru-logo-v1.webp') center/contain no-repeat;mask:url('assets/branding/kick-all-stars-peru-logo-v1.webp') center/contain no-repeat;transform:translateX(-135%);animation:splash-letter-shine 4.8s 1.2s ease-in-out infinite;pointer-events:none}
+.splash-stars-wave{position:absolute;inset:0;pointer-events:none}
+.splash-stars-wave img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;animation:splash-star-letter-wave 3.2s calc(.65s + var(--wave-index)*.11s) cubic-bezier(.2,.78,.25,1) infinite;will-change:transform}
+.splash-stars-wave img:nth-child(1){clip-path:inset(43% 79% 10% 5%);transform-origin:13% 63%}
+.splash-stars-wave img:nth-child(2){clip-path:inset(43% 71% 10% 21%);transform-origin:25% 63%}
+.splash-stars-wave img:nth-child(3){clip-path:inset(43% 60% 10% 29%);transform-origin:35% 63%}
+.splash-stars-wave img:nth-child(4){clip-path:inset(43% 55% 10% 40%);transform-origin:42.5% 63%}
+.splash-stars-wave img:nth-child(5){clip-path:inset(43% 47% 10% 45%);transform-origin:49% 63%}
+.splash-stars-wave img:nth-child(6){clip-path:inset(43% 38% 10% 53%);transform-origin:57.5% 63%}
+.splash-stars-wave img:nth-child(7){clip-path:inset(43% 28% 10% 62%);transform-origin:67% 63%}
+.splash-stars-wave img:nth-child(8){clip-path:inset(43% 17% 10% 72%);transform-origin:77.5% 63%}
+.splash-stars-wave img:nth-child(9){clip-path:inset(43% 3% 10% 83%);transform-origin:90% 63%}
+.splash-logo-wrap:after{content:"";position:absolute;inset:0;clip-path:inset(43% 3% 10% 5%);background:linear-gradient(108deg,transparent 12%,#fff8ce00 30%,#fff4b9e6 44%,#fff 50%,#fff4b9d9 56%,#fff8ce00 70%,transparent 88%) -42% 0/24% 100% no-repeat;-webkit-mask-image:url('assets/branding/kick-all-stars-peru-logo-v1.webp');-webkit-mask-position:center;-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;mask-image:url('assets/branding/kick-all-stars-peru-logo-v1.webp');mask-position:center;mask-size:contain;mask-repeat:no-repeat;animation:splash-letter-shine 4.8s 1.2s ease-in-out infinite;pointer-events:none}
 #welcome-continue{min-width:min(390px,84vw);margin:20px auto 8px;padding:16px 30px;border:2px solid #fff1a5;border-radius:999px;background:linear-gradient(180deg,#ffd85e,#efa92c);color:#172337;box-shadow:0 6px 0 #9e501a,0 13px 28px #0009;font:900 16px monospace;letter-spacing:1.5px;cursor:pointer;transition:transform .15s,filter .15s}
 #welcome-continue:hover{filter:brightness(1.12);transform:translateY(-2px)}
 #welcome-continue:active{transform:translateY(3px);box-shadow:0 3px 0 #9e501a,0 8px 20px #0008}
@@ -1568,9 +1578,9 @@ body.ref-items-right:not(.menu) #dota-inventory{left:auto!important;right:18px!i
 #welcome-actions #welcome-register{grid-column:1/-1;background:transparent;border-color:transparent;box-shadow:none;text-decoration:underline;text-underline-offset:4px}
 .account-session-note{display:block;margin:5px 0 2px;color:#bfe6cb}
 @keyframes splash-logo-arrive{0%{opacity:0;transform:translateY(26px) scale(.82)}70%{opacity:1;transform:translateY(-4px) scale(1.025)}100%{opacity:1;transform:none}}
-@keyframes splash-stars-breathe{from{opacity:.62;transform:scale(.965)}to{opacity:1;transform:scale(1.035)}}
-@keyframes splash-letter-shine{0%,42%{transform:translateX(-135%)}72%,100%{transform:translateX(135%)}}
+@keyframes splash-star-letter-wave{0%,23%,100%{transform:translateY(0) scale(1)}7%{transform:translateY(-2.2%) scale(1.105)}14%{transform:translateY(.5%) scale(1)}}
+@keyframes splash-letter-shine{0%,38%{background-position:-42% 0}68%,100%{background-position:142% 0}}
 @keyframes splash-reel-shot{0%{opacity:0;transform:scale(1.06)}7%,27%{opacity:1}34%,100%{opacity:0;transform:scale(1.14) translate3d(-1.2%,-.8%,0)}}
 @keyframes splash-access-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media(max-width:600px){.splash-logo-wrap{width:min(520px,96vw)}#welcome-actions{grid-template-columns:1fr;gap:9px}#welcome-actions #welcome-register{grid-column:1}#welcome-continue{font-size:14px}#lobby-splash{padding:16px}}
-@media(prefers-reduced-motion:reduce){.splash-reel img,.splash-logo-wrap,.splash-logo-wrap:before,.splash-logo-wrap:after,#welcome-actions{animation:none!important}.splash-reel img:first-child{opacity:1}}
+@media(prefers-reduced-motion:reduce){.splash-reel img,.splash-logo-wrap,.splash-stars-wave img,.splash-logo-wrap:after,#welcome-actions{animation:none!important}.splash-reel img:first-child{opacity:1}}
