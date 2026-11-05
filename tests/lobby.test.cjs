@@ -161,6 +161,9 @@ test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta 
  assert.match(account,/Usuario o nick/);
  assert.match(account,/Recordar mi usuario en este dispositivo/);
  assert.match(account,/kick-all-stars-remembered-user/);
+ assert.match(account,/hub-account/);
+ assert.match(account,/account-logout/);
+ assert.match(account,/Cerrar sesión/);
  assert.match(account,/P\.\$\('#account-title'\)\.textContent=register\?'Crear cuenta':recover\?'Recuperar acceso':'Iniciar sesión'/);
  assert.match(source,/Recupera tu progreso guardado/);
  assert.match(source,/Empieza ahora en este navegador/);
@@ -186,6 +189,7 @@ test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta 
  assert.match(css,/\.splash-gameplay\{display:none\}/);
  assert.match(css,/#welcome-actions\[hidden\]\{display:none\}/);
  assert.match(css,/#account-dialog \.account-remember/);
+ assert.match(css,/#hub-wallet #hub-account/);
  assert.match(css,/#account-dialog \[role=status\]:empty\{display:none\}/);
 });
 
