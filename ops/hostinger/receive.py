@@ -70,7 +70,9 @@ def extract_release(payload, sha):
                     with archive.extractfile(member) as source, destination.open("wb") as output:
                         shutil.copyfileobj(source, output)
                     destination.chmod(0o644)
-        if not (stage / "index.html").is_file() or b"CAUSAS" not in (stage / "index.html").read_bytes():
+        index = stage / "index.html"
+        markers = (b'data-game="kick-all-stars-peru"', b"CAUSAS")
+        if not index.is_file() or not any(marker in index.read_bytes() for marker in markers):
             raise ValueError("El paquete no contiene el juego")
         if not (stage / "js/game.js").is_file():
             raise ValueError("Falta el código del juego")
