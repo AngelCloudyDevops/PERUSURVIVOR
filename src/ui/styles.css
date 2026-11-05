@@ -368,6 +368,10 @@ body.menu #combat-dock{display:none}
 #combat-dock #weapon-bar{position:relative;inset:auto;z-index:2;width:100%;transform:none}
 #ability-dock{position:relative;grid-column:3;width:266px;height:58px;pointer-events:none}
 .ability-card-shell{position:absolute;bottom:-132px;width:128px;height:188px;pointer-events:none;isolation:isolate;transition:bottom .22s ease;will-change:bottom}
+.sideral-q-variant{position:absolute;z-index:7;top:8px;left:40px;right:7px;min-height:25px;padding:4px 5px;display:grid;place-items:center;border:1px solid #baf36e;border-radius:5px;background:#112315e8;color:#e8ffc4;font:900 9px/1.05 monospace;letter-spacing:.35px;text-align:center;text-shadow:1px 1px #071005;box-shadow:0 0 9px #83e24c66;pointer-events:none}
+.sideral-q-variant[hidden]{display:none}
+.sideral-q-variant[data-action="true"]{left:7px;top:-32px;min-height:28px;border-color:#ffe071;background:#302510f2;color:#fff0a0;font-size:10px;animation:sideral-q-prompt .72s ease-in-out infinite alternate}
+@keyframes sideral-q-prompt{from{transform:translateY(1px);box-shadow:0 0 6px #ffe07155}to{transform:translateY(-1px);box-shadow:0 0 15px #ffe071aa}}
 #ultimate-ability-slot{left:0}
 #domain-ability-slot{right:0}
 .ability-card-shell:has(.hud-ability-card:hover),.ability-card-shell:has(.hud-ability-card:focus-visible),.ability-card-shell:has(.hud-ability-card.is-peeking){bottom:18px}
@@ -432,6 +436,8 @@ body.menu #combat-dock{display:none}
  #combat-dock #weapon-bar{bottom:auto;width:100%;gap:3px;padding:4px}
  #ability-dock{grid-column:2;grid-row:1;width:100%;height:64px}
  .ability-card-shell{top:0;bottom:auto;width:calc(50% - 3px);height:64px;transition:height .18s ease,transform .18s ease}
+ .sideral-q-variant{top:6px;left:34px;right:4px;min-height:23px;padding:3px 2px;font-size:7px}
+ .sideral-q-variant[data-action="true"]{top:-28px;left:0;right:0;min-height:24px;font-size:8px}
  #ultimate-ability-slot{left:0}
  #domain-ability-slot{right:0}
  .ability-card-shell:has(.hud-ability-card:hover),.ability-card-shell:has(.hud-ability-card:focus-visible),.ability-card-shell:has(.hud-ability-card.is-peeking){top:0;bottom:auto;height:118px;transform:translateY(-54px)}
