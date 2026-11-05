@@ -163,6 +163,13 @@ P.SideralLagarto.criticalVignette=function(ctx,w,h){
   const t=Math.max(0,e.life/e.maxLife),q=1-t,reduced=P.Ambient?.reduced?.matches,r=34+q*28;ctx.save();ctx.translate(e.x,e.y);ctx.globalAlpha=t*.72;ctx.strokeStyle=e.skinId==='sideral-lagartitere'?'#ef5b61':'#cfff72';ctx.shadowColor=e.skinId==='sideral-lagartitere'?'#8bd34f':'#5dff4b';ctx.shadowBlur=reduced?4:14;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(0,18,r,r*.32,0,0,Math.PI*2);ctx.stroke();if(!reduced)for(let i=0;i<5;i++){const a=i*1.257+q*3.5,d=20+q*22;ctx.globalAlpha=t*(.35+i*.08);ctx.fillStyle=i%2?'#fff3a2':'#7dff65';ctx.fillRect(Math.cos(a)*d-2,-10+Math.sin(a)*18-q*18,4,7)}ctx.restore()
  }
 }
+{
+ const effect=P.FX.effect;
+ P.FX.effect=function(ctx,e,...args){
+  if(e.kind!=='sideral-prey-stun')return effect.call(this,ctx,e,...args);
+  const t=Math.max(0,e.life/e.maxLife),q=1-t,reduced=P.Ambient?.reduced?.matches,r=(e.r||12)+10;ctx.save();ctx.translate(e.x,e.y);ctx.globalAlpha=Math.min(1,t*2);ctx.strokeStyle=e.skinId==='sideral-lagartitere'?'#ff7368':'#ffe071';ctx.fillStyle=e.skinId==='sideral-lagartitere'?'#a9ed66':'#e9ff8a';ctx.shadowColor=e.skinId==='sideral-lagartitere'?'#ef4b45':'#9dff4f';ctx.shadowBlur=reduced?3:10;ctx.lineWidth=2.5;ctx.beginPath();ctx.ellipse(0,r*.65,r+q*7,Math.max(5,r*.3-q*3),0,0,Math.PI*2);ctx.stroke();for(let i=0;i<3;i++){const a=i*Math.PI*2/3-q*4,x=Math.cos(a)*(r+4),y=-r-8+Math.sin(a)*5;ctx.save();ctx.translate(x,y);ctx.rotate(a+q*3);ctx.fillRect(-3,-3,6,6);ctx.restore()}ctx.restore()
+ }
+}
 if(P.World){
  const render=P.World.render;
  P.World.render=function(...args){const value=render.apply(this,args);try{P.SideralLagarto.criticalVignette(P.Core.ctx,P.Core.width,P.Core.height)}catch{}return value}
