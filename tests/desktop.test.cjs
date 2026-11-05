@@ -32,4 +32,5 @@ test('Escritorio: Electron queda aislado y produce instalador más portátil',()
  assert(icon.length>100000);
  assert.deepEqual(pkg.build.win.target.map(target=>target.target),['nsis','portable']);
  assert.equal(pkg.build.appId,'tech.michitech.perusurvivor');
+ assert.match(pkg.scripts['desktop:dist'],/--publish never/);
 });
