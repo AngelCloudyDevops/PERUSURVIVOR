@@ -2,6 +2,14 @@
 
 > Nota de vigencia (2026-10-31): las secciones se escribieron en momentos distintos; donde dicen «18 jugables» o «18 causas» reflejan el roster de entonces. Hoy hay 21 personajes jugables (`src/data/catalog.js:3-11` menos ElZeein, que `shift()` convierte en jefe en `src/data/catalog.js:32`; `src/data/catalog.js:33`; `src/data/powers.js:74-109`; comprobado por `tests/gameplay.test.cjs:12`). Las cuentas opcionales existen (`src/network/account.js`, `backend/accounts.cjs`; ver [Cuentas](ACCOUNTS.md)). Ante contradicción manda el código.
 
+## Cliente descargable para Windows
+
+`desktop/main.cjs` crea una ventana Electron aislada que consume únicamente el origen HTTPS de producción. Es deliberadamente un cliente conectado, no una bifurcación local de `dist/`: así comparte cuentas, guardados sincronizados, cooperativo, biblioteca de música, eventos y releases con la web. Chromium conserva caché, IndexedDB y preferencias dentro de la partición persistente `persist:perusurvivor`; este perfil es independiente del navegador normal.
+
+El renderer remoto usa `nodeIntegration:false`, `contextIsolation:true`, `sandbox:true`, `webSecurity:true` y no recibe preload ni IPC. La sesión rechaza solicitudes de permisos. `will-navigate` y `setWindowOpenHandler` mantienen dentro de la ventana solo el origen oficial; una lista pequeña de enlaces HTTPS conocidos se deriva al navegador del sistema. Si el sitio no carga, `desktop/offline.html` ofrece un reintento local con CSP restrictiva.
+
+Electron Builder empaca únicamente `desktop/`, el icono y el logo necesarios. Los targets son NSIS por usuario y portátil x64; no contienen fuentes del juego ni secretos. `.github/workflows/desktop-release.yml` construye en `windows-latest`, prueba el contrato de seguridad, calcula SHA-256 y publica los ejecutables al etiquetar `desktop-v*`. La firma Authenticode queda pendiente de adquirir un certificado; hasta entonces el binario se identifica como editor desconocido.
+
 ## Contrato de arsenal por personaje
 
 `P.CharacterProfiles.weaponKits` registra únicamente excepciones con ataques adicionales aprobados. `weaponSlots(c)` siempre devuelve tres posiciones con estado cerrado (`implemented`, `planned` o `reserved`) y `kitAudit(c)` cruza esos slots con los registros reales de Q, R y pasiva. La Wiki consume este contrato: una evolución, una definitiva o un concepto todavía no programado no pueden ocupar visualmente el lugar de un ataque funcional. El ataque inicial de personajes sin arsenal explícito se deriva de `P.Data.attacks`; sus otros dos espacios quedan reservados.
