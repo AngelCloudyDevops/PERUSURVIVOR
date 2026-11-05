@@ -1970,3 +1970,115 @@ body #overlay.level-up.four-upgrades .upgrade-new{top:8px;right:8px;padding:2px 
  body.menu #hub-loadout-slots{grid-template-columns:repeat(4,32px)}
  body.menu[data-lobby-panel=home] #hub-bottom #hub-play{min-height:56px;padding:8px 44px}
 }
+
+/* ==========================================================================
+   Estilo logo (arcade-cartoon 3D): tokens y clases reutilizables.
+   Letras Luckiest Guy con degradado, contorno oscuro grueso y extrusión hacia abajo;
+   paneles y botones con bisel y canto sólido. Sustituye al «afiche chicha» plano en
+   pantallas de recompensa y títulos; el resto de la UI migra por fases (ver DESIGN.md).
+   ========================================================================== */
+:root{--logo-oro-1:#ffe76a;--logo-oro-2:#ffb020;--logo-naranja:#ff7a12;--logo-borde:#5b1608;--logo-oro-canto:#b4510a;--logo-verde-1:#c6ff4d;--logo-verde-2:#36c81a;--logo-verde-borde:#0f4a12;--logo-verde-canto:#1c7a14;--logo-violeta-1:#a98bff;--logo-violeta-2:#5f34d1;--logo-violeta-borde:#1d0e52;--logo-violeta-canto:#2f1678;--logo-panel:#1b1530;--logo-panel-2:#2a1f4a;--logo-panel-borde:#0d0820;--logo-estrella:#ffd23a;--logo-estrella-img:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,6 61,37 95,38 68,58 78,92 50,72 22,92 32,58 5,38 39,37' fill='%23ffd23a' stroke='%235b1608' stroke-width='9' stroke-linejoin='round'/%3E%3Cpolygon points='50,22 56,40 50,46 44,40' fill='%23fff7c2'/%3E%3C/svg%3E")}
+
+/* Texto 3D: relleno degradado recortado al texto, contorno grueso y extrusión con drop-shadow apilado (text-shadow taparía el relleno transparente). */
+.logo-text,body #overlay h2{--lt-1:var(--logo-oro-1);--lt-2:var(--logo-oro-2);--lt-3:var(--logo-naranja);--lt-borde:var(--logo-borde);color:var(--lt-2);font-family:var(--fuente-titulo,'Luckiest Guy',sans-serif);font-weight:400;font-style:normal;letter-spacing:.03em;text-transform:uppercase;-webkit-text-stroke:.1em var(--lt-borde);paint-order:stroke fill;text-shadow:none;filter:drop-shadow(0 .035em 0 var(--lt-borde)) drop-shadow(0 .035em 0 var(--lt-borde)) drop-shadow(0 .035em 0 var(--lt-borde)) drop-shadow(0 .035em 0 var(--lt-borde)) drop-shadow(0 .035em 0 var(--lt-borde)) drop-shadow(0 .12em .1em #0008)}
+.logo-text--verde{--lt-1:var(--logo-verde-1);--lt-2:var(--logo-verde-2);--lt-3:var(--logo-verde-2);--lt-borde:var(--logo-verde-borde)}
+@supports((-webkit-background-clip:text) or (background-clip:text)){.logo-text,body #overlay h2{background:linear-gradient(180deg,#fff9 0,#fff0 34%),linear-gradient(180deg,var(--lt-1) 0,var(--lt-2) 50%,var(--lt-3) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
+
+/* Estrellas decorativas: SVG como fondo, destello suave (solo transform). */
+.logo-star{display:inline-block;flex:none;width:1em;height:1em;background:var(--logo-estrella-img) center/contain no-repeat;animation:logo-destello 2.6s ease-in-out infinite}
+@keyframes logo-destello{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.18) rotate(14deg)}}
+
+/* Panel cartoon. */
+.logo-panel{border:4px solid var(--logo-panel-borde);border-radius:20px;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel));box-shadow:inset 0 3px 0 rgba(255,255,255,.12),inset 0 -4px 0 rgba(0,0,0,.35),0 6px 0 var(--logo-panel-borde);color:#fff4dc}
+
+/* Botón cartoon: cara con degradado, canto sólido que se hunde al pulsar. */
+.logo-btn,body #overlay button.upgrade-auxiliary.upgrade-auxiliary,body #overlay button.merchant-close.merchant-close,body #overlay button.merchant-buy.merchant-buy,body #overlay button.loot-option-pick.loot-option-pick,body #overlay button.upgrade-primary.upgrade-primary{--btn-1:var(--logo-violeta-1);--btn-2:var(--logo-violeta-2);--btn-borde:var(--logo-violeta-borde);--btn-canto:var(--logo-violeta-canto);--btn-texto:#fff;--btn-sombra:var(--logo-violeta-borde);display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:48px;padding:9px 26px;border:4px solid var(--btn-borde);border-radius:16px!important;background:linear-gradient(180deg,var(--btn-1),var(--btn-2));color:var(--btn-texto);font:400 17px/1.1 var(--fuente-titulo,'Luckiest Guy',sans-serif);letter-spacing:.04em;text-align:center;text-transform:uppercase;text-shadow:0 2px 0 var(--btn-sombra);box-shadow:inset 0 3px 0 rgba(255,255,255,.45),0 5px 0 var(--btn-canto),0 7px 0 rgba(0,0,0,.35);transition:transform .08s,box-shadow .08s,filter .12s;cursor:pointer}
+.logo-btn--oro,body #overlay button.merchant-buy.merchant-buy,body #overlay button.loot-option-pick.loot-option-pick,body #overlay button.upgrade-primary.upgrade-primary{--btn-1:var(--logo-oro-1);--btn-2:var(--logo-naranja);--btn-borde:var(--logo-borde);--btn-canto:var(--logo-oro-canto);--btn-texto:#4a1306;--btn-sombra:#fff5;text-shadow:0 1px 0 #fff6}
+.logo-btn--verde{--btn-1:var(--logo-verde-1);--btn-2:var(--logo-verde-2);--btn-borde:var(--logo-verde-borde);--btn-canto:var(--logo-verde-canto);--btn-texto:#0b3a0e;--btn-sombra:#fff5}
+.logo-btn small,body #overlay button.upgrade-auxiliary.upgrade-auxiliary small{color:inherit!important;font:800 12px/1.2 var(--fuente-texto,'Nunito',sans-serif);letter-spacing:0;text-transform:none;text-shadow:none;opacity:.92}
+.logo-btn:hover,body #overlay button.upgrade-auxiliary.upgrade-auxiliary:hover,body #overlay button.merchant-close.merchant-close:hover,body #overlay button.merchant-buy.merchant-buy:hover,body #overlay button.loot-option-pick.loot-option-pick:hover,body #overlay button.upgrade-primary.upgrade-primary:hover{filter:brightness(1.1);box-shadow:inset 0 3px 0 rgba(255,255,255,.45),0 5px 0 var(--btn-canto),0 7px 0 rgba(0,0,0,.35),0 0 18px var(--btn-1)}
+.logo-btn:active,body #overlay button.upgrade-auxiliary.upgrade-auxiliary:active,body #overlay button.merchant-close.merchant-close:active,body #overlay button.merchant-buy.merchant-buy:active,body #overlay button.loot-option-pick.loot-option-pick:active,body #overlay button.upgrade-primary.upgrade-primary:active{transform:translateY(4px);filter:none;box-shadow:inset 0 3px 0 rgba(255,255,255,.3),0 1px 0 var(--btn-canto),0 2px 0 rgba(0,0,0,.35)}
+.logo-btn:focus-visible,body #overlay button.upgrade-auxiliary.upgrade-auxiliary:focus-visible,body #overlay button.merchant-close.merchant-close:focus-visible,body #overlay button.merchant-buy.merchant-buy:focus-visible,body #overlay button.loot-option-pick.loot-option-pick:focus-visible,body #overlay button.upgrade-primary.upgrade-primary:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.logo-btn:disabled,body #overlay button.upgrade-auxiliary.upgrade-auxiliary:disabled,body #overlay button.merchant-buy.merchant-buy:disabled{--btn-1:#6d6485;--btn-2:#463e5e;--btn-borde:#241d38;--btn-canto:#241d38;--btn-texto:#c9c1da;--btn-sombra:#0006;filter:none;cursor:default;text-shadow:none}
+
+/* Carcasa de #overlay (mejora, final, botín, tienda): panel cartoon morado noche y título 3D. */
+body #overlay{--ov-pad:24px;padding:var(--ov-pad)!important;border:4px solid var(--logo-panel-borde)!important;border-radius:22px!important;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel))!important;box-shadow:inset 0 3px 0 rgba(255,255,255,.12),inset 0 -5px 0 rgba(0,0,0,.35),0 7px 0 var(--logo-panel-borde),0 0 0 100vmax #0c0a10d9!important}
+body #overlay.run-end{box-shadow:inset 0 3px 0 rgba(255,255,255,.12),inset 0 -5px 0 rgba(0,0,0,.35),0 7px 0 var(--logo-panel-borde),0 0 0 100vmax #0c0a10e6!important}
+body #overlay.merchant-shop[data-shop-kind=secret]{background:linear-gradient(180deg,#3a2470,#1b1034)!important}
+body #overlay h2,body #overlay:not(.run-end):not(.merchant-shop):not(.loot-choice)>h2,body #overlay.run-end h2,body #overlay.merchant-shop h2,body #overlay.loot-choice h2{margin:0 0 8px;padding:0 0 .2em;background:linear-gradient(180deg,#fff9 0,#fff0 34%),linear-gradient(180deg,var(--lt-1) 0,var(--lt-2) 50%,var(--lt-3) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:clamp(28px,4.4vw,44px);line-height:1.05;letter-spacing:.03em;text-align:center;text-shadow:none;-webkit-text-stroke:.1em var(--lt-borde);paint-order:stroke fill}
+body #overlay.run-end h2{font-size:clamp(28px,5vw,46px);margin:8px 0 12px}
+body #overlay.merchant-shop h2,body #overlay.loot-choice h2{font-size:clamp(26px,4vw,38px);text-align:left}
+body #overlay.level-up>h2,body #overlay.run-end>h2{display:flex;align-items:center;justify-content:center;gap:.3em}
+body #overlay.level-up.level-up>h2:before,body #overlay.level-up.level-up>h2:after,body #overlay.run-end.run-end>h2:before,body #overlay.run-end.run-end>h2:after{content:'';display:block;flex:none;font-size:inherit;line-height:1;letter-spacing:0;width:.72em;height:.72em;margin:0;background:var(--logo-estrella-img) center/contain no-repeat;-webkit-text-stroke:0;animation:logo-destello 2.6s ease-in-out infinite}
+body #overlay.level-up.level-up>h2:after,body #overlay.run-end.run-end>h2:after{animation-delay:-1.3s}
+body #overlay.level-up>p,body #overlay.run-end>p{margin:0 0 14px;color:#f3ecff;font:800 15px/1.4 var(--fuente-texto);text-align:center;text-shadow:0 2px 0 #0008}
+body #overlay.merchant-shop .merchant-head,body #overlay.loot-choice .loot-choice-head{margin:0 0 12px;padding:0 0 12px!important;background:none!important;border-bottom:3px solid #0d082066;color:#fff4dc}
+body #overlay.merchant-shop .merchant-wallet,body #overlay.loot-choice .loot-choice-coins{color:var(--logo-oro-1);font-size:18px;text-shadow:0 2px 0 var(--logo-borde)}
+body #overlay.merchant-shop .merchant-head,body #overlay.merchant-shop[data-shop-kind=secret] .merchant-head{background:none!important}
+body .merchant-offer,body .loot-option,body .merchant-summary,body .merchant-slots{border-radius:14px!important;border:3px solid var(--logo-panel-borde);border-bottom:6px solid var(--item-rarity,var(--loot-rarity,#8c80ad));background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel));box-shadow:inset 0 3px 0 rgba(255,255,255,.1)}
+
+/* Tarjetas de mejora: panel cartoon con marco degradado del color de rareza. */
+body #overlay .upgrade-card{--rar-1:#d6cbee;--rar-2:#8c80ad}
+body #overlay .upgrade-card[data-rarity=common]{--rar-1:#d6cbee;--rar-2:#8c80ad;--rarity:#b9adc4}
+body #overlay .upgrade-card[data-rarity=rare]{--rar-1:#86f2ff;--rar-2:#1fb0e6;--rarity:#2ed6ff}
+body #overlay .upgrade-card[data-rarity=epic]{--rar-1:#ff9be8;--rar-2:#b36bff;--rarity:#ff7ad9}
+body #overlay .upgrade-card[data-rarity=legendary],body #overlay .upgrade-card[data-evolution=true]{--rar-1:var(--logo-oro-1);--rar-2:var(--logo-naranja);--rarity:var(--logo-oro-2)}
+body #overlay.level-up .upgrade-card,body #overlay.level-up .upgrade-card:hover,body #overlay.level-up .upgrade-card:focus-visible{background:transparent!important;border-width:0;border-radius:20px!important;box-shadow:none;transition:transform .14s ease-out}
+body #overlay.level-up .upgrade-card:before,body #overlay.four-upgrades .upgrade-card:before{display:none}
+body #overlay.level-up .upgrade-card,body #overlay.level-up.four-upgrades .upgrade-card{overflow:visible}
+body #overlay.level-up .upgrade-card .upgrade-front,body #overlay.level-up .upgrade-card .upgrade-back{--ring:9px;border:var(--ring) solid transparent;border-radius:20px!important;background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel)) padding-box,linear-gradient(180deg,var(--rar-1),var(--rar-2)) border-box;box-shadow:inset 0 3px 0 rgba(255,255,255,.12),inset 0 -4px 0 rgba(0,0,0,.35),0 0 0 3px var(--logo-panel-borde),0 8px 0 3px var(--logo-panel-borde);transition:box-shadow .14s,filter .14s}
+body #overlay.level-up .upgrade-card .upgrade-front{padding:12px 12px 14px}
+body #overlay.level-up.four-upgrades .upgrade-card .upgrade-front{padding:8px 10px 12px;gap:6px}
+body #overlay.level-up .upgrade-card .upgrade-back{background:linear-gradient(180deg,var(--logo-panel-2),var(--logo-panel)) padding-box,linear-gradient(180deg,var(--logo-oro-1),var(--logo-naranja)) border-box}
+body #overlay.level-up .upgrade-card .upgrade-back strong{color:var(--logo-oro-1);-webkit-text-stroke:.08em var(--logo-borde);paint-order:stroke fill;text-shadow:0 3px 0 var(--logo-borde)}
+body #overlay.level-up .upgrade-card .upgrade-back b,body #overlay.level-up .upgrade-card .upgrade-back small,body #overlay.level-up .upgrade-card .upgrade-back i{color:#f3ecff;font-size:12px;font-weight:800}
+body #overlay.level-up .upgrade-card[data-revealed=true]:hover,body #overlay.level-up .upgrade-card[data-revealed=true]:focus-visible{transform:translateY(-6px)}
+body #overlay.level-up .upgrade-card:hover .upgrade-front,body #overlay.level-up .upgrade-card:focus-visible .upgrade-front{border-bottom-color:transparent;filter:brightness(1.08);box-shadow:inset 0 3px 0 rgba(255,255,255,.12),inset 0 -4px 0 rgba(0,0,0,.35),0 0 0 3px var(--logo-panel-borde),0 8px 0 3px var(--logo-panel-borde),0 0 26px var(--rar-2)}
+
+/* Medallón del icono, chapa de tecla y sello NUEVO. */
+body #overlay .upgrade-card .upgrade-plate{position:relative;border:4px solid var(--logo-oro-2);border-radius:50%!important;background:radial-gradient(circle at 50% 30%,#4b3a86 0,#150e2b 72%);box-shadow:0 0 0 3px var(--logo-borde),0 4px 0 3px var(--logo-borde),inset 0 0 12px #ffd23a66}
+body #overlay .upgrade-card .upgrade-plate:after{content:'';position:absolute;inset:3px 9px auto;height:34%;border-radius:50%;background:linear-gradient(180deg,#fff6,#fff0);pointer-events:none}
+body #overlay.level-up .upgrade-card .upgrade-key{display:grid;place-items:center;top:8px;left:8px;width:28px;height:28px;border:3px solid var(--logo-borde);border-radius:50%!important;background:linear-gradient(180deg,var(--logo-oro-1),var(--logo-oro-2));box-shadow:inset 0 2px 0 #fff8,0 2px 0 var(--logo-oro-canto);color:var(--logo-borde);font:400 14px/1 var(--fuente-titulo)!important;text-shadow:none}
+body #overlay .upgrade-card .upgrade-new{top:9px;right:8px;padding:3px 8px;border:3px solid var(--logo-verde-borde);border-radius:9px!important;background:linear-gradient(180deg,var(--logo-verde-1),var(--logo-verde-2));box-shadow:inset 0 2px 0 #fff7,0 2px 0 var(--logo-verde-borde);color:#fff;font:400 12px/1 var(--fuente-titulo);letter-spacing:.04em;-webkit-text-stroke:2.5px var(--logo-verde-borde);paint-order:stroke fill;transform:rotate(5deg)}
+
+/* Texto de la tarjeta: nombre blanco con contorno, rareza en píldora, comparación dorada. */
+body #overlay .upgrade-front .upgrade-content strong{color:#fff;font:400 16px/1.15 var(--fuente-titulo);letter-spacing:.02em;text-align:center;-webkit-text-stroke:3px #1b0a06;paint-order:stroke fill;text-shadow:0 2px 0 #1b0a06}
+body #overlay .upgrade-front .upgrade-badge{align-self:center;padding:3px 10px;border:2px solid var(--logo-panel-borde);border-radius:12px!important;background:linear-gradient(180deg,var(--rar-1),var(--rar-2));color:#1b1530!important;font:800 12px/1.2 var(--fuente-texto);letter-spacing:.03em;text-align:center}
+body #overlay .upgrade-front .upgrade-content small{color:#f3ecff;font:700 13px/1.4 var(--fuente-texto);text-align:center}
+body #overlay .upgrade-front .upgrade-comparison{align-self:center;padding:4px 12px;border:2px solid var(--logo-borde);border-radius:999px!important;background:linear-gradient(180deg,var(--logo-oro-1),var(--logo-oro-2));box-shadow:0 2px 0 var(--logo-borde);color:#3a1204;font:800 13px/1.2 var(--fuente-texto);text-align:center}
+@media(min-width:761px){
+ body #overlay.level-up.card-reveal .upgrade-card{height:clamp(300px,44vh,340px)}
+ body #overlay .upgrade-card .upgrade-plate{width:68px;height:68px}
+ body #overlay.level-up.four-upgrades .upgrade-card{height:clamp(310px,45vh,350px);min-height:310px}
+ body #overlay.level-up.four-upgrades .upgrade-card .upgrade-plate{width:60px;height:60px;margin-top:4px}
+ body #overlay.level-up.four-upgrades .upgrade-content strong{font-size:14px;-webkit-text-stroke-width:2.5px}
+ body #overlay.level-up.four-upgrades .upgrade-badge,body #overlay.level-up.four-upgrades .upgrade-comparison{font-size:12px}
+ body #overlay.level-up.four-upgrades .upgrade-card .upgrade-key{top:7px;left:7px;width:26px;height:26px;font-size:13px}
+}
+
+/* Botón «Renovar»: cartoon centrado, no barra de lado a lado. */
+body #overlay.level-up>.upgrade-auxiliary,body #overlay.level-up.four-upgrades>.upgrade-auxiliary,body #overlay.four-upgrades>.upgrade-auxiliary{width:fit-content!important;min-width:min(240px,100%)!important;max-width:100%;justify-self:center;margin:10px auto 6px!important;padding:9px 28px!important}
+body #overlay button.upgrade-primary{margin-inline:auto}
+
+/* Móvil: filas con medallón a la izquierda; sin textos menores de 12 px. */
+@media(max-width:760px){
+ body #overlay.level-up{--ov-pad:12px}
+ body #overlay.level-up .upgrade-card .upgrade-front,body #overlay.level-up .upgrade-card .upgrade-back{--ring:6px}
+ body #overlay.level-up .upgrade-card .upgrade-front,body #overlay.level-up.four-upgrades .upgrade-card .upgrade-front{padding:6px 8px 8px;gap:0 10px}
+ body #overlay.level-up.card-reveal{grid-template-rows:auto auto repeat(3,150px)}
+ body #overlay.level-up.card-reveal .upgrade-card,body #overlay.level-up.four-upgrades .upgrade-card{height:150px;min-height:150px}
+ body #overlay.level-up.four-upgrades .upgrade-card{height:160px;min-height:160px}
+ body #overlay.level-up .upgrade-card .upgrade-plate,body #overlay.level-up.four-upgrades .upgrade-card .upgrade-plate{width:52px;height:52px;border-width:3px}
+ body #overlay.level-up .upgrade-icon{width:36px;height:36px}
+ body #overlay.level-up .upgrade-card .upgrade-key,body #overlay.level-up.four-upgrades .upgrade-card .upgrade-key{top:3px;left:3px;width:24px;height:24px;font-size:12px}
+ body #overlay.level-up .upgrade-card .upgrade-new{top:3px;right:3px;padding:2px 5px;font-size:12px}
+ body #overlay.level-up .upgrade-content strong{font-size:14px;text-align:left;-webkit-text-stroke-width:2.5px}
+ body #overlay.level-up .upgrade-front .upgrade-badge,body #overlay.level-up .upgrade-front .upgrade-comparison{align-self:flex-start;font-size:12px}
+ body #overlay.level-up .upgrade-front .upgrade-content small{font-size:12px;line-height:1.25;text-align:left}
+ body #overlay.level-up>p{font-size:14px}
+}
+
+/* Movimiento reducido: sin destellos ni elevación. */
+@media(prefers-reduced-motion:reduce){.logo-star,body #overlay.level-up>h2:before,body #overlay.level-up>h2:after,body #overlay.run-end>h2:before,body #overlay.run-end>h2:after{animation:none}.logo-btn,body #overlay button,body #overlay .upgrade-card{transition:none}}
+body.ref-reduced-motion .logo-star,body.ref-reduced-motion #overlay>h2:before,body.ref-reduced-motion #overlay>h2:after{animation:none!important}
+body.ref-reduced-motion .logo-btn,body.ref-reduced-motion #overlay button,body.ref-reduced-motion #overlay .upgrade-card{transition:none}

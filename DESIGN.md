@@ -53,3 +53,16 @@ Texto sobre bloques de color: siempre `--chicha-negro`.
 ## Movimiento
 Un solo momento por pantalla (p. ej. el título entra con los contornos desplazándose). Con
 `prefers-reduced-motion` o `P.Motion.reduced()` el estado final aparece sin animación.
+
+## Estilo logo (arcade-cartoon 3D) — sistema vigente para recompensas y títulos
+Sustituye al estilo plano «afiche chicha» descrito arriba en las pantallas de mejora, fin de partida, botín y tienda (todas comparten `#overlay`). El resto de la interfaz (hub, HUD, Opciones, diálogos) migrará por fases; hasta entonces conserva el estilo chicha. Referencia: el logo de inicio (Luckiest Guy gruesa, contorno oscuro, degradado vertical, extrusión hacia abajo, brillo superior y estrellas doradas).
+
+Tokens (`:root` al final de `src/ui/styles.css`): `--logo-oro-1/-2`, `--logo-naranja`, `--logo-borde` (marrón rojizo), `--logo-oro-canto`, `--logo-verde-1/-2/-borde/-canto`, `--logo-violeta-1/-2/-borde/-canto`, `--logo-panel`, `--logo-panel-2`, `--logo-panel-borde`, `--logo-estrella` y `--logo-estrella-img` (SVG de estrella).
+
+Clases reutilizables:
+- `.logo-text` (+ `.logo-text--verde`): degradado recortado al texto, `-webkit-text-stroke` de .1em y extrusión con `drop-shadow` apilado (no `text-shadow`, que taparía el relleno transparente). Respaldo de color sólido sin `background-clip:text`. En `#overlay` todos los `h2` ya lo llevan.
+- `.logo-panel`: esquinas de 20 px, borde de 4 px oscuro, degradado vertical, bisel interior y sombra sólida de caída. `#overlay` lo aplica directamente.
+- `.logo-btn` (+ `--oro`, `--verde`; por defecto violeta): cara con degradado, canto sólido de 5 px que se hunde al pulsar, foco visible blanco. En `#overlay` lo heredan `.upgrade-primary` (oro), `.upgrade-auxiliary` y `.merchant-close` (violeta), `.merchant-buy` y `.loot-option-pick` (oro).
+- `.logo-star`: estrella SVG con destello suave (solo `transform`); quieta con movimiento reducido.
+
+Tarjetas de mejora: marco con degradado del color de rareza (común gris-lila, rara cian, épica rosa/morado, legendaria dorada), medallón redondo con aro dorado para el icono, chapa dorada de tecla, nombre blanco con contorno, rareza en píldora, comparación en píldora dorada y sello verde «NUEVO». Al pasar o enfocar se elevan y brillan (sin elevación con movimiento reducido). Texto mínimo 12 px.
