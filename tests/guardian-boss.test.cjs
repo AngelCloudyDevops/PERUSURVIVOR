@@ -1,5 +1,5 @@
 'use strict';
-const {test}=require('node:test'),assert=require('node:assert/strict'),{Simulation}=require('../backend/simulation.cjs');
+const fs=require('node:fs'),{test}=require('node:test'),assert=require('node:assert/strict'),{Simulation}=require('../backend/simulation.cjs');
 function setup(){const sim=new Simulation('machu',[0]),P=sim.P,s=P.state;P.Game.start();P.$('#lab-boss').value='machu';P.Lab.run();const e=s.enemies[0],p=s.player;return {P,s,e,p,G:P.GuardianBoss}}
 
 test('Guardián: controlador exclusivo y cuatro patrones propios',()=>{const {P,G,e}=setup(),g=G.init(e),phases=[];assert(G.eligible(e));for(let i=0;i<4;i++){G.start(e);phases.push(g.phase);G.recover(e,0);g.phase='idle'}assert.deepEqual(phases,['ring','refuges','terraces','record']);const entry=P.Lobby.codexEntries().find(x=>x.guardianKit==='niebla'),contract=P.EnemyContract.describe(entry);assert.equal(entry.attacks.length,4);assert.equal(contract.reserved,0);assert.equal(contract.completion,100)});
@@ -16,3 +16,5 @@ test('La cámara táctica encuadra la arena completa y no altera el zoom global'
 test('La marcha pesada mueve al Guardián sin atravesar coberturas',()=>{const {P,e,p,G}=setup(),start={x:e.x,y:e.y};Object.assign(p,{x:420,y:230});G.startMarch(e);for(let i=0;i<12;i++)G.move(e,.05);assert(Math.hypot(e.x-start.x,e.y-start.y)>1);assert(!P.Terrain.hit(e.x,e.y,e.r));assert(e.walkPhase>0)});
 
 test('Los cuatro ataques físicos tienen aviso, impacto y agotamiento vulnerable',()=>{const {s,e,G}=setup(),g=G.init(e),types=[];for(let i=0;i<4;i++){G.startPhysical(e);types.push(g.physicalType);g.timer=0;G.tickPhysical(e,.01);if(g.phase==='apu'){for(let n=0;n<30&&g.phase==='apu';n++)G.tickPhysical(e,.06)}assert.equal(g.phase,'recover');assert.equal(G.outgoingMultiplier(e),1.35);g.phase='idle';e.phase='approach'}assert.deepEqual(types,['slam','sweep','apu','throw']);assert(s.danger.some(q=>q.kind==='stomp'));assert(s.danger.some(q=>q.kind==='spread'))});
+
+test('Cada prueba del Guardián tiene lenguaje visual propio y avisos compactos',()=>{const src=fs.readFileSync('src/systems/guardian-boss.js','utf8');for(const token of ['drawStoneTrace','drawBeacon','drawEcho','drawMemoryMark','drawTerraces','compact:true'])assert(src.includes(token),token);assert(!src.includes("g.phase==='replay')for(let i=0;i<=g.echoIndex;i++)this.drawCircle"),'Eco del camino no debe volver al círculo genérico')});
