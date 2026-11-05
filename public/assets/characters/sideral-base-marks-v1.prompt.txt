@@ -1,0 +1,5 @@
+Built-in image generation mode.
+
+Create one transparent PNG sprite sheet, exactly 4 columns by 2 rows, with eight isolated game-effect icons and no text. Top row: four animation frames of a glowing orange reptilian eye used as a prey/lock-on mark, opening and pulsing from left to right. Bottom row: four animation frames of a lime-green egg-shaped target sigil used as an egg objective mark, charging and pulsing from left to right. Bold readable silhouette, dark outline, warm gold highlights, organic reptile scales, clean polished 2D game art matching a colorful Peruvian caricature action game. Keep every frame centered inside an equal cell with generous transparent margins. No characters, no letters, no stitches, no puppet motifs, no background, no grid lines, no drop shadow outside each icon.
+
+Generated master: 1774x887 RGBA. Runtime sheet: 384x192 transparent WebP, four columns by two rows.
