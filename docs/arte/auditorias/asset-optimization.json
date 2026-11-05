@@ -669,13 +669,13 @@
       "width": 1024,
       "height": 1536,
       "originalBytes": 2728979,
-      "optimizedBytes": 142586,
+      "optimizedBytes": 45510,
       "sourceSha256": "fd2c6cb0ace36424949153f7fd0722e6f52d420d0b507b20e073ab176813b252",
-      "outputSha256": "60d7639f7916116138164909d5193b4de4a2172473cf9f22f1c78b2a3cffd329",
+      "outputSha256": "83fdf49f2be042a8830227ca5fb4ed21c1b996f0d4ab22c858732d143add2c60",
       "rgbaSha256": "a44dace2345a4ef448e6232b9e06cc39842228e995cac29ca5d429b632b2da69",
-      "quality": 88,
-      "runtimeWidth": 512,
-      "runtimeHeight": 768
+      "quality": 78,
+      "runtimeWidth": 320,
+      "runtimeHeight": 480
     },
     {
       "source": "assets/cards/support-orbit-fullart-v2.png",
@@ -683,13 +683,13 @@
       "width": 1024,
       "height": 1536,
       "originalBytes": 2699408,
-      "optimizedBytes": 145030,
+      "optimizedBytes": 46166,
       "sourceSha256": "9e6b52008afd23bffaeb4002ad417f100bb5c722f65503ca54ef1e4f3c9b30e4",
-      "outputSha256": "df20b3775f74882310320accaae75355c69ce685b6b5a1d28c8af7962e879d3b",
+      "outputSha256": "b1ea6b943dd7ff57cf54831b9150433e305b247bafca2ab029b3cbfdb77ddf4e",
       "rgbaSha256": "2faaa088a54d90af1abba3640779551131e6e760e5df6a83ea078efce6c84cd3",
-      "quality": 88,
-      "runtimeWidth": 512,
-      "runtimeHeight": 768
+      "quality": 78,
+      "runtimeWidth": 320,
+      "runtimeHeight": 480
     },
     {
       "source": "assets/cards/support-pulse-fullart-v2.png",
@@ -697,13 +697,13 @@
       "width": 1024,
       "height": 1536,
       "originalBytes": 2719457,
-      "optimizedBytes": 141714,
+      "optimizedBytes": 44642,
       "sourceSha256": "c021894de1eb38c2c31f0b81428cecff76aa4deb2ab7b1b9ce94aa8cfa34bc95",
-      "outputSha256": "3439c2979e4755a2a29656b2745da8a4034e6eebe55927955e40aef869bb8bd8",
+      "outputSha256": "71462c6bec4b495be4ddc05af0337cc973cdd9e584bcf771972121d2e379705a",
       "rgbaSha256": "36411abacec8e866e47b62381c6961d12be00d199ee2d0caa9494953289dc06f",
-      "quality": 88,
-      "runtimeWidth": 512,
-      "runtimeHeight": 768
+      "quality": 78,
+      "runtimeWidth": 320,
+      "runtimeHeight": 480
     },
     {
       "source": "assets/characters/causas-atlas-v1.png",
@@ -1139,5 +1139,5 @@
     }
   ],
   "originalBytes": 172319510,
-  "optimizedBytes": 43682386
+  "optimizedBytes": 43389374
 }
