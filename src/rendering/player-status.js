@@ -88,7 +88,7 @@ P.PlayerStatus={
  gradients:null,
  grad(ctx,kind,y,h){
   let g=this.gradients;if(!g||g.ctx!==ctx||g.y!==y||g.h!==h){g=this.gradients={ctx,y,h};g.stops={life:['#ff7ab8','#ff2e88','#d41468'],low:['#ffc04a','#ff7a1a','#d4500a'],heal:['#d6ffb0','#8ff0a4','#38c26a'],flash:['#ffffff','#fff4dc','#ffd9a8'],coin:['#fff08a','#ffd23a','#e8890f']}}
-  if(!g[kind]){const s=g.stops[kind],gr=ctx.createLinearGradient(0,y,0,y+h);gr.addColorStop(0,s[0]);gr.addColorStop(.5,s[1]);gr.addColorStop(1,s[2]);g[kind]=gr}
+  if(!g[kind]){const s=g.stops[kind],gr=ctx.createLinearGradient?.(0,y,0,y+h);if(gr){gr.addColorStop(0,s[0]);gr.addColorStop(.5,s[1]);gr.addColorStop(1,s[2])}g[kind]=gr||s[1]}
   return g[kind]
  },
  // Barra compacta bajo los pies (jugador local y compañero): vida rosa, nivel en chapa amarilla.
