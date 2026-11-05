@@ -1556,10 +1556,12 @@ body.ref-items-right:not(.menu) #dota-inventory{left:auto!important;right:18px!i
 #lobby-splash{isolation:isolate;overflow:hidden;background:#03070b}
 #lobby-splash:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 50% 38%,#02060a1c 0 12%,#02070a82 54%,#010305ed 100%),linear-gradient(180deg,#02070a55,#02070ac7);backdrop-filter:blur(1px) saturate(.86)}
 #lobby-splash>*{position:relative;z-index:1}
-.splash-reel{position:absolute!important;inset:-4%;z-index:-2!important;overflow:hidden;background:#03070b}
+.splash-reel{position:absolute!important;inset:-4%;z-index:-3!important;overflow:hidden;background:#03070b}
 .splash-reel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 36%;opacity:0;filter:saturate(.9) contrast(1.08);animation:splash-reel-shot 18s linear infinite}
 .splash-reel img:nth-child(2){animation-delay:6s;object-position:center 26%}
 .splash-reel img:nth-child(3){animation-delay:12s;object-position:center 31%}
+.splash-gameplay{position:absolute!important;inset:-2%;z-index:-2!important;width:104%;height:104%;object-fit:cover;opacity:0;filter:saturate(.92) contrast(1.08);transition:opacity .7s ease;pointer-events:none}
+.splash-gameplay[data-ready=true]{opacity:.92}
 .splash-logo-wrap{position:relative;width:min(720px,88vw);margin:0 auto;filter:drop-shadow(0 18px 28px #000c);animation:splash-logo-arrive .85s cubic-bezier(.2,.85,.25,1) both}
 #lobby-splash .splash-logo-wrap .lobby-brand-logo{width:100%;max-height:50vh;margin:0;object-fit:contain;clip-path:inset(0 0 53% 0)}
 .splash-stars-wave{position:absolute;inset:0;pointer-events:none}
@@ -1587,4 +1589,4 @@ body.ref-items-right:not(.menu) #dota-inventory{left:auto!important;right:18px!i
 @keyframes splash-reel-shot{0%{opacity:0;transform:scale(1.06)}7%,27%{opacity:1}34%,100%{opacity:0;transform:scale(1.14) translate3d(-1.2%,-.8%,0)}}
 @keyframes splash-access-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media(max-width:600px){.splash-logo-wrap{width:min(520px,96vw)}#welcome-actions{grid-template-columns:1fr;gap:9px}#welcome-actions #welcome-register{grid-column:1}#welcome-continue{font-size:14px}#lobby-splash{padding:16px}}
-@media(prefers-reduced-motion:reduce){.splash-reel img,.splash-logo-wrap,.splash-stars-wave img,.splash-logo-wrap:after,#welcome-actions{animation:none!important}.splash-reel img:first-child{opacity:1}}
+@media(prefers-reduced-motion:reduce){.splash-reel img,.splash-logo-wrap,.splash-stars-wave img,.splash-logo-wrap:after,#welcome-actions{animation:none!important}.splash-gameplay{display:none}.splash-reel img:first-child{opacity:1}}

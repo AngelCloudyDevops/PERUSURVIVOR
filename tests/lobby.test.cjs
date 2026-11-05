@@ -162,6 +162,11 @@ test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta 
  assert.match(source,/gallinazo-lima-cinematic-v1\.webp/);
  assert.match(source,/makanaky-los-tres-ultimate-fullart-v1\.webp/);
  assert.match(source,/sideral-domain-fullart-v1\.webp/);
+ assert.match(source,/make\('canvas',null,'splash-gameplay'\)/);
+ assert.match(source,/gameplay\.className='splash-gameplay'/);
+ assert.match(source,/splashGameplay\(canvas,time\)/);
+ assert.match(source,/\['combate','ulti','dominio'\]\[phase\]/);
+ assert.match(source,/if\(!this\.entered\)this\.splashGameplay/);
  assert.doesNotMatch(source,/Tu cuenta conserva el progreso/);
  assert.match(source,/splash-stars-wave/);
  assert.match(source,/for\(let i=0;i<9;i\+\+\)/);
@@ -172,6 +177,8 @@ test('Bienvenida: portada cinematográfica separa Continuar del acceso a cuenta 
  assert.match(css,/-webkit-mask-image:url\('assets\/branding\/kick-all-stars-peru-logo-v1\.webp'\)/);
  assert.match(css,/-webkit-mask-repeat:no-repeat/);
  assert.match(css,/@keyframes splash-reel-shot/);
+ assert.match(css,/\.splash-gameplay\[data-ready=true\]\{opacity:/);
+ assert.match(css,/\.splash-gameplay\{display:none\}/);
  assert.match(css,/#welcome-actions\[hidden\]\{display:none\}/);
 });
 
