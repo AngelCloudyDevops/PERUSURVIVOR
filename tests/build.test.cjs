@@ -365,6 +365,18 @@ test('El atlas de Makanaky se distribuye porque el runtime lo solicita',()=>{
  assert.equal(hash(source),hash(built));
 });
 
+test('El build distribuye los apoyos cartoon v2 y archiva sus ilustraciones reemplazadas',()=>{
+ const build=require('../scripts/build.cjs');
+ for(const id of ['cards','pulse','orbit']){
+  const old=`assets/cards/support-${id}-fullart-v1.webp`;
+  const current=`assets/cards/support-${id}-fullart-v2.webp`;
+  assert.equal(build.archivedAsset(old),true);
+  assert(!fs.existsSync(path.join(root,'dist',old)));
+  assert.equal(build.archivedAsset(current),false);
+  assert.equal(hash(path.join(root,'public',current)),hash(path.join(root,'dist',current)));
+ }
+});
+
 
 
 
