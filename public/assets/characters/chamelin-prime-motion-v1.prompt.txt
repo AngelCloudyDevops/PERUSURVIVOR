@@ -1,0 +1,6 @@
+Use case: stylized-concept
+Asset type: production 2D game sprite sheet with true transparent background
+Subject: Chamelin Prime, the same short and stocky Peruvian caricature used by the game, with black hair, expressive face, colorful blue Andean chullo, open royal-blue jacket, white briefs and white sneakers.
+Frames: idle, two walking frames, crouch wind-up, turret deployment and recovery.
+Style: polished detailed pixel-art / high-resolution 2D game sprite, crisp dark outlines and consistent proportions.
+Constraints: non-sexual comedy; transparent background; no scenery, text, grid or extra characters.
