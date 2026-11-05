@@ -266,6 +266,7 @@ body.domain-result #hud>.stats,body.domain-result #hud>#level{visibility:hidden}
 #overlay.level-up.card-reveal.legendary-impact{animation:legendaryPanelKick .38s steps(4) both}
 .illustrated-cards .upgrade-front{position:absolute;inset:0;gap:0;padding:0;justify-content:flex-end;background:#151c22}
 .illustrated-cards .upgrade-art{position:absolute;z-index:0;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center 42%;background:#151c22;image-rendering:pixelated}
+.illustrated-cards .upgrade-card[data-role=attribute] .upgrade-art,.illustrated-cards .upgrade-card[data-role=recovery] .upgrade-art,.illustrated-cards .upgrade-card[data-role=support] .upgrade-art{image-rendering:auto}
 .illustrated-cards .upgrade-card[data-full-art=true] .upgrade-icon,.illustrated-cards .upgrade-preview{display:none}
 .illustrated-cards .upgrade-front .upgrade-icon{position:absolute;z-index:2;top:12px;right:12px;display:grid;flex:0 0 44px;width:44px;height:44px;padding:3px;border:1px solid var(--rarity);border-radius:2px;background:#111820eF;box-shadow:3px 3px #0d1013;image-rendering:pixelated}
 .illustrated-cards .upgrade-card[data-dota-item=true] .upgrade-front{background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,var(--rarity) 18%,#263642) 0%,#172129 58%,#111820 100%)}

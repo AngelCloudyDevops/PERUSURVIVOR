@@ -556,6 +556,90 @@
       "quality": 76
     },
     {
+      "source": "assets/cards/passive-health-fullart-v2.png",
+      "output": "assets/cards/passive-health-fullart-v2.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2420896,
+      "optimizedBytes": 37022,
+      "sourceSha256": "ac424cfdeca4a83b0bcf28161f1f370e4875bdb3e82813f355c9297033ff23c7",
+      "outputSha256": "ea76188fe87319e41776857750ba918d4feddc100524794b3088a42143769648",
+      "rgbaSha256": "028565cfc6af8fead8d58bd2ef6e00ee39c877fa6414c18ec51afb4a139267b5",
+      "quality": 76,
+      "runtimeWidth": 320,
+      "runtimeHeight": 480
+    },
+    {
+      "source": "assets/cards/passive-magnet-fullart-v2.png",
+      "output": "assets/cards/passive-magnet-fullart-v2.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2195161,
+      "optimizedBytes": 32036,
+      "sourceSha256": "d358d56bc55955fa2759a8eee6897df42fe0d43ba8b58744111ae3e109b3c3e2",
+      "outputSha256": "6ff6ccbfc35b2d6d0ded61a24f2b3492cdb0111c1e07aac703ab4fe6837acb14",
+      "rgbaSha256": "96245cf35724cc0eb04c623f1d3629656c14e746b4410738060466a6acf525cd",
+      "quality": 76,
+      "runtimeWidth": 320,
+      "runtimeHeight": 480
+    },
+    {
+      "source": "assets/cards/passive-power-fullart-v2.png",
+      "output": "assets/cards/passive-power-fullart-v2.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2287565,
+      "optimizedBytes": 28446,
+      "sourceSha256": "a9624e84710b607c7a5fe2435e6b644e2eb6c599378b4e8a74c0d80fece2cef6",
+      "outputSha256": "f43c8816dbe611228fdedb6565fd95bec4316873eecd297ab6e7514adbfb73c3",
+      "rgbaSha256": "131682d045f41b6af0337184c831398104c67e10b269c01d4c586c7cb2542a12",
+      "quality": 76,
+      "runtimeWidth": 320,
+      "runtimeHeight": 480
+    },
+    {
+      "source": "assets/cards/passive-range-fullart-v2.png",
+      "output": "assets/cards/passive-range-fullart-v2.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2184943,
+      "optimizedBytes": 33528,
+      "sourceSha256": "7ed141ded9f3327f04d558c051e9816eabfe22d36dcd18a9497c9d060f5b8755",
+      "outputSha256": "afd698e50467a4ccbb1bf16d2a1f1c9a8cebc9ded932c832efad7c7bc81a212e",
+      "rgbaSha256": "d8f201f5dfe265b02befe7c6dccc2d9611f9ed222a5ceb2d23d1b84989d3912a",
+      "quality": 76,
+      "runtimeWidth": 320,
+      "runtimeHeight": 480
+    },
+    {
+      "source": "assets/cards/passive-rate-fullart-v2.png",
+      "output": "assets/cards/passive-rate-fullart-v2.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 1995411,
+      "optimizedBytes": 31194,
+      "sourceSha256": "792dcb195ef3f6aaf6e8b0c1b537d6d9c4120722cc3ccbbd948193639888f184",
+      "outputSha256": "8f814155c44dac0f3b4c112e5f38e4dcfacb628b085ab5e8aeb2cb3c2f29b1e7",
+      "rgbaSha256": "71d8c7fc0f2e51f92eb94c406d8ad59395164ec40a71ff2a5b86f60a2fc65615",
+      "quality": 76,
+      "runtimeWidth": 320,
+      "runtimeHeight": 480
+    },
+    {
+      "source": "assets/cards/passive-speed-fullart-v2.png",
+      "output": "assets/cards/passive-speed-fullart-v2.webp",
+      "width": 1024,
+      "height": 1536,
+      "originalBytes": 2306091,
+      "optimizedBytes": 34146,
+      "sourceSha256": "da34dcb1ac34d946e8408aa68fa482fc53a80b1b980a355654e60465a2f79a6d",
+      "outputSha256": "8beb8439705da14ff8c8ef6ee4285c878a509439ee5b108e802988174440153e",
+      "rgbaSha256": "77818954d75871c3decaeeebb75069506126f16f8509d125ada261f44d2cbde2",
+      "quality": 76,
+      "runtimeWidth": 320,
+      "runtimeHeight": 480
+    },
+    {
       "source": "assets/cards/sideral-ancestral-tail-fullart-v1.png",
       "output": "assets/cards/sideral-ancestral-tail-fullart-v1.webp",
       "width": 1024,
@@ -1138,6 +1222,6 @@
       "sha256": "89211b86adbb3bf13abc3d72c0998f3b93d5bd2ef8326cc9a31e83fa64e81c1d"
     }
   ],
-  "originalBytes": 172319510,
-  "optimizedBytes": 43389374
+  "originalBytes": 185709577,
+  "optimizedBytes": 43585746
 }

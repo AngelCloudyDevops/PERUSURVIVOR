@@ -378,6 +378,18 @@ test('El build distribuye los apoyos cartoon v2 y archiva sus ilustraciones reem
  }
 });
 
+test('El build distribuye las seis pasivas cartoon cálidas y archiva sus versiones reemplazadas',()=>{
+ const build=require('../scripts/build.cjs');
+ for(const version of ['v1','v2'])assert.equal(build.archivedAsset(`assets/cards/passive-survivor-fullart-${version}.webp`),true);
+ for(const id of ['power','rate','health','speed','magnet','range']){
+  const old=`assets/cards/passive-${id}-fullart-v1.webp`;
+  const rel=`assets/cards/passive-${id}-fullart-v2.webp`;
+  assert.equal(build.archivedAsset(old),true);
+  assert.equal(build.archivedAsset(rel),false);
+  assert.equal(hash(path.join(root,'public',rel)),hash(path.join(root,'dist',rel)));
+ }
+});
+
 
 
 
