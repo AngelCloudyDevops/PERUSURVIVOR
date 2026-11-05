@@ -1,0 +1,5 @@
+Mode: image generation
+
+Create a transparent production attack atlas for transformed Sideral in PerúSurvivor. Exactly 8 isolated full-body frames in a strict 4 columns by 2 rows grid, same green cartoon lizard-man, black headphones, red T-shirt, dark pants and sneakers in every cell. Frames 1-3: Mirada attack anticipation, focus and release without projectile. Frames 4-6: Colazo attack wind-up, powerful tail sweep and recovery. Frames 7-8: Huevo attack prepare and throw, with one small spotted egg held or just leaving the hand. Preserve identical anatomy, body volume, scale, camera and shared foot baseline. Crisp polished cartoon game art matching the walking atlas. Effects are handled by the game: no breath, beam, impact burst, glow, smoke, shadow, text, labels, border or scenery. Transparent background.
+
+Generated with: built-in imagegen.
