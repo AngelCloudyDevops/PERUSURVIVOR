@@ -1360,3 +1360,14 @@ Mutación: luz ramificada de 0,85 s al revelarse. Evolución: contorno luminoso 
 - Todo objeto reconocible que un jefe arroje, invoque o pida activar debe usar un sprite detallado coherente con el arte del jefe: boletos, documentos, personajes, fragmentos, faroles, regalos, carbón, memorias, ecos y balizas no se representan solo con rectángulos, círculos o texto.
 - Las áreas de daño, telégrafos, trayectorias y límites interactivos siguen siendo geometría generada por el juego. Esa geometría expresa la verdad mecánica y se dibuja debajo del sprite; el arte nunca sustituye ni altera el hitbox.
 - Si un recurso todavía no terminó de cargar, el juego conserva una figura de respaldo sencilla para que la mecánica nunca desaparezca.
+# Chamelín Prime: arsenal territorial
+
+Chamelín Prime alterna tres estilos automáticos con `1`, `2` y `3` (o rueda del ratón). El cambio conserva las construcciones existentes y muestra una transición breve, pero cada estilo modifica el papel de la red.
+
+- **Base contaminada:** coloca torretas sin límite rígido; la cadencia reduce el intervalo de construcción. Las torretas conectadas crean territorio, disparan semillas y ganan escudo.
+- **Chorro a presión:** consume una reserva de 100 puntos. Al inicio tiene más alcance, daño y empuje; al agotarse entra en recarga automática y deja a Chamelín temporalmente vulnerable. Las torretas existentes dejan de disparar y funcionan como señuelos defensivos.
+- **Escupitajo acumulado:** el primer ciclo arma la carga pasiva y el siguiente lanzamiento libera una esfera cuyo tamaño depende de la carga. El impacto crea una zona que ralentiza y reduce 22 % la defensa; una torreta cercana ayuda a retener enemigos dentro.
+
+La pasiva **Territorio Prime** cura y acelera a Chamelín dentro de la red. La ulti **Agujero Prime** atrae enemigos y proyectiles, inflige pulsos más fuertes cerca del centro y termina con una explosión cuyo daño aumenta con torretas, charcos y zonas de saliva conectadas.
+
+Los estados visuales obligatorios son: preparación, ataque continuo, baja presión, agotamiento, carga de mejillas, lanzamiento, impacto, daño recibido, derrota, curación, cambio de estilo y canalización de la ulti.
