@@ -1475,6 +1475,11 @@ body:not(.menu):has(#combat-dock[data-character=sideral]) header #skills-hud{bot
 #combat-dock #attack-dock-slot,#combat-dock[data-character=sideral] #attack-dock-slot{width:max-content}
 
 #combat-dock #weapon-bar .sideral-skill-card[data-locked=true]{opacity:1;filter:grayscale(.8) brightness(.78);border-color:#6b7c8e}
+#combat-dock[data-character=chamelinPrime] #weapon-bar{overflow:visible}
+#combat-dock[data-character=chamelinPrime] #weapon-bar .prime-skill-card{border-color:#9a6938;background:#24170f;box-shadow:0 4px 0 #100805,0 8px 16px #000a,0 0 12px #ff9a3c24}
+#combat-dock[data-character=chamelinPrime] #weapon-bar .prime-skill-card[data-active=true]{border-color:#f4ca62;box-shadow:0 4px 0 #100805,0 10px 19px #000a,0 0 18px #ffb54866}
+#combat-dock[data-character=chamelinPrime] #weapon-bar .prime-skill-card .sideral-card-shade{background:linear-gradient(180deg,#3d1d080d 20%,#140c07a6 60%,#090604 100%)}
+#combat-dock[data-character=chamelinPrime] #weapon-bar .prime-skill-card .sideral-card-key{border-color:#ffcc70;background:#35190ee8;color:#fff0c2}
 /* Clean category cards: artwork first; rarity remains on equipment only. */
 #overlay .upgrade-card[data-clean=true]{--rarity:var(--role)}
 #overlay .upgrade-card[data-clean=true] .upgrade-front{padding:0;overflow:hidden;border:1px solid #b9c6cd70;border-radius:10px;box-shadow:0 8px 20px #0005;background:#101a23}
