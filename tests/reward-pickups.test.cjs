@@ -86,15 +86,24 @@ test('La rareza del cofre determina su tiempo de apertura',()=>{
  assert.equal(P.Loot.openingDuration({}),.8);
 });
 
-test('Las llaves salen físicamente del portador y exigen caminar sobre ellas',()=>{
+test('Las llaves salen físicamente, respetan su bloqueo y luego son atraídas por el imán',()=>{
  const {P,s,p}=setup();s.elapsed=12;p.x=0;p.y=0;p.magnet=500;
  const keeper={x:0,y:0,keyTier:'rare'};P.Loot.enemyDrop(keeper);
  const key=s.gems.find(g=>g.kind==='key');
  assert(key);assert.equal(key.rarity,'rare');assert.equal(Math.hypot(key.x,key.y),42);assert.equal(s.keys?.rare||0,0);
  const before={x:key.x,y:key.y};P.Systems.collect(.2);
- assert.equal(key.x,before.x,'el imán no arrastra llaves');assert.equal(key.y,before.y);assert.equal(s.keys?.rare||0,0);
- s.elapsed=13;p.x=key.x;p.y=key.y;P.Systems.collect(.01);
+ assert(Math.hypot(key.x,key.y)<Math.hypot(before.x,before.y),'el imán acerca la llave');assert.equal(s.keys?.rare||0,0,'el bloqueo inicial evita recogerla de inmediato');
+ s.elapsed=13;P.Systems.collect(.01);
  assert.equal(s.keys.rare,1);assert(!s.gems.includes(key));
+});
+
+test('El imán atrae por defecto todo el botín compatible y respeta exclusiones explícitas',()=>{
+ const {P,s,p}=setup();s.elapsed=20;p.x=0;p.y=0;p.magnet=500;
+ const drops=['xp','coin','key','heal','paneton','magnet-pulse'].map((kind,i)=>({kind:kind==='xp'?undefined:kind,x:120+i*30,y:0,value:1,pickupAt:0}));
+ const fixed={kind:'decorative',x:300,y:40,value:1,attractable:false};s.gems=[...drops,fixed];
+ const before=drops.map(g=>Math.hypot(g.x,g.y));P.Systems.collect(.01);
+ drops.forEach((g,i)=>assert(Math.hypot(g.x,g.y)<before[i],String(g.kind||'xp')+' debe acercarse'));
+ assert.deepEqual({x:fixed.x,y:fixed.y},{x:300,y:40});
 });
 
 test('Las rarezas de llave usan el atlas azul y violeta generado para el juego',()=>{
