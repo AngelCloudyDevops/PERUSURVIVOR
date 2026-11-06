@@ -55,6 +55,7 @@ Desbloqueados de inicio: el cliente lista cristorata, cuy, paloma, makanaky y si
 `tests` · `gotchas` (si aplica).
 
 ## Al añadir o cambiar un personaje
+- Lee y completa primero [[personajes/PLANTILLA_PERSONAJE|Plantilla maestra para crear o completar un personaje]].
 - Busca todas las listas de ids: [[gotchas/G004-listas-ids-personajes]].
 - Revisa sobrescrituras posteriores: [[gotchas/G012-object-assign-sobrescribe]].
 - Actualiza [[poderes/README]] si cambia una pasiva, Q o R.
