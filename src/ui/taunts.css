@@ -9,8 +9,8 @@ body:not(.menu) #taunt-trigger{display:flex}#taunt-trigger kbd,.taunt-wheel-cent
 @media(prefers-reduced-motion:reduce){.taunt-option{transition:none}}
 
 /* El meme se mantiene anclado al actor en pantalla y nunca captura controles. */
-#taunt-video{--taunt-crop-x:50%;--taunt-crop-y:50%;--taunt-crop-zoom:1;position:fixed;z-index:36;width:clamp(118px,8vw,144px);aspect-ratio:1;overflow:hidden;pointer-events:none;transform:translate(-50%,-100%);border:2px solid #ffd15d;border-radius:24px 24px 24px 8px;background:#070b12;box-shadow:0 0 0 3px #10263dcc,0 10px 26px #000b,0 0 18px #f1aa3555;animation:taunt-video-enter .22s cubic-bezier(.2,.9,.25,1.15) both}
-#taunt-video[hidden]{display:none}#taunt-video video,#taunt-video img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--taunt-crop-x) var(--taunt-crop-y);transform:scale(var(--taunt-crop-zoom));transform-origin:var(--taunt-crop-x) var(--taunt-crop-y);background:#05070c}#taunt-video video[hidden],#taunt-video img[hidden]{display:none}
+.taunt-media{--taunt-crop-x:50%;--taunt-crop-y:50%;--taunt-crop-zoom:1;position:fixed;z-index:36;width:clamp(118px,8vw,144px);aspect-ratio:1;overflow:hidden;pointer-events:none;transform:translate(-50%,-100%);border:2px solid #ffd15d;border-radius:24px 24px 24px 8px;background:#070b12;box-shadow:0 0 0 3px #10263dcc,0 10px 26px #000b,0 0 18px #f1aa3555;animation:taunt-video-enter .22s cubic-bezier(.2,.9,.25,1.15) both}
+.taunt-media[hidden]{display:none}.taunt-media video,.taunt-media img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--taunt-crop-x) var(--taunt-crop-y);transform:scale(var(--taunt-crop-zoom));transform-origin:var(--taunt-crop-x) var(--taunt-crop-y);background:#05070c}.taunt-media video[hidden],.taunt-media img[hidden]{display:none}
 @keyframes taunt-video-enter{from{opacity:0;transform:translate(-50%,-92%) scale(.78)}to{opacity:1;transform:translate(-50%,-100%) scale(1)}}
-@media(max-width:760px),(pointer:coarse){#taunt-video{width:clamp(104px,29vw,126px);border-radius:20px 20px 20px 7px}}
-@media(prefers-reduced-motion:reduce){#taunt-video{animation:none}}
+@media(max-width:760px),(pointer:coarse){.taunt-media{width:clamp(104px,29vw,126px);border-radius:20px 20px 20px 7px}}
+@media(prefers-reduced-motion:reduce){.taunt-media{animation:none}}
