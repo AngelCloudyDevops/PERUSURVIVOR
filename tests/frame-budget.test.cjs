@@ -22,7 +22,7 @@ test('HUD completo: limita también capas externas, conserva cambios de escena y
 test('Perfil CPU: optativo, conserva receptor, retorno y errores sin cambiar la lógica',()=>{
  let now=0;const original=function(n){assert.equal(this,P.Game);now+=2;return n+1},P={state:{mode:'play'},Game:{update:original}};
  vm.runInNewContext(fs.readFileSync('src/development/performance.js','utf8'),{P,document:{hidden:false},performance:{now:()=>now}});const perf=P.Performance;
- perf.instrument();assert.equal(P.Game.update,original);perf.profiling=true;perf.instrument();assert.equal(P.Game.update(4),5);assert.equal(perf.cpu['Lógica'].sum,2);assert.equal(perf.cpu['Lógica'].count,1);perf.enabled=false;P.Game.update(8);assert.equal(perf.cpu['Lógica'].count,1);
+ perf.instrument();assert.equal(P.Game.update,original);perf.profiling=true;perf.enabled=true;perf.instrument();assert.equal(P.Game.update(4),5);assert.equal(perf.cpu['Lógica'].sum,2);assert.equal(perf.cpu['Lógica'].count,1);perf.enabled=false;P.Game.update(8);assert.equal(perf.cpu['Lógica'].count,1);
 });
 test('HUD: las extensiones dejan de ejecutarse en cada fotograma aunque el HUD base ya limite escrituras',()=>{
  let now=0;function setup(){const element={classList:{toggle(){}},setAttribute(){},style:{}},P={state:{mode:'play',player:null},$:()=>element};vm.runInNewContext(fs.readFileSync('src/ui/screens.js','utf8'),{P,performance:{now:()=>now}});let layers=0;const base=P.UI.hud;P.UI.hud=function(...args){base.apply(this,args);layers++};return {P,count:()=>layers}}
