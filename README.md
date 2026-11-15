@@ -1,4 +1,4 @@
-# PERUSURVIVOR — Causas del Caos
+# PERUSURVIVOR — KICK PERU: All Stars
 
 ## Progresión de cartas
 
