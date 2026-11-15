@@ -1,3 +1,11 @@
+# Interfaz: rediseño «afiche chicha» — 2026-11-01
+- Nuevo sistema visual inspirado en los afiches chicha (documentado en `DESIGN.md`): fondo negro plano, bloques de color fosforescente por función (amarillo acción principal, rosa peligro y gacha, verde cooperativo, cian información, naranja énfasis), títulos en Bungee con contornos de colores y texto en Pixelify Sans.
+- Fuera los paneles redondeados con vidrio, brillos y degradados, las etiquetas encima de los títulos y los números de sección.
+- Iconos pixel dibujados en SVG (`P.Icons`) en lugar de caracteres Unicode y emoji: navegación del hub, audio, monedas, llaves, pausa, Wiki, diálogos y clima.
+- Hub y bienvenida: título con contornos chicha, JUGAR en bloque amarillo, rieles con icono de color por función y pie legal discreto.
+- HUD de partida: barra de vida rosa y de XP cian segmentadas, reloj grande, contadores con icono y paneles de pasiva, combo, objetos y ataques planos con franja de color.
+- Modal de mejora, pantalla final, botín, vendedor, Opciones, diálogos y barra de jefe con el mismo sistema; los deslizadores de Opciones muestran su valor y «Silenciar todo» pasa a botón secundario.
+
 # Daño legible, críticos diferenciados y DPS — 2026-11-02
 - Los números normales ganan tamaño, peso y contorno oscuro; el daño físico permanece dorado y el especial usa cian.
 - Los críticos muestran `CRÍT.`, crecen y cambian a rojo coral o magenta según su tipo, con una etiqueta física/especial.
@@ -34,6 +42,18 @@
 - Mirada, huevo, transformación y Lagarto desactivan el suavizado de imagen y dibujan sus cuadros en coordenadas y dimensiones enteras.
 - El cambio conserva tamaño, animación, daño y colisiones; evita que los sprites pierdan el borde pixel-art al atacar o al cambiar el zoom.
 - Una prueba de render impide reactivar accidentalmente el suavizado en estas figuras.
+
+# Interfaz: legibilidad, HUD móvil y accesibilidad — 2026-11-01
+- HUD en móvil (≤760 px): vitales, monedas, etapa, pasiva, combo, cartas Q/R, objetos y ataques ya no se pisan y el centro queda libre; el minimapa pasa arriba a la derecha en tamaño compacto y en pantallas táctiles se oculta «Teclas 1-3».
+- El modal de mejora y la pantalla final quedan por encima del dock de objetos y ataques.
+- El panel de FPS/ping viene apagado por defecto; se activa en Opciones o con `?profile`.
+- Ningún texto de menús ni HUD baja de 11 px (había textos de 6 a 9 px).
+- «Texto grande» y «Contraste alto» de Opciones > Accesibilidad ahora afectan al HUD y a los menús, no solo al panel de Opciones.
+- Pantalla final: velo detrás, «Otra partida» como botón primario y las monedas ganadas como texto, no como botón.
+- Escape cierra Opciones.
+- Móvil: pestañas Solo/Cooperativo, mochila, ajustes y audio miden al menos 44 px, y JUGAR queda fijo abajo en el hub.
+- Hub: se quita el rótulo «PERÚSURVIVOR · Edición Perú» (el nombre es «Causas del Caos») y en móvil se oculta el logo superior junto al título.
+- Mejora: «Elige una mejora» aparece una sola vez y las etiquetas de rareza son más grandes y legibles.
 
 # Claridad e impacto visual del combate — 2026-11-01
 - Los golpes físicos usan cortes cálidos y las técnicas especiales anillos, partículas y estelas luminosas; los críticos tienen una ráfaga mayor y una micro-sacudida acotada.
