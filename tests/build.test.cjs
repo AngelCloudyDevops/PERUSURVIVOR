@@ -75,7 +75,7 @@ test('La selección de causa, mapa y modo permanece en el flujo moderno hasta in
  assert.match(css,/\.character-viewer-title-row \.character-viewer-choose\{position:static/);assert.match(css,/\.character-viewer-info\{[^}]*overflow-x:hidden/);
  assert.match(css,/\.cause-collectible-card:hover \.cause-card-inner/);assert.match(css,/rotateY\(180deg\)/);assert.match(css,/prefers-reduced-motion:reduce[^}]*\{\.cause-card-inner/);assert.match(css,/\.cause-card-placeholder\.has-art/);assert.match(css,/\.character-viewer-illustration/);assert.match(css,/object-position:center var\(--art-y,50%\)/);
  assert.match(game,/LobbyComplete\?\.chooseCause\?\.\(\)/);assert.match(screens,/LobbyComplete\?\.chooseCause\?\.\(\)/);
- assert.doesNotMatch(game,/Elegir otro causa/);assert.doesNotMatch(screens,/Elegir otro personaje/);
+ assert.doesNotMatch(game,/Elegir otra dibujo/);assert.doesNotMatch(screens,/Elegir otro personaje/);
 });
 test('Laboratorio, Balance y Admin comparten la estructura visual del lobby sin perder sus controles',()=>{
  const source=fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8'),bench=fs.readFileSync(path.join(root,'src/development/test-bench.js'),'utf8');
@@ -94,7 +94,7 @@ test('Laboratorio, Balance y Admin comparten la estructura visual del lobby sin 
  assert.match(css,/#hub-tools/);assert.match(css,/\.hub-tools-menu/);
  assert.match(css,/\.tool-dialog-head/);
  assert.match(css,/\.lobby-back::before,#menu \.ui-back-button::before\{content:'←'/);
- assert.match(fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),/close\.textContent='×'/);
+ assert.match(fs.readFileSync(path.join(root,'src/ui/lobby-complete.js'),'utf8'),/P\.Icons\.node\('close'\)/);
  assert.match(fs.readFileSync(path.join(root,'src/ui/reference-menus.js'),'utf8'),/'←','ui-back-button'/);
 });
 test('El laboratorio en vivo conserva la barra compacta y no queda debajo de los controles de Cirilo',()=>{
@@ -106,7 +106,8 @@ test('Dock de combate: inventario, ataques y cartas usan zonas responsive separa
 const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 test('El HTML carga todos los módulos en el orden declarado',()=>{
  const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');
- const scripts=[...html.matchAll(/<script src="([^"]+)"/g)].map(m=>m[1].split('?')[0]);
+ const all=[...html.matchAll(/<script src="([^"]+)"/g)].map(m=>m[1].split('?')[0]),vendor=all.filter(f=>f.startsWith('vendor/')),scripts=all.filter(f=>!f.startsWith('vendor/'));
+ assert.deepEqual(vendor,['vendor/three-r160.min.js']);
  assert.deepEqual(scripts,modules.map(m=>m.output));
  for(const file of [...scripts,'style.css'])assert(fs.existsSync(path.join(root,'dist',file)),file);
  assert(!fs.existsSync(path.join(root,'dist/qa-portals.html')),'No distribuir controles locales de QA');

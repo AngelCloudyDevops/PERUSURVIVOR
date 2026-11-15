@@ -2,11 +2,11 @@
 // Arsenal de Kingteka: tres armas con progreso separado y cambio contextual 1–3.
 P.KingtekaArsenal={
  order:['shotgun','gallinazo','golpe'],
- names:{shotgun:'Escopeta causa',gallinazo:'Gallinazo',golpe:'Golpe de cuerpo'},
+ names:{shotgun:'Escopeta dibujo',gallinazo:'Gallinazo',golpe:'Golpe de cuerpo'},
  icons:{shotgun:'gun',gallinazo:'feather',golpe:'power'},
  gates:[1,4,7,10,13],
  profiles:{
-  shotgun:{name:'Escopeta causa',description:'Ráfaga física corta: muy fuerte de cerca y débil a distancia.',kind:'spread',cooldown:.92,range:260,speed:780,count:4,spread:.14,powerScale:.62,falloff:{near:120,min:.28},glyph:'BULLET',damageType:'physical'},
+  shotgun:{name:'Escopeta dibujo',description:'Ráfaga física corta: muy fuerte de cerca y débil a distancia.',kind:'spread',cooldown:.92,range:260,speed:780,count:4,spread:.14,powerScale:.62,falloff:{near:120,min:.28},glyph:'BULLET',damageType:'physical'},
   gallinazo:{name:'Gallinazo',description:'Dos plumas especiales guiadas que atraviesan hasta dos rivales visibles.',kind:'spread',cooldown:1.15,range:520,speed:420,count:2,spread:.2,powerScale:.64,pierce:2,homing:true,glyph:'PLUMA',color:'#d6c4a1',damageType:'special'},
   golpe:{name:'Golpe de cuerpo',description:'Golpe físico frontal de corto alcance con empuje y una cadencia más pausada.',kind:'melee',cooldown:.78,range:105,arc:120*Math.PI/180,damageScale:1.1,push:34,glyph:'PUÑO',damageType:'physical'}
  },

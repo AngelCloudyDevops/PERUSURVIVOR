@@ -4,7 +4,7 @@ P.CardGallery={mode:'threats',filter:'all',selected:'cirilo:base',viewerOpen:fal
   kingteka:{title:'Gallinazo',description:'Una bandada oscura desciende sobre el caos y abre paso entre los rivales.'},
   alberto:{title:'Tribunal',description:'Bandas presidenciales orbitan al personaje y convierten su defensa en sentencia.'},
   cristorata:{title:'Dragón',description:'Una montura dracónica cruza el escenario con velocidad, veneno y relámpagos.'},
-  cuy:{title:'Estampida',description:'Una estampida compacta protege al causa y arrasa todo lo que encuentra.'},
+  cuy:{title:'Estampida',description:'Una estampida compacta protege al dibujo y arrasa todo lo que encuentra.'},
   paloma:{title:'Bandada',description:'La bandada toma el cielo y cubre una gran zona con ataques encadenados.'},
   makanaky:{title:'Dominio de la Realeza',description:'El callejón se convierte en un cuadrilátero donde cada golpe aumenta la presión.'},
   sideral:{title:'Dominio Sideral',description:'El miedo toma forma en un dominio cósmico que controla a toda la multitud.'},

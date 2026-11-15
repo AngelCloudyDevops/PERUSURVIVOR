@@ -13,14 +13,14 @@ characters:[
 attacks:{
 emotes:{name:'Lluvia de emotes',description:'Tres emotes en abanico hacia el enemigo más cercano.',kind:'spread',cooldown:.7,range:700,glyph:':)'},
 clip:{name:'Clip de ida y vuelta',description:'Un micrófono que sale, regresa y atraviesa enemigos.',kind:'boomerang',cooldown:.95,range:520,glyph:'MIC'},
-nova:{name:'¡Habla, causa!',description:'Una onda de área que empuja a los enemigos cercanos.',kind:'nova',cooldown:1.1,range:145,glyph:'CAUSA'},
+nova:{name:'¡Habla, dibujito!',description:'Una onda de área que empuja a los enemigos cercanos.',kind:'nova',cooldown:1.1,range:145,glyph:'DIBUJO'},
 feathers:{name:'Ráfaga de la plaza',description:'Cinco plumas veloces en un abanico amplio.',kind:'spread',cooldown:.8,range:650,glyph:'PLUMA'},
 speech:{name:'Discurso interminable',description:'Un cono de sonido que golpea a varios enemigos.',kind:'cone',cooldown:.85,range:230,glyph:'BLA'},
 fan:{name:'Abanico naranja',description:'Un abanico giratorio que atraviesa enemigos y regresa.',kind:'boomerang',cooldown:1.05,range:540,glyph:'FAN'},
 megaphone:{name:'Voz de mando',description:'Ondas de megáfono en un cono que golpea a varios enemigos.',kind:'cone',cooldown:.9,range:250,glyph:'VOZ'},
 orbit:{name:'Banda presidencial',description:'Tres bandas orbitan a tu alrededor y dañan por contacto.',kind:'orbit',cooldown:.45,range:100,glyph:'BANDA'}
 },
-arena:{name:'Plaza del Causas',duration:300,enemyCap:80},
+arena:{name:'Plaza de los Dibujitos',duration:300,enemyCap:80},
 upgrades:[
 {id:'power',title:'Más alcance mediático',description:'+25% de daño.',apply:p=>p.power*=1.25},
 {id:'rate',title:'Internet de cabina',description:'Ataques un 18% más frecuentes.',apply:p=>p.rate=Math.max(.14,p.rate*.82)},
