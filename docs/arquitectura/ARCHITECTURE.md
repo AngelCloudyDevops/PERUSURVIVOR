@@ -59,6 +59,7 @@ El HTML conserva sus referencias js/*.js y style.css. scripts/modules.cjs mapea 
 | rendering/world.js | Dibujo del mundo por profundidad |
 | ui/screens.js | Menús, HUD y elecciones |
 | ui/styles.css | Estilo adaptable |
+| systems/tiktok-live.js + backend/tiktok-live.cjs | Modo LIVE beta exclusivo de administradores: UI y simulador local en cliente; conexión por usuario, normalización, límites y SSE en servidor |
 
 ## Dependencias y ejecución
 Se mantienen scripts clásicos que comparten P. No se introducen módulos ESM, un framework, motor externo ni cambios de formato de datos. catalog.js se carga primero y game.js inicia el juego al final.
