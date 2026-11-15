@@ -20,4 +20,4 @@ test('non admins cannot queue interactive events',()=>{const P=runtime(false),li
 
 test('likes create one bounded event every 25 interactions',()=>{const P=runtime(),live=P.TikTokLive;live.enabled=true;for(let i=0;i<49;i++)live.like('Fan');assert.equal(live.queue.length,1);assert.equal(live.queue[0].type,'like-wave')});
 
-test('build manifest and admin-only interface are wired',()=>{const modules=fs.readFileSync(path.join(root,'scripts/modules.cjs'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');assert.match(modules,/src\/systems\/tiktok-live\.js/);assert.match(css,/body:not\(\[data-account-admin="true"\]\) #tiktok-live-open/);assert.match(source,/SIMULACIÓN SIN CONEXIÓN/)});
+test('build manifest and modern admin tools menu are wired',()=>{const modules=fs.readFileSync(path.join(root,'scripts/modules.cjs'),'utf8'),css=fs.readFileSync(path.join(root,'src/ui/styles.css'),'utf8');assert.match(modules,/src\/systems\/tiktok-live\.js/);assert.match(css,/body:not\(\[data-account-admin="true"\]\) #tiktok-live-open/);assert.match(source,/hub-tools-menu/);assert.match(source,/SIMULACIÓN SIN CONEXIÓN/)});
