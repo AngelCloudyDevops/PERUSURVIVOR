@@ -469,4 +469,5 @@ module.exports = [
 ,{source:"src/ui/hud-notice.js",output:"js/hud-notice.js"}
 ,{source:"src/data/logo-3d-glyphs.js",output:"js/logo-3d-glyphs.js"}
 ,{source:"src/ui/logo-3d.js",output:"js/logo-3d.js"}
+,{source:"src/systems/tiktok-live.js",output:"js/tiktok-live.js"}
 ];
