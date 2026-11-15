@@ -43,6 +43,7 @@ async function body(req){let text='',size=0;const timer=setTimeout(()=>req.destr
  const checks=require('./save-checks.cjs').createSaveChecks({db,rules:admin.rules,now});
  const balance=require('./balance.cjs').createBalance({db,reply,body,now});
  const music=require('./music.cjs').createMusic({db,reply,now,bodyTimeout:Math.max(bodyTimeout,60000)});
+ const tiktok=require('./tiktok-live.cjs').createTikTokLive({session,reply,body,now});
  async function handle(req,res){try{
   const url=new URL(req.url,'http://localhost');if(!url.pathname.startsWith('/api/'))return false;
   if(req.method!=='GET'&&!origins.includes(req.headers.origin)){reply(res,403,{error:'Origen no permitido'});return true}
@@ -71,6 +72,7 @@ async function body(req){let text='',size=0;const timer=setTimeout(()=>req.destr
    }finally{running--}
   }
   if(!user){reply(res,401,{error:'Inicia sesión'});return true}
+  if(route.startsWith('/api/admin/tiktok-live/')){await tiktok.handle(req,res,user,url);return true}
   if(route==='/api/events'&&req.method==='GET'){gifts.open(req,res,user,url);return true}
   if(req.headers['x-account-id']!==user.id){reply(res,409,{error:'La sesión cambió en otra pestaña. Recarga la página antes de guardar.'});return true}
   if(route==='/api/friends'||route.startsWith('/api/friends/')){await friends.handle(req,res,user,url);return true}
@@ -80,7 +82,7 @@ async function body(req){let text='',size=0;const timer=setTimeout(()=>req.destr
   if(route==='/api/admin/balance'){await balance.handle(req,res,user,url,()=>session(req));return true}
   if(route.startsWith('/api/admin/taunts')){await taunts.adminHandle(req,res,user,url);return true}
   if(route.startsWith('/api/admin/')){await admin.handle(req,res,user,url,()=>session(req));return true}
-  if(route==='/api/logout'&&req.method==='POST'){db.prepare('DELETE FROM sessions WHERE user_id=?').run(user.id);cookie(res,'',0);reply(res,200,{ok:true});return true}
+  if(route==='/api/logout'&&req.method==='POST'){await tiktok.disconnect(user.id,'Sesión cerrada.');db.prepare('DELETE FROM sessions WHERE user_id=?').run(user.id);cookie(res,'',0);reply(res,200,{ok:true});return true}
   if(route==='/api/save'&&req.method==='GET'){const row=db.prepare('SELECT * FROM saves WHERE user_id=?').get(user.id);reply(res,200,row?{revision:row.revision,data:JSON.parse(row.payload),updatedAt:row.updated_at}:{revision:0,data:null});return true}
   if(route==='/api/save'&&req.method==='PUT'){
    const b=await body(req);if(!Number.isSafeInteger(b.revision)||b.revision<0||!b.data||b.data.version!==4||typeof b.data.progress!=='object'||!b.data.progress||!Number.isSafeInteger(b.data.best)||b.data.best<0||b.data.best>100000000){reply(res,400,{error:'Guardado inválido'});return true}
@@ -92,6 +94,6 @@ async function body(req){let text='',size=0;const timer=setTimeout(()=>req.destr
  }catch(e){if(!res.headersSent)reply(res,e.status||500,{error:e.status?e.message:'No se pudo completar la operación'});else res.end();return true}}
  function owns(user,id){if(!user)return true;if(user.role==='admin'||admin.rules().Meta.blank().unlocked.includes(id))return true;const save=db.prepare('SELECT payload FROM saves WHERE user_id=?').get(user.id);let unlocked=[];try{unlocked=JSON.parse(save?.payload||'{}').progress?.unlocked||[]}catch{}return unlocked.includes(id)||!!db.prepare('SELECT id FROM admin_actions WHERE target_id=? AND character_id=? LIMIT 1').get(user.id,id)}
  function characterStats(user,id){if(!user)return null;try{const row=db.prepare('SELECT payload FROM saves WHERE user_id=?').get(user.id);return JSON.parse(row?.payload||'{}').progress?.characters?.[id]||null}catch{return null}}
- return {handle,session,owns,characterStats,friends,balance,taunts,closeStreams:gifts.closeStreams,close:()=>{gifts.closeStreams();db.close()}};
+ return {handle,session,owns,characterStats,friends,balance,taunts,tiktok,closeStreams:gifts.closeStreams,close:()=>{gifts.closeStreams();tiktok.close();db.close()}};
 }
 module.exports={createAccounts};
