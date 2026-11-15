@@ -471,4 +471,5 @@ module.exports = [
 ,{source:"src/ui/net-meter.js",output:"js/net-meter.js"}
 ,{source:"src/data/logo-3d-glyphs.js",output:"js/logo-3d-glyphs.js"}
 ,{source:"src/ui/logo-3d.js",output:"js/logo-3d.js"}
+,{source:"src/systems/tiktok-live.js",output:"js/tiktok-live.js"}
 ];
