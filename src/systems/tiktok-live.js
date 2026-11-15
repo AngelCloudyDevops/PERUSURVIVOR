@@ -9,7 +9,7 @@ P.TikTokLive={
  button(text,action,parent){const el=this.node('button',text,parent);el.type='button';el.onclick=action;return el},
  init(){
   if(typeof Image==='undefined'||!document.body||this.dialog)return;
-  const toolMenu=P.$('#hub-tools-menu');
+  const toolMenu=P.$('.hub-tools-menu');
   this.buttonOpen=this.button(toolMenu?undefined:'◉ TikTok LIVE',()=>this.open(),toolMenu||P.$('#lobby-sidebar'));
   this.buttonOpen.id='tiktok-live-open';
   if(toolMenu){this.buttonOpen.append(this.node('span','◉'),this.node('strong','TikTok LIVE'))}
