@@ -120,7 +120,7 @@ P.VultureMoon={
     c.save();
     if(e.phase==='vulture-landing'){
       const q=Math.min(1,e.moonStageTime/this.landingDuration);c.translate(e.x,e.y);c.fillStyle='#090b18';c.globalAlpha=.15+q*.4;c.beginPath();c.ellipse(0,0,28+q*72,10+q*25,0,0,Math.PI*2);c.fill();c.globalAlpha=1;c.strokeStyle='#e7bc69';c.fillStyle='#c688dd22';c.lineWidth=3;c.beginPath();c.arc(0,0,this.radius,0,Math.PI*2);c.fill();c.stroke();c.beginPath();c.arc(0,0,this.radius*(1-q),0,Math.PI*2);c.stroke();c.fillStyle='#fff1c5';c.fillRect(-14,-2,28,4);c.fillRect(-2,-14,4,28);
-      c.font='bold 12px monospace';c.textAlign='center';c.fillText('¡PICADA LUNAR! · SAL DE LA SOMBRA',0,145);
+      c.font=P.Font.title(12);c.textAlign='center';c.fillText('¡PICADA LUNAR! · SAL DE LA SOMBRA',0,145);
     }else if(e.phase==='vulture-takeoff'){
       const q=e.moonStageTime/this.takeoffDuration;c.fillStyle='#0a0c18';c.globalAlpha=.4*(1-q);c.beginPath();c.ellipse(e.x,e.y+25,60*(1-q*.6),17*(1-q*.6),0,0,Math.PI*2);c.fill();
       if(!P.Vulture.reduced()){c.globalAlpha=.3*(1-q);c.strokeStyle='#b3a28f';c.lineWidth=4;c.beginPath();c.ellipse(e.x,e.y+25,30+q*110,10+q*28,0,0,Math.PI*2);c.stroke()}

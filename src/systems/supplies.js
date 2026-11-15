@@ -1,7 +1,7 @@
 'use strict';
 P.Supply={
 items:{
-lunch:{name:'Lonchera del causa',price:20,text:'+25 de vida máxima y vida inicial durante una partida.',color:'#eeae6b',apply:s=>{s.player.maxHp+=25;s.player.hp+=25}},
+lunch:{name:'Lonchera del dibujo',price:20,text:'+25 de vida máxima y vida inicial durante una partida.',color:'#eeae6b',apply:s=>{s.player.maxHp+=25;s.player.hp+=25}},
 coffee:{name:'Café de cabina',price:25,text:'12% menos de recarga durante una partida.',color:'#cfae8b',apply:s=>s.player.rate*=.88},
 shoes:{name:'Zapatillas de repuesto',price:25,text:'+10% de velocidad durante una partida.',color:'#8ccbf0',apply:s=>s.player.speed*=1.1},
 magnet:{name:'Imán de bolsillo',price:20,text:'+25% de alcance de recogida durante una partida.',color:'#f19d9d',apply:s=>s.player.magnet*=1.25},

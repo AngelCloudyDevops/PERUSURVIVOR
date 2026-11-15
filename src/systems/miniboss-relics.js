@@ -19,7 +19,7 @@ P.Loot.reveal=function(c){if(c.miniReward){P.Relics.reveal(c);return}return reve
 P.Loot.equip=function(id){const changed=equip.call(this,id);if(changed){P.state.player.relicClock=6;P.state.player.relicShield=0}return changed};
 P.Loot.icon=function(ctx,id,x,y,scale=1){if(P.Relics.icon(ctx,id,x,y,scale))return;return icon.call(this,ctx,id,x,y,scale)};
 P.Loot.drawEquipment=function(ctx,p){drawEquipment.call(this,ctx,p);P.Relics.drawShield(ctx,p)};
-P.Loot.drawChest=function(ctx,c){drawChest.call(this,ctx,c);if(c.miniReward&&!c.opened){P.Relics.icon(ctx,P.Relics.ids[c.miniReward],c.x,c.y-80,.7);ctx.save();ctx.textAlign='center';ctx.font='bold 9px monospace';ctx.fillStyle='#ffe0a0';ctx.fillText('RECOMPENSA EXCLUSIVA',c.x,c.y-97);ctx.restore()}};
+P.Loot.drawChest=function(ctx,c){drawChest.call(this,ctx,c);if(c.miniReward&&!c.opened){P.Relics.icon(ctx,P.Relics.ids[c.miniReward],c.x,c.y-80,.7);ctx.save();ctx.textAlign='center';ctx.font=P.Font.title(9);ctx.fillStyle='#ffe0a0';ctx.fillText('RECOMPENSA EXCLUSIVA',c.x,c.y-97);ctx.restore()}};
 P.Combat.cast=function(...args){const ok=cast.apply(this,args);if(ok&&P.state.mode==='play')P.Relics.afterCast(P.state.player);return ok};
 P.Combat.tick=function(dt){P.Relics.tick(P.state.player,dt);return tick.call(this,dt)};
 P.PlayerFeedback.hit=function(p,amount,source){if(P.Relics.block(p,amount))return 0;return hit.call(this,p,amount,source)};

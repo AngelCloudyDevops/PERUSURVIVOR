@@ -15,13 +15,14 @@ P.PlayerStatus={
  },
  observe(actor){
   let record=this.records.get(actor),hp=Number(actor?.hp);
-  if(!record){record={hp,healUntil:0,healAmount:0};this.records.set(actor,record);return record}
+  if(!record){record={hp,healUntil:0,healAmount:0,hurtUntil:0};this.records.set(actor,record);return record}
   const now=this.now();
   if(Number.isFinite(hp)&&Number.isFinite(record.hp)&&hp>record.hp+.01){
    if(record.healUntil<=now)record.healAmount=0;
    record.healAmount=Math.max(record.healAmount,hp-record.hp);
    record.healUntil=now+1.05
   }
+  if(Number.isFinite(hp)&&Number.isFinite(record.hp)&&hp<record.hp-.01)record.hurtUntil=now+.22;
   record.hp=hp;
   return record
  },
@@ -82,10 +83,70 @@ P.PlayerStatus={
   }
   ctx.restore()
  },
- allyBar(ctx,actor){
-  if(!actor)return;const max=Math.max(1,Number(actor.maxHp)||Number(actor.max)||1),life=Math.max(0,Math.min(max,Number(actor.hp)||0));
-  ctx.save();ctx.translate(actor.x,actor.y);ctx.fillStyle='#101827dd';ctx.fillRect(-25,29,50,6);ctx.fillStyle=life/max>.35?'#66d8df':'#ff7d78';ctx.fillRect(-24,30,48*life/max,4);
-  if(life<=0){ctx.fillStyle='#ff9a90';ctx.font='bold 9px monospace';ctx.textAlign='center';ctx.fillText('CAÍDO',0,47)}
+ // Ayudantes del estilo logo: rectángulo redondeado y degradados verticales en caché (se crean una vez por contexto).
+ rr(ctx,x,y,w,h,r){r=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()},
+ gradients:null,
+ grad(ctx,kind,y,h){
+  let g=this.gradients;if(!g||g.ctx!==ctx||g.y!==y||g.h!==h){g=this.gradients={ctx,y,h};g.stops={life:['#ff7ab8','#ff2e88','#d41468'],low:['#ffc04a','#ff7a1a','#d4500a'],heal:['#d6ffb0','#8ff0a4','#38c26a'],flash:['#ffffff','#fff4dc','#ffd9a8'],coin:['#fff08a','#ffd23a','#e8890f']}}
+  if(!g[kind]){const s=g.stops[kind],gr=ctx.createLinearGradient?.(0,y,0,y+h);if(gr){gr.addColorStop(0,s[0]);gr.addColorStop(.5,s[1]);gr.addColorStop(1,s[2])}g[kind]=gr||s[1]}
+  return g[kind]
+ },
+ // Barra compacta bajo los pies (jugador local y compañero): vida rosa, nivel en chapa amarilla.
+ bar(ctx,actor,opts={}){
+  if(!actor)return;const max=Math.max(1,Number(actor.maxHp)||Number(actor.max)||1),life=Math.max(0,Math.min(max,Number(actor.hp)||0)),ratio=life/max,record=this.observe(actor),now=this.now(),reduced=P.Motion?P.Motion.reduced():!!P.Ambient?.reduced?.matches,left=record.hurtUntil-now,hurt=left>0,flash=hurt&&left>.1&&!reduced,shake=hurt&&!reduced?Math.round(Math.sin(now*90)*left/.22*2):0,
+   w=44,h=8,level=Math.floor(Number(opts.level))||0,text=String(level),badge=level?Math.max(16,text.length*8+6):0,total=w+(level?4+badge:0),x=Math.round(-total/2)+shake,y=31,fill=Math.round(w*ratio);
+  ctx.save();ctx.translate(actor.x,actor.y);this.rr(ctx,x-3,y-3,w+6,h+6,(h+6)/2);ctx.fillStyle='#2b0d12';ctx.fill();this.rr(ctx,x,y,w,h,h/2);ctx.fillStyle='#2a2233';ctx.fill();
+  if(fill>0){const kind=flash?'flash':record.healUntil>now?'heal':ratio>.35?'life':'low';ctx.save();this.rr(ctx,x,y,w,h,h/2);ctx.clip();ctx.fillStyle=this.grad(ctx,kind,y,h);ctx.fillRect(x,y,fill,h);ctx.fillStyle='rgba(255,255,255,.45)';ctx.fillRect(x+2,y+1,Math.max(0,fill-4),2);ctx.restore()}
+  ctx.fillStyle='rgba(43,13,18,.55)';for(let i=1;i<4;i++)ctx.fillRect(x+Math.round(w*i/4)-1,y,1,h);
+  if(level){const bx=x+w+4,by=y-4,bh=16;this.rr(ctx,bx-2,by-2,badge+4,bh+4,(bh+4)/2);ctx.fillStyle='#5b1608';ctx.fill();this.rr(ctx,bx,by,badge,bh,bh/2);ctx.fillStyle=this.grad(ctx,'coin',by,bh);ctx.fill();ctx.fillStyle='rgba(255,255,255,.5)';ctx.fillRect(bx+4,by+1.5,Math.max(0,badge-8),2);ctx.font=P.Font.title(11);ctx.textAlign='center';ctx.textBaseline='middle';ctx.lineJoin='round';ctx.lineWidth=3;ctx.strokeStyle='#5b1608';ctx.strokeText(text,bx+badge/2,by+bh/2+1);ctx.fillStyle='#fff9d8';ctx.fillText(text,bx+badge/2,by+bh/2+1)}
+  if(life<=0&&opts.down){ctx.fillStyle='#ff9a90';ctx.font=P.Font.title(9);ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText('CAÍDO',0,47)}
   ctx.restore()
- }
+ },
+ allyBar(ctx,actor){this.bar(ctx,actor,{level:P.state?.level,down:true})},
+ // Estados temporales sobre la cabeza: iconos de 14 px con barra de tiempo restante; máximo 5 y «+N».
+ // El tiempo total de cada estado es el mayor restante visto desde que apareció (la simulación solo guarda el final).
+ buffRow(ctx,actor,y){
+  const record=this.observe(actor),span=record.span||(record.span={}),states=this.states(actor).filter(q=>!q.persistent&&q.id!=='heal'&&q.id!=='invulnerable'),seen={};
+  for(const q of states){const left=this.remaining(q);seen[q.id]=1;if(!(span[q.id]>=left))span[q.id]=left}
+  for(const id of Object.keys(span))if(!seen[id])delete span[id];
+  if(!states.length)return;
+  const shown=states.slice(0,5),extra=states.length-shown.length,size=14,gap=3,count=shown.length+(extra?1:0),x0=Math.round(actor.x-(count*size+(count-1)*gap)/2);
+  ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
+  shown.forEach((q,i)=>{
+   const x=x0+i*(size+gap),total=span[q.id]||0,ratio=total>0?Math.max(0,Math.min(1,this.remaining(q)/total)):1,color=q.color||'#fff4dc',icon=String(q.icon||'•');
+   ctx.fillStyle='#0c0a10';ctx.fillRect(x-1,y-1,size+2,size+2);ctx.fillStyle=q.kind==='debuff'?'#3a1424':'#1b1622';ctx.fillRect(x,y,size,size);
+   ctx.fillStyle=color;ctx.font=P.Font.title(icon.length>1?8:11);ctx.fillText(icon,x+size/2,y+size/2-1);
+   ctx.fillRect(x,y+size-2,Math.max(1,Math.round(size*ratio)),2);
+   if(q.kind==='debuff'){ctx.fillStyle='#ff2e88';ctx.fillRect(x,y,size,1)}
+  });
+  if(extra){const x=x0+shown.length*(size+gap);ctx.fillStyle='#0c0a10';ctx.fillRect(x-1,y-1,size+2,size+2);ctx.fillStyle='#fff4dc';ctx.font=P.Font.title(9);ctx.fillText('+'+extra,x+size/2,y+size/2)}
+  ctx.restore()
+ },
+ // Avisos de evento y botín (P.Loot.message): salen flotando sobre el personaje, uno a uno.
+ notices:{owner:null,queue:[],cur:null,start:0,last:'',lastT:0},
+ watchNotices(){
+  const s=P.state,n=this.notices,loot=P.Loot;
+  if(n.owner!==s){n.owner=s;n.queue=[];n.cur=null;n.start=0;n.last='';n.lastT=0}
+  const text=loot?.message||'',t=loot?.messageTime||0;
+  if(text&&t>0&&(text!==n.last||t>n.lastT+.5)&&n.cur?.text!==text&&!n.queue.includes(text)){n.queue.push(text);if(n.queue.length>4)n.queue.shift()}
+  n.last=t>0?text:'';n.lastT=t;return n
+ },
+ noticeLines(ctx,text,max){
+  const lines=[];let line='';for(const word of String(text).split(/\s+/)){const next=line?line+' '+word:word;if(line&&ctx.measureText(next).width>max){lines.push(line);line=word}else line=next}
+  if(line)lines.push(line);return lines.slice(0,3)
+ },
+ drawNotices(ctx,actor,y){
+  const n=this.watchNotices(),now=this.now(),reduced=P.Motion?P.Motion.reduced():!!P.Ambient?.reduced?.matches;
+  if(n.cur&&(now<n.start||now-n.start>=n.cur.life))n.cur=null;
+  if(!n.cur&&n.queue.length){n.cur={text:n.queue.shift(),life:n.queue.length>1?1.6:2.6};n.start=now}
+  const c=n.cur;if(!c)return;
+  const age=now-n.start,rise=reduced?0:-14*Math.min(1,age/c.life),alpha=reduced?1:age<.15?age/.15:age>c.life-.5?Math.max(0,(c.life-age)/.5):1;
+  ctx.save();ctx.font=P.Font.title(13);ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.lineJoin='round';ctx.lineWidth=5;ctx.globalAlpha=alpha;ctx.strokeStyle='#5b1608';ctx.fillStyle='#ffffff';
+  const lines=c.lines||(c.lines=this.noticeLines(ctx,c.text,260)),x=Math.round(actor.x);
+  lines.forEach((line,i)=>{const ly=Math.round(y+rise-(lines.length-1-i)*16);ctx.strokeText(line,x,ly+2);ctx.strokeText(line,x,ly);ctx.fillText(line,x,ly)});
+  ctx.restore()
+ },
+ overhead(ctx,p){if(p.hp>0)this.buffRow(ctx,p,Math.round(p.y)-60);this.drawNotices(ctx,p,Math.round(p.y)-68)},
+ // Última pasada del mundo: las barras quedan sobre enemigos y efectos y no se duplican.
+ bars(ctx){const s=P.state,p=s?.player;if(!p)return;if(P.Coop?.active)for(const a of P.Coop.peers||[])if(a!==p&&a.coopPlayer)this.allyBar(ctx,a);if(p.hp>0)this.bar(ctx,p,{level:s.level});this.overhead(ctx,p)}
 };
