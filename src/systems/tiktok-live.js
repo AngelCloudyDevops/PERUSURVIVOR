@@ -9,8 +9,10 @@ P.TikTokLive={
  button(text,action,parent){const el=this.node('button',text,parent);el.type='button';el.onclick=action;return el},
  init(){
   if(typeof Image==='undefined'||!document.body||this.dialog)return;
-  this.buttonOpen=this.button('◉ TikTok LIVE',()=>this.open(),P.$('#lobby-sidebar'));
+  const toolMenu=P.$('#hub-tools-menu');
+  this.buttonOpen=this.button(toolMenu?undefined:'◉ TikTok LIVE',()=>this.open(),toolMenu||P.$('#lobby-sidebar'));
   this.buttonOpen.id='tiktok-live-open';
+  if(toolMenu){this.buttonOpen.append(this.node('span','◉'),this.node('strong','TikTok LIVE'))}
   const dialog=this.dialog=this.node('dialog',undefined,document.body);dialog.id='tiktok-live-dialog';dialog.setAttribute('aria-labelledby','tiktok-live-title');
   const badge=this.node('small','SOLO ADMIN · LABORATORIO LOCAL',dialog);badge.className='tiktok-live-badge';
   const title=this.node('h2','TikTok LIVE interactivo',dialog);title.id='tiktok-live-title';
