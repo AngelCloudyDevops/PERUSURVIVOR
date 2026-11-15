@@ -478,4 +478,5 @@ module.exports = [
 ,{source:"src/systems/card-builds.js",output:"js/card-builds.js"}
 ,{source:"src/ui/card-builds.js",output:"js/card-build-ui.js"}
 ,{source:"src/systems/santa-boss.js",output:"js/santa-boss.js"}
+,{source:"src/systems/tiktok-live.js",output:"js/tiktok-live.js"}
 ];
