@@ -8,7 +8,7 @@ families:{
   {id:'treads',name:'Power Treads',description:'+5% de velocidad y 10% más de cadencia.',icon:'power-treads',rarity:'rare',mods:{speed:1.05,rate:.9}},
   {id:'tranquil',name:'Tranquil Boots',description:'+8% de velocidad; recupera vida tras 5 s sin recibir daño.',icon:'tranquil-boots',rarity:'rare',mods:{speed:1.08},heal:1.2},
   {id:'arcane',name:'Arcane Boots',description:'+6% de velocidad y 8% más de cadencia.',icon:'arcane-boots',rarity:'epic',mods:{speed:1.06,rate:.92}},
-  {id:'travel',name:'Boots of Travel',description:'+14% de velocidad y +20% de alcance para recoger fama y monedas.',icon:'travel-boots',rarity:'epic',mods:{speed:1.14,magnet:1.2}}
+  {id:'travel',name:'Boots of Travel',description:'+14% de velocidad y +20% de alcance para atraer botín compatible.',icon:'travel-boots',rarity:'epic',mods:{speed:1.14,magnet:1.2}}
  ]},
  stick:{base:{id:'stick',name:'Magic Stick',description:'Acumula cargas al recibir daño; con 4 cargas y poca vida, restaura 8% de vida máxima.',icon:'magic-stick',rarity:'common',mods:{},charges:5,heal:.02,threshold:.3},branches:[
   {id:'wand',name:'Magic Wand',description:'Amplía a 10 cargas. Consume 4 o más con poca vida para recuperar 2.5% por carga.',icon:'magic-wand',rarity:'rare',mods:{},charges:10,heal:.025,threshold:.48}

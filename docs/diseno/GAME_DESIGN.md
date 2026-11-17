@@ -1283,10 +1283,10 @@ El Centro de balance presenta los enemigos con valores reales de referencia —P
 ### Minion francotirador
 
 - Puede sustituir a un pingüino desde 02:15. Nunca hay más de dos vivos y conserva el cupo total de profesiones; no aumenta la cantidad de rivales.
-- Camina al 58 % de la velocidad original. Solo prepara `Tiro de vigilancia` cuando el objetivo lleva 0,65 s quieto, está entre 300 y 720 unidades y existe línea de visión.
-- La mira anuncia durante al menos 1,3 s la trayectoria exacta y queda fijada: moverse después del aviso permite esquivar. No es un impacto instantáneo.
-- La bala viaja a 960 unidades/s, inflige 26 de daño base físico y usa colisión barrida para no atravesar al jugador entre fotogramas. Árboles, muros y cobertura la detienen.
-- Recarga base de 8,2 s, con una sola bala por ataque incluso en rango élite. En cooperativo prioriza a un jugador quieto dentro del alcance; si ninguno cumple, conserva la selección normal sin disparar.
+- Camina al 40 % de la velocidad original. Retrocede por debajo de 340 unidades, mantiene posición entre 340 y 900 y solo se acerca si queda fuera de ese alcance. No persigue cuerpo a cuerpo después de disparar.
+- Solo prepara `Tiro de vigilancia` cuando el objetivo lleva 0,65 s quieto y existe línea de visión. La mira gruesa anuncia durante al menos 1,4 s la trayectoria exacta y queda fijada: moverse después del aviso permite esquivar. No es un impacto instantáneo.
+- La bala grande viaja a 1.200 unidades/s, usa un radio de impacto de 24 y colisión barrida para no atravesar al jugador entre fotogramas. Si acierta, quita exactamente 35 % de la vida máxima, independientemente de armadura; invulnerabilidad real, árboles, muros y cobertura todavía la evitan.
+- Recarga base de 7 s, con una sola bala por ataque incluso en rango élite. En cooperativo prioriza a un jugador quieto dentro del alcance; si ninguno cumple, conserva la selección normal sin disparar.
 
 ### Fusión directa durante el combate
 Un apoyo en rango 3, desde nivel 8 (6 en Rápida), puede arrastrarse sobre una técnica compatible del HUD. Solo se resaltan destinos válidos. Soltar sobre el destino fusiona inmediatamente, sin pausa, confirmación ni consumo de subida de nivel. Soltar fuera cancela. También se puede seleccionar el apoyo y luego el destino con clic, toque o teclado. No se permite mientras hay una elección, pausa, muerte, cinemática o dominio activo. Conserva el límite de dos apoyos. La oferta de nivel anterior se mantiene como ruta alternativa.
